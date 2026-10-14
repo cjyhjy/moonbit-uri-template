@@ -151,3 +151,20 @@ test "deterministic generated inputs parser robustness and reuse equivalence" {
     assert_eq(@lib.expand(source, vars).unwrap(), before)
   }
 }
+
+///|
+test "strict grammar mode keeps expansion semantics and rejects literal apostrophes" {
+  let vars = @lib.Variables::new()
+  vars.set("x", @lib.Scalar("a'b"))
+  assert_eq(@lib.parse_strict("{x}").unwrap().expand(vars).unwrap(), "a%27b")
+  assert_eq(@lib.parse_strict("{+x}").unwrap().expand(vars).unwrap(), "a'b")
+  assert_eq(@lib.parse("'{x}'").unwrap().expand(vars).unwrap(), "'a%27b'")
+  let error = @lib.parse_strict("😀'{x}'").unwrap_err()
+  assert_eq(error.code, "InvalidLiteral")
+  assert_eq(error.span.start, 1)
+  assert_eq(error.span.end, 2)
+  assert_eq(
+    @lib.parse_strict("%27{x}%27").unwrap().expand(vars).unwrap(),
+    "%27a%27b%27",
+  )
+}

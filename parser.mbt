@@ -111,7 +111,10 @@ fn parse_var(
 
 ///|
 /// Parse and validate an RFC 6570 template. Invalid templates return no partial result.
-pub fn parse(source : String) -> Result[Template, TemplateError] {
+fn parse_impl(
+  source : String,
+  allow_literal_apostrophe : Bool,
+) -> Result[Template, TemplateError] {
   let cs = source.to_array()
   let segments : Array[Segment] = []
   let mut i = 0
@@ -161,7 +164,7 @@ pub fn parse(source : String) -> Result[Template, TemplateError] {
       literal_start = i
     } else if pct_at(cs, i, cs.length()) {
       i = i + 3
-    } else if literal_char(cs[i]) {
+    } else if literal_char(cs[i]) && (allow_literal_apostrophe || cs[i] != '\'') {
       i = i + 1
     } else {
       return Err(
@@ -196,4 +199,17 @@ pub fn Template::variables(self : Template) -> Array[String] {
     }
   }
   names
+}
+
+///|
+/// Parse a template with the documented single-quote literal compatibility extension.
+pub fn parse(source : String) -> Result[Template, TemplateError] {
+  parse_impl(source, true)
+}
+
+///|
+/// Parse using RFC 6570 literal ABNF, rejecting literal ASCII apostrophes.
+/// Variable values are still governed by the operator's encoding rules.
+pub fn parse_strict(source : String) -> Result[Template, TemplateError] {
+  parse_impl(source, false)
 }

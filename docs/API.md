@@ -4,7 +4,8 @@
 
 | 接口 | 用法 |
 | --- | --- |
-| `parse(String)` | 解析并验证模板，返回 `Result[Template, TemplateError]` |
+| `parse(String)` | 解析模板，保留已公开的单引号兼容扩展 |
+| `parse_strict(String)` | 按 RFC literal ABNF 解析，拒绝 literal 单引号 |
 | `expand(String, Variables)` | 一次性解析并展开 |
 | `Template.expand(Variables)` | 复用已解析模板 |
 | `Template.variables()` | 按首次出现顺序返回去重后的变量名 |

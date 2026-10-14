@@ -10,6 +10,8 @@ pub fn expand(String, Variables) -> Result[String, TemplateError]
 
 pub fn parse(String) -> Result[Template, TemplateError]
 
+pub fn parse_strict(String) -> Result[Template, TemplateError]
+
 // Errors
 
 // Types and methods
