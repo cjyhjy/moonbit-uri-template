@@ -1,4 +1,4 @@
-# v0.1.0 交付验收记录
+# v0.1.1 交付验收记录
 
 核查日期：2026-10-14。以下记录区分本地证据与外部发布状态。
 
@@ -23,20 +23,21 @@
 
 复现：`python3 tools/bootstrap.py`，`npm test`，`npm run demo`。当前工具链 `0.10.15+943464bfa`；完整执行 ID、工具链、源码 SHA-256 与包摘要见 [verification.json](../reports/verification.json)。
 
-## 外部待完成
+## 公开交付与用户待办
 
 | 项目 | 当前权威状态 | 下一步 |
 | --- | --- | --- |
-| GitHub 公开仓库 | 公开仓库已创建，main 已收到按实质改进持续提交的代码 | 以真实 Git 历史核对不少于 10 个有效 commits |
-| 远程 CI 全绿 | 首次运行成功：38522448090 | 后续变更继续检查对应提交的 Actions |
-| Mooncakes 公共包 | 用户已通过 GitHub 注册，截图用户名 cjyhjy；CLI 已登录 | 完成改进和材料后发布并验证注册表安装 |
+| GitHub 公开仓库 | 已按实际改进持续提交，发布修复时已有 11 个 commits | 保留真实历史，不制造拆分或空提交 |
+| 远程 CI 全绿 | 修复提交 d0a71cd 的运行 38527270144 成功 | 后续变更继续检查对应提交的 Actions |
+| Mooncakes 公共包 | cjyhjy/uri_template 0.1.1 已发布，并在全新消费工程验证三个后端及空 prefix 修复 | 证据见 reports/registry.json |
+| GitHub Release | [v0.1.1](https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.1.1) 已公开，源码指向 d0a71cd | 附件 SHA-256 与 reports/release.json 一致 |
 | 正式报名与验收提交 | 尚无官方提交记录 | 用户核对身份与正式材料要求，完成提交 |
 
-公开交付仍未完成，不将本地通过当作上述外部状态的证据。浏览器 Playground 为原计划 P2 可选扩展，当前未实现。
+核心库公开交付已完成，正式参赛提交由用户负责。浏览器 Playground 为原计划 P2 可选扩展，当前未实现。
 
 ## 已知限制
 
-默认接受并保留模板 literal 单引号；差异解释见 CONFORMANCE.md。CLI 输入数字/布尔值需显式字符串化。核心处理符合 Unicode 字符串输入，不进行 NFC 归一化。固定工具链历史下载有保留期限，更新必须重验；完整注册表查重受 endpoint 网络失败影响，未宣称唯一实现。
+默认接受并保留模板 literal 单引号；严格入口拒绝该扩展。CLI 数字/布尔值需显式字符串化；不进行 NFC 归一化。固定工具链历史下载有保留期限，更新必须重验。注册表补查已证实同类，定位和证据见 ECOSYSTEM.md。
 
 ## 演示说明
 
@@ -49,3 +50,5 @@
 ## 可运行发布产物
 
 已生成 Mooncakes 源码包和 portable Node 发布 zip。后者包含编译核心、CLI、样例、标准库许可证和 SHA-256 清单；解压后 27/27 CLI 测试通过。打包脚本与 CI 会自动复现这一过程，证据见 reports/release.json。
+
+GitHub v0.1.1 已发布附件 `moonbit-uri-template-0.1.1.zip`，公开 SHA-256 为 `abb655be5a7c05a0f52760ea54d148ad4ac427002b7d600995516303fb45430d`，与本地报告一致。页面截图见 reports/github-release.jpg。

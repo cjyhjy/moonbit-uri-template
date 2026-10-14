@@ -2,7 +2,7 @@
 
 RFC 6570 Level 4 URI Template 解析与展开库，核心使用 MoonBit 实现，无第三方运行时依赖。
 
-**版本：0.1.1（修复空集合 prefix 边界）。本地实现、公开仓库和首次 CI 已通过；Mooncakes 发布状态见 [交付记录](docs/ACCEPTANCE.md)。**
+**当前版本：0.1.1。实现、三后端测试、公开仓库、远程 CI 和注册表安装已验证；证据见 [交付记录](docs/ACCEPTANCE.md)。**
 
 给定 `/users/{id}{?page}`，输入 `id="42"`、`page="2"`，得到 `/users/42?page=2`。
 
@@ -59,7 +59,7 @@ match @uri.parse("/users/{id}{?page}") {
 
 一次性调用 `@uri.expand(source, vars)`；重复使用时保留解析后的 `Template`。使用 `OrderedEntries::from_entries` 构造关联值，重复键会报错。`Variables::set` 复制集合输入，防止调用者意外修改已绑定值。
 
-**当前模块名 `cjyhjy/uri_template` 已与用户截图确认的 Mooncakes 用户名一致。** 未公开发布前，使用本地 `moon.work` 将库和下游模块放入同一工作区。验收脚本已从打包产物创建独立工作区并验证导入；正式发布后再使用 `moon add` 安装。
+模块已发布到 Mooncakes，命名空间 `cjyhjy/uri_template`。下游先运行 `moon add cjyhjy/uri_template@0.1.1`，再在 `moon.pkg` 中导入。也可使用本地 `moon.work` 联合开发；归档消费和注册表消费均已验证。
 
 ```sh
 ./tools/moon run examples --target js
@@ -112,6 +112,7 @@ node tools/benchmark.mjs      # 纯核心解析复用基准，输出原始测量
 | [架构](docs/ARCHITECTURE.md) | 模块、数据模型、运行方式和设计决策 |
 | [测试策略](docs/TEST_STRATEGY.md) | 标准夹具、回归点和发布门槛 |
 | [交付验收](docs/ACCEPTANCE.md) | 已完成证据与外部待办 |
+| [生态定位](docs/ECOSYSTEM.md) | 已存在的同类项目与本项目可验证特点 |
 | [项目规划](docs/PROJECT_PLAN.md) | 原始日程、范围与任务 |
 | [技术参考](docs/PROPOSAL.md) | 项目事实参考；正式申报书需由参赛者自己写 |
 | [发布流程](docs/RELEASE.md) | 注册、包名确认、公开发布与版本验证 |
@@ -120,3 +121,5 @@ node tools/benchmark.mjs      # 纯核心解析复用基准，输出原始测量
 ## 来源与许可证
 
 Apache-2.0，见 [LICENSE](LICENSE)。本项目为根据规范编写的实现；未复制其他语言实现的核心代码。测试夹具来自 [uri-templates/uritemplate-test](https://github.com/uri-templates/uritemplate-test)，保留 [原许可证](testdata/upstream/LICENSE)。规范依据 [RFC 6570](https://www.rfc-editor.org/rfc/rfc6570)。完整来源见 [NOTICE](NOTICE) 与 [研究记录](docs/RESEARCH.md)。
+
+生态中已存在其他 RFC 6570 库；本项目是独立实现，不宣称首个或唯一。正式赛事申报书应由参赛者自己撰写，AI 辅助的技术参考文档不能直接用作申报书。

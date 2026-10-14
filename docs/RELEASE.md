@@ -2,13 +2,13 @@
 
 ## 当前命名
 
-GitHub：`cjyhjy/moonbit-uri-template`，用户已确认。模块暂用 `cjyhjy/uri_template`；Mooncakes 用户名在注册后确认，若不同需统一修改模块名、各包 import、测试生成器引用和消费工程，再运行完整验收。
+GitHub：`cjyhjy/moonbit-uri-template`。Mooncakes 用户名已由截图和实际发布确认，模块为 `cjyhjy/uri_template`，当前版本 0.1.1。
 
 ## GitHub
 
 本地验收通过后创建公开仓库并推送代码，保留真实提交历史。GitHub CLI 当前凭据失效，但已用用户登录的浏览器创建仓库，使用 Git 的系统凭据成功推送。不要把访问令牌写进项目。
 
-推送后检查 Actions 是否真正完成。第一次成功运行后，可创建 `v0.1.0` 版本，附上包、测试报告、演示说明和变更记录。首次远程运行 38522448090 已成功；以后以对应提交的真实运行结果更新材料。
+推送后检查 Actions 是否真正完成。当前 [v0.1.1](https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.1.1) 已公开发布，附有通过解压测试的 portable CLI。版本对应源码提交 d0a71cd；[远程运行 38527270144](https://github.com/cjyhjy/moonbit-uri-template/actions/runs/38527270144) 已成功。以后以对应提交的真实运行结果更新材料。
 
 ## Mooncakes
 
@@ -21,11 +21,11 @@ Mooncakes 是 MoonBit 的包仓库。开发和本地导入不需要账号，公�
 5. 确认发布名和版本后，使用 `./tools/moon publish`。
 6. 在全新工程中通过 `moon add <真实模块名>` 从注册表安装并运行示例；这才证明公开包可用。
 
-本地打包成功和本地工作区消费通过不等于已发布到注册表。账号落实后必须补做注册表安装验证。
+本地打包成功和本地工作区消费通过不等于已发布到注册表。当前 0.1.1 实际发布响应为 200 OK，并已从注册表安装，在独立工程运行三个后端；见 reports/publish-0.1.1.log 与 reports/registry.json。该版工具链 dry-run 返回 202 与成功说明，却以失败退出；保留原始日志，不据此伪称实际发布失败或成功。
 
 ## 赛事材料
 
-提交公开仓库、README、可运行代码、必要测试和可复现演示说明；正式表单要求的个人身份、团队信息和参赛确认由用户核对。项目申报说明见 PROPOSAL.md，验收记录见 ACCEPTANCE.md。具体截止时刻与时区以官方通知为准，原计划提前于 10/31 提交。
+提交公开仓库、README、可运行代码、必要测试和可复现演示说明；正式表单要求的个人身份、团队信息和参赛确认由用户核对。PROPOSAL.md 仅为 AI 辅助技术参考，不能直接上传为正式申报书；验收记录见 ACCEPTANCE.md。具体截止时刻与时区以官方通知为准，原计划提前于 10/31 提交。
 
 ## 工具链维护
 
@@ -37,4 +37,4 @@ Markdown、一页以内、由参赛者自己撰写，不使用 AI 编写。需�
 
 ## 可直接运行的发布产物
 
-`npm run release:package` 生成 `_build/releases/moonbit-uri-template-0.1.0.zip`：包含编译后的 MoonBit JS 核心、CLI、样例、完整 CLI 测试、许可证、Mooncakes 源码包和逐文件 SHA-256。打包脚本会解压产物并重新运行所有 CLI 测试。用户只需 Node.js 22+，无需安装 MoonBit 或第三方 npm 包。CI 同样生成并上传该产物。
+`npm run release:package` 生成 `_build/releases/moonbit-uri-template-<当前版本>.zip`：包含编译后的 MoonBit JS 核心、CLI、样例、完整 CLI 测试、许可证、Mooncakes 源码包和逐文件 SHA-256。打包脚本会解压产物并重新运行所有 CLI 测试。用户只需 Node.js 22+，无需安装 MoonBit 或第三方 npm 包。CI 同样生成并上传该产物。

@@ -2,7 +2,7 @@
 
 赛事表单明确要求：申报书采用 Markdown、控制在一页内、不要使用 AI 编写。本文件是 AI 辅助的技术事实参考，不能作为正式申报书上传。请参赛者自己撰写，写入至少三个完整使用场景，并核对下面的事实。
 
-代码已完成本地验收；公开仓库已创建并推送，首次 CI 通过。正式申报尚未提交。
+代码已完成本地验收；公开仓库、远程 CI、GitHub v0.1.1 发布与 Mooncakes 0.1.1 注册表安装验证均已完成。正式申报尚未提交。
 
 **项目名称：MoonBit URI Template —— RFC 6570 模板解析与展开库**
 
@@ -14,7 +14,7 @@
 
 API 客户端、SDK 生成器和开发者工具需要将 `/users/{id}{?page,limit}` 展开成 URI。手动拼接容易在查询参数、集合值和字符编码上出错。本项目提供统一的 MoonBit API，完成解析、变量绑定、展开和错误定位，并允许同一模板重复使用。
 
-社区 [候选 Issue #18](https://github.com/moonbit-community/auto-contrib-workflow/issues/18) 曾记录相关需求。候选记录不代表主办方立项批准；本项目不使用“首个”或“唯一”等未经完整查证的表述。
+社区 [候选 Issue #18](https://github.com/moonbit-community/auto-contrib-workflow/issues/18) 曾记录相关需求。候选记录不代表主办方立项批准。注册表补查已证实有同类项目，见 ECOSYSTEM.md；不能以“生态空白”“首个”或“唯一”申报。
 
 ## 已实现能力
 
@@ -28,10 +28,10 @@ API 客户端、SDK 生成器和开发者工具需要将 `/users/{id}{?page,limi
 
 ## 交付成果
 
-源码与 API 快照、三组 CLI 示例、标准测试及自动验收脚本、GitHub Actions 配置、原始测试报告、解析复用性能记录、README、API 文档、Apache-2.0 许可证、版本记录及 AI 辅助说明。公开仓库、远程 CI 和 Mooncakes 发布将在账号登录、命名空间确认后完成。
+源码与 API 快照、三组 CLI 示例、标准测试及自动验收脚本、GitHub Actions 配置、原始测试报告、解析复用性能记录、README、API 文档、Apache-2.0 许可证、版本记录及 AI 辅助说明。公开发布产物和实际注册表消费证据见 ACCEPTANCE.md。
 
 ## 项目价值与维护
 
 为 MoonBit 下游补充一个范围明确、可验证、可复用的基础组件。后续维护以标准一致性、bug 回归、工具链兼容和下游使用反馈为主，不靠增加无关界面扩大规模。AI 辅助设计、编码、测试和文档，参赛者负责理解与最终质量。
 
-待补信息：团队情况、Mooncakes 用户名、报名状态，以及主办方要求的具体身份和材料。实际验收证据见 ACCEPTANCE.md 与 reports/verification.json。
+Mooncakes 用户名已确认是 cjyhjy。用户仍需核对团队情况、报名状态，以及主办方要求的具体身份和材料。实际验收证据见 ACCEPTANCE.md、reports/verification.json 与 reports/registry.json。

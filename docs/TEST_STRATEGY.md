@@ -4,7 +4,7 @@
 
 ## 1. 测试依据
 
-规范以 [RFC 6570](https://www.rfc-editor.org/rfc/rfc6570) 为准。外部夹具使用社区维护的 [uritemplate-test](https://github.com/uri-templates/uritemplate-test)，它不是 IETF 的认证服务。固定提交号 4171dac22aa67fc710b3f6df308a50bd08552986，，保留许可证；不在每次 CI 临时拉取 main。
+规范以 [RFC 6570](https://www.rfc-editor.org/rfc/rfc6570) 为准。外部夹具使用社区维护的 [uritemplate-test](https://github.com/uri-templates/uritemplate-test)，它不是 IETF 的认证服务。固定提交号 4171dac22aa67fc710b3f6df308a50bd08552986，保留许可证；不在每次 CI 临时拉取 main。
 
 纳入 `spec-examples.json`、`spec-examples-by-section.json`、`extended-tests.json` 和 `negative-tests.json`。上游说明前两个文件只有部分重叠，所以都运行。测试适配器支持预期单字符串、多个可接受字符串、以及 `false` 表示失败三种形式；未标明 level 的测试组按上游约定视为 Level 4。[夹具格式](https://github.com/uri-templates/uritemplate-test#test-format)
 
@@ -19,7 +19,7 @@
 | 标准一致性 | 固定版本四类夹具 | RFC 行为遗漏或组合出错 |
 | 扩展回归 | Unicode、长输入、恶意语法、顺序 | 上游未覆盖的边界 |
 | 适配器/CLI | JSON 类型、stdout/stderr、退出码 | 产品边界与核心行为不一致 |
-| 跨后端 | JS、wasm-gc，后续 Native | 字符串和集合实现差异 |
+| 跨后端 | JS、wasm-gc、Native | 字符串和集合实现差异 |
 
 MoonBit 官方提供黑盒与白盒测试组织方式；分别用于公开契约和内部边界验证。[官方测试文档](https://docs.moonbitlang.com/en/stable/language/tests.html)
 
@@ -69,7 +69,7 @@ MoonBit 官方提供黑盒与白盒测试组织方式；分别用于公开契约
 
 ## 当前证据
 
-上游用例逐条执行并核对 ID，三后端无 skips；生成数据与接口快照无漂移。CLI 集成测试验证 stdout/stderr 与退出码；验收脚本从真实 zip 解包，创建独立消费工程并运行三后端。单引号公开差异已解决为兼容扩展，没有修改夹具。远程 CI 与注册表安装仍需公开发布后补证。
+上游用例逐条执行并核对 ID，三后端无 skips；生成数据与接口快照无漂移。CLI 集成测试验证 stdout/stderr 与退出码；验收脚本从真实 zip 解包，创建独立消费工程并运行三后端。单引号公开差异已解决为兼容扩展，没有修改夹具。[v0.1.1 远程 CI](https://github.com/cjyhjy/moonbit-uri-template/actions/runs/38527270144) 已通过；全新工程从注册表安装 0.1.1 并运行三后端的证据见 reports/registry.json。
 
 ## 覆盖率诊断
 

@@ -1,0 +1,15 @@
+Registry index updated successfully
+Symbols updated successfully
+
+Registry index updated successfully
+Symbols updated successfully
+Warning: dependency `cjyhjy/uri_template` already exists, `moon add` will not update it. To update the dependency, run `moon add --upgrade cjyhjy/uri_template@<version>` or `moon add --upgrade cjyhjy/uri_template` for the latest version.
+
+/users/42?tags=a%20b&tags=sdk
+
+/users/42?tags=a%20b&tags=sdk
+
+/users/42?tags=a%20b&tags=sdk
+
+acceptance/registry_consumer@0.0.0 (local /private/tmp/uri-template-registry-011-951qwkam):
+└─ cjyhjy/uri_template -> cjyhjy/uri_template@0.1.1
