@@ -1,0 +1,34 @@
+{
+  "measuredAtUtc": "2026-10-14T06:16:40.252Z",
+  "node": "v26.7.0",
+  "platform": "darwin",
+  "arch": "arm64",
+  "cpu": "Apple M5 Pro",
+  "iterationsPerSample": 20000,
+  "samples": {
+    "parseEachTime": [
+      21.056375,
+      20.412125,
+      20.204208,
+      20.13725,
+      20.198875,
+      20.154084,
+      20.433042
+    ],
+    "reuseTemplate": [
+      13.595625,
+      13.483291,
+      13.812958,
+      13.843792,
+      13.855958,
+      14.915167,
+      13.579791
+    ]
+  },
+  "medianMs": {
+    "parseEachTime": 20.204208,
+    "reuseTemplate": 13.812958
+  },
+  "checksum": 1420000,
+  "scope": "Pure MoonBit JS core; excludes CLI/JSON/startup; one query template with Unicode and list values. Observational, no timing gate."
+}
