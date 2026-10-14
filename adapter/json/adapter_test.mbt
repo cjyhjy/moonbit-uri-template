@@ -35,6 +35,8 @@ test "request envelope separates successful outputs from errors" {
     ("validate", "{x", "{}", 1),
     ("variables", "{x,x}{?y}", "{}", 0),
     ("invalid", "{x}", "{}", 2),
+    ("validate-strict", "'{x}'", "{}", 1),
+    ("validate-strict", "{+x}", "{}", 0),
   ]
   for (command, source, vars, code) in sources {
     let response = @jsonlib.parse(@json.request(command, source, vars))

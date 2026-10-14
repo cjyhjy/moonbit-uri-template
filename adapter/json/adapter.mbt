@@ -103,7 +103,12 @@ pub fn request(
   source : String,
   variables_json : String,
 ) -> String {
-  let template = match @template.parse(source) {
+  let parsed = if command == "validate-strict" {
+    @template.parse_strict(source)
+  } else {
+    @template.parse(source)
+  }
+  let template = match parsed {
     Ok(t) => t
     Err(e) =>
       return Json::object(
@@ -124,7 +129,7 @@ pub fn request(
       ).stringify()
   }
   let output = match command {
-    "validate" => "valid"
+    "validate" | "validate-strict" => "valid"
     "variables" =>
       Json::array(template.variables().map(Json::string)).stringify()
     "expand" => {

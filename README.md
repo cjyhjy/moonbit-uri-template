@@ -92,7 +92,7 @@ JSON 变量接受字符串、字符串数组、字符串或 null 值的对象，
 
 ## 兼容性边界
 
-遵循 RFC 的合法表达式和展开语义。为兼容上游两个单引号夹具，模板 literal 中的 ASCII 单引号被接受并原样保留；这是相对第 2.1 节 literal ABNF 的明确扩展，详见 [差异记录](docs/CONFORMANCE.md)。没有跳过或修改上游样例。
+遵循 RFC 的合法表达式和展开语义。为兼容上游两个单引号夹具，默认模板 literal 中的 ASCII 单引号被接受并原样保留；这是相对第 2.1 节 literal ABNF 的明确扩展，详见 [差异记录](docs/CONFORMANCE.md)。没有跳过或修改上游样例。需要严格语法检查可使用 `parse_strict` 或 `node tools/cli.mjs validate TEMPLATE --strict`。
 
 缺失变量默认省略。展开仅生成 URI 引用，不执行 HTTP 请求、URL 规范化或反向路由匹配；不自动进行 Unicode NFC 归一化。关联对象输出顺序由调用接口决定。具体行为与标准一致性声明以固定语料和公开差异记录为依据，不代表第三方认证。
 

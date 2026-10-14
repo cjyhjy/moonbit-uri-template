@@ -44,3 +44,15 @@ test('help', () => { assert.match(cli('--help').stdout, /RFC 6570/); });
 test('foreign bridge uses public typed adapter', () => {
   assert.deepEqual(JSON.parse(request('expand', '{?x*}', '{"x":["a b","c"]}')), { exitCode: 0, output: '?x=a%20b&x=c' });
 });
+
+for (const [name, args, code, expected] of [
+  ['compatibility literal quote', ['validate', "'{x}'"], 0, /valid/],
+  ['strict literal quote rejected', ['validate', "'{x}'", '--strict'], 1, /InvalidLiteral/],
+  ['strict encoded quote', ['validate', '%27{x}%27', '--strict'], 0, /valid/],
+  ['strict cannot be misplaced', ['expand', '{x}', '--strict'], 2, /InvalidArguments/],
+]) test(name, () => {
+  const result = cli(...args);
+  assert.equal(result.status, code);
+  assert.match(code === 0 ? result.stdout : result.stderr, expected);
+  assert.equal(code === 0 ? result.stderr : result.stdout, '');
+});

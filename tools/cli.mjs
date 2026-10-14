@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 const help = `URI Template — RFC 6570 Level 4
 Usage:
   uri-template expand TEMPLATE [--vars JSON | --vars-file FILE]
-  uri-template validate TEMPLATE
+  uri-template validate TEMPLATE [--strict]
   uri-template variables TEMPLATE
   uri-template --help
   uri-template --version
@@ -28,8 +28,11 @@ if (args.length === 1 && ['--help', '-h'].includes(args[0])) {
     inputError('InvalidArguments', help);
   } else {
     let vars = '{}';
+    let engineCommand = command;
     let valid = true;
-    if (options.length) {
+    if (command === 'validate' && options.length === 1 && options[0] === '--strict') {
+      engineCommand = 'validate-strict';
+    } else if (options.length) {
       if (command !== 'expand' || options.length !== 2 || !['--vars', '--vars-file'].includes(options[0])) {
         valid = false;
         inputError('InvalidArguments', 'expected at most one --vars JSON or --vars-file FILE');
@@ -45,7 +48,7 @@ if (args.length === 1 && ['--help', '-h'].includes(args[0])) {
       try { ({ request } = await import('../dist/engine.mjs')); }
       catch { inputError('BuildRequired', 'run npm run build first'); }
       if (request) {
-        const response = JSON.parse(request(command, template, vars));
+        const response = JSON.parse(request(engineCommand, template, vars));
         process.exitCode = response.exitCode;
         if (response.exitCode === 0) process.stdout.write(response.output + '\n');
         else {
