@@ -1,34 +1,127 @@
 {
-  "measuredAtUtc": "2026-10-14T06:16:40.252Z",
+  "measuredAtUtc": "2026-10-14T06:43:16.536Z",
   "node": "v26.7.0",
   "platform": "darwin",
   "arch": "arm64",
   "cpu": "Apple M5 Pro",
-  "iterationsPerSample": 20000,
-  "samples": {
-    "parseEachTime": [
-      21.056375,
-      20.412125,
-      20.204208,
-      20.13725,
-      20.198875,
-      20.154084,
-      20.433042
-    ],
-    "reuseTemplate": [
-      13.595625,
-      13.483291,
-      13.812958,
-      13.843792,
-      13.855958,
-      14.915167,
-      13.579791
-    ]
-  },
-  "medianMs": {
-    "parseEachTime": 20.204208,
-    "reuseTemplate": 13.812958
-  },
-  "checksum": 1420000,
-  "scope": "Pure MoonBit JS core; excludes CLI/JSON/startup; one query template with Unicode and list values. Observational, no timing gate."
+  "toolchain": "0.10.15+943464bfa",
+  "scenarios": [
+    {
+      "name": "scalar-path",
+      "iterationsPerSample": 20000,
+      "samples": {
+        "parseEachTime": [
+          13.645417,
+          8.893334,
+          9.245208,
+          8.7315,
+          9.494875,
+          8.798041,
+          8.651875
+        ],
+        "reuseTemplate": [
+          2.482167,
+          2.538208,
+          2.911208,
+          2.608417,
+          2.834875,
+          2.456667,
+          2.508042
+        ]
+      },
+      "medianMs": {
+        "parseEachTime": 8.893334,
+        "reuseTemplate": 2.538208
+      },
+      "checksum": 180000
+    },
+    {
+      "name": "unicode-query-list",
+      "iterationsPerSample": 20000,
+      "samples": {
+        "parseEachTime": [
+          33.254458,
+          31.967208,
+          31.568084,
+          31.982125,
+          31.84225,
+          34.890375,
+          35.417916
+        ],
+        "reuseTemplate": [
+          21.412459,
+          21.37,
+          21.251291,
+          21.158375,
+          23.249583,
+          23.186667,
+          23.296791
+        ]
+      },
+      "medianMs": {
+        "parseEachTime": 31.982125,
+        "reuseTemplate": 21.412459
+      },
+      "checksum": 1420000
+    },
+    {
+      "name": "200-expression-template",
+      "iterationsPerSample": 1000,
+      "samples": {
+        "parseEachTime": [
+          101.529917,
+          99.230584,
+          96.311042,
+          92.342625,
+          92.567583,
+          98.685417,
+          93.373708
+        ],
+        "reuseTemplate": [
+          25.500958,
+          24.726541,
+          22.34075,
+          22.333542,
+          23.055833,
+          23.929125,
+          22.481167
+        ]
+      },
+      "medianMs": {
+        "parseEachTime": 96.311042,
+        "reuseTemplate": 23.055833
+      },
+      "checksum": 2200000
+    },
+    {
+      "name": "100-item-unicode-list",
+      "iterationsPerSample": 2000,
+      "samples": {
+        "parseEachTime": [
+          74.414209,
+          74.522833,
+          73.942708,
+          74.177667,
+          75.203125,
+          74.058625,
+          74.399958
+        ],
+        "reuseTemplate": [
+          73.495708,
+          77.656459,
+          73.608041,
+          73.329125,
+          73.783583,
+          73.402125,
+          73.015333
+        ]
+      },
+      "medianMs": {
+        "parseEachTime": 74.399958,
+        "reuseTemplate": 73.495708
+      },
+      "checksum": 5194000
+    }
+  ],
+  "scope": "Pure MoonBit JS core; excludes CLI/JSON/process startup. Both modes include identical binding/setup cost once per batch. Reuse includes one initial parse. Seven alternating-order samples after warmup; observational, no timing gate."
 }
