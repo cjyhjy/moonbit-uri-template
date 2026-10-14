@@ -81,7 +81,10 @@ cli_fail = re.search(r'(?:#|ℹ) fail (\d+)',cli)
 if not cli_total or not cli_pass or not cli_fail or cli_fail[1] != '0' or cli_total[1]!=cli_pass[1]: raise SystemExit('CLI test report missing')
 report['cli'] = {'total':int(cli_total[1]),'passed':int(cli_pass[1]),'failed':0}
 package = run([MOON, 'package', '--list'],log='package.log')
-archive_path = ROOT/'_build/publish/cjyhjy-uri_template-0.1.0.zip'
+module_manifest=(ROOT/'moon.mod').read_text()
+module_name=re.search(r'name\s*=\s*"([^"]+)"',module_manifest)[1]
+module_version=re.search(r'version\s*=\s*"([^"]+)"',module_manifest)[1]
+archive_path=ROOT/'_build/publish'/f'{module_name.replace("/","-")}-{module_version}.zip'
 if not archive_path.exists(): raise SystemExit('Package archive missing')
 with zipfile.ZipFile(archive_path) as archive:
     names = archive.namelist()

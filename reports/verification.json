@@ -1,14 +1,14 @@
 {
-  "verified_at_utc": "2026-10-14T06:24:26.361006+00:00",
+  "verified_at_utc": "2026-10-14T06:46:05.349206+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "43e6c81db9d3e6c3fbac561684a1ca8917de122c60bf0c36f7420aab98fb99f9",
+  "source_sha256": "049f1c81e694b3f31a9d1ef6964655370b6c035e370f6065314dd3023d436a48",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
-      "total": 280,
-      "passed": 280,
+      "total": 284,
+      "passed": 284,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -320,8 +320,8 @@
       ]
     },
     "wasm-gc": {
-      "total": 280,
-      "passed": 280,
+      "total": 284,
+      "passed": 284,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -633,8 +633,8 @@
       ]
     },
     "native": {
-      "total": 280,
-      "passed": 280,
+      "total": 284,
+      "passed": 284,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -947,8 +947,8 @@
     }
   },
   "cli": {
-    "total": 23,
-    "passed": 23,
+    "total": 27,
+    "passed": 27,
     "failed": 0
   },
   "package": {
@@ -970,9 +970,11 @@
       "tools/benchmark.mjs",
       "tools/moon",
       "tools/cli.test.mjs",
+      "tools/coverage.py",
       "tools/build.mjs",
       "tools/generate_fixtures.py",
       "tools/verify.py",
+      "tools/package_release.py",
       "tools/demo.mjs",
       "tools/cli.mjs",
       "LICENSE",
@@ -981,6 +983,7 @@
       "encoder.mbt",
       "parser.mbt",
       "pkg.generated.mbti",
+      "encoder_wbtest.mbt",
       "adapter/json/moon.pkg",
       "adapter/json/adapter_test.mbt",
       "adapter/json/pkg.generated.mbti",
@@ -989,6 +992,7 @@
       "docs/CONFORMANCE.md",
       "docs/ARCHITECTURE.md",
       "docs/API.md",
+      "docs/PERFORMANCE.md",
       "docs/TEST_STRATEGY.md",
       "docs/RELEASE.md",
       "docs/RESEARCH.md",
@@ -1010,14 +1014,12 @@
       "conformance_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "ef04cb977427a1d307d4ff0fff78f750b99cda18d08bb48c99ddd2daecfadae9",
+    "sha256": "3d9f7922d0d8373f84f66c3a35b669527f4868ac28f423e06623aaa1a077a5f8",
     "clean_downstream_backends": [
       "js",
       "wasm-gc",
       "native"
     ]
   },
-  "git_head": "c9c017695f0dfebb7100839eab3ed4e410ee688c",
-  "verified_source_commit": "e4d28745e0c318073ace4c2733e0096ff9dd67f1",
-  "commit_linkage": "Source fingerprint rechecked after committing; identical to the tested source."
+  "git_head": "a7b43a5759b688c407ee0b0064297a78e3dfc860"
 }

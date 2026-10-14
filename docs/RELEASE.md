@@ -34,3 +34,7 @@ Mooncakes 是 MoonBit 的包仓库。开发和本地导入不需要账号，公�
 ## 申报书要求（用户提供的表单截图）
 
 Markdown、一页以内、由参赛者自己撰写，不使用 AI 编写。需包含项目名称、简介、方向和通用性、至少三个完整预期使用场景、核心功能、原创/移植/参考说明及许可证、仓库链接和不少于 10 个有效 commits。不能将 AI 辅助技术参考文档直接上传，也不能靠无意义拆分或空提交凑数。
+
+## 可直接运行的发布产物
+
+`npm run release:package` 生成 `_build/releases/moonbit-uri-template-0.1.0.zip`：包含编译后的 MoonBit JS 核心、CLI、样例、完整 CLI 测试、许可证、Mooncakes 源码包和逐文件 SHA-256。打包脚本会解压产物并重新运行所有 CLI 测试。用户只需 Node.js 22+，无需安装 MoonBit 或第三方 npm 包。CI 同样生成并上传该产物。

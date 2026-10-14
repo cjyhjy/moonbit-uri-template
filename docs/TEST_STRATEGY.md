@@ -1,6 +1,6 @@
 # 测试与验收设计
 
-以下门槛已由 tools/verify.py 实现。当前结果为各后端 280/280、CLI 23/23；详细执行证据见 reports/verification.json。
+以下门槛已由 tools/verify.py 实现。当前结果为各后端 284/284、CLI 27/27；详细执行证据见 reports/verification.json。
 
 ## 1. 测试依据
 

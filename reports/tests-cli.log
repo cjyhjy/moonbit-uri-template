@@ -1,31 +1,35 @@
-✔ user query (31.495875ms)
-✔ collection query (29.291542ms)
-✔ reserved and Unicode (28.871375ms)
-✔ validation (28.502834ms)
-✔ ordered variables (33.406334ms)
-✔ empty template (30.202ms)
-✔ missing variable (28.178ms)
-✔ null and empty (29.270125ms)
-✔ version (25.604292ms)
-✔ unclosed expression (29.231875ms)
-✔ Unicode position (28.150583ms)
-✔ composite prefix (28.597625ms)
-✔ invalid JSON (27.846416ms)
-✔ numeric type (28.471208ms)
-✔ JSON pointer (28.884041ms)
-✔ missing file (24.216875ms)
-✔ conflicting options (23.913666ms)
-✔ extra validate option (24.879167ms)
-✔ missing option value (24.828583ms)
-✔ missing template (25.18675ms)
-✔ unknown command (24.791417ms)
-✔ help (26.989541ms)
-✔ foreign bridge uses public typed adapter (1.710875ms)
-ℹ tests 23
+✔ user query (52.410541ms)
+✔ collection query (51.230042ms)
+✔ reserved and Unicode (51.10025ms)
+✔ validation (48.8385ms)
+✔ ordered variables (48.514958ms)
+✔ empty template (47.409583ms)
+✔ missing variable (44.937042ms)
+✔ null and empty (45.791958ms)
+✔ version (37.995333ms)
+✔ unclosed expression (44.898458ms)
+✔ Unicode position (44.248667ms)
+✔ composite prefix (48.384083ms)
+✔ invalid JSON (47.267584ms)
+✔ numeric type (47.984125ms)
+✔ JSON pointer (41.930708ms)
+✔ missing file (41.105167ms)
+✔ conflicting options (40.452625ms)
+✔ extra validate option (38.498042ms)
+✔ missing option value (41.378792ms)
+✔ missing template (41.562541ms)
+✔ unknown command (42.765417ms)
+✔ help (38.998416ms)
+✔ foreign bridge uses public typed adapter (2.693833ms)
+✔ compatibility literal quote (44.523208ms)
+✔ strict literal quote rejected (43.765333ms)
+✔ strict encoded quote (47.394375ms)
+✔ strict cannot be misplaced (41.944083ms)
+ℹ tests 27
 ℹ suites 0
-ℹ pass 23
+ℹ pass 27
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 652.311791
+ℹ duration_ms 1233.316959

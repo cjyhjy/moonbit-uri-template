@@ -1,5 +1,6 @@
 moonrun --test-args '{"package":"cjyhjy/uri_template/adapter/json","file_and_index":[["adapter_test.mbt",[{"start":0,"end":3}]],["adapter.mbt",[]],["adapter_test.mbt",[]],["adapter.mbt",[]],["adapter_test.mbt",[]],["adapter.mbt",[]],["adapter_test.mbt",[]],["adapter.mbt",[]]]}' ./_build/wasm-gc/debug/test/adapter/json/json.blackbox_test.wasm --
-moonrun --test-args '{"package":"cjyhjy/uri_template","file_and_index":[["types.mbt",[]],["parser.mbt",[]],["operator.mbt",[]],["expander.mbt",[]],["encoder.mbt",[]],["conformance_test.mbt",[{"start":0,"end":270}]],["api_test.mbt",[{"start":0,"end":7}]],["types.mbt",[]],["parser.mbt",[]],["operator.mbt",[]],["expander.mbt",[]],["encoder.mbt",[]],["conformance_test.mbt",[]],["api_test.mbt",[]],["types.mbt",[]],["parser.mbt",[]],["operator.mbt",[]],["expander.mbt",[]],["encoder.mbt",[]],["conformance_test.mbt",[]],["api_test.mbt",[]],["types.mbt",[]],["parser.mbt",[]],["operator.mbt",[]],["expander.mbt",[]],["encoder.mbt",[]],["conformance_test.mbt",[]],["api_test.mbt",[]]]}' ./_build/wasm-gc/debug/test/uri_template.blackbox_test.wasm --
+moonrun --test-args '{"package":"cjyhjy/uri_template","file_and_index":[["types.mbt",[]],["parser.mbt",[]],["operator.mbt",[]],["expander.mbt",[]],["encoder.mbt",[]],["conformance_test.mbt",[{"start":0,"end":270}]],["api_test.mbt",[{"start":0,"end":9}]],["types.mbt",[]],["parser.mbt",[]],["operator.mbt",[]],["expander.mbt",[]],["encoder.mbt",[]],["conformance_test.mbt",[]],["api_test.mbt",[]],["types.mbt",[]],["parser.mbt",[]],["operator.mbt",[]],["expander.mbt",[]],["encoder.mbt",[]],["conformance_test.mbt",[]],["api_test.mbt",[]],["types.mbt",[]],["parser.mbt",[]],["operator.mbt",[]],["expander.mbt",[]],["encoder.mbt",[]],["conformance_test.mbt",[]],["api_test.mbt",[]]]}' ./_build/wasm-gc/debug/test/uri_template.blackbox_test.wasm --
+moonrun --test-args '{"package":"cjyhjy/uri_template","file_and_index":[["encoder_wbtest.mbt",[{"start":0,"end":2}]],["encoder_wbtest.mbt",[]],["encoder_wbtest.mbt",[]],["encoder_wbtest.mbt",[]]]}' ./_build/wasm-gc/debug/test/uri_template.whitebox_test.wasm --
 [cjyhjy/uri_template] test adapter/json/adapter_test.mbt:2 ("adapter typed values null and stable associative order") ok
 [cjyhjy/uri_template] test adapter/json/adapter_test.mbt:13 ("adapter input errors retain JSON pointers") ok
 [cjyhjy/uri_template] test adapter/json/adapter_test.mbt:30 ("request envelope separates successful outputs from errors") ok
@@ -280,4 +281,8 @@ moonrun --test-args '{"package":"cjyhjy/uri_template","file_and_index":[["types.
 [cjyhjy/uri_template] test api_test.mbt:90 ("percent modes and scalar explode") ok
 [cjyhjy/uri_template] test api_test.mbt:100 ("errors carry code point spans and never partial output") ok
 [cjyhjy/uri_template] test api_test.mbt:121 ("deterministic generated inputs parser robustness and reuse equivalence") ok
-Total tests: 280, passed: 280, failed: 0.
+[cjyhjy/uri_template] test api_test.mbt:156 ("strict grammar mode keeps expansion semantics and rejects literal apostrophes") ok
+[cjyhjy/uri_template] test api_test.mbt:173 ("large templates and collections expand iteratively in stable order") ok
+[cjyhjy/uri_template] test encoder_wbtest.mbt:2 ("encoded prefix follows decoded code points without splitting octets") ok
+[cjyhjy/uri_template] test encoder_wbtest.mbt:18 ("IRI literal range boundaries exclude controls surrogates and noncharacters") ok
+Total tests: 284, passed: 284, failed: 0.

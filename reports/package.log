@@ -1,5 +1,5 @@
 Running moon check ...
-Finished. moon: ran 6 tasks, now up to date
+Finished. moon: ran 7 tasks, now up to date
 Check passed
 CHANGELOG.md
 LICENSE
@@ -20,12 +20,14 @@ docs/AI_USAGE.md
 docs/API.md
 docs/ARCHITECTURE.md
 docs/CONFORMANCE.md
+docs/PERFORMANCE.md
 docs/PROJECT_PLAN.md
 docs/PROPOSAL.md
 docs/RELEASE.md
 docs/RESEARCH.md
 docs/TEST_STRATEGY.md
 encoder.mbt
+encoder_wbtest.mbt
 examples/main.mbt
 examples/moon.pkg
 examples/pkg.generated.mbti
@@ -52,9 +54,11 @@ tools/bootstrap.py
 tools/build.mjs
 tools/cli.mjs
 tools/cli.test.mjs
+tools/coverage.py
 tools/demo.mjs
 tools/generate_fixtures.py
 tools/moon
+tools/package_release.py
 tools/verify.py
 types.mbt
 Package to /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/publish/cjyhjy-uri_template-0.1.0.zip

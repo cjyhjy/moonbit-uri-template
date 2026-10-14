@@ -1,0 +1,24 @@
+{
+  "version": "0.1.0",
+  "archive": "_build/releases/moonbit-uri-template-0.1.0.zip",
+  "sha256": "1f3ccd4693d3905fbb6c3282d7995bf312af4579c23cf108eb11e7a47e5774de",
+  "tested_from_extracted_archive": true,
+  "cli_tests": 27,
+  "cli_passed": 27,
+  "files": [
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "cjyhjy-uri_template-0.1.0.zip",
+    "dist/engine.mjs",
+    "examples/resource.json",
+    "examples/search.json",
+    "examples/users.json",
+    "licenses/moonbit-core-LICENSE",
+    "package.json",
+    "reports/verification.json",
+    "tools/cli.mjs",
+    "tools/cli.test.mjs"
+  ],
+  "required_node": ">=22"
+}
