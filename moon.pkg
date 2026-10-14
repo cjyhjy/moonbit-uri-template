@@ -1,0 +1,3 @@
+import {
+  "cjyhjy/uri_template" @lib,
+} for "test"

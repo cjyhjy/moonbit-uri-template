@@ -1,0 +1,53 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "cjyhjy/uri_template"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn expand(String, Variables) -> Result[String, TemplateError]
+
+pub fn parse(String) -> Result[Template, TemplateError]
+
+// Errors
+
+// Types and methods
+type OrderedEntries derive(@debug.Debug)
+pub fn OrderedEntries::from_entries(Array[(String, String)]) -> Result[Self, TemplateError]
+pub fn OrderedEntries::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Span {
+  start : Int
+  end : Int
+} derive(@debug.Debug)
+pub fn Span::to_repr(Self) -> @debug.Repr
+
+type Template derive(@debug.Debug)
+pub fn Template::expand(Self, Variables) -> Result[String, TemplateError]
+pub fn Template::to_repr(Self) -> @debug.Repr
+pub fn Template::variables(Self) -> Array[String]
+
+pub(all) struct TemplateError {
+  code : String
+  message : String
+  span : Span
+} derive(@debug.Debug)
+pub fn TemplateError::to_repr(Self) -> @debug.Repr
+
+pub(all) enum Value {
+  Scalar(String)
+  List(Array[String])
+  Assoc(OrderedEntries)
+} derive(@debug.Debug)
+pub fn Value::to_repr(Self) -> @debug.Repr
+
+type Variables derive(@debug.Debug)
+pub fn Variables::new() -> Self
+pub fn Variables::remove(Self, String) -> Unit
+pub fn Variables::set(Self, String, Value) -> Unit
+pub fn Variables::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

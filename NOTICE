@@ -1,0 +1,18 @@
+MoonBit URI Template
+Copyright 2026 MoonBit URI Template contributors
+
+Core parser, expander, encoder, adapters and tools were authored for this project
+from RFC 6570 semantics, with AI assistance. No other implementation's core
+source code was copied.
+
+Third-party test data:
+  URI Template Tests, https://github.com/uri-templates/uritemplate-test
+  Commit 4171dac22aa67fc710b3f6df308a50bd08552986
+  Copyright 2011- The Authors; Apache License 2.0
+  Original files and license: testdata/upstream/
+  Generated conformance_test.mbt derives test cases from that corpus.
+
+Specification reference:
+  RFC 6570, https://www.rfc-editor.org/rfc/rfc6570
+  Copyright 2012 IETF Trust and the persons identified as the document authors.
+  The RFC is linked as a specification; its full text is not bundled here.
