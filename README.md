@@ -113,6 +113,8 @@ node tools/benchmark.mjs      # 纯核心解析复用基准，输出原始测量
 | [测试策略](docs/TEST_STRATEGY.md) | 标准夹具、回归点和发布门槛 |
 | [交付验收](docs/ACCEPTANCE.md) | 已完成证据与外部待办 |
 | [生态定位](docs/ECOSYSTEM.md) | 已存在的同类项目与本项目可验证特点 |
+| [同类比较](docs/COMPARISON.md) | 源码与小样例核查、当前差异及可用性改进计划 |
+| [CI 排查](docs/CI_INVESTIGATION.md) | 夹具漂移证据、工具修复与失败报告边界 |
 | [项目规划](docs/PROJECT_PLAN.md) | 原始日程、范围与任务 |
 | [技术参考](docs/PROPOSAL.md) | 项目事实参考；正式申报书需由参赛者自己写 |
 | [发布流程](docs/RELEASE.md) | 注册、包名确认、公开发布与版本验证 |

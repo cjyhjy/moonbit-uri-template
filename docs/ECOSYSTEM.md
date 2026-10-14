@@ -10,7 +10,7 @@
 | JSJ222/moonuritemplate | 0.1.0 | 注册表描述为 RFC 6570 Level 4；发布于 2026-10-03 | [注册表记录指向的仓库](https://github.com/JSJ222/MoonUriTemplate) |
 | xubowen1234/moonuri | 0.1.1 | 相关 URI 解析、百分号编码和 path templates；不据此认定为完整 RFC 6570 库 | [作者仓库](https://github.com/xubowen1234/moonuri) |
 
-Magic486 的 README 列出 153 个互操作用例和 CLI。这里只描述其公开信息，不推断它缺少 README 未列出的能力；本次未完整执行其他库的测试，不作性能或正确性优劣判断。
+Magic486 的 README 列出 153 个互操作用例和 CLI。后续已读取两个同类的源码、公共接口，并运行三后端小样例，详见 COMPARISON.md。未完整执行其他库的测试，不作性能或正确性优劣判断。
 
 此前网页搜索没有检出同类模块，属于检索覆盖不足。现在已证实存在同类，不能再以“MoonBit 没有 URI Template 库”“首个”或“唯一”申报。
 

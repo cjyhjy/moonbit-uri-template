@@ -1,0 +1,37 @@
+fn main {
+  let template = "/users/{id}{?tags*}"
+  let ours = @ours.Variables::new()
+  ours.set("id", @ours.Scalar("team/a"))
+  ours.set("tags", @ours.List(["a b", "sdk"]))
+  println("ours.uri=" + @ours.expand(template, ours).unwrap())
+  let theirs : Map[String, @magic.UriValue] = Map([
+    ("id", @magic.Scalar("team/a")), ("tags", @magic.List(["a b", "sdk"])),
+  ])
+  try {
+    println("magic.uri=" + @magic.UriTemplate::parse(template).expand(theirs))
+  } catch { e => println(e.to_string()) }
+  println("jsj.uri=" + @jsj.expand(template, [
+    ("id", @jsj.Scalar("team/a")), ("tags", @jsj.List(["a b", "sdk"])),
+  ]).unwrap())
+  match @ours.parse("😀{x") {
+    Err(e) => println("ours.offset=" + e.span.start.to_string())
+    Ok(_) => println("ours.unexpected_success")
+  }
+  try {
+    let _ = @magic.UriTemplate::parse("😀{x")
+    println("magic.unexpected_success")
+  } catch { e => println("magic.error=" + e.to_string()) }
+  match @jsj.parse("😀{x") {
+    Err(e) => println("jsj.offset=" + e.offset().unwrap().to_string())
+    Ok(_) => println("jsj.unexpected_success")
+  }
+  let json = Json::object(Map([("id", Json::null())]))
+  try {
+    let _ = @magic.variables_from_json(json)
+    println("magic.null=accepted")
+  } catch { e => println("magic.null=" + e.to_string()) }
+  match @jsj.bindings_from_json(json) {
+    Ok(_) => println("jsj.null=accepted")
+    Err(e) => println("jsj.null=" + e.code())
+  }
+}
