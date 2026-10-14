@@ -16,6 +16,9 @@ manifest = (ROOT/'moon.mod').read_text()
 module = re.search(r'name\s*=\s*"([^"]+)"', manifest)[1]
 module_version = re.search(r'version\s*=\s*"([^"]+)"', manifest)[1]
 if module_version != VERSION: raise SystemExit('Node and MoonBit package versions differ')
+verification = json.loads((ROOT/'reports/verification.json').read_text())
+if verification.get('status') != 'passed':
+    raise SystemExit('No completed current verification report; run npm test before packaging')
 
 subprocess.run(['node', 'tools/build.mjs'], cwd=ROOT, check=True)
 subprocess.run([str(ROOT/'tools/moon'), 'package'], cwd=ROOT, check=True)

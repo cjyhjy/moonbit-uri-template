@@ -1,9 +1,12 @@
 {
-  "verified_at_utc": "2026-10-14T13:17:03.248565+00:00",
+  "status": "passed",
+  "verification_started_at_utc": "2026-10-14T13:28:48.462006+00:00",
+  "git_head": "d2a80dc6b6ecbd11adc311db2362db3c729bb39d",
+  "verified_at_utc": "2026-10-14T13:28:48.829618+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "8790b2ad9936b33c5a73110a74cb064819aceeec8661c6d27460de709bd5ff05",
+  "source_sha256": "74eab87c9d12cf8bfb243b60176f5e5d57a4aee4705eff8f650bdad8e15d04d7",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
@@ -946,6 +949,7 @@
       ]
     }
   },
+  "fixture_literal_roundtrips": 10,
   "cli": {
     "total": 27,
     "passed": 27,
@@ -958,6 +962,7 @@
       "cmd/uri_template/moon.pkg",
       "cmd/uri_template/bridge.mbt",
       "testdata/manifest.json",
+      "testdata/peer-smoke/main.mbt.txt",
       "testdata/upstream/spec-examples.json",
       "testdata/upstream/LICENSE",
       "testdata/upstream/spec-examples-by-section.json",
@@ -974,7 +979,9 @@
       "tools/coverage.py",
       "tools/build.mjs",
       "tools/generate_fixtures.py",
+      "tools/test_fixture_literals.py",
       "tools/verify.py",
+      "tools/moonbit_literal.py",
       "tools/package_release.py",
       "tools/demo.mjs",
       "tools/cli.mjs",
@@ -989,10 +996,12 @@
       "adapter/json/adapter_test.mbt",
       "adapter/json/pkg.generated.mbti",
       "adapter/json/adapter.mbt",
+      "docs/PROPOSAL_DRAFT.md",
       "docs/PROJECT_PLAN.md",
       "docs/CONFORMANCE.md",
       "docs/ARCHITECTURE.md",
       "docs/API.md",
+      "docs/CI_INVESTIGATION.md",
       "docs/ECOSYSTEM.md",
       "docs/PERFORMANCE.md",
       "docs/TEST_STRATEGY.md",
@@ -1016,12 +1025,11 @@
       "conformance_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "491ac136220697a2b9646bcf446c46577f18b2039b1572c538db64c805fbf9fe",
+    "sha256": "e0054747af08112fff03330470307f058d75a3460a33e6e4d01ff679e92500f4",
     "clean_downstream_backends": [
       "js",
       "wasm-gc",
       "native"
     ]
-  },
-  "git_head": "4f8f58aaf1b1cec935887c9e8fb046f766a75c65"
+  }
 }

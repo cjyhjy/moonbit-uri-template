@@ -19,11 +19,13 @@ docs/ACCEPTANCE.md
 docs/AI_USAGE.md
 docs/API.md
 docs/ARCHITECTURE.md
+docs/CI_INVESTIGATION.md
 docs/CONFORMANCE.md
 docs/ECOSYSTEM.md
 docs/PERFORMANCE.md
 docs/PROJECT_PLAN.md
 docs/PROPOSAL.md
+docs/PROPOSAL_DRAFT.md
 docs/RELEASE.md
 docs/RESEARCH.md
 docs/TEST_STRATEGY.md
@@ -43,6 +45,7 @@ package.json
 parser.mbt
 pkg.generated.mbti
 testdata/manifest.json
+testdata/peer-smoke/main.mbt.txt
 testdata/upstream/LICENSE
 testdata/upstream/README.md
 testdata/upstream/extended-tests.json
@@ -59,8 +62,10 @@ tools/coverage.py
 tools/demo.mjs
 tools/generate_fixtures.py
 tools/moon
+tools/moonbit_literal.py
 tools/moonfmt
 tools/package_release.py
+tools/test_fixture_literals.py
 tools/verify.py
 types.mbt
 Package to /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/publish/cjyhjy-uri_template-0.1.1.zip

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Run release gates and write an evidence-based, per-corpus report."""
 import collections
+import atexit
 import datetime
 import difflib
 import hashlib
@@ -18,8 +19,28 @@ ROOT = Path(__file__).resolve().parent.parent
 MOON = str(ROOT/'tools/moon')
 REPORTS = ROOT/'reports'
 REPORTS.mkdir(exist_ok=True)
+report = {'status': 'running',
+          'verification_started_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat()}
+initial_head = subprocess.run(['git','rev-parse','HEAD'], cwd=ROOT, text=True, capture_output=True)
+report['git_head'] = initial_head.stdout.strip() if initial_head.returncode == 0 else None
+finished = False
+
+def save_report():
+    (REPORTS/'verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+
+def finalize_report():
+    if not finished:
+        report['status'] = 'failed'
+        report['failure_note'] = 'Verification stopped before all gates passed; historical log files are not current success evidence.'
+    save_report()
+
+# Replace the checked-in historical report immediately, including early failures.
+save_report()
+atexit.register(finalize_report)
 
 def run(args, cwd=ROOT, log=None):
+    report['current_gate'] = args
+    save_report()
     result = subprocess.run(args, cwd=cwd, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     if log: (REPORTS/log).write_text(result.stdout)
     if result.returncode:
@@ -39,6 +60,7 @@ def digest():
     return hashed.hexdigest()
 
 run([MOON, 'fmt', '--check'])
+run([sys.executable, 'tools/test_fixture_literals.py'])
 original = {name: (ROOT/name).read_bytes() for name in ('conformance_test.mbt', 'testdata/manifest.json')}
 run([sys.executable, 'tools/generate_fixtures.py'])
 for name, data in original.items():
@@ -62,10 +84,10 @@ for filename, meta in manifest['files'].items():
 lock = json.loads((ROOT/'toolchain.lock.json').read_text())
 versions = run([MOON, 'version', '--all'])
 if 'v'+lock['version']+' ' not in versions: raise SystemExit('Unexpected compiler version; run tools/bootstrap.py')
-report = {'verified_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+report.update({'verified_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
           'os': platform.platform(), 'toolchain': versions.strip(),
           'node': run(['node','--version']).strip(), 'source_sha256': digest(),
-          'upstream_commit': manifest['commit'], 'backends': {}}
+          'upstream_commit': manifest['commit'], 'backends': {}, 'fixture_literal_roundtrips': 10})
 for backend in ('js', 'wasm-gc', 'native'):
     run([MOON, 'check', '--target', backend, '--deny-warn'])
     output = run([MOON, 'test', '--target', backend, '--deny-warn', '--verbose'], log=f'tests-{backend}.log')
@@ -118,6 +140,9 @@ with zipfile.ZipFile(archive_path) as archive:
 report['package']={'files':names,'sha256':hashlib.sha256(archive_path.read_bytes()).hexdigest(),'clean_downstream_backends':['js','wasm-gc','native']}
 head = subprocess.run(['git','rev-parse','HEAD'], cwd=ROOT, text=True, capture_output=True)
 report['git_head'] = head.stdout.strip() if head.returncode == 0 else None
-(REPORTS/'verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+report['status'] = 'passed'
+report.pop('current_gate', None)
+finished = True
+save_report()
 print(f"CLI: {report['cli']['passed']} passed; clean package imports passed on three backends")
 print('Wrote reports/verification.json')

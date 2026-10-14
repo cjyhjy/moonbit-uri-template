@@ -2,16 +2,13 @@
 """Compile unchanged, pinned upstream JSON into backend-independent blackbox tests."""
 import hashlib
 import json
-import re
 import subprocess
 from pathlib import Path
+from moonbit_literal import quote
 
 ROOT = Path(__file__).resolve().parent.parent
 FILES = ('spec-examples.json', 'spec-examples-by-section.json', 'extended-tests.json', 'negative-tests.json')
 COMMIT = '4171dac22aa67fc710b3f6df308a50bd08552986'
-
-def quote(s):
-    return re.sub(r'\\u([0-9a-fA-F]{4})', r'\\u{\1}', json.dumps(s, ensure_ascii=False))
 
 def scalar(v):
     if isinstance(v, str): return v
