@@ -2,7 +2,7 @@
 
 RFC 6570 Level 4 URI Template 解析与展开库，核心使用 MoonBit 实现，无第三方运行时依赖。
 
-**版本：0.1.0。本地实现与验收已完成；公开仓库与 Mooncakes 发布状态见 [交付记录](docs/ACCEPTANCE.md)。**
+**版本：0.1.0。本地实现、公开仓库和首次 CI 已通过；Mooncakes 发布状态见 [交付记录](docs/ACCEPTANCE.md)。**
 
 给定 `/users/{id}{?page}`，输入 `id="42"`、`page="2"`，得到 `/users/42?page=2`。
 
@@ -59,7 +59,7 @@ match @uri.parse("/users/{id}{?page}") {
 
 一次性调用 `@uri.expand(source, vars)`；重复使用时保留解析后的 `Template`。使用 `OrderedEntries::from_entries` 构造关联值，重复键会报错。`Variables::set` 复制集合输入，防止调用者意外修改已绑定值。
 
-**当前模块名 `cjyhjy/uri_template` 使用已确认的 GitHub 身份；Mooncakes 命名空间需在注册后确认。** 未公开发布前，使用本地 `moon.work` 将库和下游模块放入同一工作区。验收脚本已从打包产物创建独立工作区并验证导入；正式发布后再使用 `moon add` 安装。
+**当前模块名 `cjyhjy/uri_template` 已与用户截图确认的 Mooncakes 用户名一致。** 未公开发布前，使用本地 `moon.work` 将库和下游模块放入同一工作区。验收脚本已从打包产物创建独立工作区并验证导入；正式发布后再使用 `moon add` 安装。
 
 ```sh
 ./tools/moon run examples --target js
@@ -113,7 +113,7 @@ node tools/benchmark.mjs      # 纯核心解析复用基准，输出原始测量
 | [测试策略](docs/TEST_STRATEGY.md) | 标准夹具、回归点和发布门槛 |
 | [交付验收](docs/ACCEPTANCE.md) | 已完成证据与外部待办 |
 | [项目规划](docs/PROJECT_PLAN.md) | 原始日程、范围与任务 |
-| [申报说明](docs/PROPOSAL.md) | 项目价值、实现和交付材料 |
+| [技术参考](docs/PROPOSAL.md) | 项目事实参考；正式申报书需由参赛者自己写 |
 | [发布流程](docs/RELEASE.md) | 注册、包名确认、公开发布与版本验证 |
 | [AI 辅助说明](docs/AI_USAGE.md) | 开发方式和参赛者需掌握的内容 |
 
