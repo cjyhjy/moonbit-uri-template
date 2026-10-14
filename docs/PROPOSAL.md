@@ -1,0 +1,35 @@
+# 项目申报说明
+
+状态：代码已完成本地验收，申报尚未提交。GitHub 地址为已确认的目标地址，公开仓库状态以 ACCEPTANCE.md 为准。
+
+**项目名称：MoonBit URI Template —— RFC 6570 模板解析与展开库**
+
+**参赛方向：新生态项目建设；计划参与季度优秀项目评选。**
+
+**作者 GitHub ID：cjyhjy。目标仓库：https://github.com/cjyhjy/moonbit-uri-template。**
+
+## 解决的问题
+
+API 客户端、SDK 生成器和开发者工具需要将 `/users/{id}{?page,limit}` 展开成 URI。手动拼接容易在查询参数、集合值和字符编码上出错。本项目提供统一的 MoonBit API，完成解析、变量绑定、展开和错误定位，并允许同一模板重复使用。
+
+社区 [候选 Issue #18](https://github.com/moonbit-community/auto-contrib-workflow/issues/18) 曾记录相关需求。候选记录不代表主办方立项批准；本项目不使用“首个”或“唯一”等未经完整查证的表述。
+
+## 已实现能力
+
+完成 RFC 6570 Level 4 的操作符、列表与关联值、prefix/explode。核心使用 MoonBit，无第三方运行时依赖；JSON 适配使用官方标准库，Node 仅承担命令行参数、文件读取和退出码。提供一次性展开、解析后复用、变量名查询、结构化错误和 Unicode 码点位置。
+
+## 技术路线与验证
+
+单次扫描 parser 生成隐藏的模板结构，操作符策略驱动统一 expander，独立 encoder 处理编码与前缀。固定社区测试提交和许可证，270 个上游标准/扩展/负例测试及 10 个公共 API/适配器测试在 JS、wasm-gc、Native 各全部通过；23 个 CLI 集成测试通过。验收脚本从真实打包产物创建独立消费工程并在三后端运行。
+
+为兼容上游单引号夹具，literal 中单引号被接受并原样保留，已公开说明与 RFC ABNF 的差异。标准一致性声明基于固定语料，不将测试通过等同于正式认证。
+
+## 交付成果
+
+源码与 API 快照、三组 CLI 示例、标准测试及自动验收脚本、GitHub Actions 配置、原始测试报告、解析复用性能记录、README、API 文档、Apache-2.0 许可证、版本记录及 AI 辅助说明。公开仓库、远程 CI 和 Mooncakes 发布将在账号登录、命名空间确认后完成。
+
+## 项目价值与维护
+
+为 MoonBit 下游补充一个范围明确、可验证、可复用的基础组件。后续维护以标准一致性、bug 回归、工具链兼容和下游使用反馈为主，不靠增加无关界面扩大规模。AI 辅助设计、编码、测试和文档，参赛者负责理解与最终质量。
+
+待补信息：团队情况、Mooncakes 用户名、报名状态，以及主办方要求的具体身份和材料。实际验收证据见 ACCEPTANCE.md 与 reports/verification.json。

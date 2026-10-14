@@ -1,0 +1,28 @@
+name: Verify RFC 6570
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install checksummed pinned toolchain
+        run: python3 tools/bootstrap.py
+      - name: Verify all backends, CLI, fixtures, API and packaged consumer
+        run: npm test
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification
+          path: |
+            reports/
+            _build/publish/*.zip
