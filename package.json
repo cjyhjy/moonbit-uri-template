@@ -1,0 +1,16 @@
+{
+  "name": "moonbit-uri-template",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "MoonBit RFC 6570 library and CLI",
+  "license": "Apache-2.0",
+  "engines": { "node": ">=22" },
+  "bin": { "uri-template": "tools/cli.mjs" },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "test": "python3 tools/verify.py",
+    "test:cli": "node --test tools/cli.test.mjs",
+    "demo": "node tools/demo.mjs"
+  }
+}

@@ -1,0 +1,11 @@
+import {
+  "cjyhjy/uri_template" @uri,
+}
+
+pkgtype(kind: "foreign_library")
+
+supported_targets = "js"
+
+options(
+  link: { "js": { "format": "esm" } },
+)

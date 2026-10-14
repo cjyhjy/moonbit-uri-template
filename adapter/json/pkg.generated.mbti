@@ -1,0 +1,26 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "cjyhjy/uri_template/adapter/json"
+
+import {
+  "cjyhjy/uri_template",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn parse_variables(String) -> Result[@uri_template.Variables, InputError]
+
+pub fn request(String, String, String) -> String
+
+// Errors
+
+// Types and methods
+pub(all) struct InputError {
+  code : String
+  message : String
+  path : String
+} derive(@debug.Debug)
+pub fn InputError::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

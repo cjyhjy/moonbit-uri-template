@@ -1,0 +1,4 @@
+import {
+  "cjyhjy/uri_template" @template,
+  "moonbitlang/core/json" @jsonlib,
+}

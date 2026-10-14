@@ -1,0 +1,11 @@
+import {
+  "cjyhjy/uri_template/adapter/json" @adapter,
+}
+
+pkgtype(kind: "foreign_library")
+
+supported_targets = "js"
+
+options(
+  link: { "js": { "format": "esm" } },
+)
