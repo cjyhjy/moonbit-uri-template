@@ -2,6 +2,7 @@
 """Run release gates and write an evidence-based, per-corpus report."""
 import collections
 import datetime
+import difflib
 import hashlib
 import json
 import os
@@ -41,7 +42,16 @@ run([MOON, 'fmt', '--check'])
 original = {name: (ROOT/name).read_bytes() for name in ('conformance_test.mbt', 'testdata/manifest.json')}
 run([sys.executable, 'tools/generate_fixtures.py'])
 for name, data in original.items():
-    if (ROOT/name).read_bytes() != data: raise SystemExit('Generated fixture drift: '+name)
+    actual = (ROOT/name).read_bytes()
+    if actual != data:
+        diff = ''.join(difflib.unified_diff(
+            data.decode('utf-8').splitlines(True), actual.decode('utf-8').splitlines(True),
+            fromfile='committed/'+name, tofile='generated/'+name,
+        ))
+        (REPORTS/'fixture-drift.diff').write_text(diff, encoding='utf-8')
+        (REPORTS/('fixture-drift-'+Path(name).name)).write_bytes(actual)
+        print(diff[:12000])
+        raise SystemExit('Generated fixture drift: '+name+'; see reports/fixture-drift.diff')
 interfaces = {p: p.read_bytes() for p in ROOT.rglob('pkg.generated.mbti') if '.toolchain' not in p.parts and '_build' not in p.parts}
 run([MOON, 'info'])
 if any(p.read_bytes() != data for p, data in interfaces.items()): raise SystemExit('Public API snapshot drift; review and commit moon info output.')

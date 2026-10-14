@@ -1,9 +1,9 @@
 {
-  "verified_at_utc": "2026-10-14T07:14:56.553508+00:00",
+  "verified_at_utc": "2026-10-14T13:17:03.248565+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "024b580641d4566658f5a50545bdf22d55777dbb76c96af3bf11a5cf31d7c1be",
+  "source_sha256": "8790b2ad9936b33c5a73110a74cb064819aceeec8661c6d27460de709bd5ff05",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
@@ -966,6 +966,7 @@
       "testdata/upstream/negative-tests.json",
       "bench/moon.pkg",
       "bench/bench.mbt",
+      "tools/moonfmt",
       "tools/bootstrap.py",
       "tools/benchmark.mjs",
       "tools/moon",
@@ -992,6 +993,7 @@
       "docs/CONFORMANCE.md",
       "docs/ARCHITECTURE.md",
       "docs/API.md",
+      "docs/ECOSYSTEM.md",
       "docs/PERFORMANCE.md",
       "docs/TEST_STRATEGY.md",
       "docs/RELEASE.md",
@@ -1014,12 +1016,12 @@
       "conformance_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "28a23ebe8bc997f7fe3f2963999759237e3bf44924ae4ee65830515dd57523b6",
+    "sha256": "491ac136220697a2b9646bcf446c46577f18b2039b1572c538db64c805fbf9fe",
     "clean_downstream_backends": [
       "js",
       "wasm-gc",
       "native"
     ]
   },
-  "git_head": "974b981543741df511d9ddd2fa3544cf060520f0"
+  "git_head": "4f8f58aaf1b1cec935887c9e8fb046f766a75c65"
 }

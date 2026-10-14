@@ -53,8 +53,12 @@ for file_index, filename in enumerate(FILES):
             lines += ['}', '']
             manifest['tests'].append({'id': test_id, 'file': filename, 'group': group, 'level': level, 'negative': expected is False})
             manifest['files'][filename]['count'] += 1
-(ROOT / 'conformance_test.mbt').write_text('\n'.join(lines))
+# Format in memory with one process. `moon fmt -- -w FILE` forwards FILE to
+# every package formatter, making multiple processes overwrite the same file.
+formatted = subprocess.run(
+    [str(ROOT/'tools/moonfmt'), '-'], input='\n'.join(lines),
+    text=True, stdout=subprocess.PIPE, check=True,
+).stdout
+(ROOT / 'conformance_test.mbt').write_text(formatted, encoding='utf-8')
 (ROOT / 'testdata/manifest.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
-# Format just the generated file, without touching other project source.
-subprocess.run([str(ROOT/'tools/moon'), 'fmt', '--', '-w', str(ROOT/'conformance_test.mbt')], cwd=ROOT, check=True)
 print(f"Generated {len(manifest['tests'])} upstream tests")

@@ -20,6 +20,7 @@ docs/AI_USAGE.md
 docs/API.md
 docs/ARCHITECTURE.md
 docs/CONFORMANCE.md
+docs/ECOSYSTEM.md
 docs/PERFORMANCE.md
 docs/PROJECT_PLAN.md
 docs/PROPOSAL.md
@@ -58,6 +59,7 @@ tools/coverage.py
 tools/demo.mjs
 tools/generate_fixtures.py
 tools/moon
+tools/moonfmt
 tools/package_release.py
 tools/verify.py
 types.mbt
