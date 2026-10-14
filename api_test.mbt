@@ -168,3 +168,32 @@ test "strict grammar mode keeps expansion semantics and rejects literal apostrop
     "%27a%27b%27",
   )
 }
+
+///|
+test "large templates and collections expand iteratively in stable order" {
+  let source = StringBuilder()
+  let expected = StringBuilder()
+  for i = 0; i < 5000; i = i + 1 {
+    source.write_string("x/{v}")
+    expected.write_string("x/a")
+  }
+  let vars = @lib.Variables::new()
+  vars.set("v", @lib.Scalar("a"))
+  let template = @lib.parse_strict(source.to_string()).unwrap()
+  assert_eq(template.expand(vars).unwrap(), expected.to_string())
+  assert_eq(template.variables(), ["v"])
+  let entries : Array[(String, String)] = []
+  let query = StringBuilder()
+  for i = 0; i < 1000; i = i + 1 {
+    let key = "k" + i.to_string()
+    let value = i.to_string()
+    entries.push((key, value))
+    query.write_string(if i == 0 { "?" } else { "&" })
+    query.write_string(key + "=" + value)
+  }
+  vars.set(
+    "keys",
+    @lib.Assoc(@lib.OrderedEntries::from_entries(entries).unwrap()),
+  )
+  assert_eq(@lib.expand("{?keys*}", vars).unwrap(), query.to_string())
+}

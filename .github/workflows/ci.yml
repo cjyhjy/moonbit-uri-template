@@ -18,6 +18,8 @@ jobs:
         run: python3 tools/bootstrap.py
       - name: Verify all backends, CLI, fixtures, API and packaged consumer
         run: npm test
+      - name: Collect diagnostic coverage
+        run: python3 tools/coverage.py
       - name: Upload evidence
         if: always()
         uses: actions/upload-artifact@v4
