@@ -14,6 +14,10 @@ fn expand_value(
       parts.push(named_part(spec.name, encode(text, rule.allow_reserved), rule))
     }
     List(items) => {
+      // Empty composites are undefined and must be omitted before modifiers.
+      if items.is_empty() {
+        return Ok([])
+      }
       if spec.modifier is Prefix(_) {
         return Err(
           problem(
@@ -38,6 +42,9 @@ fn expand_value(
       }
     }
     Assoc(entries) => {
+      if entries.entries.is_empty() {
+        return Ok([])
+      }
       if spec.modifier is Prefix(_) {
         return Err(
           problem(

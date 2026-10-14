@@ -197,3 +197,31 @@ test "large templates and collections expand iteratively in stable order" {
   )
   assert_eq(@lib.expand("{?keys*}", vars).unwrap(), query.to_string())
 }
+
+///|
+test "undefined composites are omitted before prefix validation" {
+  let vars = @lib.Variables::new()
+  vars.set("list", @lib.List([]))
+  vars.set("keys", @lib.Assoc(@lib.OrderedEntries::from_entries([]).unwrap()))
+  vars.set("id", @lib.Scalar("42"))
+  for op in ["", "+", "#", ".", "/", ";", "?", "&"] {
+    assert_eq(
+      @lib.expand("before{" + op + "list:1,keys:2}after", vars).unwrap(),
+      "beforeafter",
+    )
+  }
+  assert_eq(@lib.expand("{?list:1,id,keys:2}", vars).unwrap(), "?id=42")
+  vars.set("list", @lib.List([""]))
+  assert_eq(
+    @lib.expand("{list:1}", vars).unwrap_err().code,
+    "PrefixOnComposite",
+  )
+  vars.set(
+    "keys",
+    @lib.Assoc(@lib.OrderedEntries::from_entries([("x", "")]).unwrap()),
+  )
+  assert_eq(
+    @lib.expand("{keys:2}", vars).unwrap_err().code,
+    "PrefixOnComposite",
+  )
+}

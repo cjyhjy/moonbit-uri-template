@@ -11,7 +11,7 @@
 | parse 后复用与变量查询 | api_test.mbt 与 examples/main.mbt | 完成 |
 | Unicode、空值、错误位置 | 公共 API 回归与固定随机输入测试 | 完成 |
 | 固定标准夹具与来源 | testdata/upstream、manifest、NOTICE、上游许可证 | 完成 |
-| JS / wasm-gc / Native | 各 284/284，所有上游 ID 各执行一次 | 完成 |
+| JS / wasm-gc / Native | 各 285/285，所有上游 ID 各执行一次 | 完成 |
 | JSON 适配和 CLI | adapter/json 与 tools/cli.mjs；27/27 集成测试 | 完成 |
 | 三组可复现示例 | examples/*.json、npm run demo | 完成 |
 | 格式、静态检查、API 快照 | npm test，警告视作错误，漂移检查 | 完成 |

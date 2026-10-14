@@ -21,7 +21,7 @@ const args = process.argv.slice(2);
 if (args.length === 1 && ['--help', '-h'].includes(args[0])) {
   console.log(help);
 } else if (args.length === 1 && args[0] === '--version') {
-  console.log('0.1.0');
+  console.log('0.1.1');
 } else {
   const [command, template, ...options] = args;
   if (!['expand', 'validate', 'variables'].includes(command) || template === undefined) {

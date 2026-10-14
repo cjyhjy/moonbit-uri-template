@@ -1,4 +1,4 @@
 adapter/json/adapter.mbt: 110/113
 encoder.mbt: 70/71
 examples/main.mbt: 0/16
-Total: 380/400
+Total: 384/404

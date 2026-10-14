@@ -99,7 +99,7 @@ with zipfile.ZipFile(archive_path) as archive:
         app = work/'consumer'
         app.mkdir()
         (work/'moon.work').write_text('members = ["library", "consumer"]\n')
-        (app/'moon.mod').write_text('name = "acceptance/downstream"\nimport { "cjyhjy/uri_template@0.1.0" }\n')
+        (app/'moon.mod').write_text('name = "acceptance/downstream"\nimport { "'+module_name+'@'+module_version+'" }\n')
         (app/'moon.pkg').write_text('import { "cjyhjy/uri_template" @uri }\npkgtype(kind: "executable")\n')
         (app/'main.mbt').write_text('fn main {\n let vars = @uri.Variables::new()\n vars.set("id", @uri.Scalar("42"))\n match @uri.expand("/users/{id}", vars) {\n Ok(s) => println(s)\n Err(e) => println(e.message)\n }\n}\n')
         for backend in ('js','wasm-gc','native'):
