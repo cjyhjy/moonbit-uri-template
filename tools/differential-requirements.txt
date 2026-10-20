@@ -1,0 +1,4 @@
+uritemplate==4.2.0 \
+    --hash=sha256:962201ba1c4edcab02e60f9a0d3821e82dfc5d2d6662a21abd533879bdb8a686
+std-uritemplate==2.0.11 \
+    --hash=sha256:e8ca3e3abe5f92e0b1cb842580f2d4b8cb43f69d0a3595505b1942b9c8712905

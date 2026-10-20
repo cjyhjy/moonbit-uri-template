@@ -37,3 +37,6 @@ jsj.incremental_new=/search?q=new
 ours.incremental_recomputed=1
 ours.incremental_old=/search?q=old
 ours.incremental_new=/search?q=new
+ours.pct_prefix=%2541,%41
+magic.pct_prefix=%2541bc,%41bc
+jsj.pct_prefix=%2541bc,%41bc

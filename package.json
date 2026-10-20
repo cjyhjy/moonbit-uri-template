@@ -25,7 +25,9 @@
     "benchmark:peers": "node tools/benchmark_peers.mjs",
     "benchmark:resources": "python3 tools/benchmark_resources.py",
     "test:sdk": "node --test sdk/sdk.test.mjs && tsc --noEmit --strict --module NodeNext --target ES2022 sdk/typecheck.mts",
-    "package:sdk": "node tools/verify_sdk_package.mjs"
+    "package:sdk": "node tools/verify_sdk_package.mjs",
+    "test:differential": "node --test tools/differential.test.mjs",
+    "differential": ".venv-diff/bin/python tools/differential.py"
   },
   "exports": {
     ".": {

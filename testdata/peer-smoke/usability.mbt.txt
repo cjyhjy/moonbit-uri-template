@@ -70,3 +70,15 @@
   println("ours.incremental_old=" + ours_links.get("search").unwrap())
   println("ours.incremental_new=" + ours_update.changes()[0].after)
 
+  // Prefix on a value containing a percent triplet; Python uritemplate and
+  // std-uritemplate both give %2541 (simple) and %41 (reserved).
+  let pct = @ours.Variables::from_entries([("x", @ours.Scalar("%41bc"))]).unwrap()
+  println("ours.pct_prefix=" + @ours.expand("{x:3}", pct).unwrap() + "," + @ours.expand("{+x:3}", pct).unwrap())
+  let magic_pct = Map([("x", @magic.Scalar("%41bc"))])
+  try {
+    let simple = @magic.UriTemplate::parse("{x:3}").expand(magic_pct)
+    let reserved = @magic.UriTemplate::parse("{+x:3}").expand(magic_pct)
+    println("magic.pct_prefix=" + simple + "," + reserved)
+  } catch { e => println("magic.pct_prefix=" + e.to_string()) }
+  let jsj_pct = [("x", @jsj.Scalar("%41bc"))]
+  println("jsj.pct_prefix=" + @jsj.parse("{x:3}").unwrap().expand(jsj_pct).unwrap() + "," + @jsj.parse("{+x:3}").unwrap().expand(jsj_pct).unwrap())
