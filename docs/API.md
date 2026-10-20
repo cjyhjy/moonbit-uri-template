@@ -196,3 +196,26 @@ let output = endpoint.expand(vars).unwrap()
 空标量有定义，空集合会被省略；声明错误类型的可选值即使为空也拒绝。所有前缀变量隐式要求标量。未声明的普通变量保持 RFC 值域。`BindingType` 带预期形状说明及变量位置，不泄漏输入内容；`inspect` 可能同时报告必填/前缀与形状问题。类型契约是选择性的新入口，不改变旧 `Template.expand` 的省略语义。验证会扫描输入与规则；`inspect` 另构建完整绑定报告，这不是零分配接口。
 
 类型契约的输入总码点预算与 `inspect` 一致，计入绑定名字、键、值及必填名字；例如 id="1" 且 id 必填，共计 2+1+2=5 码点。`validate`、计量、展开和预检在该边界上一致。规则声明的大小在编译阶段另行限制。
+
+## 增量链接会话
+
+```moonbit
+let catalog = @uri.compile_catalog([
+  ("search", "/search{?q}"), ("health", "/health"),
+]).unwrap()
+let vars = @uri.Variables::from_entries([("q", @uri.Scalar("old"))]).unwrap()
+let before = catalog.start_session(vars, max_total_output_bytes=4096).unwrap()
+let update = before.update([@uri.SetBinding("q", @uri.Scalar("new"))]).unwrap()
+let after = update.session()
+// update.recomputed() == 1; before.get("search") 仍是 /search?q=old
+```
+
+`start_session` 建立变量到端点的依赖索引，捕获输入集合，先计量整个目录，再生成 URI。`update` 接收 `SetBinding` / `RemoveBinding`，返回新会话、实际 URI 变化和重算端点数；同一变量不能在一个补丁重复出现。相同值、删除已缺失变量不重算；前缀截断后 URI 相同的值变化会重算，但不出现在 `changes()` 中。一个端点被多个变化触及时也只计一次。
+
+`links()` 和 `changes()` 返回新数组；`get(name)` 查询 URI，`total_bytes()` 返回完整快照字节数。会话没有可变字段或绑定值读取入口，调用方修改原值或返回数组不会改变快照。列表次序和有序关联值次序影响等值判断。输出和变化按 `catalog.names()` 顺序排列（核心使用 MoonBit 字符串排序规则，Node 目录使用 JS 排序规则）。
+
+默认沿用 `ExpansionLimits` 的绑定/累计成员/单值/累计输入/单 URI 预算，整份快照另限 4,194,304 输出字节、补丁 4096 项、依赖边 65536 条；可分别用 `max_total_output_bytes`、`max_patch_bindings`、`max_dependency_edges` 配置。输入预算覆盖补丁的新值及完整候选环境；总输出预算包含没有变化的 URI。先释放所有受影响 URI 的旧长度，再计入所有新长度，避免同一补丁一增一减时出现顺序依赖。预算失败不提交部分快照。
+
+可传 `contracts=[(name, contract)]` 为端点绑定 `with_contract` 策略；端点与契约源码必须完全一致。受影响端点在生成前执行类型与必填验证；全局共有变量只投影到使用它的端点，未被任何端点引用的绑定拒绝。全局错误的 `CatalogError.name` 为空，端点错误保留名字及模板位置。每个会话使用统一的单端点 `ExpansionLimits`。
+
+代价与边界：初始化构建依赖索引；更新仍需扫描完整输入、复制 B 个绑定引用和 N 个 URI/长度引用，并按目录顺序检查端点。不是 O(受影响端点数) 的完整操作；仅受影响端点执行计量/编码。保留旧快照会保留其值和 URI，占用实际内存。预算是逻辑资源限制，不是进程 RSS 保证；大部分端点一起变化时，直接批量展开可能更适合。

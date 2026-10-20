@@ -16,6 +16,7 @@
 | `reports/verification.json` | 四后端测试、独立源代码包消费者和工具回归 |
 | `reports/peer-audit-20261020.json` | 两个同类的原测试与共享行为实测 |
 | `reports/github-integration-portable-live.json` | 从解压分发包运行的 9 次真实 GitHub 请求 |
+| `reports/github-links-portable-live.json` | 参数切换的 3+2 次真实请求，仅刷新两个相关链接，旧快照和非法补丁检查 |
 | `reports/integration-faults.json` | 三种主动注入故障、诊断和零网络调用验证 |
 | `reports/integration-upgrades.json` | 六种离线升级演练、旧请求在新契约下复验；非真实 API 升级记录 |
 | `reports/playground-browser.json` 与三张截图 | 桌面/窄屏升级比较、精确跳转、取消、超时后重试和旧结果失效的实际浏览器验收 |

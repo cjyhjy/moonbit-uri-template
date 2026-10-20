@@ -39,11 +39,18 @@ export async function runAudit(manifest, { fetcher = fetch, evidence = 'live-git
     status: 'running', checks: plan.checks, executionPath: plan.executionPath,
     sdk: { inspection: plan.inspection, error: plan.error, totalOutputBytes: plan.totalOutputBytes }, responses: [] };
   if (!plan.ok) { report.status = plan.checks.ok ? 'sdk-contract-failed' : 'contract-failed'; return report; }
+  return Object.assign(report, await fetchAuditOutputs(plan.outputs, {fetcher}));
+}
+
+// Shared transport for full audits and incremental UI selections. Both paths
+// validate every destination before sending any request.
+export async function fetchAuditOutputs(outputs, {fetcher = fetch} = {}) {
+  const report = {status:'running',responses:[]};
   // Validate every URL before the first network request. URL parsing can normalize
   // dot segments, so reject noncanonical paths as well as unexpected origins.
-  report.destinationProblems = destinationProblems(plan.outputs);
+  report.destinationProblems = destinationProblems(outputs);
   if (report.destinationProblems.length) { report.status = 'destination-rejected'; return report; }
-  for (const item of plan.outputs) {
+  for (const item of outputs) {
     let response;
     try {
       response = await fetcher(item.uri, { method: 'GET', redirect: 'error', signal: AbortSignal.timeout(15000),
@@ -78,7 +85,7 @@ export async function runAudit(manifest, { fetcher = fetch, evidence = 'live-git
       break;
     }
   }
-  report.status = report.responses.length === plan.outputs.length && report.responses.every(r => !r.error) ? 'passed' : 'failed';
+  report.status = report.responses.length === outputs.length && report.responses.every(r => !r.error) ? 'passed' : 'failed';
   report.completedAt = new Date().toISOString();
   return report;
 }

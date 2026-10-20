@@ -34,3 +34,6 @@ jsj.typed_empty_wrong=true
 jsj.incremental_recomputed=1
 jsj.incremental_old=/search?q=old
 jsj.incremental_new=/search?q=new
+ours.incremental_recomputed=1
+ours.incremental_old=/search?q=old
+ours.incremental_new=/search?q=new

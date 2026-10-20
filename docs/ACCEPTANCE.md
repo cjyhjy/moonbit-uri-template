@@ -72,8 +72,8 @@ GitHub v0.1.1 已发布附件 `moonbit-uri-template-0.1.1.zip`，公开 SHA-256 
 
 ## 2026-10-20 候选版扩展验收
 
-本轮最新报告取代前文候选版测试数：JS、wasm、wasm-gc、Native 各 320 项通过；CLI 49 项、项目工作流及下游离线 24 项、Node SDK 17 项、工作台计算和生命周期 6 项。源码归档独立消费者验证四后端的计量/批量/目录、画像/差异和审计接口。分发包解压验证同一组 96 项 Node 测试；npm tarball 另经独立离线安装、运行与 TypeScript 正反例检查。
+本轮最新报告取代前文候选版测试数：JS、wasm、wasm-gc、Native 各 327 项通过；CLI 49 项、项目工作流及下游离线 25 项、Node SDK 22 项、工作台计算和生命周期 6 项。源码归档独立消费者验证四后端的计量/批量/目录、画像/差异和审计接口。分发包解压验证同一组 102 项 Node 测试；npm tarball 另经独立离线安装、运行与 TypeScript 正反例检查。
 
 真实客户端从全新解压目录运行，通过公共 Node 目录 SDK 生成 9 个 GitHub 请求，证据见 `reports/github-integration-portable-live.json`；主动故障注入单独见 `reports/integration-faults.json`，六种离线升级演练见 `reports/integration-upgrades.json`。候选版的源码摘要与分发摘要必须和对应报告一致。复审材料入口见 RESUBMISSION.md。这些报告生成于源码提交前，保留当时 HEAD；正式发行、远端 CI、更新表单和发送邮件的状态应分别核对，不得从本地验收或源码推送推定完成。
 
-本轮另验证公共运行时值类型契约、类型变化审查和实际客户端的直接 SDK 类型检查；同类快照更新至 JSJ222 ee7d3be，三后端各 134 项通过，并新增类型契约及增量会话共享探针。当前不具备同类新增的不可变链接会话，剩余工作见 OPTIMIZATION.md。
+本轮另验证公共运行时值类型契约、类型变化审查和实际客户端的直接 SDK 类型检查；同类快照更新至 JSJ222 ee7d3be，三后端各 134 项通过，并新增类型契约及增量会话共享探针。本轮已补齐不可变链接会话并验证依赖选择性重算，剩余性能与采用工作见 OPTIMIZATION.md。

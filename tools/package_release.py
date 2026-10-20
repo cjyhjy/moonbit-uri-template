@@ -41,6 +41,7 @@ with tempfile.TemporaryDirectory(prefix='uri-template-release-') as temporary:
              'dist/licenses/moonbit-core-LICENSE', 'reports/sdk-package.json', 'docs/SDK.md',
              'integrations/github-audit/main.mjs', 'integrations/github-audit/package.json',
              'integrations/github-audit/contracts.mjs', 'integrations/github-audit/upgrade.mjs',
+             'integrations/github-audit/link-selection.mjs',
              'integrations/github-audit/requests.json', 'integrations/github-audit/integration.test.mjs',
              'integrations/github-audit/README.md',
              'dist/playground/index.html', 'dist/playground/main.mjs', 'dist/playground/worker.mjs',

@@ -192,3 +192,19 @@ test('the actual client catalog enforces types even outside the project-file che
   assert.equal(report.ok, false);
   assert.equal(report.requests[0].findings[0].code, 'BindingType');
 });
+
+test('repository selection refreshes only changed links and preserves cached state', async () => {
+  const {runLinkSelection} = await import('./link-selection.mjs');
+  const urls=[];
+  const report=await runLinkSelection({evidence:'offline-double',fetcher:async uri=>{
+    urls.push(uri);
+    const payload=uri.includes('/commits')?[{sha:'a'.repeat(40)}]:uri.includes('/releases')?[]:{full_name:'cjyhjy/moonbit-uri-template',default_branch:'main'};
+    return new Response(JSON.stringify(payload));
+  }});
+  assert.equal(report.status,'passed'); assert.equal(urls.length,5);
+  assert.equal(urls.filter(uri=>uri.endsWith('/moonbit-uri-template')).length,1);
+  assert.equal(report.update.recomputed,2); assert.equal(report.oldSnapshotPreserved,true);
+  assert.equal(report.rejectedPatch.code,'BindingType'); assert.equal(report.rejectedPatch.networkCalls,0);
+  const failed=await runLinkSelection({evidence:'offline-double',fetcher:async()=>new Response('{}',{status:403})});
+  assert.equal(failed.status,'failed'); assert.equal(failed.networkCalls,1);
+});

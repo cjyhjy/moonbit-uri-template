@@ -1,0 +1,149 @@
+{
+  "status": "passed",
+  "evidence": "live-github-api",
+  "executionPath": "incremental-catalog-sdk",
+  "startedAt": "2026-10-20T12:07:43.370Z",
+  "initial": {
+    "status": "passed",
+    "responses": [
+      {
+        "label": "commits",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=1",
+        "status": 200,
+        "receivedAt": "2026-10-20T12:07:45.286Z",
+        "requestId": "4838:208F4D:4A7360:6E6950:6AD7598F",
+        "etag": "W/\"31b43490c4c0b8e54004ae7fd6263e2e33fd82603f5afbef7a718cf990adf99f\"",
+        "responseDate": "Tue, 20 Oct 2026 12:07:45 GMT",
+        "bodySha256": "d01a6713f1002be91942d59c22821d097a51d078cfb4dce6c40f6a67098b407d",
+        "responseBytes": 1507,
+        "data": {
+          "sha": "b4a6cdc9fe6b21bff4a57ea01eac881b0187e290",
+          "html_url": "https://github.com/cjyhjy/moonbit-uri-template/commit/b4a6cdc9fe6b21bff4a57ea01eac881b0187e290"
+        }
+      },
+      {
+        "label": "releases",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=1",
+        "status": 200,
+        "receivedAt": "2026-10-20T12:07:47.218Z",
+        "requestId": "3E29:333194:47E8E8:6AFBED:6AD75991",
+        "etag": "W/\"48543fe211ed2a8c35887414899fb40fa7c2fab69d4549f85b15c6f08a9f54c4\"",
+        "responseDate": "Tue, 20 Oct 2026 12:07:47 GMT",
+        "bodySha256": "7e308c6ba998e02e79cd72283b47d1332139e655db099cd927104088dd1119c3",
+        "responseBytes": 4204,
+        "data": {
+          "releases": [
+            {
+              "tag_name": "v0.1.1",
+              "html_url": "https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.1.1",
+              "published_at": "2026-10-14T12:53:16Z"
+            }
+          ]
+        }
+      },
+      {
+        "label": "repository",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template",
+        "status": 200,
+        "receivedAt": "2026-10-20T12:07:48.852Z",
+        "requestId": "3693:2F8C21:47931F:6BB1BD:6AD75994",
+        "etag": "W/\"aaefbb71bbf008f80568150ed4804f67671a9d82d7810ef213fd2f6550eae50e\"",
+        "responseDate": "Tue, 20 Oct 2026 12:07:48 GMT",
+        "bodySha256": "11c7da95ed110594667a4eb8dec65344f5185ec927fb59c1b5eedf751ecc79f3",
+        "responseBytes": 6397,
+        "data": {
+          "full_name": "cjyhjy/moonbit-uri-template",
+          "default_branch": "main",
+          "archived": false,
+          "html_url": "https://github.com/cjyhjy/moonbit-uri-template"
+        }
+      }
+    ],
+    "destinationProblems": [],
+    "completedAt": "2026-10-20T12:07:48.852Z"
+  },
+  "networkCalls": 5,
+  "manifestSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
+  "completedAt": "2026-10-20T12:07:54.391Z",
+  "refreshed": {
+    "status": "passed",
+    "responses": [
+      {
+        "label": "commits",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits",
+        "status": 200,
+        "receivedAt": "2026-10-20T12:07:52.408Z",
+        "requestId": "056F:3AE55C:4B8012:6F8CB8:6AD75996",
+        "etag": "W/\"e06773494b3356672e75f1e796184cfb7b72317cddd7badced148e0093387924\"",
+        "responseDate": "Tue, 20 Oct 2026 12:07:52 GMT",
+        "bodySha256": "85d58035ebe9e024d8260cc19dee2bef72a6b9ae6b17789b5e83c1215455c204",
+        "responseBytes": 58759,
+        "data": {
+          "sha": "b4a6cdc9fe6b21bff4a57ea01eac881b0187e290",
+          "html_url": "https://github.com/cjyhjy/moonbit-uri-template/commit/b4a6cdc9fe6b21bff4a57ea01eac881b0187e290"
+        }
+      },
+      {
+        "label": "releases",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases",
+        "status": 200,
+        "receivedAt": "2026-10-20T12:07:54.390Z",
+        "requestId": "7269:3B53FF:48F949:6D188D:6AD75999",
+        "etag": "W/\"3f68865eb00ba0fcb8385100b1321b75eefcbf59a7b6030642cfb8e0fc2de7f9\"",
+        "responseDate": "Tue, 20 Oct 2026 12:07:54 GMT",
+        "bodySha256": "90f147b21947972a36dfaf9622f69241e526f9f57d34e18dca5906da822075c4",
+        "responseBytes": 8510,
+        "data": {
+          "releases": [
+            {
+              "tag_name": "v0.1.1",
+              "html_url": "https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.1.1",
+              "published_at": "2026-10-14T12:53:16Z"
+            },
+            {
+              "tag_name": "v0.1.0",
+              "html_url": "https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.1.0",
+              "published_at": "2026-10-14T07:10:00Z"
+            }
+          ]
+        }
+      }
+    ],
+    "destinationProblems": [],
+    "completedAt": "2026-10-20T12:07:54.390Z"
+  },
+  "noop": {
+    "recomputed": 0,
+    "changes": 0,
+    "networkCalls": 0
+  },
+  "update": {
+    "recomputed": 2,
+    "changes": [
+      {
+        "template": "commits",
+        "before": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=1",
+        "after": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits"
+      },
+      {
+        "template": "releases",
+        "before": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=1",
+        "after": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases"
+      }
+    ],
+    "retained": [
+      "repository"
+    ],
+    "totalBytes": 185
+  },
+  "rejectedPatch": {
+    "code": "BindingType",
+    "templateName": "commits",
+    "networkCalls": 0
+  },
+  "oldSnapshotPreserved": true,
+  "transport": "authenticated-gh-cli",
+  "engineSha256": "c2ada2471666d9adc73f76c4491b09d3bab0f86f5aa9774d6b0e1fe95704dd5e",
+  "portableArchiveSha256": "296a2d7e998f5cbe6466e3b9001ab68f7aa8baf56f0a97e2b6bd2c956ac2632e",
+  "consumerMode": "fresh extracted archive; no source-checkout imports"
+}

@@ -1,18 +1,18 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-20T11:47:08.507829+00:00",
-  "git_head": "f3db230dd007045a288454cface4d9b929bee613",
+  "verification_started_at_utc": "2026-10-20T12:06:16.611484+00:00",
+  "git_head": "b4a6cdc9fe6b21bff4a57ea01eac881b0187e290",
   "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-20T11:47:08.934865+00:00",
+  "verified_at_utc": "2026-10-20T12:06:17.045062+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "36655b65b34098d0d6305d8f215cfb4c7157c62f681e9ed7da2d9e2f85bb0650",
+  "source_sha256": "2beb9e8c6ac23f05e5e5515e728352466924a3dd1a5ea3e29bf09607feca3518",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
-      "total": 320,
-      "passed": 320,
+      "total": 327,
+      "passed": 327,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -324,8 +324,8 @@
       ]
     },
     "wasm": {
-      "total": 320,
-      "passed": 320,
+      "total": 327,
+      "passed": 327,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -637,8 +637,8 @@
       ]
     },
     "wasm-gc": {
-      "total": 320,
-      "passed": 320,
+      "total": 327,
+      "passed": 327,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -950,8 +950,8 @@
       ]
     },
     "native": {
-      "total": 320,
-      "passed": 320,
+      "total": 327,
+      "passed": 327,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -1270,20 +1270,20 @@
     "failed": 0
   },
   "workflow": {
-    "total": 24,
-    "passed": 24,
+    "total": 25,
+    "passed": 25,
     "failed": 0,
     "network": "offline only; live evidence is separate"
   },
   "sdk": {
-    "total": 17,
-    "passed": 17,
+    "total": 22,
+    "passed": 22,
     "failed": 0,
     "package": {
       "status": "passed",
       "artifact": "_build/releases/moonbit-uri-template-0.2.0.tgz",
-      "sha256": "b15bce1da81edf37771a408a55ef70a22cc8210f12de79b050c293182590e624",
-      "sourceSha256": "36655b65b34098d0d6305d8f215cfb4c7157c62f681e9ed7da2d9e2f85bb0650",
+      "sha256": "63f2dfff5e0ffc958d9bce5f0eeba975905fb7747a2bd9633020d1b9e7226ff9",
+      "sourceSha256": "2beb9e8c6ac23f05e5e5515e728352466924a3dd1a5ea3e29bf09607feca3518",
       "node": "v26.7.0",
       "typescript": "Version 7.0.2",
       "cleanLocalInstall": true,
@@ -1292,6 +1292,7 @@
       "checks": [
         "ESM public export",
         "compiled reuse",
+        "incremental immutable sessions",
         "runtime shape contracts and type-change review",
         "batch",
         "contract failure",
@@ -1420,6 +1421,7 @@
       "docs/AI_USAGE.md",
       "docs/ACCEPTANCE.md",
       "bindings_test.mbt",
+      "link_session.mbt",
       "NOTICE",
       "README.md",
       "expander.mbt",
@@ -1431,6 +1433,7 @@
       "integrations/github-audit/package.json",
       "integrations/github-audit/requests.json",
       "integrations/github-audit/main.mjs",
+      "integrations/github-audit/link-selection.mjs",
       "package-lock.json",
       "package.json",
       "sdk/index.d.mts",
@@ -1449,12 +1452,13 @@
       "analysis.mbt",
       "conformance_test.mbt",
       "limits_test.mbt",
+      "link_session_test.mbt",
       "limits.mbt",
       "runtime_contract_test.mbt",
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "832f1146f514c004b619d889edc3f044a7d76a03dc6890763198b2dabd4bf812",
+    "sha256": "d70160886bc09b9fe8ef30904bcaa081a3d8cc8571ac7a7e2e97413ba87ebdb5",
     "clean_downstream_backends": [
       "js",
       "wasm",

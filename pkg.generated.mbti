@@ -37,6 +37,11 @@ pub(all) struct BatchLimits {
 pub fn BatchLimits::new(max_items? : Int, max_total_input_codepoints? : Int, max_total_output_bytes? : Int) -> Self
 pub fn BatchLimits::to_repr(Self) -> @debug.Repr
 
+pub(all) enum BindingChange {
+  SetBinding(String, Value)
+  RemoveBinding(String)
+}
+
 pub(all) struct BindingFinding {
   code : String
   variable : String
@@ -187,6 +192,24 @@ pub(all) struct ExpressionInfo {
 } derive(@debug.Debug)
 pub fn ExpressionInfo::to_repr(Self) -> @debug.Repr
 
+pub(all) struct LinkChange {
+  name : String
+  before : String
+  after : String
+} derive(@debug.Debug)
+pub fn LinkChange::to_repr(Self) -> @debug.Repr
+
+type LinkSession
+pub fn LinkSession::get(Self, String) -> Result[String, CatalogError]
+pub fn LinkSession::links(Self) -> Array[(String, String)]
+pub fn LinkSession::total_bytes(Self) -> Int
+pub fn LinkSession::update(Self, Array[BindingChange]) -> Result[LinkUpdate, CatalogError]
+
+type LinkUpdate
+pub fn LinkUpdate::changes(Self) -> Array[LinkChange]
+pub fn LinkUpdate::recomputed(Self) -> Int
+pub fn LinkUpdate::session(Self) -> LinkSession
+
 type OrderedEntries derive(@debug.Debug)
 pub fn OrderedEntries::from_entries(Array[(String, String)]) -> Result[Self, TemplateError]
 pub fn OrderedEntries::to_repr(Self) -> @debug.Repr
@@ -277,6 +300,7 @@ pub fn TemplateCatalog::inspect_requests(Self, Array[CatalogRequest], reject_unu
 pub fn TemplateCatalog::measure(Self, String, Variables, required? : Array[String], limits? : ExpansionLimits) -> Result[Int, CatalogError]
 pub fn TemplateCatalog::measure_batch(Self, Array[CatalogRequest], reject_unused? : Bool, limits? : ExpansionLimits, batch_limits? : BatchLimits) -> Result[Array[Int], CatalogBatchError]
 pub fn TemplateCatalog::names(Self) -> Array[String]
+pub fn TemplateCatalog::start_session(Self, Variables, contracts? : Array[(String, ContractTemplate)], limits? : ExpansionLimits, max_total_output_bytes? : Int, max_patch_bindings? : Int, max_dependency_edges? : Int) -> Result[LinkSession, CatalogError]
 pub fn TemplateCatalog::templates_using(Self, String) -> Array[String]
 
 pub(all) struct TemplateError {

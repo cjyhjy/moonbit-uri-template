@@ -62,3 +62,10 @@
   println("jsj.incremental_recomputed=" + update.recomputed().to_string())
   println("jsj.incremental_old=" + links.links()[0].1)
   println("jsj.incremental_new=" + update.changes()[0].after)
+
+  let ours_links = @ours.compile_catalog([("search","/search{?q}"),("health","/health")]).unwrap()
+    .start_session(@ours.Variables::from_entries([("q",@ours.Scalar("old"))]).unwrap()).unwrap()
+  let ours_update = ours_links.update([@ours.SetBinding("q",@ours.Scalar("new"))]).unwrap()
+  println("ours.incremental_recomputed=" + ours_update.recomputed().to_string())
+  println("ours.incremental_old=" + ours_links.get("search").unwrap())
+  println("ours.incremental_new=" + ours_update.changes()[0].after)

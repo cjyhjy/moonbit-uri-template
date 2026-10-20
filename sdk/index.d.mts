@@ -169,6 +169,7 @@ export class CompiledCatalog<D extends CatalogDefinitions = CatalogDefinitions> 
   expand<K extends CatalogKey<D>>(name: K, variables: CatalogBindings<D, K>): string;
   measure<K extends CatalogKey<D>>(name: K, variables: CatalogBindings<D, K>): number;
   trace<K extends CatalogKey<D>>(name: K, variables: CatalogBindings<D, K>): Trace;
+  startSession(variables?: SessionBindings<D>, options?: SessionLimits): LinkSession<D>;
   templatesUsing(variable: string): CatalogKey<D>[];
   expandMany(requests: readonly CatalogRequest<D>[], budgets?: BatchLimits): string[];
   measureMany(requests: readonly CatalogRequest<D>[], budgets?: BatchLimits): { bytes: number[]; totalBytes: number };
@@ -179,3 +180,24 @@ export class CompiledCatalog<D extends CatalogDefinitions = CatalogDefinitions> 
 export function compileCatalog<const D extends CatalogDefinitions>(
   definitions: D & ValidateCatalog<D>, options?: CatalogLimits
 ): CompiledCatalog<D>;
+
+export interface SessionLimits {
+  maxBindings?: number; maxMembers?: number; maxValueCodepoints?: number;
+  /** Serialized JSON, including punctuation. Applies to the patch and full next state separately. */
+  maxTotalInputCodepoints?: number;
+  maxTotalOutputBytes?: number; maxPatchBindings?: number; maxDependencyEdges?: number;
+}
+export type SessionBindings<D extends CatalogDefinitions> =
+  Partial<Record<TemplateVariables<D[CatalogKey<D>]['template']>, Value>>;
+export interface LinkUpdate<D extends CatalogDefinitions> {
+  session: LinkSession<D>; recomputed: number;
+  changes: Array<{template:CatalogKey<D>; before:string; after:string}>;
+}
+export class LinkSession<D extends CatalogDefinitions = CatalogDefinitions> {
+  private constructor();
+  readonly totalBytes: number;
+  links(): Array<{template:CatalogKey<D>; uri:string; bytes:number}>;
+  get<K extends CatalogKey<D>>(name: K): string;
+  /** Null removes a shared binding; endpoint required/type constraints still apply. */
+  update(patch: SessionBindings<D>): LinkUpdate<D>;
+}

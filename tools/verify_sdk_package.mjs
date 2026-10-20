@@ -44,6 +44,12 @@ assert.equal(typed.expand({id:'42',tags:['sdk']}), '/42?tags=sdk');
 assert.equal(typed.tryExpand({id:[]}).error.code, 'BindingType');
 assert.equal(typed.inspect({id:'42',tags:''})[0].code, 'BindingType');
 assert.equal(typed.compare(compileTemplate('/{id}{?tags*}', {required:['id'],types:{id:'scalar',tags:'scalar'}})).typeChanges[0].name, 'tags');
+const snapshot = catalog.startSession({owner:'moonbitlang',repo:'core'});
+const incremental = snapshot.update({repo:'x'});
+assert.equal(incremental.recomputed, 1);
+assert.equal(incremental.session.get('repo'), '/repos/moonbitlang/x');
+assert.equal(snapshot.get('repo'), '/repos/moonbitlang/core');
+assert.equal(incremental.session.update({repo:'x'}).recomputed, 0);
 console.log('installed SDK passed');`;
   writeFileSync(join(temporary, 'consumer.mjs'), source);
   run('node', ['consumer.mjs'], temporary);
@@ -57,7 +63,7 @@ console.log('installed SDK passed');`;
     sourceSha256: run('python3', ['-c', 'from pathlib import Path; import sys; sys.path.insert(0,"tools"); from source_digest import source_digest; print(source_digest(Path.cwd()))']).trim(),
     node: process.version, typescript: run(join(root, 'node_modules/.bin/tsc'), ['--version']).trim(),
     cleanLocalInstall: true, offlineInstall: true, published: false,
-    checks: ['ESM public export', 'compiled reuse', 'runtime shape contracts and type-change review', 'batch', 'contract failure', 'analysis and comparison', 'typed catalog batch inspection audit and comparison', 'installed CLI comparison', 'TypeScript positive and expected-error cases'],
+    checks: ['ESM public export', 'compiled reuse', 'incremental immutable sessions', 'runtime shape contracts and type-change review', 'batch', 'contract failure', 'analysis and comparison', 'typed catalog batch inspection audit and comparison', 'installed CLI comparison', 'TypeScript positive and expected-error cases'],
     files: pack.files.map(x => x.path) };
   writeFileSync(join(root, 'reports/sdk-package.json'), JSON.stringify(report, null, 2) + '\n');
   console.log('SDK tarball: clean offline install, runtime and TypeScript checks passed');

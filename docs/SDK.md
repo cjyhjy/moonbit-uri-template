@@ -203,3 +203,30 @@ const findings = users.inspect({ id: '42', fields: '' }); // BindingType
 重复或未引用的规则、与前缀冲突的类型会在编译时报错。核心声明数量和名字总码点有界；JSON 选项还有固定上限。类型检查不做数字格式、域名或完整 JSON Schema 验证。`compare` 新增 `typeChanges`、`typedBefore` 和 `typedAfter`；类型或契约模式变化即使模板原文相同也要求审查。实际 GitHub 客户端把配置中的 `types` 直接传给公共 SDK，文件检查和 SDK 调用都执行约束。
 
 类型契约的输入总码点预算与 `inspect` 一致，计入绑定名字、键、值及必填名字；例如 id="1" 且 id 必填，共计 2+1+2=5 码点。`validate`、计量、展开和预检在该边界上一致。规则声明的大小在编译阶段另行限制。
+
+## 参数变化时只更新相关链接
+
+```ts
+const api = compileCatalog({
+  search: {template:'/users/{id}/search{?q}',required:['id'],types:{id:'scalar',q:'scalar'}},
+  user: {template:'/users/{id}',required:['id']},
+  health: {template:'/health'},
+});
+const before = api.startSession({id:'42',q:'old'}, {maxTotalOutputBytes:4096});
+const update = before.update({q:'new'});
+console.log(update.recomputed); // 1
+console.log(update.changes);    // 只有 search
+console.log(update.session.get('search')); // /users/42/search?q=new
+console.log(before.get('search'));         // /users/42/search?q=old
+// update({id:null}) 会因必填契约失败，before 和 update.session 都保持有效。
+```
+
+`startSession` 复用已编译目录，`update` 是不可变更新；补丁中的 null 删除绑定，其他值覆盖绑定。所有端点仍执行各自编译时的类型、必填、单 URI 等约束。整个快照先计量，再生成受影响 URI。`links()` 返回 `{template, uri, bytes}` 数组，`get(name)` 查询一个结果，`totalBytes` 是整个快照的字节数。返回数组及变化列表可供调用方处理，不会改变会话。
+
+默认会话限额：4096 个已定义绑定、65536 个累计集合成员、单名字/键/值 1,048,576 码点、整份输入 JSON 4,194,304 码点、输出 4,194,304 字节、补丁 4096 项、依赖边 65536 条。可用 `SessionLimits` 中的对应字段调整；底层编译对象预算和 SDK 固定快照限制仍适用。补丁及完整候选状态分别检查输入预算，后者包含保留的绑定；整份输出预算包含缓存链接。
+
+SDK 会话输入总量按序列化 JSON（含标点）计数，MoonBit 会话按绑定名字/键/值码点计数。JS 对象不能表示重复的补丁键；MoonBit 补丁数组会主动拒绝重复。关联对象键顺序不改变 JSON 核心输出，含 null 成员的原始输入大小仍被记录。参数名和端点名获得 TypeScript 提示；共享参数的必填/形状冲突由各端点运行时契约判断，不宣称静态类型能证明所有跨端点组合有效。
+
+缓存与依赖调度由各语言的宿主层管理，所有标准展开、计量和类型校验仍调用 MoonBit 核心。一次更新会扫描完整输入并复制状态引用，不能把只重算一个 URI 描述为整个操作 O(1)。初始和更新预算失败不会返回部分快照；不变的补丁不发起外部操作，网络请求始终由调用方控制。
+
+实际作者下游：`node integrations/github-audit/link-selection.mjs --gh` 先读取三类 GitHub 信息，再移除 `per_page=1` 恢复默认列表大小，仅重请求 commits/releases 两条变化链接。仓库信息链接保持缓存；它不是自动 HTTP 缓存系统。真实记录与故障演练的说明见 REVIEW_EVIDENCE.md。

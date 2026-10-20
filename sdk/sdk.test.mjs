@@ -254,3 +254,83 @@ test('catalog shape changes are reviewed and batch failures identify the endpoin
   assert.equal(compileTemplate('/{id:2}').compare(compileTemplate('/{id:2}', {types:{}})).requiresReview, true);
   assert.equal(catalog.compare(compileCatalog({user:{template:'/{id}{?tags*}',required:['id'],types:{id:'scalar',tags:'scalar'}}})).changed.length, 1);
 });
+
+test('incremental sessions recompute each dependent endpoint once and keep prior snapshots', () => {
+  const catalog = compileCatalog({search:{template:'/{tenant}/search{?q}',required:['tenant'],types:{tenant:'scalar',q:'scalar'}},
+    resource:{template:'/{tenant}/{file}',required:['tenant','file']}, health:{template:'/health'}});
+  const vars = {tenant:'demo',file:'a',q:'old'};
+  const old = catalog.startSession(vars); vars.q = 'caller-mutated';
+  const updated = old.update({q:'中文'});
+  assert.equal(updated.recomputed,1);
+  assert.deepEqual(updated.changes,[{template:'search',before:'/demo/search?q=old',after:'/demo/search?q=%E4%B8%AD%E6%96%87'}]);
+  assert.equal(old.get('search'),'/demo/search?q=old');
+  assert.equal(old.update({tenant:'team',q:'new'}).recomputed,2);
+  updated.changes.length = 0; updated.session.links().length = 0;
+  assert.equal(updated.session.get('search'),'/demo/search?q=%E4%B8%AD%E6%96%87');
+  assert.throws(() => old.update({tenant:null}),e => e.code === 'MissingBinding');
+  assert.throws(() => old.update({q:[]}),e => e.code === 'BindingType' && e.templateName === 'search');
+  assert.equal(old.get('search'),'/demo/search?q=old');
+});
+
+test('session output limits include cached endpoints and handle simultaneous growth and shrink', () => {
+  const catalog = compileCatalog({a:{template:'{x}'},b:{template:'{y}'},health:{template:'OK'}});
+  const old = catalog.startSession({x:'a',y:'bbbbb'},{maxTotalOutputBytes:8});
+  assert.equal(old.totalBytes,8);
+  const swap = old.update({x:'aaaaa',y:'b'});
+  assert.equal(swap.session.totalBytes,8); assert.equal(swap.recomputed,2);
+  assert.throws(() => old.update({x:'aa'}),e => e.code === 'SessionOutputLimit');
+  assert.equal(old.get('a'),'a');
+  assert.throws(() => catalog.startSession({x:'a',y:'bbbbb'},{maxTotalOutputBytes:7}),e => e.code === 'SessionOutputLimit');
+  assert.throws(() => old.get('missing'),e => e.code === 'UnknownTemplate');
+});
+
+test('session no-ops null removal composite capture and URI-equivalent updates', () => {
+  const catalog = compileCatalog({prefix:{template:'{x:1}{?y}'},list:{template:'{?items*}'}});
+  const old = catalog.startSession({x:'abc',items:['a']});
+  assert.equal(old.update({x:'abc',y:null}).recomputed,0);
+  assert.equal(old.update({}).session,old);
+  const equivalent = old.update({x:'axy'});
+  assert.equal(equivalent.recomputed,1); assert.deepEqual(equivalent.changes,[]);
+  const items = ['b']; const next = old.update({items}).session; items[0] = 'mutated';
+  assert.equal(next.get('list'),'?items=b');
+  assert.equal(next.update({items:['b']}).recomputed,0);
+  assert.equal(next.update({items:null}).session.get('list'),'');
+  const assoc = old.update({items:{z:'2',a:'1',absent:null}}).session;
+  assert.equal(assoc.get('list'),'?a=1&z=2');
+  assert.equal(assoc.update({items:{absent:null,a:'1',z:'2'}}).recomputed,0);
+  // Removing an omitted member still updates captured input size.
+  assert.equal(assoc.update({items:{a:'1',z:'2'}}).recomputed,1);
+});
+
+test('session budgets cover patch and whole environment including empty cases', () => {
+  const catalog = compileCatalog({x:{template:'{x}'},y:{template:'{y}'}});
+  const old = catalog.startSession({x:'a'},{maxBindings:1,maxPatchBindings:2});
+  assert.throws(() => old.update({y:'b'}),e => e.code === 'BindingLimit');
+  assert.equal(old.update({x:null,y:'b'}).session.get('y'),'b');
+  assert.throws(() => old.update({typo:null}),e => e.code === 'UnusedBinding');
+  assert.throws(() => catalog.startSession({}, {maxDependencyEdges:1}),e => e.code === 'DependencyLimit');
+  assert.throws(() => catalog.startSession({x:['a','b']},{maxMembers:1}),e => e.code === 'MemberLimit');
+  assert.throws(() => catalog.startSession({x:'aa'},{maxValueCodepoints:1}),e => e.code === 'ValueLimit');
+  const bounded = catalog.startSession({x:'a'},{maxTotalInputCodepoints:9});
+  assert.throws(() => bounded.update({y:'b'}),e => e.code === 'SessionInputLimit');
+  const zeroPatch = catalog.startSession({}, {maxPatchBindings:0});
+  assert.throws(() => zeroPatch.update({x:null}),e => e.code === 'PatchLimit');
+  let accessed = false;
+  assert.throws(() => old.update({get x(){accessed=true;return 'a';}}),e => e.code === 'InvalidInput');
+  assert.equal(accessed,false);
+  assert.equal(compileCatalog({}).startSession({}, {maxTotalOutputBytes:0,maxDependencyEdges:0}).totalBytes,0);
+  assert.throws(() => compileCatalog({}).startSession({}, {maxPatchBindings:-1}),e => e.code === 'InvalidInput');
+});
+
+test('incremental SDK results match full catalog generation throughout a deterministic workload', () => {
+  const definitions = Object.fromEntries(Array.from({length:100}, (_,i)=>['endpoint'+i,{template:'/item/'+i+'{?v'+i+'}'}]));
+  const catalog = compileCatalog(definitions), vars = {};
+  let session = catalog.startSession(vars);
+  for (let i=0;i<200;i++) {
+    const name = 'v'+(i%100), value = i%3 === 0 ? null : i%2 === 0 ? '中文 /' : String(i);
+    if (value === null) delete vars[name]; else vars[name] = value;
+    const update = session.update({[name]:value}); session = update.session;
+    assert(update.recomputed <= 1);
+    assert.deepEqual(session.links(),catalog.startSession(vars).links());
+  }
+});

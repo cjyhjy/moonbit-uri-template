@@ -22,12 +22,20 @@ archive = ROOT / release["archive"]
 if sha(archive.read_bytes()) != release["sha256"]:
     raise SystemExit("Release archive changed")
 live = load("reports/github-integration-portable-live.json")
+links = load("reports/github-links-portable-live.json")
+if (links.get("status") != "passed" or links.get("evidence") != "live-github-api"
+        or links.get("portableArchiveSha256") != release["sha256"]
+        or links.get("executionPath") != "incremental-catalog-sdk"
+        or links.get("networkCalls") != 5 or links.get("update", {}).get("recomputed") != 2
+        or not links.get("oldSnapshotPreserved")
+        or links.get("rejectedPatch", {}).get("networkCalls") != 0):
+    raise SystemExit("Incremental real consumer evidence is missing or stale")
 faults = load("reports/integration-faults.json")
 upgrades = load("reports/integration-upgrades.json")
 browser = load("reports/playground-browser.json")
 engine = sha((ROOT / "dist/engine.mjs").read_bytes())
 manifest = sha((ROOT / "integrations/github-audit/requests.json").read_bytes())
-for record in (live, faults, upgrades):
+for record in (live, links, faults, upgrades):
     if record["status"] != "passed" or record["engineSha256"] != engine or record["manifestSha256"] != manifest:
         raise SystemExit("Integration evidence is failed or stale")
 for record in (faults, upgrades):
@@ -67,6 +75,7 @@ files = [
     "docs/COMPARISON.md", "docs/PERFORMANCE.md", "docs/API.md", "docs/SDK.md", "docs/OPTIMIZATION.md",
     "integrations/github-audit/README.md",
     "reports/verification.json", "reports/release.json", "reports/peer-benchmark.json",
+    "reports/github-links-portable-live.json",
     "reports/github-integration-portable-live.json", "reports/integration-faults.json", "reports/integration-upgrades.json",
     "reports/history/github-integration-anonymous-failed.json",
     "reports/tests-js.log", "reports/tests-wasm.log", "reports/tests-wasm-gc.log",

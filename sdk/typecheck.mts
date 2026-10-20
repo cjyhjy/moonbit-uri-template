@@ -62,3 +62,12 @@ shapedCatalog.expand('user', {id:'42',tags:['sdk']});
 shapedCatalog.expandMany([{template:'user',variables:{id:['42']}}]);
 // @ts-expect-error get preserves the declared shape
 shapedCatalog.get('user').expand({id:'42',tags:'sdk'});
+const links = catalog.startSession({id:'42',q:'moon'});
+links.get('user');
+links.update({page:'2',q:null});
+// @ts-expect-error unknown shared parameter
+links.update({typo:'x'});
+// @ts-expect-error unknown endpoint
+links.get('typo');
+// @ts-expect-error values require explicit string formatting
+links.update({page:2});

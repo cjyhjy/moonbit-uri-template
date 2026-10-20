@@ -43,4 +43,16 @@ with tempfile.TemporaryDirectory(prefix="uri-real-consumer-") as temp:
             or len(report["sdk"]["inspection"].get("requests", [])) != 9
             or len(report.get("responses", [])) != 9):
         raise SystemExit("Live evidence must exercise the typed catalog SDK for all nine requests")
-print("Portable downstream: nine real GitHub responses verified")
+    links_path = ROOT / "reports/github-links-portable-live.json"
+    result = subprocess.run(["node", "integrations/github-audit/link-selection.mjs", "--gh", str(links_path)], cwd=installed)
+    if not links_path.exists(): raise SystemExit("Incremental consumer produced no report")
+    links = json.loads(links_path.read_text())
+    links["portableArchiveSha256"] = archive_sha
+    links["consumerMode"] = "fresh extracted archive; no source-checkout imports"
+    links_path.write_text(json.dumps(links, ensure_ascii=False, indent=2) + "\n")
+    if (result.returncode or links.get("status") != "passed" or links.get("executionPath") != "incremental-catalog-sdk"
+            or links.get("networkCalls") != 5 or links["update"]["recomputed"] != 2
+            or len(links["initial"]["responses"]) != 3 or len(links["refreshed"]["responses"]) != 2
+            or not links.get("oldSnapshotPreserved")):
+        raise SystemExit("Incremental real downstream run failed")
+print("Portable downstream: nine audit responses plus five incremental-client responses verified")
