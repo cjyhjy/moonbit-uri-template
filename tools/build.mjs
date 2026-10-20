@@ -16,6 +16,7 @@ mkdirSync(new URL('../dist/licenses/', import.meta.url), { recursive: true });
 copyFileSync(license, new URL('../dist/licenses/moonbit-core-LICENSE', import.meta.url));
 
 mkdirSync(new URL('../dist/playground/', import.meta.url), { recursive: true });
-for (const name of ['index.html','style.css','main.mjs','worker.mjs']) copyFileSync(new URL('../playground/'+name, import.meta.url), new URL('../dist/playground/'+name, import.meta.url));
+for (const name of ['index.html','style.css','main.mjs','worker.mjs','compute.mjs','controller.mjs']) copyFileSync(new URL('../playground/'+name, import.meta.url), new URL('../dist/playground/'+name, import.meta.url));
 copyFileSync(new URL('../dist/engine.mjs', import.meta.url), new URL('../dist/playground/engine.mjs', import.meta.url));
 copyFileSync(new URL('./diagnostics.mjs', import.meta.url), new URL('../dist/playground/diagnostics.mjs', import.meta.url));
+copyFileSync(new URL('./json-source.mjs', import.meta.url), new URL('../dist/playground/json-source.mjs', import.meta.url));

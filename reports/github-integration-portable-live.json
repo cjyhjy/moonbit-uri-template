@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "evidence": "live-github-api",
-  "startedAt": "2026-10-20T11:08:57.262Z",
+  "startedAt": "2026-10-20T11:29:06.041Z",
   "manifestSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
   "status": "passed",
   "checks": {
@@ -81,11 +81,11 @@
       "label": "ours/repository",
       "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template",
       "status": 200,
-      "receivedAt": "2026-10-20T11:08:58.678Z",
-      "requestId": "1FAD:1EC405:30FDA8:350CDC:6AD74BCA",
-      "etag": "W/\"ade082c7befd3eb864053b556f3420fb76b6e0322a8fa6c37114afc38eed78ee\"",
-      "responseDate": "Tue, 20 Oct 2026 11:08:58 GMT",
-      "bodySha256": "beb99494b2d1fdf41d0b79d78d7b2bf6f773d4cc25e1f87c171afc7424f7b50e",
+      "receivedAt": "2026-10-20T11:29:07.416Z",
+      "requestId": "698D:89CE6:33B60E:380ACD:6AD75082",
+      "etag": "W/\"5ca01a4621f9a64559127d12f67da5d07e88cf64633be465159c856f98e922a1\"",
+      "responseDate": "Tue, 20 Oct 2026 11:29:07 GMT",
+      "bodySha256": "0efaf086902ec94bfa75239482aa0c2c33022d7c2ea8cb1142d30cdc4a34fc62",
       "responseBytes": 6397,
       "data": {
         "full_name": "cjyhjy/moonbit-uri-template",
@@ -98,25 +98,25 @@
       "label": "ours/commits",
       "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=1",
       "status": 200,
-      "receivedAt": "2026-10-20T11:08:59.769Z",
-      "requestId": "72D8:3D2A9A:30DE3B:34EE12:6AD74BCB",
-      "etag": "W/\"fce408ceb97c2d2cf1c96beac4a616a0ad7a86ebd5c5d1819cb0017cb7a22ad1\"",
-      "responseDate": "Tue, 20 Oct 2026 11:08:59 GMT",
-      "bodySha256": "c8726d44709a73c38ba2ebf0ad9d02c008135984e1654e10487eb05f5c7fff15",
-      "responseBytes": 1501,
+      "receivedAt": "2026-10-20T11:29:08.603Z",
+      "requestId": "06FB:33273B:334004:379410:6AD75084",
+      "etag": "W/\"82bc59e64d5dbb75ac6a5737859ad84b310c45b7ee6eee8efbedcf9af05a4880\"",
+      "responseDate": "Tue, 20 Oct 2026 11:29:08 GMT",
+      "bodySha256": "d03505caf95a6dbe1fc755402b9b670e0e9552266e11d6c4c4f8a2c2c0a6dee4",
+      "responseBytes": 1503,
       "data": {
-        "sha": "3345c7ab45940d7ee2217a336dba1e94f5eecd8d",
-        "html_url": "https://github.com/cjyhjy/moonbit-uri-template/commit/3345c7ab45940d7ee2217a336dba1e94f5eecd8d"
+        "sha": "434eb42a8442b48091b8c37969463e927d611b56",
+        "html_url": "https://github.com/cjyhjy/moonbit-uri-template/commit/434eb42a8442b48091b8c37969463e927d611b56"
       }
     },
     {
       "label": "ours/releases",
       "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=1",
       "status": 200,
-      "receivedAt": "2026-10-20T11:09:01.660Z",
-      "requestId": "52E9:3BD330:330473:371B31:6AD74BCC",
+      "receivedAt": "2026-10-20T11:29:09.981Z",
+      "requestId": "2D65:33273B:3340CA:379518:6AD75085",
       "etag": "W/\"48543fe211ed2a8c35887414899fb40fa7c2fab69d4549f85b15c6f08a9f54c4\"",
-      "responseDate": "Tue, 20 Oct 2026 11:09:01 GMT",
+      "responseDate": "Tue, 20 Oct 2026 11:29:09 GMT",
       "bodySha256": "7e308c6ba998e02e79cd72283b47d1332139e655db099cd927104088dd1119c3",
       "responseBytes": 4204,
       "data": {
@@ -133,10 +133,10 @@
       "label": "magic/repository",
       "url": "https://api.github.com/repos/Magic486/moon-uri-template",
       "status": 200,
-      "receivedAt": "2026-10-20T11:09:03.701Z",
-      "requestId": "6EE1:3D3116:3251B0:3663E1:6AD74BCE",
+      "receivedAt": "2026-10-20T11:29:11.110Z",
+      "requestId": "6CCB:20197F:35C8C9:3A1C16:6AD75086",
       "etag": "W/\"029b248500839728208939f0c6f6f8782bc0ec36a63cc4ee67441d3073c960ab\"",
-      "responseDate": "Tue, 20 Oct 2026 11:09:03 GMT",
+      "responseDate": "Tue, 20 Oct 2026 11:29:11 GMT",
       "bodySha256": "849aeb4ffc36bafdd0eb6f2ababc501139c57838c6dd70d9a8383a242cf4fe37",
       "responseBytes": 5626,
       "data": {
@@ -150,10 +150,10 @@
       "label": "magic/commits",
       "url": "https://api.github.com/repos/Magic486/moon-uri-template/commits?per_page=1",
       "status": 200,
-      "receivedAt": "2026-10-20T11:09:05.563Z",
-      "requestId": "1327:87886:362E9B:3A42A8:6AD74BD0",
+      "receivedAt": "2026-10-20T11:29:13.412Z",
+      "requestId": "0EF9:1F3D0C:351CC6:396F67:6AD75088",
       "etag": "W/\"17ceba602b2dbd012cf99fdcb0263c565b1c53b76f6c04c262e1eb2f70645b13\"",
-      "responseDate": "Tue, 20 Oct 2026 11:09:05 GMT",
+      "responseDate": "Tue, 20 Oct 2026 11:29:13 GMT",
       "bodySha256": "7da672f22b01bc87ae88d9fcb3faafd70a5287f58da0cfb2cb8f3eee82695601",
       "responseBytes": 3311,
       "data": {
@@ -165,10 +165,10 @@
       "label": "magic/releases",
       "url": "https://api.github.com/repos/Magic486/moon-uri-template/releases?per_page=1",
       "status": 200,
-      "receivedAt": "2026-10-20T11:09:06.831Z",
-      "requestId": "4415:3B6C61:32386D:3648CA:6AD74BD2",
+      "receivedAt": "2026-10-20T11:29:15.120Z",
+      "requestId": "5CB9:94936:35850B:39D810:6AD7508A",
       "etag": "\"a60dce333c0f7b15b8587828d37f3b1f6860fa56a40b7afd638ca5c79bcec011\"",
-      "responseDate": "Tue, 20 Oct 2026 11:09:06 GMT",
+      "responseDate": "Tue, 20 Oct 2026 11:29:15 GMT",
       "bodySha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
       "responseBytes": 2,
       "data": {
@@ -179,11 +179,11 @@
       "label": "jsj/repository",
       "url": "https://api.github.com/repos/JSJ222/MoonUriTemplate",
       "status": 200,
-      "receivedAt": "2026-10-20T11:09:08.255Z",
-      "requestId": "203C:1F2C1C:329DD8:36ABD2:6AD74BD3",
-      "etag": "W/\"7d398b3402ffd417e9fd6e0ca0d62d66be26a1819e4addfb3489fa7a56d7a0c0\"",
-      "responseDate": "Tue, 20 Oct 2026 11:09:08 GMT",
-      "bodySha256": "19df8f2a2e2d58814c45ae169975238661db3cd33f9c039eec0b865b0e7fac78",
+      "receivedAt": "2026-10-20T11:29:16.260Z",
+      "requestId": "26E4:3D0CCE:373BA6:3B9252:6AD7508B",
+      "etag": "W/\"0d9579387abc563fc9fa7b66988c0676792ffeb4c00eba7764465378f08cc5cf\"",
+      "responseDate": "Tue, 20 Oct 2026 11:29:16 GMT",
+      "bodySha256": "46fd64adc26a46c7395fb02d03b9fbc77fef2cb9d9792a63914aa56d65fdfdab",
       "responseBytes": 5470,
       "data": {
         "full_name": "JSJ222/MoonUriTemplate",
@@ -196,42 +196,42 @@
       "label": "jsj/commits",
       "url": "https://api.github.com/repos/JSJ222/MoonUriTemplate/commits?per_page=1",
       "status": 200,
-      "receivedAt": "2026-10-20T11:09:09.390Z",
-      "requestId": "2F5D:3D0CCE:3448D0:385AEB:6AD74BD4",
-      "etag": "W/\"720dfef244b381bace746993c2493d13293a0bc969e8be6a332fd23d3fdb0e08\"",
-      "responseDate": "Tue, 20 Oct 2026 11:09:09 GMT",
-      "bodySha256": "b6726bdfb5c8cf9423d6e2f9dceefd3590176edd495a1566d8884fac00c68ab0",
-      "responseBytes": 3297,
+      "receivedAt": "2026-10-20T11:29:18.801Z",
+      "requestId": "1B44:96495:3A8AAD:3EE0D3:6AD7508E",
+      "etag": "W/\"79d152a132345c2198aab1ea092ed858792553d0722db76989eddc2aeb930704\"",
+      "responseDate": "Tue, 20 Oct 2026 11:29:18 GMT",
+      "bodySha256": "adc86b6d6423133057e26559a4ee3a19134fe60d7da252f2a582a3cd47e43012",
+      "responseBytes": 3284,
       "data": {
-        "sha": "76b11916c91cd48d42102104fab82337a276b225",
-        "html_url": "https://github.com/JSJ222/MoonUriTemplate/commit/76b11916c91cd48d42102104fab82337a276b225"
+        "sha": "ee7d3be94e80459d5e4f2fc9eafcc8b1a11ae3df",
+        "html_url": "https://github.com/JSJ222/MoonUriTemplate/commit/ee7d3be94e80459d5e4f2fc9eafcc8b1a11ae3df"
       }
     },
     {
       "label": "jsj/releases",
       "url": "https://api.github.com/repos/JSJ222/MoonUriTemplate/releases?per_page=1",
       "status": 200,
-      "receivedAt": "2026-10-20T11:09:10.529Z",
-      "requestId": "7D9E:3D0002:33CA43:37DB49:6AD74BD5",
-      "etag": "W/\"79dd566529548b528c095a034a3e3ff78c66efe2a54ee00a4b560d8c70a46cb2\"",
-      "responseDate": "Tue, 20 Oct 2026 11:09:10 GMT",
-      "bodySha256": "72df1e5f9189c678db37faca2609fcf2001e1f2fdfcf0978dcb8ae6229221eb4",
-      "responseBytes": 2570,
+      "receivedAt": "2026-10-20T11:29:21.278Z",
+      "requestId": "753D:3D6605:32F7D2:374ED6:6AD7508F",
+      "etag": "W/\"0ff2f180fbc66734c100633e315b6a9a5e781afe1773814a29841c0d7535bf61\"",
+      "responseDate": "Tue, 20 Oct 2026 11:29:21 GMT",
+      "bodySha256": "6320a2fbbff36acf450db554a8b7da53299622da40a40dd3535a3f5e597e01c4",
+      "responseBytes": 4671,
       "data": {
         "releases": [
           {
-            "tag_name": "v0.1.0",
-            "html_url": "https://github.com/JSJ222/MoonUriTemplate/releases/tag/v0.1.0",
-            "published_at": "2026-10-03T08:06:32Z"
+            "tag_name": "v0.2.0",
+            "html_url": "https://github.com/JSJ222/MoonUriTemplate/releases/tag/v0.2.0",
+            "published_at": "2026-10-20T11:16:08Z"
           }
         ]
       }
     }
   ],
   "destinationProblems": [],
-  "completedAt": "2026-10-20T11:09:10.529Z",
+  "completedAt": "2026-10-20T11:29:21.278Z",
   "transport": "authenticated-gh-cli",
   "engineSha256": "79ebf5a292bb16b83b791a76885414393481d2fc9ae1c614384cff6bbf7f7819",
-  "portableArchiveSha256": "06303ad85ecb81754f014a254c3b98f6dd6f2c66e45dd2da74553c47b1a16ac9",
+  "portableArchiveSha256": "a6f83185def4efc2f445498ae51834b43dc397699f976b3cf6fefbd75126b24b",
   "consumerMode": "fresh extracted archive; no source-checkout imports"
 }

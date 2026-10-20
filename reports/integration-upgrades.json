@@ -1,7 +1,8 @@
 {
   "status": "passed",
   "evidence": "intentional-upgrade-rehearsal",
-  "generatedAt": "2026-10-20T11:08:57.189Z",
+  "generatedAt": "2026-10-20T11:29:05.967Z",
+  "sourceSha256": "a148cc0d5950cbbdbdf0d859af85f8149aaa1a5ffad818d4f88147053cbc5278",
   "engineSha256": "79ebf5a292bb16b83b791a76885414393481d2fc9ae1c614384cff6bbf7f7819",
   "reviewerSha256": "e86128c73435d902fd013f1a3c165d6715d63f27c6d86e1edb88be7343a423cd",
   "contractsSha256": "8cc44d3420ee9c5c639e7c4bd25ef96822699183bdac6de2eaa1930e0c19e367",

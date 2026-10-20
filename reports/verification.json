@@ -1,13 +1,13 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-20T11:08:48.025386+00:00",
-  "git_head": "3345c7ab45940d7ee2217a336dba1e94f5eecd8d",
+  "verification_started_at_utc": "2026-10-20T11:28:56.487253+00:00",
+  "git_head": "434eb42a8442b48091b8c37969463e927d611b56",
   "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-20T11:08:48.420644+00:00",
+  "verified_at_utc": "2026-10-20T11:28:56.930894+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "af6a3dbefe72eb01a9ada1b51aa8e844a4533f1de3e96b8012a3762be1ca69da",
+  "source_sha256": "a148cc0d5950cbbdbdf0d859af85f8149aaa1a5ffad818d4f88147053cbc5278",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
@@ -1282,8 +1282,8 @@
     "package": {
       "status": "passed",
       "artifact": "_build/releases/moonbit-uri-template-0.2.0.tgz",
-      "sha256": "b6d067bb72f7c441c0c0de526311d26d3bfefbc0eab5225d88c49964997e571b",
-      "sourceSha256": "af6a3dbefe72eb01a9ada1b51aa8e844a4533f1de3e96b8012a3762be1ca69da",
+      "sha256": "e7a62c5a5a8059a48c1179c047a971789f7b50893c4b04d6702a9e8bfd84a52d",
+      "sourceSha256": "a148cc0d5950cbbdbdf0d859af85f8149aaa1a5ffad818d4f88147053cbc5278",
       "node": "v26.7.0",
       "typescript": "Version 7.0.2",
       "cleanLocalInstall": true,
@@ -1317,6 +1317,12 @@
       ]
     }
   },
+  "playground": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "scope": "real core analysis and comparison plus deterministic worker lifecycle; browser evidence is separate"
+  },
   "package": {
     "files": [
       "moon.pkg",
@@ -1345,10 +1351,12 @@
       "tools/project.test.mjs",
       "tools/benchmark.mjs",
       "tools/diagnostics.mjs",
+      "tools/playground-browser-qa.js.txt",
       "tools/moon",
       "tools/cli.test.mjs",
       "tools/coverage.py",
       "tools/integration_evidence.mjs",
+      "tools/playground.test.mjs",
       "tools/verify_portable_live.py",
       "tools/suggestions.mjs",
       "tools/build.mjs",
@@ -1367,6 +1375,8 @@
       "LICENSE",
       "playground/worker.mjs",
       "playground/index.html",
+      "playground/controller.mjs",
+      "playground/compute.mjs",
       "playground/style.css",
       "playground/main.mjs",
       "CHANGELOG.md",
@@ -1441,7 +1451,7 @@
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "9915768eafff36ccf7cdbd71d79e2cb5669678c2aa3d2fa4d51ae583eaaea9d2",
+    "sha256": "21ed02aea76c289b59dbc99176ad707d8dfa57950044e30e54ca1a682a0c3bfe",
     "clean_downstream_backends": [
       "js",
       "wasm",

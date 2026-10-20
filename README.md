@@ -120,7 +120,7 @@ node tools/cli.mjs validate '中文😀/{id' --json
 
 `check` 区分未绑定、空集合省略、多余绑定和类型冲突；有发现时退出 1。`--required` 可重复，`--require-all` 要求所有变量，`--reject-unused` 拒绝多余绑定；这些均为可选业务策略。CLI 默认使用有界核心入口，完整限额与错误协议见 [API 文档](docs/API.md)。终端片段转义 Unicode/控制字符以保证标记对齐，浏览器直接高亮原字符。
 
-工作台在浏览器 worker 内调用同核，输入仅在本机计算；`npm run playground` 启动的服务器只提供六个静态文件，不暴露仓库目录。示例覆盖正常展开、遗漏、输出边界、中文/emoji 诊断。便携包可直接 `node tools/serve-playground.mjs`。
+工作台在浏览器 worker 内调用同核，输入仅在本机计算；`npm run playground` 启动的服务器只提供白名单中的九个静态文件，不暴露仓库目录。示例覆盖正常展开、遗漏、输出边界、中文/emoji 诊断和候选版本比较。可查看变量画像、点击引用或错误定位输入、独立修改候选约束并重验当前绑定；编辑会使旧结果失效，计算可取消并有两秒超时。便携包可直接 `node tools/serve-playground.mjs`。桌面及窄屏验收见 `reports/playground-browser.json`。
 
 ## 项目契约检查与真实接入
 

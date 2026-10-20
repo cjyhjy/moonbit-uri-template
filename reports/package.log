@@ -74,6 +74,8 @@ package-lock.json
 package.json
 parser.mbt
 pkg.generated.mbti
+playground/compute.mjs
+playground/controller.mjs
 playground/index.html
 playground/main.mjs
 playground/style.css
@@ -111,6 +113,8 @@ tools/moon
 tools/moonbit_literal.py
 tools/moonfmt
 tools/package_release.py
+tools/playground-browser-qa.js.txt
+tools/playground.test.mjs
 tools/prepare_submission.py
 tools/project.mjs
 tools/project.test.mjs

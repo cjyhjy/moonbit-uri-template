@@ -1,7 +1,7 @@
 import { createServer } from 'node:http';
 import { readFileSync } from 'node:fs';
 const base = new URL('../dist/playground/', import.meta.url);
-const assets = new Map(['index.html','style.css','main.mjs','worker.mjs','engine.mjs','diagnostics.mjs'].map(name=>[
+const assets = new Map(['index.html','style.css','main.mjs','worker.mjs','engine.mjs','diagnostics.mjs','compute.mjs','controller.mjs','json-source.mjs'].map(name=>[
   '/'+name,{body:readFileSync(new URL(name,base)),type:name.endsWith('.html')?'text/html; charset=utf-8':name.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8'}
 ]));
 const server = createServer((req,res)=>{

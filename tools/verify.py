@@ -117,6 +117,14 @@ if not sdk_total or not sdk_pass or not sdk_fail or sdk_fail[1] != '0' or sdk_to
 run(['node', 'tools/verify_sdk_package.mjs'], log='sdk-package.log')
 report['sdk'] = {'total': int(sdk_total[1]), 'passed': int(sdk_pass[1]), 'failed': 0,
                  'package': json.loads((REPORTS/'sdk-package.json').read_text())}
+playground = run(['node', '--test', 'tools/playground.test.mjs'], log='tests-playground.log')
+playground_total = re.search(r'(?:#|ℹ) tests (\d+)', playground)
+playground_pass = re.search(r'(?:#|ℹ) pass (\d+)', playground)
+playground_fail = re.search(r'(?:#|ℹ) fail (\d+)', playground)
+if not playground_total or not playground_pass or not playground_fail or playground_fail[1] != '0' or playground_total[1] != playground_pass[1]:
+    raise SystemExit('Playground regression tests incomplete')
+report['playground'] = {'total': int(playground_total[1]), 'passed': int(playground_pass[1]), 'failed': 0,
+    'scope': 'real core analysis and comparison plus deterministic worker lifecycle; browser evidence is separate'}
 run(['node','tools/cli.mjs','project','integrations/github-audit/requests.json','--github'], log='project-check.log')
 package = run([MOON, 'package', '--list'],log='package.log')
 module_manifest=(ROOT/'moon.mod').read_text()

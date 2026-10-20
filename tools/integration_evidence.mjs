@@ -1,8 +1,12 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { runAudit } from '../integrations/github-audit/main.mjs';
 import { reviewUpgrade } from '../integrations/github-audit/upgrade.mjs';
 const original = JSON.parse(readFileSync(new URL('../integrations/github-audit/requests.json', import.meta.url)));
+const sourceSha256 = execFileSync('python3', ['-c',
+  'from pathlib import Path; import sys; sys.path.insert(0,"tools"); from source_digest import source_digest; print(source_digest(Path.cwd()))'],
+  { cwd: new URL('../', import.meta.url), encoding: 'utf8' }).trim();
 const cases = [
   ['misspelled-required', d => {
     d.requests[0].variables.owenr = d.requests[0].variables.owner;
@@ -26,7 +30,7 @@ for (const [name, mutate, expected] of cases) {
 }
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 writeFileSync(new URL('../reports/integration-faults.json', import.meta.url), JSON.stringify({
-  status: 'passed', evidence: 'intentional-fault-injection', generatedAt: new Date().toISOString(),
+  status: 'passed', evidence: 'intentional-fault-injection', generatedAt: new Date().toISOString(), sourceSha256,
   engineSha256: sha(readFileSync(new URL('../dist/engine.mjs', import.meta.url))),
   manifestSha256: sha(readFileSync(new URL('../integrations/github-audit/requests.json', import.meta.url))),
   results,
@@ -58,7 +62,7 @@ const upgrades = upgradeCases.map(([name, mutate, expected]) => {
   return { name, expected, result };
 });
 writeFileSync(new URL('../reports/integration-upgrades.json', import.meta.url), JSON.stringify({
-  status: 'passed', evidence: 'intentional-upgrade-rehearsal', generatedAt: new Date().toISOString(),
+  status: 'passed', evidence: 'intentional-upgrade-rehearsal', generatedAt: new Date().toISOString(), sourceSha256,
   engineSha256: sha(readFileSync(new URL('../dist/engine.mjs', import.meta.url))),
   reviewerSha256: sha(readFileSync(new URL('../integrations/github-audit/upgrade.mjs', import.meta.url))),
   contractsSha256: sha(readFileSync(new URL('../integrations/github-audit/contracts.mjs', import.meta.url))),

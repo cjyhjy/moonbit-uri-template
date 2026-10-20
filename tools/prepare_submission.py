@@ -24,11 +24,20 @@ if sha(archive.read_bytes()) != release["sha256"]:
 live = load("reports/github-integration-portable-live.json")
 faults = load("reports/integration-faults.json")
 upgrades = load("reports/integration-upgrades.json")
+browser = load("reports/playground-browser.json")
 engine = sha((ROOT / "dist/engine.mjs").read_bytes())
 manifest = sha((ROOT / "integrations/github-audit/requests.json").read_bytes())
 for record in (live, faults, upgrades):
     if record["status"] != "passed" or record["engineSha256"] != engine or record["manifestSha256"] != manifest:
         raise SystemExit("Integration evidence is failed or stale")
+for record in (faults, upgrades):
+    if record.get("sourceSha256") != digest:
+        raise SystemExit("Fault/upgrade evidence does not match all current source dependencies")
+if browser.get("status") != "passed":
+    raise SystemExit("Browser acceptance has not passed")
+for name, expected in {**browser["sourceFiles"], **browser["screenshots"]}.items():
+    if sha((ROOT / name).read_bytes()) != expected:
+        raise SystemExit("Browser evidence is stale: " + name)
 if live.get("evidence") != "live-github-api" or len(live["responses"]) != 9:
     raise SystemExit("Nine real GitHub responses are required")
 if live.get("portableArchiveSha256") != release["sha256"]:
@@ -63,6 +72,8 @@ files = [
     "reports/tests-js.log", "reports/tests-wasm.log", "reports/tests-wasm-gc.log",
     "reports/tests-native.log", "reports/tests-cli.log", "reports/tests-workflow.log",
     "reports/tests-sdk.log", "reports/sdk-package.json", "reports/sdk-package.log",
+    "reports/tests-playground.log", "reports/playground-browser.json",
+    "reports/playground-desktop.png", "reports/playground-mobile.png", "reports/playground-mobileResult.png",
     "reports/release-cli.log", str(peer_path.relative_to(ROOT)),
 ]
 files += sorted(str(p.relative_to(ROOT)) for p in (ROOT / "reports").glob("peer-*-" + peer_path.stem[-8:] + ".log"))

@@ -18,6 +18,7 @@
 | `reports/github-integration-portable-live.json` | 从解压分发包运行的 9 次真实 GitHub 请求 |
 | `reports/integration-faults.json` | 三种主动注入故障、诊断和零网络调用验证 |
 | `reports/integration-upgrades.json` | 六种离线升级演练、旧请求在新契约下复验；非真实 API 升级记录 |
+| `reports/playground-browser.json` 与三张截图 | 桌面/窄屏升级比较、精确跳转、取消、超时后重试和旧结果失效的实际浏览器验收 |
 | `moonbit-uri-template-0.2.0.zip` | 便携 CLI、检查工具、下游客户端、测试及完整 Mooncakes 源码归档 |
 | `docs/ORGANIZER_EMAIL.txt` | 补充材料邮件草稿，尚未发送 |
 
@@ -29,7 +30,7 @@
 
 ```sh
 node tools/cli.mjs project integrations/github-audit/requests.json --json
-node --test sdk/sdk.test.mjs tools/cli.test.mjs tools/project.test.mjs integrations/github-audit/integration.test.mjs
+node --test sdk/sdk.test.mjs tools/cli.test.mjs tools/project.test.mjs tools/playground.test.mjs integrations/github-audit/integration.test.mjs
 node tools/serve-playground.mjs
 # 升级审查不联网；将第二个配置换成候选文件即可比较。
 node integrations/github-audit/upgrade.mjs integrations/github-audit/requests.json integrations/github-audit/requests.json

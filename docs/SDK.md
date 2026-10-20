@@ -163,6 +163,18 @@ let results = catalog.expand_batch(jobs, reject_unused=true,
 
 审计发现默认最多 256 条，超过时返回 FindingLimit，不会返回“部分结果但检查通过”。请求审计将 required 名字计入输入预算：每项变量和 required 共用总码点预算，required 数量另受 max_bindings 限制；整批还计入模板名。空目录/空请求也校验预算。旧无界 `audit` 保持兼容，新代码可选 `audit_with_limit`。
 
+## 浏览器中的分析和升级比较
+
+源码仓库执行 `npm run playground`，便携包执行 `node tools/serve-playground.mjs`，然后打开提示的本地地址。选择“升级示例”即可比较当前/候选模板；两边可以设置不同的必填变量、输出预算和无用绑定策略，共用一份变量 JSON。
+
+工作台分别显示两个版本的展开结果，同时解释新增必填、操作符、截断长度、集合展开与运行时预算变化。点击“定位到输入”或变量画像中的引用按钮，会选择对应编辑框里的原始文本，中文、emoji 和转义 JSON 也按编辑器实际位置处理。重复 JSON 键会明确拒绝。
+
+“升级检查完成”只表示当前这一份绑定通过了所选约束；变化仍需审查，不代表全部旧调用方兼容。多请求、变量类型与目标地址审查使用前述 GitHub 客户端的离线升级命令。核心使用同一 MoonBit 引擎，但浏览器没有执行 HTTP 请求。
+
+输入编辑、取消或超时都会终止旧 worker 并禁用旧结果复制。超过两秒返回 TimeLimit，可缩小输入后重试。界面最多展示 32 个变量、每个变量 8 处引用及 32 项变量变化，超过时明确提示；完整机器报告可使用 CLI analyze/compare。此展示上限不等于输入检查被省略。
+
+真实浏览器验收包含 1280×900 桌面和 390×844 窄屏；超时测试人为延迟 worker 脚本 2.5 秒，用于验证两秒期限与重试，不冒充真实负载耗时。报告、图片与代码摘要见 `reports/playground-browser.json`，六项计算/生命周期回归另由 `npm test` 和便携包验收执行。
+
 ## 验证与当前边界
 
 `npm ci --ignore-scripts` 后运行 `npm test`。验证会打包 tarball，在临时空项目里离线安装，检查公共导入、运行结果、已安装 CLI，以及 TypeScript 正例和预期错误。证据在 `reports/sdk-package.json`；测试不依赖工作区相对导入。
