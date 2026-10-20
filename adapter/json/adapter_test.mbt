@@ -1,4 +1,54 @@
 ///|
+test "prepared contract inspection separates optional omissions and bounded findings" {
+  let request = @json.prepare_request(
+    "/{id}{?page}", "{\"required\":[\"id\"],\"rejectUnused\":true}",
+  )
+  let clean = @jsonlib.parse(request.inspect("{\"id\":\"42\"}", 0))
+  guard clean is Object(clean_fields) else { fail("expected envelope") }
+  assert_eq(clean_fields.get("output"), Some(Json::string("[]")))
+  let issues = request.inspect("{\"typo\":\"SECRET\"}", 2)
+  assert_true(issues.contains("MissingBinding"))
+  assert_true(issues.contains("UnusedBinding"))
+  assert_true(!issues.contains("SECRET"))
+  let limited = @jsonlib.parse(request.inspect("{}", 0))
+  guard limited is Object(fields) else { fail("expected envelope") }
+  guard fields.get("error") is Some(Object(error)) else {
+    fail("expected error")
+  }
+  assert_eq(error.get("code"), Some(Json::string("FindingLimit")))
+  assert_eq(error.get("start"), None)
+}
+
+///|
+test "prepared policy bridge validates fields and bounds reports" {
+  let request = @json.prepare_request("/{+id}", "{}")
+  assert_true(
+    request.audit("{\"allowReserved\":false}", 1).contains("ReservedPolicy"),
+  )
+  assert_true(
+    request.audit("{\"allowReserved\":false}", 0).contains("FindingLimit"),
+  )
+  for
+    policy in [
+      "{\"typo\":true}", "{\"allowReserved\":\"no\"}", "{\"maxReferences\":-1}",
+      "{\"allowedVariables\":[1]}", "{\"maxLevel\":5}",
+    ] {
+    let response = @jsonlib.parse(request.audit(policy, 10))
+    guard response is Object(fields) else { fail("expected envelope") }
+    guard fields.get("error") is Some(Object(error)) else {
+      fail("expected error")
+    }
+    assert_eq(error.get("code"), Some(Json::string("InvalidPolicy")))
+    assert_eq(error.get("start"), None)
+  }
+  let allowed = @jsonlib.parse(
+    request.audit("{\"allowedVariables\":[\"id\"]}", 0),
+  )
+  guard allowed is Object(fields) else { fail("expected envelope") }
+  assert_eq(fields.get("output"), Some(Json::string("[]")))
+}
+
+///|
 test "adapter typed values null and stable associative order" {
   let vars = @json.parse_variables(
     "{\"id\":\"42\",\"tags\":[\"a\",\"b\"],\"keys\":{\"z\":\"2\",\"a\":\"1\",\"skip\":null},\"missing\":null}",

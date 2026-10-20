@@ -1,4 +1,4 @@
-import { compileTemplate, expand, type TemplateVariables } from './index.mjs';
+import { compileTemplate, compileCatalog, expand, type TemplateVariables } from './index.mjs';
 const users = compileTemplate('/users/{id}{?tags*}', { required: ['id'] });
 users.expand({ id: '42', tags: ['sdk'] });
 users.expandMany([{ id: '42' }]);
@@ -24,3 +24,24 @@ const review: boolean = change.requiresReview;
 void count; void review;
 // @ts-expect-error comparison requires a compiled object
 users.compare('/users/{id}');
+const catalog = compileCatalog({
+  user: { template: '/users/{id}{?page}', required: ['id'] },
+  search: { template: '/search{?q}', requireAll: true },
+});
+catalog.expand('user', { id: '42' });
+catalog.get('search').expand({ q: 'moon' });
+catalog.expandMany([{ template: 'search', variables: { q: 'moon' } }]);
+catalog.measureMany([{ template: 'user', variables: { id: '42' } }]);
+catalog.inspect([{ template: 'unknown', variables: { typo: 'value' } }]);
+catalog.audit({ allowReserved: false });
+catalog.compare(compileCatalog({ another: { template: '/{x}' } }));
+// @ts-expect-error missing required id
+catalog.expand('user', { page: '2' });
+// @ts-expect-error no such template
+catalog.expand('typo', { id: '42' });
+// @ts-expect-error variable belongs to a different template
+catalog.expandMany([{ template: 'search', variables: { id: '42' } }]);
+// @ts-expect-error requireAll literal infers required q in a catalog definition
+catalog.get('search').expand({});
+// @ts-expect-error required variable must occur in the literal template
+compileCatalog({ user: { template: '/{id}', required: ['typo'] } });

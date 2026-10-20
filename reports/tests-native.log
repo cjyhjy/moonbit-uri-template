@@ -1,11 +1,13 @@
-./_build/native/debug/test/adapter/json/json.blackbox_test.exe adapter_test.mbt:0-5
+./_build/native/debug/test/adapter/json/json.blackbox_test.exe adapter_test.mbt:0-7
 ./_build/native/debug/test/uri_template.blackbox_test.exe limits_test.mbt:0-5/conformance_test.mbt:0-270/catalog_batch_test.mbt:0-2/bindings_test.mbt:0-3/api_test.mbt:0-10/analysis_test.mbt:0-8/advanced_test.mbt:0-8
 ./_build/native/debug/test/uri_template.whitebox_test.exe encoder_wbtest.mbt:0-2
-[cjyhjy/uri_template] test adapter/json/adapter_test.mbt:2 ("adapter typed values null and stable associative order") ok
-[cjyhjy/uri_template] test adapter/json/adapter_test.mbt:13 ("adapter input errors retain JSON pointers") ok
-[cjyhjy/uri_template] test adapter/json/adapter_test.mbt:30 ("request envelope separates successful outputs from errors") ok
-[cjyhjy/uri_template] test adapter/json/adapter_test.mbt:54 ("bounded bridge rejects budgets and deeply nested JSON before parsing") ok
-[cjyhjy/uri_template] test adapter/json/adapter_test.mbt:79 ("bounded bridge preflight reports names and never values") ok
+[cjyhjy/uri_template] test adapter/json/adapter_test.mbt:2 ("prepared contract inspection separates optional omissions and bounded findings") ok
+[cjyhjy/uri_template] test adapter/json/adapter_test.mbt:23 ("prepared policy bridge validates fields and bounds reports") ok
+[cjyhjy/uri_template] test adapter/json/adapter_test.mbt:52 ("adapter typed values null and stable associative order") ok
+[cjyhjy/uri_template] test adapter/json/adapter_test.mbt:63 ("adapter input errors retain JSON pointers") ok
+[cjyhjy/uri_template] test adapter/json/adapter_test.mbt:80 ("request envelope separates successful outputs from errors") ok
+[cjyhjy/uri_template] test adapter/json/adapter_test.mbt:104 ("bounded bridge rejects budgets and deeply nested JSON before parsing") ok
+[cjyhjy/uri_template] test adapter/json/adapter_test.mbt:129 ("bounded bridge preflight reports names and never values") ok
 [cjyhjy/uri_template] test limits_test.mbt:2 ("parse budgets zero exact unicode and aggregate") ok
 [cjyhjy/uri_template] test limits_test.mbt:46 ("streaming exact output boundaries for every operator and value shape") ok
 [cjyhjy/uri_template] test limits_test.mbt:96 ("output prefix percent escapes literals and failed call isolation") ok
@@ -314,4 +316,4 @@
 [cjyhjy/uri_template] test advanced_test.mbt:215 ("sparse normalization and catalog migration preserve explicit differences") ok
 [cjyhjy/uri_template] test encoder_wbtest.mbt:2 ("encoded prefix follows decoded code points without splitting octets") ok
 [cjyhjy/uri_template] test encoder_wbtest.mbt:18 ("IRI literal range boundaries exclude controls surrogates and noncharacters") ok
-Total tests: 313, passed: 313, failed: 0.
+Total tests: 315, passed: 315, failed: 0.

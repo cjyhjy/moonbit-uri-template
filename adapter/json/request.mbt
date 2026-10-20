@@ -27,7 +27,7 @@ fn template_failure(e : @template.TemplateError) -> String {
   ])
   if [
       "BindingLimit", "MemberLimit", "ValueLimit", "TotalValueLimit", "InvalidLimit",
-      "UnknownRequired", "UnusedBinding",
+      "UnknownRequired", "UnusedBinding", "InvalidPolicy", "FindingLimit",
     ].contains(e.code) {
     fields["scope"] = Json::string("bindings-or-options")
   } else {

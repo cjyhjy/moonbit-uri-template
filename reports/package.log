@@ -8,6 +8,7 @@ README.md
 adapter/json/adapter.mbt
 adapter/json/adapter_test.mbt
 adapter/json/analysis.mbt
+adapter/json/audit.mbt
 adapter/json/moon.pkg
 adapter/json/pkg.generated.mbti
 adapter/json/request.mbt

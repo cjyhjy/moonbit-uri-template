@@ -38,6 +38,7 @@ export interface Diagnostic {
   code: string; message: string; path?: string;
   start?: number; end?: number; line?: number; column?: number;
   utf16Start?: number; utf16End?: number; index?: number;
+  templateName?: string;
 }
 export interface BindingReport {
   referenced: string[]; missing: BindingIssue[]; omitted: BindingIssue[];
@@ -51,6 +52,7 @@ export interface Trace {
 export class UriTemplateError extends Error implements Diagnostic {
   code: string; path?: string; start?: number; end?: number;
   line?: number; column?: number; utf16Start?: number; utf16End?: number; index?: number;
+  templateName?: string;
   constructor(detail: Diagnostic, source?: string);
 }
 export type ExpansionResult = { ok: true; value: string } | { ok: false; error: UriTemplateError };
@@ -99,6 +101,9 @@ export class CompiledTemplate<N extends string = string, R extends N = never> {
   trace(variables: Bindings<N, R>): Trace;
   /** Reports unbound optional variables too; this is not a contract verdict. */
   check(variables: Partial<Record<N, Value>>): BindingReport;
+  /** Checks the configured business contract; optional omissions are allowed. */
+  inspect(variables?: Readonly<Record<string, Value>>, options?: FindingLimits): BindingFinding[];
+  audit(policy?: TemplatePolicy, options?: FindingLimits): Diagnostic[];
   expandMany(inputs: readonly Bindings<N, R>[], limits?: BatchLimits): string[];
 }
 export function compileTemplate<const S extends string, const R extends TemplateVariables<S> = never>(
@@ -107,3 +112,60 @@ export function compileTemplate<const S extends string, const R extends Template
 export function expand<const S extends string, const R extends TemplateVariables<S> = never>(
   source: S, variables: Bindings<TemplateVariables<S>, R>, options?: CompileOptions<TemplateVariables<S>, R>
 ): string;
+
+export interface FindingLimits { maxFindings?: number; }
+export interface BindingFinding extends Diagnostic { variable?: string; }
+export interface TemplatePolicy {
+  allowReserved?: boolean; allowFragment?: boolean; allowPrefix?: boolean; allowExplode?: boolean;
+  allowedVariables?: readonly string[] | null; maxLevel?: number; maxReferences?: number;
+  forbidRepeatedVariables?: boolean;
+}
+export interface CatalogDefinition extends CompileOptions<string, string> { template: string; }
+export type CatalogDefinitions = Readonly<Record<string, CatalogDefinition>>;
+type CatalogKey<D> = Extract<keyof D, string>;
+type RequiredFor<D extends CatalogDefinition> = D extends { requireAll: true }
+  ? TemplateVariables<D['template']>
+  : D extends { required: readonly (infer R)[] } ? Extract<R, TemplateVariables<D['template']>> : never;
+type CatalogBindings<D extends CatalogDefinitions, K extends CatalogKey<D>> =
+  Bindings<TemplateVariables<D[K]['template']>, RequiredFor<D[K]>>;
+type ValidateCatalog<D extends CatalogDefinitions> = {
+  readonly [K in keyof D]: { readonly required?: readonly TemplateVariables<D[K]['template']>[] };
+};
+export type CatalogRequest<D extends CatalogDefinitions> = {
+  [K in CatalogKey<D>]: { template: K; variables: CatalogBindings<D, K>; label?: string };
+}[CatalogKey<D>];
+export interface InspectionRequest { template: string; variables: Readonly<Record<string, Value>>; label?: string; }
+export interface InspectionLimits extends FindingLimits { maxItems?: number; maxTotalInputCodepoints?: number; }
+export interface CatalogLimits { maxTemplates?: number; maxTotalTemplateCodepoints?: number; }
+export interface CatalogInspection {
+  ok: boolean; totalFindings: number;
+  requests: Array<{ index: number; template: string; label?: string; findings: BindingFinding[] }>;
+}
+export interface CatalogAudit {
+  ok: boolean; totalFindings: number;
+  entries: Array<{ template: string; findings: Diagnostic[] }>;
+}
+export interface CatalogComparison {
+  added: string[]; removed: string[];
+  changed: Array<{ template: string; change: TemplateComparison }>;
+  totalChanges: number; requiresReview: boolean;
+}
+export class CompiledCatalog<D extends CatalogDefinitions = CatalogDefinitions> {
+  private constructor();
+  readonly names: readonly CatalogKey<D>[];
+  readonly size: number;
+  has(name: string): boolean;
+  get<K extends CatalogKey<D>>(name: K): CompiledTemplate<TemplateVariables<D[K]['template']>, RequiredFor<D[K]>>;
+  expand<K extends CatalogKey<D>>(name: K, variables: CatalogBindings<D, K>): string;
+  measure<K extends CatalogKey<D>>(name: K, variables: CatalogBindings<D, K>): number;
+  trace<K extends CatalogKey<D>>(name: K, variables: CatalogBindings<D, K>): Trace;
+  templatesUsing(variable: string): CatalogKey<D>[];
+  expandMany(requests: readonly CatalogRequest<D>[], budgets?: BatchLimits): string[];
+  measureMany(requests: readonly CatalogRequest<D>[], budgets?: BatchLimits): { bytes: number[]; totalBytes: number };
+  inspect(requests: readonly InspectionRequest[], options?: InspectionLimits): CatalogInspection;
+  audit(policy?: TemplatePolicy, options?: FindingLimits): CatalogAudit;
+  compare(newer: CompiledCatalog<any>, options?: { maxChanges?: number }): CatalogComparison;
+}
+export function compileCatalog<const D extends CatalogDefinitions>(
+  definitions: D & ValidateCatalog<D>, options?: CatalogLimits
+): CompiledCatalog<D>;

@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-20T10:38:37.859527+00:00",
+  "date": "2026-10-20T10:54:15.443071+00:00",
   "status": "passed",
   "peers": {
     "magic": {
@@ -49,7 +49,7 @@
       "test_scope": "single-module workspace including subpackages"
     }
   },
-  "ours_source_sha256": "241d4577ed6bd1339207962678e8c5eff6c70418632e5263f588ce52b817064b",
+  "ours_source_sha256": "84ff99f9c58247448166405f47346c00de503820befc0b85a3fccc515ee5f9fe",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "probe_source_sha256": "ff3451c74ce15ee916a8e2928d6faa238630fa6f17116e1a165e8a9c8e24846f",
   "probes": {

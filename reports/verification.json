@@ -1,18 +1,18 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-20T10:40:39.790744+00:00",
-  "git_head": "63caa70657fc9b53bf8ce49d16ff00de62687cbe",
+  "verification_started_at_utc": "2026-10-20T10:55:29.401935+00:00",
+  "git_head": "d220bfbd98d53479d75606f1af5e1bcefdd9bc83",
   "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-20T10:40:40.191825+00:00",
+  "verified_at_utc": "2026-10-20T10:55:29.828532+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "241d4577ed6bd1339207962678e8c5eff6c70418632e5263f588ce52b817064b",
+  "source_sha256": "84ff99f9c58247448166405f47346c00de503820befc0b85a3fccc515ee5f9fe",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
-      "total": 313,
-      "passed": 313,
+      "total": 315,
+      "passed": 315,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -324,8 +324,8 @@
       ]
     },
     "wasm": {
-      "total": 313,
-      "passed": 313,
+      "total": 315,
+      "passed": 315,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -637,8 +637,8 @@
       ]
     },
     "wasm-gc": {
-      "total": 313,
-      "passed": 313,
+      "total": 315,
+      "passed": 315,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -950,8 +950,8 @@
       ]
     },
     "native": {
-      "total": 313,
-      "passed": 313,
+      "total": 315,
+      "passed": 315,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -1276,14 +1276,14 @@
     "network": "offline only; live evidence is separate"
   },
   "sdk": {
-    "total": 8,
-    "passed": 8,
+    "total": 15,
+    "passed": 15,
     "failed": 0,
     "package": {
       "status": "passed",
       "artifact": "_build/releases/moonbit-uri-template-0.2.0.tgz",
-      "sha256": "f2e30a6e7ddb4c5b32236fb48619a004c8650621a4d72a60e5c9d06e3e4fd143",
-      "sourceSha256": "241d4577ed6bd1339207962678e8c5eff6c70418632e5263f588ce52b817064b",
+      "sha256": "785ea49e4879b1218dbfd378abb4b7120c69348c98fb8ee160aca2231af0243a",
+      "sourceSha256": "84ff99f9c58247448166405f47346c00de503820befc0b85a3fccc515ee5f9fe",
       "node": "v26.7.0",
       "typescript": "Version 7.0.2",
       "cleanLocalInstall": true,
@@ -1295,6 +1295,7 @@
         "batch",
         "contract failure",
         "analysis and comparison",
+        "typed catalog batch inspection audit and comparison",
         "installed CLI comparison",
         "TypeScript positive and expected-error cases"
       ],
@@ -1380,6 +1381,7 @@
       "encoder_wbtest.mbt",
       "adapter/json/moon.pkg",
       "adapter/json/adapter_test.mbt",
+      "adapter/json/audit.mbt",
       "adapter/json/pkg.generated.mbti",
       "adapter/json/analysis.mbt",
       "adapter/json/adapter.mbt",
@@ -1437,7 +1439,7 @@
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "07b47c2930f727ba6d0521fb956ba9b5f5db50e006a25339ce0578336144ab24",
+    "sha256": "7dcedd93be7792250c223f4bb9a3442b554015e7d004fa6035dfdeede0f360aa",
     "clean_downstream_backends": [
       "js",
       "wasm",

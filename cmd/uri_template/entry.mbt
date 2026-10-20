@@ -36,3 +36,23 @@ pub fn prepared_compare(
 ) -> String {
   before.compare(after)
 }
+
+///|
+#export_name("prepared_inspect")
+pub fn prepared_inspect(
+  prepared : @adapter.PreparedRequest,
+  variables : String,
+  max_findings : Int32,
+) -> String {
+  prepared.inspect(variables, max_findings)
+}
+
+///|
+#export_name("prepared_audit")
+pub fn prepared_audit(
+  prepared : @adapter.PreparedRequest,
+  policy : String,
+  max_findings : Int32,
+) -> String {
+  prepared.audit(policy, max_findings)
+}

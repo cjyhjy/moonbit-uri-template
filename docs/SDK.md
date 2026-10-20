@@ -67,7 +67,45 @@ JSON 配置用户可使用 `uri-template project requests.json --json`。例如 
 - SDK 拒绝 undefined、稀疏数组、循环引用、日期、自定义类实例、symbol、getter 等易被 JSON 静默改变的输入。没有执行用户的 `toJSON`。
 - 核心预算覆盖模板、表达式、绑定/成员、名字/键/值、输出和 JSON。SDK 在序列化前另设固定快照上限：变量文本 4,194,304 码点、262,144 个值节点、嵌套 32 层；选项文本/节点各 65,536。配置不能放宽这层保护。此限制不是进程堆内存保证。
 - SDK 整批输入预算计入序列化 JSON 标点；MoonBit 类型化批量按名字/值码点计数，两者的计数口径不同。
-- 字面量模板的 TypeScript 提示不替代运行时校验；动态字符串无法在编译期推导精确变量名。`requireAll` 运行时执行，声明文件不把该布尔选项推导成必填类型；需要静态必填提示使用 `required`。
+- 字面量模板的 TypeScript 提示不替代运行时校验；动态字符串无法在编译期推导精确变量名。单模板 `compileTemplate` 的 `requireAll` 运行时执行，静态必填提示使用 `required`；下面的目录入口还能推导字面量 `requireAll: true`。
+
+## 类型化 Node 目录
+
+```ts
+import { compileCatalog } from 'moonbit-uri-template';
+
+const api = compileCatalog({
+  repository: {
+    template: 'https://api.github.com/repos/{owner}/{repo}',
+    required: ['owner', 'repo'],
+  },
+  search: { template: '/search{?q}', requireAll: true },
+});
+api.expand('repository', { owner: 'moonbitlang', repo: 'core' });
+// 模板名称拼错、必填参数遗漏、参数属于另一个模板，均可在 TypeScript 中提示。
+const jobs = [
+  { template: 'repository' as const, variables: { owner: 'moonbitlang', repo: 'core' } },
+  { template: 'search' as const, variables: { q: 'moon' } },
+];
+const inspection = api.inspect(jobs); // 收集各请求的独立契约问题
+const sizes = api.measureMany(jobs);
+const urls = api.expandMany(jobs, { maxTotalOutputBytes: 4096 });
+const policy = api.audit({ allowReserved: false, allowFragment: false });
+const changes = api.compare(compileCatalog({
+  repository: {
+    template: 'https://api.github.com/repos/{owner}/{repo}{?page}',
+    required: ['owner', 'repo', 'page'],
+  },
+}));
+```
+
+`get(name)` 返回可复用的已编译对象，`names` 是只读排序列表，`templatesUsing(variable)` 查找变量使用方。单模板同样支持 `inspect` 和 `audit`。`inspect` 区别于 `check`：只按业务契约报告问题，可选遗漏不算失败；但输出预算仍需 `measureMany` 或 `expandMany` 检查。
+
+目录默认最多 256 个模板，名字加模板原文总计最多 4,194,304 码点，可通过 `maxTemplates`、`maxTotalTemplateCodepoints` 调整；快照层仍有固定文本和节点上限。批量默认最多 256 项、输入 4,194,304 码点、输出 4,194,304 字节；目录输入计入每个请求序列化后的完整 JSON，包括模板名、label、绑定及标点。批量先校验、计量全部请求，再返回完整结果。
+
+审计/预检默认最多 256 条发现，超出时抛出 `FindingLimit`，不返回被截断的成功报告。比较默认最多 512 个有变化的目录项，可传 `maxChanges`；计数单位是目录项，内部变量变化仍受模板预算约束。比较同时覆盖增删模板和相同文字下的必填、无用绑定策略、运行时预算变化；`requiresReview` 仍是审查提示，不是兼容性证明。
+
+执行错误有 `templateName`；逐项处理失败另有零起始 `index`。外层输入快照失败可能只含 JSON Pointer，不保证每类输入错误都能确定请求序号。未知模板发现没有虚构的源码范围。调用方修改原定义、绑定或返回的分析报告不会改变已编译目录。
 
 ## 升级前分析与比较
 

@@ -1,17 +1,17 @@
-✔ typo prevents every network call and returns both missing and unused findings (6.134583ms)
-✔ client verifies all destinations before any request (1.853417ms)
-✔ offline HTTP failures and malformed success payloads are never success evidence (9.861416ms)
-✔ offline success reads all nine outputs using the compiled core (1.701208ms)
-✔ project allows omitted optional query and exposes source origins (3.683833ms)
-✔ actionable typo suggests a unique unbound target without rewriting data (1.084083ms)
-✔ project blocks missing unused empty required and incompatible types (0.844375ms)
-✔ file positions track JSON escapes and surrogate pairs (0.332542ms)
-✔ reject duplicate keys including escaped spellings and excessive depth (0.111208ms)
-✔ aggregate output and input budgets are atomic and boundary-inclusive (0.747542ms)
-✔ schema typos catalog duplicates unknown names and invalid limits fail closed (0.627625ms)
-✔ diagnostics have a hard cap and direct API input obeys file budget (7.361417ms)
-✔ annotation metadata and message escape control characters (0.1005ms)
-✔ measure trace CLI honor required and exact output budget (125.200458ms)
+✔ typo prevents every network call and returns both missing and unused findings (6.2425ms)
+✔ client verifies all destinations before any request (1.926375ms)
+✔ offline HTTP failures and malformed success payloads are never success evidence (10.083584ms)
+✔ offline success reads all nine outputs using the compiled core (1.669292ms)
+✔ project allows omitted optional query and exposes source origins (3.656125ms)
+✔ actionable typo suggests a unique unbound target without rewriting data (1.07775ms)
+✔ project blocks missing unused empty required and incompatible types (0.672375ms)
+✔ file positions track JSON escapes and surrogate pairs (0.44525ms)
+✔ reject duplicate keys including escaped spellings and excessive depth (0.136708ms)
+✔ aggregate output and input budgets are atomic and boundary-inclusive (0.784459ms)
+✔ schema typos catalog duplicates unknown names and invalid limits fail closed (0.63675ms)
+✔ diagnostics have a hard cap and direct API input obeys file budget (7.512917ms)
+✔ annotation metadata and message escape control characters (0.10925ms)
+✔ measure trace CLI honor required and exact output budget (135.441834ms)
 ℹ tests 14
 ℹ suites 0
 ℹ pass 14
@@ -19,4 +19,4 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 180.164166
+ℹ duration_ms 193.416708

@@ -102,6 +102,12 @@ pub fn Template::audit_with_limit(
     )
   }
   let seen : Map[String, Bool] = Map([])
+  let allowed : Map[String, Bool] = Map([])
+  if policy.allowed_variables is Some(names) {
+    for name in names {
+      allowed[name] = true
+    }
+  }
   let mut count = 0
   for info in self.inspect() {
     if info.level > policy.max_level {
@@ -201,7 +207,7 @@ pub fn Template::audit_with_limit(
             ),
           )
         }
-        if policy.allowed_variables is Some(names) && !names.contains(spec.name) {
+        if policy.allowed_variables is Some(_) && !allowed.contains(spec.name) {
           if findings.length() == max_findings {
             return Err(problem("FindingLimit", "findings exceed budget", 0, 0))
           }

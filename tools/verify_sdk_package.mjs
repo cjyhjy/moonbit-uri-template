@@ -23,7 +23,7 @@ try {
   writeFileSync(join(temporary, 'package.json'), '{"private":true,"type":"module"}\n');
   run('npm', ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', join(out, pack.filename)], temporary);
   const source = `import assert from 'node:assert/strict';
-import { compileTemplate } from 'moonbit-uri-template';
+import { compileTemplate, compileCatalog } from 'moonbit-uri-template';
 const repo = compileTemplate('https://api.github.com/repos/{owner}/{repo}{?page}', {required:['owner','repo']});
 assert.equal(repo.expand({owner:'moonbitlang',repo:'core'}), 'https://api.github.com/repos/moonbitlang/core');
 assert.deepEqual(repo.expandMany([{owner:'a',repo:'b'},{owner:'c',repo:'d',page:'2'}]), ['https://api.github.com/repos/a/b','https://api.github.com/repos/c/d?page=2']);
@@ -31,6 +31,14 @@ assert.equal(repo.tryExpand({owenr:'a',repo:'b'}).ok, false);
 assert.deepEqual(repo.analyze().profiles.map(p => p.name), ['owner','repo','page']);
 assert.equal(repo.compare(repo).requiresReview, false);
 assert.deepEqual(repo.compare(compileTemplate('https://api.github.com/repos/{+owner}/{repo}{?page}')).variableChanges[0].after.operators, ['+']);
+const catalog = compileCatalog({ repo: {template:'/repos/{owner}/{repo}',required:['owner','repo']} });
+const jobs = [{template:'repo',variables:{owner:'moonbitlang',repo:'core'}}];
+assert.deepEqual(catalog.expandMany(jobs), ['/repos/moonbitlang/core']);
+assert.equal(catalog.measureMany(jobs).totalBytes, 23);
+assert.equal(catalog.inspect(jobs).ok, true);
+assert.equal(catalog.inspect([{template:'repo',variables:{owner:'a'}}]).ok, false);
+assert.equal(catalog.audit({allowReserved:false}).ok, true);
+assert.equal(catalog.compare(catalog).requiresReview, false);
 console.log('installed SDK passed');`;
   writeFileSync(join(temporary, 'consumer.mjs'), source);
   run('node', ['consumer.mjs'], temporary);
@@ -44,7 +52,7 @@ console.log('installed SDK passed');`;
     sourceSha256: run('python3', ['-c', 'from pathlib import Path; import sys; sys.path.insert(0,"tools"); from source_digest import source_digest; print(source_digest(Path.cwd()))']).trim(),
     node: process.version, typescript: run(join(root, 'node_modules/.bin/tsc'), ['--version']).trim(),
     cleanLocalInstall: true, offlineInstall: true, published: false,
-    checks: ['ESM public export', 'compiled reuse', 'batch', 'contract failure', 'analysis and comparison', 'installed CLI comparison', 'TypeScript positive and expected-error cases'],
+    checks: ['ESM public export', 'compiled reuse', 'batch', 'contract failure', 'analysis and comparison', 'typed catalog batch inspection audit and comparison', 'installed CLI comparison', 'TypeScript positive and expected-error cases'],
     files: pack.files.map(x => x.path) };
   writeFileSync(join(root, 'reports/sdk-package.json'), JSON.stringify(report, null, 2) + '\n');
   console.log('SDK tarball: clean offline install, runtime and TypeScript checks passed');

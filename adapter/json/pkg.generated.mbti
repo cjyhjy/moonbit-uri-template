@@ -26,8 +26,10 @@ pub(all) struct InputError {
 pub fn InputError::to_repr(Self) -> @debug.Repr
 
 type PreparedRequest
+pub fn PreparedRequest::audit(Self, String, Int) -> String
 pub fn PreparedRequest::call(Self, String, String) -> String
 pub fn PreparedRequest::compare(Self, Self) -> String
+pub fn PreparedRequest::inspect(Self, String, Int) -> String
 
 // Type aliases
 
