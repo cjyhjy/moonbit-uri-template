@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "maxTotalOutputBytes": 4096,
+  "maxTotalInputCodepoints": 8192,
+  "templates": [
+    {
+      "name": "repository",
+      "template": "https://api.github.com/repos/{owner}/{repo}",
+      "required": ["owner", "repo"],
+      "types": {"owner": "scalar", "repo": "scalar"},
+      "maxOutputBytes": 512
+    },
+    {
+      "name": "commits",
+      "template": "https://api.github.com/repos/{owner}/{repo}/commits{?per_page}",
+      "required": ["owner", "repo"],
+      "types": {"owner": "scalar", "repo": "scalar", "per_page": "scalar"},
+      "maxOutputBytes": 512
+    },
+    {
+      "name": "releases",
+      "template": "https://api.github.com/repos/{owner}/{repo}/releases{?per_page}",
+      "required": ["owner", "repo"],
+      "types": {"owner": "scalar", "repo": "scalar", "per_page": "scalar"},
+      "maxOutputBytes": 512
+    }
+  ],
+  "requests": [
+    {"template": "repository", "label": "ours/repository", "variables": {"owner": "cjyhjy", "repo": "moonbit-uri-template"}},
+    {"template": "commits", "label": "ours/commits", "variables": {"owner": "cjyhjy", "repo": "moonbit-uri-template", "per_page": "1"}},
+    {"template": "releases", "label": "ours/releases", "variables": {"owner": "cjyhjy", "repo": "moonbit-uri-template", "per_page": "1"}},
+    {"template": "repository", "label": "magic/repository", "variables": {"owner": "Magic486", "repo": "moon-uri-template"}},
+    {"template": "commits", "label": "magic/commits", "variables": {"owner": "Magic486", "repo": "moon-uri-template", "per_page": "1"}},
+    {"template": "releases", "label": "magic/releases", "variables": {"owner": "Magic486", "repo": "moon-uri-template", "per_page": "1"}},
+    {"template": "repository", "label": "jsj/repository", "variables": {"owner": "JSJ222", "repo": "MoonUriTemplate"}},
+    {"template": "commits", "label": "jsj/commits", "variables": {"owner": "JSJ222", "repo": "MoonUriTemplate", "per_page": "1"}},
+    {"template": "releases", "label": "jsj/releases", "variables": {"owner": "JSJ222", "repo": "MoonUriTemplate", "per_page": "1"}}
+  ]
+}

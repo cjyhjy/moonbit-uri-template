@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "artifact": "_build/releases/moonbit-uri-template-0.2.0.tgz",
+  "sha256": "70fba08d2e341e795be7c78eef0ae6ac7fa68f54164384968c5e5d97afd585b2",
+  "sourceSha256": "966da70bcc838c8c5a494424634c81cbb512067b1129ad7c05d3ae71f4c175bc",
+  "node": "v26.7.0",
+  "typescript": "Version 7.0.2",
+  "cleanLocalInstall": true,
+  "offlineInstall": true,
+  "published": false,
+  "checks": [
+    "ESM public export",
+    "compiled reuse",
+    "batch",
+    "contract failure",
+    "installed CLI",
+    "TypeScript positive and expected-error cases"
+  ],
+  "files": [
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "dist/engine.mjs",
+    "dist/licenses/moonbit-core-LICENSE",
+    "docs/SDK.md",
+    "package.json",
+    "sdk/index.d.mts",
+    "sdk/index.mjs",
+    "tools/cli.mjs",
+    "tools/diagnostics.mjs",
+    "tools/json-source.mjs",
+    "tools/project.mjs",
+    "tools/suggestions.mjs"
+  ]
+}

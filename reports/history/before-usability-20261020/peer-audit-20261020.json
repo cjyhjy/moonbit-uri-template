@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-20T06:20:28.246586+00:00",
+  "status": "passed",
+  "peers": {
+    "magic": {
+      "repository": "https://github.com/Magic486/moon-uri-template",
+      "commit": "8fecb90c2190e4715935b5f4ea0937b0b5c8d08b",
+      "remote_head": "8fecb90c2190e4715935b5f4ea0937b0b5c8d08b",
+      "backends": {
+        "js": {
+          "exit_code": 0,
+          "summary": "Total tests: 194, passed: 194, failed: 0",
+          "log": "peer-magic-js-20261020.log"
+        },
+        "wasm-gc": {
+          "exit_code": 0,
+          "summary": "Total tests: 194, passed: 194, failed: 0",
+          "log": "peer-magic-wasm-gc-20261020.log"
+        },
+        "native": {
+          "exit_code": 0,
+          "summary": "Total tests: 194, passed: 194, failed: 0",
+          "log": "peer-magic-native-20261020.log"
+        }
+      },
+      "test_scope": "single-module workspace including subpackages"
+    },
+    "jsj": {
+      "repository": "https://github.com/JSJ222/MoonUriTemplate",
+      "commit": "76b11916c91cd48d42102104fab82337a276b225",
+      "remote_head": "76b11916c91cd48d42102104fab82337a276b225",
+      "backends": {
+        "js": {
+          "exit_code": 0,
+          "summary": "Total tests: 119, passed: 119, failed: 0",
+          "log": "peer-jsj-js-20261020.log"
+        },
+        "wasm-gc": {
+          "exit_code": 0,
+          "summary": "Total tests: 119, passed: 119, failed: 0",
+          "log": "peer-jsj-wasm-gc-20261020.log"
+        },
+        "native": {
+          "exit_code": 0,
+          "summary": "Total tests: 119, passed: 119, failed: 0",
+          "log": "peer-jsj-native-20261020.log"
+        }
+      },
+      "test_scope": "single-module workspace including subpackages"
+    }
+  },
+  "ours_source_sha256": "6476967d89782cd6175fd22e9766e441e1d8497880727626eb3001719cec1037",
+  "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
+  "probe_source_sha256": "c4821e26c5d587f36d6214ad9254847bd1741f6dca85e168e2d59bf772d765df",
+  "probes": {
+    "js": {
+      "exit_code": 0,
+      "log": "peer-probe-js-20261020.log",
+      "stdout": "ours.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nmagic.uri=/users/team%2Fa?tags=a%20b&tags=sdk\njsj.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nours.offset=1\nmagic.error=URI Template syntax error at 2: unclosed expression\njsj.offset=2\nmagic.null=invalid value for 'id': expected a string, array of strings, or object of strings\njsj.null=accepted\nours.empty_omitted=1\nours.required_empty=OmittedBinding\njsj.empty_issues=0\njsj.required_empty=accepted:\nours.output_budget=OutputLimit\nmagic.output_budget=URI Template output exceeds limit 11\njsj.output_budget=output_too_long\nours.measure=8\njsj.measure=8\nours.origins=2\njsj.origins=1\nours.batch=2\njsj.batch=2\nours.selective_required=/users/42\njsj.selective_required=missing_variable\n"
+    },
+    "wasm-gc": {
+      "exit_code": 0,
+      "log": "peer-probe-wasm-gc-20261020.log",
+      "stdout": "ours.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nmagic.uri=/users/team%2Fa?tags=a%20b&tags=sdk\njsj.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nours.offset=1\nmagic.error=URI Template syntax error at 2: unclosed expression\njsj.offset=2\nmagic.null=invalid value for 'id': expected a string, array of strings, or object of strings\njsj.null=accepted\nours.empty_omitted=1\nours.required_empty=OmittedBinding\njsj.empty_issues=0\njsj.required_empty=accepted:\nours.output_budget=OutputLimit\nmagic.output_budget=URI Template output exceeds limit 11\njsj.output_budget=output_too_long\nours.measure=8\njsj.measure=8\nours.origins=2\njsj.origins=1\nours.batch=2\njsj.batch=2\nours.selective_required=/users/42\njsj.selective_required=missing_variable\n"
+    },
+    "native": {
+      "exit_code": 0,
+      "log": "peer-probe-native-20261020.log",
+      "stdout": "ours.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nmagic.uri=/users/team%2Fa?tags=a%20b&tags=sdk\njsj.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nours.offset=1\nmagic.error=URI Template syntax error at 2: unclosed expression\njsj.offset=2\nmagic.null=invalid value for 'id': expected a string, array of strings, or object of strings\njsj.null=accepted\nours.empty_omitted=1\nours.required_empty=OmittedBinding\njsj.empty_issues=0\njsj.required_empty=accepted:\nours.output_budget=OutputLimit\nmagic.output_budget=URI Template output exceeds limit 11\njsj.output_budget=output_too_long\nours.measure=8\njsj.measure=8\nours.origins=2\njsj.origins=1\nours.batch=2\njsj.batch=2\nours.selective_required=/users/42\njsj.selective_required=missing_variable\n"
+    }
+  }
+}

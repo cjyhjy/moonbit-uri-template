@@ -49,7 +49,7 @@ priv struct VarSpec {
 
 ///|
 priv enum Segment {
-  Literal(String)
+  Literal(String, Span)
   Expression(Char, Array[VarSpec])
 } derive(Debug)
 
@@ -57,6 +57,7 @@ priv enum Segment {
 /// A validated template with a hidden, immutable representation.
 struct Template {
   segments : Array[Segment]
+  source_text : String
 } derive(Debug)
 
 ///|
@@ -78,6 +79,37 @@ pub fn OrderedEntries::from_entries(
 ///|
 pub fn Variables::new() -> Variables {
   { values: Map([]), }
+}
+
+///|
+/// Normalize sparse entries before binding; null list members are omitted here.
+/// JSON adapter remains strict for list nulls to catch accidental input errors.
+pub fn sparse_list(items : Array[String?]) -> Value {
+  let result : Array[String] = []
+  for item in items {
+    if item is Some(text) {
+      result.push(text)
+    }
+  }
+  List(result)
+}
+
+///|
+pub fn sparse_assoc(
+  items : Array[(String, String?)],
+) -> Result[Value, TemplateError] {
+  let seen : Map[String, Bool] = Map([])
+  let result : Array[(String, String)] = []
+  for (key, value) in items {
+    if seen.contains(key) {
+      return Err(problem("DuplicateKey", "duplicate associative key", 0, 0))
+    }
+    seen[key] = true
+    if value is Some(text) {
+      result.push((key, text))
+    }
+  }
+  Ok(Assoc({ entries: result, }))
 }
 
 ///|

@@ -114,20 +114,63 @@ fn parse_var(
 fn parse_impl(
   source : String,
   allow_literal_apostrophe : Bool,
+  limits : ParseLimits?,
 ) -> Result[Template, TemplateError] {
+  if limits is Some(budget) {
+    if budget.max_template_codepoints < 0 ||
+      budget.max_expressions < 0 ||
+      budget.max_variables_per_expression < 0 ||
+      budget.max_total_variables < 0 {
+      return Err(problem("InvalidLimit", "limits must be nonnegative", 0, 0))
+    }
+    if exceeds_codepoints(source, budget.max_template_codepoints) {
+      return Err(
+        problem(
+          "TemplateLimit",
+          "template exceeds code point budget",
+          budget.max_template_codepoints,
+          budget.max_template_codepoints,
+        ),
+      )
+    }
+  }
+  let mut expressions = 0
+  let mut variables = 0
   let cs = source.to_array()
   let segments : Array[Segment] = []
   let mut i = 0
   let mut literal_start = 0
   while i < cs.length() {
     if cs[i] == '{' {
+      if limits is Some(budget) {
+        if expressions >= budget.max_expressions {
+          return Err(
+            problem(
+              "ExpressionLimit",
+              "expression count exceeds budget",
+              i,
+              i + 1,
+            ),
+          )
+        }
+      }
+      expressions = expressions + 1
       if i > literal_start {
-        segments.push(Literal(encode(chars_text(cs, literal_start, i), true)))
+        segments.push(
+          Literal(encode_chars(cs, literal_start, i, true), {
+            start: literal_start,
+            end: i,
+          }),
+        )
       }
       let expression_start = i
       i = i + 1
       let mut op = ' '
-      if i < cs.length() && "+#./;?&".contains(cs[i].to_string()) {
+      if i < cs.length() &&
+        (match cs[i] {
+          '+' | '#' | '.' | '/' | ';' | '?' | '&' => true
+          _ => false
+        }) {
         op = cs[i]
         i = i + 1
       }
@@ -140,6 +183,18 @@ fn parse_impl(
           )
         }
         if cs[i] == ',' {
+          if limits is Some(budget) {
+            if specs.length() >= budget.max_variables_per_expression ||
+              variables >= budget.max_total_variables {
+              return Err(
+                problem(
+                  "VariableLimit", "variable specification count exceeds budget",
+                  spec_start, i,
+                ),
+              )
+            }
+          }
+          variables = variables + 1
           match parse_var(cs, spec_start, i) {
             Ok(v) => specs.push(v)
             Err(e) => return Err(e)
@@ -155,6 +210,18 @@ fn parse_impl(
           ),
         )
       }
+      if limits is Some(budget) {
+        if specs.length() >= budget.max_variables_per_expression ||
+          variables >= budget.max_total_variables {
+          return Err(
+            problem(
+              "VariableLimit", "variable specification count exceeds budget", spec_start,
+              i,
+            ),
+          )
+        }
+      }
+      variables = variables + 1
       match parse_var(cs, spec_start, i) {
         Ok(v) => specs.push(v)
         Err(e) => return Err(e)
@@ -178,9 +245,14 @@ fn parse_impl(
     }
   }
   if i > literal_start {
-    segments.push(Literal(encode(chars_text(cs, literal_start, i), true)))
+    segments.push(
+      Literal(encode_chars(cs, literal_start, i, true), {
+        start: literal_start,
+        end: i,
+      }),
+    )
   }
-  Ok({ segments, })
+  Ok({ segments, source_text: source, })
 }
 
 ///|
@@ -204,12 +276,22 @@ pub fn Template::variables(self : Template) -> Array[String] {
 ///|
 /// Parse a template with the documented single-quote literal compatibility extension.
 pub fn parse(source : String) -> Result[Template, TemplateError] {
-  parse_impl(source, true)
+  parse_impl(source, true, None)
 }
 
 ///|
 /// Parse using RFC 6570 literal ABNF, rejecting literal ASCII apostrophes.
 /// Variable values are still governed by the operator's encoding rules.
 pub fn parse_strict(source : String) -> Result[Template, TemplateError] {
-  parse_impl(source, false)
+  parse_impl(source, false, None)
+}
+
+///|
+/// Bounded parsing; checks source size before allocating its character array.
+pub fn parse_with_limits(
+  source : String,
+  limits : ParseLimits,
+  strict~ : Bool = false,
+) -> Result[Template, TemplateError] {
+  parse_impl(source, !strict, Some(limits))
 }

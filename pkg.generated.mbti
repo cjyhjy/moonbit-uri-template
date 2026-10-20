@@ -6,18 +6,137 @@ import {
 }
 
 // Values
+pub fn compile_catalog(Array[(String, String)], max_templates? : Int, max_total_codepoints? : Int, limits? : ParseLimits, strict? : Bool) -> Result[TemplateCatalog, CatalogError]
+
 pub fn expand(String, Variables) -> Result[String, TemplateError]
 
 pub fn parse(String) -> Result[Template, TemplateError]
 
 pub fn parse_strict(String) -> Result[Template, TemplateError]
 
+pub fn parse_with_limits(String, ParseLimits, strict? : Bool) -> Result[Template, TemplateError]
+
+pub fn sparse_assoc(Array[(String, String?)]) -> Result[Value, TemplateError]
+
+pub fn sparse_list(Array[String?]) -> Value
+
 // Errors
 
 // Types and methods
+pub(all) struct BatchError {
+  index : Int
+  error : TemplateError
+} derive(@debug.Debug)
+pub fn BatchError::to_repr(Self) -> @debug.Repr
+
+pub(all) struct BatchLimits {
+  max_items : Int
+  max_total_input_codepoints : Int
+  max_total_output_bytes : Int
+} derive(@debug.Debug)
+pub fn BatchLimits::new(max_items? : Int, max_total_input_codepoints? : Int, max_total_output_bytes? : Int) -> Self
+pub fn BatchLimits::to_repr(Self) -> @debug.Repr
+
+pub(all) struct BindingIssue {
+  name : String
+  span : Span
+} derive(@debug.Debug)
+pub fn BindingIssue::to_repr(Self) -> @debug.Repr
+
+pub(all) struct BindingReport {
+  referenced : Array[String]
+  missing : Array[BindingIssue]
+  omitted : Array[BindingIssue]
+  unused : Array[String]
+  invalid : Array[TemplateError]
+} derive(@debug.Debug)
+pub fn BindingReport::to_repr(Self) -> @debug.Repr
+
+type BoundTemplate
+pub fn BoundTemplate::expand(Self, Variables, required? : Array[String], limits? : ExpansionLimits) -> Result[String, TemplateError]
+pub fn BoundTemplate::measure(Self, Variables, required? : Array[String], limits? : ExpansionLimits) -> Result[Int, TemplateError]
+
+pub(all) struct CatalogBatchError {
+  index : Int
+  name : String
+  error : TemplateError
+} derive(@debug.Debug)
+pub fn CatalogBatchError::to_repr(Self) -> @debug.Repr
+
+pub(all) struct CatalogDiff {
+  added : Array[String]
+  removed : Array[String]
+  changed : Array[(String, ContractDiff)]
+} derive(@debug.Debug)
+pub fn CatalogDiff::to_repr(Self) -> @debug.Repr
+
+pub(all) struct CatalogError {
+  name : String
+  error : TemplateError
+} derive(@debug.Debug)
+pub fn CatalogError::to_repr(Self) -> @debug.Repr
+
+pub(all) struct CatalogRequest {
+  name : String
+  variables : Variables
+  required : Array[String]
+} derive(@debug.Debug)
+pub fn CatalogRequest::new(String, Variables, required? : Array[String]) -> Self
+pub fn CatalogRequest::to_repr(Self) -> @debug.Repr
+
+pub(all) struct ContractDiff {
+  added : Array[String]
+  removed : Array[String]
+  newly_scalar_only : Array[String]
+  source_changed : Bool
+} derive(@debug.Debug)
+pub fn ContractDiff::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Expansion {
+  output : String
+  bytes : Int
+  origins : Array[OutputOrigin]
+} derive(@debug.Debug)
+pub fn Expansion::to_repr(Self) -> @debug.Repr
+
+pub(all) struct ExpansionLimits {
+  max_bindings : Int
+  max_members : Int
+  max_value_codepoints : Int
+  max_total_value_codepoints : Int
+  max_output_bytes : Int
+} derive(@debug.Debug)
+pub fn ExpansionLimits::new(max_bindings? : Int, max_members? : Int, max_value_codepoints? : Int, max_total_value_codepoints? : Int, max_output_bytes? : Int) -> Self
+pub fn ExpansionLimits::to_repr(Self) -> @debug.Repr
+
+pub(all) struct ExpressionInfo {
+  operator : String
+  level : Int
+  span : Span
+  variables : Array[String]
+} derive(@debug.Debug)
+pub fn ExpressionInfo::to_repr(Self) -> @debug.Repr
+
 type OrderedEntries derive(@debug.Debug)
 pub fn OrderedEntries::from_entries(Array[(String, String)]) -> Result[Self, TemplateError]
 pub fn OrderedEntries::to_repr(Self) -> @debug.Repr
+
+pub(all) struct OutputOrigin {
+  name : String?
+  source : Span
+  output_start : Int
+  output_end : Int
+} derive(@debug.Debug)
+pub fn OutputOrigin::to_repr(Self) -> @debug.Repr
+
+pub(all) struct ParseLimits {
+  max_template_codepoints : Int
+  max_expressions : Int
+  max_variables_per_expression : Int
+  max_total_variables : Int
+} derive(@debug.Debug)
+pub fn ParseLimits::new(max_template_codepoints? : Int, max_expressions? : Int, max_variables_per_expression? : Int, max_total_variables? : Int) -> Self
+pub fn ParseLimits::to_repr(Self) -> @debug.Repr
 
 pub(all) struct Span {
   start : Int
@@ -26,9 +145,32 @@ pub(all) struct Span {
 pub fn Span::to_repr(Self) -> @debug.Repr
 
 type Template derive(@debug.Debug)
+pub fn Template::audit(Self, TemplatePolicy) -> Array[TemplateError]
+pub fn Template::bind(Self, Variables, limits? : ExpansionLimits) -> Result[BoundTemplate, TemplateError]
+pub fn Template::check_bindings(Self, Variables) -> BindingReport
+pub fn Template::check_bindings_with_limits(Self, Variables, ExpansionLimits) -> Result[BindingReport, TemplateError]
+pub fn Template::diff(Self, Self) -> ContractDiff
 pub fn Template::expand(Self, Variables) -> Result[String, TemplateError]
+pub fn Template::expand_batch(Self, Array[Variables], required? : Array[String], reject_unused? : Bool, limits? : ExpansionLimits, batch_limits? : BatchLimits) -> Result[Array[String], BatchError]
+pub fn Template::expand_checked(Self, Variables, required? : Array[String], reject_unused? : Bool, limits? : ExpansionLimits) -> Result[String, TemplateError]
+pub fn Template::expand_mapped(Self, Variables, required? : Array[String], reject_unused? : Bool, limits? : ExpansionLimits) -> Result[Expansion, TemplateError]
+pub fn Template::expand_with_limits(Self, Variables, ExpansionLimits) -> Result[String, TemplateError]
+pub fn Template::inspect(Self) -> Array[ExpressionInfo]
+pub fn Template::level(Self) -> Int
+pub fn Template::measure(Self, Variables, required? : Array[String], reject_unused? : Bool, limits? : ExpansionLimits) -> Result[Int, TemplateError]
+pub fn Template::source(Self) -> String
 pub fn Template::to_repr(Self) -> @debug.Repr
 pub fn Template::variables(Self) -> Array[String]
+
+type TemplateCatalog
+pub fn TemplateCatalog::diff(Self, Self) -> CatalogDiff
+pub fn TemplateCatalog::expand(Self, String, Variables, required? : Array[String], reject_unused? : Bool, limits? : ExpansionLimits) -> Result[String, CatalogError]
+pub fn TemplateCatalog::expand_batch(Self, Array[CatalogRequest], reject_unused? : Bool, limits? : ExpansionLimits, batch_limits? : BatchLimits) -> Result[Array[String], CatalogBatchError]
+pub fn TemplateCatalog::get(Self, String) -> Result[Template, CatalogError]
+pub fn TemplateCatalog::measure(Self, String, Variables, required? : Array[String], limits? : ExpansionLimits) -> Result[Int, CatalogError]
+pub fn TemplateCatalog::measure_batch(Self, Array[CatalogRequest], reject_unused? : Bool, limits? : ExpansionLimits, batch_limits? : BatchLimits) -> Result[Array[Int], CatalogBatchError]
+pub fn TemplateCatalog::names(Self) -> Array[String]
+pub fn TemplateCatalog::templates_using(Self, String) -> Array[String]
 
 pub(all) struct TemplateError {
   code : String
@@ -36,6 +178,19 @@ pub(all) struct TemplateError {
   span : Span
 } derive(@debug.Debug)
 pub fn TemplateError::to_repr(Self) -> @debug.Repr
+
+pub(all) struct TemplatePolicy {
+  allow_reserved : Bool
+  allow_fragment : Bool
+  allow_prefix : Bool
+  allow_explode : Bool
+  allowed_variables : Array[String]?
+  max_level : Int
+  max_references : Int
+  forbid_repeated_variables : Bool
+} derive(@debug.Debug)
+pub fn TemplatePolicy::new(allow_reserved? : Bool, allow_fragment? : Bool, allow_prefix? : Bool, allow_explode? : Bool, allowed_variables? : Array[String]?, max_level? : Int, max_references? : Int, forbid_repeated_variables? : Bool) -> Self
+pub fn TemplatePolicy::to_repr(Self) -> @debug.Repr
 
 pub(all) enum Value {
   Scalar(String)
@@ -45,6 +200,7 @@ pub(all) enum Value {
 pub fn Value::to_repr(Self) -> @debug.Repr
 
 type Variables derive(@debug.Debug)
+pub fn Variables::from_entries(Array[(String, Value)]) -> Result[Self, TemplateError]
 pub fn Variables::new() -> Self
 pub fn Variables::remove(Self, String) -> Unit
 pub fn Variables::set(Self, String, Value) -> Unit

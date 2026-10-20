@@ -1,0 +1,13 @@
+{
+  "verifiedAt": "2026-10-20",
+  "source": "https://bxup9uklfcb.feishu.cn/share/base/form/shrcnWUMlgpbwHaXgzV7HmNhNhg",
+  "method": "live browser accessibility tree; new-project direction selected; no submission",
+  "existingRecordEntry": "查看提交记录",
+  "submissionLimit": "问卷仅能提交三次，可以重复修改。",
+  "proposal": "请使用 markdown 格式，长度控制在一页以内，不要使用 AI 编写。",
+  "expectedScenariosMinimum": 3,
+  "effectiveCommitsMinimum": 10,
+  "userRecordsOpened": false,
+  "personalFieldsFilled": false,
+  "submitted": false
+}

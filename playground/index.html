@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>URI Template · 工作台</title><link rel="stylesheet" href="./style.css"></head>
+<body>
+<header><div class="brand"><span class="logo">{↗}</span><span>URI TEMPLATE <small>MoonBit · RFC 6570</small></span></div><span class="privacy">● 本地计算 · 不发送网络请求</span></header>
+<main>
+<section class="intro"><p class="eyebrow">PLAYGROUND / 0.2.0 LOCAL</p><h1>让每一个变量，都有着落。</h1><p>检查绑定、控制输出预算，在发送请求之前发现问题。</p></section>
+<nav aria-label="示例"><button data-example="sdk">API 查询</button><button data-example="missing">遗漏预检</button><button data-example="budget">预算边界</button><button data-example="error">错误定位</button></nav>
+<div class="workspace">
+<section class="panel input-panel"><h2><span>01</span> 输入与约束</h2>
+<label for="template">URI 模板</label><textarea id="template" rows="3" spellcheck="false">/users/{id}{?tags*,page}</textarea>
+<label for="vars">变量 JSON</label><textarea id="vars" rows="8" spellcheck="false">{
+  "id": "team/a",
+  "tags": ["moon bit", "中文"]
+}</textarea>
+<div class="settings"><div><label for="required">必填变量（逗号分隔）</label><input id="required" value="id" placeholder="id,owner"></div><div><label for="budget">最大输出字节</label><input id="budget" type="number" min="0" max="1048576" value="8192"></div></div>
+<div class="checks"><label><input id="strict" type="checkbox" checked> 严格字面量</label><label><input id="all" type="checkbox"> 所有变量必填</label><label><input id="unused" type="checkbox"> 拒绝未使用绑定</label></div>
+<button class="primary" id="run">检查并展开 <span>↗</span></button>
+<p class="note">页面预算：模板 16,384 码点、JSON 131,072 码点、集合成员 2,048。未定义变量默认省略；空字符串是有效绑定。</p>
+</section>
+<section class="panel results"><h2><span>02</span> 结果与诊断</h2>
+<div class="result-heading"><strong id="status" role="status" aria-live="polite">准备就绪</strong><span id="bytes">— bytes</span></div>
+<pre id="output" tabindex="0">点击“检查并展开”查看 URI。</pre><button id="copy" disabled>复制 URI</button>
+<div id="diagnostic" hidden><h3>问题位置</h3><p id="error-message"></p><pre id="source-mark"></pre><pre id="error-json"></pre></div>
+<div class="preflight"><h3>绑定预检 <small>只显示名称，不回显值</small></h3><div id="bindings">尚未检查</div></div>
+</section>
+</div>
+<footer><span>同一份 MoonBit 核心，贯通 CLI 与浏览器。</span><span>URI 展开不会执行 HTTP 请求。</span></footer>
+</main><script type="module" src="./main.mjs"></script></body></html>

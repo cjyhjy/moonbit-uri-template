@@ -76,14 +76,3 @@ fn operator_spec(op : Char) -> OperatorSpec {
       }
   }
 }
-
-///|
-fn named_part(name : String, value : String, rule : OperatorSpec) -> String {
-  if !rule.named {
-    value
-  } else if value == "" {
-    name + rule.empty
-  } else {
-    name + "=" + value
-  }
-}

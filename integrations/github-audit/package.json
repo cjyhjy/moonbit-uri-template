@@ -1,0 +1,11 @@
+{
+  "name": "github-uri-contract-audit",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "check": "node ../../tools/cli.mjs project requests.json --json",
+    "audit": "node main.mjs",
+    "test": "node --test integration.test.mjs"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "archive": "_build/releases/moonbit-uri-template-0.2.0.zip",
+  "executed_from_temporary_extraction": true,
+  "assets": {
+    "index.html": {
+      "status": 200,
+      "bytes": 2852
+    },
+    "main.mjs": {
+      "status": 200,
+      "bytes": 5235
+    },
+    "worker.mjs": {
+      "status": 200,
+      "bytes": 569
+    },
+    "engine.mjs": {
+      "status": 200,
+      "bytes": 327094
+    },
+    "diagnostics.mjs": {
+      "status": 200,
+      "bytes": 2168
+    },
+    "style.css": {
+      "status": 200,
+      "bytes": 3767
+    }
+  },
+  "local_proposal_excluded_from_source_package": true
+}

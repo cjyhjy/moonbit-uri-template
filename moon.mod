@@ -1,6 +1,6 @@
 name = "cjyhjy/uri_template"
 
-version = "0.1.1"
+version = "0.2.0"
 
 readme = "README.md"
 
@@ -12,6 +12,6 @@ keywords = [ "uri", "template", "rfc6570" ]
 
 preferred_target = "wasm-gc"
 
-supported_targets = "+js+wasm-gc+native"
+supported_targets = "+js+wasm+wasm-gc+native"
 
 description = "RFC 6570 Level 4 URI Template parser and expander"

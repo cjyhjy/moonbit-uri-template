@@ -1,0 +1,258 @@
+{
+  "status": "passed",
+  "evidence": "intentional-fault-injection",
+  "generatedAt": "2026-10-20T10:15:04.535Z",
+  "engineSha256": "38ea4789e48637f054389ad0b19a18c7e048d87a4f29fe37c2604debec6ca925",
+  "manifestSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
+  "results": [
+    {
+      "name": "misspelled-required",
+      "expected": [
+        "MissingBinding",
+        "UnusedBinding"
+      ],
+      "networkCalls": 0,
+      "result": {
+        "schemaVersion": 1,
+        "evidence": "intentional-fault-injection",
+        "startedAt": "2026-10-20T10:15:04.533Z",
+        "manifestSha256": "24fc22caa36e67c1a9cb943a7ab302c5e1d8b307ada13ac5e271bbec891d9220",
+        "status": "contract-failed",
+        "checks": {
+          "schemaVersion": 1,
+          "ok": false,
+          "file": "integrations/github-audit/requests.json",
+          "diagnostics": [
+            {
+              "code": "MissingBinding",
+              "message": "required variable owner is missing",
+              "file": "integrations/github-audit/requests.json",
+              "path": "/templates/0/template",
+              "requestIndex": 0,
+              "line": 8,
+              "column": 50,
+              "endLine": 8,
+              "endColumn": 55,
+              "offsetUnit": "utf-16-code-unit",
+              "templateLocation": {
+                "name": "owner",
+                "start": 30,
+                "end": 35,
+                "offsetUnit": "unicode-code-point",
+                "line": 1,
+                "column": 31,
+                "endLine": 1,
+                "endColumn": 36,
+                "utf16Start": 30,
+                "utf16End": 35,
+                "excerpt": "https://api.github.com/repos/{owner}/{repo}",
+                "marker": "                              ^^^^^"
+              }
+            },
+            {
+              "code": "UnusedBinding",
+              "message": "binding \"owenr\" is not referenced; did you mean \"owner\"?",
+              "file": "integrations/github-audit/requests.json",
+              "path": "/requests/0/variables/owenr",
+              "requestIndex": 0,
+              "line": 54,
+              "column": 18,
+              "endLine": 54,
+              "endColumn": 26,
+              "offsetUnit": "utf-16-code-unit",
+              "suggestion": {
+                "kind": "rename-binding",
+                "from": "/requests/0/variables/owenr",
+                "to": "/requests/0/variables/owner"
+              }
+            }
+          ],
+          "outputs": [],
+          "totalOutputBytes": 0
+        },
+        "responses": []
+      }
+    },
+    {
+      "name": "empty-required",
+      "expected": [
+        "BindingType",
+        "OmittedBinding"
+      ],
+      "networkCalls": 0,
+      "result": {
+        "schemaVersion": 1,
+        "evidence": "intentional-fault-injection",
+        "startedAt": "2026-10-20T10:15:04.534Z",
+        "manifestSha256": "0590f7a338950a6af6fe5bafe8135eb847fb4abe8e99eeeb317b56112a541ec9",
+        "status": "contract-failed",
+        "checks": {
+          "schemaVersion": 1,
+          "ok": false,
+          "file": "integrations/github-audit/requests.json",
+          "diagnostics": [
+            {
+              "code": "BindingType",
+              "message": "expected scalar",
+              "file": "integrations/github-audit/requests.json",
+              "path": "/requests/0/variables/owner",
+              "requestIndex": 0,
+              "line": 53,
+              "column": 18,
+              "endLine": 53,
+              "endColumn": 20,
+              "offsetUnit": "utf-16-code-unit"
+            },
+            {
+              "code": "OmittedBinding",
+              "message": "required collection owner is empty",
+              "file": "integrations/github-audit/requests.json",
+              "path": "/requests/0/variables/owner",
+              "requestIndex": 0,
+              "line": 53,
+              "column": 18,
+              "endLine": 53,
+              "endColumn": 20,
+              "offsetUnit": "utf-16-code-unit"
+            }
+          ],
+          "outputs": [],
+          "totalOutputBytes": 0
+        },
+        "responses": []
+      }
+    },
+    {
+      "name": "aggregate-budget",
+      "expected": [
+        "ProjectOutputLimit"
+      ],
+      "networkCalls": 0,
+      "result": {
+        "schemaVersion": 1,
+        "evidence": "intentional-fault-injection",
+        "startedAt": "2026-10-20T10:15:04.535Z",
+        "manifestSha256": "1fcf336a88c6457b687f73cb48f095d472e7ae7f6822bd7535c31aa98a9f3c40",
+        "status": "contract-failed",
+        "checks": {
+          "schemaVersion": 1,
+          "ok": false,
+          "file": "integrations/github-audit/requests.json",
+          "diagnostics": [
+            {
+              "code": "ProjectOutputLimit",
+              "message": "aggregate output exceeds budget",
+              "file": "integrations/github-audit/requests.json",
+              "path": "/requests/0",
+              "requestIndex": 0,
+              "line": 49,
+              "column": 5,
+              "endLine": 56,
+              "endColumn": 6,
+              "offsetUnit": "utf-16-code-unit"
+            },
+            {
+              "code": "ProjectOutputLimit",
+              "message": "aggregate output exceeds budget",
+              "file": "integrations/github-audit/requests.json",
+              "path": "/requests/1",
+              "requestIndex": 1,
+              "line": 57,
+              "column": 5,
+              "endLine": 65,
+              "endColumn": 6,
+              "offsetUnit": "utf-16-code-unit"
+            },
+            {
+              "code": "ProjectOutputLimit",
+              "message": "aggregate output exceeds budget",
+              "file": "integrations/github-audit/requests.json",
+              "path": "/requests/2",
+              "requestIndex": 2,
+              "line": 66,
+              "column": 5,
+              "endLine": 74,
+              "endColumn": 6,
+              "offsetUnit": "utf-16-code-unit"
+            },
+            {
+              "code": "ProjectOutputLimit",
+              "message": "aggregate output exceeds budget",
+              "file": "integrations/github-audit/requests.json",
+              "path": "/requests/3",
+              "requestIndex": 3,
+              "line": 75,
+              "column": 5,
+              "endLine": 82,
+              "endColumn": 6,
+              "offsetUnit": "utf-16-code-unit"
+            },
+            {
+              "code": "ProjectOutputLimit",
+              "message": "aggregate output exceeds budget",
+              "file": "integrations/github-audit/requests.json",
+              "path": "/requests/4",
+              "requestIndex": 4,
+              "line": 83,
+              "column": 5,
+              "endLine": 91,
+              "endColumn": 6,
+              "offsetUnit": "utf-16-code-unit"
+            },
+            {
+              "code": "ProjectOutputLimit",
+              "message": "aggregate output exceeds budget",
+              "file": "integrations/github-audit/requests.json",
+              "path": "/requests/5",
+              "requestIndex": 5,
+              "line": 92,
+              "column": 5,
+              "endLine": 100,
+              "endColumn": 6,
+              "offsetUnit": "utf-16-code-unit"
+            },
+            {
+              "code": "ProjectOutputLimit",
+              "message": "aggregate output exceeds budget",
+              "file": "integrations/github-audit/requests.json",
+              "path": "/requests/6",
+              "requestIndex": 6,
+              "line": 101,
+              "column": 5,
+              "endLine": 108,
+              "endColumn": 6,
+              "offsetUnit": "utf-16-code-unit"
+            },
+            {
+              "code": "ProjectOutputLimit",
+              "message": "aggregate output exceeds budget",
+              "file": "integrations/github-audit/requests.json",
+              "path": "/requests/7",
+              "requestIndex": 7,
+              "line": 109,
+              "column": 5,
+              "endLine": 117,
+              "endColumn": 6,
+              "offsetUnit": "utf-16-code-unit"
+            },
+            {
+              "code": "ProjectOutputLimit",
+              "message": "aggregate output exceeds budget",
+              "file": "integrations/github-audit/requests.json",
+              "path": "/requests/8",
+              "requestIndex": 8,
+              "line": 118,
+              "column": 5,
+              "endLine": 126,
+              "endColumn": 6,
+              "offsetUnit": "utf-16-code-unit"
+            }
+          ],
+          "outputs": [],
+          "totalOutputBytes": 0
+        },
+        "responses": []
+      }
+    }
+  ]
+}

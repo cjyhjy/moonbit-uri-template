@@ -1,6 +1,6 @@
 # 项目架构设计
 
-状态：v0.1.1 已实施；公开接口已编译验证。模块 `cjyhjy/uri_template` 已公开发布，并完成注册表消费验证。
+状态：工作区 0.2.0 为已验证的本地候选版；0.1.1 是已发布的历史版本。新增预算与绑定模块、同核浏览器工作台，实际接口见 pkg.generated.mbti。
 
 ## 1. 总体设计
 
@@ -10,7 +10,7 @@
 flowchart TD
   Consumer[MoonBit 下游调用者] --> API[核心公共 API]
   CLI[Node CLI：参数 / 文件 / 退出码] --> Adapter[MoonBit JSON 适配包]
-  Web[可选浏览器 Playground] --> Adapter
+  Web[浏览器 Playground / Worker] --> Adapter
   Adapter --> API
   API --> Parser[Parser：模板转内部结构]
   Parser --> Template[不可变 Template]
@@ -34,7 +34,10 @@ parser.mbt / expander.mbt  parse / expand / variables 公共入口
 parser.mbt                 状态机扫描与语法检查
 operator.mbt               操作符策略表
 encoder.mbt                编码与安全截断
-expander.mbt               统一展开引擎
+expander.mbt               有界流式展开引擎
+limits.mbt                 解析/绑定/成员/值/输出预算
+bindings.mbt               复制构造、预检与选择性必填
+playground/                同核交互页面与 Worker
 types.mbt                  错误类型、源位置（与值类型同文件）
 *_test.mbt                 公共 API 黑盒测试
 *_wbtest.mbt               内部实现白盒测试
@@ -73,19 +76,19 @@ OrderedEntries = 构造时检查键唯一性的有序键值集合
 - `Assoc` 保存插入顺序，重复键在构造时返回错误；避免哈希迭代顺序造成演示和测试不稳定。
 - `variables()` 按首次出现顺序去重，返回原始变量名称。
 - `expand(source, vars)` 是 `parse` 再 `Template.expand` 的便利组合，两条路径必须等价。
-- 默认缺失变量遵循标准省略行为；首版不增加“缺失即报错”的非标准模式。
+- 默认缺失变量遵循标准省略行为；expand_checked 的必填策略是显式业务约束，不更改普通展开。
 
 内部结构：
 
 ```text
 Template { segments }
-Segment = Literal(encoded_text) | Expression(operator, varspecs)
+Segment = Literal(encoded_text, span) | Expression(operator, varspecs)
 VarSpec { raw_name, modifier, span }
 Modifier = None | Prefix(length) | Explode
 Span { start_codepoint, end_codepoint }   // 从 0 开始，左闭右开
 ```
 
-源位置统一采用 Unicode 码点偏移，不泄漏各后端的字符串索引实现。解析器维护单调前进的扫描游标；CLI 根据需要转成从 1 开始的行列号。将来浏览器高亮时显式转换成 DOM 所需的 UTF-16 偏移。
+源位置统一采用 Unicode 码点偏移，不泄漏各后端的字符串索引实现。解析器维护单调前进的扫描游标；CLI 根据需要转成从 1 开始的行列号。宿主诊断同时提供 UTF-16 偏移；浏览器以码点切片创建安全的文本节点和 mark 高亮。
 
 ## 4. 解析、编码和展开边界
 
@@ -94,6 +97,8 @@ Parser 使用单次扫描状态机，识别 literal、表达式、变量和修�
 OperatorSpec 记录表达式前缀、项间分隔符、是否输出名称、空值写法与编码模式。Expander 根据“操作符策略 × 值类型 × 修饰符”组合处理，不复制八套完整展开实现。
 
 Encoder 区分模板 literal、普通变量、保留字符展开三条路径。百分号序列的保留/再编码、Unicode 截断和空集合语义是必须单独验证的标准边界；变量名按原始拼写查找。语义依据 [RFC 6570 第 2–3 节](https://www.rfc-editor.org/rfc/rfc6570)，具体回归点见测试文档。
+
+新增有界入口会先检查模板/绑定输入预算，输出每次追加前扣减剩余字节；百分号保留使用三码点迭代器前瞻，避免复制整个 scalar。默认核心便利入口保持兼容，CLI/桥接默认选择有界入口。JSON 原文在递归解析前进行长度与嵌套检查。
 
 复杂度目标：解析 O(T)；展开 O(R + V + U)，其中 T 是模板长度，R 是变量引用数，V 是实际遍历的输入量，U 是输出长度。使用 builder 避免反复拼接复制；这是设计目标，基准前不宣称已达成。
 
@@ -147,3 +152,9 @@ uri-template variables '/users/{id}{?page}'
 ## 实施验证
 
 核心、JSON 适配和示例已在 JS、wasm-gc、Native 通过；Node 桥接只声明 JS。架构边界与原计划一致，JSON 处理使用官方标准库。单引号兼容扩展见 CONFORMANCE.md，真实测试与包导入证据见 ACCEPTANCE.md。
+
+## 0.2.0 扩展结构
+
+`Output` 支持 materialize 开关，使计量与输出走同一操作符/编码路径。可选 origins 按变量出现位置记录输出字节范围。`advanced.mbt` 提供批量两阶段处理与固定变量绑定，`catalog.mbt` 管理已解析模板，`policy.mbt` 只做显式静态审计，均为 MoonBit 核心。
+
+`tools/project.mjs` 是 Node 项目边界，使用带原文位置的 JSON 解析、契约类型检查和报告上限；URI 语义调用 MoonBit JSON 桥接。每个目录条目保存一个 PreparedRequest，在预检、计量和来源展开之间复用。`sdk/index.mjs` 同样持有不透明的编译对象，附 TypeScript 声明及序列化前输入快照校验；没有全局对象注册表。CLI 的 measure/trace 直接调用共享核心。`integrations/github-audit` 消费便携工具与编译引擎，额外负责 HTTP 目标白名单、超时、响应大小和报告。四后端 SDK、Node 工具及独立安装的 npm tarball 分别验收。

@@ -1,0 +1,2 @@
+Expected rejection verified:
+Source changed since verification; run npm test before packaging

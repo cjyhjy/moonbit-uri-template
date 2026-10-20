@@ -5,3 +5,5 @@ target/
 __pycache__/
 *.pyc
 reports/
+项目申报书.md
+node_modules/

@@ -6,3 +6,4 @@ dist/
 *.mbt.md.bak
 __pycache__/
 *.pyc
+node_modules/

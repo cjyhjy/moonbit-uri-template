@@ -2,6 +2,34 @@
 // Upstream scalar numbers/bools use JSON text; null is undefined.
 
 ///|
+fn checked_expand(
+  source : String,
+  vars : @lib.Variables,
+) -> Result[String, @lib.TemplateError] raise {
+  let result = @lib.expand(source, vars)
+  match @lib.parse(source) {
+    Err(_) => ()
+    Ok(t) =>
+      match result {
+        Err(e) => assert_eq(t.measure(vars).unwrap_err().code, e.code)
+        Ok(text) => {
+          assert_eq(t.measure(vars).unwrap(), text.length())
+          let mapped = t.expand_mapped(vars).unwrap()
+          assert_eq(mapped.output, text)
+          let mut end = 0
+          for origin in mapped.origins {
+            assert_eq(origin.output_start, end)
+            assert_true(origin.output_end > end)
+            end = origin.output_end
+          }
+          assert_eq(end, text.length())
+        }
+      }
+  }
+  result
+}
+
+///|
 fn fixture_0_0() -> @lib.Variables {
   let vars = @lib.Variables::new()
   vars.set("var", @lib.Scalar("value"))
@@ -11,7 +39,7 @@ fn fixture_0_0() -> @lib.Variables {
 
 ///|
 test "spec-examples.json/0/0/L1" {
-  let result = @lib.expand("{var}", fixture_0_0())
+  let result = checked_expand("{var}", fixture_0_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -26,7 +54,7 @@ test "spec-examples.json/0/0/L1" {
 
 ///|
 test "spec-examples.json/0/1/L1" {
-  let result = @lib.expand("'{var}'", fixture_0_0())
+  let result = checked_expand("'{var}'", fixture_0_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -41,7 +69,7 @@ test "spec-examples.json/0/1/L1" {
 
 ///|
 test "spec-examples.json/0/2/L1" {
-  let result = @lib.expand("{hello}", fixture_0_0())
+  let result = checked_expand("{hello}", fixture_0_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -65,7 +93,7 @@ fn fixture_0_1() -> @lib.Variables {
 
 ///|
 test "spec-examples.json/1/0/L2" {
-  let result = @lib.expand("{+var}", fixture_0_1())
+  let result = checked_expand("{+var}", fixture_0_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -80,7 +108,7 @@ test "spec-examples.json/1/0/L2" {
 
 ///|
 test "spec-examples.json/1/1/L2" {
-  let result = @lib.expand("{+hello}", fixture_0_1())
+  let result = checked_expand("{+hello}", fixture_0_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -95,7 +123,7 @@ test "spec-examples.json/1/1/L2" {
 
 ///|
 test "spec-examples.json/1/2/L2" {
-  let result = @lib.expand("{+path}/here", fixture_0_1())
+  let result = checked_expand("{+path}/here", fixture_0_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -110,7 +138,7 @@ test "spec-examples.json/1/2/L2" {
 
 ///|
 test "spec-examples.json/1/3/L2" {
-  let result = @lib.expand("here?ref={+path}", fixture_0_1())
+  let result = checked_expand("here?ref={+path}", fixture_0_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -137,7 +165,7 @@ fn fixture_0_2() -> @lib.Variables {
 
 ///|
 test "spec-examples.json/2/0/L3" {
-  let result = @lib.expand("map?{x,y}", fixture_0_2())
+  let result = checked_expand("map?{x,y}", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -152,7 +180,7 @@ test "spec-examples.json/2/0/L3" {
 
 ///|
 test "spec-examples.json/2/1/L3" {
-  let result = @lib.expand("{x,hello,y}", fixture_0_2())
+  let result = checked_expand("{x,hello,y}", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -167,7 +195,7 @@ test "spec-examples.json/2/1/L3" {
 
 ///|
 test "spec-examples.json/2/2/L3" {
-  let result = @lib.expand("{+x,hello,y}", fixture_0_2())
+  let result = checked_expand("{+x,hello,y}", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -182,7 +210,7 @@ test "spec-examples.json/2/2/L3" {
 
 ///|
 test "spec-examples.json/2/3/L3" {
-  let result = @lib.expand("{+path,x}/here", fixture_0_2())
+  let result = checked_expand("{+path,x}/here", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -197,7 +225,7 @@ test "spec-examples.json/2/3/L3" {
 
 ///|
 test "spec-examples.json/2/4/L3" {
-  let result = @lib.expand("{#x,hello,y}", fixture_0_2())
+  let result = checked_expand("{#x,hello,y}", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -212,7 +240,7 @@ test "spec-examples.json/2/4/L3" {
 
 ///|
 test "spec-examples.json/2/5/L3" {
-  let result = @lib.expand("{#path,x}/here", fixture_0_2())
+  let result = checked_expand("{#path,x}/here", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -227,7 +255,7 @@ test "spec-examples.json/2/5/L3" {
 
 ///|
 test "spec-examples.json/2/6/L3" {
-  let result = @lib.expand("X{.var}", fixture_0_2())
+  let result = checked_expand("X{.var}", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -242,7 +270,7 @@ test "spec-examples.json/2/6/L3" {
 
 ///|
 test "spec-examples.json/2/7/L3" {
-  let result = @lib.expand("X{.x,y}", fixture_0_2())
+  let result = checked_expand("X{.x,y}", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -257,7 +285,7 @@ test "spec-examples.json/2/7/L3" {
 
 ///|
 test "spec-examples.json/2/8/L3" {
-  let result = @lib.expand("{/var}", fixture_0_2())
+  let result = checked_expand("{/var}", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -272,7 +300,7 @@ test "spec-examples.json/2/8/L3" {
 
 ///|
 test "spec-examples.json/2/9/L3" {
-  let result = @lib.expand("{/var,x}/here", fixture_0_2())
+  let result = checked_expand("{/var,x}/here", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -287,7 +315,7 @@ test "spec-examples.json/2/9/L3" {
 
 ///|
 test "spec-examples.json/2/10/L3" {
-  let result = @lib.expand("{;x,y}", fixture_0_2())
+  let result = checked_expand("{;x,y}", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -302,7 +330,7 @@ test "spec-examples.json/2/10/L3" {
 
 ///|
 test "spec-examples.json/2/11/L3" {
-  let result = @lib.expand("{;x,y,empty}", fixture_0_2())
+  let result = checked_expand("{;x,y,empty}", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -317,7 +345,7 @@ test "spec-examples.json/2/11/L3" {
 
 ///|
 test "spec-examples.json/2/12/L3" {
-  let result = @lib.expand("{?x,y}", fixture_0_2())
+  let result = checked_expand("{?x,y}", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -332,7 +360,7 @@ test "spec-examples.json/2/12/L3" {
 
 ///|
 test "spec-examples.json/2/13/L3" {
-  let result = @lib.expand("{?x,y,empty}", fixture_0_2())
+  let result = checked_expand("{?x,y,empty}", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -347,7 +375,7 @@ test "spec-examples.json/2/13/L3" {
 
 ///|
 test "spec-examples.json/2/14/L3" {
-  let result = @lib.expand("?fixed=yes{&x}", fixture_0_2())
+  let result = checked_expand("?fixed=yes{&x}", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -362,7 +390,7 @@ test "spec-examples.json/2/14/L3" {
 
 ///|
 test "spec-examples.json/2/15/L3" {
-  let result = @lib.expand("{&x,y,empty}", fixture_0_2())
+  let result = checked_expand("{&x,y,empty}", fixture_0_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -397,7 +425,7 @@ fn fixture_0_3() -> @lib.Variables {
 
 ///|
 test "spec-examples.json/3/0/L4" {
-  let result = @lib.expand("{var:3}", fixture_0_3())
+  let result = checked_expand("{var:3}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -412,7 +440,7 @@ test "spec-examples.json/3/0/L4" {
 
 ///|
 test "spec-examples.json/3/1/L4" {
-  let result = @lib.expand("{var:30}", fixture_0_3())
+  let result = checked_expand("{var:30}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -427,7 +455,7 @@ test "spec-examples.json/3/1/L4" {
 
 ///|
 test "spec-examples.json/3/2/L4" {
-  let result = @lib.expand("{list}", fixture_0_3())
+  let result = checked_expand("{list}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -442,7 +470,7 @@ test "spec-examples.json/3/2/L4" {
 
 ///|
 test "spec-examples.json/3/3/L4" {
-  let result = @lib.expand("{list*}", fixture_0_3())
+  let result = checked_expand("{list*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -457,7 +485,7 @@ test "spec-examples.json/3/3/L4" {
 
 ///|
 test "spec-examples.json/3/4/L4" {
-  let result = @lib.expand("{keys}", fixture_0_3())
+  let result = checked_expand("{keys}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -475,7 +503,7 @@ test "spec-examples.json/3/4/L4" {
 
 ///|
 test "spec-examples.json/3/5/L4" {
-  let result = @lib.expand("{keys*}", fixture_0_3())
+  let result = checked_expand("{keys*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -493,7 +521,7 @@ test "spec-examples.json/3/5/L4" {
 
 ///|
 test "spec-examples.json/3/6/L4" {
-  let result = @lib.expand("{+path:6}/here", fixture_0_3())
+  let result = checked_expand("{+path:6}/here", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -508,7 +536,7 @@ test "spec-examples.json/3/6/L4" {
 
 ///|
 test "spec-examples.json/3/7/L4" {
-  let result = @lib.expand("{+list}", fixture_0_3())
+  let result = checked_expand("{+list}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -523,7 +551,7 @@ test "spec-examples.json/3/7/L4" {
 
 ///|
 test "spec-examples.json/3/8/L4" {
-  let result = @lib.expand("{+list*}", fixture_0_3())
+  let result = checked_expand("{+list*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -538,7 +566,7 @@ test "spec-examples.json/3/8/L4" {
 
 ///|
 test "spec-examples.json/3/9/L4" {
-  let result = @lib.expand("{+keys}", fixture_0_3())
+  let result = checked_expand("{+keys}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -556,7 +584,7 @@ test "spec-examples.json/3/9/L4" {
 
 ///|
 test "spec-examples.json/3/10/L4" {
-  let result = @lib.expand("{+keys*}", fixture_0_3())
+  let result = checked_expand("{+keys*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -574,7 +602,7 @@ test "spec-examples.json/3/10/L4" {
 
 ///|
 test "spec-examples.json/3/11/L4" {
-  let result = @lib.expand("{#path:6}/here", fixture_0_3())
+  let result = checked_expand("{#path:6}/here", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -589,7 +617,7 @@ test "spec-examples.json/3/11/L4" {
 
 ///|
 test "spec-examples.json/3/12/L4" {
-  let result = @lib.expand("{#list}", fixture_0_3())
+  let result = checked_expand("{#list}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -604,7 +632,7 @@ test "spec-examples.json/3/12/L4" {
 
 ///|
 test "spec-examples.json/3/13/L4" {
-  let result = @lib.expand("{#list*}", fixture_0_3())
+  let result = checked_expand("{#list*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -619,7 +647,7 @@ test "spec-examples.json/3/13/L4" {
 
 ///|
 test "spec-examples.json/3/14/L4" {
-  let result = @lib.expand("{#keys}", fixture_0_3())
+  let result = checked_expand("{#keys}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -637,7 +665,7 @@ test "spec-examples.json/3/14/L4" {
 
 ///|
 test "spec-examples.json/3/15/L4" {
-  let result = @lib.expand("{#keys*}", fixture_0_3())
+  let result = checked_expand("{#keys*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -655,7 +683,7 @@ test "spec-examples.json/3/15/L4" {
 
 ///|
 test "spec-examples.json/3/16/L4" {
-  let result = @lib.expand("X{.var:3}", fixture_0_3())
+  let result = checked_expand("X{.var:3}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -670,7 +698,7 @@ test "spec-examples.json/3/16/L4" {
 
 ///|
 test "spec-examples.json/3/17/L4" {
-  let result = @lib.expand("X{.list}", fixture_0_3())
+  let result = checked_expand("X{.list}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -685,7 +713,7 @@ test "spec-examples.json/3/17/L4" {
 
 ///|
 test "spec-examples.json/3/18/L4" {
-  let result = @lib.expand("X{.list*}", fixture_0_3())
+  let result = checked_expand("X{.list*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -700,7 +728,7 @@ test "spec-examples.json/3/18/L4" {
 
 ///|
 test "spec-examples.json/3/19/L4" {
-  let result = @lib.expand("X{.keys}", fixture_0_3())
+  let result = checked_expand("X{.keys}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -718,7 +746,7 @@ test "spec-examples.json/3/19/L4" {
 
 ///|
 test "spec-examples.json/3/20/L4" {
-  let result = @lib.expand("{/var:1,var}", fixture_0_3())
+  let result = checked_expand("{/var:1,var}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -733,7 +761,7 @@ test "spec-examples.json/3/20/L4" {
 
 ///|
 test "spec-examples.json/3/21/L4" {
-  let result = @lib.expand("{/list}", fixture_0_3())
+  let result = checked_expand("{/list}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -748,7 +776,7 @@ test "spec-examples.json/3/21/L4" {
 
 ///|
 test "spec-examples.json/3/22/L4" {
-  let result = @lib.expand("{/list*}", fixture_0_3())
+  let result = checked_expand("{/list*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -763,7 +791,7 @@ test "spec-examples.json/3/22/L4" {
 
 ///|
 test "spec-examples.json/3/23/L4" {
-  let result = @lib.expand("{/list*,path:4}", fixture_0_3())
+  let result = checked_expand("{/list*,path:4}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -778,7 +806,7 @@ test "spec-examples.json/3/23/L4" {
 
 ///|
 test "spec-examples.json/3/24/L4" {
-  let result = @lib.expand("{/keys}", fixture_0_3())
+  let result = checked_expand("{/keys}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -796,7 +824,7 @@ test "spec-examples.json/3/24/L4" {
 
 ///|
 test "spec-examples.json/3/25/L4" {
-  let result = @lib.expand("{/keys*}", fixture_0_3())
+  let result = checked_expand("{/keys*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -814,7 +842,7 @@ test "spec-examples.json/3/25/L4" {
 
 ///|
 test "spec-examples.json/3/26/L4" {
-  let result = @lib.expand("{;hello:5}", fixture_0_3())
+  let result = checked_expand("{;hello:5}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -829,7 +857,7 @@ test "spec-examples.json/3/26/L4" {
 
 ///|
 test "spec-examples.json/3/27/L4" {
-  let result = @lib.expand("{;list}", fixture_0_3())
+  let result = checked_expand("{;list}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -844,7 +872,7 @@ test "spec-examples.json/3/27/L4" {
 
 ///|
 test "spec-examples.json/3/28/L4" {
-  let result = @lib.expand("{;list*}", fixture_0_3())
+  let result = checked_expand("{;list*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -859,7 +887,7 @@ test "spec-examples.json/3/28/L4" {
 
 ///|
 test "spec-examples.json/3/29/L4" {
-  let result = @lib.expand("{;keys}", fixture_0_3())
+  let result = checked_expand("{;keys}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -877,7 +905,7 @@ test "spec-examples.json/3/29/L4" {
 
 ///|
 test "spec-examples.json/3/30/L4" {
-  let result = @lib.expand("{;keys*}", fixture_0_3())
+  let result = checked_expand("{;keys*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -895,7 +923,7 @@ test "spec-examples.json/3/30/L4" {
 
 ///|
 test "spec-examples.json/3/31/L4" {
-  let result = @lib.expand("{?var:3}", fixture_0_3())
+  let result = checked_expand("{?var:3}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -910,7 +938,7 @@ test "spec-examples.json/3/31/L4" {
 
 ///|
 test "spec-examples.json/3/32/L4" {
-  let result = @lib.expand("{?list}", fixture_0_3())
+  let result = checked_expand("{?list}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -925,7 +953,7 @@ test "spec-examples.json/3/32/L4" {
 
 ///|
 test "spec-examples.json/3/33/L4" {
-  let result = @lib.expand("{?list*}", fixture_0_3())
+  let result = checked_expand("{?list*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -940,7 +968,7 @@ test "spec-examples.json/3/33/L4" {
 
 ///|
 test "spec-examples.json/3/34/L4" {
-  let result = @lib.expand("{?keys}", fixture_0_3())
+  let result = checked_expand("{?keys}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -958,7 +986,7 @@ test "spec-examples.json/3/34/L4" {
 
 ///|
 test "spec-examples.json/3/35/L4" {
-  let result = @lib.expand("{?keys*}", fixture_0_3())
+  let result = checked_expand("{?keys*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -976,7 +1004,7 @@ test "spec-examples.json/3/35/L4" {
 
 ///|
 test "spec-examples.json/3/36/L4" {
-  let result = @lib.expand("{&var:3}", fixture_0_3())
+  let result = checked_expand("{&var:3}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -991,7 +1019,7 @@ test "spec-examples.json/3/36/L4" {
 
 ///|
 test "spec-examples.json/3/37/L4" {
-  let result = @lib.expand("{&list}", fixture_0_3())
+  let result = checked_expand("{&list}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1006,7 +1034,7 @@ test "spec-examples.json/3/37/L4" {
 
 ///|
 test "spec-examples.json/3/38/L4" {
-  let result = @lib.expand("{&list*}", fixture_0_3())
+  let result = checked_expand("{&list*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1021,7 +1049,7 @@ test "spec-examples.json/3/38/L4" {
 
 ///|
 test "spec-examples.json/3/39/L4" {
-  let result = @lib.expand("{&keys}", fixture_0_3())
+  let result = checked_expand("{&keys}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1039,7 +1067,7 @@ test "spec-examples.json/3/39/L4" {
 
 ///|
 test "spec-examples.json/3/40/L4" {
-  let result = @lib.expand("{&keys*}", fixture_0_3())
+  let result = checked_expand("{&keys*}", fixture_0_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1064,7 +1092,7 @@ fn fixture_1_0() -> @lib.Variables {
 
 ///|
 test "spec-examples-by-section.json/0/0/L4" {
-  let result = @lib.expand("'{count}'", fixture_1_0())
+  let result = checked_expand("'{count}'", fixture_1_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1113,7 +1141,7 @@ fn fixture_1_1() -> @lib.Variables {
 
 ///|
 test "spec-examples-by-section.json/1/0/L4" {
-  let result = @lib.expand("{count}", fixture_1_1())
+  let result = checked_expand("{count}", fixture_1_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1128,7 +1156,7 @@ test "spec-examples-by-section.json/1/0/L4" {
 
 ///|
 test "spec-examples-by-section.json/1/1/L4" {
-  let result = @lib.expand("{count*}", fixture_1_1())
+  let result = checked_expand("{count*}", fixture_1_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1143,7 +1171,7 @@ test "spec-examples-by-section.json/1/1/L4" {
 
 ///|
 test "spec-examples-by-section.json/1/2/L4" {
-  let result = @lib.expand("{/count}", fixture_1_1())
+  let result = checked_expand("{/count}", fixture_1_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1158,7 +1186,7 @@ test "spec-examples-by-section.json/1/2/L4" {
 
 ///|
 test "spec-examples-by-section.json/1/3/L4" {
-  let result = @lib.expand("{/count*}", fixture_1_1())
+  let result = checked_expand("{/count*}", fixture_1_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1173,7 +1201,7 @@ test "spec-examples-by-section.json/1/3/L4" {
 
 ///|
 test "spec-examples-by-section.json/1/4/L4" {
-  let result = @lib.expand("{;count}", fixture_1_1())
+  let result = checked_expand("{;count}", fixture_1_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1188,7 +1216,7 @@ test "spec-examples-by-section.json/1/4/L4" {
 
 ///|
 test "spec-examples-by-section.json/1/5/L4" {
-  let result = @lib.expand("{;count*}", fixture_1_1())
+  let result = checked_expand("{;count*}", fixture_1_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1203,7 +1231,7 @@ test "spec-examples-by-section.json/1/5/L4" {
 
 ///|
 test "spec-examples-by-section.json/1/6/L4" {
-  let result = @lib.expand("{?count}", fixture_1_1())
+  let result = checked_expand("{?count}", fixture_1_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1218,7 +1246,7 @@ test "spec-examples-by-section.json/1/6/L4" {
 
 ///|
 test "spec-examples-by-section.json/1/7/L4" {
-  let result = @lib.expand("{?count*}", fixture_1_1())
+  let result = checked_expand("{?count*}", fixture_1_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1233,7 +1261,7 @@ test "spec-examples-by-section.json/1/7/L4" {
 
 ///|
 test "spec-examples-by-section.json/1/8/L4" {
-  let result = @lib.expand("{&count*}", fixture_1_1())
+  let result = checked_expand("{&count*}", fixture_1_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1282,7 +1310,7 @@ fn fixture_1_2() -> @lib.Variables {
 
 ///|
 test "spec-examples-by-section.json/2/0/L4" {
-  let result = @lib.expand("{var}", fixture_1_2())
+  let result = checked_expand("{var}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1297,7 +1325,7 @@ test "spec-examples-by-section.json/2/0/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/1/L4" {
-  let result = @lib.expand("{hello}", fixture_1_2())
+  let result = checked_expand("{hello}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1312,7 +1340,7 @@ test "spec-examples-by-section.json/2/1/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/2/L4" {
-  let result = @lib.expand("{half}", fixture_1_2())
+  let result = checked_expand("{half}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1327,7 +1355,7 @@ test "spec-examples-by-section.json/2/2/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/3/L4" {
-  let result = @lib.expand("O{empty}X", fixture_1_2())
+  let result = checked_expand("O{empty}X", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1342,7 +1370,7 @@ test "spec-examples-by-section.json/2/3/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/4/L4" {
-  let result = @lib.expand("O{undef}X", fixture_1_2())
+  let result = checked_expand("O{undef}X", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1357,7 +1385,7 @@ test "spec-examples-by-section.json/2/4/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/5/L4" {
-  let result = @lib.expand("{x,y}", fixture_1_2())
+  let result = checked_expand("{x,y}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1372,7 +1400,7 @@ test "spec-examples-by-section.json/2/5/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/6/L4" {
-  let result = @lib.expand("{x,hello,y}", fixture_1_2())
+  let result = checked_expand("{x,hello,y}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1387,7 +1415,7 @@ test "spec-examples-by-section.json/2/6/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/7/L4" {
-  let result = @lib.expand("?{x,empty}", fixture_1_2())
+  let result = checked_expand("?{x,empty}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1402,7 +1430,7 @@ test "spec-examples-by-section.json/2/7/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/8/L4" {
-  let result = @lib.expand("?{x,undef}", fixture_1_2())
+  let result = checked_expand("?{x,undef}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1417,7 +1445,7 @@ test "spec-examples-by-section.json/2/8/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/9/L4" {
-  let result = @lib.expand("?{undef,y}", fixture_1_2())
+  let result = checked_expand("?{undef,y}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1432,7 +1460,7 @@ test "spec-examples-by-section.json/2/9/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/10/L4" {
-  let result = @lib.expand("{var:3}", fixture_1_2())
+  let result = checked_expand("{var:3}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1447,7 +1475,7 @@ test "spec-examples-by-section.json/2/10/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/11/L4" {
-  let result = @lib.expand("{var:30}", fixture_1_2())
+  let result = checked_expand("{var:30}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1462,7 +1490,7 @@ test "spec-examples-by-section.json/2/11/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/12/L4" {
-  let result = @lib.expand("{list}", fixture_1_2())
+  let result = checked_expand("{list}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1477,7 +1505,7 @@ test "spec-examples-by-section.json/2/12/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/13/L4" {
-  let result = @lib.expand("{list*}", fixture_1_2())
+  let result = checked_expand("{list*}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1492,7 +1520,7 @@ test "spec-examples-by-section.json/2/13/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/14/L4" {
-  let result = @lib.expand("{keys}", fixture_1_2())
+  let result = checked_expand("{keys}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1510,7 +1538,7 @@ test "spec-examples-by-section.json/2/14/L4" {
 
 ///|
 test "spec-examples-by-section.json/2/15/L4" {
-  let result = @lib.expand("{keys*}", fixture_1_2())
+  let result = checked_expand("{keys*}", fixture_1_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1562,7 +1590,7 @@ fn fixture_1_3() -> @lib.Variables {
 
 ///|
 test "spec-examples-by-section.json/3/0/L4" {
-  let result = @lib.expand("{+var}", fixture_1_3())
+  let result = checked_expand("{+var}", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1577,7 +1605,7 @@ test "spec-examples-by-section.json/3/0/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/1/L4" {
-  let result = @lib.expand("{/var,empty}", fixture_1_3())
+  let result = checked_expand("{/var,empty}", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1592,7 +1620,7 @@ test "spec-examples-by-section.json/3/1/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/2/L4" {
-  let result = @lib.expand("{/var,undef}", fixture_1_3())
+  let result = checked_expand("{/var,undef}", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1607,7 +1635,7 @@ test "spec-examples-by-section.json/3/2/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/3/L4" {
-  let result = @lib.expand("{+hello}", fixture_1_3())
+  let result = checked_expand("{+hello}", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1622,7 +1650,7 @@ test "spec-examples-by-section.json/3/3/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/4/L4" {
-  let result = @lib.expand("{+half}", fixture_1_3())
+  let result = checked_expand("{+half}", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1637,7 +1665,7 @@ test "spec-examples-by-section.json/3/4/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/5/L4" {
-  let result = @lib.expand("{base}index", fixture_1_3())
+  let result = checked_expand("{base}index", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1652,7 +1680,7 @@ test "spec-examples-by-section.json/3/5/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/6/L4" {
-  let result = @lib.expand("{+base}index", fixture_1_3())
+  let result = checked_expand("{+base}index", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1667,7 +1695,7 @@ test "spec-examples-by-section.json/3/6/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/7/L4" {
-  let result = @lib.expand("O{+empty}X", fixture_1_3())
+  let result = checked_expand("O{+empty}X", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1682,7 +1710,7 @@ test "spec-examples-by-section.json/3/7/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/8/L4" {
-  let result = @lib.expand("O{+undef}X", fixture_1_3())
+  let result = checked_expand("O{+undef}X", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1697,7 +1725,7 @@ test "spec-examples-by-section.json/3/8/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/9/L4" {
-  let result = @lib.expand("{+path}/here", fixture_1_3())
+  let result = checked_expand("{+path}/here", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1712,7 +1740,7 @@ test "spec-examples-by-section.json/3/9/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/10/L4" {
-  let result = @lib.expand("{+path:6}/here", fixture_1_3())
+  let result = checked_expand("{+path:6}/here", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1727,7 +1755,7 @@ test "spec-examples-by-section.json/3/10/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/11/L4" {
-  let result = @lib.expand("here?ref={+path}", fixture_1_3())
+  let result = checked_expand("here?ref={+path}", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1742,7 +1770,7 @@ test "spec-examples-by-section.json/3/11/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/12/L4" {
-  let result = @lib.expand("up{+path}{var}/here", fixture_1_3())
+  let result = checked_expand("up{+path}{var}/here", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1757,7 +1785,7 @@ test "spec-examples-by-section.json/3/12/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/13/L4" {
-  let result = @lib.expand("{+x,hello,y}", fixture_1_3())
+  let result = checked_expand("{+x,hello,y}", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1772,7 +1800,7 @@ test "spec-examples-by-section.json/3/13/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/14/L4" {
-  let result = @lib.expand("{+path,x}/here", fixture_1_3())
+  let result = checked_expand("{+path,x}/here", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1787,7 +1815,7 @@ test "spec-examples-by-section.json/3/14/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/15/L4" {
-  let result = @lib.expand("{+list}", fixture_1_3())
+  let result = checked_expand("{+list}", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1802,7 +1830,7 @@ test "spec-examples-by-section.json/3/15/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/16/L4" {
-  let result = @lib.expand("{+list*}", fixture_1_3())
+  let result = checked_expand("{+list*}", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1817,7 +1845,7 @@ test "spec-examples-by-section.json/3/16/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/17/L4" {
-  let result = @lib.expand("{+keys}", fixture_1_3())
+  let result = checked_expand("{+keys}", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1835,7 +1863,7 @@ test "spec-examples-by-section.json/3/17/L4" {
 
 ///|
 test "spec-examples-by-section.json/3/18/L4" {
-  let result = @lib.expand("{+keys*}", fixture_1_3())
+  let result = checked_expand("{+keys*}", fixture_1_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1887,7 +1915,7 @@ fn fixture_1_4() -> @lib.Variables {
 
 ///|
 test "spec-examples-by-section.json/4/0/L4" {
-  let result = @lib.expand("{#var}", fixture_1_4())
+  let result = checked_expand("{#var}", fixture_1_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1902,7 +1930,7 @@ test "spec-examples-by-section.json/4/0/L4" {
 
 ///|
 test "spec-examples-by-section.json/4/1/L4" {
-  let result = @lib.expand("{#hello}", fixture_1_4())
+  let result = checked_expand("{#hello}", fixture_1_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1917,7 +1945,7 @@ test "spec-examples-by-section.json/4/1/L4" {
 
 ///|
 test "spec-examples-by-section.json/4/2/L4" {
-  let result = @lib.expand("{#half}", fixture_1_4())
+  let result = checked_expand("{#half}", fixture_1_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1932,7 +1960,7 @@ test "spec-examples-by-section.json/4/2/L4" {
 
 ///|
 test "spec-examples-by-section.json/4/3/L4" {
-  let result = @lib.expand("foo{#empty}", fixture_1_4())
+  let result = checked_expand("foo{#empty}", fixture_1_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1947,7 +1975,7 @@ test "spec-examples-by-section.json/4/3/L4" {
 
 ///|
 test "spec-examples-by-section.json/4/4/L4" {
-  let result = @lib.expand("foo{#undef}", fixture_1_4())
+  let result = checked_expand("foo{#undef}", fixture_1_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1962,7 +1990,7 @@ test "spec-examples-by-section.json/4/4/L4" {
 
 ///|
 test "spec-examples-by-section.json/4/5/L4" {
-  let result = @lib.expand("{#x,hello,y}", fixture_1_4())
+  let result = checked_expand("{#x,hello,y}", fixture_1_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1977,7 +2005,7 @@ test "spec-examples-by-section.json/4/5/L4" {
 
 ///|
 test "spec-examples-by-section.json/4/6/L4" {
-  let result = @lib.expand("{#path,x}/here", fixture_1_4())
+  let result = checked_expand("{#path,x}/here", fixture_1_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -1992,7 +2020,7 @@ test "spec-examples-by-section.json/4/6/L4" {
 
 ///|
 test "spec-examples-by-section.json/4/7/L4" {
-  let result = @lib.expand("{#path:6}/here", fixture_1_4())
+  let result = checked_expand("{#path:6}/here", fixture_1_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2007,7 +2035,7 @@ test "spec-examples-by-section.json/4/7/L4" {
 
 ///|
 test "spec-examples-by-section.json/4/8/L4" {
-  let result = @lib.expand("{#list}", fixture_1_4())
+  let result = checked_expand("{#list}", fixture_1_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2022,7 +2050,7 @@ test "spec-examples-by-section.json/4/8/L4" {
 
 ///|
 test "spec-examples-by-section.json/4/9/L4" {
-  let result = @lib.expand("{#list*}", fixture_1_4())
+  let result = checked_expand("{#list*}", fixture_1_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2037,7 +2065,7 @@ test "spec-examples-by-section.json/4/9/L4" {
 
 ///|
 test "spec-examples-by-section.json/4/10/L4" {
-  let result = @lib.expand("{#keys}", fixture_1_4())
+  let result = checked_expand("{#keys}", fixture_1_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2089,7 +2117,7 @@ fn fixture_1_5() -> @lib.Variables {
 
 ///|
 test "spec-examples-by-section.json/5/0/L4" {
-  let result = @lib.expand("{.who}", fixture_1_5())
+  let result = checked_expand("{.who}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2104,7 +2132,7 @@ test "spec-examples-by-section.json/5/0/L4" {
 
 ///|
 test "spec-examples-by-section.json/5/1/L4" {
-  let result = @lib.expand("{.who,who}", fixture_1_5())
+  let result = checked_expand("{.who,who}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2119,7 +2147,7 @@ test "spec-examples-by-section.json/5/1/L4" {
 
 ///|
 test "spec-examples-by-section.json/5/2/L4" {
-  let result = @lib.expand("{.half,who}", fixture_1_5())
+  let result = checked_expand("{.half,who}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2134,7 +2162,7 @@ test "spec-examples-by-section.json/5/2/L4" {
 
 ///|
 test "spec-examples-by-section.json/5/3/L4" {
-  let result = @lib.expand("www{.dom*}", fixture_1_5())
+  let result = checked_expand("www{.dom*}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2149,7 +2177,7 @@ test "spec-examples-by-section.json/5/3/L4" {
 
 ///|
 test "spec-examples-by-section.json/5/4/L4" {
-  let result = @lib.expand("X{.var}", fixture_1_5())
+  let result = checked_expand("X{.var}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2164,7 +2192,7 @@ test "spec-examples-by-section.json/5/4/L4" {
 
 ///|
 test "spec-examples-by-section.json/5/5/L4" {
-  let result = @lib.expand("X{.var:3}", fixture_1_5())
+  let result = checked_expand("X{.var:3}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2179,7 +2207,7 @@ test "spec-examples-by-section.json/5/5/L4" {
 
 ///|
 test "spec-examples-by-section.json/5/6/L4" {
-  let result = @lib.expand("X{.empty}", fixture_1_5())
+  let result = checked_expand("X{.empty}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2194,7 +2222,7 @@ test "spec-examples-by-section.json/5/6/L4" {
 
 ///|
 test "spec-examples-by-section.json/5/7/L4" {
-  let result = @lib.expand("X{.undef}", fixture_1_5())
+  let result = checked_expand("X{.undef}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2209,7 +2237,7 @@ test "spec-examples-by-section.json/5/7/L4" {
 
 ///|
 test "spec-examples-by-section.json/5/8/L4" {
-  let result = @lib.expand("X{.list}", fixture_1_5())
+  let result = checked_expand("X{.list}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2224,7 +2252,7 @@ test "spec-examples-by-section.json/5/8/L4" {
 
 ///|
 test "spec-examples-by-section.json/5/9/L4" {
-  let result = @lib.expand("X{.list*}", fixture_1_5())
+  let result = checked_expand("X{.list*}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2239,7 +2267,7 @@ test "spec-examples-by-section.json/5/9/L4" {
 
 ///|
 test "spec-examples-by-section.json/5/10/L4" {
-  let result = @lib.expand("{#keys}", fixture_1_5())
+  let result = checked_expand("{#keys}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2257,7 +2285,7 @@ test "spec-examples-by-section.json/5/10/L4" {
 
 ///|
 test "spec-examples-by-section.json/5/11/L4" {
-  let result = @lib.expand("{#keys*}", fixture_1_5())
+  let result = checked_expand("{#keys*}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2275,7 +2303,7 @@ test "spec-examples-by-section.json/5/11/L4" {
 
 ///|
 test "spec-examples-by-section.json/5/12/L4" {
-  let result = @lib.expand("X{.empty_keys}", fixture_1_5())
+  let result = checked_expand("X{.empty_keys}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2290,7 +2318,7 @@ test "spec-examples-by-section.json/5/12/L4" {
 
 ///|
 test "spec-examples-by-section.json/5/13/L4" {
-  let result = @lib.expand("X{.empty_keys*}", fixture_1_5())
+  let result = checked_expand("X{.empty_keys*}", fixture_1_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2339,7 +2367,7 @@ fn fixture_1_6() -> @lib.Variables {
 
 ///|
 test "spec-examples-by-section.json/6/0/L4" {
-  let result = @lib.expand("{/who}", fixture_1_6())
+  let result = checked_expand("{/who}", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2354,7 +2382,7 @@ test "spec-examples-by-section.json/6/0/L4" {
 
 ///|
 test "spec-examples-by-section.json/6/1/L4" {
-  let result = @lib.expand("{/who,who}", fixture_1_6())
+  let result = checked_expand("{/who,who}", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2369,7 +2397,7 @@ test "spec-examples-by-section.json/6/1/L4" {
 
 ///|
 test "spec-examples-by-section.json/6/2/L4" {
-  let result = @lib.expand("{/half,who}", fixture_1_6())
+  let result = checked_expand("{/half,who}", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2384,7 +2412,7 @@ test "spec-examples-by-section.json/6/2/L4" {
 
 ///|
 test "spec-examples-by-section.json/6/3/L4" {
-  let result = @lib.expand("{/who,dub}", fixture_1_6())
+  let result = checked_expand("{/who,dub}", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2399,7 +2427,7 @@ test "spec-examples-by-section.json/6/3/L4" {
 
 ///|
 test "spec-examples-by-section.json/6/4/L4" {
-  let result = @lib.expand("{/var}", fixture_1_6())
+  let result = checked_expand("{/var}", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2414,7 +2442,7 @@ test "spec-examples-by-section.json/6/4/L4" {
 
 ///|
 test "spec-examples-by-section.json/6/5/L4" {
-  let result = @lib.expand("{/var,empty}", fixture_1_6())
+  let result = checked_expand("{/var,empty}", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2429,7 +2457,7 @@ test "spec-examples-by-section.json/6/5/L4" {
 
 ///|
 test "spec-examples-by-section.json/6/6/L4" {
-  let result = @lib.expand("{/var,undef}", fixture_1_6())
+  let result = checked_expand("{/var,undef}", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2444,7 +2472,7 @@ test "spec-examples-by-section.json/6/6/L4" {
 
 ///|
 test "spec-examples-by-section.json/6/7/L4" {
-  let result = @lib.expand("{/var,x}/here", fixture_1_6())
+  let result = checked_expand("{/var,x}/here", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2459,7 +2487,7 @@ test "spec-examples-by-section.json/6/7/L4" {
 
 ///|
 test "spec-examples-by-section.json/6/8/L4" {
-  let result = @lib.expand("{/var:1,var}", fixture_1_6())
+  let result = checked_expand("{/var:1,var}", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2474,7 +2502,7 @@ test "spec-examples-by-section.json/6/8/L4" {
 
 ///|
 test "spec-examples-by-section.json/6/9/L4" {
-  let result = @lib.expand("{/list}", fixture_1_6())
+  let result = checked_expand("{/list}", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2489,7 +2517,7 @@ test "spec-examples-by-section.json/6/9/L4" {
 
 ///|
 test "spec-examples-by-section.json/6/10/L4" {
-  let result = @lib.expand("{/list*}", fixture_1_6())
+  let result = checked_expand("{/list*}", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2504,7 +2532,7 @@ test "spec-examples-by-section.json/6/10/L4" {
 
 ///|
 test "spec-examples-by-section.json/6/11/L4" {
-  let result = @lib.expand("{/list*,path:4}", fixture_1_6())
+  let result = checked_expand("{/list*,path:4}", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2519,7 +2547,7 @@ test "spec-examples-by-section.json/6/11/L4" {
 
 ///|
 test "spec-examples-by-section.json/6/12/L4" {
-  let result = @lib.expand("{/keys}", fixture_1_6())
+  let result = checked_expand("{/keys}", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2537,7 +2565,7 @@ test "spec-examples-by-section.json/6/12/L4" {
 
 ///|
 test "spec-examples-by-section.json/6/13/L4" {
-  let result = @lib.expand("{/keys*}", fixture_1_6())
+  let result = checked_expand("{/keys*}", fixture_1_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2589,7 +2617,7 @@ fn fixture_1_7() -> @lib.Variables {
 
 ///|
 test "spec-examples-by-section.json/7/0/L4" {
-  let result = @lib.expand("{;who}", fixture_1_7())
+  let result = checked_expand("{;who}", fixture_1_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2604,7 +2632,7 @@ test "spec-examples-by-section.json/7/0/L4" {
 
 ///|
 test "spec-examples-by-section.json/7/1/L4" {
-  let result = @lib.expand("{;half}", fixture_1_7())
+  let result = checked_expand("{;half}", fixture_1_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2619,7 +2647,7 @@ test "spec-examples-by-section.json/7/1/L4" {
 
 ///|
 test "spec-examples-by-section.json/7/2/L4" {
-  let result = @lib.expand("{;empty}", fixture_1_7())
+  let result = checked_expand("{;empty}", fixture_1_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2634,7 +2662,7 @@ test "spec-examples-by-section.json/7/2/L4" {
 
 ///|
 test "spec-examples-by-section.json/7/3/L4" {
-  let result = @lib.expand("{;hello:5}", fixture_1_7())
+  let result = checked_expand("{;hello:5}", fixture_1_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2649,7 +2677,7 @@ test "spec-examples-by-section.json/7/3/L4" {
 
 ///|
 test "spec-examples-by-section.json/7/4/L4" {
-  let result = @lib.expand("{;v,empty,who}", fixture_1_7())
+  let result = checked_expand("{;v,empty,who}", fixture_1_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2664,7 +2692,7 @@ test "spec-examples-by-section.json/7/4/L4" {
 
 ///|
 test "spec-examples-by-section.json/7/5/L4" {
-  let result = @lib.expand("{;v,bar,who}", fixture_1_7())
+  let result = checked_expand("{;v,bar,who}", fixture_1_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2679,7 +2707,7 @@ test "spec-examples-by-section.json/7/5/L4" {
 
 ///|
 test "spec-examples-by-section.json/7/6/L4" {
-  let result = @lib.expand("{;x,y}", fixture_1_7())
+  let result = checked_expand("{;x,y}", fixture_1_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2694,7 +2722,7 @@ test "spec-examples-by-section.json/7/6/L4" {
 
 ///|
 test "spec-examples-by-section.json/7/7/L4" {
-  let result = @lib.expand("{;x,y,empty}", fixture_1_7())
+  let result = checked_expand("{;x,y,empty}", fixture_1_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2709,7 +2737,7 @@ test "spec-examples-by-section.json/7/7/L4" {
 
 ///|
 test "spec-examples-by-section.json/7/8/L4" {
-  let result = @lib.expand("{;x,y,undef}", fixture_1_7())
+  let result = checked_expand("{;x,y,undef}", fixture_1_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2724,7 +2752,7 @@ test "spec-examples-by-section.json/7/8/L4" {
 
 ///|
 test "spec-examples-by-section.json/7/9/L4" {
-  let result = @lib.expand("{;list}", fixture_1_7())
+  let result = checked_expand("{;list}", fixture_1_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2739,7 +2767,7 @@ test "spec-examples-by-section.json/7/9/L4" {
 
 ///|
 test "spec-examples-by-section.json/7/10/L4" {
-  let result = @lib.expand("{;list*}", fixture_1_7())
+  let result = checked_expand("{;list*}", fixture_1_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2754,7 +2782,7 @@ test "spec-examples-by-section.json/7/10/L4" {
 
 ///|
 test "spec-examples-by-section.json/7/11/L4" {
-  let result = @lib.expand("{;keys}", fixture_1_7())
+  let result = checked_expand("{;keys}", fixture_1_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2772,7 +2800,7 @@ test "spec-examples-by-section.json/7/11/L4" {
 
 ///|
 test "spec-examples-by-section.json/7/12/L4" {
-  let result = @lib.expand("{;keys*}", fixture_1_7())
+  let result = checked_expand("{;keys*}", fixture_1_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2824,7 +2852,7 @@ fn fixture_1_8() -> @lib.Variables {
 
 ///|
 test "spec-examples-by-section.json/8/0/L4" {
-  let result = @lib.expand("{?who}", fixture_1_8())
+  let result = checked_expand("{?who}", fixture_1_8())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2839,7 +2867,7 @@ test "spec-examples-by-section.json/8/0/L4" {
 
 ///|
 test "spec-examples-by-section.json/8/1/L4" {
-  let result = @lib.expand("{?half}", fixture_1_8())
+  let result = checked_expand("{?half}", fixture_1_8())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2854,7 +2882,7 @@ test "spec-examples-by-section.json/8/1/L4" {
 
 ///|
 test "spec-examples-by-section.json/8/2/L4" {
-  let result = @lib.expand("{?x,y}", fixture_1_8())
+  let result = checked_expand("{?x,y}", fixture_1_8())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2869,7 +2897,7 @@ test "spec-examples-by-section.json/8/2/L4" {
 
 ///|
 test "spec-examples-by-section.json/8/3/L4" {
-  let result = @lib.expand("{?x,y,empty}", fixture_1_8())
+  let result = checked_expand("{?x,y,empty}", fixture_1_8())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2884,7 +2912,7 @@ test "spec-examples-by-section.json/8/3/L4" {
 
 ///|
 test "spec-examples-by-section.json/8/4/L4" {
-  let result = @lib.expand("{?x,y,undef}", fixture_1_8())
+  let result = checked_expand("{?x,y,undef}", fixture_1_8())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2899,7 +2927,7 @@ test "spec-examples-by-section.json/8/4/L4" {
 
 ///|
 test "spec-examples-by-section.json/8/5/L4" {
-  let result = @lib.expand("{?var:3}", fixture_1_8())
+  let result = checked_expand("{?var:3}", fixture_1_8())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2914,7 +2942,7 @@ test "spec-examples-by-section.json/8/5/L4" {
 
 ///|
 test "spec-examples-by-section.json/8/6/L4" {
-  let result = @lib.expand("{?list}", fixture_1_8())
+  let result = checked_expand("{?list}", fixture_1_8())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2929,7 +2957,7 @@ test "spec-examples-by-section.json/8/6/L4" {
 
 ///|
 test "spec-examples-by-section.json/8/7/L4" {
-  let result = @lib.expand("{?list*}", fixture_1_8())
+  let result = checked_expand("{?list*}", fixture_1_8())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2944,7 +2972,7 @@ test "spec-examples-by-section.json/8/7/L4" {
 
 ///|
 test "spec-examples-by-section.json/8/8/L4" {
-  let result = @lib.expand("{?keys}", fixture_1_8())
+  let result = checked_expand("{?keys}", fixture_1_8())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -2962,7 +2990,7 @@ test "spec-examples-by-section.json/8/8/L4" {
 
 ///|
 test "spec-examples-by-section.json/8/9/L4" {
-  let result = @lib.expand("{?keys*}", fixture_1_8())
+  let result = checked_expand("{?keys*}", fixture_1_8())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3014,7 +3042,7 @@ fn fixture_1_9() -> @lib.Variables {
 
 ///|
 test "spec-examples-by-section.json/9/0/L4" {
-  let result = @lib.expand("{&who}", fixture_1_9())
+  let result = checked_expand("{&who}", fixture_1_9())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3029,7 +3057,7 @@ test "spec-examples-by-section.json/9/0/L4" {
 
 ///|
 test "spec-examples-by-section.json/9/1/L4" {
-  let result = @lib.expand("{&half}", fixture_1_9())
+  let result = checked_expand("{&half}", fixture_1_9())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3044,7 +3072,7 @@ test "spec-examples-by-section.json/9/1/L4" {
 
 ///|
 test "spec-examples-by-section.json/9/2/L4" {
-  let result = @lib.expand("?fixed=yes{&x}", fixture_1_9())
+  let result = checked_expand("?fixed=yes{&x}", fixture_1_9())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3059,7 +3087,7 @@ test "spec-examples-by-section.json/9/2/L4" {
 
 ///|
 test "spec-examples-by-section.json/9/3/L4" {
-  let result = @lib.expand("{&var:3}", fixture_1_9())
+  let result = checked_expand("{&var:3}", fixture_1_9())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3074,7 +3102,7 @@ test "spec-examples-by-section.json/9/3/L4" {
 
 ///|
 test "spec-examples-by-section.json/9/4/L4" {
-  let result = @lib.expand("{&x,y,empty}", fixture_1_9())
+  let result = checked_expand("{&x,y,empty}", fixture_1_9())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3089,7 +3117,7 @@ test "spec-examples-by-section.json/9/4/L4" {
 
 ///|
 test "spec-examples-by-section.json/9/5/L4" {
-  let result = @lib.expand("{&x,y,undef}", fixture_1_9())
+  let result = checked_expand("{&x,y,undef}", fixture_1_9())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3104,7 +3132,7 @@ test "spec-examples-by-section.json/9/5/L4" {
 
 ///|
 test "spec-examples-by-section.json/9/6/L4" {
-  let result = @lib.expand("{&list}", fixture_1_9())
+  let result = checked_expand("{&list}", fixture_1_9())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3119,7 +3147,7 @@ test "spec-examples-by-section.json/9/6/L4" {
 
 ///|
 test "spec-examples-by-section.json/9/7/L4" {
-  let result = @lib.expand("{&list*}", fixture_1_9())
+  let result = checked_expand("{&list*}", fixture_1_9())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3134,7 +3162,7 @@ test "spec-examples-by-section.json/9/7/L4" {
 
 ///|
 test "spec-examples-by-section.json/9/8/L4" {
-  let result = @lib.expand("{&keys}", fixture_1_9())
+  let result = checked_expand("{&keys}", fixture_1_9())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3152,7 +3180,7 @@ test "spec-examples-by-section.json/9/8/L4" {
 
 ///|
 test "spec-examples-by-section.json/9/9/L4" {
-  let result = @lib.expand("{&keys*}", fixture_1_9())
+  let result = checked_expand("{&keys*}", fixture_1_9())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3217,7 +3245,7 @@ fn fixture_2_0() -> @lib.Variables {
 
 ///|
 test "extended-tests.json/0/0/L4" {
-  let result = @lib.expand("{/id*}", fixture_2_0())
+  let result = checked_expand("{/id*}", fixture_2_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3232,7 +3260,7 @@ test "extended-tests.json/0/0/L4" {
 
 ///|
 test "extended-tests.json/0/1/L4" {
-  let result = @lib.expand(
+  let result = checked_expand(
     "{/id*}{?fields,first_name,last.name,token}",
     fixture_2_0(),
   )
@@ -3252,7 +3280,7 @@ test "extended-tests.json/0/1/L4" {
 
 ///|
 test "extended-tests.json/0/2/L4" {
-  let result = @lib.expand(
+  let result = checked_expand(
     "/search.{format}{?q,geocode,lang,locale,page,result_type}",
     fixture_2_0(),
   )
@@ -3272,7 +3300,7 @@ test "extended-tests.json/0/2/L4" {
 
 ///|
 test "extended-tests.json/0/3/L4" {
-  let result = @lib.expand("/test{/Some%20Thing}", fixture_2_0())
+  let result = checked_expand("/test{/Some%20Thing}", fixture_2_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3287,7 +3315,7 @@ test "extended-tests.json/0/3/L4" {
 
 ///|
 test "extended-tests.json/0/4/L4" {
-  let result = @lib.expand("/set{?number}", fixture_2_0())
+  let result = checked_expand("/set{?number}", fixture_2_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3302,7 +3330,7 @@ test "extended-tests.json/0/4/L4" {
 
 ///|
 test "extended-tests.json/0/5/L4" {
-  let result = @lib.expand("/loc{?long,lat}", fixture_2_0())
+  let result = checked_expand("/loc{?long,lat}", fixture_2_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3317,7 +3345,7 @@ test "extended-tests.json/0/5/L4" {
 
 ///|
 test "extended-tests.json/0/6/L4" {
-  let result = @lib.expand(
+  let result = checked_expand(
     "/base{/group_id,first_name}/pages{/page,lang}{?format,q}",
     fixture_2_0(),
   )
@@ -3337,7 +3365,7 @@ test "extended-tests.json/0/6/L4" {
 
 ///|
 test "extended-tests.json/0/7/L4" {
-  let result = @lib.expand("/sparql{?query}", fixture_2_0())
+  let result = checked_expand("/sparql{?query}", fixture_2_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3354,7 +3382,7 @@ test "extended-tests.json/0/7/L4" {
 
 ///|
 test "extended-tests.json/0/8/L4" {
-  let result = @lib.expand("/go{?uri}", fixture_2_0())
+  let result = checked_expand("/go{?uri}", fixture_2_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3371,7 +3399,7 @@ test "extended-tests.json/0/8/L4" {
 
 ///|
 test "extended-tests.json/0/9/L4" {
-  let result = @lib.expand("/service{?word}", fixture_2_0())
+  let result = checked_expand("/service{?word}", fixture_2_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3386,7 +3414,7 @@ test "extended-tests.json/0/9/L4" {
 
 ///|
 test "extended-tests.json/0/10/L4" {
-  let result = @lib.expand("/lookup{?Stra%C3%9Fe}", fixture_2_0())
+  let result = checked_expand("/lookup{?Stra%C3%9Fe}", fixture_2_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3401,7 +3429,7 @@ test "extended-tests.json/0/10/L4" {
 
 ///|
 test "extended-tests.json/0/11/L4" {
-  let result = @lib.expand("{random}", fixture_2_0())
+  let result = checked_expand("{random}", fixture_2_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3418,7 +3446,7 @@ test "extended-tests.json/0/11/L4" {
 
 ///|
 test "extended-tests.json/0/12/L4" {
-  let result = @lib.expand("{?assoc_special_chars*}", fixture_2_0())
+  let result = checked_expand("{?assoc_special_chars*}", fixture_2_0())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3450,7 +3478,7 @@ fn fixture_2_1() -> @lib.Variables {
 
 ///|
 test "extended-tests.json/1/0/L4" {
-  let result = @lib.expand("{/id*}", fixture_2_1())
+  let result = checked_expand("{/id*}", fixture_2_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3465,7 +3493,7 @@ test "extended-tests.json/1/0/L4" {
 
 ///|
 test "extended-tests.json/1/1/L4" {
-  let result = @lib.expand("{/id*}{?fields,token}", fixture_2_1())
+  let result = checked_expand("{/id*}{?fields,token}", fixture_2_1())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3493,7 +3521,7 @@ fn fixture_2_2() -> @lib.Variables {
 
 ///|
 test "extended-tests.json/2/0/L4" {
-  let result = @lib.expand("{/empty_list}", fixture_2_2())
+  let result = checked_expand("{/empty_list}", fixture_2_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3508,7 +3536,7 @@ test "extended-tests.json/2/0/L4" {
 
 ///|
 test "extended-tests.json/2/1/L4" {
-  let result = @lib.expand("{/empty_list*}", fixture_2_2())
+  let result = checked_expand("{/empty_list*}", fixture_2_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3523,7 +3551,7 @@ test "extended-tests.json/2/1/L4" {
 
 ///|
 test "extended-tests.json/2/2/L4" {
-  let result = @lib.expand("{?empty_list}", fixture_2_2())
+  let result = checked_expand("{?empty_list}", fixture_2_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3538,7 +3566,7 @@ test "extended-tests.json/2/2/L4" {
 
 ///|
 test "extended-tests.json/2/3/L4" {
-  let result = @lib.expand("{?empty_list*}", fixture_2_2())
+  let result = checked_expand("{?empty_list*}", fixture_2_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3553,7 +3581,7 @@ test "extended-tests.json/2/3/L4" {
 
 ///|
 test "extended-tests.json/2/4/L4" {
-  let result = @lib.expand("{?empty_assoc}", fixture_2_2())
+  let result = checked_expand("{?empty_assoc}", fixture_2_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3568,7 +3596,7 @@ test "extended-tests.json/2/4/L4" {
 
 ///|
 test "extended-tests.json/2/5/L4" {
-  let result = @lib.expand("{?empty_assoc*}", fixture_2_2())
+  let result = checked_expand("{?empty_assoc*}", fixture_2_2())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3602,7 +3630,7 @@ fn fixture_2_3() -> @lib.Variables {
 
 ///|
 test "extended-tests.json/3/0/L4" {
-  let result = @lib.expand("{42}", fixture_2_3())
+  let result = checked_expand("{42}", fixture_2_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3619,7 +3647,7 @@ test "extended-tests.json/3/0/L4" {
 
 ///|
 test "extended-tests.json/3/1/L4" {
-  let result = @lib.expand("{?42}", fixture_2_3())
+  let result = checked_expand("{?42}", fixture_2_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3636,7 +3664,7 @@ test "extended-tests.json/3/1/L4" {
 
 ///|
 test "extended-tests.json/3/2/L4" {
-  let result = @lib.expand("{1337}", fixture_2_3())
+  let result = checked_expand("{1337}", fixture_2_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3651,7 +3679,7 @@ test "extended-tests.json/3/2/L4" {
 
 ///|
 test "extended-tests.json/3/3/L4" {
-  let result = @lib.expand("{?1337*}", fixture_2_3())
+  let result = checked_expand("{?1337*}", fixture_2_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3668,7 +3696,7 @@ test "extended-tests.json/3/3/L4" {
 
 ///|
 test "extended-tests.json/3/4/L4" {
-  let result = @lib.expand("{?german*}", fixture_2_3())
+  let result = checked_expand("{?german*}", fixture_2_3())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3700,7 +3728,7 @@ fn fixture_2_4() -> @lib.Variables {
 
 ///|
 test "extended-tests.json/4/0/L4" {
-  let result = @lib.expand("{?id,token,keys*}", fixture_2_4())
+  let result = checked_expand("{?id,token,keys*}", fixture_2_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3717,7 +3745,7 @@ test "extended-tests.json/4/0/L4" {
 
 ///|
 test "extended-tests.json/4/1/L4" {
-  let result = @lib.expand("{/id}{?token,keys*}", fixture_2_4())
+  let result = checked_expand("{/id}{?token,keys*}", fixture_2_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3734,7 +3762,7 @@ test "extended-tests.json/4/1/L4" {
 
 ///|
 test "extended-tests.json/4/2/L4" {
-  let result = @lib.expand("{?id,token}{&keys*}", fixture_2_4())
+  let result = checked_expand("{?id,token}{&keys*}", fixture_2_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3751,7 +3779,7 @@ test "extended-tests.json/4/2/L4" {
 
 ///|
 test "extended-tests.json/4/3/L4" {
-  let result = @lib.expand("/user{/id}{?token,tab}{&keys*}", fixture_2_4())
+  let result = checked_expand("/user{/id}{?token,tab}{&keys*}", fixture_2_4())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3786,7 +3814,7 @@ fn fixture_2_5() -> @lib.Variables {
 
 ///|
 test "extended-tests.json/5/0/L4" {
-  let result = @lib.expand("{+id}", fixture_2_5())
+  let result = checked_expand("{+id}", fixture_2_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3801,7 +3829,7 @@ test "extended-tests.json/5/0/L4" {
 
 ///|
 test "extended-tests.json/5/1/L4" {
-  let result = @lib.expand("{#id}", fixture_2_5())
+  let result = checked_expand("{#id}", fixture_2_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3816,7 +3844,7 @@ test "extended-tests.json/5/1/L4" {
 
 ///|
 test "extended-tests.json/5/2/L4" {
-  let result = @lib.expand("{id}", fixture_2_5())
+  let result = checked_expand("{id}", fixture_2_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3831,7 +3859,7 @@ test "extended-tests.json/5/2/L4" {
 
 ///|
 test "extended-tests.json/5/3/L4" {
-  let result = @lib.expand("{+not_pct}", fixture_2_5())
+  let result = checked_expand("{+not_pct}", fixture_2_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3846,7 +3874,7 @@ test "extended-tests.json/5/3/L4" {
 
 ///|
 test "extended-tests.json/5/4/L4" {
-  let result = @lib.expand("{#not_pct}", fixture_2_5())
+  let result = checked_expand("{#not_pct}", fixture_2_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3861,7 +3889,7 @@ test "extended-tests.json/5/4/L4" {
 
 ///|
 test "extended-tests.json/5/5/L4" {
-  let result = @lib.expand("{not_pct}", fixture_2_5())
+  let result = checked_expand("{not_pct}", fixture_2_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3876,7 +3904,7 @@ test "extended-tests.json/5/5/L4" {
 
 ///|
 test "extended-tests.json/5/6/L4" {
-  let result = @lib.expand("{+list}", fixture_2_5())
+  let result = checked_expand("{+list}", fixture_2_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3891,7 +3919,7 @@ test "extended-tests.json/5/6/L4" {
 
 ///|
 test "extended-tests.json/5/7/L4" {
-  let result = @lib.expand("{#list}", fixture_2_5())
+  let result = checked_expand("{#list}", fixture_2_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3906,7 +3934,7 @@ test "extended-tests.json/5/7/L4" {
 
 ///|
 test "extended-tests.json/5/8/L4" {
-  let result = @lib.expand("{list}", fixture_2_5())
+  let result = checked_expand("{list}", fixture_2_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3921,7 +3949,7 @@ test "extended-tests.json/5/8/L4" {
 
 ///|
 test "extended-tests.json/5/9/L4" {
-  let result = @lib.expand("{+keys}", fixture_2_5())
+  let result = checked_expand("{+keys}", fixture_2_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3936,7 +3964,7 @@ test "extended-tests.json/5/9/L4" {
 
 ///|
 test "extended-tests.json/5/10/L4" {
-  let result = @lib.expand("{#keys}", fixture_2_5())
+  let result = checked_expand("{#keys}", fixture_2_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3951,7 +3979,7 @@ test "extended-tests.json/5/10/L4" {
 
 ///|
 test "extended-tests.json/5/11/L4" {
-  let result = @lib.expand("{keys}", fixture_2_5())
+  let result = checked_expand("{keys}", fixture_2_5())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3976,7 +4004,7 @@ fn fixture_2_6() -> @lib.Variables {
 
 ///|
 test "extended-tests.json/6/0/L4" {
-  let result = @lib.expand("{greek:1}", fixture_2_6())
+  let result = checked_expand("{greek:1}", fixture_2_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -3991,7 +4019,7 @@ test "extended-tests.json/6/0/L4" {
 
 ///|
 test "extended-tests.json/6/1/L4" {
-  let result = @lib.expand("{greek:2}", fixture_2_6())
+  let result = checked_expand("{greek:2}", fixture_2_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -4006,7 +4034,7 @@ test "extended-tests.json/6/1/L4" {
 
 ///|
 test "extended-tests.json/6/2/L4" {
-  let result = @lib.expand("{+greek:2}", fixture_2_6())
+  let result = checked_expand("{+greek:2}", fixture_2_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -4021,7 +4049,7 @@ test "extended-tests.json/6/2/L4" {
 
 ///|
 test "extended-tests.json/6/3/L4" {
-  let result = @lib.expand("{greek:30}", fixture_2_6())
+  let result = checked_expand("{greek:30}", fixture_2_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -4036,7 +4064,7 @@ test "extended-tests.json/6/3/L4" {
 
 ///|
 test "extended-tests.json/6/4/L4" {
-  let result = @lib.expand("{currency:1}", fixture_2_6())
+  let result = checked_expand("{currency:1}", fixture_2_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -4051,7 +4079,7 @@ test "extended-tests.json/6/4/L4" {
 
 ///|
 test "extended-tests.json/6/5/L4" {
-  let result = @lib.expand("{?currency:1}", fixture_2_6())
+  let result = checked_expand("{?currency:1}", fixture_2_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -4066,7 +4094,7 @@ test "extended-tests.json/6/5/L4" {
 
 ///|
 test "extended-tests.json/6/6/L4" {
-  let result = @lib.expand("{clef:1}", fixture_2_6())
+  let result = checked_expand("{clef:1}", fixture_2_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -4081,7 +4109,7 @@ test "extended-tests.json/6/6/L4" {
 
 ///|
 test "extended-tests.json/6/7/L4" {
-  let result = @lib.expand("{var:9999}", fixture_2_6())
+  let result = checked_expand("{var:9999}", fixture_2_6())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -4103,7 +4131,7 @@ fn fixture_2_7() -> @lib.Variables {
 
 ///|
 test "extended-tests.json/7/0/L1" {
-  let result = @lib.expand("café/{var}", fixture_2_7())
+  let result = checked_expand("café/{var}", fixture_2_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -4118,7 +4146,7 @@ test "extended-tests.json/7/0/L1" {
 
 ///|
 test "extended-tests.json/7/1/L1" {
-  let result = @lib.expand("x%20y/{var}", fixture_2_7())
+  let result = checked_expand("x%20y/{var}", fixture_2_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -4133,7 +4161,7 @@ test "extended-tests.json/7/1/L1" {
 
 ///|
 test "extended-tests.json/7/2/L1" {
-  let result = @lib.expand("x%20y{var}z%20w", fixture_2_7())
+  let result = checked_expand("x%20y{var}z%20w", fixture_2_7())
   match result {
     Err(e) => fail(e.code + ": " + e.message)
     Ok(actual) => {
@@ -4188,7 +4216,7 @@ fn fixture_3_0() -> @lib.Variables {
 
 ///|
 test "negative-tests.json/0/0/L4" {
-  let result = @lib.expand("{/id*", fixture_3_0())
+  let result = checked_expand("{/id*", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4197,7 +4225,7 @@ test "negative-tests.json/0/0/L4" {
 
 ///|
 test "negative-tests.json/0/1/L4" {
-  let result = @lib.expand("/id*}", fixture_3_0())
+  let result = checked_expand("/id*}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4206,7 +4234,7 @@ test "negative-tests.json/0/1/L4" {
 
 ///|
 test "negative-tests.json/0/2/L4" {
-  let result = @lib.expand("{/?id}", fixture_3_0())
+  let result = checked_expand("{/?id}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4215,7 +4243,7 @@ test "negative-tests.json/0/2/L4" {
 
 ///|
 test "negative-tests.json/0/3/L4" {
-  let result = @lib.expand("{var:prefix}", fixture_3_0())
+  let result = checked_expand("{var:prefix}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4224,7 +4252,7 @@ test "negative-tests.json/0/3/L4" {
 
 ///|
 test "negative-tests.json/0/4/L4" {
-  let result = @lib.expand("{hello:2*}", fixture_3_0())
+  let result = checked_expand("{hello:2*}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4233,7 +4261,7 @@ test "negative-tests.json/0/4/L4" {
 
 ///|
 test "negative-tests.json/0/5/L4" {
-  let result = @lib.expand("{??hello}", fixture_3_0())
+  let result = checked_expand("{??hello}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4242,7 +4270,7 @@ test "negative-tests.json/0/5/L4" {
 
 ///|
 test "negative-tests.json/0/6/L4" {
-  let result = @lib.expand("{!hello}", fixture_3_0())
+  let result = checked_expand("{!hello}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4251,7 +4279,7 @@ test "negative-tests.json/0/6/L4" {
 
 ///|
 test "negative-tests.json/0/7/L4" {
-  let result = @lib.expand("{with space}", fixture_3_0())
+  let result = checked_expand("{with space}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4260,7 +4288,7 @@ test "negative-tests.json/0/7/L4" {
 
 ///|
 test "negative-tests.json/0/8/L4" {
-  let result = @lib.expand("{ leading_space}", fixture_3_0())
+  let result = checked_expand("{ leading_space}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4269,7 +4297,7 @@ test "negative-tests.json/0/8/L4" {
 
 ///|
 test "negative-tests.json/0/9/L4" {
-  let result = @lib.expand("{trailing_space }", fixture_3_0())
+  let result = checked_expand("{trailing_space }", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4278,7 +4306,7 @@ test "negative-tests.json/0/9/L4" {
 
 ///|
 test "negative-tests.json/0/10/L4" {
-  let result = @lib.expand("{=path}", fixture_3_0())
+  let result = checked_expand("{=path}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4287,7 +4315,7 @@ test "negative-tests.json/0/10/L4" {
 
 ///|
 test "negative-tests.json/0/11/L4" {
-  let result = @lib.expand("{$var}", fixture_3_0())
+  let result = checked_expand("{$var}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4296,7 +4324,7 @@ test "negative-tests.json/0/11/L4" {
 
 ///|
 test "negative-tests.json/0/12/L4" {
-  let result = @lib.expand("{|var*}", fixture_3_0())
+  let result = checked_expand("{|var*}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4305,7 +4333,7 @@ test "negative-tests.json/0/12/L4" {
 
 ///|
 test "negative-tests.json/0/13/L4" {
-  let result = @lib.expand("{*keys?}", fixture_3_0())
+  let result = checked_expand("{*keys?}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4314,7 +4342,7 @@ test "negative-tests.json/0/13/L4" {
 
 ///|
 test "negative-tests.json/0/14/L4" {
-  let result = @lib.expand("{?empty=default,var}", fixture_3_0())
+  let result = checked_expand("{?empty=default,var}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4323,7 +4351,7 @@ test "negative-tests.json/0/14/L4" {
 
 ///|
 test "negative-tests.json/0/15/L4" {
-  let result = @lib.expand("{var}{-prefix|/-/|var}", fixture_3_0())
+  let result = checked_expand("{var}{-prefix|/-/|var}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4332,7 +4360,7 @@ test "negative-tests.json/0/15/L4" {
 
 ///|
 test "negative-tests.json/0/16/L4" {
-  let result = @lib.expand(
+  let result = checked_expand(
     "?q={searchTerms}&amp;c={example:color?}",
     fixture_3_0(),
   )
@@ -4344,7 +4372,7 @@ test "negative-tests.json/0/16/L4" {
 
 ///|
 test "negative-tests.json/0/17/L4" {
-  let result = @lib.expand("x{?empty|foo=none}", fixture_3_0())
+  let result = checked_expand("x{?empty|foo=none}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4353,7 +4381,7 @@ test "negative-tests.json/0/17/L4" {
 
 ///|
 test "negative-tests.json/0/18/L4" {
-  let result = @lib.expand("/h{#hello+}", fixture_3_0())
+  let result = checked_expand("/h{#hello+}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4362,7 +4390,7 @@ test "negative-tests.json/0/18/L4" {
 
 ///|
 test "negative-tests.json/0/19/L4" {
-  let result = @lib.expand("/h#{hello+}", fixture_3_0())
+  let result = checked_expand("/h#{hello+}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4371,7 +4399,7 @@ test "negative-tests.json/0/19/L4" {
 
 ///|
 test "negative-tests.json/0/20/L4" {
-  let result = @lib.expand("{keys:1}", fixture_3_0())
+  let result = checked_expand("{keys:1}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4380,7 +4408,7 @@ test "negative-tests.json/0/20/L4" {
 
 ///|
 test "negative-tests.json/0/21/L4" {
-  let result = @lib.expand("{+keys:1}", fixture_3_0())
+  let result = checked_expand("{+keys:1}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4389,7 +4417,7 @@ test "negative-tests.json/0/21/L4" {
 
 ///|
 test "negative-tests.json/0/22/L4" {
-  let result = @lib.expand("{;keys:1*}", fixture_3_0())
+  let result = checked_expand("{;keys:1*}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4398,7 +4426,7 @@ test "negative-tests.json/0/22/L4" {
 
 ///|
 test "negative-tests.json/0/23/L4" {
-  let result = @lib.expand("?{-join|&|var,list}", fixture_3_0())
+  let result = checked_expand("?{-join|&|var,list}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4407,7 +4435,7 @@ test "negative-tests.json/0/23/L4" {
 
 ///|
 test "negative-tests.json/0/24/L4" {
-  let result = @lib.expand("/people/{~thing}", fixture_3_0())
+  let result = checked_expand("/people/{~thing}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4416,7 +4444,7 @@ test "negative-tests.json/0/24/L4" {
 
 ///|
 test "negative-tests.json/0/25/L4" {
-  let result = @lib.expand("/{default-graph-uri}", fixture_3_0())
+  let result = checked_expand("/{default-graph-uri}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4425,7 +4453,10 @@ test "negative-tests.json/0/25/L4" {
 
 ///|
 test "negative-tests.json/0/26/L4" {
-  let result = @lib.expand("/sparql{?query,default-graph-uri}", fixture_3_0())
+  let result = checked_expand(
+    "/sparql{?query,default-graph-uri}",
+    fixture_3_0(),
+  )
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4434,7 +4465,7 @@ test "negative-tests.json/0/26/L4" {
 
 ///|
 test "negative-tests.json/0/27/L4" {
-  let result = @lib.expand(
+  let result = checked_expand(
     "/sparql{?query){&default-graph-uri*}",
     fixture_3_0(),
   )
@@ -4446,7 +4477,7 @@ test "negative-tests.json/0/27/L4" {
 
 ///|
 test "negative-tests.json/0/28/L4" {
-  let result = @lib.expand("/resolution{?x, y}", fixture_3_0())
+  let result = checked_expand("/resolution{?x, y}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4455,7 +4486,7 @@ test "negative-tests.json/0/28/L4" {
 
 ///|
 test "negative-tests.json/0/29/L4" {
-  let result = @lib.expand("{var:0}", fixture_3_0())
+  let result = checked_expand("{var:0}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4464,7 +4495,7 @@ test "negative-tests.json/0/29/L4" {
 
 ///|
 test "negative-tests.json/0/30/L4" {
-  let result = @lib.expand("{var:01}", fixture_3_0())
+  let result = checked_expand("{var:01}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4473,7 +4504,7 @@ test "negative-tests.json/0/30/L4" {
 
 ///|
 test "negative-tests.json/0/31/L4" {
-  let result = @lib.expand("{var:10000}", fixture_3_0())
+  let result = checked_expand("{var:10000}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4482,7 +4513,7 @@ test "negative-tests.json/0/31/L4" {
 
 ///|
 test "negative-tests.json/0/32/L4" {
-  let result = @lib.expand("{var:}", fixture_3_0())
+  let result = checked_expand("{var:}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4491,7 +4522,7 @@ test "negative-tests.json/0/32/L4" {
 
 ///|
 test "negative-tests.json/0/33/L4" {
-  let result = @lib.expand("{x.}", fixture_3_0())
+  let result = checked_expand("{x.}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4500,7 +4531,7 @@ test "negative-tests.json/0/33/L4" {
 
 ///|
 test "negative-tests.json/0/34/L4" {
-  let result = @lib.expand("{x..y}", fixture_3_0())
+  let result = checked_expand("{x..y}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)
@@ -4509,7 +4540,7 @@ test "negative-tests.json/0/34/L4" {
 
 ///|
 test "negative-tests.json/0/35/L4" {
-  let result = @lib.expand("{%2x}", fixture_3_0())
+  let result = checked_expand("{%2x}", fixture_3_0())
   match result {
     Err(_) => ()
     Ok(actual) => fail("expected rejection, got: " + actual)

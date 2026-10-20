@@ -1,0 +1,54 @@
+# MoonBit URI Template 增量功能与实际接入证据
+
+本说明用于回应“项目选题与近期维护的 Mooncakes RFC 6570 同类库直接重叠”。本项目承认标准展开能力已经有同类实现，本轮交付围绕请求配置的业务契约检查、问题定位和实际下游接入形成增量。本文是 AI 辅助整理的技术附件，不是正式申报书。
+
+## 交付与差异
+
+| 实际任务 | 本次实现 | 核查位置 |
+| --- | --- | --- |
+| 路径参数必填、查询参数可选 | required 子集；missing 与空集合 omitted 分开；空字符串仍遵循 RFC 定义 | `bindings.mbt`、`bindings_test.mbt`、共享探针 |
+| 发请求前查完整项目配置 | 一次读取目录和请求；类型、无用绑定、单项/总预算；任一失败不输出部分 URI | `tools/project.mjs`、项目/客户端测试 |
+| 找到可修复的位置 | JSON Pointer、文件行列、转义/emoji 映射、requestIndex、拼写修复建议、GitHub Actions 注解 | `tools/json-source.mjs`、`tools/project.test.mjs` |
+| 直接安装接入 | ESM/TypeScript 导入、变量名与必填类型提示、准备后复用、干净项目安装验证 | `sdk/`、`reports/sdk-package.json` |
+| 有界处理与计量 | 源码/绑定/成员/值/输出预算；JSON 长度深度；计量共用输出遍历；整批预检后构造输出 | `limits.mbt`、`expander.mbt`、`advanced.mbt` |
+| 多端点 SDK 管理 | 模板目录、固定部分变量、策略检查、模板与目录差异、显式稀疏成员规范化 | `catalog.mbt`、`policy.mbt`、`types.mbt` |
+| 解释生成 URI 的来源 | 非空字面量或每个变量出现位置的输出范围，包含操作符分隔符 | `Template.expand_mapped`、标准语料交叉测试 |
+
+Magic486 已有默认解析/输出预算与 CLI；JSJ222 已有计量、批量、目录、预绑定、策略和输出映射。这些通用能力不能宣称为本项目首创。本次补齐这些主要类别后，差异化重点转向**可直接运行的项目检查流程、选择性必填语义、文件源位置，以及变量级输出归因**。例如 `{?x,y}` 的共享探针中，本项目返回两条变量来源，JSJ222 当前快照返回一条表达式来源。两者均可正确生成 URI。
+
+同类可通过额外编程组合出类似流程；“当前版本未直接交付完整工具”不等于“对方无法实现”。完整矩阵、原始行为和性能结果见 COMPARISON.md 与 PERFORMANCE.md。
+
+## 实际接入案例
+
+下游为作者新建的 **GitHub 仓库巡检客户端**，它是独立运行的 Node 消费项目，不是第三方生产采用。配置使用 repository、commits、releases 三个模板，对 cjyhjy/moonbit-uri-template、Magic486/moon-uri-template、JSJ222/MoonUriTemplate 三个真实仓库执行 9 个只读请求。
+
+全部 URL 由编译的 MoonBit 核心生成，所有请求在联网前完成契约和总预算检查。客户端另外限制允许访问的 GitHub 主机与路径，设置响应体上限与超时；这些 HTTP 策略属于客户端，不冒充 RFC 模板展开的安全保证。
+
+`reports/github-integration-portable-live.json` 记录从全新临时目录解压分发包后执行的真实结果：HTTP 状态、GitHub 请求编号、响应时间/摘要、返回提交 SHA、引擎与分发归档摘要。它不导入源仓库中的模块。首次匿名访问遇到限流，失败报告保留在 history；成功运行通过本机已有 GitHub CLI 登录执行，不读取或保存令牌。
+
+这份联网报告生成于本次源码提交前，当时读到本项目公开仓库仍是 0.1.1。它是该次实际运行的历史记录，不用于推断当前远端 HEAD；本分支提供新功能候选源码，正式发行状态需另行核对。空发行列表也是有效业务结果，不等于请求失败。
+
+## 故障注入与真实运行分开
+
+`reports/integration-faults.json` 为主动构造的测试，明确标记 intentional-fault-injection：
+
+1. 将 owner 改为 owenr，同时发现 MissingBinding 和 UnusedBinding；网络调用为 0。
+2. 将必填 owner 改为空列表，同时报告类型问题和 OmittedBinding；网络调用为 0。
+3. 将整批输出预算设为 1 字节，报告 ProjectOutputLimit；网络调用为 0。
+
+这些证明错误会被拦截，不声称真实用户曾发生上述事故，也不捏造节省工时、生产请求量或采用者。
+
+## 验证方式
+
+- JS、wasm、wasm-gc、Native 四后端各 305 项测试；270 条固定上游标准/扩展/负例分别执行。
+- 正向标准语料同时验证实际输出、计量字节数和来源范围完整覆盖；另有 800 组确定性字符串/操作符组合测试。
+- 原 CLI 48 项；项目工作流及下游离线测试 14 项；SDK 6 项；便携包解压后执行同样的 68 项 Node 测试。另从本地 npm tarball 离线安装到全新项目，验证公共导入、CLI、TypeScript 正例和预期错误。
+- 从真实 Mooncakes 源码归档创建独立 MoonBit 消费项目，在四后端验证原展开及新计量/批量/目录 API；这不是新版注册表安装记录。
+- 两个同类固定提交均重跑原有三后端测试，并执行同输入共享探针。测试数量不作为质量排名。
+- 同机 JS release 基准保留四类场景、两种使用模式、七轮轮换顺序原始样本；不声称内存占用、所有平台或所有场景领先。
+
+复现入口：`npm test`、`npm run compare:peers`、`npm run benchmark:peers`。分发包无需 MoonBit 即可运行项目检查和客户端。所有当前状态以对应 JSON 报告与源码摘要为准。
+
+## 尚存差异
+
+旧 parse/expand 为兼容调用保留原策略，不会自动获得有界入口的默认保护；使用不可信输入时选择有界 API。项目工具和 Node SDK 已支持编译复用，MoonBit 目录支持跨模板原子批量。JSJ222 的变量画像、跨目录批量审计等细节仍更丰富；本项目没有长期第三方使用证据、实测 RSS 优势或远程 0.2.0 CI/发布记录。新功能的工程价值和赛事选题是否足够独立，应由评审基于具体任务判断。

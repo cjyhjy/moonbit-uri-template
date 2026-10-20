@@ -14,6 +14,7 @@ import sys
 import tempfile
 import zipfile
 from pathlib import Path
+from source_digest import source_digest
 
 ROOT = Path(__file__).resolve().parent.parent
 MOON = str(ROOT/'tools/moon')
@@ -23,6 +24,7 @@ report = {'status': 'running',
           'verification_started_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat()}
 initial_head = subprocess.run(['git','rev-parse','HEAD'], cwd=ROOT, text=True, capture_output=True)
 report['git_head'] = initial_head.stdout.strip() if initial_head.returncode == 0 else None
+report['working_tree_dirty'] = bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True).strip())
 finished = False
 
 def save_report():
@@ -47,17 +49,6 @@ def run(args, cwd=ROOT, log=None):
         print(result.stdout)
         raise SystemExit(result.returncode)
     return result.stdout
-
-def digest():
-    entries = []
-    for folder in ('adapter', 'cmd', 'examples', 'testdata', 'tools', 'bench'):
-        base = ROOT/folder
-        if base.exists(): entries.extend(p for p in base.rglob('*') if p.is_file() and '__pycache__' not in p.parts)
-    entries.extend(p for p in ROOT.iterdir() if p.is_file() and p.suffix in ('.mbt', '.mbti', '.pkg', '.mod', '.json'))
-    hashed = hashlib.sha256()
-    for path in sorted(set(entries)):
-        hashed.update(str(path.relative_to(ROOT)).encode()+b'\0'+path.read_bytes()+b'\0')
-    return hashed.hexdigest()
 
 run([MOON, 'fmt', '--check'])
 run([sys.executable, 'tools/test_fixture_literals.py'])
@@ -86,9 +77,9 @@ versions = run([MOON, 'version', '--all'])
 if 'v'+lock['version']+' ' not in versions: raise SystemExit('Unexpected compiler version; run tools/bootstrap.py')
 report.update({'verified_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
           'os': platform.platform(), 'toolchain': versions.strip(),
-          'node': run(['node','--version']).strip(), 'source_sha256': digest(),
+          'node': run(['node','--version']).strip(), 'source_sha256': source_digest(ROOT),
           'upstream_commit': manifest['commit'], 'backends': {}, 'fixture_literal_roundtrips': 10})
-for backend in ('js', 'wasm-gc', 'native'):
+for backend in ('js', 'wasm', 'wasm-gc', 'native'):
     run([MOON, 'check', '--target', backend, '--deny-warn'])
     output = run([MOON, 'test', '--target', backend, '--deny-warn', '--verbose'], log=f'tests-{backend}.log')
     success_names = re.findall(r'\("([^"\n]+)"\) ok', output)
@@ -112,6 +103,21 @@ cli_pass = re.search(r'(?:#|ℹ) pass (\d+)',cli)
 cli_fail = re.search(r'(?:#|ℹ) fail (\d+)',cli)
 if not cli_total or not cli_pass or not cli_fail or cli_fail[1] != '0' or cli_total[1]!=cli_pass[1]: raise SystemExit('CLI test report missing')
 report['cli'] = {'total':int(cli_total[1]),'passed':int(cli_pass[1]),'failed':0}
+workflow = run(['node','--test','tools/project.test.mjs','integrations/github-audit/integration.test.mjs'], log='tests-workflow.log')
+workflow_total = re.search(r'(?:#|ℹ) tests (\d+)', workflow)
+workflow_pass = re.search(r'(?:#|ℹ) pass (\d+)', workflow)
+workflow_fail = re.search(r'(?:#|ℹ) fail (\d+)', workflow)
+if not workflow_total or not workflow_pass or not workflow_fail or workflow_fail[1] != '0' or workflow_total[1] != workflow_pass[1]: raise SystemExit('Workflow tests incomplete')
+report['workflow'] = {'total':int(workflow_total[1]), 'passed':int(workflow_pass[1]), 'failed':0, 'network':'offline only; live evidence is separate'}
+sdk = run(['node', '--test', 'sdk/sdk.test.mjs'], log='tests-sdk.log')
+sdk_total = re.search(r'(?:#|ℹ) tests (\d+)', sdk)
+sdk_pass = re.search(r'(?:#|ℹ) pass (\d+)', sdk)
+sdk_fail = re.search(r'(?:#|ℹ) fail (\d+)', sdk)
+if not sdk_total or not sdk_pass or not sdk_fail or sdk_fail[1] != '0' or sdk_total[1] != sdk_pass[1]: raise SystemExit('SDK tests incomplete')
+run(['node', 'tools/verify_sdk_package.mjs'], log='sdk-package.log')
+report['sdk'] = {'total': int(sdk_total[1]), 'passed': int(sdk_pass[1]), 'failed': 0,
+                 'package': json.loads((REPORTS/'sdk-package.json').read_text())}
+run(['node','tools/cli.mjs','project','integrations/github-audit/requests.json','--github'], log='project-check.log')
 package = run([MOON, 'package', '--list'],log='package.log')
 module_manifest=(ROOT/'moon.mod').read_text()
 module_name=re.search(r'name\s*=\s*"([^"]+)"',module_manifest)[1]
@@ -133,16 +139,16 @@ with zipfile.ZipFile(archive_path) as archive:
         (work/'moon.work').write_text('members = ["library", "consumer"]\n')
         (app/'moon.mod').write_text('name = "acceptance/downstream"\nimport { "'+module_name+'@'+module_version+'" }\n')
         (app/'moon.pkg').write_text('import { "cjyhjy/uri_template" @uri }\npkgtype(kind: "executable")\n')
-        (app/'main.mbt').write_text('fn main {\n let vars = @uri.Variables::new()\n vars.set("id", @uri.Scalar("42"))\n match @uri.expand("/users/{id}", vars) {\n Ok(s) => println(s)\n Err(e) => println(e.message)\n }\n}\n')
-        for backend in ('js','wasm-gc','native'):
+        (app/'main.mbt').write_text('fn main {\n let vars = @uri.Variables::new()\n vars.set("id", @uri.Scalar("42"))\n let t = @uri.parse("/users/{id}").unwrap()\n println(t.measure(vars).unwrap())\n println(t.expand_batch([vars], required=["id"]).unwrap()[0])\n let catalog = @uri.compile_catalog([("user", "/users/{id}")]).unwrap()\n println(catalog.measure("user", vars).unwrap())\n println(catalog.expand_batch([@uri.CatalogRequest::new("user", vars, required=["id"])]).unwrap()[0])\n match @uri.expand("/users/{id}", vars) {\n Ok(s) => println(s)\n Err(e) => println(e.message)\n }\n}\n')
+        for backend in ('js','wasm','wasm-gc','native'):
             output=run([MOON,'run','.', '--target',backend],cwd=app)
             if '/users/42' not in output: raise SystemExit('Downstream import failed: '+backend)
-report['package']={'files':names,'sha256':hashlib.sha256(archive_path.read_bytes()).hexdigest(),'clean_downstream_backends':['js','wasm-gc','native']}
+report['package']={'files':names,'sha256':hashlib.sha256(archive_path.read_bytes()).hexdigest(),'clean_downstream_backends':['js','wasm','wasm-gc','native']}
 head = subprocess.run(['git','rev-parse','HEAD'], cwd=ROOT, text=True, capture_output=True)
 report['git_head'] = head.stdout.strip() if head.returncode == 0 else None
 report['status'] = 'passed'
 report.pop('current_gate', None)
 finished = True
 save_report()
-print(f"CLI: {report['cli']['passed']} passed; clean package imports passed on three backends")
+print(f"CLI: {report['cli']['passed']} passed; clean package imports passed on four backends")
 print('Wrote reports/verification.json')

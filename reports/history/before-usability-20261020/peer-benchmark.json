@@ -1,0 +1,436 @@
+{
+  "status": "passed",
+  "measuredAt": "2026-10-20T06:23:34.227Z",
+  "node": "v26.7.0",
+  "cpu": "Apple M5 Pro",
+  "platform": "darwin",
+  "arch": "arm64",
+  "scope": "JS release core, 3 warmups, 7 rotated-order samples; setup included once per sample, parse-only cost is not isolated. Bounded public APIs, but input checking semantics differ. No allocation/RSS or cross-platform superiority claim.",
+  "sourceSha256": "6476967d89782cd6175fd22e9766e441e1d8497880727626eb3001719cec1037",
+  "peerAudit": {
+    "magic": {
+      "repository": "https://github.com/Magic486/moon-uri-template",
+      "commit": "8fecb90c2190e4715935b5f4ea0937b0b5c8d08b",
+      "remote_head": "8fecb90c2190e4715935b5f4ea0937b0b5c8d08b",
+      "backends": {
+        "js": {
+          "exit_code": 0,
+          "summary": "Total tests: 194, passed: 194, failed: 0",
+          "log": "peer-magic-js-20261020.log"
+        },
+        "wasm-gc": {
+          "exit_code": 0,
+          "summary": "Total tests: 194, passed: 194, failed: 0",
+          "log": "peer-magic-wasm-gc-20261020.log"
+        },
+        "native": {
+          "exit_code": 0,
+          "summary": "Total tests: 194, passed: 194, failed: 0",
+          "log": "peer-magic-native-20261020.log"
+        }
+      },
+      "test_scope": "single-module workspace including subpackages"
+    },
+    "jsj": {
+      "repository": "https://github.com/JSJ222/MoonUriTemplate",
+      "commit": "76b11916c91cd48d42102104fab82337a276b225",
+      "remote_head": "76b11916c91cd48d42102104fab82337a276b225",
+      "backends": {
+        "js": {
+          "exit_code": 0,
+          "summary": "Total tests: 119, passed: 119, failed: 0",
+          "log": "peer-jsj-js-20261020.log"
+        },
+        "wasm-gc": {
+          "exit_code": 0,
+          "summary": "Total tests: 119, passed: 119, failed: 0",
+          "log": "peer-jsj-wasm-gc-20261020.log"
+        },
+        "native": {
+          "exit_code": 0,
+          "summary": "Total tests: 119, passed: 119, failed: 0",
+          "log": "peer-jsj-native-20261020.log"
+        }
+      },
+      "test_scope": "single-module workspace including subpackages"
+    }
+  },
+  "samples": [
+    {
+      "scenario": "scalar-path",
+      "reuse": false,
+      "iterations": 10000,
+      "expectedChecksum": 90000,
+      "peers": {
+        "ours": {
+          "rawMs": [
+            13.75675,
+            5.697417,
+            5.320416,
+            5.223708,
+            5.298125,
+            5.288125,
+            5.387417
+          ],
+          "medianMs": 5.320416,
+          "maxMs": 13.75675
+        },
+        "magic": {
+          "rawMs": [
+            9.415,
+            6.240625,
+            4.964,
+            5.006875,
+            5.186,
+            5.064792,
+            4.971916
+          ],
+          "medianMs": 5.064792,
+          "maxMs": 9.415
+        },
+        "jsj": {
+          "rawMs": [
+            13.644875,
+            7.369334,
+            6.781917,
+            6.640208,
+            6.669125,
+            6.725791,
+            6.571459
+          ],
+          "medianMs": 6.725791,
+          "maxMs": 13.644875
+        }
+      }
+    },
+    {
+      "scenario": "scalar-path",
+      "reuse": true,
+      "iterations": 10000,
+      "expectedChecksum": 90000,
+      "peers": {
+        "ours": {
+          "rawMs": [
+            2.385083,
+            2.44575,
+            2.503625,
+            2.374917,
+            2.431208,
+            2.403792,
+            2.414709
+          ],
+          "medianMs": 2.414709,
+          "maxMs": 2.503625
+        },
+        "magic": {
+          "rawMs": [
+            3.831667,
+            3.943166,
+            3.85325,
+            3.823542,
+            4.092708,
+            3.848333,
+            3.957291
+          ],
+          "medianMs": 3.85325,
+          "maxMs": 4.092708
+        },
+        "jsj": {
+          "rawMs": [
+            4.910166,
+            4.865541,
+            4.864166,
+            4.843458,
+            5.026166,
+            4.852042,
+            4.843292
+          ],
+          "medianMs": 4.864166,
+          "maxMs": 5.026166
+        }
+      }
+    },
+    {
+      "scenario": "unicode-query-list",
+      "reuse": false,
+      "iterations": 10000,
+      "expectedChecksum": 710000,
+      "peers": {
+        "ours": {
+          "rawMs": [
+            18.975834,
+            16.106041,
+            15.6255,
+            15.551292,
+            15.629833,
+            15.609042,
+            15.622792
+          ],
+          "medianMs": 15.6255,
+          "maxMs": 18.975834
+        },
+        "magic": {
+          "rawMs": [
+            18.661,
+            15.268416,
+            15.553709,
+            15.774791,
+            15.77925,
+            15.397375,
+            15.5755
+          ],
+          "medianMs": 15.5755,
+          "maxMs": 18.661
+        },
+        "jsj": {
+          "rawMs": [
+            20.416791,
+            18.090959,
+            17.52825,
+            17.887667,
+            17.573625,
+            17.50875,
+            17.565333
+          ],
+          "medianMs": 17.573625,
+          "maxMs": 20.416791
+        }
+      }
+    },
+    {
+      "scenario": "unicode-query-list",
+      "reuse": true,
+      "iterations": 10000,
+      "expectedChecksum": 710000,
+      "peers": {
+        "ours": {
+          "rawMs": [
+            10.933375,
+            10.697833,
+            10.760375,
+            10.813042,
+            10.776334,
+            10.924208,
+            10.750417
+          ],
+          "medianMs": 10.776334,
+          "maxMs": 10.933375
+        },
+        "magic": {
+          "rawMs": [
+            13.454459,
+            12.851916,
+            12.832125,
+            12.896709,
+            12.783417,
+            13.109458,
+            13.007625
+          ],
+          "medianMs": 12.896709,
+          "maxMs": 13.454459
+        },
+        "jsj": {
+          "rawMs": [
+            14.476916,
+            14.342208,
+            13.9265,
+            14.082208,
+            14.131166,
+            13.935958,
+            14.107208
+          ],
+          "medianMs": 14.107208,
+          "maxMs": 14.476916
+        }
+      }
+    },
+    {
+      "scenario": "50-expressions",
+      "reuse": false,
+      "iterations": 500,
+      "expectedChecksum": 125000,
+      "peers": {
+        "ours": {
+          "rawMs": [
+            5.406875,
+            5.252167,
+            5.589,
+            5.57725,
+            5.949333,
+            5.365541,
+            5.33375
+          ],
+          "medianMs": 5.406875,
+          "maxMs": 5.949333
+        },
+        "magic": {
+          "rawMs": [
+            10.4445,
+            10.63275,
+            11.711708,
+            11.208667,
+            10.484,
+            10.330584,
+            9.971416
+          ],
+          "medianMs": 10.484,
+          "maxMs": 11.711708
+        },
+        "jsj": {
+          "rawMs": [
+            10.754667,
+            10.862458,
+            10.826459,
+            10.7105,
+            11.220625,
+            10.807458,
+            11.01
+          ],
+          "medianMs": 10.826459,
+          "maxMs": 11.220625
+        }
+      }
+    },
+    {
+      "scenario": "50-expressions",
+      "reuse": true,
+      "iterations": 500,
+      "expectedChecksum": 125000,
+      "peers": {
+        "ours": {
+          "rawMs": [
+            1.343958,
+            1.305791,
+            1.311833,
+            1.323667,
+            1.331708,
+            1.303959,
+            1.3125
+          ],
+          "medianMs": 1.3125,
+          "maxMs": 1.343958
+        },
+        "magic": {
+          "rawMs": [
+            8.965417,
+            9.114709,
+            8.335541,
+            8.63025,
+            8.473417,
+            8.742833,
+            8.383666
+          ],
+          "medianMs": 8.63025,
+          "maxMs": 9.114709
+        },
+        "jsj": {
+          "rawMs": [
+            8.527666,
+            8.956583,
+            8.279667,
+            8.944375,
+            9.041417,
+            8.837167,
+            9.19875
+          ],
+          "medianMs": 8.944375,
+          "maxMs": 9.19875
+        }
+      }
+    },
+    {
+      "scenario": "output-budget-failure",
+      "reuse": false,
+      "iterations": 100,
+      "expectedChecksum": 100,
+      "peers": {
+        "ours": {
+          "rawMs": [
+            3.493959,
+            3.4565,
+            2.791667,
+            3.506458,
+            3.402458,
+            3.370791,
+            3.396917
+          ],
+          "medianMs": 3.402458,
+          "maxMs": 3.506458
+        },
+        "magic": {
+          "rawMs": [
+            69.357291,
+            68.902041,
+            76.167833,
+            83.723292,
+            83.604209,
+            83.597417,
+            79.998375
+          ],
+          "medianMs": 79.998375,
+          "maxMs": 83.723292
+        },
+        "jsj": {
+          "rawMs": [
+            3.836,
+            3.899167,
+            4.015792,
+            3.8785,
+            3.797,
+            3.926625,
+            3.795584
+          ],
+          "medianMs": 3.8785,
+          "maxMs": 4.015792
+        }
+      }
+    },
+    {
+      "scenario": "output-budget-failure",
+      "reuse": true,
+      "iterations": 100,
+      "expectedChecksum": 100,
+      "peers": {
+        "ours": {
+          "rawMs": [
+            3.38275,
+            3.440792,
+            3.348084,
+            3.534459,
+            3.459125,
+            3.295083,
+            3.406667
+          ],
+          "medianMs": 3.406667,
+          "maxMs": 3.534459
+        },
+        "magic": {
+          "rawMs": [
+            86.150666,
+            80.019458,
+            82.913667,
+            81.153208,
+            86.092417,
+            78.655334,
+            80.158
+          ],
+          "medianMs": 81.153208,
+          "maxMs": 86.150666
+        },
+        "jsj": {
+          "rawMs": [
+            3.604,
+            3.838042,
+            3.94775,
+            3.825792,
+            3.714625,
+            3.796958,
+            3.801833
+          ],
+          "medianMs": 3.801833,
+          "maxMs": 3.94775
+        }
+      }
+    }
+  ]
+}

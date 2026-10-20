@@ -14,9 +14,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install pinned development tools
+        run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Install checksummed pinned toolchain
         run: python3 tools/bootstrap.py
-      - name: Verify all backends, CLI, fixtures, API and packaged consumer
+      - name: Verify four backends, CLI, project contracts and packaged consumer
         run: npm test
       - name: Collect diagnostic coverage
         run: python3 tools/coverage.py
@@ -31,3 +33,4 @@ jobs:
             reports/
             _build/publish/*.zip
             _build/releases/*.zip
+            _build/releases/*.tgz

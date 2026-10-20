@@ -9,7 +9,11 @@ import {
 // Values
 pub fn parse_variables(String) -> Result[@uri_template.Variables, InputError]
 
+pub fn prepare_request(String, String) -> PreparedRequest
+
 pub fn request(String, String, String) -> String
+
+pub fn request_with_options(String, String, String, String) -> String
 
 // Errors
 
@@ -20,6 +24,9 @@ pub(all) struct InputError {
   path : String
 } derive(@debug.Debug)
 pub fn InputError::to_repr(Self) -> @debug.Repr
+
+type PreparedRequest
+pub fn PreparedRequest::call(Self, String, String) -> String
 
 // Type aliases
 

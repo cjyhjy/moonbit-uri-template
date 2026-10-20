@@ -1,0 +1,449 @@
+{
+  "schemaVersion": 1,
+  "evidence": "live-github-api",
+  "startedAt": "2026-10-20T06:11:07.433Z",
+  "manifestSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
+  "status": "failed",
+  "checks": {
+    "schemaVersion": 1,
+    "ok": true,
+    "file": "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/integrations/github-audit/requests.json",
+    "diagnostics": [],
+    "outputs": [
+      {
+        "index": 0,
+        "label": "ours/repository",
+        "template": "repository",
+        "uri": "https://api.github.com/repos/cjyhjy/moonbit-uri-template",
+        "bytes": 56,
+        "origins": [
+          {
+            "name": null,
+            "start": 0,
+            "end": 29,
+            "outputStart": 0,
+            "outputEnd": 29
+          },
+          {
+            "name": "owner",
+            "start": 30,
+            "end": 35,
+            "outputStart": 29,
+            "outputEnd": 35
+          },
+          {
+            "name": null,
+            "start": 36,
+            "end": 37,
+            "outputStart": 35,
+            "outputEnd": 36
+          },
+          {
+            "name": "repo",
+            "start": 38,
+            "end": 42,
+            "outputStart": 36,
+            "outputEnd": 56
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "label": "ours/commits",
+        "template": "commits",
+        "uri": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=1",
+        "bytes": 75,
+        "origins": [
+          {
+            "name": null,
+            "start": 0,
+            "end": 29,
+            "outputStart": 0,
+            "outputEnd": 29
+          },
+          {
+            "name": "owner",
+            "start": 30,
+            "end": 35,
+            "outputStart": 29,
+            "outputEnd": 35
+          },
+          {
+            "name": null,
+            "start": 36,
+            "end": 37,
+            "outputStart": 35,
+            "outputEnd": 36
+          },
+          {
+            "name": "repo",
+            "start": 38,
+            "end": 42,
+            "outputStart": 36,
+            "outputEnd": 56
+          },
+          {
+            "name": null,
+            "start": 43,
+            "end": 51,
+            "outputStart": 56,
+            "outputEnd": 64
+          },
+          {
+            "name": "per_page",
+            "start": 53,
+            "end": 61,
+            "outputStart": 64,
+            "outputEnd": 75
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "label": "ours/releases",
+        "template": "releases",
+        "uri": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=1",
+        "bytes": 76,
+        "origins": [
+          {
+            "name": null,
+            "start": 0,
+            "end": 29,
+            "outputStart": 0,
+            "outputEnd": 29
+          },
+          {
+            "name": "owner",
+            "start": 30,
+            "end": 35,
+            "outputStart": 29,
+            "outputEnd": 35
+          },
+          {
+            "name": null,
+            "start": 36,
+            "end": 37,
+            "outputStart": 35,
+            "outputEnd": 36
+          },
+          {
+            "name": "repo",
+            "start": 38,
+            "end": 42,
+            "outputStart": 36,
+            "outputEnd": 56
+          },
+          {
+            "name": null,
+            "start": 43,
+            "end": 52,
+            "outputStart": 56,
+            "outputEnd": 65
+          },
+          {
+            "name": "per_page",
+            "start": 54,
+            "end": 62,
+            "outputStart": 65,
+            "outputEnd": 76
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "label": "magic/repository",
+        "template": "repository",
+        "uri": "https://api.github.com/repos/Magic486/moon-uri-template",
+        "bytes": 55,
+        "origins": [
+          {
+            "name": null,
+            "start": 0,
+            "end": 29,
+            "outputStart": 0,
+            "outputEnd": 29
+          },
+          {
+            "name": "owner",
+            "start": 30,
+            "end": 35,
+            "outputStart": 29,
+            "outputEnd": 37
+          },
+          {
+            "name": null,
+            "start": 36,
+            "end": 37,
+            "outputStart": 37,
+            "outputEnd": 38
+          },
+          {
+            "name": "repo",
+            "start": 38,
+            "end": 42,
+            "outputStart": 38,
+            "outputEnd": 55
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "label": "magic/commits",
+        "template": "commits",
+        "uri": "https://api.github.com/repos/Magic486/moon-uri-template/commits?per_page=1",
+        "bytes": 74,
+        "origins": [
+          {
+            "name": null,
+            "start": 0,
+            "end": 29,
+            "outputStart": 0,
+            "outputEnd": 29
+          },
+          {
+            "name": "owner",
+            "start": 30,
+            "end": 35,
+            "outputStart": 29,
+            "outputEnd": 37
+          },
+          {
+            "name": null,
+            "start": 36,
+            "end": 37,
+            "outputStart": 37,
+            "outputEnd": 38
+          },
+          {
+            "name": "repo",
+            "start": 38,
+            "end": 42,
+            "outputStart": 38,
+            "outputEnd": 55
+          },
+          {
+            "name": null,
+            "start": 43,
+            "end": 51,
+            "outputStart": 55,
+            "outputEnd": 63
+          },
+          {
+            "name": "per_page",
+            "start": 53,
+            "end": 61,
+            "outputStart": 63,
+            "outputEnd": 74
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "label": "magic/releases",
+        "template": "releases",
+        "uri": "https://api.github.com/repos/Magic486/moon-uri-template/releases?per_page=1",
+        "bytes": 75,
+        "origins": [
+          {
+            "name": null,
+            "start": 0,
+            "end": 29,
+            "outputStart": 0,
+            "outputEnd": 29
+          },
+          {
+            "name": "owner",
+            "start": 30,
+            "end": 35,
+            "outputStart": 29,
+            "outputEnd": 37
+          },
+          {
+            "name": null,
+            "start": 36,
+            "end": 37,
+            "outputStart": 37,
+            "outputEnd": 38
+          },
+          {
+            "name": "repo",
+            "start": 38,
+            "end": 42,
+            "outputStart": 38,
+            "outputEnd": 55
+          },
+          {
+            "name": null,
+            "start": 43,
+            "end": 52,
+            "outputStart": 55,
+            "outputEnd": 64
+          },
+          {
+            "name": "per_page",
+            "start": 54,
+            "end": 62,
+            "outputStart": 64,
+            "outputEnd": 75
+          }
+        ]
+      },
+      {
+        "index": 6,
+        "label": "jsj/repository",
+        "template": "repository",
+        "uri": "https://api.github.com/repos/JSJ222/MoonUriTemplate",
+        "bytes": 51,
+        "origins": [
+          {
+            "name": null,
+            "start": 0,
+            "end": 29,
+            "outputStart": 0,
+            "outputEnd": 29
+          },
+          {
+            "name": "owner",
+            "start": 30,
+            "end": 35,
+            "outputStart": 29,
+            "outputEnd": 35
+          },
+          {
+            "name": null,
+            "start": 36,
+            "end": 37,
+            "outputStart": 35,
+            "outputEnd": 36
+          },
+          {
+            "name": "repo",
+            "start": 38,
+            "end": 42,
+            "outputStart": 36,
+            "outputEnd": 51
+          }
+        ]
+      },
+      {
+        "index": 7,
+        "label": "jsj/commits",
+        "template": "commits",
+        "uri": "https://api.github.com/repos/JSJ222/MoonUriTemplate/commits?per_page=1",
+        "bytes": 70,
+        "origins": [
+          {
+            "name": null,
+            "start": 0,
+            "end": 29,
+            "outputStart": 0,
+            "outputEnd": 29
+          },
+          {
+            "name": "owner",
+            "start": 30,
+            "end": 35,
+            "outputStart": 29,
+            "outputEnd": 35
+          },
+          {
+            "name": null,
+            "start": 36,
+            "end": 37,
+            "outputStart": 35,
+            "outputEnd": 36
+          },
+          {
+            "name": "repo",
+            "start": 38,
+            "end": 42,
+            "outputStart": 36,
+            "outputEnd": 51
+          },
+          {
+            "name": null,
+            "start": 43,
+            "end": 51,
+            "outputStart": 51,
+            "outputEnd": 59
+          },
+          {
+            "name": "per_page",
+            "start": 53,
+            "end": 61,
+            "outputStart": 59,
+            "outputEnd": 70
+          }
+        ]
+      },
+      {
+        "index": 8,
+        "label": "jsj/releases",
+        "template": "releases",
+        "uri": "https://api.github.com/repos/JSJ222/MoonUriTemplate/releases?per_page=1",
+        "bytes": 71,
+        "origins": [
+          {
+            "name": null,
+            "start": 0,
+            "end": 29,
+            "outputStart": 0,
+            "outputEnd": 29
+          },
+          {
+            "name": "owner",
+            "start": 30,
+            "end": 35,
+            "outputStart": 29,
+            "outputEnd": 35
+          },
+          {
+            "name": null,
+            "start": 36,
+            "end": 37,
+            "outputStart": 35,
+            "outputEnd": 36
+          },
+          {
+            "name": "repo",
+            "start": 38,
+            "end": 42,
+            "outputStart": 36,
+            "outputEnd": 51
+          },
+          {
+            "name": null,
+            "start": 43,
+            "end": 52,
+            "outputStart": 51,
+            "outputEnd": 60
+          },
+          {
+            "name": "per_page",
+            "start": 54,
+            "end": 62,
+            "outputStart": 60,
+            "outputEnd": 71
+          }
+        ]
+      }
+    ],
+    "totalOutputBytes": 603
+  },
+  "responses": [
+    {
+      "label": "ours/repository",
+      "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template",
+      "status": 403,
+      "receivedAt": "2026-10-20T06:11:08.801Z",
+      "requestId": "0A83:1F6EC9:34E13:38D19:6AD705FB",
+      "etag": null,
+      "responseDate": "Tue, 20 Oct 2026 06:11:08 GMT",
+      "bodySha256": "a05a85cfdfa7d7b6d70a19a12681d2402e40956a2d89cc4b3da397637b92f009",
+      "responseBytes": 278,
+      "error": "GitHubHttpError"
+    }
+  ],
+  "completedAt": "2026-10-20T06:11:08.801Z",
+  "engineSha256": "cd88eaa85baa9bd2250ce0860b14dea3dd25ff0410270ad0be5be3f395a8a7e7"
+}

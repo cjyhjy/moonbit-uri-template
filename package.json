@@ -1,6 +1,6 @@
 {
   "name": "moonbit-uri-template",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "MoonBit RFC 6570 library and CLI",
@@ -16,6 +16,38 @@
     "test": "python3 tools/verify.py",
     "test:cli": "node --test tools/cli.test.mjs",
     "demo": "node tools/demo.mjs",
-    "release:package": "python3 tools/package_release.py"
+    "release:package": "python3 tools/package_release.py",
+    "playground": "node tools/build.mjs && node tools/serve-playground.mjs",
+    "compare:peers": "python3 tools/compare_peers.py",
+    "test:workflow": "node --test tools/project.test.mjs integrations/github-audit/integration.test.mjs",
+    "check:project": "node tools/cli.mjs project integrations/github-audit/requests.json --github",
+    "integration:live": "node integrations/github-audit/main.mjs --gh",
+    "benchmark:peers": "node tools/benchmark_peers.mjs",
+    "test:sdk": "node --test sdk/sdk.test.mjs && tsc --noEmit --strict --module NodeNext --target ES2022 sdk/typecheck.mts",
+    "package:sdk": "node tools/verify_sdk_package.mjs"
+  },
+  "exports": {
+    ".": {
+      "types": "./sdk/index.d.mts",
+      "import": "./sdk/index.mjs"
+    }
+  },
+  "types": "./sdk/index.d.mts",
+  "files": [
+    "sdk/index.mjs",
+    "sdk/index.d.mts",
+    "dist/engine.mjs",
+    "dist/licenses",
+    "docs/SDK.md",
+    "tools/cli.mjs",
+    "tools/project.mjs",
+    "tools/json-source.mjs",
+    "tools/diagnostics.mjs",
+    "tools/suggestions.mjs",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "devDependencies": {
+    "typescript": "7.0.2"
   }
 }

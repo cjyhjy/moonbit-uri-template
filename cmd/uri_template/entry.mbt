@@ -1,0 +1,29 @@
+///|
+#export_name("request_with_options")
+pub fn request_with_options(
+  command : String,
+  source : String,
+  variables_json : String,
+  options_json : String,
+) -> String {
+  @adapter.request_with_options(command, source, variables_json, options_json)
+}
+
+///|
+#export_name("prepare_request")
+pub fn prepare_request(
+  source : String,
+  options : String,
+) -> @adapter.PreparedRequest {
+  @adapter.prepare_request(source, options)
+}
+
+///|
+#export_name("prepared_call")
+pub fn prepared_call(
+  prepared : @adapter.PreparedRequest,
+  command : String,
+  variables : String,
+) -> String {
+  prepared.call(command, variables)
+}

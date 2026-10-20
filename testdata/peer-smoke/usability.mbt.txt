@@ -1,0 +1,34 @@
+  let empty = @ours.Variables::from_entries([("x", @ours.List([]))]).unwrap()
+  let ours_t = @ours.parse("{?x}").unwrap()
+  println("ours.empty_omitted=" + ours_t.check_bindings(empty).omitted.length().to_string())
+  println("ours.required_empty=" + ours_t.expand_checked(empty, required=["x"]).unwrap_err().code)
+  let jsj_t = @jsj.parse("{?x}").unwrap()
+  println("jsj.empty_issues=" + jsj_t.inspect_bindings([("x", @jsj.List([]))]).issues().length().to_string())
+  match jsj_t.expand_required([("x", @jsj.List([]))]) {
+    Ok(s) => println("jsj.required_empty=accepted:" + s)
+    Err(e) => println("jsj.required_empty=" + e.code())
+  }
+  let budget_vars = @ours.Variables::from_entries([("x", @ours.Scalar("😀"))]).unwrap()
+  println("ours.output_budget=" + @ours.parse("{x}").unwrap().expand_with_limits(budget_vars, @ours.ExpansionLimits::new(max_output_bytes=11)).unwrap_err().code)
+  try {
+    let _ = @magic.UriTemplate::parse("{x}").expand_with_limit(Map([("x", @magic.Scalar("😀"))]), max_output_length=11)
+    println("magic.output_budget=unexpected_success")
+  } catch { e => println("magic.output_budget=" + e.to_string()) }
+  println("jsj.output_budget=" + @jsj.parse("{x}").unwrap().expand([("x", @jsj.Scalar("😀"))], max_output=11).unwrap_err().code())
+
+  let map_ours = @ours.Variables::from_entries([("x", @ours.Scalar("a")), ("y", @ours.Scalar("b"))]).unwrap()
+  let map_jsj = [("x", @jsj.Scalar("a")), ("y", @jsj.Scalar("b"))]
+  let ot = @ours.parse("{?x,y}").unwrap()
+  let jt = @jsj.parse("{?x,y}").unwrap()
+  println("ours.measure=" + ot.measure(map_ours).unwrap().to_string())
+  println("jsj.measure=" + jt.measure(map_jsj).unwrap().to_string())
+  println("ours.origins=" + ot.expand_mapped(map_ours).unwrap().origins.length().to_string())
+  println("jsj.origins=" + jt.expand_detailed(map_jsj).unwrap().spans().length().to_string())
+  println("ours.batch=" + ot.expand_batch([map_ours, map_ours]).unwrap().length().to_string())
+  println("jsj.batch=" + jt.expand_many([map_jsj, map_jsj]).unwrap().length().to_string())
+  let selective_ours = @ours.Variables::from_entries([("id", @ours.Scalar("42"))]).unwrap()
+  println("ours.selective_required=" + @ours.parse("/users/{id}{?page}").unwrap().expand_checked(selective_ours, required=["id"]).unwrap())
+  match @jsj.parse("/users/{id}{?page}").unwrap().expand_required([("id", @jsj.Scalar("42"))]) {
+    Ok(s) => println("jsj.selective_required=" + s)
+    Err(e) => println("jsj.selective_required=" + e.code())
+  }

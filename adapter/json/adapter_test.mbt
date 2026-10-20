@@ -49,3 +49,41 @@ test "request envelope separates successful outputs from errors" {
     }
   }
 }
+
+///|
+test "bounded bridge rejects budgets and deeply nested JSON before parsing" {
+  let cases = [
+    ("{x}", "{\"x\":\"😀\"}", "{\"maxOutput\":11}", "OutputLimit"),
+    ("{x}", "{}", "{\"requireAll\":true}", "MissingBinding"),
+    ("{x}", "{\"x\":[]}", "{\"required\":[\"x\"]}", "OmittedBinding"),
+    ("{x}", "{\"x\":\"\"}", "{\"maxJson\":0}", "JsonInputLimit"),
+    ("{x}", "{\"x\":[[[]]]}", "{\"maxJsonDepth\":2}", "JsonDepthLimit"),
+    ("{x}", "{}", "{\"maxOutput\":-1}", "InvalidOptions"),
+    ("{x}", "{}", "{\"strict\":\"yes\"}", "InvalidOptions"),
+    ("{x}", "{}", "{\"unknown\":1}", "InvalidOptions"),
+  ]
+  for (source, vars, options, code) in cases {
+    let response = @jsonlib.parse(
+      @json.request_with_options("expand", source, vars, options),
+    )
+    guard response is Object(fields) else { fail("expected envelope") }
+    guard fields.get("error") is Some(Object(error)) else {
+      fail("expected error")
+    }
+    assert_eq(error.get("code"), Some(Json::string(code)))
+    assert_eq(fields.get("output"), None)
+  }
+}
+
+///|
+test "bounded bridge preflight reports names and never values" {
+  let output = @json.request_with_options(
+    "check", "{x}{?empty}", "{\"empty\":[],\"unused\":\"SECRET\"}", "{}",
+  )
+  assert_true(!output.contains("SECRET"))
+  assert_true(output.contains("missing"))
+  assert_true(output.contains("omitted"))
+  let result = @jsonlib.parse(output)
+  guard result is Object(fields) else { fail("expected envelope") }
+  assert_eq(fields.get("exitCode"), Some(Json::number(0)))
+}

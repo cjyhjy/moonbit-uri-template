@@ -5,15 +5,39 @@ fn unreserved(c : Char) -> Bool {
 
 ///|
 fn reserved(c : Char) -> Bool {
-  ":/?#[]@!$&'()*+,;=".contains(c.to_string())
+  match c {
+    ':'
+    | '/'
+    | '?'
+    | '#'
+    | '['
+    | ']'
+    | '@'
+    | '!'
+    | '$'
+    | '&'
+    | '\''
+    | '('
+    | ')'
+    | '*'
+    | '+'
+    | ','
+    | ';'
+    | '=' => true
+    _ => false
+  }
+}
+
+///|
+fn hex_digit(n : Int32) -> Char {
+  (if n < 10 { 48 + n } else { 55 + n }).unsafe_to_char()
 }
 
 ///|
 fn write_byte(out : StringBuilder, n : Int32) -> Unit {
-  let hex = "0123456789ABCDEF".to_array()
   out.write_char('%')
-  out.write_char(hex[(n >> 4) & 15])
-  out.write_char(hex[n & 15])
+  out.write_char(hex_digit((n >> 4) & 15))
+  out.write_char(hex_digit(n & 15))
 }
 
 ///|
@@ -37,12 +61,16 @@ fn write_encoded(out : StringBuilder, c : Char) -> Unit {
 }
 
 ///|
-fn encode(value : String, allow_reserved : Bool) -> String {
-  let cs = value.to_array()
+fn encode_chars(
+  cs : Array[Char],
+  start : Int32,
+  end : Int32,
+  allow_reserved : Bool,
+) -> String {
   let out = StringBuilder()
-  let mut i = 0
-  while i < cs.length() {
-    if allow_reserved && pct_at(cs, i, cs.length()) {
+  let mut i = start
+  while i < end {
+    if allow_reserved && pct_at(cs, i, end) {
       out.write_char(cs[i])
       out.write_char(cs[i + 1])
       out.write_char(cs[i + 2])
