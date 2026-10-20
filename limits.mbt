@@ -109,6 +109,15 @@ fn check_input_budget(
   vars : Variables,
   limits : ExpansionLimits,
 ) -> Result[Int32, TemplateError] {
+  check_input_entries(vars.values.length(), vars.values.iter2(), limits)
+}
+
+///|
+fn check_input_entries(
+  binding_count : Int32,
+  entries : Iter2[String, Value],
+  limits : ExpansionLimits,
+) -> Result[Int32, TemplateError] {
   if limits.max_bindings < 0 ||
     limits.max_members < 0 ||
     limits.max_value_codepoints < 0 ||
@@ -116,13 +125,13 @@ fn check_input_budget(
     limits.max_output_bytes < 0 {
     return Err(problem("InvalidLimit", "limits must be nonnegative", 0, 0))
   }
-  if vars.values.length() > limits.max_bindings {
+  if binding_count > limits.max_bindings {
     return Err(problem("BindingLimit", "binding count exceeds budget", 0, 0))
   }
   let mut members = limits.max_members
   let mut total = limits.max_total_value_codepoints
   // Includes unused bindings, binding names, associative keys and values.
-  for name, value in vars.values {
+  for name, value in entries {
     // Collection count still takes precedence over its name/value lengths.
     let count = match value {
       Scalar(_) => 0

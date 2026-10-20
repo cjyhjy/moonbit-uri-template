@@ -1,6 +1,15 @@
 ///|
 struct TemplateCatalog {
   entries : Map[String, Template]
+  ordered_names : Array[String]
+  metadata : Array[CatalogMetadata]
+}
+
+///|
+priv struct CatalogMetadata {
+  expression_count : Int32
+  variable_count : Int32
+  max_level : Int32
 }
 
 ///|
@@ -61,7 +70,21 @@ pub fn compile_catalog(
       Ok(t) => compiled[name] = t
     }
   }
-  Ok({ entries: compiled, })
+  let ordered_names = compiled.keys().to_array()
+  ordered_names.sort()
+  let metadata = ordered_names.map(fn(name) {
+    let t = compiled[name]
+    let mut expression_count = 0
+    let mut max_level = 0
+    for segment in t.segments {
+      if segment is Expression(op, specs) {
+        expression_count = expression_count + 1
+        max_level = Int32::max(max_level, expression_level(op, specs))
+      }
+    }
+    { expression_count, variable_count: t.variables().length(), max_level, }
+  })
+  Ok({ entries: compiled, ordered_names, metadata, })
 }
 
 ///|
@@ -83,9 +106,7 @@ pub fn TemplateCatalog::get(
 
 ///|
 pub fn TemplateCatalog::names(self : TemplateCatalog) -> Array[String] {
-  let names = self.entries.keys().to_array()
-  names.sort()
-  names
+  self.ordered_names.copy()
 }
 
 ///|

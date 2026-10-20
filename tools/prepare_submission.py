@@ -100,6 +100,7 @@ files = [
     "reports/verification.json", "reports/release.json", "reports/peer-benchmark.json",
     "reports/peer-resources.json",
     "reports/history/before-resource-optimization-20261020/peer-resources.json",
+    "reports/history/before-snapshot-optimization-20261020/peer-resources.json",
     "reports/github-links-portable-live.json",
     "reports/github-integration-portable-live.json", "reports/integration-faults.json", "reports/integration-upgrades.json",
     "reports/history/github-integration-anonymous-failed.json",

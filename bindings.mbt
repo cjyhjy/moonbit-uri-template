@@ -121,10 +121,10 @@ fn Template::validate_bindings(
   required : Array[String],
   reject_unused : Bool,
   limits : ExpansionLimits,
-) -> Result[Unit, TemplateError] {
-  match check_input_budget(variables, limits) {
+) -> Result[Int32, TemplateError] {
+  let remaining_input = match check_input_budget(variables, limits) {
     Err(e) => return Err(e)
-    Ok(_) => ()
+    Ok(remaining) => remaining
   }
   if required.is_empty() && !reject_unused {
     // No presence/unused report is requested. Keep the original first-prefix
@@ -148,7 +148,7 @@ fn Template::validate_bindings(
         }
       }
     }
-    return Ok(())
+    return Ok(remaining_input)
   }
   let report = self.check_bindings(variables)
   let referenced : Map[String, Bool] = Map([])
@@ -206,5 +206,5 @@ fn Template::validate_bindings(
   if !report.invalid.is_empty() {
     return Err(report.invalid[0])
   }
-  Ok(())
+  Ok(remaining_input)
 }

@@ -1,9 +1,9 @@
 {
   "status": "passed",
-  "measuredAt": "2026-10-20T12:24:42.665843+00:00",
-  "sourceSha256": "28eeeadfabf1a80c471c4653e6a40a2bc136eea0706a61769129eeabe54802ca",
-  "gitHead": "7ffcefa91a2d020cd681796e09f0c60fbc053427",
-  "generatorSha256": "3ee678ab0a79f474e74758be0b48d8983e168088cec1070e84eaf7fb19f6d718",
+  "measuredAt": "2026-10-20T12:52:07.178754+00:00",
+  "sourceSha256": "63149169b917fb9536cfd8d33cab409aad88bad77c42fc363f4b26141f91abac",
+  "gitHead": "b331272971bd45d27fd9eae6ef25fb92e17f9557",
+  "generatorSha256": "2e8ddadcd8c651d881b6222702e1de337afc981c3a41db9852ea56ee6d83cac3",
   "platform": "macOS-26.5.1-arm64-arm-64bit",
   "machine": "arm64",
   "cpu": "Apple M5 Pro",
@@ -32,7 +32,7 @@
       "expectedChecksum": 256000,
       "peers": {
         "ours": {
-          "binarySha256": "c47eaade5036930a3fb6e8789ed7b2183e66b38a10c5ff59a1cb1183ebefff3e",
+          "binarySha256": "2e12b8f8671c8027a1ed6056dd233c95e6eee9511abe00cb516957886ef2935d",
           "command": [
             "/opt/homebrew/bin/node",
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_ours_variables512/resources_ours_variables512.js"
@@ -40,49 +40,49 @@
           "raw": [
             {
               "checksum": 256000,
-              "elapsedMs": 15.642040999999999,
-              "processWallMs": 56.722874999999995,
-              "peakRssBytes": 61652992
+              "elapsedMs": 15.326541000000002,
+              "processWallMs": 59.280958,
+              "peakRssBytes": 62046208
             },
             {
               "checksum": 256000,
-              "elapsedMs": 14.648665999999999,
-              "processWallMs": 53.977916,
-              "peakRssBytes": 61800448
+              "elapsedMs": 15.374125,
+              "processWallMs": 54.904667,
+              "peakRssBytes": 61931520
             },
             {
               "checksum": 256000,
-              "elapsedMs": 16.425709,
-              "processWallMs": 59.25,
-              "peakRssBytes": 62029824
+              "elapsedMs": 15.631665999999996,
+              "processWallMs": 55.559542,
+              "peakRssBytes": 62144512
             },
             {
               "checksum": 256000,
-              "elapsedMs": 15.120332999999999,
-              "processWallMs": 55.012958,
-              "peakRssBytes": 61816832
+              "elapsedMs": 15.207,
+              "processWallMs": 54.227209,
+              "peakRssBytes": 62062592
             },
             {
               "checksum": 256000,
-              "elapsedMs": 15.343375000000002,
-              "processWallMs": 56.054292000000004,
-              "peakRssBytes": 61685760
+              "elapsedMs": 14.832582999999998,
+              "processWallMs": 54.373875,
+              "peakRssBytes": 61603840
             }
           ],
           "elapsedMs": {
-            "median": 15.343375000000002,
-            "min": 14.648665999999999,
-            "max": 16.425709
+            "median": 15.326541000000002,
+            "min": 14.832582999999998,
+            "max": 15.631665999999996
           },
           "processWallMs": {
-            "median": 56.054292000000004,
-            "min": 53.977916,
-            "max": 59.25
+            "median": 54.904667,
+            "min": 54.227209,
+            "max": 59.280958
           },
           "peakRssBytes": {
-            "median": 61800448,
-            "min": 61652992,
-            "max": 62029824
+            "median": 62046208,
+            "min": 61603840,
+            "max": 62144512
           }
         },
         "magic": {
@@ -94,49 +94,49 @@
           "raw": [
             {
               "checksum": 256000,
-              "elapsedMs": 51.67604099999999,
-              "processWallMs": 101.75750000000001,
-              "peakRssBytes": 67092480
+              "elapsedMs": 51.278167,
+              "processWallMs": 101.716375,
+              "peakRssBytes": 66895872
             },
             {
               "checksum": 256000,
-              "elapsedMs": 52.81912500000001,
-              "processWallMs": 101.664833,
-              "peakRssBytes": 67026944
+              "elapsedMs": 51.939417000000006,
+              "processWallMs": 102.75854199999999,
+              "peakRssBytes": 66797568
             },
             {
               "checksum": 256000,
-              "elapsedMs": 52.293333000000004,
-              "processWallMs": 102.828208,
-              "peakRssBytes": 67108864
+              "elapsedMs": 52.180875,
+              "processWallMs": 100.534792,
+              "peakRssBytes": 66715648
             },
             {
               "checksum": 256000,
-              "elapsedMs": 52.164208,
-              "processWallMs": 101.23575,
-              "peakRssBytes": 67108864
+              "elapsedMs": 50.471666000000006,
+              "processWallMs": 99.99462499999998,
+              "peakRssBytes": 66797568
             },
             {
               "checksum": 256000,
-              "elapsedMs": 52.39645900000001,
-              "processWallMs": 101.669375,
-              "peakRssBytes": 66748416
+              "elapsedMs": 50.98504200000001,
+              "processWallMs": 99.41770799999999,
+              "peakRssBytes": 66928640
             }
           ],
           "elapsedMs": {
-            "median": 52.293333000000004,
-            "min": 51.67604099999999,
-            "max": 52.81912500000001
+            "median": 51.278167,
+            "min": 50.471666000000006,
+            "max": 52.180875
           },
           "processWallMs": {
-            "median": 101.669375,
-            "min": 101.23575,
-            "max": 102.828208
+            "median": 100.534792,
+            "min": 99.41770799999999,
+            "max": 102.75854199999999
           },
           "peakRssBytes": {
-            "median": 67092480,
-            "min": 66748416,
-            "max": 67108864
+            "median": 66797568,
+            "min": 66715648,
+            "max": 66928640
           }
         },
         "jsj": {
@@ -148,49 +148,49 @@
           "raw": [
             {
               "checksum": 256000,
-              "elapsedMs": 60.505334,
-              "processWallMs": 116.979959,
-              "peakRssBytes": 72056832
+              "elapsedMs": 60.376625000000004,
+              "processWallMs": 118.14300000000001,
+              "peakRssBytes": 69664768
             },
             {
               "checksum": 256000,
-              "elapsedMs": 58.948042,
-              "processWallMs": 116.04387499999999,
-              "peakRssBytes": 69468160
+              "elapsedMs": 59.020791,
+              "processWallMs": 116.18945900000001,
+              "peakRssBytes": 71860224
             },
             {
               "checksum": 256000,
-              "elapsedMs": 63.19054199999999,
-              "processWallMs": 118.21383399999999,
-              "peakRssBytes": 72073216
+              "elapsedMs": 59.781333999999994,
+              "processWallMs": 117.71950000000001,
+              "peakRssBytes": 69402624
             },
             {
               "checksum": 256000,
-              "elapsedMs": 60.227624999999996,
-              "processWallMs": 118.945167,
-              "peakRssBytes": 72302592
+              "elapsedMs": 60.502083000000006,
+              "processWallMs": 117.42995800000001,
+              "peakRssBytes": 71909376
             },
             {
               "checksum": 256000,
-              "elapsedMs": 59.320917,
-              "processWallMs": 116.41529200000001,
-              "peakRssBytes": 69533696
+              "elapsedMs": 58.68475,
+              "processWallMs": 114.10174999999998,
+              "peakRssBytes": 71958528
             }
           ],
           "elapsedMs": {
-            "median": 60.227624999999996,
-            "min": 58.948042,
-            "max": 63.19054199999999
+            "median": 59.781333999999994,
+            "min": 58.68475,
+            "max": 60.502083000000006
           },
           "processWallMs": {
-            "median": 116.979959,
-            "min": 116.04387499999999,
-            "max": 118.945167
+            "median": 117.42995800000001,
+            "min": 114.10174999999998,
+            "max": 118.14300000000001
           },
           "peakRssBytes": {
-            "median": 72056832,
-            "min": 69468160,
-            "max": 72302592
+            "median": 71860224,
+            "min": 69402624,
+            "max": 71958528
           }
         }
       }
@@ -202,7 +202,7 @@
       "expectedChecksum": 512000,
       "peers": {
         "ours": {
-          "binarySha256": "cd9197431cbceb6234c61cb9730f66af8343b856cb9a9be40af3c17c16221002",
+          "binarySha256": "d5fe2e271234f5078914b2d85f978029cea8d1bbbdbc67be0b405c2c85586aa8",
           "command": [
             "/opt/homebrew/bin/node",
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_ours_contract512/resources_ours_contract512.js"
@@ -210,49 +210,49 @@
           "raw": [
             {
               "checksum": 512000,
-              "elapsedMs": 28.036749999999998,
-              "processWallMs": 69.44141699999999,
-              "peakRssBytes": 62128128
-            },
-            {
-              "checksum": 512000,
-              "elapsedMs": 28.222208000000002,
-              "processWallMs": 71.326667,
-              "peakRssBytes": 62193664
-            },
-            {
-              "checksum": 512000,
-              "elapsedMs": 28.657917,
-              "processWallMs": 70.50108399999999,
+              "elapsedMs": 28.620417,
+              "processWallMs": 68.46112500000001,
               "peakRssBytes": 62062592
             },
             {
               "checksum": 512000,
-              "elapsedMs": 28.779666,
-              "processWallMs": 68.8195,
-              "peakRssBytes": 62259200
+              "elapsedMs": 28.622666999999996,
+              "processWallMs": 70.28241599999998,
+              "peakRssBytes": 61997056
             },
             {
               "checksum": 512000,
-              "elapsedMs": 28.310166000000002,
-              "processWallMs": 68.621667,
-              "peakRssBytes": 62226432
+              "elapsedMs": 29.493416999999997,
+              "processWallMs": 70.25533300000001,
+              "peakRssBytes": 62210048
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 28.635958,
+              "processWallMs": 68.990333,
+              "peakRssBytes": 62160896
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 28.039749999999998,
+              "processWallMs": 69.851166,
+              "peakRssBytes": 62341120
             }
           ],
           "elapsedMs": {
-            "median": 28.310166000000002,
-            "min": 28.036749999999998,
-            "max": 28.779666
+            "median": 28.622666999999996,
+            "min": 28.039749999999998,
+            "max": 29.493416999999997
           },
           "processWallMs": {
-            "median": 69.44141699999999,
-            "min": 68.621667,
-            "max": 71.326667
+            "median": 69.851166,
+            "min": 68.46112500000001,
+            "max": 70.28241599999998
           },
           "peakRssBytes": {
-            "median": 62193664,
-            "min": 62062592,
-            "max": 62259200
+            "median": 62160896,
+            "min": 61997056,
+            "max": 62341120
           }
         },
         "jsj": {
@@ -264,49 +264,49 @@
           "raw": [
             {
               "checksum": 512000,
-              "elapsedMs": 32.980833,
-              "processWallMs": 75.0525,
-              "peakRssBytes": 67878912
+              "elapsedMs": 31.550041,
+              "processWallMs": 72.77066599999999,
+              "peakRssBytes": 68386816
             },
             {
               "checksum": 512000,
-              "elapsedMs": 32.848333,
-              "processWallMs": 78.975125,
-              "peakRssBytes": 68845568
+              "elapsedMs": 32.672917,
+              "processWallMs": 76.19395800000001,
+              "peakRssBytes": 66142208
             },
             {
               "checksum": 512000,
-              "elapsedMs": 32.780209,
-              "processWallMs": 75.33725,
-              "peakRssBytes": 68517888
+              "elapsedMs": 32.563708999999996,
+              "processWallMs": 76.432542,
+              "peakRssBytes": 65961984
             },
             {
               "checksum": 512000,
-              "elapsedMs": 32.395167,
-              "processWallMs": 74.119917,
-              "peakRssBytes": 67649536
+              "elapsedMs": 32.867042,
+              "processWallMs": 75.68875,
+              "peakRssBytes": 68108288
             },
             {
               "checksum": 512000,
-              "elapsedMs": 33.888083,
-              "processWallMs": 76.99916700000001,
-              "peakRssBytes": 68403200
+              "elapsedMs": 31.623582999999996,
+              "processWallMs": 73.1485,
+              "peakRssBytes": 67108864
             }
           ],
           "elapsedMs": {
-            "median": 32.848333,
-            "min": 32.395167,
-            "max": 33.888083
+            "median": 32.563708999999996,
+            "min": 31.550041,
+            "max": 32.867042
           },
           "processWallMs": {
-            "median": 75.33725,
-            "min": 74.119917,
-            "max": 78.975125
+            "median": 75.68875,
+            "min": 72.77066599999999,
+            "max": 76.432542
           },
           "peakRssBytes": {
-            "median": 68403200,
-            "min": 67649536,
-            "max": 68845568
+            "median": 67108864,
+            "min": 65961984,
+            "max": 68386816
           }
         }
       }
@@ -318,7 +318,7 @@
       "expectedChecksum": 201000,
       "peers": {
         "ours": {
-          "binarySha256": "7f99d68fa62f6f4b0f95b43ff02c8cbcb957b42bebe9058f35fc9af258dbdf85",
+          "binarySha256": "35342c9a098a47a22227441dbfb84abb990d12f7cfb30b66d66335ccd37715a5",
           "command": [
             "/opt/homebrew/bin/node",
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_ours_session200_one/resources_ours_session200_one.js"
@@ -326,49 +326,49 @@
           "raw": [
             {
               "checksum": 201000,
-              "elapsedMs": 6.820167000000001,
-              "processWallMs": 43.48370799999999,
-              "peakRssBytes": 67665920
+              "elapsedMs": 5.542499999999997,
+              "processWallMs": 41.06675,
+              "peakRssBytes": 63586304
             },
             {
               "checksum": 201000,
-              "elapsedMs": 10.598249999999997,
-              "processWallMs": 49.619,
-              "peakRssBytes": 67747840
+              "elapsedMs": 5.599083999999998,
+              "processWallMs": 41.539334,
+              "peakRssBytes": 63799296
             },
             {
               "checksum": 201000,
-              "elapsedMs": 7.156584000000002,
-              "processWallMs": 54.095707999999995,
-              "peakRssBytes": 68157440
+              "elapsedMs": 5.878375000000002,
+              "processWallMs": 42.325583,
+              "peakRssBytes": 63995904
             },
             {
               "checksum": 201000,
-              "elapsedMs": 7.146583,
-              "processWallMs": 44.078416999999995,
-              "peakRssBytes": 68206592
+              "elapsedMs": 5.5980000000000025,
+              "processWallMs": 41.538958,
+              "peakRssBytes": 64028672
             },
             {
               "checksum": 201000,
-              "elapsedMs": 7.163208999999998,
-              "processWallMs": 46.727999999999994,
-              "peakRssBytes": 68222976
+              "elapsedMs": 5.595666000000001,
+              "processWallMs": 42.15475000000001,
+              "peakRssBytes": 64094208
             }
           ],
           "elapsedMs": {
-            "median": 7.156584000000002,
-            "min": 6.820167000000001,
-            "max": 10.598249999999997
+            "median": 5.5980000000000025,
+            "min": 5.542499999999997,
+            "max": 5.878375000000002
           },
           "processWallMs": {
-            "median": 46.727999999999994,
-            "min": 43.48370799999999,
-            "max": 54.095707999999995
+            "median": 41.539334,
+            "min": 41.06675,
+            "max": 42.325583
           },
           "peakRssBytes": {
-            "median": 68157440,
-            "min": 67665920,
-            "max": 68222976
+            "median": 63995904,
+            "min": 63586304,
+            "max": 64094208
           }
         },
         "jsj": {
@@ -380,49 +380,49 @@
           "raw": [
             {
               "checksum": 201000,
-              "elapsedMs": 11.275875,
-              "processWallMs": 50.620625000000004,
-              "peakRssBytes": 63045632
+              "elapsedMs": 10.630208,
+              "processWallMs": 48.033916999999995,
+              "peakRssBytes": 62947328
             },
             {
               "checksum": 201000,
-              "elapsedMs": 10.807833000000002,
-              "processWallMs": 49.160125,
-              "peakRssBytes": 63143936
+              "elapsedMs": 10.614208000000001,
+              "processWallMs": 47.409167000000004,
+              "peakRssBytes": 63258624
             },
             {
               "checksum": 201000,
-              "elapsedMs": 10.929791000000002,
-              "processWallMs": 48.538166000000004,
+              "elapsedMs": 10.628165999999997,
+              "processWallMs": 48.059666,
+              "peakRssBytes": 63029248
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 10.665083000000003,
+              "processWallMs": 49.100916999999995,
+              "peakRssBytes": 63012864
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 10.468582999999999,
+              "processWallMs": 46.865249999999996,
               "peakRssBytes": 63225856
-            },
-            {
-              "checksum": 201000,
-              "elapsedMs": 11.963666,
-              "processWallMs": 51.04329099999999,
-              "peakRssBytes": 63209472
-            },
-            {
-              "checksum": 201000,
-              "elapsedMs": 11.326542,
-              "processWallMs": 49.372167000000005,
-              "peakRssBytes": 63242240
             }
           ],
           "elapsedMs": {
-            "median": 11.275875,
-            "min": 10.807833000000002,
-            "max": 11.963666
+            "median": 10.628165999999997,
+            "min": 10.468582999999999,
+            "max": 10.665083000000003
           },
           "processWallMs": {
-            "median": 49.372167000000005,
-            "min": 48.538166000000004,
-            "max": 51.04329099999999
+            "median": 48.033916999999995,
+            "min": 46.865249999999996,
+            "max": 49.100916999999995
           },
           "peakRssBytes": {
-            "median": 63209472,
-            "min": 63045632,
-            "max": 63242240
+            "median": 63029248,
+            "min": 62947328,
+            "max": 63258624
           }
         }
       }
@@ -434,7 +434,7 @@
       "expectedChecksum": 80000,
       "peers": {
         "ours": {
-          "binarySha256": "1431bc7d0109c830427ece4be19be501f2cdc74885d565fb3c1f1f1893b6ab19",
+          "binarySha256": "414a68cf5c67180bde6f53dd733b69201c4a23597776323b98469a10857534d4",
           "command": [
             "/opt/homebrew/bin/node",
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_ours_session200_all/resources_ours_session200_all.js"
@@ -442,49 +442,49 @@
           "raw": [
             {
               "checksum": 80000,
-              "elapsedMs": 22.68016699999999,
-              "processWallMs": 83.35725,
-              "peakRssBytes": 75792384
+              "elapsedMs": 21.176375,
+              "processWallMs": 81.549084,
+              "peakRssBytes": 78299136
             },
             {
               "checksum": 80000,
-              "elapsedMs": 22.081625000000003,
-              "processWallMs": 87.676958,
-              "peakRssBytes": 73252864
+              "elapsedMs": 20.491500000000002,
+              "processWallMs": 78.335167,
+              "peakRssBytes": 79183872
             },
             {
               "checksum": 80000,
-              "elapsedMs": 22.250583,
-              "processWallMs": 82.593625,
-              "peakRssBytes": 72155136
+              "elapsedMs": 21.111916,
+              "processWallMs": 80.373958,
+              "peakRssBytes": 77856768
             },
             {
               "checksum": 80000,
-              "elapsedMs": 22.44974999999999,
-              "processWallMs": 81.49270899999999,
-              "peakRssBytes": 72351744
+              "elapsedMs": 20.949292,
+              "processWallMs": 81.85979099999999,
+              "peakRssBytes": 78446592
             },
             {
               "checksum": 80000,
-              "elapsedMs": 22.202000000000005,
-              "processWallMs": 81.743542,
-              "peakRssBytes": 72220672
+              "elapsedMs": 20.283,
+              "processWallMs": 79.126333,
+              "peakRssBytes": 78249984
             }
           ],
           "elapsedMs": {
-            "median": 22.250583,
-            "min": 22.081625000000003,
-            "max": 22.68016699999999
+            "median": 20.949292,
+            "min": 20.283,
+            "max": 21.176375
           },
           "processWallMs": {
-            "median": 82.593625,
-            "min": 81.49270899999999,
-            "max": 87.676958
+            "median": 80.373958,
+            "min": 78.335167,
+            "max": 81.85979099999999
           },
           "peakRssBytes": {
-            "median": 72351744,
-            "min": 72155136,
-            "max": 75792384
+            "median": 78299136,
+            "min": 77856768,
+            "max": 79183872
           }
         },
         "jsj": {
@@ -496,49 +496,683 @@
           "raw": [
             {
               "checksum": 80000,
-              "elapsedMs": 32.157917,
-              "processWallMs": 103.24325,
+              "elapsedMs": 32.74991599999999,
+              "processWallMs": 101.888375,
+              "peakRssBytes": 74006528
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 31.717458999999998,
+              "processWallMs": 97.33562500000001,
+              "peakRssBytes": 73613312
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 32.067875,
+              "processWallMs": 99.65775000000001,
               "peakRssBytes": 73515008
             },
             {
               "checksum": 80000,
-              "elapsedMs": 32.282333,
-              "processWallMs": 102.178667,
-              "peakRssBytes": 70729728
+              "elapsedMs": 33.833625000000005,
+              "processWallMs": 101.34333299999999,
+              "peakRssBytes": 72056832
             },
             {
               "checksum": 80000,
-              "elapsedMs": 31.979040999999995,
-              "processWallMs": 101.105917,
-              "peakRssBytes": 73695232
-            },
-            {
-              "checksum": 80000,
-              "elapsedMs": 33.583499999999994,
-              "processWallMs": 102.699375,
-              "peakRssBytes": 72941568
-            },
-            {
-              "checksum": 80000,
-              "elapsedMs": 32.192958,
-              "processWallMs": 98.83045899999999,
-              "peakRssBytes": 73449472
+              "elapsedMs": 32.264207999999996,
+              "processWallMs": 98.82995799999999,
+              "peakRssBytes": 71778304
             }
           ],
           "elapsedMs": {
-            "median": 32.192958,
-            "min": 31.979040999999995,
-            "max": 33.583499999999994
+            "median": 32.264207999999996,
+            "min": 31.717458999999998,
+            "max": 33.833625000000005
           },
           "processWallMs": {
-            "median": 102.178667,
-            "min": 98.83045899999999,
-            "max": 103.24325
+            "median": 99.65775000000001,
+            "min": 97.33562500000001,
+            "max": 101.888375
           },
           "peakRssBytes": {
-            "median": 73449472,
-            "min": 70729728,
-            "max": 73695232
+            "median": 73515008,
+            "min": 71778304,
+            "max": 74006528
+          }
+        }
+      }
+    },
+    {
+      "target": "js",
+      "scenario": "session200-shared",
+      "iterations": 200,
+      "expectedChecksum": 80000,
+      "peers": {
+        "ours": {
+          "binarySha256": "70d774cc3c7a1aee7cee382b84f27b4a5b6fd67ab006c91fb68ad1635abb5644",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_ours_session200_shared/resources_ours_session200_shared.js"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 14.054624999999994,
+              "processWallMs": 65.572084,
+              "peakRssBytes": 68747264
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 14.024541999999999,
+              "processWallMs": 65.171375,
+              "peakRssBytes": 69074944
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 14.437040999999994,
+              "processWallMs": 65.572375,
+              "peakRssBytes": 68665344
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 14.222541999999997,
+              "processWallMs": 63.649125,
+              "peakRssBytes": 69009408
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 14.327458,
+              "processWallMs": 66.614958,
+              "peakRssBytes": 69287936
+            }
+          ],
+          "elapsedMs": {
+            "median": 14.222541999999997,
+            "min": 14.024541999999999,
+            "max": 14.437040999999994
+          },
+          "processWallMs": {
+            "median": 65.572084,
+            "min": 63.649125,
+            "max": 66.614958
+          },
+          "peakRssBytes": {
+            "median": 69009408,
+            "min": 68665344,
+            "max": 69287936
+          }
+        },
+        "jsj": {
+          "binarySha256": "e08fe8bcc8cdf4d754825ac391efa0da0ae39d10910b7ea3696961219a7b54a8",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_jsj_session200_shared/resources_jsj_session200_shared.js"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 27.934875000000005,
+              "processWallMs": 88.096334,
+              "peakRssBytes": 70385664
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 27.994374999999998,
+              "processWallMs": 88.44220899999999,
+              "peakRssBytes": 70336512
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 27.964458999999998,
+              "processWallMs": 90.0825,
+              "peakRssBytes": 69844992
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 27.773042000000004,
+              "processWallMs": 88.768708,
+              "peakRssBytes": 69730304
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 27.549208999999998,
+              "processWallMs": 86.712916,
+              "peakRssBytes": 69795840
+            }
+          ],
+          "elapsedMs": {
+            "median": 27.934875000000005,
+            "min": 27.549208999999998,
+            "max": 27.994374999999998
+          },
+          "processWallMs": {
+            "median": 88.44220899999999,
+            "min": 86.712916,
+            "max": 90.0825
+          },
+          "peakRssBytes": {
+            "median": 69844992,
+            "min": 69730304,
+            "max": 70385664
+          }
+        }
+      }
+    },
+    {
+      "target": "js",
+      "scenario": "session200-retained",
+      "iterations": 1000,
+      "expectedChecksum": 201000,
+      "peers": {
+        "ours": {
+          "binarySha256": "94a6a61f9036c4592e398002166a05254dfdc4e08f56eb165bbc8a31f2d16f3e",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_ours_session200_retained/resources_ours_session200_retained.js"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.3828749999999985,
+              "processWallMs": 42.580375000000004,
+              "peakRssBytes": 71778304
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.803292000000003,
+              "processWallMs": 44.976666,
+              "peakRssBytes": 71581696
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.679709000000003,
+              "processWallMs": 42.887750000000004,
+              "peakRssBytes": 72122368
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.705417000000001,
+              "processWallMs": 44.028334,
+              "peakRssBytes": 71467008
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.804500000000001,
+              "processWallMs": 45.240125000000006,
+              "peakRssBytes": 71712768
+            }
+          ],
+          "elapsedMs": {
+            "median": 6.705417000000001,
+            "min": 6.3828749999999985,
+            "max": 6.804500000000001
+          },
+          "processWallMs": {
+            "median": 44.028334,
+            "min": 42.580375000000004,
+            "max": 45.240125000000006
+          },
+          "peakRssBytes": {
+            "median": 71712768,
+            "min": 71467008,
+            "max": 72122368
+          }
+        },
+        "jsj": {
+          "binarySha256": "c1a3aa6dea2da1d824fe0d470ce342b12d782921123a0b7a8046c16e0245c5b5",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_jsj_session200_retained/resources_jsj_session200_retained.js"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 16.385209000000003,
+              "processWallMs": 52.918625,
+              "peakRssBytes": 91914240
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 16.547209000000002,
+              "processWallMs": 54.134875,
+              "peakRssBytes": 92094464
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 18.761083000000003,
+              "processWallMs": 56.603165999999995,
+              "peakRssBytes": 97075200
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 16.545791,
+              "processWallMs": 54.447250000000004,
+              "peakRssBytes": 90619904
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 18.436625,
+              "processWallMs": 57.914625,
+              "peakRssBytes": 97337344
+            }
+          ],
+          "elapsedMs": {
+            "median": 16.547209000000002,
+            "min": 16.385209000000003,
+            "max": 18.761083000000003
+          },
+          "processWallMs": {
+            "median": 54.447250000000004,
+            "min": 52.918625,
+            "max": 57.914625
+          },
+          "peakRssBytes": {
+            "median": 92094464,
+            "min": 90619904,
+            "max": 97337344
+          }
+        }
+      }
+    },
+    {
+      "target": "js",
+      "scenario": "batch200-one",
+      "iterations": 1000,
+      "expectedChecksum": 200000,
+      "peers": {
+        "ours": {
+          "binarySha256": "245483805914cd065e24712478caec2297752d56699bdd250a7320b399203f6e",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_ours_batch200_one/resources_ours_batch200_one.js"
+          ],
+          "raw": [
+            {
+              "checksum": 200000,
+              "elapsedMs": 39.467791999999996,
+              "processWallMs": 81.556667,
+              "peakRssBytes": 64258048
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 39.394583,
+              "processWallMs": 81.82304199999999,
+              "peakRssBytes": 64290816
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 39.42104199999999,
+              "processWallMs": 81.303292,
+              "peakRssBytes": 64176128
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 40.470291,
+              "processWallMs": 82.731959,
+              "peakRssBytes": 64208896
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 39.29287500000001,
+              "processWallMs": 81.083833,
+              "peakRssBytes": 64028672
+            }
+          ],
+          "elapsedMs": {
+            "median": 39.42104199999999,
+            "min": 39.29287500000001,
+            "max": 40.470291
+          },
+          "processWallMs": {
+            "median": 81.556667,
+            "min": 81.083833,
+            "max": 82.731959
+          },
+          "peakRssBytes": {
+            "median": 64208896,
+            "min": 64028672,
+            "max": 64290816
+          }
+        },
+        "jsj": {
+          "binarySha256": "124f0c12b1aa97b289022fbe5968f3c306ad54a5de8c86baeae6278042e84512",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_jsj_batch200_one/resources_jsj_batch200_one.js"
+          ],
+          "raw": [
+            {
+              "checksum": 200000,
+              "elapsedMs": 108.84845899999999,
+              "processWallMs": 162.542875,
+              "peakRssBytes": 65929216
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 111.273292,
+              "processWallMs": 166.352208,
+              "peakRssBytes": 65978368
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 109.21379099999999,
+              "processWallMs": 161.71591600000002,
+              "peakRssBytes": 65470464
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 113.06383300000002,
+              "processWallMs": 167.627833,
+              "peakRssBytes": 65388544
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 106.58266599999999,
+              "processWallMs": 160.33141700000002,
+              "peakRssBytes": 65470464
+            }
+          ],
+          "elapsedMs": {
+            "median": 109.21379099999999,
+            "min": 106.58266599999999,
+            "max": 113.06383300000002
+          },
+          "processWallMs": {
+            "median": 162.542875,
+            "min": 160.33141700000002,
+            "max": 167.627833
+          },
+          "peakRssBytes": {
+            "median": 65470464,
+            "min": 65388544,
+            "max": 65978368
+          }
+        }
+      }
+    },
+    {
+      "target": "js",
+      "scenario": "audit200",
+      "iterations": 1000,
+      "expectedChecksum": 100000,
+      "peers": {
+        "ours": {
+          "binarySha256": "b196e9eb93a2951741d6e533f1a24fb917461a9be6456c06ac9fea9650ab5fd7",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_ours_audit200/resources_ours_audit200.js"
+          ],
+          "raw": [
+            {
+              "checksum": 100000,
+              "elapsedMs": 23.012874999999998,
+              "processWallMs": 60.04987499999999,
+              "peakRssBytes": 65060864
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 22.79,
+              "processWallMs": 59.05450000000001,
+              "peakRssBytes": 65044480
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 23.263624999999998,
+              "processWallMs": 60.238040999999996,
+              "peakRssBytes": 64733184
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 22.965040999999996,
+              "processWallMs": 59.05604199999999,
+              "peakRssBytes": 64995328
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 22.697584000000003,
+              "processWallMs": 59.377,
+              "peakRssBytes": 65323008
+            }
+          ],
+          "elapsedMs": {
+            "median": 22.965040999999996,
+            "min": 22.697584000000003,
+            "max": 23.263624999999998
+          },
+          "processWallMs": {
+            "median": 59.377,
+            "min": 59.05450000000001,
+            "max": 60.238040999999996
+          },
+          "peakRssBytes": {
+            "median": 65044480,
+            "min": 64733184,
+            "max": 65323008
+          }
+        },
+        "jsj": {
+          "binarySha256": "865149f523969f396e2c779ac082df1ffb68d1203c92adea7241015e9d923d34",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_jsj_audit200/resources_jsj_audit200.js"
+          ],
+          "raw": [
+            {
+              "checksum": 100000,
+              "elapsedMs": 32.249207999999996,
+              "processWallMs": 70.886875,
+              "peakRssBytes": 75055104
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 31.179624999999998,
+              "processWallMs": 70.472042,
+              "peakRssBytes": 75055104
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 32.299125000000004,
+              "processWallMs": 73.0395,
+              "peakRssBytes": 75005952
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 31.959625,
+              "processWallMs": 70.96695799999999,
+              "peakRssBytes": 75333632
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 31.885083,
+              "processWallMs": 70.645959,
+              "peakRssBytes": 75005952
+            }
+          ],
+          "elapsedMs": {
+            "median": 31.959625,
+            "min": 31.179624999999998,
+            "max": 32.299125000000004
+          },
+          "processWallMs": {
+            "median": 70.886875,
+            "min": 70.472042,
+            "max": 73.0395
+          },
+          "peakRssBytes": {
+            "median": 75055104,
+            "min": 75005952,
+            "max": 75333632
+          }
+        }
+      }
+    },
+    {
+      "target": "js",
+      "scenario": "mixed-collections",
+      "iterations": 100,
+      "expectedChecksum": 5404900,
+      "peers": {
+        "ours": {
+          "binarySha256": "76ed9eeef225e2073badd5f5964a1c6edfba8d87d448f29ef32c6aa5fdd68e20",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_ours_mixed_collections/resources_ours_mixed_collections.js"
+          ],
+          "raw": [
+            {
+              "checksum": 5404900,
+              "elapsedMs": 28.994416,
+              "processWallMs": 116.435,
+              "peakRssBytes": 95092736
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 28.09212500000001,
+              "processWallMs": 117.31266699999999,
+              "peakRssBytes": 93306880
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 28.57312499999999,
+              "processWallMs": 112.702792,
+              "peakRssBytes": 95141888
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 28.26816699999999,
+              "processWallMs": 113.80612500000001,
+              "peakRssBytes": 95223808
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 27.902084000000002,
+              "processWallMs": 114.17899999999999,
+              "peakRssBytes": 95010816
+            }
+          ],
+          "elapsedMs": {
+            "median": 28.26816699999999,
+            "min": 27.902084000000002,
+            "max": 28.994416
+          },
+          "processWallMs": {
+            "median": 114.17899999999999,
+            "min": 112.702792,
+            "max": 117.31266699999999
+          },
+          "peakRssBytes": {
+            "median": 95092736,
+            "min": 93306880,
+            "max": 95223808
+          }
+        },
+        "magic": {
+          "binarySha256": "9809aa858c5563d177e7985a6c095b55bfbd9f4770085b44bd393a6594ced020",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_magic_mixed_collections/resources_magic_mixed_collections.js"
+          ],
+          "raw": [
+            {
+              "checksum": 5404900,
+              "elapsedMs": 45.30616699999999,
+              "processWallMs": 173.645208,
+              "peakRssBytes": 132382720
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 45.60370800000001,
+              "processWallMs": 167.558583,
+              "peakRssBytes": 131956736
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 47.450959,
+              "processWallMs": 170.35025,
+              "peakRssBytes": 131203072
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 46.22304199999999,
+              "processWallMs": 163.959375,
+              "peakRssBytes": 131629056
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 45.418375,
+              "processWallMs": 161.854375,
+              "peakRssBytes": 131432448
+            }
+          ],
+          "elapsedMs": {
+            "median": 45.60370800000001,
+            "min": 45.30616699999999,
+            "max": 47.450959
+          },
+          "processWallMs": {
+            "median": 167.558583,
+            "min": 161.854375,
+            "max": 173.645208
+          },
+          "peakRssBytes": {
+            "median": 131629056,
+            "min": 131203072,
+            "max": 132382720
+          }
+        },
+        "jsj": {
+          "binarySha256": "06581644eb7add79fbacb513e9372127eeb483b6d3add16d39ca82ea882b0a39",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_jsj_mixed_collections/resources_jsj_mixed_collections.js"
+          ],
+          "raw": [
+            {
+              "checksum": 5404900,
+              "elapsedMs": 47.00479200000001,
+              "processWallMs": 175.41625000000002,
+              "peakRssBytes": 95387648
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 46.932125,
+              "processWallMs": 161.44904100000002,
+              "peakRssBytes": 94797824
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 44.953124999999986,
+              "processWallMs": 156.315,
+              "peakRssBytes": 95059968
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 45.31979200000001,
+              "processWallMs": 157.687167,
+              "peakRssBytes": 95076352
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 49.423333000000014,
+              "processWallMs": 165.446125,
+              "peakRssBytes": 95207424
+            }
+          ],
+          "elapsedMs": {
+            "median": 46.932125,
+            "min": 44.953124999999986,
+            "max": 49.423333000000014
+          },
+          "processWallMs": {
+            "median": 161.44904100000002,
+            "min": 156.315,
+            "max": 175.41625000000002
+          },
+          "peakRssBytes": {
+            "median": 95076352,
+            "min": 94797824,
+            "max": 95387648
           }
         }
       }
@@ -550,7 +1184,7 @@
       "expectedChecksum": 256000,
       "peers": {
         "ours": {
-          "binarySha256": "bad01584c4d314d3395827e705b68a0aa1e646842fd822dee152820f800d7ba7",
+          "binarySha256": "85a8b24f33dbff3a2e06ede24e3129fc1b19ee0bc4bdcdc1f4d7c8deb7e61a2b",
           "command": [
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_ours_variables512/resources_ours_variables512.wasm"
@@ -558,49 +1192,49 @@
           "raw": [
             {
               "checksum": 256000,
-              "elapsedMs": 33.773375,
-              "processWallMs": 55.90583399999999,
-              "peakRssBytes": 21676032
+              "elapsedMs": 34.319708,
+              "processWallMs": 84.086708,
+              "peakRssBytes": 23822336
             },
             {
               "checksum": 256000,
-              "elapsedMs": 33.241375,
-              "processWallMs": 55.68312499999999,
-              "peakRssBytes": 21495808
+              "elapsedMs": 33.488042,
+              "processWallMs": 56.396583,
+              "peakRssBytes": 20692992
             },
             {
               "checksum": 256000,
-              "elapsedMs": 33.419708,
-              "processWallMs": 55.821833000000005,
-              "peakRssBytes": 22036480
-            },
-            {
-              "checksum": 256000,
-              "elapsedMs": 33.503791,
-              "processWallMs": 55.581374999999994,
-              "peakRssBytes": 22167552
-            },
-            {
-              "checksum": 256000,
-              "elapsedMs": 33.3075,
-              "processWallMs": 55.595667,
+              "elapsedMs": 33.341208,
+              "processWallMs": 55.906375000000004,
               "peakRssBytes": 21626880
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 33.147208,
+              "processWallMs": 55.847708000000004,
+              "peakRssBytes": 21430272
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 33.745542,
+              "processWallMs": 56.17037499999999,
+              "peakRssBytes": 21331968
             }
           ],
           "elapsedMs": {
-            "median": 33.419708,
-            "min": 33.241375,
-            "max": 33.773375
+            "median": 33.488042,
+            "min": 33.147208,
+            "max": 34.319708
           },
           "processWallMs": {
-            "median": 55.68312499999999,
-            "min": 55.581374999999994,
-            "max": 55.90583399999999
+            "median": 56.17037499999999,
+            "min": 55.847708000000004,
+            "max": 84.086708
           },
           "peakRssBytes": {
-            "median": 21676032,
-            "min": 21495808,
-            "max": 22167552
+            "median": 21430272,
+            "min": 20692992,
+            "max": 23822336
           }
         },
         "magic": {
@@ -612,49 +1246,49 @@
           "raw": [
             {
               "checksum": 256000,
-              "elapsedMs": 60.514458,
-              "processWallMs": 94.02941700000001,
-              "peakRssBytes": 16711680
-            },
-            {
-              "checksum": 256000,
-              "elapsedMs": 61.040292,
-              "processWallMs": 92.854875,
-              "peakRssBytes": 16498688
-            },
-            {
-              "checksum": 256000,
-              "elapsedMs": 60.490207999999996,
-              "processWallMs": 93.05487500000001,
+              "elapsedMs": 60.02625,
+              "processWallMs": 94.751833,
               "peakRssBytes": 16531456
             },
             {
               "checksum": 256000,
-              "elapsedMs": 59.3185,
-              "processWallMs": 91.078667,
-              "peakRssBytes": 16400384
+              "elapsedMs": 59.849292,
+              "processWallMs": 92.52824999999999,
+              "peakRssBytes": 16384000
             },
             {
               "checksum": 256000,
-              "elapsedMs": 59.662333,
-              "processWallMs": 92.657084,
-              "peakRssBytes": 16367616
+              "elapsedMs": 59.697083,
+              "processWallMs": 92.142417,
+              "peakRssBytes": 16416768
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 59.109165999999995,
+              "processWallMs": 90.959958,
+              "peakRssBytes": 16416768
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 59.783625,
+              "processWallMs": 91.861959,
+              "peakRssBytes": 16334848
             }
           ],
           "elapsedMs": {
-            "median": 60.490207999999996,
-            "min": 59.3185,
-            "max": 61.040292
+            "median": 59.783625,
+            "min": 59.109165999999995,
+            "max": 60.02625
           },
           "processWallMs": {
-            "median": 92.854875,
-            "min": 91.078667,
-            "max": 94.02941700000001
+            "median": 92.142417,
+            "min": 90.959958,
+            "max": 94.751833
           },
           "peakRssBytes": {
-            "median": 16498688,
-            "min": 16367616,
-            "max": 16711680
+            "median": 16416768,
+            "min": 16334848,
+            "max": 16531456
           }
         },
         "jsj": {
@@ -666,49 +1300,49 @@
           "raw": [
             {
               "checksum": 256000,
-              "elapsedMs": 100.605042,
-              "processWallMs": 147.321583,
-              "peakRssBytes": 20971520
+              "elapsedMs": 99.557834,
+              "processWallMs": 145.975166,
+              "peakRssBytes": 20824064
             },
             {
               "checksum": 256000,
-              "elapsedMs": 99.068792,
-              "processWallMs": 145.112667,
-              "peakRssBytes": 20709376
+              "elapsedMs": 99.711,
+              "processWallMs": 146.020917,
+              "peakRssBytes": 20824064
             },
             {
               "checksum": 256000,
-              "elapsedMs": 99.7555,
-              "processWallMs": 146.506417,
-              "peakRssBytes": 20594688
+              "elapsedMs": 100.95370799999999,
+              "processWallMs": 147.112292,
+              "peakRssBytes": 20348928
             },
             {
               "checksum": 256000,
-              "elapsedMs": 100.26866700000001,
-              "processWallMs": 146.93800000000002,
-              "peakRssBytes": 20791296
+              "elapsedMs": 98.963125,
+              "processWallMs": 145.272708,
+              "peakRssBytes": 21004288
             },
             {
               "checksum": 256000,
-              "elapsedMs": 98.837792,
-              "processWallMs": 144.648416,
-              "peakRssBytes": 20922368
+              "elapsedMs": 99.857041,
+              "processWallMs": 145.77874999999997,
+              "peakRssBytes": 20430848
             }
           ],
           "elapsedMs": {
-            "median": 99.7555,
-            "min": 98.837792,
-            "max": 100.605042
+            "median": 99.711,
+            "min": 98.963125,
+            "max": 100.95370799999999
           },
           "processWallMs": {
-            "median": 146.506417,
-            "min": 144.648416,
-            "max": 147.321583
+            "median": 145.975166,
+            "min": 145.272708,
+            "max": 147.112292
           },
           "peakRssBytes": {
-            "median": 20791296,
-            "min": 20594688,
-            "max": 20971520
+            "median": 20824064,
+            "min": 20348928,
+            "max": 21004288
           }
         }
       }
@@ -720,7 +1354,7 @@
       "expectedChecksum": 512000,
       "peers": {
         "ours": {
-          "binarySha256": "7fe27268b9feee92082523c0c0993a06c3552dfa2666416b20a1a2df1d61c196",
+          "binarySha256": "6ab8f62d78ffab39f765ab4da2592dcb58cff0660332d33ab1ef6e260b193fdf",
           "command": [
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_ours_contract512/resources_ours_contract512.wasm"
@@ -728,49 +1362,49 @@
           "raw": [
             {
               "checksum": 512000,
-              "elapsedMs": 39.348042,
-              "processWallMs": 58.27112499999999,
-              "peakRssBytes": 18972672
+              "elapsedMs": 39.887208,
+              "processWallMs": 58.560792,
+              "peakRssBytes": 19496960
             },
             {
               "checksum": 512000,
-              "elapsedMs": 40.405708,
-              "processWallMs": 59.741792000000004,
-              "peakRssBytes": 19202048
+              "elapsedMs": 40.095917,
+              "processWallMs": 58.586166999999996,
+              "peakRssBytes": 19333120
             },
             {
               "checksum": 512000,
-              "elapsedMs": 40.24,
-              "processWallMs": 58.978207999999995,
-              "peakRssBytes": 19283968
+              "elapsedMs": 40.109708,
+              "processWallMs": 58.561082999999996,
+              "peakRssBytes": 19136512
             },
             {
               "checksum": 512000,
-              "elapsedMs": 40.493583,
-              "processWallMs": 60.076708,
-              "peakRssBytes": 19054592
+              "elapsedMs": 39.8295,
+              "processWallMs": 58.422584,
+              "peakRssBytes": 19251200
             },
             {
               "checksum": 512000,
-              "elapsedMs": 39.60675,
-              "processWallMs": 58.192833,
-              "peakRssBytes": 18956288
+              "elapsedMs": 40.06825,
+              "processWallMs": 58.847542,
+              "peakRssBytes": 19333120
             }
           ],
           "elapsedMs": {
-            "median": 40.24,
-            "min": 39.348042,
-            "max": 40.493583
+            "median": 40.06825,
+            "min": 39.8295,
+            "max": 40.109708
           },
           "processWallMs": {
-            "median": 58.978207999999995,
-            "min": 58.192833,
-            "max": 60.076708
+            "median": 58.561082999999996,
+            "min": 58.422584,
+            "max": 58.847542
           },
           "peakRssBytes": {
-            "median": 19054592,
-            "min": 18956288,
-            "max": 19283968
+            "median": 19333120,
+            "min": 19136512,
+            "max": 19496960
           }
         },
         "jsj": {
@@ -782,49 +1416,49 @@
           "raw": [
             {
               "checksum": 512000,
-              "elapsedMs": 53.686583000000006,
-              "processWallMs": 76.145,
-              "peakRssBytes": 18612224
-            },
-            {
-              "checksum": 512000,
-              "elapsedMs": 53.285,
-              "processWallMs": 76.070541,
-              "peakRssBytes": 18497536
-            },
-            {
-              "checksum": 512000,
-              "elapsedMs": 53.829333,
-              "processWallMs": 77.20762500000001,
-              "peakRssBytes": 18644992
-            },
-            {
-              "checksum": 512000,
-              "elapsedMs": 53.619709,
-              "processWallMs": 77.561334,
-              "peakRssBytes": 18628608
-            },
-            {
-              "checksum": 512000,
-              "elapsedMs": 52.73841600000001,
-              "processWallMs": 75.009291,
+              "elapsedMs": 52.7735,
+              "processWallMs": 74.471792,
               "peakRssBytes": 18579456
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 53.118959000000004,
+              "processWallMs": 74.83883300000001,
+              "peakRssBytes": 18513920
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 52.91075,
+              "processWallMs": 74.630167,
+              "peakRssBytes": 18546688
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 53.033708,
+              "processWallMs": 74.873958,
+              "peakRssBytes": 18546688
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 52.540334,
+              "processWallMs": 74.37595800000001,
+              "peakRssBytes": 18563072
             }
           ],
           "elapsedMs": {
-            "median": 53.619709,
-            "min": 52.73841600000001,
-            "max": 53.829333
+            "median": 52.91075,
+            "min": 52.540334,
+            "max": 53.118959000000004
           },
           "processWallMs": {
-            "median": 76.145,
-            "min": 75.009291,
-            "max": 77.561334
+            "median": 74.630167,
+            "min": 74.37595800000001,
+            "max": 74.873958
           },
           "peakRssBytes": {
-            "median": 18612224,
-            "min": 18497536,
-            "max": 18644992
+            "median": 18546688,
+            "min": 18513920,
+            "max": 18579456
           }
         }
       }
@@ -836,7 +1470,7 @@
       "expectedChecksum": 201000,
       "peers": {
         "ours": {
-          "binarySha256": "db739ecefc8f8cdb19168c79b3f22e06ab91c155d608579a20a0f20cede0511a",
+          "binarySha256": "bf19596a1d7c8ec154d52a664e4fc277e4fe037a004185021f57789dd76fa237",
           "command": [
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_ours_session200_one/resources_ours_session200_one.wasm"
@@ -844,49 +1478,49 @@
           "raw": [
             {
               "checksum": 201000,
-              "elapsedMs": 14.390208000000001,
-              "processWallMs": 29.680458,
-              "peakRssBytes": 17727488
+              "elapsedMs": 9.479207999999998,
+              "processWallMs": 22.297625,
+              "peakRssBytes": 17350656
             },
             {
               "checksum": 201000,
-              "elapsedMs": 14.504207999999998,
-              "processWallMs": 29.236999999999995,
-              "peakRssBytes": 17760256
+              "elapsedMs": 9.637082999999999,
+              "processWallMs": 22.681333000000002,
+              "peakRssBytes": 17334272
             },
             {
               "checksum": 201000,
-              "elapsedMs": 14.156083,
-              "processWallMs": 28.741583000000002,
-              "peakRssBytes": 17661952
+              "elapsedMs": 9.3835,
+              "processWallMs": 22.177417000000002,
+              "peakRssBytes": 17285120
             },
             {
               "checksum": 201000,
-              "elapsedMs": 14.318209000000001,
-              "processWallMs": 28.021792000000005,
-              "peakRssBytes": 17711104
+              "elapsedMs": 9.523458999999999,
+              "processWallMs": 22.344540999999996,
+              "peakRssBytes": 17334272
             },
             {
               "checksum": 201000,
-              "elapsedMs": 14.629708999999998,
-              "processWallMs": 28.798125,
-              "peakRssBytes": 17760256
+              "elapsedMs": 9.465625,
+              "processWallMs": 22.072666,
+              "peakRssBytes": 17317888
             }
           ],
           "elapsedMs": {
-            "median": 14.390208000000001,
-            "min": 14.156083,
-            "max": 14.629708999999998
+            "median": 9.479207999999998,
+            "min": 9.3835,
+            "max": 9.637082999999999
           },
           "processWallMs": {
-            "median": 28.798125,
-            "min": 28.021792000000005,
-            "max": 29.680458
+            "median": 22.297625,
+            "min": 22.072666,
+            "max": 22.681333000000002
           },
           "peakRssBytes": {
-            "median": 17727488,
-            "min": 17661952,
-            "max": 17760256
+            "median": 17334272,
+            "min": 17285120,
+            "max": 17350656
           }
         },
         "jsj": {
@@ -898,49 +1532,49 @@
           "raw": [
             {
               "checksum": 201000,
-              "elapsedMs": 19.683375,
-              "processWallMs": 36.102334,
-              "peakRssBytes": 18907136
+              "elapsedMs": 19.702583999999998,
+              "processWallMs": 35.40041600000001,
+              "peakRssBytes": 19087360
             },
             {
               "checksum": 201000,
-              "elapsedMs": 19.542916,
-              "processWallMs": 35.932041999999996,
-              "peakRssBytes": 19382272
+              "elapsedMs": 20.078917,
+              "processWallMs": 36.481,
+              "peakRssBytes": 19234816
             },
             {
               "checksum": 201000,
-              "elapsedMs": 19.593083000000004,
-              "processWallMs": 35.588708,
-              "peakRssBytes": 19103744
+              "elapsedMs": 19.5265,
+              "processWallMs": 35.479584,
+              "peakRssBytes": 19087360
             },
             {
               "checksum": 201000,
-              "elapsedMs": 19.557875,
-              "processWallMs": 35.992833000000005,
-              "peakRssBytes": 19021824
+              "elapsedMs": 19.2595,
+              "processWallMs": 34.822125,
+              "peakRssBytes": 19415040
             },
             {
               "checksum": 201000,
-              "elapsedMs": 19.698625,
-              "processWallMs": 35.514166,
-              "peakRssBytes": 18743296
+              "elapsedMs": 19.441166000000003,
+              "processWallMs": 34.976915999999996,
+              "peakRssBytes": 19136512
             }
           ],
           "elapsedMs": {
-            "median": 19.593083000000004,
-            "min": 19.542916,
-            "max": 19.698625
+            "median": 19.5265,
+            "min": 19.2595,
+            "max": 20.078917
           },
           "processWallMs": {
-            "median": 35.932041999999996,
-            "min": 35.514166,
-            "max": 36.102334
+            "median": 35.40041600000001,
+            "min": 34.822125,
+            "max": 36.481
           },
           "peakRssBytes": {
-            "median": 19021824,
-            "min": 18743296,
-            "max": 19382272
+            "median": 19136512,
+            "min": 19087360,
+            "max": 19415040
           }
         }
       }
@@ -952,7 +1586,7 @@
       "expectedChecksum": 80000,
       "peers": {
         "ours": {
-          "binarySha256": "1e2e58a3f1f378170dc9170b3e70779711ad606f30c945dfd4c0fdbfecf97aaf",
+          "binarySha256": "af2865079c0a78260c45fbf8673f94cd6a2481a9bfd917f8e5e286d29978325b",
           "command": [
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_ours_session200_all/resources_ours_session200_all.wasm"
@@ -960,49 +1594,49 @@
           "raw": [
             {
               "checksum": 80000,
-              "elapsedMs": 53.172042000000005,
-              "processWallMs": 114.39320800000002,
-              "peakRssBytes": 19873792
+              "elapsedMs": 53.456,
+              "processWallMs": 115.81220899999998,
+              "peakRssBytes": 19103744
             },
             {
               "checksum": 80000,
-              "elapsedMs": 54.230042000000005,
-              "processWallMs": 116.168458,
-              "peakRssBytes": 19857408
+              "elapsedMs": 53.318083,
+              "processWallMs": 116.57554199999998,
+              "peakRssBytes": 19087360
             },
             {
               "checksum": 80000,
-              "elapsedMs": 54.257332999999996,
-              "processWallMs": 115.544708,
-              "peakRssBytes": 19841024
+              "elapsedMs": 54.303208,
+              "processWallMs": 119.035708,
+              "peakRssBytes": 19333120
             },
             {
               "checksum": 80000,
-              "elapsedMs": 54.507959,
-              "processWallMs": 117.50891700000003,
-              "peakRssBytes": 19824640
+              "elapsedMs": 53.187875,
+              "processWallMs": 116.37975,
+              "peakRssBytes": 19103744
             },
             {
               "checksum": 80000,
-              "elapsedMs": 55.264666,
-              "processWallMs": 117.65137500000002,
-              "peakRssBytes": 19628032
+              "elapsedMs": 57.577208,
+              "processWallMs": 124.439416,
+              "peakRssBytes": 19054592
             }
           ],
           "elapsedMs": {
-            "median": 54.257332999999996,
-            "min": 53.172042000000005,
-            "max": 55.264666
+            "median": 53.456,
+            "min": 53.187875,
+            "max": 57.577208
           },
           "processWallMs": {
-            "median": 116.168458,
-            "min": 114.39320800000002,
-            "max": 117.65137500000002
+            "median": 116.57554199999998,
+            "min": 115.81220899999998,
+            "max": 124.439416
           },
           "peakRssBytes": {
-            "median": 19841024,
-            "min": 19628032,
-            "max": 19873792
+            "median": 19103744,
+            "min": 19054592,
+            "max": 19333120
           }
         },
         "jsj": {
@@ -1014,49 +1648,683 @@
           "raw": [
             {
               "checksum": 80000,
-              "elapsedMs": 56.839583999999995,
-              "processWallMs": 122.49437500000002,
-              "peakRssBytes": 21889024
+              "elapsedMs": 56.952792,
+              "processWallMs": 122.805917,
+              "peakRssBytes": 21757952
             },
             {
               "checksum": 80000,
-              "elapsedMs": 57.066375,
-              "processWallMs": 123.389584,
-              "peakRssBytes": 21839872
+              "elapsedMs": 57.148708,
+              "processWallMs": 122.87241699999998,
+              "peakRssBytes": 21938176
             },
             {
               "checksum": 80000,
-              "elapsedMs": 57.449583,
-              "processWallMs": 124.514834,
-              "peakRssBytes": 21987328
+              "elapsedMs": 56.917708,
+              "processWallMs": 122.56962499999999,
+              "peakRssBytes": 21954560
             },
             {
               "checksum": 80000,
-              "elapsedMs": 57.853291000000006,
-              "processWallMs": 124.394542,
-              "peakRssBytes": 21610496
+              "elapsedMs": 56.979875,
+              "processWallMs": 122.19129099999999,
+              "peakRssBytes": 21774336
             },
             {
               "checksum": 80000,
-              "elapsedMs": 58.285083,
-              "processWallMs": 125.15304200000001,
-              "peakRssBytes": 21676032
+              "elapsedMs": 58.569333,
+              "processWallMs": 127.84695900000001,
+              "peakRssBytes": 21708800
             }
           ],
           "elapsedMs": {
-            "median": 57.449583,
-            "min": 56.839583999999995,
-            "max": 58.285083
+            "median": 56.979875,
+            "min": 56.917708,
+            "max": 58.569333
           },
           "processWallMs": {
-            "median": 124.394542,
-            "min": 122.49437500000002,
-            "max": 125.15304200000001
+            "median": 122.805917,
+            "min": 122.19129099999999,
+            "max": 127.84695900000001
           },
           "peakRssBytes": {
-            "median": 21839872,
-            "min": 21610496,
-            "max": 21987328
+            "median": 21774336,
+            "min": 21708800,
+            "max": 21954560
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm",
+      "scenario": "session200-shared",
+      "iterations": 200,
+      "expectedChecksum": 80000,
+      "peers": {
+        "ours": {
+          "binarySha256": "f6d69dead1b676c6b714dc9fa7f479a3985bfe0500f35951e61e4ffc3e5a97a2",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_ours_session200_shared/resources_ours_session200_shared.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 39.748208,
+              "processWallMs": 90.457,
+              "peakRssBytes": 18268160
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 39.73725,
+              "processWallMs": 90.164042,
+              "peakRssBytes": 18661376
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 39.552125,
+              "processWallMs": 88.52487500000001,
+              "peakRssBytes": 18612224
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 38.973958,
+              "processWallMs": 86.979125,
+              "peakRssBytes": 18530304
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 38.819875,
+              "processWallMs": 87.00366700000001,
+              "peakRssBytes": 18399232
+            }
+          ],
+          "elapsedMs": {
+            "median": 39.552125,
+            "min": 38.819875,
+            "max": 39.748208
+          },
+          "processWallMs": {
+            "median": 88.52487500000001,
+            "min": 86.979125,
+            "max": 90.457
+          },
+          "peakRssBytes": {
+            "median": 18530304,
+            "min": 18268160,
+            "max": 18661376
+          }
+        },
+        "jsj": {
+          "binarySha256": "5de77908578ca15152a9cb7c5577db1780092c624cf4ee9aba461afcd1a24308",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_jsj_session200_shared/resources_jsj_session200_shared.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 42.824125,
+              "processWallMs": 94.374792,
+              "peakRssBytes": 23101440
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 41.856042,
+              "processWallMs": 94.500083,
+              "peakRssBytes": 22773760
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 41.637083,
+              "processWallMs": 92.34220900000001,
+              "peakRssBytes": 23003136
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 41.703958,
+              "processWallMs": 93.19862499999999,
+              "peakRssBytes": 22855680
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 41.583583,
+              "processWallMs": 92.35625,
+              "peakRssBytes": 23085056
+            }
+          ],
+          "elapsedMs": {
+            "median": 41.703958,
+            "min": 41.583583,
+            "max": 42.824125
+          },
+          "processWallMs": {
+            "median": 93.19862499999999,
+            "min": 92.34220900000001,
+            "max": 94.500083
+          },
+          "peakRssBytes": {
+            "median": 23003136,
+            "min": 22773760,
+            "max": 23101440
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm",
+      "scenario": "session200-retained",
+      "iterations": 1000,
+      "expectedChecksum": 201000,
+      "peers": {
+        "ours": {
+          "binarySha256": "c4dcd8ae89d265eec41e1913b420234336931921d7b8bd70754cb6a9d2f4db4e",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_ours_session200_retained/resources_ours_session200_retained.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 9.816583000000001,
+              "processWallMs": 23.157084,
+              "peakRssBytes": 19283968
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 10.28375,
+              "processWallMs": 23.938792000000003,
+              "peakRssBytes": 19365888
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 10.03125,
+              "processWallMs": 23.675958,
+              "peakRssBytes": 19316736
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 9.931291,
+              "processWallMs": 23.555083999999997,
+              "peakRssBytes": 19300352
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 10.080542,
+              "processWallMs": 23.490458999999998,
+              "peakRssBytes": 19316736
+            }
+          ],
+          "elapsedMs": {
+            "median": 10.03125,
+            "min": 9.816583000000001,
+            "max": 10.28375
+          },
+          "processWallMs": {
+            "median": 23.555083999999997,
+            "min": 23.157084,
+            "max": 23.938792000000003
+          },
+          "peakRssBytes": {
+            "median": 19316736,
+            "min": 19283968,
+            "max": 19365888
+          }
+        },
+        "jsj": {
+          "binarySha256": "aaa3f4649bd49100a5e2f01a10d83763ba471efef82eba12d3081a27031c6816",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_jsj_session200_retained/resources_jsj_session200_retained.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 17.439875,
+              "processWallMs": 36.640499999999996,
+              "peakRssBytes": 31227904
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 17.410125,
+              "processWallMs": 36.821875000000006,
+              "peakRssBytes": 31408128
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 17.633458,
+              "processWallMs": 36.758208,
+              "peakRssBytes": 31522816
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 17.570207999999997,
+              "processWallMs": 36.608833000000004,
+              "peakRssBytes": 31195136
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 17.321958,
+              "processWallMs": 36.613375000000005,
+              "peakRssBytes": 31440896
+            }
+          ],
+          "elapsedMs": {
+            "median": 17.439875,
+            "min": 17.321958,
+            "max": 17.633458
+          },
+          "processWallMs": {
+            "median": 36.640499999999996,
+            "min": 36.608833000000004,
+            "max": 36.821875000000006
+          },
+          "peakRssBytes": {
+            "median": 31408128,
+            "min": 31195136,
+            "max": 31522816
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm",
+      "scenario": "batch200-one",
+      "iterations": 1000,
+      "expectedChecksum": 200000,
+      "peers": {
+        "ours": {
+          "binarySha256": "1c0c42b1a8f90aa609df7f078aa10977699b5e4949ce1011f6d409f1edf615de",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_ours_batch200_one/resources_ours_batch200_one.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 200000,
+              "elapsedMs": 160.41875,
+              "processWallMs": 199.10424999999998,
+              "peakRssBytes": 21266432
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 159.137334,
+              "processWallMs": 198.107917,
+              "peakRssBytes": 21348352
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 162.539917,
+              "processWallMs": 201.42370799999998,
+              "peakRssBytes": 21282816
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 161.06783299999998,
+              "processWallMs": 200.611709,
+              "peakRssBytes": 20987904
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 160.85395799999998,
+              "processWallMs": 199.649375,
+              "peakRssBytes": 21315584
+            }
+          ],
+          "elapsedMs": {
+            "median": 160.85395799999998,
+            "min": 159.137334,
+            "max": 162.539917
+          },
+          "processWallMs": {
+            "median": 199.649375,
+            "min": 198.107917,
+            "max": 201.42370799999998
+          },
+          "peakRssBytes": {
+            "median": 21282816,
+            "min": 20987904,
+            "max": 21348352
+          }
+        },
+        "jsj": {
+          "binarySha256": "95feca673a5f086a42549beb663ac3c6176fed43e3b00f3af11480494a830e3c",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_jsj_batch200_one/resources_jsj_batch200_one.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 200000,
+              "elapsedMs": 186.367792,
+              "processWallMs": 232.17437500000003,
+              "peakRssBytes": 22872064
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 187.616417,
+              "processWallMs": 232.654458,
+              "peakRssBytes": 23019520
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 187.28970900000002,
+              "processWallMs": 233.314667,
+              "peakRssBytes": 22953984
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 187.27941700000002,
+              "processWallMs": 232.86433300000002,
+              "peakRssBytes": 23035904
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 185.813875,
+              "processWallMs": 231.72187499999995,
+              "peakRssBytes": 23199744
+            }
+          ],
+          "elapsedMs": {
+            "median": 187.27941700000002,
+            "min": 185.813875,
+            "max": 187.616417
+          },
+          "processWallMs": {
+            "median": 232.654458,
+            "min": 231.72187499999995,
+            "max": 233.314667
+          },
+          "peakRssBytes": {
+            "median": 23019520,
+            "min": 22872064,
+            "max": 23199744
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm",
+      "scenario": "audit200",
+      "iterations": 1000,
+      "expectedChecksum": 100000,
+      "peers": {
+        "ours": {
+          "binarySha256": "39b822fb84bf42d3ecf49a20a00e283470971c1d7570ac0dd3f85f7710bf0efc",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_ours_audit200/resources_ours_audit200.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 100000,
+              "elapsedMs": 40.554667,
+              "processWallMs": 57.94200000000001,
+              "peakRssBytes": 17235968
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 40.773125,
+              "processWallMs": 58.682750000000006,
+              "peakRssBytes": 17235968
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 40.63625,
+              "processWallMs": 58.273,
+              "peakRssBytes": 17268736
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 40.638459000000005,
+              "processWallMs": 58.570541999999996,
+              "peakRssBytes": 17235968
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 41.595209000000004,
+              "processWallMs": 60.050166000000004,
+              "peakRssBytes": 17219584
+            }
+          ],
+          "elapsedMs": {
+            "median": 40.638459000000005,
+            "min": 40.554667,
+            "max": 41.595209000000004
+          },
+          "processWallMs": {
+            "median": 58.570541999999996,
+            "min": 57.94200000000001,
+            "max": 60.050166000000004
+          },
+          "peakRssBytes": {
+            "median": 17235968,
+            "min": 17219584,
+            "max": 17268736
+          }
+        },
+        "jsj": {
+          "binarySha256": "baca434ee233c407e616c2fec5a9aba2985273858cee2d9438f16240c6eee42c",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_jsj_audit200/resources_jsj_audit200.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 100000,
+              "elapsedMs": 125.6265,
+              "processWallMs": 157.544542,
+              "peakRssBytes": 16842752
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 125.26841699999999,
+              "processWallMs": 157.52024999999998,
+              "peakRssBytes": 16891904
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 126.47645900000002,
+              "processWallMs": 158.45925,
+              "peakRssBytes": 16842752
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 124.888042,
+              "processWallMs": 157.120375,
+              "peakRssBytes": 16842752
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 125.101041,
+              "processWallMs": 156.958083,
+              "peakRssBytes": 16875520
+            }
+          ],
+          "elapsedMs": {
+            "median": 125.26841699999999,
+            "min": 124.888042,
+            "max": 126.47645900000002
+          },
+          "processWallMs": {
+            "median": 157.52024999999998,
+            "min": 156.958083,
+            "max": 158.45925
+          },
+          "peakRssBytes": {
+            "median": 16842752,
+            "min": 16842752,
+            "max": 16891904
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm",
+      "scenario": "mixed-collections",
+      "iterations": 100,
+      "expectedChecksum": 5404900,
+      "peers": {
+        "ours": {
+          "binarySha256": "7058d89b674fad338c5952d2caf1555b1b6fe37a315ac5dab82f46acd24f4907",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_ours_mixed_collections/resources_ours_mixed_collections.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 5404900,
+              "elapsedMs": 31.139792,
+              "processWallMs": 89.061792,
+              "peakRssBytes": 19709952
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 30.687167000000002,
+              "processWallMs": 88.575333,
+              "peakRssBytes": 19709952
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 30.311375,
+              "processWallMs": 88.11833399999999,
+              "peakRssBytes": 19644416
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 30.682083,
+              "processWallMs": 88.023166,
+              "peakRssBytes": 19791872
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 30.745125,
+              "processWallMs": 88.22220899999999,
+              "peakRssBytes": 19890176
+            }
+          ],
+          "elapsedMs": {
+            "median": 30.687167000000002,
+            "min": 30.311375,
+            "max": 31.139792
+          },
+          "processWallMs": {
+            "median": 88.22220899999999,
+            "min": 88.023166,
+            "max": 89.061792
+          },
+          "peakRssBytes": {
+            "median": 19709952,
+            "min": 19644416,
+            "max": 19890176
+          }
+        },
+        "magic": {
+          "binarySha256": "2c35a2c59a992daab608c24d26062a18c67f750252ac02959027fd4958a18c03",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_magic_mixed_collections/resources_magic_mixed_collections.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 5404900,
+              "elapsedMs": 51.530459,
+              "processWallMs": 142.537333,
+              "peakRssBytes": 16809984
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 51.288125,
+              "processWallMs": 141.511834,
+              "peakRssBytes": 16859136
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 51.247916999999994,
+              "processWallMs": 142.24887500000003,
+              "peakRssBytes": 16875520
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 50.895,
+              "processWallMs": 140.385416,
+              "peakRssBytes": 16777216
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 52.282083,
+              "processWallMs": 143.27408400000002,
+              "peakRssBytes": 16859136
+            }
+          ],
+          "elapsedMs": {
+            "median": 51.288125,
+            "min": 50.895,
+            "max": 52.282083
+          },
+          "processWallMs": {
+            "median": 142.24887500000003,
+            "min": 140.385416,
+            "max": 143.27408400000002
+          },
+          "peakRssBytes": {
+            "median": 16859136,
+            "min": 16777216,
+            "max": 16875520
+          }
+        },
+        "jsj": {
+          "binarySha256": "c6c0835f541915169125882a405d3d0ea6c57cbe8521e45b72803853743adcb2",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_jsj_mixed_collections/resources_jsj_mixed_collections.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 5404900,
+              "elapsedMs": 65.128041,
+              "processWallMs": 178.050458,
+              "peakRssBytes": 19447808
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 66.855208,
+              "processWallMs": 179.899375,
+              "peakRssBytes": 19415040
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 65.05662500000001,
+              "processWallMs": 177.172834,
+              "peakRssBytes": 19415040
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 65.24654100000001,
+              "processWallMs": 177.98137499999999,
+              "peakRssBytes": 19415040
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 65.169583,
+              "processWallMs": 176.531625,
+              "peakRssBytes": 19562496
+            }
+          ],
+          "elapsedMs": {
+            "median": 65.169583,
+            "min": 65.05662500000001,
+            "max": 66.855208
+          },
+          "processWallMs": {
+            "median": 177.98137499999999,
+            "min": 176.531625,
+            "max": 179.899375
+          },
+          "peakRssBytes": {
+            "median": 19415040,
+            "min": 19415040,
+            "max": 19562496
           }
         }
       }
@@ -1068,7 +2336,7 @@
       "expectedChecksum": 256000,
       "peers": {
         "ours": {
-          "binarySha256": "febed179cd7c813109ff9db3cea4aa4e685b6e7362531a6615efbe78e170cb3c",
+          "binarySha256": "31c42bb97773a10ec93bf61e39b924e9f39516671dd7011c4a8d95efbc8fd8c7",
           "command": [
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_ours_variables512/resources_ours_variables512.wasm"
@@ -1076,49 +2344,49 @@
           "raw": [
             {
               "checksum": 256000,
-              "elapsedMs": 9.113790999999999,
-              "processWallMs": 22.578625,
-              "peakRssBytes": 21397504
+              "elapsedMs": 9.393875,
+              "processWallMs": 24.474041000000003,
+              "peakRssBytes": 21676032
             },
             {
               "checksum": 256000,
-              "elapsedMs": 9.357375,
-              "processWallMs": 22.885499999999997,
-              "peakRssBytes": 21577728
+              "elapsedMs": 9.194083000000001,
+              "processWallMs": 22.32275,
+              "peakRssBytes": 21561344
             },
             {
               "checksum": 256000,
-              "elapsedMs": 9.154834000000001,
-              "processWallMs": 22.115584,
-              "peakRssBytes": 21233664
+              "elapsedMs": 9.30125,
+              "processWallMs": 23.688875,
+              "peakRssBytes": 21446656
             },
             {
               "checksum": 256000,
-              "elapsedMs": 9.405,
-              "processWallMs": 22.816416000000004,
-              "peakRssBytes": 21086208
+              "elapsedMs": 9.28525,
+              "processWallMs": 22.780375000000003,
+              "peakRssBytes": 21299200
             },
             {
               "checksum": 256000,
-              "elapsedMs": 9.247084,
-              "processWallMs": 23.004875000000002,
-              "peakRssBytes": 21233664
+              "elapsedMs": 9.344790999999999,
+              "processWallMs": 23.357833,
+              "peakRssBytes": 21168128
             }
           ],
           "elapsedMs": {
-            "median": 9.247084,
-            "min": 9.113790999999999,
-            "max": 9.405
+            "median": 9.30125,
+            "min": 9.194083000000001,
+            "max": 9.393875
           },
           "processWallMs": {
-            "median": 22.816416000000004,
-            "min": 22.115584,
-            "max": 23.004875000000002
+            "median": 23.357833,
+            "min": 22.32275,
+            "max": 24.474041000000003
           },
           "peakRssBytes": {
-            "median": 21233664,
-            "min": 21086208,
-            "max": 21577728
+            "median": 21446656,
+            "min": 21168128,
+            "max": 21676032
           }
         },
         "magic": {
@@ -1130,49 +2398,49 @@
           "raw": [
             {
               "checksum": 256000,
-              "elapsedMs": 13.924375,
-              "processWallMs": 29.086458000000004,
-              "peakRssBytes": 20938752
+              "elapsedMs": 13.746583000000001,
+              "processWallMs": 29.665457999999997,
+              "peakRssBytes": 21151744
             },
             {
               "checksum": 256000,
-              "elapsedMs": 14.319708,
-              "processWallMs": 30.235124999999996,
-              "peakRssBytes": 20856832
+              "elapsedMs": 14.006167,
+              "processWallMs": 28.807958999999997,
+              "peakRssBytes": 20905984
             },
             {
               "checksum": 256000,
-              "elapsedMs": 13.844709,
-              "processWallMs": 29.160999999999998,
-              "peakRssBytes": 20873216
+              "elapsedMs": 14.208458,
+              "processWallMs": 30.122,
+              "peakRssBytes": 20922368
             },
             {
               "checksum": 256000,
-              "elapsedMs": 14.304375,
-              "processWallMs": 29.557041,
-              "peakRssBytes": 20955136
+              "elapsedMs": 14.310625,
+              "processWallMs": 29.531541999999998,
+              "peakRssBytes": 20889600
             },
             {
               "checksum": 256000,
-              "elapsedMs": 14.358915999999999,
-              "processWallMs": 30.636584000000003,
-              "peakRssBytes": 20840448
+              "elapsedMs": 13.496417,
+              "processWallMs": 29.203666000000002,
+              "peakRssBytes": 21217280
             }
           ],
           "elapsedMs": {
-            "median": 14.304375,
-            "min": 13.844709,
-            "max": 14.358915999999999
+            "median": 14.006167,
+            "min": 13.496417,
+            "max": 14.310625
           },
           "processWallMs": {
-            "median": 29.557041,
-            "min": 29.086458000000004,
-            "max": 30.636584000000003
+            "median": 29.531541999999998,
+            "min": 28.807958999999997,
+            "max": 30.122
           },
           "peakRssBytes": {
-            "median": 20873216,
-            "min": 20840448,
-            "max": 20955136
+            "median": 20922368,
+            "min": 20889600,
+            "max": 21217280
           }
         },
         "jsj": {
@@ -1184,49 +2452,49 @@
           "raw": [
             {
               "checksum": 256000,
-              "elapsedMs": 21.120625,
-              "processWallMs": 41.55975,
-              "peakRssBytes": 29966336
+              "elapsedMs": 21.121083,
+              "processWallMs": 41.067125,
+              "peakRssBytes": 29769728
             },
             {
               "checksum": 256000,
-              "elapsedMs": 21.207708,
-              "processWallMs": 41.582415999999995,
-              "peakRssBytes": 29655040
+              "elapsedMs": 21.072375,
+              "processWallMs": 40.960708,
+              "peakRssBytes": 29507584
             },
             {
               "checksum": 256000,
-              "elapsedMs": 21.29075,
-              "processWallMs": 41.740708,
-              "peakRssBytes": 29982720
+              "elapsedMs": 21.438333,
+              "processWallMs": 41.97524999999999,
+              "peakRssBytes": 29687808
             },
             {
               "checksum": 256000,
-              "elapsedMs": 21.189916999999998,
-              "processWallMs": 41.713958,
-              "peakRssBytes": 29786112
+              "elapsedMs": 21.545167000000003,
+              "processWallMs": 41.783249999999995,
+              "peakRssBytes": 29704192
             },
             {
               "checksum": 256000,
-              "elapsedMs": 22.163708000000003,
-              "processWallMs": 42.912,
-              "peakRssBytes": 29589504
+              "elapsedMs": 21.490166000000002,
+              "processWallMs": 41.565458,
+              "peakRssBytes": 29769728
             }
           ],
           "elapsedMs": {
-            "median": 21.207708,
-            "min": 21.120625,
-            "max": 22.163708000000003
+            "median": 21.438333,
+            "min": 21.072375,
+            "max": 21.545167000000003
           },
           "processWallMs": {
-            "median": 41.713958,
-            "min": 41.55975,
-            "max": 42.912
+            "median": 41.565458,
+            "min": 40.960708,
+            "max": 41.97524999999999
           },
           "peakRssBytes": {
-            "median": 29786112,
-            "min": 29589504,
-            "max": 29982720
+            "median": 29704192,
+            "min": 29507584,
+            "max": 29769728
           }
         }
       }
@@ -1238,7 +2506,7 @@
       "expectedChecksum": 512000,
       "peers": {
         "ours": {
-          "binarySha256": "ce47738d8cd65a70687134aef0891d824c11374c703877e2cf06115bb7feda70",
+          "binarySha256": "992d2cbffef3d463eb3f8daf7d107eeedc4b8cab49ff903be41f9914c14803cb",
           "command": [
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_ours_contract512/resources_ours_contract512.wasm"
@@ -1246,49 +2514,49 @@
           "raw": [
             {
               "checksum": 512000,
-              "elapsedMs": 16.631166999999998,
-              "processWallMs": 31.046041,
-              "peakRssBytes": 20414464
-            },
-            {
-              "checksum": 512000,
-              "elapsedMs": 16.60475,
-              "processWallMs": 30.786958,
-              "peakRssBytes": 20316160
-            },
-            {
-              "checksum": 512000,
-              "elapsedMs": 15.418042,
-              "processWallMs": 28.733999999999998,
-              "peakRssBytes": 20250624
-            },
-            {
-              "checksum": 512000,
-              "elapsedMs": 15.904708000000001,
-              "processWallMs": 29.49375,
+              "elapsedMs": 16.37275,
+              "processWallMs": 30.335667,
               "peakRssBytes": 20398080
             },
             {
               "checksum": 512000,
-              "elapsedMs": 15.893042,
-              "processWallMs": 29.490249999999996,
-              "peakRssBytes": 20299776
+              "elapsedMs": 15.711375,
+              "processWallMs": 29.052458,
+              "peakRssBytes": 20332544
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 15.930667,
+              "processWallMs": 28.932708000000005,
+              "peakRssBytes": 20365312
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 15.998542,
+              "processWallMs": 29.002334,
+              "peakRssBytes": 20398080
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 15.828749999999998,
+              "processWallMs": 29.185542,
+              "peakRssBytes": 20250624
             }
           ],
           "elapsedMs": {
-            "median": 15.904708000000001,
-            "min": 15.418042,
-            "max": 16.631166999999998
+            "median": 15.930667,
+            "min": 15.711375,
+            "max": 16.37275
           },
           "processWallMs": {
-            "median": 29.49375,
-            "min": 28.733999999999998,
-            "max": 31.046041
+            "median": 29.052458,
+            "min": 28.932708000000005,
+            "max": 30.335667
           },
           "peakRssBytes": {
-            "median": 20316160,
+            "median": 20365312,
             "min": 20250624,
-            "max": 20414464
+            "max": 20398080
           }
         },
         "jsj": {
@@ -1300,49 +2568,49 @@
           "raw": [
             {
               "checksum": 512000,
-              "elapsedMs": 19.985125,
-              "processWallMs": 35.579,
-              "peakRssBytes": 21954560
+              "elapsedMs": 19.278334,
+              "processWallMs": 34.842791999999996,
+              "peakRssBytes": 22102016
             },
             {
               "checksum": 512000,
-              "elapsedMs": 19.738042,
-              "processWallMs": 35.278084,
-              "peakRssBytes": 22052864
+              "elapsedMs": 19.157291999999998,
+              "processWallMs": 34.12287499999999,
+              "peakRssBytes": 21905408
             },
             {
               "checksum": 512000,
-              "elapsedMs": 19.2815,
-              "processWallMs": 35.8175,
-              "peakRssBytes": 21757952
+              "elapsedMs": 19.23575,
+              "processWallMs": 34.201917,
+              "peakRssBytes": 21987328
             },
             {
               "checksum": 512000,
-              "elapsedMs": 19.517708000000002,
-              "processWallMs": 35.26341600000001,
-              "peakRssBytes": 21872640
+              "elapsedMs": 19.027082999999998,
+              "processWallMs": 33.679625,
+              "peakRssBytes": 22020096
             },
             {
               "checksum": 512000,
-              "elapsedMs": 18.89325,
-              "processWallMs": 34.70675,
-              "peakRssBytes": 21938176
+              "elapsedMs": 18.784875,
+              "processWallMs": 34.490958,
+              "peakRssBytes": 21839872
             }
           ],
           "elapsedMs": {
-            "median": 19.517708000000002,
-            "min": 18.89325,
-            "max": 19.985125
+            "median": 19.157291999999998,
+            "min": 18.784875,
+            "max": 19.278334
           },
           "processWallMs": {
-            "median": 35.278084,
-            "min": 34.70675,
-            "max": 35.8175
+            "median": 34.201917,
+            "min": 33.679625,
+            "max": 34.842791999999996
           },
           "peakRssBytes": {
-            "median": 21938176,
-            "min": 21757952,
-            "max": 22052864
+            "median": 21987328,
+            "min": 21839872,
+            "max": 22102016
           }
         }
       }
@@ -1354,7 +2622,7 @@
       "expectedChecksum": 201000,
       "peers": {
         "ours": {
-          "binarySha256": "7f884b18d0446a27e0a9d6b53444acdd6e931899967890a66f15198efe7c65a3",
+          "binarySha256": "053dddce190b6b7f999978eef3e12b03b02854af1a19dff9cc970bebb2f5c86e",
           "command": [
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_ours_session200_one/resources_ours_session200_one.wasm"
@@ -1362,49 +2630,49 @@
           "raw": [
             {
               "checksum": 201000,
-              "elapsedMs": 3.859,
-              "processWallMs": 14.519582999999995,
-              "peakRssBytes": 21626880
+              "elapsedMs": 3.2777079999999996,
+              "processWallMs": 13.406375000000002,
+              "peakRssBytes": 19480576
             },
             {
               "checksum": 201000,
-              "elapsedMs": 4.01325,
-              "processWallMs": 15.104208000000002,
-              "peakRssBytes": 21839872
+              "elapsedMs": 3.3327090000000004,
+              "processWallMs": 13.909792000000001,
+              "peakRssBytes": 19464192
             },
             {
               "checksum": 201000,
-              "elapsedMs": 3.9205000000000005,
-              "processWallMs": 14.534250000000002,
-              "peakRssBytes": 21692416
+              "elapsedMs": 3.347833,
+              "processWallMs": 13.731041999999995,
+              "peakRssBytes": 19480576
             },
             {
               "checksum": 201000,
-              "elapsedMs": 4.051082999999999,
-              "processWallMs": 15.178624999999998,
-              "peakRssBytes": 21757952
+              "elapsedMs": 3.346542,
+              "processWallMs": 13.569916000000001,
+              "peakRssBytes": 19513344
             },
             {
               "checksum": 201000,
-              "elapsedMs": 3.805375,
-              "processWallMs": 14.031958000000001,
-              "peakRssBytes": 21626880
+              "elapsedMs": 3.367208,
+              "processWallMs": 14.140917000000004,
+              "peakRssBytes": 19464192
             }
           ],
           "elapsedMs": {
-            "median": 3.9205000000000005,
-            "min": 3.805375,
-            "max": 4.051082999999999
+            "median": 3.346542,
+            "min": 3.2777079999999996,
+            "max": 3.367208
           },
           "processWallMs": {
-            "median": 14.534250000000002,
-            "min": 14.031958000000001,
-            "max": 15.178624999999998
+            "median": 13.731041999999995,
+            "min": 13.406375000000002,
+            "max": 14.140917000000004
           },
           "peakRssBytes": {
-            "median": 21692416,
-            "min": 21626880,
-            "max": 21839872
+            "median": 19480576,
+            "min": 19464192,
+            "max": 19513344
           }
         },
         "jsj": {
@@ -1416,49 +2684,49 @@
           "raw": [
             {
               "checksum": 201000,
-              "elapsedMs": 5.989917,
-              "processWallMs": 17.605166999999998,
+              "elapsedMs": 6.060875,
+              "processWallMs": 17.508625,
               "peakRssBytes": 23085056
             },
             {
               "checksum": 201000,
-              "elapsedMs": 6.242292,
-              "processWallMs": 17.907125,
-              "peakRssBytes": 23134208
+              "elapsedMs": 5.956291,
+              "processWallMs": 17.1065,
+              "peakRssBytes": 23068672
             },
             {
               "checksum": 201000,
-              "elapsedMs": 6.084207999999999,
-              "processWallMs": 18.954417,
-              "peakRssBytes": 22986752
+              "elapsedMs": 5.97425,
+              "processWallMs": 17.737125,
+              "peakRssBytes": 23035904
             },
             {
               "checksum": 201000,
-              "elapsedMs": 6.02175,
-              "processWallMs": 18.356208,
-              "peakRssBytes": 22904832
+              "elapsedMs": 6.021,
+              "processWallMs": 17.123583000000004,
+              "peakRssBytes": 23265280
             },
             {
               "checksum": 201000,
-              "elapsedMs": 6.309917,
-              "processWallMs": 18.243625,
+              "elapsedMs": 6.168583,
+              "processWallMs": 18.511665999999998,
               "peakRssBytes": 23232512
             }
           ],
           "elapsedMs": {
-            "median": 6.084207999999999,
-            "min": 5.989917,
-            "max": 6.309917
+            "median": 6.021,
+            "min": 5.956291,
+            "max": 6.168583
           },
           "processWallMs": {
-            "median": 18.243625,
-            "min": 17.605166999999998,
-            "max": 18.954417
+            "median": 17.508625,
+            "min": 17.1065,
+            "max": 18.511665999999998
           },
           "peakRssBytes": {
             "median": 23085056,
-            "min": 22904832,
-            "max": 23232512
+            "min": 23035904,
+            "max": 23265280
           }
         }
       }
@@ -1470,7 +2738,7 @@
       "expectedChecksum": 80000,
       "peers": {
         "ours": {
-          "binarySha256": "143f3f8853cbf0e61f318aa5999f629ad3f8ae1827f4cc078e45e6e40a8e9514",
+          "binarySha256": "f99b4ea774f64d65597187698389b692576e52f8bde1a44caf11595789379ff8",
           "command": [
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_ours_session200_all/resources_ours_session200_all.wasm"
@@ -1478,49 +2746,49 @@
           "raw": [
             {
               "checksum": 80000,
-              "elapsedMs": 13.170334,
-              "processWallMs": 40.768834000000005,
-              "peakRssBytes": 28868608
+              "elapsedMs": 12.477833,
+              "processWallMs": 39.511875,
+              "peakRssBytes": 30261248
             },
             {
               "checksum": 80000,
-              "elapsedMs": 13.434584,
-              "processWallMs": 41.011500000000005,
-              "peakRssBytes": 28868608
+              "elapsedMs": 12.205333000000001,
+              "processWallMs": 37.566458999999995,
+              "peakRssBytes": 29966336
             },
             {
               "checksum": 80000,
-              "elapsedMs": 12.983542000000002,
-              "processWallMs": 40.127625,
-              "peakRssBytes": 28770304
+              "elapsedMs": 12.051833,
+              "processWallMs": 37.711417,
+              "peakRssBytes": 29884416
             },
             {
               "checksum": 80000,
-              "elapsedMs": 13.720457999999999,
-              "processWallMs": 40.248208,
-              "peakRssBytes": 28688384
+              "elapsedMs": 12.190875,
+              "processWallMs": 38.263667,
+              "peakRssBytes": 29982720
             },
             {
               "checksum": 80000,
-              "elapsedMs": 13.203790999999999,
-              "processWallMs": 41.597959,
-              "peakRssBytes": 28999680
+              "elapsedMs": 12.177541,
+              "processWallMs": 38.309,
+              "peakRssBytes": 29851648
             }
           ],
           "elapsedMs": {
-            "median": 13.203790999999999,
-            "min": 12.983542000000002,
-            "max": 13.720457999999999
+            "median": 12.190875,
+            "min": 12.051833,
+            "max": 12.477833
           },
           "processWallMs": {
-            "median": 40.768834000000005,
-            "min": 40.127625,
-            "max": 41.597959
+            "median": 38.263667,
+            "min": 37.566458999999995,
+            "max": 39.511875
           },
           "peakRssBytes": {
-            "median": 28868608,
-            "min": 28688384,
-            "max": 28999680
+            "median": 29966336,
+            "min": 29851648,
+            "max": 30261248
           }
         },
         "jsj": {
@@ -1532,49 +2800,683 @@
           "raw": [
             {
               "checksum": 80000,
-              "elapsedMs": 15.700875,
-              "processWallMs": 48.258625,
-              "peakRssBytes": 35143680
+              "elapsedMs": 14.896417,
+              "processWallMs": 44.897708,
+              "peakRssBytes": 35356672
             },
             {
               "checksum": 80000,
-              "elapsedMs": 15.288041999999999,
-              "processWallMs": 46.41087499999999,
-              "peakRssBytes": 35536896
+              "elapsedMs": 14.90325,
+              "processWallMs": 44.48845800000001,
+              "peakRssBytes": 35782656
             },
             {
               "checksum": 80000,
-              "elapsedMs": 15.017625,
-              "processWallMs": 45.394875,
-              "peakRssBytes": 35061760
+              "elapsedMs": 14.816958000000001,
+              "processWallMs": 44.48516699999999,
+              "peakRssBytes": 35815424
             },
             {
               "checksum": 80000,
-              "elapsedMs": 15.659459,
-              "processWallMs": 45.864083,
-              "peakRssBytes": 34488320
+              "elapsedMs": 14.604208,
+              "processWallMs": 44.978542,
+              "peakRssBytes": 34865152
             },
             {
               "checksum": 80000,
-              "elapsedMs": 15.100708,
-              "processWallMs": 45.503208,
-              "peakRssBytes": 35225600
+              "elapsedMs": 14.845666000000001,
+              "processWallMs": 44.558583,
+              "peakRssBytes": 35110912
             }
           ],
           "elapsedMs": {
-            "median": 15.288041999999999,
-            "min": 15.017625,
-            "max": 15.700875
+            "median": 14.845666000000001,
+            "min": 14.604208,
+            "max": 14.90325
           },
           "processWallMs": {
-            "median": 45.864083,
-            "min": 45.394875,
-            "max": 48.258625
+            "median": 44.558583,
+            "min": 44.48516699999999,
+            "max": 44.978542
           },
           "peakRssBytes": {
-            "median": 35143680,
-            "min": 34488320,
-            "max": 35536896
+            "median": 35356672,
+            "min": 34865152,
+            "max": 35815424
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm-gc",
+      "scenario": "session200-shared",
+      "iterations": 200,
+      "expectedChecksum": 80000,
+      "peers": {
+        "ours": {
+          "binarySha256": "9d3c014b4d6210556cb81ea8d2838d8c76d7ae78eb73c3b1b0a42ad506861592",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_ours_session200_shared/resources_ours_session200_shared.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 7.632416999999999,
+              "processWallMs": 28.440292000000003,
+              "peakRssBytes": 25985024
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 7.740209,
+              "processWallMs": 27.960917,
+              "peakRssBytes": 26836992
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 7.802207999999999,
+              "processWallMs": 28.650375000000004,
+              "peakRssBytes": 25804800
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 7.561916,
+              "processWallMs": 27.828834000000004,
+              "peakRssBytes": 24477696
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 7.571458,
+              "processWallMs": 28.342375,
+              "peakRssBytes": 24510464
+            }
+          ],
+          "elapsedMs": {
+            "median": 7.632416999999999,
+            "min": 7.561916,
+            "max": 7.802207999999999
+          },
+          "processWallMs": {
+            "median": 28.342375,
+            "min": 27.828834000000004,
+            "max": 28.650375000000004
+          },
+          "peakRssBytes": {
+            "median": 25804800,
+            "min": 24477696,
+            "max": 26836992
+          }
+        },
+        "jsj": {
+          "binarySha256": "1e9695436c642b3f909afe0b4ce2821133360f844248922705e2c23e6ac3ddbd",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_jsj_session200_shared/resources_jsj_session200_shared.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 12.271584,
+              "processWallMs": 37.362708000000005,
+              "peakRssBytes": 34013184
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 12.341166999999999,
+              "processWallMs": 37.672042000000005,
+              "peakRssBytes": 33456128
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 12.206708999999998,
+              "processWallMs": 36.874667,
+              "peakRssBytes": 33193984
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 12.277,
+              "processWallMs": 37.014708,
+              "peakRssBytes": 34193408
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 12.085666,
+              "processWallMs": 38.667208,
+              "peakRssBytes": 33390592
+            }
+          ],
+          "elapsedMs": {
+            "median": 12.271584,
+            "min": 12.085666,
+            "max": 12.341166999999999
+          },
+          "processWallMs": {
+            "median": 37.362708000000005,
+            "min": 36.874667,
+            "max": 38.667208
+          },
+          "peakRssBytes": {
+            "median": 33456128,
+            "min": 33193984,
+            "max": 34193408
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm-gc",
+      "scenario": "session200-retained",
+      "iterations": 1000,
+      "expectedChecksum": 201000,
+      "peers": {
+        "ours": {
+          "binarySha256": "66731cd746ff7ed56f751422318b8ea676ce0464d9a2c7aa00b234de964db1ea",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_ours_session200_retained/resources_ours_session200_retained.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 4.244,
+              "processWallMs": 14.693125000000002,
+              "peakRssBytes": 26689536
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 4.243708,
+              "processWallMs": 15.115916,
+              "peakRssBytes": 26673152
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 4.083667,
+              "processWallMs": 14.568042,
+              "peakRssBytes": 26689536
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 4.230167000000001,
+              "processWallMs": 14.510208000000004,
+              "peakRssBytes": 26755072
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 4.134416,
+              "processWallMs": 14.393624999999997,
+              "peakRssBytes": 26722304
+            }
+          ],
+          "elapsedMs": {
+            "median": 4.230167000000001,
+            "min": 4.083667,
+            "max": 4.244
+          },
+          "processWallMs": {
+            "median": 14.568042,
+            "min": 14.393624999999997,
+            "max": 15.115916
+          },
+          "peakRssBytes": {
+            "median": 26689536,
+            "min": 26673152,
+            "max": 26755072
+          }
+        },
+        "jsj": {
+          "binarySha256": "d7c63d07d22ebf5ced36d054c7d53a6fe01d836ea5165e5386ef7da61786830f",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_jsj_session200_retained/resources_jsj_session200_retained.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 19.129,
+              "processWallMs": 32.550583,
+              "peakRssBytes": 51773440
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 13.704083,
+              "processWallMs": 27.459333,
+              "peakRssBytes": 49971200
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 10.186832999999998,
+              "processWallMs": 23.570125,
+              "peakRssBytes": 50167808
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 13.61125,
+              "processWallMs": 26.5105,
+              "peakRssBytes": 51920896
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 14.359708000000001,
+              "processWallMs": 27.5805,
+              "peakRssBytes": 51838976
+            }
+          ],
+          "elapsedMs": {
+            "median": 13.704083,
+            "min": 10.186832999999998,
+            "max": 19.129
+          },
+          "processWallMs": {
+            "median": 27.459333,
+            "min": 23.570125,
+            "max": 32.550583
+          },
+          "peakRssBytes": {
+            "median": 51773440,
+            "min": 49971200,
+            "max": 51920896
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm-gc",
+      "scenario": "batch200-one",
+      "iterations": 1000,
+      "expectedChecksum": 200000,
+      "peers": {
+        "ours": {
+          "binarySha256": "a5aac3b8e7615fba1c552ea82449256906d77ee288fdf4a4ebb656e07a2fa63d",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_ours_batch200_one/resources_ours_batch200_one.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 200000,
+              "elapsedMs": 27.552917,
+              "processWallMs": 43.985042,
+              "peakRssBytes": 24772608
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 27.201165999999997,
+              "processWallMs": 43.66058299999999,
+              "peakRssBytes": 24756224
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 27.335207999999998,
+              "processWallMs": 43.95508300000001,
+              "peakRssBytes": 24592384
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 27.310041000000002,
+              "processWallMs": 44.11304200000001,
+              "peakRssBytes": 24641536
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 27.368083000000002,
+              "processWallMs": 44.449833000000005,
+              "peakRssBytes": 24625152
+            }
+          ],
+          "elapsedMs": {
+            "median": 27.335207999999998,
+            "min": 27.201165999999997,
+            "max": 27.552917
+          },
+          "processWallMs": {
+            "median": 43.985042,
+            "min": 43.66058299999999,
+            "max": 44.449833000000005
+          },
+          "peakRssBytes": {
+            "median": 24641536,
+            "min": 24592384,
+            "max": 24772608
+          }
+        },
+        "jsj": {
+          "binarySha256": "b8a625b7048af8a60d37cd12c92a9be22e764395c5a6dd9d35ce73a32423bbc6",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_jsj_batch200_one/resources_jsj_batch200_one.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 200000,
+              "elapsedMs": 39.097666000000004,
+              "processWallMs": 59.911167,
+              "peakRssBytes": 29147136
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 39.39425,
+              "processWallMs": 60.23604199999999,
+              "peakRssBytes": 28262400
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 39.4755,
+              "processWallMs": 59.725167,
+              "peakRssBytes": 28966912
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 39.3685,
+              "processWallMs": 59.911958,
+              "peakRssBytes": 29442048
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 38.866375,
+              "processWallMs": 58.873959000000006,
+              "peakRssBytes": 30097408
+            }
+          ],
+          "elapsedMs": {
+            "median": 39.3685,
+            "min": 38.866375,
+            "max": 39.4755
+          },
+          "processWallMs": {
+            "median": 59.911167,
+            "min": 58.873959000000006,
+            "max": 60.23604199999999
+          },
+          "peakRssBytes": {
+            "median": 29147136,
+            "min": 28262400,
+            "max": 30097408
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm-gc",
+      "scenario": "audit200",
+      "iterations": 1000,
+      "expectedChecksum": 100000,
+      "peers": {
+        "ours": {
+          "binarySha256": "80806b85f04a9f078ccfef92e7c51c72918caba347cc8895919ec25e133d5275",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_ours_audit200/resources_ours_audit200.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 100000,
+              "elapsedMs": 9.042834,
+              "processWallMs": 20.601291999999997,
+              "peakRssBytes": 21954560
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 9.25475,
+              "processWallMs": 21.202917,
+              "peakRssBytes": 22020096
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 9.17125,
+              "processWallMs": 20.955167,
+              "peakRssBytes": 21889024
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 9.067791000000001,
+              "processWallMs": 20.917291000000002,
+              "peakRssBytes": 21938176
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 9.171541,
+              "processWallMs": 20.334,
+              "peakRssBytes": 21938176
+            }
+          ],
+          "elapsedMs": {
+            "median": 9.17125,
+            "min": 9.042834,
+            "max": 9.25475
+          },
+          "processWallMs": {
+            "median": 20.917291000000002,
+            "min": 20.334,
+            "max": 21.202917
+          },
+          "peakRssBytes": {
+            "median": 21938176,
+            "min": 21889024,
+            "max": 22020096
+          }
+        },
+        "jsj": {
+          "binarySha256": "62e1898c3de19b108c5ca23ac01e6721b158f8f23ff86d0f58311860e8d4d736",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_jsj_audit200/resources_jsj_audit200.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 100000,
+              "elapsedMs": 24.632208,
+              "processWallMs": 40.438709,
+              "peakRssBytes": 25149440
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 24.427083,
+              "processWallMs": 40.04933299999999,
+              "peakRssBytes": 25264128
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 24.43775,
+              "processWallMs": 40.644,
+              "peakRssBytes": 25264128
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 24.253625,
+              "processWallMs": 40.59670799999999,
+              "peakRssBytes": 25296896
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 24.094792,
+              "processWallMs": 40.282833000000004,
+              "peakRssBytes": 25247744
+            }
+          ],
+          "elapsedMs": {
+            "median": 24.427083,
+            "min": 24.094792,
+            "max": 24.632208
+          },
+          "processWallMs": {
+            "median": 40.438709,
+            "min": 40.04933299999999,
+            "max": 40.644
+          },
+          "peakRssBytes": {
+            "median": 25264128,
+            "min": 25149440,
+            "max": 25296896
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm-gc",
+      "scenario": "mixed-collections",
+      "iterations": 100,
+      "expectedChecksum": 5404900,
+      "peers": {
+        "ours": {
+          "binarySha256": "bb0727f018788abfc57e81b987c8b30fb914b2f13029bef726aa21fb741dbd9e",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_ours_mixed_collections/resources_ours_mixed_collections.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 5404900,
+              "elapsedMs": 19.827958,
+              "processWallMs": 59.989917,
+              "peakRssBytes": 33554432
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 19.82575,
+              "processWallMs": 61.385542,
+              "peakRssBytes": 33734656
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 20.048334000000004,
+              "processWallMs": 60.89987500000001,
+              "peakRssBytes": 33570816
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 19.23675,
+              "processWallMs": 60.056166,
+              "peakRssBytes": 33439744
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 19.646957999999998,
+              "processWallMs": 60.325125,
+              "peakRssBytes": 33521664
+            }
+          ],
+          "elapsedMs": {
+            "median": 19.82575,
+            "min": 19.23675,
+            "max": 20.048334000000004
+          },
+          "processWallMs": {
+            "median": 60.325125,
+            "min": 59.989917,
+            "max": 61.385542
+          },
+          "peakRssBytes": {
+            "median": 33554432,
+            "min": 33439744,
+            "max": 33734656
+          }
+        },
+        "magic": {
+          "binarySha256": "66a34b56a9a293dd47672c277ad1e98fa60bd9bf46eafca24910ce0be6cb4501",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_magic_mixed_collections/resources_magic_mixed_collections.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 5404900,
+              "elapsedMs": 32.9505,
+              "processWallMs": 96.928916,
+              "peakRssBytes": 34226176
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 32.652041999999994,
+              "processWallMs": 95.22775,
+              "peakRssBytes": 34226176
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 32.581667,
+              "processWallMs": 95.03833300000001,
+              "peakRssBytes": 34308096
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 33.2665,
+              "processWallMs": 96.14370799999999,
+              "peakRssBytes": 34275328
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 32.614292,
+              "processWallMs": 95.02250000000001,
+              "peakRssBytes": 34209792
+            }
+          ],
+          "elapsedMs": {
+            "median": 32.652041999999994,
+            "min": 32.581667,
+            "max": 33.2665
+          },
+          "processWallMs": {
+            "median": 95.22775,
+            "min": 95.02250000000001,
+            "max": 96.928916
+          },
+          "peakRssBytes": {
+            "median": 34226176,
+            "min": 34209792,
+            "max": 34308096
+          }
+        },
+        "jsj": {
+          "binarySha256": "be2361a7a31d7175fc0362962c8afe1513a03f3dbe139490f4030cb4be7d6d03",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_jsj_mixed_collections/resources_jsj_mixed_collections.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 5404900,
+              "elapsedMs": 29.865083000000002,
+              "processWallMs": 90.287542,
+              "peakRssBytes": 46071808
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 30.798167000000003,
+              "processWallMs": 91.98420800000001,
+              "peakRssBytes": 46235648
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 30.925957999999998,
+              "processWallMs": 92.08487500000001,
+              "peakRssBytes": 46104576
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 31.005667000000003,
+              "processWallMs": 92.62674999999999,
+              "peakRssBytes": 46120960
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 30.012625,
+              "processWallMs": 90.539917,
+              "peakRssBytes": 45924352
+            }
+          ],
+          "elapsedMs": {
+            "median": 30.798167000000003,
+            "min": 29.865083000000002,
+            "max": 31.005667000000003
+          },
+          "processWallMs": {
+            "median": 91.98420800000001,
+            "min": 90.287542,
+            "max": 92.62674999999999
+          },
+          "peakRssBytes": {
+            "median": 46104576,
+            "min": 45924352,
+            "max": 46235648
           }
         }
       }
@@ -1586,56 +3488,56 @@
       "expectedChecksum": 256000,
       "peers": {
         "ours": {
-          "binarySha256": "57339095700b98088e93760672200a3090710d53f0b62f6d7f3f5918efde01b3",
+          "binarySha256": "21ddd9aaf4b88d75ca499f0149bd5eba47780a4079377e14ccf9ac61b9b932c9",
           "command": [
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_ours_variables512/resources_ours_variables512.exe"
           ],
           "raw": [
             {
               "checksum": 256000,
-              "elapsedMs": 19.391709,
-              "processWallMs": 269.539375,
-              "peakRssBytes": 2310144
+              "elapsedMs": 18.166207999999997,
+              "processWallMs": 459.897208,
+              "peakRssBytes": 2277376
             },
             {
               "checksum": 256000,
-              "elapsedMs": 11.8425,
-              "processWallMs": 18.509084,
+              "elapsedMs": 12.050125,
+              "processWallMs": 18.930417,
               "peakRssBytes": 2293760
             },
             {
               "checksum": 256000,
-              "elapsedMs": 12.6725,
-              "processWallMs": 19.804791,
+              "elapsedMs": 11.895125,
+              "processWallMs": 18.389916000000003,
               "peakRssBytes": 2293760
             },
             {
               "checksum": 256000,
-              "elapsedMs": 11.745042,
-              "processWallMs": 18.368291999999997,
+              "elapsedMs": 11.598125,
+              "processWallMs": 17.964540999999997,
               "peakRssBytes": 2293760
             },
             {
               "checksum": 256000,
-              "elapsedMs": 11.577875,
-              "processWallMs": 18.157708000000003,
+              "elapsedMs": 12.182167,
+              "processWallMs": 18.754458999999997,
               "peakRssBytes": 2293760
             }
           ],
           "elapsedMs": {
-            "median": 11.8425,
-            "min": 11.577875,
-            "max": 19.391709
+            "median": 12.050125,
+            "min": 11.598125,
+            "max": 18.166207999999997
           },
           "processWallMs": {
-            "median": 18.509084,
-            "min": 18.157708000000003,
-            "max": 269.539375
+            "median": 18.754458999999997,
+            "min": 17.964540999999997,
+            "max": 459.897208
           },
           "peakRssBytes": {
             "median": 2293760,
-            "min": 2293760,
-            "max": 2310144
+            "min": 2277376,
+            "max": 2293760
           }
         },
         "magic": {
@@ -1646,44 +3548,44 @@
           "raw": [
             {
               "checksum": 256000,
-              "elapsedMs": 32.345792,
-              "processWallMs": 410.52074999999996,
+              "elapsedMs": 28.998042,
+              "processWallMs": 460.40075,
               "peakRssBytes": 2260992
             },
             {
               "checksum": 256000,
-              "elapsedMs": 22.124625,
-              "processWallMs": 32.142208000000004,
+              "elapsedMs": 22.169,
+              "processWallMs": 31.972374999999996,
               "peakRssBytes": 2244608
             },
             {
               "checksum": 256000,
-              "elapsedMs": 21.366708,
-              "processWallMs": 31.150541,
+              "elapsedMs": 21.841957999999998,
+              "processWallMs": 31.505792000000003,
               "peakRssBytes": 2244608
             },
             {
               "checksum": 256000,
-              "elapsedMs": 21.490707999999998,
-              "processWallMs": 31.337500000000006,
+              "elapsedMs": 21.808042,
+              "processWallMs": 31.560709,
               "peakRssBytes": 2244608
             },
             {
               "checksum": 256000,
-              "elapsedMs": 22.418791000000002,
-              "processWallMs": 32.357875,
+              "elapsedMs": 22.152375,
+              "processWallMs": 32.597832999999994,
               "peakRssBytes": 2244608
             }
           ],
           "elapsedMs": {
-            "median": 22.124625,
-            "min": 21.366708,
-            "max": 32.345792
+            "median": 22.152375,
+            "min": 21.808042,
+            "max": 28.998042
           },
           "processWallMs": {
-            "median": 32.142208000000004,
-            "min": 31.150541,
-            "max": 410.52074999999996
+            "median": 31.972374999999996,
+            "min": 31.505792000000003,
+            "max": 460.40075
           },
           "peakRssBytes": {
             "median": 2244608,
@@ -1699,48 +3601,48 @@
           "raw": [
             {
               "checksum": 256000,
-              "elapsedMs": 50.702875,
-              "processWallMs": 603.5485,
+              "elapsedMs": 48.28375,
+              "processWallMs": 443.03583299999997,
               "peakRssBytes": 2277376
             },
             {
               "checksum": 256000,
-              "elapsedMs": 37.851334,
-              "processWallMs": 52.725,
+              "elapsedMs": 38.22525,
+              "processWallMs": 52.654832999999996,
               "peakRssBytes": 2277376
             },
             {
               "checksum": 256000,
-              "elapsedMs": 38.924625,
-              "processWallMs": 53.64404099999999,
-              "peakRssBytes": 2260992
-            },
-            {
-              "checksum": 256000,
-              "elapsedMs": 37.817167,
-              "processWallMs": 52.108540999999995,
+              "elapsedMs": 39.102375,
+              "processWallMs": 54.073584000000004,
               "peakRssBytes": 2277376
             },
             {
               "checksum": 256000,
-              "elapsedMs": 38.145,
-              "processWallMs": 52.58350000000001,
+              "elapsedMs": 37.943459000000004,
+              "processWallMs": 52.640458,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 38.000042,
+              "processWallMs": 53.342791999999996,
               "peakRssBytes": 2277376
             }
           ],
           "elapsedMs": {
-            "median": 38.145,
-            "min": 37.817167,
-            "max": 50.702875
+            "median": 38.22525,
+            "min": 37.943459000000004,
+            "max": 48.28375
           },
           "processWallMs": {
-            "median": 52.725,
-            "min": 52.108540999999995,
-            "max": 603.5485
+            "median": 53.342791999999996,
+            "min": 52.640458,
+            "max": 443.03583299999997
           },
           "peakRssBytes": {
             "median": 2277376,
-            "min": 2260992,
+            "min": 2277376,
             "max": 2277376
           }
         }
@@ -1753,56 +3655,56 @@
       "expectedChecksum": 512000,
       "peers": {
         "ours": {
-          "binarySha256": "002a36a6b087420b3ef30e80f929783b9be548a9d19e0bda9a6aee7b682b2bef",
+          "binarySha256": "3575cfd5703194af2374b5043d2475ca5059284839cfeaf49ee039cf14bb9ccc",
           "command": [
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_ours_contract512/resources_ours_contract512.exe"
           ],
           "raw": [
             {
               "checksum": 512000,
-              "elapsedMs": 21.188457999999997,
-              "processWallMs": 549.458958,
+              "elapsedMs": 22.199958,
+              "processWallMs": 1194.6665409999998,
+              "peakRssBytes": 2490368
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 13.980041000000002,
+              "processWallMs": 19.377209000000004,
               "peakRssBytes": 2473984
             },
             {
               "checksum": 512000,
-              "elapsedMs": 14.349542,
-              "processWallMs": 19.971,
+              "elapsedMs": 13.599,
+              "processWallMs": 18.859290999999995,
               "peakRssBytes": 2473984
             },
             {
               "checksum": 512000,
-              "elapsedMs": 13.649833000000001,
-              "processWallMs": 19.268625000000004,
+              "elapsedMs": 13.800917,
+              "processWallMs": 19.042125000000002,
               "peakRssBytes": 2473984
             },
             {
               "checksum": 512000,
-              "elapsedMs": 13.683375,
-              "processWallMs": 19.132167,
-              "peakRssBytes": 2473984
-            },
-            {
-              "checksum": 512000,
-              "elapsedMs": 13.557,
-              "processWallMs": 19.090042,
+              "elapsedMs": 13.876042,
+              "processWallMs": 19.083833,
               "peakRssBytes": 2473984
             }
           ],
           "elapsedMs": {
-            "median": 13.683375,
-            "min": 13.557,
-            "max": 21.188457999999997
+            "median": 13.876042,
+            "min": 13.599,
+            "max": 22.199958
           },
           "processWallMs": {
-            "median": 19.268625000000004,
-            "min": 19.090042,
-            "max": 549.458958
+            "median": 19.083833,
+            "min": 18.859290999999995,
+            "max": 1194.6665409999998
           },
           "peakRssBytes": {
             "median": 2473984,
             "min": 2473984,
-            "max": 2473984
+            "max": 2490368
           }
         },
         "jsj": {
@@ -1813,44 +3715,44 @@
           "raw": [
             {
               "checksum": 512000,
-              "elapsedMs": 36.163834,
-              "processWallMs": 940.0000829999999,
+              "elapsedMs": 38.088667000000015,
+              "processWallMs": 827.274625,
               "peakRssBytes": 2424832
             },
             {
               "checksum": 512000,
-              "elapsedMs": 26.302,
-              "processWallMs": 34.276416,
+              "elapsedMs": 26.043833000000003,
+              "processWallMs": 33.42575,
               "peakRssBytes": 2424832
             },
             {
               "checksum": 512000,
-              "elapsedMs": 26.16,
-              "processWallMs": 33.419083,
+              "elapsedMs": 25.51975,
+              "processWallMs": 32.759625,
               "peakRssBytes": 2424832
             },
             {
               "checksum": 512000,
-              "elapsedMs": 26.026042,
-              "processWallMs": 33.263084,
+              "elapsedMs": 26.691916000000003,
+              "processWallMs": 34.256707999999996,
               "peakRssBytes": 2424832
             },
             {
               "checksum": 512000,
-              "elapsedMs": 26.054875,
-              "processWallMs": 33.359625,
+              "elapsedMs": 25.919125,
+              "processWallMs": 33.028666,
               "peakRssBytes": 2424832
             }
           ],
           "elapsedMs": {
-            "median": 26.16,
-            "min": 26.026042,
-            "max": 36.163834
+            "median": 26.043833000000003,
+            "min": 25.51975,
+            "max": 38.088667000000015
           },
           "processWallMs": {
-            "median": 33.419083,
-            "min": 33.263084,
-            "max": 940.0000829999999
+            "median": 33.42575,
+            "min": 32.759625,
+            "max": 827.274625
           },
           "peakRssBytes": {
             "median": 2424832,
@@ -1867,56 +3769,56 @@
       "expectedChecksum": 201000,
       "peers": {
         "ours": {
-          "binarySha256": "75701220f260b72a9d8b20f30a14f6531c4c9800fa4ad8fdb551714b9a5050ee",
+          "binarySha256": "c0132ec92db99d2ebb3b4fb84396c02c43ceffd42c7dec186e4653c078af3b85",
           "command": [
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_ours_session200_one/resources_ours_session200_one.exe"
           ],
           "raw": [
             {
               "checksum": 201000,
-              "elapsedMs": 7.722042,
-              "processWallMs": 923.382334,
-              "peakRssBytes": 2293760
+              "elapsedMs": 3.474333,
+              "processWallMs": 757.880208,
+              "peakRssBytes": 2326528
             },
             {
               "checksum": 201000,
-              "elapsedMs": 4.876125,
-              "processWallMs": 8.804375,
-              "peakRssBytes": 2293760
+              "elapsedMs": 2.451667,
+              "processWallMs": 5.849792,
+              "peakRssBytes": 2326528
             },
             {
               "checksum": 201000,
-              "elapsedMs": 4.290959,
-              "processWallMs": 8.478708000000001,
-              "peakRssBytes": 2293760
+              "elapsedMs": 2.430709,
+              "processWallMs": 5.851999999999999,
+              "peakRssBytes": 2326528
             },
             {
               "checksum": 201000,
-              "elapsedMs": 4.664333000000001,
-              "processWallMs": 8.559459000000002,
-              "peakRssBytes": 2293760
+              "elapsedMs": 2.543292,
+              "processWallMs": 6.103208999999998,
+              "peakRssBytes": 2326528
             },
             {
               "checksum": 201000,
-              "elapsedMs": 4.474416,
-              "processWallMs": 8.482542000000002,
-              "peakRssBytes": 2293760
+              "elapsedMs": 2.4284160000000004,
+              "processWallMs": 5.766500000000001,
+              "peakRssBytes": 2326528
             }
           ],
           "elapsedMs": {
-            "median": 4.664333000000001,
-            "min": 4.290959,
-            "max": 7.722042
+            "median": 2.451667,
+            "min": 2.4284160000000004,
+            "max": 3.474333
           },
           "processWallMs": {
-            "median": 8.559459000000002,
-            "min": 8.478708000000001,
-            "max": 923.382334
+            "median": 5.851999999999999,
+            "min": 5.766500000000001,
+            "max": 757.880208
           },
           "peakRssBytes": {
-            "median": 2293760,
-            "min": 2293760,
-            "max": 2293760
+            "median": 2326528,
+            "min": 2326528,
+            "max": 2326528
           }
         },
         "jsj": {
@@ -1927,44 +3829,44 @@
           "raw": [
             {
               "checksum": 201000,
-              "elapsedMs": 9.54025,
-              "processWallMs": 751.9561249999999,
+              "elapsedMs": 12.818084,
+              "processWallMs": 952.395709,
               "peakRssBytes": 2277376
             },
             {
               "checksum": 201000,
-              "elapsedMs": 7.7286660000000005,
-              "processWallMs": 12.532292,
+              "elapsedMs": 7.375375,
+              "processWallMs": 12.259083,
               "peakRssBytes": 2260992
             },
             {
               "checksum": 201000,
-              "elapsedMs": 6.774834,
-              "processWallMs": 10.794583,
+              "elapsedMs": 6.681917,
+              "processWallMs": 10.559790999999999,
               "peakRssBytes": 2260992
             },
             {
               "checksum": 201000,
-              "elapsedMs": 6.963125,
-              "processWallMs": 11.175792,
+              "elapsedMs": 6.628916,
+              "processWallMs": 10.722709,
               "peakRssBytes": 2260992
             },
             {
               "checksum": 201000,
-              "elapsedMs": 6.675959,
-              "processWallMs": 10.927375,
+              "elapsedMs": 6.885875,
+              "processWallMs": 10.957457999999999,
               "peakRssBytes": 2260992
             }
           ],
           "elapsedMs": {
-            "median": 6.963125,
-            "min": 6.675959,
-            "max": 9.54025
+            "median": 6.885875,
+            "min": 6.628916,
+            "max": 12.818084
           },
           "processWallMs": {
-            "median": 11.175792,
-            "min": 10.794583,
-            "max": 751.9561249999999
+            "median": 10.957457999999999,
+            "min": 10.559790999999999,
+            "max": 952.395709
           },
           "peakRssBytes": {
             "median": 2260992,
@@ -1981,55 +3883,55 @@
       "expectedChecksum": 80000,
       "peers": {
         "ours": {
-          "binarySha256": "f9de100970d32fd9ed1dca3d9ef1f3518c60b3c8d2ef2b54b2523d68a0988788",
+          "binarySha256": "a63039646fe3dfc9644e9b5bc9f9eb31943028ca9c0fd604201e5a3ea6311286",
           "command": [
             "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_ours_session200_all/resources_ours_session200_all.exe"
           ],
           "raw": [
             {
               "checksum": 80000,
-              "elapsedMs": 27.649666,
-              "processWallMs": 1187.3760829999999,
+              "elapsedMs": 26.397084,
+              "processWallMs": 762.000084,
               "peakRssBytes": 2359296
             },
             {
               "checksum": 80000,
-              "elapsedMs": 20.385625,
-              "processWallMs": 39.528707999999995,
-              "peakRssBytes": 2342912
+              "elapsedMs": 19.504333,
+              "processWallMs": 37.502459,
+              "peakRssBytes": 2359296
             },
             {
               "checksum": 80000,
-              "elapsedMs": 20.922,
-              "processWallMs": 39.770374999999994,
-              "peakRssBytes": 2342912
+              "elapsedMs": 19.657207999999997,
+              "processWallMs": 37.351,
+              "peakRssBytes": 2359296
             },
             {
               "checksum": 80000,
-              "elapsedMs": 20.389875,
-              "processWallMs": 39.106916999999996,
-              "peakRssBytes": 2342912
+              "elapsedMs": 19.270958999999998,
+              "processWallMs": 36.627458000000004,
+              "peakRssBytes": 2359296
             },
             {
               "checksum": 80000,
-              "elapsedMs": 20.217291,
-              "processWallMs": 38.719542000000004,
-              "peakRssBytes": 2342912
+              "elapsedMs": 19.436667,
+              "processWallMs": 37.192083000000004,
+              "peakRssBytes": 2359296
             }
           ],
           "elapsedMs": {
-            "median": 20.389875,
-            "min": 20.217291,
-            "max": 27.649666
+            "median": 19.504333,
+            "min": 19.270958999999998,
+            "max": 26.397084
           },
           "processWallMs": {
-            "median": 39.528707999999995,
-            "min": 38.719542000000004,
-            "max": 1187.3760829999999
+            "median": 37.351,
+            "min": 36.627458000000004,
+            "max": 762.000084
           },
           "peakRssBytes": {
-            "median": 2342912,
-            "min": 2342912,
+            "median": 2359296,
+            "min": 2359296,
             "max": 2359296
           }
         },
@@ -2041,49 +3943,672 @@
           "raw": [
             {
               "checksum": 80000,
-              "elapsedMs": 29.292875,
-              "processWallMs": 764.586125,
+              "elapsedMs": 25.2845,
+              "processWallMs": 1408.1821670000002,
               "peakRssBytes": 2310144
             },
             {
               "checksum": 80000,
-              "elapsedMs": 21.444417,
-              "processWallMs": 41.139166,
+              "elapsedMs": 21.450708,
+              "processWallMs": 41.14875,
               "peakRssBytes": 2293760
             },
             {
               "checksum": 80000,
-              "elapsedMs": 21.660041,
-              "processWallMs": 40.928042,
+              "elapsedMs": 21.904708,
+              "processWallMs": 41.444207999999996,
               "peakRssBytes": 2293760
             },
             {
               "checksum": 80000,
-              "elapsedMs": 21.076583,
-              "processWallMs": 40.227917000000005,
+              "elapsedMs": 21.341291000000002,
+              "processWallMs": 40.447165999999996,
               "peakRssBytes": 2293760
             },
             {
               "checksum": 80000,
-              "elapsedMs": 21.423291000000003,
-              "processWallMs": 40.881,
+              "elapsedMs": 21.641958,
+              "processWallMs": 41.129583,
               "peakRssBytes": 2293760
             }
           ],
           "elapsedMs": {
-            "median": 21.444417,
-            "min": 21.076583,
-            "max": 29.292875
+            "median": 21.641958,
+            "min": 21.341291000000002,
+            "max": 25.2845
           },
           "processWallMs": {
-            "median": 40.928042,
-            "min": 40.227917000000005,
-            "max": 764.586125
+            "median": 41.14875,
+            "min": 40.447165999999996,
+            "max": 1408.1821670000002
           },
           "peakRssBytes": {
             "median": 2293760,
             "min": 2293760,
             "max": 2310144
+          }
+        }
+      }
+    },
+    {
+      "target": "native",
+      "scenario": "session200-shared",
+      "iterations": 200,
+      "expectedChecksum": 80000,
+      "peers": {
+        "ours": {
+          "binarySha256": "5501eb3867f91361efc9ad300ab92fac883665eaf558ead85ebc69f0c37411ae",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_ours_session200_shared/resources_ours_session200_shared.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 18.084041000000003,
+              "processWallMs": 770.087,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 13.34775,
+              "processWallMs": 26.689625,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 13.567459000000001,
+              "processWallMs": 26.819417,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 13.240166,
+              "processWallMs": 26.763042,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 13.2995,
+              "processWallMs": 26.642458,
+              "peakRssBytes": 2277376
+            }
+          ],
+          "elapsedMs": {
+            "median": 13.34775,
+            "min": 13.240166,
+            "max": 18.084041000000003
+          },
+          "processWallMs": {
+            "median": 26.763042,
+            "min": 26.642458,
+            "max": 770.087
+          },
+          "peakRssBytes": {
+            "median": 2277376,
+            "min": 2277376,
+            "max": 2277376
+          }
+        },
+        "jsj": {
+          "binarySha256": "d8f15110d50ed04c19f76b01bed5d11fdd55ffff196b1dfa27fe7912c2456f2f",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_jsj_session200_shared/resources_jsj_session200_shared.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 22.672583,
+              "processWallMs": 771.29125,
+              "peakRssBytes": 2244608
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 16.735542000000002,
+              "processWallMs": 33.110208,
+              "peakRssBytes": 2228224
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 16.273083,
+              "processWallMs": 32.14145800000001,
+              "peakRssBytes": 2228224
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 16.732625,
+              "processWallMs": 32.302792,
+              "peakRssBytes": 2228224
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 16.552958,
+              "processWallMs": 32.19416699999999,
+              "peakRssBytes": 2228224
+            }
+          ],
+          "elapsedMs": {
+            "median": 16.732625,
+            "min": 16.273083,
+            "max": 22.672583
+          },
+          "processWallMs": {
+            "median": 32.302792,
+            "min": 32.14145800000001,
+            "max": 771.29125
+          },
+          "peakRssBytes": {
+            "median": 2228224,
+            "min": 2228224,
+            "max": 2244608
+          }
+        }
+      }
+    },
+    {
+      "target": "native",
+      "scenario": "session200-retained",
+      "iterations": 1000,
+      "expectedChecksum": 201000,
+      "peers": {
+        "ours": {
+          "binarySha256": "e3a438bae69e5ad8aa73d1ef2ae36d3e06563cf28f1eddddb0595f51bba60761",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_ours_session200_retained/resources_ours_session200_retained.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 3.2877910000000004,
+              "processWallMs": 706.1702909999999,
+              "peakRssBytes": 5685248
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 2.551792,
+              "processWallMs": 6.131499999999998,
+              "peakRssBytes": 5718016
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 2.496042,
+              "processWallMs": 6.183959000000002,
+              "peakRssBytes": 5718016
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 2.513625,
+              "processWallMs": 6.1402909999999995,
+              "peakRssBytes": 5718016
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 2.5810410000000004,
+              "processWallMs": 6.164625,
+              "peakRssBytes": 5718016
+            }
+          ],
+          "elapsedMs": {
+            "median": 2.551792,
+            "min": 2.496042,
+            "max": 3.2877910000000004
+          },
+          "processWallMs": {
+            "median": 6.164625,
+            "min": 6.131499999999998,
+            "max": 706.1702909999999
+          },
+          "peakRssBytes": {
+            "median": 5718016,
+            "min": 5685248,
+            "max": 5718016
+          }
+        },
+        "jsj": {
+          "binarySha256": "7e50366fc91ebf3fc04ffe62bdbc823be2e747435d092dc3705e80e54457f6d2",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_jsj_session200_retained/resources_jsj_session200_retained.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 10.608542,
+              "processWallMs": 1523.949583,
+              "peakRssBytes": 16547840
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 7.160792000000001,
+              "processWallMs": 14.289249999999996,
+              "peakRssBytes": 16547840
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.049208,
+              "processWallMs": 12.071333000000003,
+              "peakRssBytes": 16547840
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.099292,
+              "processWallMs": 11.986333999999998,
+              "peakRssBytes": 16531456
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.202333,
+              "processWallMs": 11.927165999999996,
+              "peakRssBytes": 16515072
+            }
+          ],
+          "elapsedMs": {
+            "median": 6.202333,
+            "min": 6.049208,
+            "max": 10.608542
+          },
+          "processWallMs": {
+            "median": 12.071333000000003,
+            "min": 11.927165999999996,
+            "max": 1523.949583
+          },
+          "peakRssBytes": {
+            "median": 16547840,
+            "min": 16515072,
+            "max": 16547840
+          }
+        }
+      }
+    },
+    {
+      "target": "native",
+      "scenario": "batch200-one",
+      "iterations": 1000,
+      "expectedChecksum": 200000,
+      "peers": {
+        "ours": {
+          "binarySha256": "f17efb0566cdfbacfd2c497bc7aa39d29b2da985a5a34cda225e02da84375fa5",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_ours_batch200_one/resources_ours_batch200_one.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 200000,
+              "elapsedMs": 64.32625,
+              "processWallMs": 789.10225,
+              "peakRssBytes": 2260992
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 49.981541,
+              "processWallMs": 60.728084,
+              "peakRssBytes": 2244608
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 48.592708,
+              "processWallMs": 58.772375000000004,
+              "peakRssBytes": 2244608
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 49.913833,
+              "processWallMs": 60.487292,
+              "peakRssBytes": 2244608
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 49.58975,
+              "processWallMs": 60.027416,
+              "peakRssBytes": 2244608
+            }
+          ],
+          "elapsedMs": {
+            "median": 49.913833,
+            "min": 48.592708,
+            "max": 64.32625
+          },
+          "processWallMs": {
+            "median": 60.487292,
+            "min": 58.772375000000004,
+            "max": 789.10225
+          },
+          "peakRssBytes": {
+            "median": 2244608,
+            "min": 2244608,
+            "max": 2260992
+          }
+        },
+        "jsj": {
+          "binarySha256": "9a93ee872f4e5d224b6ebd1ee8cb45bc2c0a1b744a8fc30a68efc8b1e18d664c",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_jsj_batch200_one/resources_jsj_batch200_one.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 200000,
+              "elapsedMs": 78.24179099999999,
+              "processWallMs": 837.9440420000001,
+              "peakRssBytes": 2179072
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 64.024167,
+              "processWallMs": 76.827167,
+              "peakRssBytes": 2179072
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 63.3305,
+              "processWallMs": 75.808125,
+              "peakRssBytes": 2179072
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 65.57,
+              "processWallMs": 78.300667,
+              "peakRssBytes": 2179072
+            },
+            {
+              "checksum": 200000,
+              "elapsedMs": 64.64525,
+              "processWallMs": 77.699375,
+              "peakRssBytes": 2179072
+            }
+          ],
+          "elapsedMs": {
+            "median": 64.64525,
+            "min": 63.3305,
+            "max": 78.24179099999999
+          },
+          "processWallMs": {
+            "median": 77.699375,
+            "min": 75.808125,
+            "max": 837.9440420000001
+          },
+          "peakRssBytes": {
+            "median": 2179072,
+            "min": 2179072,
+            "max": 2179072
+          }
+        }
+      }
+    },
+    {
+      "target": "native",
+      "scenario": "audit200",
+      "iterations": 1000,
+      "expectedChecksum": 100000,
+      "peers": {
+        "ours": {
+          "binarySha256": "99d79d166cfa90329079d262c06c34d17eb6128ac9702ec9911fbbaec94e7068",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_ours_audit200/resources_ours_audit200.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 100000,
+              "elapsedMs": 25.272333,
+              "processWallMs": 759.782167,
+              "peakRssBytes": 2113536
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 15.583458,
+              "processWallMs": 20.70475,
+              "peakRssBytes": 2097152
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 15.542834000000001,
+              "processWallMs": 20.80875,
+              "peakRssBytes": 2097152
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 15.469375,
+              "processWallMs": 20.508374999999997,
+              "peakRssBytes": 2097152
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 15.664625,
+              "processWallMs": 20.97225,
+              "peakRssBytes": 2097152
+            }
+          ],
+          "elapsedMs": {
+            "median": 15.583458,
+            "min": 15.469375,
+            "max": 25.272333
+          },
+          "processWallMs": {
+            "median": 20.80875,
+            "min": 20.508374999999997,
+            "max": 759.782167
+          },
+          "peakRssBytes": {
+            "median": 2097152,
+            "min": 2097152,
+            "max": 2113536
+          }
+        },
+        "jsj": {
+          "binarySha256": "87e2f6b7f832118b244621761c5017a55d5201040e268465c34e6b48b89182e6",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_jsj_audit200/resources_jsj_audit200.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 100000,
+              "elapsedMs": 61.033917,
+              "processWallMs": 1259.8680419999998,
+              "peakRssBytes": 2179072
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 49.030292,
+              "processWallMs": 59.315209,
+              "peakRssBytes": 2162688
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 48.71420900000003,
+              "processWallMs": 59.028833,
+              "peakRssBytes": 2162688
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 49.233917,
+              "processWallMs": 59.620915999999994,
+              "peakRssBytes": 2146304
+            },
+            {
+              "checksum": 100000,
+              "elapsedMs": 49.404958,
+              "processWallMs": 59.779584,
+              "peakRssBytes": 2162688
+            }
+          ],
+          "elapsedMs": {
+            "median": 49.233917,
+            "min": 48.71420900000003,
+            "max": 61.033917
+          },
+          "processWallMs": {
+            "median": 59.620915999999994,
+            "min": 59.028833,
+            "max": 1259.8680419999998
+          },
+          "peakRssBytes": {
+            "median": 2162688,
+            "min": 2146304,
+            "max": 2179072
+          }
+        }
+      }
+    },
+    {
+      "target": "native",
+      "scenario": "mixed-collections",
+      "iterations": 100,
+      "expectedChecksum": 5404900,
+      "peers": {
+        "ours": {
+          "binarySha256": "ed975f99564e8d987b2c3ffa2c183036236e6e237fea552896f5584720335479",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_ours_mixed_collections/resources_ours_mixed_collections.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 5404900,
+              "elapsedMs": 18.475042000000002,
+              "processWallMs": 1036.476958,
+              "peakRssBytes": 3325952
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 12.63825,
+              "processWallMs": 35.693291,
+              "peakRssBytes": 3309568
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 12.726958,
+              "processWallMs": 34.511417,
+              "peakRssBytes": 3424256
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 13.918083000000001,
+              "processWallMs": 37.769042000000006,
+              "peakRssBytes": 3424256
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 15.027166000000001,
+              "processWallMs": 38.346625,
+              "peakRssBytes": 3424256
+            }
+          ],
+          "elapsedMs": {
+            "median": 13.918083000000001,
+            "min": 12.63825,
+            "max": 18.475042000000002
+          },
+          "processWallMs": {
+            "median": 37.769042000000006,
+            "min": 34.511417,
+            "max": 1036.476958
+          },
+          "peakRssBytes": {
+            "median": 3424256,
+            "min": 3309568,
+            "max": 3424256
+          }
+        },
+        "magic": {
+          "binarySha256": "32db0ed347bd451e6a38f39ad3a4c9021e7e8d8bfe0c3acbe6c36607842e8b7a",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_magic_mixed_collections/resources_magic_mixed_collections.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 5404900,
+              "elapsedMs": 22.548167000000003,
+              "processWallMs": 890.155291,
+              "peakRssBytes": 3162112
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 18.771375,
+              "processWallMs": 50.224833,
+              "peakRssBytes": 3293184
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 18.738875,
+              "processWallMs": 50.278791000000005,
+              "peakRssBytes": 3178496
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 18.576167,
+              "processWallMs": 49.129833,
+              "peakRssBytes": 3178496
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 18.38325,
+              "processWallMs": 49.60516599999999,
+              "peakRssBytes": 3293184
+            }
+          ],
+          "elapsedMs": {
+            "median": 18.738875,
+            "min": 18.38325,
+            "max": 22.548167000000003
+          },
+          "processWallMs": {
+            "median": 50.224833,
+            "min": 49.129833,
+            "max": 890.155291
+          },
+          "peakRssBytes": {
+            "median": 3178496,
+            "min": 3162112,
+            "max": 3293184
+          }
+        },
+        "jsj": {
+          "binarySha256": "68b35a70b2a3899eb6976c719096a8ad06d70deeea3702d34fbe53b2ef721f05",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_jsj_mixed_collections/resources_jsj_mixed_collections.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 5404900,
+              "elapsedMs": 27.745167000000002,
+              "processWallMs": 1141.2645420000001,
+              "peakRssBytes": 3555328
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 25.241833999999997,
+              "processWallMs": 65.626958,
+              "peakRssBytes": 3555328
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 25.179917,
+              "processWallMs": 66.214625,
+              "peakRssBytes": 3555328
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 24.971375,
+              "processWallMs": 65.706375,
+              "peakRssBytes": 3440640
+            },
+            {
+              "checksum": 5404900,
+              "elapsedMs": 25.367959,
+              "processWallMs": 66.91166700000001,
+              "peakRssBytes": 3555328
+            }
+          ],
+          "elapsedMs": {
+            "median": 25.241833999999997,
+            "min": 24.971375,
+            "max": 27.745167000000002
+          },
+          "processWallMs": {
+            "median": 66.214625,
+            "min": 65.626958,
+            "max": 1141.2645420000001
+          },
+          "peakRssBytes": {
+            "median": 3555328,
+            "min": 3440640,
+            "max": 3555328
           }
         }
       }

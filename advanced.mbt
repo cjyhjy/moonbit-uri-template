@@ -119,23 +119,20 @@ pub fn Template::expand_batch(
   let mut remaining_input = batch_limits.max_total_input_codepoints
   let mut remaining_output = batch_limits.max_total_output_bytes
   for index, vars in inputs {
-    match self.validate_bindings(vars, required, reject_unused, limits) {
+    let input_size = match
+      self.validate_bindings(vars, required, reject_unused, limits) {
       Err(error) => return Err({ index, error, })
-      Ok(_) => ()
+      Ok(left) => limits.max_total_value_codepoints - left
     }
-    for text in input_texts(vars) {
-      for _ in text.iter() {
-        if remaining_input == 0 {
-          return Err({
-            index,
-            error: problem(
-              "BatchInputLimit", "total input exceeds batch budget", 0, 0,
-            ),
-          })
-        }
-        remaining_input = remaining_input - 1
-      }
+    if input_size > remaining_input {
+      return Err({
+        index,
+        error: problem(
+          "BatchInputLimit", "total input exceeds batch budget", 0, 0,
+        ),
+      })
     }
+    remaining_input = remaining_input - input_size
     let per_item = {
       ..limits,
       max_output_bytes: Int32::min(limits.max_output_bytes, remaining_output),

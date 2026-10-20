@@ -17,6 +17,7 @@
 | `reports/peer-audit-20261020.json` | 两个同类的原测试与共享行为实测 |
 | `reports/peer-resources.json` | 四后端复杂负载的耗时、进程峰值内存及完整原始样本 |
 | `reports/history/before-resource-optimization-20261020/peer-resources.json` | 优化前相同负载的完整结果，包含落后场景 |
+| `reports/history/before-snapshot-optimization-20261020/peer-resources.json` | 扩展九类负载的快照存储与目录审计优化前结果 |
 | `reports/github-integration-portable-live.json` | 从解压分发包运行的 9 次真实 GitHub 请求 |
 | `reports/github-links-portable-live.json` | 参数切换的 3+2 次真实请求，仅刷新两个相关链接，旧快照和非法补丁检查 |
 | `reports/integration-faults.json` | 三种主动注入故障、诊断和零网络调用验证 |

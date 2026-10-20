@@ -24,7 +24,7 @@ priv struct SessionEndpoint {
 struct LinkSession {
   endpoints : Array[SessionEndpoint]
   dependencies : Map[String, Array[Int32]]
-  values : Variables
+  values : SessionBindings
   outputs : Array[String]
   sizes : Array[Int32]
   total : Int32
@@ -89,11 +89,11 @@ fn session_problem(code : String, message : String) -> CatalogError {
 ///|
 fn SessionEndpoint::bindings(
   self : SessionEndpoint,
-  shared : Variables,
+  shared : SessionBindings,
 ) -> Variables {
   let values : Map[String, Value] = Map([])
   for name in self.variables {
-    if shared.values.get(name) is Some(value) {
+    if shared.get(name) is Some(value) {
       values[name] = value
     }
   }
@@ -104,7 +104,7 @@ fn SessionEndpoint::bindings(
 ///|
 fn SessionEndpoint::measure(
   self : SessionEndpoint,
-  shared : Variables,
+  shared : SessionBindings,
   limits : ExpansionLimits,
 ) -> Result[Int32, CatalogError] {
   let vars = self.bindings(shared)
@@ -118,7 +118,7 @@ fn SessionEndpoint::measure(
 ///|
 fn SessionEndpoint::render(
   self : SessionEndpoint,
-  shared : Variables,
+  shared : SessionBindings,
   limits : ExpansionLimits,
 ) -> Result[String, CatalogError] {
   // All endpoints have already been validated and measured before rendering.
@@ -212,10 +212,14 @@ pub fn TemplateCatalog::start_session(
       )
     }
   }
+  let captured = SessionBindings::capture(
+    dependencies.keys().to_array(),
+    variables,
+  )
   let sizes : Array[Int32] = []
   let mut remaining = max_total_output_bytes
   for endpoint in endpoints {
-    let size = match endpoint.measure(variables, limits) {
+    let size = match endpoint.measure(captured, limits) {
       Err(e) => return Err(e)
       Ok(size) => size
     }
@@ -229,14 +233,10 @@ pub fn TemplateCatalog::start_session(
   }
   let outputs : Array[String] = []
   for endpoint in endpoints {
-    match endpoint.render(variables, limits) {
+    match endpoint.render(captured, limits) {
       Err(e) => return Err(e)
       Ok(uri) => outputs.push(uri)
     }
-  }
-  let captured = Variables::new()
-  for name, value in variables.values {
-    captured.set(name, value)
   }
   Ok({
     endpoints,
@@ -299,34 +299,14 @@ pub fn LinkSession::update(
     Err(error) => return Err({ name: "", error, })
     Ok(_) => ()
   }
-  let staged = self.values.values.copy()
+  let (next, changed_names) = self.values.stage(changes)
   let affected : Map[Int32, Bool] = Map([])
-  for change in changes {
-    let (name, changed) = match change {
-      SetBinding(name, value) => {
-        let changed = match staged.get(name) {
-          Some(old) => !same_value(old, value)
-          None => true
-        }
-        if changed {
-          staged[name] = value
-        }
-        (name, changed)
-      }
-      RemoveBinding(name) => {
-        let changed = staged.contains(name)
-        staged.remove(name) |> ignore
-        (name, changed)
-      }
-    }
-    if changed {
-      for index in self.dependencies[name] {
-        affected[index] = true
-      }
+  for name in changed_names {
+    for index in self.dependencies[name] {
+      affected[index] = true
     }
   }
-  let next : Variables = { values: staged, }
-  match check_input_budget(next, self.limits) {
+  match check_input_entries(next.active.length(), next.entries(), self.limits) {
     Err(error) => return Err({ name: "", error, })
     Ok(_) => ()
   }
@@ -374,17 +354,7 @@ pub fn LinkSession::update(
     outputs[index] = uri
   }
   // Copy only changed composites; unchanged captured values remain private.
-  for change in changes {
-    if change is SetBinding(name, value) {
-      let same = match self.values.values.get(name) {
-        Some(old) => same_value(old, value)
-        None => false
-      }
-      if !same {
-        next.set(name, value)
-      }
-    }
-  }
+  next.capture_changed(changed_names)
   Ok({
     next: {
       ..self,

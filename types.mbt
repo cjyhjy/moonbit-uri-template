@@ -114,8 +114,13 @@ pub fn sparse_assoc(
 
 ///|
 pub fn Variables::set(self : Variables, name : String, value : Value) -> Unit {
-  self.values[name] = match value {
-    Scalar(_) => value
+  self.values[name] = value.captured()
+}
+
+///|
+fn Value::captured(self : Value) -> Value {
+  match self {
+    Scalar(_) => self
     List(items) => List(items.copy())
     Assoc(entries) => Assoc({ entries: entries.entries.copy(), })
   }

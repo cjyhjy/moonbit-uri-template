@@ -2,6 +2,10 @@
 
 ## 0.2.0 candidate usability follow-up (unreleased)
 
+- Shared runtime shape contracts and immutable incremental link sessions in MoonBit and Node; real downstream parameter-switching evidence.
+- Core snapshots share unchanged binding blocks; retained-history regression covers removal, reinsertion, caller mutation and failed updates.
+- Reuse validated input accounting in batches, avoid diagnostic allocations during successful validation, and cache catalog ordering.
+- Fresh-process timing/RSS comparison covers four backends, retained snapshots, fan-out, mixed Unicode collections, catalog audits and full-batch baselines.
 - Full variable profiles, occurrence-level contract differences, bounded catalog policy/request audits and typed Node/CLI upgrade analysis.
 - Compiled Node comparisons include required bindings, unused-binding policy and runtime budget changes.
 - Typed ESM SDK with inferred variable names, selective required bindings, compiled reuse and atomic batches; independently installed local npm tarball.

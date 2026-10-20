@@ -7,33 +7,42 @@ pub(all) struct ExpressionInfo {
 } derive(Debug)
 
 ///|
+fn expression_level(op : Char, specs : Array[VarSpec]) -> Int32 {
+  for spec in specs {
+    if !(spec.modifier is NoModifier) {
+      return 4
+    }
+  }
+  if op == ' ' {
+    1
+  } else if op == '+' || op == '#' {
+    2
+  } else {
+    3
+  }
+}
+
+///|
+fn expression_span(op : Char, specs : Array[VarSpec]) -> Span {
+  {
+    start: specs[0].span.start - (if op == ' ' { 1 } else { 2 }),
+    end: specs[specs.length() - 1].span.end + 1,
+  }
+}
+
+///|
 pub fn Template::inspect(self : Template) -> Array[ExpressionInfo] {
   let result : Array[ExpressionInfo] = []
   for segment in self.segments {
     if segment is Expression(op, specs) {
-      let mut level = if op == ' ' {
-        1
-      } else if op == '+' || op == '#' {
-        2
-      } else {
-        3
-      }
-      for spec in specs {
-        if !(spec.modifier is NoModifier) {
-          level = 4
-        }
-      }
       result.push({
         operator: if op == ' ' {
           ""
         } else {
           op.to_string()
         },
-        level,
-        span: {
-          start: specs[0].span.start - (if op == ' ' { 1 } else { 2 }),
-          end: specs[specs.length() - 1].span.end + 1,
-        },
+        level: expression_level(op, specs),
+        span: expression_span(op, specs),
         variables: specs.map(s => s.name),
       })
     }
@@ -44,8 +53,10 @@ pub fn Template::inspect(self : Template) -> Array[ExpressionInfo] {
 ///|
 pub fn Template::level(self : Template) -> Int32 {
   let mut level = 0
-  for expression in self.inspect() {
-    level = Int32::max(level, expression.level)
+  for segment in self.segments {
+    if segment is Expression(op, specs) {
+      level = Int32::max(level, expression_level(op, specs))
+    }
   }
   level
 }
@@ -109,8 +120,9 @@ pub fn Template::audit_with_limit(
     }
   }
   let mut count = 0
-  for info in self.inspect() {
-    if info.level > policy.max_level {
+  for segment in self.segments {
+    if segment is Expression(op, specs) &&
+      expression_level(op, specs) > policy.max_level {
       if findings.length() == max_findings {
         return Err(problem("FindingLimit", "findings exceed budget", 0, 0))
       }
@@ -118,8 +130,8 @@ pub fn Template::audit_with_limit(
         problem(
           "LevelPolicy",
           "expression exceeds allowed RFC level",
-          info.span.start,
-          info.span.end,
+          expression_span(op, specs).start,
+          expression_span(op, specs).end,
         ),
       )
     }
@@ -154,7 +166,9 @@ pub fn Template::audit_with_limit(
             ),
           )
         }
-        seen[spec.name] = true
+        if policy.forbid_repeated_variables {
+          seen[spec.name] = true
+        }
         if !policy.allow_reserved && (op == '+' || op == '#') {
           if findings.length() == max_findings {
             return Err(problem("FindingLimit", "findings exceed budget", 0, 0))

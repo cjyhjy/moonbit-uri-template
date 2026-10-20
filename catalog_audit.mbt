@@ -190,18 +190,19 @@ pub fn TemplateCatalog::audit(
   }
   let entries : Array[CatalogEntryAudit] = []
   let mut remaining = max_findings
-  for name in self.names() {
+  for index, name in self.ordered_names {
     let t = self.entries[name]
     let findings = match t.audit_with_limit(policy, max_findings=remaining) {
       Err(error) => return Err({ name, error, })
       Ok(findings) => findings
     }
     remaining = remaining - findings.length()
+    let metadata = self.metadata[index]
     entries.push({
       name,
-      expression_count: t.inspect().length(),
-      variable_count: t.variables().length(),
-      max_level: t.level(),
+      expression_count: metadata.expression_count,
+      variable_count: metadata.variable_count,
+      max_level: metadata.max_level,
       findings,
     })
   }

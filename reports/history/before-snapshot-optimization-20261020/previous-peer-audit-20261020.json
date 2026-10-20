@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-20T12:23:54.313707+00:00",
+  "status": "passed",
+  "peers": {
+    "magic": {
+      "repository": "https://github.com/Magic486/moon-uri-template",
+      "commit": "8fecb90c2190e4715935b5f4ea0937b0b5c8d08b",
+      "remote_head": "8fecb90c2190e4715935b5f4ea0937b0b5c8d08b",
+      "backends": {
+        "js": {
+          "exit_code": 0,
+          "summary": "Total tests: 194, passed: 194, failed: 0",
+          "log": "peer-magic-js-20261020.log"
+        },
+        "wasm-gc": {
+          "exit_code": 0,
+          "summary": "Total tests: 194, passed: 194, failed: 0",
+          "log": "peer-magic-wasm-gc-20261020.log"
+        },
+        "native": {
+          "exit_code": 0,
+          "summary": "Total tests: 194, passed: 194, failed: 0",
+          "log": "peer-magic-native-20261020.log"
+        }
+      },
+      "test_scope": "single-module workspace including subpackages"
+    },
+    "jsj": {
+      "repository": "https://github.com/JSJ222/MoonUriTemplate",
+      "commit": "ee7d3be94e80459d5e4f2fc9eafcc8b1a11ae3df",
+      "remote_head": "ee7d3be94e80459d5e4f2fc9eafcc8b1a11ae3df",
+      "backends": {
+        "js": {
+          "exit_code": 0,
+          "summary": "Total tests: 134, passed: 134, failed: 0",
+          "log": "peer-jsj-js-20261020.log"
+        },
+        "wasm-gc": {
+          "exit_code": 0,
+          "summary": "Total tests: 134, passed: 134, failed: 0",
+          "log": "peer-jsj-wasm-gc-20261020.log"
+        },
+        "native": {
+          "exit_code": 0,
+          "summary": "Total tests: 134, passed: 134, failed: 0",
+          "log": "peer-jsj-native-20261020.log"
+        }
+      },
+      "test_scope": "single-module workspace including subpackages"
+    }
+  },
+  "ours_source_sha256": "28eeeadfabf1a80c471c4653e6a40a2bc136eea0706a61769129eeabe54802ca",
+  "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
+  "probe_source_sha256": "a6bb88a199ba05cf112887997dd6ce8b3d608b79c05795268ff8688d068121bb",
+  "probes": {
+    "js": {
+      "exit_code": 0,
+      "log": "peer-probe-js-20261020.log",
+      "stdout": "ours.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nmagic.uri=/users/team%2Fa?tags=a%20b&tags=sdk\njsj.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nours.offset=1\nmagic.error=URI Template syntax error at 2: unclosed expression\njsj.offset=2\nmagic.null=invalid value for 'id': expected a string, array of strings, or object of strings\njsj.null=accepted\nours.empty_omitted=1\nours.required_empty=OmittedBinding\njsj.empty_issues=0\njsj.required_empty=accepted:\nours.output_budget=OutputLimit\nmagic.output_budget=URI Template output exceeds limit 11\njsj.output_budget=output_too_long\nours.measure=8\njsj.measure=8\nours.origins=2\njsj.origins=1\nours.batch=2\njsj.batch=2\nours.selective_required=/users/42\njsj.selective_required=missing_variable\nours.profile=2,true,true\njsj.profile=2,true,true\nours.prefix_change=true\nours.prefix_outputs=ab,abc\njsj.prefix_flag=false\njsj.prefix_outputs=ab,abc\nours.typed_selective=/users/42\njsj.typed_selective=/users/42\nours.typed_empty_wrong=true\njsj.typed_empty_wrong=true\njsj.incremental_recomputed=1\njsj.incremental_old=/search?q=old\njsj.incremental_new=/search?q=new\nours.incremental_recomputed=1\nours.incremental_old=/search?q=old\nours.incremental_new=/search?q=new\n"
+    },
+    "wasm-gc": {
+      "exit_code": 0,
+      "log": "peer-probe-wasm-gc-20261020.log",
+      "stdout": "ours.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nmagic.uri=/users/team%2Fa?tags=a%20b&tags=sdk\njsj.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nours.offset=1\nmagic.error=URI Template syntax error at 2: unclosed expression\njsj.offset=2\nmagic.null=invalid value for 'id': expected a string, array of strings, or object of strings\njsj.null=accepted\nours.empty_omitted=1\nours.required_empty=OmittedBinding\njsj.empty_issues=0\njsj.required_empty=accepted:\nours.output_budget=OutputLimit\nmagic.output_budget=URI Template output exceeds limit 11\njsj.output_budget=output_too_long\nours.measure=8\njsj.measure=8\nours.origins=2\njsj.origins=1\nours.batch=2\njsj.batch=2\nours.selective_required=/users/42\njsj.selective_required=missing_variable\nours.profile=2,true,true\njsj.profile=2,true,true\nours.prefix_change=true\nours.prefix_outputs=ab,abc\njsj.prefix_flag=false\njsj.prefix_outputs=ab,abc\nours.typed_selective=/users/42\njsj.typed_selective=/users/42\nours.typed_empty_wrong=true\njsj.typed_empty_wrong=true\njsj.incremental_recomputed=1\njsj.incremental_old=/search?q=old\njsj.incremental_new=/search?q=new\nours.incremental_recomputed=1\nours.incremental_old=/search?q=old\nours.incremental_new=/search?q=new\n"
+    },
+    "native": {
+      "exit_code": 0,
+      "log": "peer-probe-native-20261020.log",
+      "stdout": "ours.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nmagic.uri=/users/team%2Fa?tags=a%20b&tags=sdk\njsj.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nours.offset=1\nmagic.error=URI Template syntax error at 2: unclosed expression\njsj.offset=2\nmagic.null=invalid value for 'id': expected a string, array of strings, or object of strings\njsj.null=accepted\nours.empty_omitted=1\nours.required_empty=OmittedBinding\njsj.empty_issues=0\njsj.required_empty=accepted:\nours.output_budget=OutputLimit\nmagic.output_budget=URI Template output exceeds limit 11\njsj.output_budget=output_too_long\nours.measure=8\njsj.measure=8\nours.origins=2\njsj.origins=1\nours.batch=2\njsj.batch=2\nours.selective_required=/users/42\njsj.selective_required=missing_variable\nours.profile=2,true,true\njsj.profile=2,true,true\nours.prefix_change=true\nours.prefix_outputs=ab,abc\njsj.prefix_flag=false\njsj.prefix_outputs=ab,abc\nours.typed_selective=/users/42\njsj.typed_selective=/users/42\nours.typed_empty_wrong=true\njsj.typed_empty_wrong=true\njsj.incremental_recomputed=1\njsj.incremental_old=/search?q=old\njsj.incremental_new=/search?q=new\nours.incremental_recomputed=1\nours.incremental_old=/search?q=old\nours.incremental_new=/search?q=new\n"
+    }
+  }
+}

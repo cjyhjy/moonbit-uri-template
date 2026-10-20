@@ -1,0 +1,60 @@
+{
+  "status": "failed",
+  "evidence": "live-github-api",
+  "executionPath": "incremental-catalog-sdk",
+  "startedAt": "2026-10-20T12:58:11.575Z",
+  "initial": {
+    "status": "failed",
+    "responses": [
+      {
+        "label": "commits",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=1",
+        "status": 200,
+        "receivedAt": "2026-10-20T12:58:14.653Z",
+        "requestId": "6F69:169976:53ADAE:7C5C2B:6AD76565",
+        "etag": "W/\"39fc776fd5d7d35d3d69decb9f4310d882f7994759ba6a857be38ce459e110a4\"",
+        "responseDate": "Tue, 20 Oct 2026 12:58:14 GMT",
+        "bodySha256": "a5224360b2269243d3896f407ff919136603e50c8edcd572ad669e7390a6b71a",
+        "responseBytes": 1507,
+        "data": {
+          "sha": "b331272971bd45d27fd9eae6ef25fb92e17f9557",
+          "html_url": "https://github.com/cjyhjy/moonbit-uri-template/commit/b331272971bd45d27fd9eae6ef25fb92e17f9557"
+        }
+      },
+      {
+        "label": "releases",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=1",
+        "status": 200,
+        "receivedAt": "2026-10-20T12:58:16.148Z",
+        "requestId": "5351:349ACC:52766C:7B1002:6AD76567",
+        "etag": "W/\"48543fe211ed2a8c35887414899fb40fa7c2fab69d4549f85b15c6f08a9f54c4\"",
+        "responseDate": "Tue, 20 Oct 2026 12:58:16 GMT",
+        "bodySha256": "7e308c6ba998e02e79cd72283b47d1332139e655db099cd927104088dd1119c3",
+        "responseBytes": 4204,
+        "data": {
+          "releases": [
+            {
+              "tag_name": "v0.1.1",
+              "html_url": "https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.1.1",
+              "published_at": "2026-10-14T12:53:16Z"
+            }
+          ]
+        }
+      },
+      {
+        "label": "repository",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template",
+        "error": "NetworkError",
+        "status": null
+      }
+    ],
+    "destinationProblems": [],
+    "completedAt": "2026-10-20T12:58:19.408Z"
+  },
+  "networkCalls": 3,
+  "manifestSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
+  "transport": "authenticated-gh-cli",
+  "engineSha256": "c856038b734ac99a3be9c61142afe69f23bdaf45e363c2bbe8b465f1c31ab5b7",
+  "portableArchiveSha256": "1e7f04a355371df5ee3f94b07f4f9fe6d2f8d124f11354fd4a0067cb071bbb9a",
+  "consumerMode": "fresh extracted archive; no source-checkout imports"
+}

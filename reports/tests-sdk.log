@@ -1,25 +1,25 @@
-✔ catalog compiles named contracts once and preserves immutable snapshots (3.948417ms)
-✔ catalog definition validation has bounded counts text and named failures (0.426584ms)
-✔ catalog batches measure all requests and enforce aggregate metadata and output budgets (0.791875ms)
-✔ catalog inspection collects independent contract issues without treating optional omissions as errors (0.72925ms)
-✔ catalog policy audit validates empty catalogs and caps the combined report (1.46575ms)
-✔ catalog comparison includes additions removals and runtime-only contract changes (1.178584ms)
-✔ single-template inspection and policy audit preserve Unicode editor locations (0.301375ms)
-✔ analysis keeps source occurrences and comparison explains modifier changes (1.03575ms)
-✔ SDK comparison includes required unused and runtime budget changes (0.348208ms)
-✔ compiled SDK preserves required contract and reusable immutable options (1.712875ms)
-✔ compilation errors have useful locations and unknown contracts fail early (0.228125ms)
-✔ JS values cannot silently disappear or invoke getters during serialization (1.063833ms)
-✔ SDK batches enforce atomic budgets with an indexed error (0.258958ms)
-✔ prepared requireAll remains stable across check measure trace and repeated calls (3.119709ms)
-✔ SDK rejects excessive snapshot text before handing input to the core (17.792667ms)
-✔ runtime shape contracts share the core across expansion, measurement, tracing and inspection (1.268292ms)
-✔ catalog shape changes are reviewed and batch failures identify the endpoint (0.484833ms)
-✔ incremental sessions recompute each dependent endpoint once and keep prior snapshots (0.592667ms)
-✔ session output limits include cached endpoints and handle simultaneous growth and shrink (0.239916ms)
-✔ session no-ops null removal composite capture and URI-equivalent updates (0.318ms)
-✔ session budgets cover patch and whole environment including empty cases (0.341708ms)
-✔ incremental SDK results match full catalog generation throughout a deterministic workload (85.64425ms)
+✔ catalog compiles named contracts once and preserves immutable snapshots (3.881917ms)
+✔ catalog definition validation has bounded counts text and named failures (0.388542ms)
+✔ catalog batches measure all requests and enforce aggregate metadata and output budgets (0.755875ms)
+✔ catalog inspection collects independent contract issues without treating optional omissions as errors (0.960916ms)
+✔ catalog policy audit validates empty catalogs and caps the combined report (1.18925ms)
+✔ catalog comparison includes additions removals and runtime-only contract changes (1.1615ms)
+✔ single-template inspection and policy audit preserve Unicode editor locations (0.296708ms)
+✔ analysis keeps source occurrences and comparison explains modifier changes (1.017542ms)
+✔ SDK comparison includes required unused and runtime budget changes (0.338084ms)
+✔ compiled SDK preserves required contract and reusable immutable options (1.676125ms)
+✔ compilation errors have useful locations and unknown contracts fail early (0.204834ms)
+✔ JS values cannot silently disappear or invoke getters during serialization (0.885792ms)
+✔ SDK batches enforce atomic budgets with an indexed error (0.280417ms)
+✔ prepared requireAll remains stable across check measure trace and repeated calls (2.873042ms)
+✔ SDK rejects excessive snapshot text before handing input to the core (17.203584ms)
+✔ runtime shape contracts share the core across expansion, measurement, tracing and inspection (1.24075ms)
+✔ catalog shape changes are reviewed and batch failures identify the endpoint (0.496333ms)
+✔ incremental sessions recompute each dependent endpoint once and keep prior snapshots (0.599958ms)
+✔ session output limits include cached endpoints and handle simultaneous growth and shrink (0.216416ms)
+✔ session no-ops null removal composite capture and URI-equivalent updates (0.315917ms)
+✔ session budgets cover patch and whole environment including empty cases (0.345375ms)
+✔ incremental SDK results match full catalog generation throughout a deterministic workload (80.900417ms)
 ℹ tests 22
 ℹ suites 0
 ℹ pass 22
@@ -27,4 +27,4 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 168.505875
+ℹ duration_ms 159.100125

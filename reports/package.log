@@ -91,6 +91,8 @@ sdk/index.d.mts
 sdk/index.mjs
 sdk/sdk.test.mjs
 sdk/typecheck.mts
+session_bindings.mbt
+snapshot_regression_test.mbt
 testdata/manifest.json
 testdata/peer-smoke/expected-usability.txt
 testdata/peer-smoke/main.mbt.txt

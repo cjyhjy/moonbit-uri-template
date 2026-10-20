@@ -11,6 +11,7 @@ import statistics
 import subprocess
 import sys
 import time
+from urllib.parse import quote
 from pathlib import Path
 
 from source_digest import source_digest
@@ -28,10 +29,21 @@ CASES = {
     "contract512": (1000, 512, ("ours", "jsj")),
     "session200-one": (1000, 201, ("ours", "jsj")),
     "session200-all": (200, 400, ("ours", "jsj")),
+    "session200-shared": (200, 400, ("ours", "jsj")),
+    "session200-retained": (1000, 201, ("ours", "jsj")),
+    "batch200-one": (1000, 200, ("ours", "jsj")),
+    "audit200": (1000, 100, ("ours", "jsj")),
 }
+MIXED_VALUE = "中文😀 /%20"
+MIXED_URI = "/items/team%2Fa?" + "&".join(
+    ["tags=" + quote(MIXED_VALUE, safe="-._~")] * 1024
+    + ["k" + str(i) + "=" + quote(MIXED_VALUE, safe="-._~") for i in range(128)]
+)
+CASES["mixed-collections"] = (100, len(MIXED_URI), ("ours", "magic", "jsj"))
 
 
 def source(peer, case, iterations):
+    after = ""
     setup = """
   let entries = []
   let text = StringBuilder()
@@ -62,13 +74,21 @@ def source(peer, case, iterations):
   let patch_a = []
   let patch_b = []
 """
-        size = 1 if case.endswith("one") else 200
+        size = 200 if case.endswith("all") else 1
+        if case.endswith("shared"):
+            setup = setup.replace('definitions.push((name, "{" + name + "}"))',
+                                  'definitions.push((name, "{shared}"))')
+            setup = setup.replace('entries.push((name, @p.Scalar("a")))',
+                                  'if i == 0 { entries.push(("shared", @p.Scalar("a"))) }')
         setup += f"""  for i = 0; i < {size}; i = i + 1 {{
     let name = "v" + i.to_string()
     patch_a.push(@p.{change}(name, @p.Scalar("a")))
     patch_b.push(@p.{change}(name, @p.Scalar("b")))
   }}
 """
+        if case.endswith("shared"):
+            setup = setup.replace('patch_a.push(@p.SetBinding(name,', 'patch_a.push(@p.SetBinding("shared",')
+            setup = setup.replace('patch_b.push(@p.SetBinding(name,', 'patch_b.push(@p.SetBinding("shared",')
         state = "let mut session = initial"
         total = "total_bytes" if peer == "ours" else "total_length"
         step = f"""
@@ -83,9 +103,82 @@ def source(peer, case, iterations):
     if uri != (if NAME_TEST { "b" } else { "a" }) { abort("bad updated URI") }
   }
   for (_, uri) in initial.links() { if uri != "a" { abort("mutated snapshot") } }
-""".replace("NAME_TEST", 'name == "v0"' if size == 1 else "true")
+""".replace("NAME_TEST", 'name == "v0"' if size == 1 and not case.endswith("shared") else "true")
+        if case.endswith("retained"):
+            state += "\n    let history = [initial]"
+            step += "\n    history.push(session)"
+            after = f"""
+    if history.length() != count + 1 {{ abort("missing retained snapshots") }}
+    for snapshot in history {{
+      if snapshot.{total}() != 200 {{ abort("old snapshot size changed") }}
+    }}
+    for (name, uri) in history[1].links() {{
+      if uri != (if name == "v0" {{ "b" }} else {{ "a" }}) {{ abort("old snapshot content changed") }}
+    }}
+"""
+    elif case in ("audit200", "batch200-one"):
+        state = ""
+        setup = """
+  let definitions = []
+  for i = 0; i < 200; i = i + 1 {
+    let name = "v" + i.to_string()
+    definitions.push((name, SOURCE))
+  }
+  let catalog = @p.compile_catalog(definitions).unwrap()
+"""
+        if case == "audit200":
+            setup = setup.replace("SOURCE", 'if i % 2 == 0 { "{+x}" } else { "{x}" }')
+            policy = ('@p.TemplatePolicy::new(allow_reserved=false)' if peer == "ours" else
+                      '{ ..@p.permissive_policy(), allow_reserved: false }')
+            setup += f"  let policy : @p.TemplatePolicy = {policy}\n"
+            field = "total_findings" + ("" if peer == "ours" else "()")
+            step = f"checksum = checksum + catalog.audit(policy).unwrap().{field}"
+            check = f'  if catalog.audit(policy).unwrap().{field} != 100 {{ abort("wrong audit findings") }}'
+        else:
+            setup = setup.replace("SOURCE", '"{" + name + "}"')
+            # Both alternatives are prepared once: no catalog compilation, full
+            # input reconstruction or artificial session restart inside timing.
+            setup += """  let requests_a : Array[@p.CatalogRequest] = []
+  let requests_b : Array[@p.CatalogRequest] = []
+  for i = 0; i < 200; i = i + 1 {
+    let name = "v" + i.to_string()
+    let a = [(name, @p.Scalar("a"))]
+    let b = [(name, @p.Scalar(if i == 0 { "b" } else { "a" }))]
+    REQUESTS
+  }
+"""
+            req = ('requests_a.push(@p.CatalogRequest::new(name, @p.Variables::from_entries(a).unwrap()))\n'
+                   'requests_b.push(@p.CatalogRequest::new(name, @p.Variables::from_entries(b).unwrap()))'
+                   if peer == "ours" else
+                   'requests_a.push({ name, bindings: a })\nrequests_b.push({ name, bindings: b })')
+            setup = setup.replace("REQUESTS", req)
+            method = "expand_batch" if peer == "ours" else "expand_requests"
+            step = f"""
+    let outputs = catalog.{method}(if i % 2 == 0 {{ requests_b }} else {{ requests_a }}).unwrap()
+    for uri in outputs {{ checksum = checksum + uri.length() }}
+"""
+            check = f"""
+  let outputs = catalog.{method}(requests_b).unwrap()
+  if outputs.length() != 200 {{ abort("missing batch output") }}
+  for index, uri in outputs {{
+    if uri != (if index == 0 {{ "b" }} else {{ "a" }}) {{ abort("wrong batch output") }}
+  }}
+"""
     else:
         state = ""
+        if case == "mixed-collections":
+            assoc = "@p.OrderedEntries::from_entries(pairs).unwrap()" if peer == "ours" else "pairs"
+            setup = f"""
+  let pairs = []
+  for i = 0; i < 128; i = i + 1 {{ pairs.push(("k" + i.to_string(), "{MIXED_VALUE}")) }}
+  let entries = [
+    ("id", @p.Scalar("team/a")),
+    ("tags", @p.List(Array::make(1024, "{MIXED_VALUE}"))),
+    ("filters", @p.Assoc({assoc})),
+  ]
+  let text = StringBuilder()
+  text.write_string("/items/{{id}}{{?tags*,filters*}}")
+"""
         if peer == "ours":
             setup += """  let values = @p.Variables::from_entries(entries).unwrap()
   let template = @p.parse_with_limits(text.to_string(), @p.ParseLimits::new()).unwrap()
@@ -121,7 +214,10 @@ def source(peer, case, iterations):
 """
         else:
             step = f"checksum = checksum + {expand}.length()"
-            check = f"""
+            if case == "mixed-collections":
+                check = f'  if {expand} != {json.dumps(MIXED_URI)} {{ abort("incorrect mixed Unicode expansion") }}'
+            else:
+                check = f"""
   let actual = {expand}
   if actual.length() != 512 {{ abort("bad expansion length") }}
   for c in actual.iter() {{ if c != 'a' {{ abort("bad expansion content") }} }}
@@ -143,6 +239,7 @@ def source(peer, case, iterations):
       {step}
     }}
     let elapsed_us = @bench.monotonic_clock_end(start)
+{after}
     if checksum != count * {expected} {{ abort("bad checksum") }}
     if round == 3 {{
       println(checksum)

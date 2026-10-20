@@ -1,9 +1,9 @@
 {
   "status": "passed",
   "evidence": "intentional-fault-injection",
-  "generatedAt": "2026-10-20T12:29:06.494Z",
-  "sourceSha256": "28eeeadfabf1a80c471c4653e6a40a2bc136eea0706a61769129eeabe54802ca",
-  "engineSha256": "062f24a95c96660b73857b2c160e21a072f78f68180f3bde9615ec53093e4a0a",
+  "generatedAt": "2026-10-20T12:57:55.296Z",
+  "sourceSha256": "63149169b917fb9536cfd8d33cab409aad88bad77c42fc363f4b26141f91abac",
+  "engineSha256": "c856038b734ac99a3be9c61142afe69f23bdaf45e363c2bbe8b465f1c31ab5b7",
   "manifestSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
   "results": [
     {
@@ -16,7 +16,7 @@
       "result": {
         "schemaVersion": 1,
         "evidence": "intentional-fault-injection",
-        "startedAt": "2026-10-20T12:29:06.490Z",
+        "startedAt": "2026-10-20T12:57:55.293Z",
         "manifestSha256": "24fc22caa36e67c1a9cb943a7ab302c5e1d8b307ada13ac5e271bbec891d9220",
         "status": "contract-failed",
         "checks": {
@@ -85,7 +85,7 @@
       "result": {
         "schemaVersion": 1,
         "evidence": "intentional-fault-injection",
-        "startedAt": "2026-10-20T12:29:06.492Z",
+        "startedAt": "2026-10-20T12:57:55.295Z",
         "manifestSha256": "0590f7a338950a6af6fe5bafe8135eb847fb4abe8e99eeeb317b56112a541ec9",
         "status": "contract-failed",
         "checks": {
@@ -134,7 +134,7 @@
       "result": {
         "schemaVersion": 1,
         "evidence": "intentional-fault-injection",
-        "startedAt": "2026-10-20T12:29:06.493Z",
+        "startedAt": "2026-10-20T12:57:55.296Z",
         "manifestSha256": "1fcf336a88c6457b687f73cb48f095d472e7ae7f6822bd7535c31aa98a9f3c40",
         "status": "contract-failed",
         "checks": {

@@ -62,7 +62,7 @@ pub fn TemplateCatalog::measure_batch(
       Err(e) => return Err({ index, name, error: e.error, })
       Ok(t) => t
     }
-    match
+    let input_size = match
       template.validate_bindings(
         request.variables,
         request.required,
@@ -70,23 +70,27 @@ pub fn TemplateCatalog::measure_batch(
         limits,
       ) {
       Err(error) => return Err({ index, name, error, })
-      Ok(_) => ()
+      Ok(left) => limits.max_total_value_codepoints - left
     }
-    let texts = input_texts(request.variables)
-    texts.push(name)
-    for text in texts {
-      for _ in text.iter() {
-        if remaining_input == 0 {
-          return Err({
-            index,
-            name,
-            error: problem(
-              "BatchInputLimit", "total input exceeds batch budget", 0, 0,
-            ),
-          })
-        }
-        remaining_input = remaining_input - 1
-      }
+    if input_size > remaining_input {
+      return Err({
+        index,
+        name,
+        error: problem(
+          "BatchInputLimit", "total input exceeds batch budget", 0, 0,
+        ),
+      })
+    }
+    remaining_input = remaining_input - input_size
+    remaining_input = consume_input_text(name, remaining_input, remaining_input)
+    if remaining_input < 0 {
+      return Err({
+        index,
+        name,
+        error: problem(
+          "BatchInputLimit", "total input exceeds batch budget", 0, 0,
+        ),
+      })
     }
     let per_item = {
       ..limits,
