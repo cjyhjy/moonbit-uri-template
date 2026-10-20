@@ -163,7 +163,7 @@ pub fn PreparedRequest::compare(
     Err(message) => return message
     Ok(value) => value
   }
-  let diff = before.template.diff_contract(after.template)
+  let diff = before.template.diff(after.template)
   let fields = diff_fields(diff)
   let added = name_difference(after.required, before.required)
   let removed = name_difference(before.required, after.required)

@@ -136,39 +136,6 @@ pub fn TemplateCatalog::measure(
 }
 
 ///|
-pub(all) struct CatalogDiff {
-  added : Array[String]
-  removed : Array[String]
-  changed : Array[(String, ContractDiff)]
-} derive(Debug)
-
-///|
-pub fn TemplateCatalog::diff(
-  self : TemplateCatalog,
-  newer : TemplateCatalog,
-) -> CatalogDiff {
-  let old = self.names()
-  let next = newer.names()
-  let changed : Array[(String, ContractDiff)] = []
-  for name in old {
-    if newer.entries.get(name) is Some(t) {
-      let diff = self.entries[name].diff(t)
-      if diff.source_changed {
-        changed.push((name, diff))
-      }
-    }
-  }
-  {
-    added: next.filter(n => !old.contains(n)),
-    removed: old.filter(n => !next.contains(n)),
-    changed,
-  }
-}
-
-///|
-pub extend CatalogDiff with Debug::{to_repr}
-
-///|
 pub fn TemplateCatalog::expand(
   self : TemplateCatalog,
   name : String,
@@ -180,7 +147,7 @@ pub fn TemplateCatalog::expand(
   match self.get(name) {
     Err(e) => Err(e)
     Ok(t) =>
-      match t.expand_checked(variables, required~, reject_unused~, limits~) {
+      match t.expand(variables, required~, reject_unused~, limits~) {
         Ok(s) => Ok(s)
         Err(error) => Err({ name, error, })
       }

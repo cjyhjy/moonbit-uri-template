@@ -50,7 +50,7 @@ pub fn run(peer : Int, reuse : Bool, scenario : Int, count : Int) -> Int {
     let t = @ours.parse_with_limits(source, @ours.ParseLimits::new()).unwrap()
     for i = 0; i < count; i = i + 1 {
       let current = if reuse { t } else { @ours.parse_with_limits(source, @ours.ParseLimits::new()).unwrap() }
-      checksum = checksum + (match current.expand_with_limits(v, limits) { Ok(s) => s.length(); Err(_) => if scenario == 3 { 1 } else { -100000 } })
+      checksum = checksum + (match current.expand(v, limits~) { Ok(s) => s.length(); Err(_) => if scenario == 3 { 1 } else { -100000 } })
     }
   } else if peer == 1 {
     let v : Map[String, @magic.UriValue] = Map([("id", @magic.Scalar("42")), ("q", @magic.Scalar(q)), ("tags", @magic.List(tags))])

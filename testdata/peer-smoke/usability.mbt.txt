@@ -1,7 +1,7 @@
   let empty = @ours.Variables::from_entries([("x", @ours.List([]))]).unwrap()
   let ours_t = @ours.parse("{?x}").unwrap()
-  println("ours.empty_omitted=" + ours_t.check_bindings(empty).omitted.length().to_string())
-  println("ours.required_empty=" + ours_t.expand_checked(empty, required=["x"]).unwrap_err().code)
+  println("ours.empty_omitted=" + ours_t.check_bindings(empty).unwrap().omitted.length().to_string())
+  println("ours.required_empty=" + ours_t.expand(empty, required=["x"]).unwrap_err().code)
   let jsj_t = @jsj.parse("{?x}").unwrap()
   println("jsj.empty_issues=" + jsj_t.inspect_bindings([("x", @jsj.List([]))]).issues().length().to_string())
   match jsj_t.expand_required([("x", @jsj.List([]))]) {
@@ -9,7 +9,7 @@
     Err(e) => println("jsj.required_empty=" + e.code())
   }
   let budget_vars = @ours.Variables::from_entries([("x", @ours.Scalar("😀"))]).unwrap()
-  println("ours.output_budget=" + @ours.parse("{x}").unwrap().expand_with_limits(budget_vars, @ours.ExpansionLimits::new(max_output_bytes=11)).unwrap_err().code)
+  println("ours.output_budget=" + @ours.parse("{x}").unwrap().expand(budget_vars, limits=@ours.ExpansionLimits::new(max_output_bytes=11)).unwrap_err().code)
   try {
     let _ = @magic.UriTemplate::parse("{x}").expand_with_limit(Map([("x", @magic.Scalar("😀"))]), max_output_length=11)
     println("magic.output_budget=unexpected_success")
@@ -27,19 +27,19 @@
   println("ours.batch=" + ot.expand_batch([map_ours, map_ours]).unwrap().length().to_string())
   println("jsj.batch=" + jt.expand_many([map_jsj, map_jsj]).unwrap().length().to_string())
   let selective_ours = @ours.Variables::from_entries([("id", @ours.Scalar("42"))]).unwrap()
-  println("ours.selective_required=" + @ours.parse("/users/{id}{?page}").unwrap().expand_checked(selective_ours, required=["id"]).unwrap())
+  println("ours.selective_required=" + @ours.parse("/users/{id}{?page}").unwrap().expand(selective_ours, required=["id"]).unwrap())
   match @jsj.parse("/users/{id}{?page}").unwrap().expand_required([("id", @jsj.Scalar("42"))]) {
     Ok(s) => println("jsj.selective_required=" + s)
     Err(e) => println("jsj.selective_required=" + e.code())
   }
-  let op = @ours.parse("{x:2}{+x}{?tags*}").unwrap().variable_profiles()[0]
+  let op = @ours.parse("{x:2}{+x}{?tags*}").unwrap().analyze().profiles[0]
   let jp = @jsj.parse("{x:2}{+x}{?tags*}").unwrap().variable_profiles()[0]
   println("ours.profile=" + op.occurrences.to_string() + "," + op.scalar_only.to_string() + "," + op.uses_reserved.to_string())
   println("jsj.profile=" + jp.occurrences.to_string() + "," + jp.scalar_only.to_string() + "," + jp.uses_reserved.to_string())
   let prefix_before = @ours.parse("{x:2}").unwrap()
   let prefix_after = @ours.parse("{x:3}").unwrap()
   let prefix_vars = @ours.Variables::from_entries([("x", @ours.Scalar("abcd"))]).unwrap()
-  println("ours.prefix_change=" + prefix_before.diff_contract(prefix_after).variable_changes[0].prefixes_changed.to_string())
+  println("ours.prefix_change=" + prefix_before.diff(prefix_after).variable_changes[0].prefixes_changed.to_string())
   println("ours.prefix_outputs=" + prefix_before.expand(prefix_vars).unwrap() + "," + prefix_after.expand(prefix_vars).unwrap())
   let jp_before = @jsj.parse("{x:2}").unwrap()
   let jp_after = @jsj.parse("{x:3}").unwrap()
@@ -69,3 +69,4 @@
   println("ours.incremental_recomputed=" + ours_update.recomputed().to_string())
   println("ours.incremental_old=" + ours_links.get("search").unwrap())
   println("ours.incremental_new=" + ours_update.changes()[0].after)
+

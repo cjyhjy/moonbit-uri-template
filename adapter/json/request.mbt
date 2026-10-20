@@ -381,7 +381,7 @@ fn CompiledRequest::call(
     Err(e) => return input_failure(e.code, e.message, e.path)
   }
   if command == "check" {
-    return match template.check_bindings_with_limits(vars, limits) {
+    return match template.check_bindings(vars, limits~) {
       Ok(report) => success(binding_json(report).stringify())
       Err(e) => template_failure(e)
     }
@@ -441,7 +441,7 @@ fn CompiledRequest::call(
   }
   let expanded = match self.contract {
     Some(contract) => contract.expand(vars, limits~)
-    None => template.expand_checked(vars, required~, reject_unused~, limits~)
+    None => template.expand(vars, required~, reject_unused~, limits~)
   }
   match expanded {
     Ok(value) => success(value)

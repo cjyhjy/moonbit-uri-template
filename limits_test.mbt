@@ -69,18 +69,18 @@ test "streaming exact output boundaries for every operator and value shape" {
           let size = expected.length()
           assert_eq(
             t
-            .expand_with_limits(
+            .expand(
               vars,
-              @lib.ExpansionLimits::new(max_output_bytes=size),
+              limits=@lib.ExpansionLimits::new(max_output_bytes=size),
             )
             .unwrap(),
             expected,
           )
           if size > 0 {
             let error = t
-              .expand_with_limits(
+              .expand(
                 vars,
-                @lib.ExpansionLimits::new(max_output_bytes=size - 1),
+                limits=@lib.ExpansionLimits::new(max_output_bytes=size - 1),
               )
               .unwrap_err()
             assert_eq(error.code, "OutputLimit")
@@ -100,27 +100,27 @@ test "output prefix percent escapes literals and failed call isolation" {
   let t = @lib.parse("{+x:12}").unwrap()
   assert_eq(
     t
-    .expand_with_limits(vars, @lib.ExpansionLimits::new(max_output_bytes=12))
+    .expand(vars, limits=@lib.ExpansionLimits::new(max_output_bytes=12))
     .unwrap(),
     "%F0%9F%98%80",
   )
   assert_eq(
     t
-    .expand_with_limits(vars, @lib.ExpansionLimits::new(max_output_bytes=11))
+    .expand(vars, limits=@lib.ExpansionLimits::new(max_output_bytes=11))
     .unwrap_err().code,
     "OutputLimit",
   )
   assert_eq(
     t
-    .expand_with_limits(vars, @lib.ExpansionLimits::new(max_output_bytes=12))
+    .expand(vars, limits=@lib.ExpansionLimits::new(max_output_bytes=12))
     .unwrap(),
     "%F0%9F%98%80",
   )
   let e = @lib.parse("😀")
     .unwrap()
-    .expand_with_limits(
+    .expand(
       @lib.Variables::new(),
-      @lib.ExpansionLimits::new(max_output_bytes=11),
+      limits=@lib.ExpansionLimits::new(max_output_bytes=11),
     )
     .unwrap_err()
   assert_eq(e.span.start, 0)
@@ -145,13 +145,13 @@ test "input budgets include unused names keys and combined collections" {
       ),
       (@lib.ExpansionLimits::new(max_output_bytes=-1), "InvalidLimit"),
     ] {
-    assert_eq(t.expand_with_limits(vars, limits).unwrap_err().code, code)
+    assert_eq(t.expand(vars, limits~).unwrap_err().code, code)
   }
   assert_eq(
     t
-    .expand_with_limits(
+    .expand(
       vars,
-      @lib.ExpansionLimits::new(max_total_value_codepoints=10),
+      limits=@lib.ExpansionLimits::new(max_total_value_codepoints=10),
     )
     .unwrap(),
     "%F0%9F%98%80,b",
@@ -164,10 +164,7 @@ test "input budgets include unused names keys and combined collections" {
   ]).unwrap()
   assert_eq(
     t
-    .expand_with_limits(
-      assoc,
-      @lib.ExpansionLimits::new(max_value_codepoints=6),
-    )
+    .expand(assoc, limits=@lib.ExpansionLimits::new(max_value_codepoints=6))
     .unwrap_err().code,
     "ValueLimit",
   )
@@ -175,9 +172,9 @@ test "input budgets include unused names keys and combined collections" {
   assert_eq(
     @lib.parse("")
     .unwrap()
-    .expand_with_limits(
+    .expand(
       empty,
-      @lib.ExpansionLimits::new(
+      limits=@lib.ExpansionLimits::new(
         max_bindings=0,
         max_members=0,
         max_value_codepoints=0,
@@ -197,16 +194,13 @@ test "input budgets reject hostile repetitions without expanded allocation" {
   let t = @lib.parse("{?x*,x*,x*}").unwrap()
   assert_eq(
     t
-    .expand_with_limits(vars, @lib.ExpansionLimits::new(max_output_bytes=10))
+    .expand(vars, limits=@lib.ExpansionLimits::new(max_output_bytes=10))
     .unwrap_err().code,
     "OutputLimit",
   )
   assert_eq(
     t
-    .check_bindings_with_limits(
-      vars,
-      @lib.ExpansionLimits::new(max_members=9999),
-    )
+    .check_bindings(vars, limits=@lib.ExpansionLimits::new(max_members=9999))
     .unwrap_err().code,
     "MemberLimit",
   )

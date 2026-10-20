@@ -31,7 +31,7 @@ fn expression_span(op : Char, specs : Array[VarSpec]) -> Span {
 }
 
 ///|
-pub fn Template::inspect(self : Template) -> Array[ExpressionInfo] {
+fn Template::expressions(self : Template) -> Array[ExpressionInfo] {
   let result : Array[ExpressionInfo] = []
   for segment in self.segments {
     if segment is Expression(op, specs) {
@@ -48,17 +48,6 @@ pub fn Template::inspect(self : Template) -> Array[ExpressionInfo] {
     }
   }
   result
-}
-
-///|
-pub fn Template::level(self : Template) -> Int32 {
-  let mut level = 0
-  for segment in self.segments {
-    if segment is Expression(op, specs) {
-      level = Int32::max(level, expression_level(op, specs))
-    }
-  }
-  level
 }
 
 ///|
@@ -98,7 +87,8 @@ pub fn TemplatePolicy::new(
 }
 
 ///|
-pub fn Template::audit_with_limit(
+/// Static policy findings, at most `max_findings` of them.
+pub fn Template::audit(
   self : Template,
   policy : TemplatePolicy,
   max_findings~ : Int32 = 256,
@@ -245,15 +235,3 @@ pub extend ExpressionInfo with Debug::{to_repr}
 
 ///|
 pub extend TemplatePolicy with Debug::{to_repr}
-
-///|
-/// Compatibility entry point. Use audit_with_limit for bounded reports.
-pub fn Template::audit(
-  self : Template,
-  policy : TemplatePolicy,
-) -> Array[TemplateError] {
-  match self.audit_with_limit(policy, max_findings=2147483647) {
-    Ok(findings) => findings
-    Err(error) => [error]
-  }
-}

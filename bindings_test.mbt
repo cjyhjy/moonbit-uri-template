@@ -7,7 +7,7 @@ test "preflight distinguishes absent empty collections and empty scalar" {
     ("a", @lib.Scalar("secret")),
   ]).unwrap()
   let t = @lib.parse("😀/{id}{?empty,present,id}").unwrap()
-  let report = t.check_bindings(vars)
+  let report = t.check_bindings(vars).unwrap()
   assert_eq(report.referenced, ["id", "empty", "present"])
   assert_eq(report.missing.length(), 1)
   assert_eq(report.missing[0].name, "id")
@@ -15,21 +15,18 @@ test "preflight distinguishes absent empty collections and empty scalar" {
   assert_eq(report.omitted[0].name, "empty")
   assert_eq(report.unused, ["a", "z"])
   assert_eq(t.expand(vars).unwrap(), "%F0%9F%98%80/?present=")
+  assert_eq(t.expand(vars, required=["id"]).unwrap_err().code, "MissingBinding")
   assert_eq(
-    t.expand_checked(vars, required=["id"]).unwrap_err().code,
-    "MissingBinding",
-  )
-  assert_eq(
-    t.expand_checked(vars, required=["empty"]).unwrap_err().code,
+    t.expand(vars, required=["empty"]).unwrap_err().code,
     "OmittedBinding",
   )
-  assert_true(t.expand_checked(vars, required=["present"]) is Ok(_))
+  assert_true(t.expand(vars, required=["present"]) is Ok(_))
   assert_eq(
-    t.expand_checked(vars, required=["typo"]).unwrap_err().code,
+    t.expand(vars, required=["typo"]).unwrap_err().code,
     "UnknownRequired",
   )
   assert_eq(
-    t.expand_checked(vars, reject_unused=true).unwrap_err().code,
+    t.expand(vars, reject_unused=true).unwrap_err().code,
     "UnusedBinding",
   )
 }
@@ -41,14 +38,14 @@ test "preflight finds every prefix mismatch and encoded names stay distinct" {
     ("a", @lib.Scalar("A")),
   ]).unwrap()
   let t = @lib.parse("{x}{x:1}{x:2}{a}{%61}").unwrap()
-  let report = t.check_bindings(vars)
+  let report = t.check_bindings(vars).unwrap()
   assert_eq(report.invalid.length(), 2)
   assert_eq(report.invalid[0].span.start, 4)
   assert_eq(report.invalid[1].span.start, 9)
   assert_eq(report.missing[0].name, "%61")
-  assert_eq(t.expand_checked(vars).unwrap_err().code, "PrefixOnComposite")
+  assert_eq(t.expand(vars).unwrap_err().code, "PrefixOnComposite")
   vars.set("x", @lib.List([]))
-  assert_eq(t.check_bindings(vars).invalid.length(), 0)
+  assert_eq(t.check_bindings(vars).unwrap().invalid.length(), 0)
 }
 
 ///|

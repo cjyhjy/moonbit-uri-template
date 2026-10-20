@@ -35,6 +35,21 @@ pub fn Variables::from_entries(
 pub fn Template::check_bindings(
   self : Template,
   variables : Variables,
+  limits? : ExpansionLimits,
+) -> Result[BindingReport, TemplateError] {
+  if limits is Some(budget) {
+    match check_input_budget(variables, budget) {
+      Err(e) => return Err(e)
+      Ok(_) => ()
+    }
+  }
+  Ok(self.binding_report(variables))
+}
+
+///|
+fn Template::binding_report(
+  self : Template,
+  variables : Variables,
 ) -> BindingReport {
   let seen : Map[String, Bool] = Map([])
   let missing : Array[BindingIssue] = []
@@ -80,39 +95,10 @@ pub fn Template::check_bindings(
 }
 
 ///|
-/// Opt-in contract validation, independent of RFC's default omission behavior.
-/// Required names must occur in the template and have a defined value.
-pub fn Template::expand_checked(
-  self : Template,
-  variables : Variables,
-  required~ : Array[String] = [],
-  reject_unused~ : Bool = false,
-  limits~ : ExpansionLimits = ExpansionLimits::new(),
-) -> Result[String, TemplateError] {
-  match self.validate_bindings(variables, required, reject_unused, limits) {
-    Err(e) => Err(e)
-    Ok(_) => self.expand_impl(variables, Some(limits))
-  }
-}
-
-///|
 pub extend BindingIssue with Debug::{to_repr}
 
 ///|
 pub extend BindingReport with Debug::{to_repr}
-
-///|
-/// Budgeted preflight checks input before building a report.
-pub fn Template::check_bindings_with_limits(
-  self : Template,
-  variables : Variables,
-  limits : ExpansionLimits,
-) -> Result[BindingReport, TemplateError] {
-  match check_input_budget(variables, limits) {
-    Err(e) => Err(e)
-    Ok(_) => Ok(self.check_bindings(variables))
-  }
-}
 
 ///|
 fn Template::validate_bindings(
@@ -150,7 +136,7 @@ fn Template::validate_bindings(
     }
     return Ok(remaining_input)
   }
-  let report = self.check_bindings(variables)
+  let report = self.binding_report(variables)
   let referenced : Map[String, Bool] = Map([])
   let absent : Map[String, BindingIssue] = Map([])
   let empty : Map[String, BindingIssue] = Map([])

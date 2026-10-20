@@ -27,7 +27,7 @@ pub(all) struct VariableProfile {
 } derive(Debug)
 
 ///|
-pub fn Template::variable_uses(self : Template) -> Array[VariableUse] {
+fn Template::variable_uses(self : Template) -> Array[VariableUse] {
   let result : Array[VariableUse] = []
   let mut expression_index = 0
   for segment in self.segments {
@@ -114,31 +114,6 @@ fn profiles_from_uses(uses : Array[VariableUse]) -> Array[VariableProfile] {
 }
 
 ///|
-pub fn Template::variable_profiles(self : Template) -> Array[VariableProfile] {
-  profiles_from_uses(self.variable_uses())
-}
-
-///|
-pub fn Template::reference_count(self : Template, name : String) -> Int32 {
-  let mut count = 0
-  for segment in self.segments {
-    if segment is Expression(_, specs) {
-      for spec in specs {
-        if spec.name == name {
-          count = count + 1
-        }
-      }
-    }
-  }
-  count
-}
-
-///|
-pub fn Template::composite_capable_variables(self : Template) -> Array[String] {
-  self.variable_profiles().filter(p => !p.scalar_only).map(p => p.name)
-}
-
-///|
 pub(all) struct TemplateAnalysis {
   expressions : Array[ExpressionInfo]
   uses : Array[VariableUse]
@@ -150,7 +125,7 @@ pub(all) struct TemplateAnalysis {
 
 ///|
 pub fn Template::analyze(self : Template) -> TemplateAnalysis {
-  let expressions = self.inspect()
+  let expressions = self.expressions()
   let uses = self.variable_uses()
   let mut max_level = 0
   let mut reserved = false
@@ -239,7 +214,7 @@ fn same_specs(a : Array[VarSpec], b : Array[VarSpec]) -> Bool {
 }
 
 ///|
-pub fn Template::diff_contract(
+pub fn Template::diff(
   self : Template,
   newer : Template,
 ) -> DetailedContractDiff {

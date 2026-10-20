@@ -151,9 +151,9 @@ test "catalog names source inspection and bounded compilation" {
   assert_eq(catalog.names(), ["repo", "users"])
   let t = catalog.get("users").unwrap()
   assert_eq(t.source(), "/users/{id}{?page}")
-  assert_eq(t.level(), 3)
-  assert_eq(t.inspect()[0].span.start, 7)
-  assert_eq(t.inspect()[0].span.end, 11)
+  assert_eq(t.analyze().max_level, 3)
+  assert_eq(t.analyze().expressions[0].span.start, 7)
+  assert_eq(t.analyze().expressions[0].span.end, 11)
   let vars = @lib.Variables::from_entries([("id", @lib.Scalar("42"))]).unwrap()
   assert_eq(
     catalog.expand("users", vars, required=["id"]).unwrap(),
@@ -183,29 +183,35 @@ test "policy findings and contract diff include modifiers and literal changes" {
   let before = @lib.parse("/{id}{?tags*}").unwrap()
   let after = @lib.parse("/v2/{id:2}{+path}{#fragment}").unwrap()
   let diff = before.diff(after)
-  assert_eq(diff.added, ["path", "fragment"])
-  assert_eq(diff.removed, ["tags"])
-  assert_eq(diff.newly_scalar_only, ["id"])
+  assert_eq(diff.added_variables, ["path", "fragment"])
+  assert_eq(diff.removed_variables, ["tags"])
+  assert_eq(diff.became_scalar_only, ["id"])
   assert_true(diff.source_changed)
   assert_true(
     before.diff(@lib.parse("/v2/{id}{?tags*}").unwrap()).source_changed,
   )
-  let findings = after.audit(
-    @lib.TemplatePolicy::new(
-      allow_reserved=false,
-      allow_fragment=false,
-      allow_prefix=false,
-    ),
-  )
+  let findings = after
+    .audit(
+      @lib.TemplatePolicy::new(
+        allow_reserved=false,
+        allow_fragment=false,
+        allow_prefix=false,
+      ),
+    )
+    .unwrap()
   assert_eq(findings.length(), 4)
   assert_eq(findings[0].code, "PrefixPolicy")
   assert_eq(
-    before.audit(@lib.TemplatePolicy::new(allow_explode=false)).length(),
+    before
+    .audit(@lib.TemplatePolicy::new(allow_explode=false))
+    .unwrap()
+    .length(),
     1,
   )
   assert_eq(
     before
     .audit(@lib.TemplatePolicy::new(allowed_variables=Some(["id"])))
+    .unwrap()
     .length(),
     1,
   )
@@ -227,7 +233,7 @@ test "sparse normalization and catalog migration preserve explicit differences" 
   let diff = old.diff(next)
   assert_eq(diff.added, ["c"])
   assert_eq(diff.removed, ["b"])
-  assert_eq(diff.changed[0].1.newly_scalar_only, ["id"])
+  assert_eq(diff.changed[0].1.became_scalar_only, ["id"])
   assert_eq(next.templates_using("id"), ["a"])
   assert_eq(old.measure("a", @lib.Variables::new()).unwrap(), 0)
   let findings = @lib.parse("{x}{x}{?y}")
@@ -239,11 +245,15 @@ test "sparse normalization and catalog migration preserve explicit differences" 
         forbid_repeated_variables=true,
       ),
     )
+    .unwrap()
   assert_eq(findings.map(e => e.code), [
     "LevelPolicy", "RepeatedPolicy", "ReferencePolicy",
   ])
   assert_eq(
-    @lib.parse("").unwrap().audit(@lib.TemplatePolicy::new(max_level=5))[0].code,
+    @lib.parse("")
+    .unwrap()
+    .audit(@lib.TemplatePolicy::new(max_level=5))
+    .unwrap_err().code,
     "InvalidPolicy",
   )
 }

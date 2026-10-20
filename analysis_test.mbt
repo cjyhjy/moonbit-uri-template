@@ -15,19 +15,19 @@ test "profiles preserve every modifier and Unicode source occurrence" {
   assert_true(x.scalar_only && x.uses_reserved && x.uses_query)
   assert_false(x.uses_explode || x.uses_fragment)
   assert_eq(x.uses.map(u => u.expression_index), [0, 1, 2])
-  assert_eq(t.reference_count("x"), 3)
-  assert_eq(t.reference_count("absent"), 0)
-  assert_eq(t.composite_capable_variables(), ["tags", "tail"])
+  assert_eq(a.profiles.filter(p => !p.scalar_only).map(p => p.name), [
+    "tags", "tail",
+  ])
   a.profiles[0].uses.clear()
-  assert_eq(t.variable_profiles()[0].occurrences, 3)
-  assert_eq(t.variable_profiles()[0].uses.length(), 3)
+  assert_eq(t.analyze().profiles[0].occurrences, 3)
+  assert_eq(t.analyze().profiles[0].uses.length(), 3)
 }
 
 ///|
 test "contract diff sees modifier changes even when summaries match" {
   let a = @lib.parse("{x:2}{x:8}{?tags*}").unwrap()
   let b = @lib.parse("{x:8}{x:2}{?tags}").unwrap()
-  let d = a.diff_contract(b)
+  let d = a.diff(b)
   assert_true(d.requires_review() && d.expression_layout_changed)
   assert_eq(d.added_variables, [])
   assert_eq(d.became_scalar_only, [])
@@ -37,14 +37,14 @@ test "contract diff sees modifier changes even when summaries match" {
   assert_eq(d.variable_changes[0].before.maximum_prefix, Some(8))
   assert_eq(d.variable_changes[0].after.maximum_prefix, Some(8))
   assert_true(d.variable_changes[1].explode_changed)
-  assert_false(a.diff_contract(a).requires_review())
+  assert_false(a.diff(a).requires_review())
 }
 
 ///|
 test "contract diff distinguishes literal order reserved fragment and scalar restrictions" {
   let old = @lib.parse("/v1/{x}{?page}").unwrap()
   let next = @lib.parse("/v2/{+x:3}/{x}{#tail}").unwrap()
-  let d = old.diff_contract(next)
+  let d = old.diff(next)
   assert_eq(d.added_variables, ["tail"])
   assert_eq(d.removed_variables, ["page"])
   assert_eq(d.became_scalar_only, ["x"])
@@ -52,22 +52,20 @@ test "contract diff distinguishes literal order reserved fragment and scalar res
   assert_true(d.literals_changed && d.reserved_added && d.fragment_added)
   assert_eq(d.old_level, 3)
   assert_eq(d.new_level, 4)
-  let literal = old.diff_contract(@lib.parse("/v2/{x}{?page}").unwrap())
+  let literal = old.diff(@lib.parse("/v2/{x}{?page}").unwrap())
   assert_true(literal.literals_changed)
   assert_false(literal.expression_layout_changed)
   assert_eq(literal.variable_changes.length(), 0)
-  let reorder = @lib.parse("{x,y}")
-    .unwrap()
-    .diff_contract(@lib.parse("{y,x}").unwrap())
+  let reorder = @lib.parse("{x,y}").unwrap().diff(@lib.parse("{y,x}").unwrap())
   assert_true(reorder.expression_layout_changed)
   assert_eq(reorder.added_variables, [])
   assert_eq(reorder.variable_changes.length(), 0)
-  let relaxing = next.diff_contract(old)
+  let relaxing = next.diff(old)
   assert_eq(relaxing.became_composite_capable, ["x"])
   assert_true(
     @lib.parse("abc")
     .unwrap()
-    .diff_contract(@lib.parse("xyz").unwrap())
+    .diff(@lib.parse("xyz").unwrap())
     .requires_review(),
   )
   assert_false(@lib.parse("").unwrap().analyze().has_reserved_expansion)
@@ -99,9 +97,9 @@ test "static catalog audits validate empty options and cap total findings" {
   )
   assert_true(empty.audit(policy, max_findings=0).unwrap().is_clean())
   let original = @lib.parse("{+x}").unwrap()
-  assert_eq(original.audit(policy)[0].code, "ReservedPolicy")
+  assert_eq(original.audit(policy).unwrap()[0].code, "ReservedPolicy")
   assert_eq(
-    original.audit_with_limit(policy, max_findings=0).unwrap_err().code,
+    original.audit(policy, max_findings=0).unwrap_err().code,
     "FindingLimit",
   )
 }
@@ -237,13 +235,13 @@ test "audit budgets count contract metadata and include exact empty boundaries" 
 test "catalog changes contain detailed upgrade findings" {
   let old = @lib.compile_catalog([("a", "{x}"), ("removed", "/old")]).unwrap()
   let next = @lib.compile_catalog([("a", "{+x:3}"), ("added", "/new")]).unwrap()
-  let d = old.diff_contract(next)
+  let d = old.diff(next)
   assert_eq(d.added, ["added"])
   assert_eq(d.removed, ["removed"])
   assert_eq(d.changed[0].0, "a")
   assert_true(d.changed[0].1.reserved_added)
   assert_eq(d.changed[0].1.became_scalar_only, ["x"])
-  assert_eq(old.diff_contract(old).changed.length(), 0)
+  assert_eq(old.diff(old).changed.length(), 0)
 }
 
 ///|
@@ -270,5 +268,5 @@ test "many required variables preserve missing-name precedence" {
     .measure(missing, required=["x511", "not_in_template"])
     .unwrap_err()
   assert_eq(error.code, "MissingBinding")
-  assert_eq(error.span.start, t.variable_profiles()[511].first_span.start)
+  assert_eq(error.span.start, t.analyze().profiles[511].first_span.start)
 }

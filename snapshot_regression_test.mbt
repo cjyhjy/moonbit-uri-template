@@ -83,7 +83,10 @@ test "catalog audit metadata matches inspection and names remain detached" {
   assert_eq(catalog.names(), names)
   let levels = [0, 1, 2, 2, 3, 4, 4]
   for i = 0; i < 70; i = i + 1 {
-    assert_eq(catalog.get("n" + i.to_string()).unwrap().level(), levels[i % 7])
+    assert_eq(
+      catalog.get("n" + i.to_string()).unwrap().analyze().max_level,
+      levels[i % 7],
+    )
   }
   for level = 0; level <= 4; level = level + 1 {
     let policy = @lib.TemplatePolicy::new(
@@ -100,7 +103,7 @@ test "catalog audit metadata matches inspection and names remain detached" {
     let mut total = 0
     for entry in audit.entries {
       let template = catalog.get(entry.name).unwrap()
-      let inspected = template.inspect()
+      let inspected = template.analyze().expressions
       assert_eq(entry.expression_count, inspected.length())
       assert_eq(entry.variable_count, template.variables().length())
       let mut expected_level = 0
@@ -108,7 +111,7 @@ test "catalog audit metadata matches inspection and names remain detached" {
         expected_level = Int32::max(expected_level, expression.level)
       }
       assert_eq(entry.max_level, expected_level)
-      let expected = template.audit(policy)
+      let expected = template.audit(policy, max_findings=4096).unwrap()
       assert_eq(
         entry.findings.map(e => (e.code, e.span.start, e.span.end)),
         expected.map(e => (e.code, e.span.start, e.span.end)),

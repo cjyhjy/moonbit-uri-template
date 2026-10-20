@@ -9,7 +9,7 @@ test "no-presence fast path keeps prefix and budget error precedence" {
       Assoc(OrderedEntries::from_entries([("a", "b")]).unwrap()),
     ] {
     let vars = Variables::from_entries([("x", value), ("y", List(["b"]))]).unwrap()
-    let reported = template.check_bindings(vars).invalid
+    let reported = template.binding_report(vars).invalid
     let error = template
       .measure(vars, limits=ExpansionLimits::new(max_output_bytes=0))
       .unwrap_err()

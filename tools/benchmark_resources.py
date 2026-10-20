@@ -184,7 +184,7 @@ def source(peer, case, iterations):
   let template = @p.parse_with_limits(text.to_string(), @p.ParseLimits::new()).unwrap()
   let limits = @p.ExpansionLimits::new()
 """
-            expand = "template.expand_with_limits(values, limits).unwrap()"
+            expand = "template.expand(values, limits~).unwrap()"
         elif peer == "jsj":
             setup += """  let values = entries
   let template = @p.parse(text.to_string()).unwrap()

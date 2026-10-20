@@ -184,7 +184,7 @@ pub fn TemplateCatalog::audit(
   max_findings~ : Int32 = 256,
 ) -> Result[CatalogAudit, CatalogError] {
   // Empty catalogs must not hide invalid options.
-  match parse("").unwrap().audit_with_limit(policy, max_findings~) {
+  match parse("").unwrap().audit(policy, max_findings~) {
     Err(error) => return Err({ name: "", error, })
     Ok(_) => ()
   }
@@ -192,7 +192,7 @@ pub fn TemplateCatalog::audit(
   let mut remaining = max_findings
   for index, name in self.ordered_names {
     let t = self.entries[name]
-    let findings = match t.audit_with_limit(policy, max_findings=remaining) {
+    let findings = match t.audit(policy, max_findings=remaining) {
       Err(error) => return Err({ name, error, })
       Ok(findings) => findings
     }
@@ -319,7 +319,7 @@ pub(all) struct CatalogContractDiff {
 } derive(Debug)
 
 ///|
-pub fn TemplateCatalog::diff_contract(
+pub fn TemplateCatalog::diff(
   self : TemplateCatalog,
   newer : TemplateCatalog,
 ) -> CatalogContractDiff {
@@ -330,7 +330,7 @@ pub fn TemplateCatalog::diff_contract(
     if newer.entries.get(name) is Some(t) {
       let before = self.entries[name]
       if before.source_text != t.source_text {
-        changed.push((name, before.diff_contract(t)))
+        changed.push((name, before.diff(t)))
       }
     }
   }

@@ -275,22 +275,28 @@ fn Template::render_impl(
 }
 
 ///|
-/// Expand with RFC omission semantics. Retains the original unbounded input API.
+/// Expand with RFC omission semantics. With no options the call is unbounded
+/// (the 0.1 behaviour). Passing `limits`, `required` or `reject_unused` checks
+/// every binding first, then streams within the budget; no partial result escapes.
 pub fn Template::expand(
   self : Template,
   variables : Variables,
+  required? : Array[String],
+  reject_unused~ : Bool = false,
+  limits? : ExpansionLimits,
 ) -> Result[String, TemplateError] {
-  self.expand_impl(variables, None)
-}
-
-///|
-/// Check all bindings, then stream expansion within the output budget. No partial result escapes.
-pub fn Template::expand_with_limits(
-  self : Template,
-  variables : Variables,
-  limits : ExpansionLimits,
-) -> Result[String, TemplateError] {
-  match check_input_budget(variables, limits) {
+  if limits is None && required is None && !reject_unused {
+    return self.expand_impl(variables, None)
+  }
+  let limits = match limits {
+    Some(l) => l
+    None => ExpansionLimits::new()
+  }
+  let required = match required {
+    Some(r) => r
+    None => []
+  }
+  match self.validate_bindings(variables, required, reject_unused, limits) {
     Err(e) => Err(e)
     Ok(_) => self.expand_impl(variables, Some(limits))
   }

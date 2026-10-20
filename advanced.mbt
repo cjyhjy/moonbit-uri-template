@@ -223,7 +223,7 @@ pub fn BoundTemplate::expand(
   match self.merge(variables) {
     Err(e) => Err(e)
     Ok(vars) =>
-      self.template.expand_checked(vars, required~, reject_unused=true, limits~)
+      self.template.expand(vars, required~, reject_unused=true, limits~)
   }
 }
 
@@ -251,43 +251,6 @@ pub fn Template::source(self : Template) -> String {
 }
 
 ///|
-pub(all) struct ContractDiff {
-  added : Array[String]
-  removed : Array[String]
-  newly_scalar_only : Array[String]
-  source_changed : Bool
-} derive(Debug)
-
-///|
-fn Template::scalar_only(self : Template) -> Array[String] {
-  let names : Array[String] = []
-  for segment in self.segments {
-    if segment is Expression(_, specs) {
-      for spec in specs {
-        if spec.modifier is Prefix(_) && !names.contains(spec.name) {
-          names.push(spec.name)
-        }
-      }
-    }
-  }
-  names
-}
-
-///|
-/// Structural changes, not an automatic business-compatibility verdict.
-pub fn Template::diff(self : Template, newer : Template) -> ContractDiff {
-  let old = self.variables()
-  let next = newer.variables()
-  let old_scalar = self.scalar_only()
-  {
-    added: next.filter(n => !old.contains(n)),
-    removed: old.filter(n => !next.contains(n)),
-    newly_scalar_only: newer.scalar_only().filter(n => !old_scalar.contains(n)),
-    source_changed: self.source_text != newer.source_text,
-  }
-}
-
-///|
 pub extend OutputOrigin with Debug::{to_repr}
 
 ///|
@@ -298,6 +261,3 @@ pub extend BatchLimits with Debug::{to_repr}
 
 ///|
 pub extend BatchError with Debug::{to_repr}
-
-///|
-pub extend ContractDiff with Debug::{to_repr}

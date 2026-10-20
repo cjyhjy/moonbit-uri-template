@@ -150,7 +150,7 @@ pub fn PreparedRequest::audit(
     Err(message) => return message
     Ok(policy) => policy
   }
-  match c.template.audit_with_limit(policy, max_findings~) {
+  match c.template.audit(policy, max_findings~) {
     Err(error) => template_failure(error)
     Ok(findings) =>
       success(
