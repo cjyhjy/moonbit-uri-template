@@ -1,10 +1,12 @@
-export type Value = string | readonly string[] | Readonly<Record<string, string | null>> | null;
+/** Numbers and booleans are converted with String(); null and undefined mean "not bound". */
+export type Scalar = string | number | boolean;
+export type Value = Scalar | readonly Scalar[] | Readonly<Record<string, Scalar | null | undefined>> | null | undefined;
 export type BindingKind = 'scalar' | 'list' | 'assoc';
-type ValueForKind<K> = K extends 'scalar' ? string : K extends 'list' ? readonly string[] :
-  K extends 'assoc' ? Readonly<Record<string, string | null>> : Value;
+type ValueForKind<K> = K extends 'scalar' ? Scalar : K extends 'list' ? readonly Scalar[] :
+  K extends 'assoc' ? Readonly<Record<string, Scalar | null | undefined>> : Value;
 type TypedBindings<N extends string, R extends N, K> =
-  { [P in N]?: P extends keyof K ? ValueForKind<K[P]> | null : Value } &
-  { [P in R]: Exclude<P extends keyof K ? ValueForKind<K[P]> : Value, null> };
+  { [P in N]?: P extends keyof K ? ValueForKind<K[P]> | null | undefined : Value } &
+  { [P in R]: Exclude<P extends keyof K ? ValueForKind<K[P]> : Value, null | undefined> };
 export type Operator = '+' | '#' | '.' | '/' | ';' | '?' | '&';
 type StripOperator<S extends string> = S extends `${Operator}${infer Rest}` ? Rest : S;
 type StripModifier<S extends string> = S extends `${infer Name}:${string}` ? Name : S extends `${infer Name}*` ? Name : S;
@@ -12,7 +14,7 @@ type Names<S extends string> = S extends `${infer First},${infer Rest}` ? StripM
 export type TemplateVariables<S extends string> = string extends S ? string :
   S extends `${string}{${infer Expression}}${infer Rest}` ? Names<StripOperator<Expression>> | TemplateVariables<Rest> : never;
 export type Bindings<N extends string, R extends N = never> =
-  Partial<Record<N, Value>> & Record<R, Exclude<Value, null>>;
+  Partial<Record<N, Value>> & Record<R, Exclude<Value, null | undefined>>;
 export interface Limits {
   maxTemplate?: number;
   maxExpressions?: number;
@@ -28,7 +30,9 @@ export interface Limits {
 }
 export interface CompileOptions<N extends string = string, R extends N = never> extends Limits {
   types?: Partial<Readonly<Record<N, BindingKind>>>;
+  /** Reject literal apostrophes (RFC literal grammar). Default false. */
   strict?: boolean;
+  /** Throw UnusedBinding for names the template never references. Default false. */
   rejectUnused?: boolean;
   required?: readonly R[];
   /** All-reference requirements are also enforced at runtime. */
@@ -36,7 +40,7 @@ export interface CompileOptions<N extends string = string, R extends N = never> 
 }
 export interface BatchLimits {
   maxItems?: number;
-  /** Includes serialized JSON punctuation, unlike MoonBit's typed batch API. */
+  /** Code points of the serialized input, including JSON punctuation. */
   maxTotalInputCodepoints?: number;
   maxTotalOutputBytes?: number;
 }

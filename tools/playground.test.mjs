@@ -29,9 +29,9 @@ test('workbench selection offsets address Unicode template and JSON editors corr
   const source = '中文😀/{id', r = evaluateRequest({ ...job(), source }).before.expansion;
   assert.equal(r.error.location.target, 'template');
   assert.equal(source.slice(r.error.location.start, r.error.location.end), '{id');
-  const variables = '{"id":42}', wrong = evaluateRequest({ ...job(), variables }).before.expansion.error;
+  const variables = '{"id":{"k":[]}}', wrong = evaluateRequest({ ...job(), variables }).before.expansion.error;
   assert.equal(wrong.location.target, 'vars');
-  assert.equal(variables.slice(wrong.location.start, wrong.location.end), '42');
+  assert.equal(variables.slice(wrong.location.start, wrong.location.end), '[]');
   const candidate = '😀/{bad', c = evaluateRequest({ ...job(), compare: true, candidate, candidateOptions: {} });
   assert.equal(c.comparison.error.location.target, 'candidate');
   assert.equal(candidate.slice(c.comparison.error.location.start, c.comparison.error.location.end), '{bad');

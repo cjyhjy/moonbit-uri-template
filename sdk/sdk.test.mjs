@@ -60,7 +60,7 @@ test('catalog batches measure all requests and enforce aggregate metadata and ou
 });
 
 test('catalog inspection collects independent contract issues without treating optional omissions as errors', () => {
-  const c = compileCatalog({ a: { template: '/{id}{?page}', required: ['id'] }, b: { template: '{x:2}' } });
+  const c = compileCatalog({ a: { template: '/{id}{?page}', required: ['id'], rejectUnused: true }, b: { template: '{x:2}' } });
   const report = c.inspect([
     { template: 'a', variables: { typo: 'SECRET' }, label: 'first' },
     { template: 'b', variables: { x: ['one'] } },
@@ -141,7 +141,7 @@ test('analysis keeps source occurrences and comparison explains modifier changes
 
 test('SDK comparison includes required unused and runtime budget changes', () => {
   const before = compileTemplate('/{id}{?page}', { rejectUnused: false, maxOutput: 1024 });
-  const after = compileTemplate('/{id}{?page}', { required: ['id'], maxOutput: 128 });
+  const after = compileTemplate('/{id}{?page}', { required: ['id'], maxOutput: 128, rejectUnused: true });
   const d = before.compare(after);
   assert.equal(d.sourceChanged, false);
   assert.equal(d.requiresReview, true);
@@ -166,20 +166,28 @@ test('compiled SDK preserves required contract and reusable immutable options', 
   assert.equal(t.measure({ id: '😀' }), 19);
   assert.equal(t.trace({ id: '😀' }).uri, '/users/%F0%9F%98%80');
   assert.equal(t.tryExpand({}).error.code, 'MissingBinding');
-  assert.equal(t.tryExpand({ id: '42', typo: 'x' }).error.code, 'UnusedBinding');
+  assert.equal(t.tryExpand({ id: '42', typo: 'x' }).value, '/users/42');
+  assert.equal(compileTemplate('/{id}', { rejectUnused: true }).tryExpand({ id: '1', typo: 'x' }).error.code, 'UnusedBinding');
   assert.throws(() => t.variables.push('changed'), TypeError);
 });
 test('compilation errors have useful locations and unknown contracts fail early', () => {
   assert.throws(() => compileTemplate('😀{x'), e => e instanceof UriTemplateError && e.code === 'UnclosedExpression' && e.start === 1 && e.utf16Start === 2);
   assert.throws(() => compileTemplate('/{x}', { required: ['typo'] }), { code: 'UnknownRequired' });
-  assert.throws(() => compileTemplate("'{x}'"), { code: 'InvalidLiteral' });
-  assert.equal(expand("'{x}'", { x: 'v' }, { strict: false }), "'v'");
+  assert.throws(() => compileTemplate("'{x}'", { strict: true }), { code: 'InvalidLiteral' });
+  assert.equal(expand("'{x}'", { x: 'v' }), "'v'");
 });
-test('JS values cannot silently disappear or invoke getters during serialization', () => {
+test('JS values convert predictably and never invoke getters during serialization', () => {
   const t = compileTemplate('{?x}', { required: ['x'] });
-  for (const x of [undefined, NaN, 1, true, new Date(), () => {}, 1n, [, 'a']]) {
+  for (const x of [NaN, Infinity, new Date(), () => {}, 1n, [, 'a'], [undefined], '\uD800']) {
     assert.throws(() => t.expand({ x }), { code: 'InvalidInput' });
   }
+  assert.throws(() => t.expand({ x: ['a', '\uDC00'] }), e => e.code === 'InvalidInput' && e.path === '/x/1');
+  assert.equal(t.expand({ x: 42 }), '?x=42');
+  assert.equal(t.expand({ x: false }), '?x=false');
+  assert.equal(t.expand({ x: [1, 2.5] }), '?x=1,2.5');
+  assert.equal(expand('{?f*}', { f: { z: 1, a: true, skip: undefined } }), '?z=1&a=true');
+  assert.throws(() => t.expand({ x: undefined }), { code: 'MissingBinding' });
+  assert.equal(expand('/u/{id}{?page}', { id: 42, page: undefined }), '/u/42');
   let calls = 0;
   assert.throws(() => t.expand({ get x() { calls++; return 'a'; } }), { code: 'InvalidInput' });
   assert.equal(calls, 0);
@@ -296,8 +304,8 @@ test('session no-ops null removal composite capture and URI-equivalent updates',
   assert.equal(next.update({items:['b']}).recomputed,0);
   assert.equal(next.update({items:null}).session.get('list'),'');
   const assoc = old.update({items:{z:'2',a:'1',absent:null}}).session;
-  assert.equal(assoc.get('list'),'?a=1&z=2');
-  assert.equal(assoc.update({items:{absent:null,a:'1',z:'2'}}).recomputed,0);
+  assert.equal(assoc.get('list'),'?z=2&a=1');
+  assert.equal(assoc.update({items:{z:'2',a:'1',absent:null}}).recomputed,0);
   // Removing an omitted member still updates captured input size.
   assert.equal(assoc.update({items:{a:'1',z:'2'}}).recomputed,1);
 });

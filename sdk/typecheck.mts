@@ -8,8 +8,9 @@ users.expand({ tags: [] });
 users.expand({ id: '42', tag: ['sdk'] });
 // @ts-expect-error unknown required name
 compileTemplate('/{id}', { required: ['typo'] });
-// @ts-expect-error explicit string formatting required
-users.expand({ id: 42 });
+users.expand({ id: 42, tags: [1, true] });
+// @ts-expect-error required id cannot be undefined
+users.expand({ id: undefined });
 const valid: TemplateVariables<'{+path}{?x,y*}{id:3}'> = 'y';
 void valid;
 expand('/{x}', { x: 'a' });
@@ -69,5 +70,6 @@ links.update({page:'2',q:null});
 links.update({typo:'x'});
 // @ts-expect-error unknown endpoint
 links.get('typo');
-// @ts-expect-error values require explicit string formatting
 links.update({page:2});
+// @ts-expect-error objects are not scalar values
+links.update({page:new Date()});

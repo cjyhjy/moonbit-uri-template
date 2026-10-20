@@ -12,35 +12,41 @@ const invalid = (message, path = '') => new UriTemplateError({ code: 'InvalidInp
 const plain = x => x !== null && typeof x === 'object' &&
   (Object.getPrototypeOf(x) === Object.prototype || Object.getPrototypeOf(x) === null);
 
-// Reject values JSON.stringify would silently omit or transform. No user getters
-// or toJSON hooks are invoked; input snapshots cannot mutate between batch passes.
+// Copy input without invoking getters or toJSON, so a snapshot cannot change
+// between passes. Variable numbers and booleans become strings (String(x));
+// undefined object properties are treated as unbound.
 function jsonSnapshot(value, options = false, textLimit = options ? 65536 : 4194304, nodeLimit = options ? 65536 : 262144) {
   const seen = new Set();
   let remaining = textLimit, nodes = nodeLimit;
-  const count = text => {
+  const count = (text, path) => {
+    if (!text.isWellFormed()) throw invalid('string contains an unpaired UTF-16 surrogate', path);
     for (const _ of text) if (--remaining < 0)
       throw new UriTemplateError({ code: 'JsonInputLimit', message: 'SDK snapshot exceeds text budget' });
   };
   const copy = (x, depth, path) => {
     if (--nodes < 0) throw new UriTemplateError({ code: 'JsonInputLimit', message: 'SDK snapshot exceeds node budget' });
     if (depth > 32) throw invalid('input nesting exceeds 32 levels', path);
-    if (x === null || typeof x === 'string' || (options && ['number', 'boolean'].includes(typeof x))) {
-      if (typeof x === 'number' && !Number.isFinite(x)) throw invalid('number must be finite', path);
-      if (typeof x === 'string') count(x);
+    if (typeof x === 'number' && !Number.isFinite(x)) throw invalid('number must be finite', path);
+    if ((typeof x === 'number' || typeof x === 'boolean') && !options) x = String(x);
+    if (x === null || typeof x === 'string' || typeof x === 'number' || typeof x === 'boolean') {
+      if (typeof x === 'string') count(x, path);
       return x;
     }
-    if (!Array.isArray(x) && !plain(x)) throw invalid('expected strings, null, arrays or plain objects', path);
+    if (x === undefined) throw invalid('list members cannot be undefined', path);
+    if (!Array.isArray(x) && !plain(x)) throw invalid('expected a string, number, boolean, null, array or plain object', path);
     if (seen.has(x)) throw invalid('cyclic input is not supported', path);
     seen.add(x);
     const out = Array.isArray(x) ? [] : Object.create(null);
     for (const key of Reflect.ownKeys(x)) {
       if (Array.isArray(x) && key === 'length') continue;
       if (typeof key !== 'string') throw invalid('symbol properties are not supported', path);
-      count(key);
+      const child = path + '/' + key.replaceAll('~', '~0').replaceAll('/', '~1');
+      count(key, child);
       const descriptor = Object.getOwnPropertyDescriptor(x, key);
-      if (!descriptor.enumerable || !('value' in descriptor)) throw invalid('use enumerable data properties without getters', path);
+      if (!descriptor.enumerable || !('value' in descriptor)) throw invalid('use enumerable data properties without getters', child);
       if (Array.isArray(x) && !/^(0|[1-9][0-9]*)$/.test(key)) throw invalid('array properties must be indices', path);
-      out[key] = copy(descriptor.value, depth + 1, path + '/' + key.replaceAll('~', '~0').replaceAll('/', '~1'));
+      if (descriptor.value === undefined && !Array.isArray(x)) continue;
+      out[key] = copy(descriptor.value, depth + 1, child);
     }
     if (Array.isArray(x) && Object.keys(out).length !== x.length) throw invalid('sparse arrays are not supported', path);
     seen.delete(x);
@@ -123,29 +129,31 @@ export class CompiledTemplate {
     if (!Array.isArray(inputs)) throw invalid('inputs must be an array');
     const limits = batchLimits(budgets);
     if (inputs.length > limits.maxItems) throw new UriTemplateError({ code: 'BatchItemLimit', message: 'batch count exceeds budget', index: -1 });
-    const snapshots = [];
+    // One expansion per item (output is ASCII, so length is bytes). Each call is
+    // bounded by the template's own maxOutput; nothing is returned on failure.
+    const outputs = [];
     let remainingInput = limits.maxTotalInputCodepoints, remainingOutput = limits.maxTotalOutputBytes;
     for (let index = 0; index < inputs.length; index++) {
       try {
         const json = jsonSnapshot(inputs[index]);
         remainingInput = spendText(json, remainingInput, 'BatchInputLimit');
-        const bytes = Number(result(this.#handle, 'measure', json, this.#source));
-        if (bytes > remainingOutput) throw new UriTemplateError({ code: 'BatchOutputLimit', message: 'total output exceeds batch budget' });
-        remainingOutput -= bytes;
-        snapshots.push(json);
+        const uri = result(this.#handle, 'expand', json, this.#source);
+        if (uri.length > remainingOutput) throw new UriTemplateError({ code: 'BatchOutputLimit', message: 'total output exceeds batch budget' });
+        remainingOutput -= uri.length;
+        outputs.push(uri);
       } catch (error) {
         if (error instanceof UriTemplateError) error.index = index;
         throw error;
       }
     }
-    return snapshots.map(json => result(this.#handle, 'expand', json, this.#source));
+    return outputs;
   }
 }
 
 export function compileTemplate(source, options = {}) {
   if (typeof source !== 'string') throw invalid('template must be a string');
   const snapshot = JSON.parse(jsonSnapshot(options, true));
-  const handle = prepare_request(source, JSON.stringify({ strict: true, rejectUnused: true, ...snapshot }));
+  const handle = prepare_request(source, JSON.stringify(snapshot));
   return new CompiledTemplate(compileKey, source, handle);
 }
 export function expand(source, variables, options) {
@@ -211,17 +219,18 @@ export class CompiledCatalog {
       }
     });
   }
-  #measure(inputs, budgets) {
+  #measure(inputs, budgets, command = 'measure') {
     const limits = batchLimits(budgets);
     const requests = this.#requests(inputs, limits);
     let remaining = limits.maxTotalOutputBytes;
     const plan = requests.map(item => {
       try {
         const entry = this.#entry(item.request.template);
-        const bytes = Number(result(entry.handle, 'measure', item.json, entry.template.source));
+        const value = result(entry.handle, command, item.json, entry.template.source);
+        const bytes = command === 'expand' ? value.length : Number(value);
         if (bytes > remaining) throw new UriTemplateError({ code: 'BatchOutputLimit', message: 'total output exceeds budget' });
         remaining -= bytes;
-        return { ...item, entry, bytes };
+        return { ...item, entry, bytes, value };
       } catch (error) {
         if (error instanceof UriTemplateError) { error.index = item.index; error.templateName = item.request.template; }
         throw error;
@@ -234,8 +243,7 @@ export class CompiledCatalog {
     return { bytes: plan.map(item => item.bytes), totalBytes };
   }
   expandMany(inputs, budgets = {}) {
-    const { plan } = this.#measure(inputs, budgets);
-    return plan.map(item => result(item.entry.handle, 'expand', item.json, item.entry.template.source));
+    return this.#measure(inputs, budgets, 'expand').plan.map(item => item.value);
   }
   inspect(inputs, options = {}) {
     const limits = checkedLimits(options, { maxItems: 256, maxTotalInputCodepoints: 4194304, maxFindings: 256 });
@@ -300,7 +308,7 @@ export class CompiledCatalog {
 }
 
 export function compileCatalog(definitions, options = {}) {
-  const limits = checkedLimits(options, { maxTemplates: 256, maxTotalTemplateCodepoints: 4194304 });
+  const limits = checkedLimits(options, { maxTemplates: 4096, maxTotalTemplateCodepoints: 4194304 });
   if (!plain(definitions)) throw invalid('catalog definitions must be an object');
   if (Reflect.ownKeys(definitions).length > limits.maxTemplates)
     throw new UriTemplateError({ code: 'CatalogLimit', message: 'template count exceeds budget' });
@@ -314,7 +322,7 @@ export function compileCatalog(definitions, options = {}) {
       remaining = spendText(name, remaining, 'CatalogInputLimit');
       remaining = spendText(definition.template, remaining, 'CatalogInputLimit');
       const { template: source, ...config } = definition;
-      const handle = prepare_request(source, JSON.stringify({ strict: true, rejectUnused: true, ...config }));
+      const handle = prepare_request(source, JSON.stringify(config));
       entries.set(name, { handle, template: new CompiledTemplate(compileKey, source, handle) });
     } catch (error) {
       if (error instanceof UriTemplateError) error.templateName = name;

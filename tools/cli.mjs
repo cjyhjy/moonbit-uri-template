@@ -36,7 +36,7 @@ Options:
 check reports missing/omitted/unused/invalid without expanding; findings exit 1.
 compare strictly parses both templates; changes exit 1 with report on stdout, errors exit 2.
 Required/unused flags apply to expand, measure and trace. Zero budgets are valid.
-Quote templates in the shell. Values: strings, string lists, string/null objects, null.
+Quote templates in the shell. Values: strings, numbers, booleans, lists or objects of those, null.
 Exit codes: 0 success; 1 template/expansion/preflight findings; 2 input/environment error.`;
 const numberFlags = {
   '--max-template': 'maxTemplate', '--max-expressions': 'maxExpressions',
@@ -78,9 +78,9 @@ async function main() {
     const { compileTemplate, UriTemplateError } = await import('../sdk/index.mjs');
     let side = 'before';
     try {
-      const old = compileTemplate(before);
+      const old = compileTemplate(before, { strict: true });
       side = 'after';
-      const next = compileTemplate(after);
+      const next = compileTemplate(after, { strict: true });
       const report = old.compare(next);
       process.exitCode = report.requiresReview ? 1 : 0;
       // Differences are a completed comparison, so the report stays on stdout.

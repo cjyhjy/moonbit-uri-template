@@ -13,7 +13,7 @@ pub extend InputError with Debug::{to_repr}
 fn input_error(path : String) -> InputError {
   {
     code: "InvalidValueType",
-    message: "expected string, string list, string/null object, or null",
+    message: "expected a string, number, boolean, list of those, object of those, or null",
     path,
   }
 }
@@ -24,29 +24,55 @@ fn pointer(name : String) -> String {
 }
 
 ///|
+/// Numbers keep their JSON spelling; booleans become `true` / `false`.
+fn text_of(value : Json) -> String? {
+  match value {
+    String(text) => Some(text)
+    True => Some("true")
+    False => Some("false")
+    Number(n, repr~) =>
+      match repr {
+        Some(text) => Some(text)
+        None =>
+          Some(
+            if n == n.floor() && n.abs() < 9007199254740992.0 {
+              n.to_int64().to_string()
+            } else {
+              n.to_string()
+            },
+          )
+      }
+    _ => None
+  }
+}
+
+///|
 fn convert(value : Json, path : String) -> Result[@template.Value?, InputError] {
   match value {
     Null => Ok(None)
-    String(text) => Ok(Some(@template.Scalar(text)))
+    String(_) | True | False | Number(_, ..) =>
+      Ok(Some(@template.Scalar(text_of(value).unwrap())))
     Array(items) => {
       let values : Array[String] = []
       for i, item in items {
-        match item {
-          String(text) => values.push(text)
-          _ => return Err(input_error(path + "/" + i.to_string()))
+        match text_of(item) {
+          Some(text) => values.push(text)
+          None => return Err(input_error(path + "/" + i.to_string()))
         }
       }
       Ok(Some(@template.List(values)))
     }
     Object(items) => {
-      let keys = items.keys().to_array()
-      keys.sort()
+      // Members keep their document order, as RFC 6570 expands them in order.
       let entries : Array[(String, String)] = []
-      for key in keys {
-        match items.get(key) {
-          Some(String(text)) => entries.push((key, text))
-          Some(Null) | None => ()
-          _ => return Err(input_error(path + "/" + pointer(key)))
+      for key, item in items {
+        match item {
+          Null => ()
+          _ =>
+            match text_of(item) {
+              Some(text) => entries.push((key, text))
+              None => return Err(input_error(path + "/" + pointer(key)))
+            }
         }
       }
       match @template.OrderedEntries::from_entries(entries) {
@@ -54,12 +80,11 @@ fn convert(value : Json, path : String) -> Result[@template.Value?, InputError] 
         Err(_) => Err(input_error(path))
       }
     }
-    _ => Err(input_error(path))
   }
 }
 
 ///|
-/// Parse a JSON object into typed bindings. Numbers and booleans require explicit strings.
+/// Parse a JSON object into bindings. Numbers and booleans are converted to text.
 pub fn parse_variables(
   source : String,
 ) -> Result[@template.Variables, InputError] {

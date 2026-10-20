@@ -48,7 +48,7 @@ for (const [name, args, code, error] of [
   ['Unicode position', ['validate', '😀{x'], 1, /code points 1\.\.3/],
   ['composite prefix', ['expand', 'before/{x:1}', '--vars', '{"x":["a"]}'], 1, /PrefixOnComposite/],
   ['invalid JSON', ['expand', '{x}', '--vars', '{'], 2, /InvalidJson/],
-  ['numeric type', ['expand', '{x}', '--vars', '{"x":42}'], 2, /InvalidValueType.*\/x/],
+  ['nested type', ['expand', '{x}', '--vars', '{"x":{"y":[]}}'], 2, /InvalidValueType.*\/x\/y/],
   ['JSON pointer', ['expand', '{x}', '--vars', '{"x":[null]}'], 2, /\/x\/0/],
   ['missing file', ['expand', '{x}', '--vars-file', 'examples/no-such-file.json'], 2, /FileError/],
   ['conflicting options', ['expand', '{x}', '--vars', '{}', '--vars-file', 'a'], 2, /InvalidArguments/],
@@ -61,6 +61,11 @@ for (const [name, args, code, error] of [
   assert.equal(result.status, code);
   assert.equal(result.stdout, '');
   assert.match(result.stderr, error);
+});
+test('numbers and booleans expand as text', () => {
+  const result = cli('expand', '/u/{id}{?on}', '--vars', '{"id":42,"on":true}');
+  assert.equal(result.status, 0);
+  assert.equal(result.stdout, '/u/42?on=true\n');
 });
 test('help', () => { assert.match(cli('--help').stdout, /RFC 6570/); });
 test('foreign bridge uses public typed adapter', () => {

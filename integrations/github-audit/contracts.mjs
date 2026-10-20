@@ -7,6 +7,8 @@ import { parseSource } from '../../tools/json-source.mjs';
 export function catalogFromDocument(doc) {
   return compileCatalog(Object.fromEntries(doc.templates.map(entry => [entry.name, {
     template: entry.template,
+    strict: true,
+    rejectUnused: true,
     required: entry.required ?? [],
     types: entry.types ?? {},
     maxOutput: entry.maxOutputBytes ?? 8192,

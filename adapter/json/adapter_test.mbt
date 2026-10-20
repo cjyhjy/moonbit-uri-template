@@ -93,7 +93,7 @@ test "adapter typed values null and stable associative order" {
   ).unwrap()
   assert_eq(
     @template.expand("/users/{id}{?tags*,keys*,missing}", vars).unwrap(),
-    "/users/42?tags=a&tags=b&a=1&z=2",
+    "/users/42?tags=a&tags=b&z=2&a=1",
   )
 }
 
@@ -102,8 +102,8 @@ test "adapter input errors retain JSON pointers" {
   let cases = [
     ("[]", "ExpectedObject", ""),
     ("{", "InvalidJson", ""),
-    ("{\"id\":42}", "InvalidValueType", "/id"),
-    ("{\"ok\":true}", "InvalidValueType", "/ok"),
+    ("{\"id\":[[]]}", "InvalidValueType", "/id/0"),
+    ("{\"ok\":{\"k\":[]}}", "InvalidValueType", "/ok/k"),
     ("{\"items\":[null]}", "InvalidValueType", "/items/0"),
     ("{\"a/b~\":{\"x/y\":[]}}", "InvalidValueType", "/a~1b~0/x~1y"),
   ]
@@ -119,7 +119,7 @@ test "request envelope separates successful outputs from errors" {
   let sources = [
     ("expand", "{x}", "{\"x\":\"a/b\"}", 0),
     ("expand", "{x:1}", "{\"x\":[\"a\"]}", 1),
-    ("expand", "{x}", "{\"x\":false}", 2),
+    ("expand", "{x}", "{\"x\":[{}]}", 2),
     ("validate", "{x", "{}", 1),
     ("variables", "{x,x}{?y}", "{}", 0),
     ("invalid", "{x}", "{}", 2),
@@ -174,4 +174,15 @@ test "bounded bridge preflight reports names and never values" {
   let result = @jsonlib.parse(output)
   guard result is Object(fields) else { fail("expected envelope") }
   assert_eq(fields.get("exitCode"), Some(Json::number(0)))
+}
+
+///|
+test "adapter converts numbers and booleans to their JSON text" {
+  let vars = @json.parse_variables(
+    "{\"id\":42,\"ratio\":1.5,\"big\":12345678901234567890,\"on\":true,\"ids\":[1,2],\"f\":{\"x\":false}}",
+  ).unwrap()
+  assert_eq(
+    @template.expand("/{id}{?ratio,big,on,ids,f*}", vars).unwrap(),
+    "/42?ratio=1.5&big=12345678901234567890&on=true&ids=1,2&x=false",
+  )
 }
