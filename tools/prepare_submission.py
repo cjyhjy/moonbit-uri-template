@@ -94,8 +94,9 @@ if bundle.exists():
     shutil.rmtree(bundle)  # generated directory only, never source/user documents
 bundle.mkdir()
 files = [
-    "docs/RESUBMISSION.md", "docs/REVIEW_EVIDENCE.md", "docs/ORGANIZER_EMAIL.txt",
-    "docs/COMPARISON.md", "docs/PERFORMANCE.md", "docs/API.md", "docs/SDK.md", "docs/OPTIMIZATION.md",
+    "docs/RESUBMISSION.md", "docs/ORGANIZER_EMAIL.txt", "docs/CONFORMANCE.md",
+    "docs/COMPARISON.md", "docs/PERFORMANCE.md", "docs/API.md", "docs/SDK.md",
+    "testdata/differential/results.json",
     "integrations/github-audit/README.md",
     "reports/verification.json", "reports/release.json", "reports/peer-benchmark.json",
     "reports/peer-resources.json",
@@ -118,7 +119,7 @@ for name in files:
     shutil.copyfile(ROOT / name, target)
 shutil.copyfile(archive, bundle / archive.name)
 (bundle / "READ_FIRST.txt").write_text(
-    "Start with docs/RESUBMISSION.md and docs/REVIEW_EVIDENCE.md.\n"
+    "Start with docs/RESUBMISSION.md.\n"
     "The portable release includes the full Mooncakes source archive.\n"
     "This is a local review package, not a published release or submitted application.\n"
     "The technical supplement and draft email are AI-assisted; the entrant must independently write the application proposal as required by the form.\n",

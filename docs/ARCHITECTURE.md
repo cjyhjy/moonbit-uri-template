@@ -1,160 +1,68 @@
-# 项目架构设计
+# 架构与测试
 
-状态：工作区 0.2.0 为已验证的本地候选版；0.1.1 是已发布的历史版本。新增预算与绑定模块、同核浏览器工作台，实际接口见 pkg.generated.mbti。
-
-## 1. 总体设计
-
-采用一个 MoonBit 模块。核心库内部按职责拆文件，首版不拆成多个互相依赖的公共包。适配层是独立子包，保证核心库不依赖文件系统、网络、Node.js 或浏览器。
+## 结构
 
 ```mermaid
 flowchart TD
-  Consumer[MoonBit 下游调用者] --> API[核心公共 API]
-  CLI[Node CLI：参数 / 文件 / 退出码] --> Adapter[MoonBit JSON 适配包]
-  Web[浏览器 Playground / Worker] --> Adapter
-  Adapter --> API
-  API --> Parser[Parser：模板转内部结构]
-  Parser --> Template[不可变 Template]
-  Template --> Expander[Expander：变量与操作符规则]
-  Values[Variables：有类型的变量集合] --> Expander
-  Expander --> Encoder[Encoder：Unicode / 百分号编码]
-  Encoder --> Result[URI 字符串或结构化错误]
+  MB[MoonBit 下游] --> Core
+  SDK[Node SDK sdk/index.mjs] --> Adapter
+  CLI[Node CLI tools/cli.mjs] --> Adapter
+  Web[浏览器工作台 / Worker] --> Adapter
+  Adapter[JSON 适配包 adapter/json] --> Core
+  Core[MoonBit 核心] --> Parser --> Template[不可变 Template]
+  Template --> Expander --> Encoder
 ```
 
-核心使用 MoonBit 及官方标准库，目标是无第三方运行时依赖。JSON 解析优先使用标准库。CLI 采用 JS 编译后端和薄 Node 启动器，Node 只负责参数、文件读取和进程退出，解析、转换和展开都由 MoonBit 完成。JS 导出与错误封送在 M0 做小型技术验证；不能以 JS 重写核心来绕过互操作问题。
+只有一个 MoonBit 模块。核心不依赖文件系统、网络、Node 或浏览器。JS 侧只处理参数、文件读写、输入快照和位置格式化，解析、编码、展开和预算检查全部在 MoonBit 中完成，编译后放在 `dist/engine.mjs`。
 
-## 2. 计划目录
-
-以下为设计时的职责划分；实际目录以仓库为准：公共 parse 位于 parser.mbt，expand 位于 expander.mbt，类型和错误位于 types.mbt。没有为这些职责额外保留空文件。
-
-```text
-moon.mod                   模块配置；以锁定工具链生成的格式为准
-moon.pkg                   核心库配置
-types.mbt                  公开值类型、Variables 和隐藏的 Template
-parser.mbt / expander.mbt  parse / expand / variables 公共入口
-parser.mbt                 状态机扫描与语法检查
-operator.mbt               操作符策略表
-encoder.mbt                编码与安全截断
-expander.mbt               有界流式展开引擎
-limits.mbt                 解析/绑定/成员/值/输出预算
-bindings.mbt               复制构造、预检与选择性必填
-playground/                同核交互页面与 Worker
-types.mbt                  错误类型、源位置（与值类型同文件）
-*_test.mbt                 公共 API 黑盒测试
-*_wbtest.mbt               内部实现白盒测试
-adapter/json/              JSON -> Variables 与序列化错误
-cmd/uri_template/          MoonBit CLI 入口或导出桥接包
-tools/cli.mjs              Node 进程边界
-tools/generate_fixtures.*  测试数据转换；M0 决定使用可用脚本语言
-testdata/upstream/         固定版本的上游夹具及许可证
-examples/                  最小调用、API URL、集合参数
-docs/                      架构、测试、用户文档、参赛材料
-.github/workflows/         选定工具链和测试矩阵
-```
-
-MoonBit 当前官方文档采用 `moon.pkg`，更新说明也介绍了 `moon.mod`；不预先套用旧 JSON 配置。以实际安装并固定的工具链为准。[构建工具文档](https://docs.moonbitlang.com/en/stable/toolchain/moon/commands.html)、[官方更新](https://www.moonbitlang.com/updates)
-
-## 3. API 与数据模型
-
-下面概括实际 API；真实 MoonBit 签名见 pkg.generated.mbti，所有模板操作统一返回 TemplateError。
-
-```text
-parse(source: String) -> Result<Template, TemplateError>
-expand(source: String, variables: Variables) -> Result<String, TemplateError>
-Template.expand(variables: Variables) -> Result<String, TemplateError>
-Template.variables() -> Array<String>
-
-Value = Scalar(String) | List(Array<String>) | Assoc(OrderedEntries)
-Variables = 封装的名称到 Value 的映射
-OrderedEntries = 构造时检查键唯一性的有序键值集合
-```
-
-接口设计决定：
-
-- `Template` 只通过解析构造，内部结构不可由使用者修改；可反复用于不同变量集合。
-- `Variables` 中不存在的键表示未定义；空字符串与空集合保留各自类型。
-- 核心只接收字符串及字符串集合；调用者主动决定数字和布尔值的格式。
-- `Assoc` 保存插入顺序，重复键在构造时返回错误；避免哈希迭代顺序造成演示和测试不稳定。
-- `variables()` 按首次出现顺序去重，返回原始变量名称。
-- `expand(source, vars)` 是 `parse` 再 `Template.expand` 的便利组合，两条路径必须等价。
-- 默认缺失变量遵循标准省略行为；expand_checked 的必填策略是显式业务约束，不更改普通展开。
-
-内部结构：
-
-```text
-Template { segments }
-Segment = Literal(encoded_text, span) | Expression(operator, varspecs)
-VarSpec { raw_name, modifier, span }
-Modifier = None | Prefix(length) | Explode
-Span { start_codepoint, end_codepoint }   // 从 0 开始，左闭右开
-```
-
-源位置统一采用 Unicode 码点偏移，不泄漏各后端的字符串索引实现。解析器维护单调前进的扫描游标；CLI 根据需要转成从 1 开始的行列号。宿主诊断同时提供 UTF-16 偏移；浏览器以码点切片创建安全的文本节点和 mark 高亮。
-
-## 4. 解析、编码和展开边界
-
-Parser 使用单次扫描状态机，识别 literal、表达式、变量和修饰符。拒绝不匹配括号、非法变量名、非法修饰符和保留但不支持的操作符。保留原始源区间，成功后才返回完整 Template。
-
-OperatorSpec 记录表达式前缀、项间分隔符、是否输出名称、空值写法与编码模式。Expander 根据“操作符策略 × 值类型 × 修饰符”组合处理，不复制八套完整展开实现。
-
-Encoder 区分模板 literal、普通变量、保留字符展开三条路径。百分号序列的保留/再编码、Unicode 截断和空集合语义是必须单独验证的标准边界；变量名按原始拼写查找。语义依据 [RFC 6570 第 2–3 节](https://www.rfc-editor.org/rfc/rfc6570)，具体回归点见测试文档。
-
-新增有界入口会先检查模板/绑定输入预算，输出每次追加前扣减剩余字节；百分号保留使用三码点迭代器前瞻，避免复制整个 scalar。默认核心便利入口保持兼容，CLI/桥接默认选择有界入口。JSON 原文在递归解析前进行长度与嵌套检查。
-
-复杂度目标：解析 O(T)；展开 O(R + V + U)，其中 T 是模板长度，R 是变量引用数，V 是实际遍历的输入量，U 是输出长度。使用 builder 避免反复拼接复制；这是设计目标，基准前不宣称已达成。
-
-默认不设置全局缓存，不引入全局可变状态。需要缓存的下游保留 Template 实例即可。
-
-## 5. JSON 和 CLI 契约
-
-首版适配器只接受顶层 JSON object，规则由我们明确设计：
-
-| JSON 输入 | 处理 |
+| 文件 | 职责 |
 | --- | --- |
-| string | Scalar |
-| 字符串数组 | List |
-| 字符串或 null 值组成的对象 | Assoc；省略 null 成员，键按字典序排序以稳定结果 |
-| 顶层变量值 null | 省略变量 |
-| number / boolean | 返回带 JSON 路径的类型错误；示例中用字符串明确表示 |
-| 嵌套集合、数组内 null 或非字符串 | 返回类型错误，禁止隐式 JSON 字符串化 |
+| `types.mbt` | 公开值类型、`Variables`、隐藏的 `Template` |
+| `parser.mbt` | 单遍扫描，成功才返回完整模板；字面量在解析时预编码 |
+| `operator.mbt` | 八种操作符的前缀、分隔符、命名和编码规则表 |
+| `encoder.mbt` | UTF-8 百分号编码、前缀截断 |
+| `expander.mbt` | 流式展开；`Output` 可只计数不写入，计量与展开走同一路径 |
+| `limits.mbt` | 解析与输入预算 |
+| `bindings.mbt` | 预检报告、必填与无用绑定检查 |
+| `runtime_contract.mbt` | 变量形状契约 |
+| `advanced.mbt` | 计量、批量、预绑定、来源映射 |
+| `analysis.mbt` / `policy.mbt` | 变量画像、详细差异、静态审计 |
+| `catalog*.mbt` | 模板目录、跨模板批量和审计 |
+| `link_session.mbt` / `session_bindings.mbt` | 增量链接会话与分块持久存储 |
+| `adapter/json/` | JSON 变量转换与请求信封 |
+| `sdk/` | Node SDK 与 TypeScript 声明 |
+| `tools/project.mjs` | 项目请求配置检查（带源位置的 JSON 解析） |
+| `integrations/github-audit/` | 真实下游客户端 |
 
-CLI 契约示例（构建后通过 node tools/cli.mjs 运行）：
+## 设计要点
 
-```sh
-uri-template expand '/users/{id}{?page}' --vars '{"id":"42","page":"2"}'
-# stdout: /users/42?page=2
+- `Template` 只能通过解析得到，内部结构不对外暴露，可重复使用。没有全局缓存或全局可变状态。
+- `Variables::set` 复制集合，调用方事后修改原数组不影响已绑定的值。会话、目录、契约都在构造时复制输入。
+- 有界入口会先检查全部输入，再在每次写入前扣减输出预算，不会先构造超限的字符串。
+- 源位置一律使用 Unicode 码点；宿主侧另外换算出 UTF-16 偏移和行列。
+- 会话把绑定、URI 和长度按 32 个一块存储，更新时只复制改动的块，预算按补丁增量计算。
 
-uri-template expand '/search{?q,tags*}' --vars-file examples/search.json
-uri-template validate '/users/{id}'
-uri-template variables '/users/{id}{?page}'
-```
+复杂度：解析 O(T)；展开 O(R + V + U)，其中 T 是模板长度，R 是变量引用数，V 是读取的输入量，U 是输出长度。
 
-`expand` 成功只向 stdout 输出 URI 和换行；诊断到 stderr。退出码：0 成功、1 模板/展开错误、2 参数/JSON/文件错误。`variables` 输出名称 JSON 数组；`validate` 成功输出 `valid`。Shell 示例必须给模板加引号。
+## 测试
 
-核心 API 与上游测试不经过 CLI 的窄类型政策；测试数据中的数字等若出现，在测试适配器按已核查语义转换并明确记录，不以 CLI 类型错误替代标准负例测试。
+`npm test`（`tools/verify.py`）依次执行：
 
-## 6. 错误与目标平台
+1. 格式、接口快照和夹具生成无漂移检查。
+2. 四个后端（JS、wasm、wasm-gc、Native）的 MoonBit 测试：270 条上游用例、公共 API、预算、契约、会话、JSON 适配，以及确定性组合测试。
+3. Node 测试：SDK、差分回放、CLI、项目检查、GitHub 客户端（离线）、工作台计算逻辑。
+4. TypeScript 声明的正例和预期错误。
+5. 打包 npm tarball，在临时空项目中离线安装并运行；用 Mooncakes 源码包建立独立 MoonBit 消费工程，在四个后端运行。
 
-错误载荷包含稳定 code、message 和相关 span。解析类如 `UnclosedExpression`、`InvalidVariableName`、`InvalidModifier`；展开类如 `PrefixOnComposite`；适配器另带 JSON 路径。错误消息可改进，测试主要断言 code 和位置。遇到错误不返回看似成功的部分 URI。
+结果写入 `reports/verification.json` 和 `reports/tests-*.log`，记录提交、工具链、源码摘要和逐项统计。
 
-核心库必须在 JS 与 wasm-gc 上实际测试；Native 通过同一套测试后再加入支持声明。CLI 首版只声明 Node 环境，浏览器只属于可选适配层。任何后端限制应按包表达，避免 CLI 的环境依赖限制核心库。
+测试原则：
 
-## 7. 决策记录
+- 预期值来自 RFC、上游用例或外部参考实现，不用被测函数生成。
+- 负例必须真正进入解析或展开并失败，适配器崩溃不能算通过。
+- 每个修复的问题都要补一条最小回归用例。
+- 覆盖率（`python3 tools/coverage.py`）只用来查漏，不设百分比门槛。
 
-| 决策 | 原因 | 重新评估条件 |
-| --- | --- | --- |
-| 先库，后演示界面 | 交付核心是可复用生态能力 | 核心验收完成且仍有余量 |
-| parse 与 expand 分离 | 支持复用模板和独立诊断 | 保持接口，不引入多余编译层 |
-| 单公共核心包 | 防止首版包结构过重 | 出现真实的独立复用需求 |
-| 有序 Assoc | 输出稳定，跨后端可验证 | 性能数据证明有瓶颈 |
-| 显式错误返回 | 便于 CLI、浏览器和库统一消费 | T02 核实 MoonBit 惯例后固定语法 |
-| 标准测试驱动声明 | 防止支持等级和实际行为不一致 | 每次发布重新检查 |
+## CI
 
-## 实施验证
-
-核心、JSON 适配和示例已在 JS、wasm-gc、Native 通过；Node 桥接只声明 JS。架构边界与原计划一致，JSON 处理使用官方标准库。单引号兼容扩展见 CONFORMANCE.md，真实测试与包导入证据见 ACCEPTANCE.md。
-
-## 0.2.0 扩展结构
-
-`Output` 支持 materialize 开关，使计量与输出走同一操作符/编码路径。可选 origins 按变量出现位置记录输出字节范围。`advanced.mbt` 提供批量两阶段处理与固定变量绑定，`catalog.mbt` 管理已解析模板，`policy.mbt` 只做显式静态审计，均为 MoonBit 核心。
-
-`tools/project.mjs` 是 Node 项目边界，使用带原文位置的 JSON 解析、契约类型检查和报告上限；URI 语义调用 MoonBit JSON 桥接。每个目录条目保存一个 PreparedRequest，在预检、计量和来源展开之间复用。`sdk/index.mjs` 同样持有不透明的编译对象，附 TypeScript 声明及序列化前输入快照校验；没有全局对象注册表。CLI 的 measure/trace 直接调用共享核心。`integrations/github-audit` 消费便携工具与编译引擎，额外负责 HTTP 目标白名单、超时、响应大小和报告。四后端 SDK、Node 工具及独立安装的 npm tarball 分别验收。
+[.github/workflows/ci.yml](../.github/workflows/ci.yml) 运行与本地相同的验收脚本，并上传报告和便携包。

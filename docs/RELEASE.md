@@ -1,40 +1,32 @@
-# 发布与验收流程
+# 发布
 
-## 当前命名
+## 名称
 
-GitHub：`cjyhjy/moonbit-uri-template`。Mooncakes 用户名已由截图和实际发布确认，模块为 `cjyhjy/uri_template`，当前版本 0.1.1。
+- GitHub：`cjyhjy/moonbit-uri-template`
+- Mooncakes：`cjyhjy/uri_template`，已发布 0.1.1
+- npm：未发布；分发包内含 `moonbit-uri-template-0.2.0.tgz`
 
-## GitHub
+## 便携分发包
 
-本地验收通过后创建公开仓库并推送代码，保留真实提交历史。GitHub CLI 当前凭据失效，但已用用户登录的浏览器创建仓库，使用 Git 的系统凭据成功推送。不要把访问令牌写进项目。
+```sh
+npm run release:package
+```
 
-推送后检查 Actions 是否真正完成。当前 [v0.1.1](https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.1.1) 已公开发布，附有通过解压测试的 portable CLI。版本对应源码提交 d0a71cd；[远程运行 38527270144](https://github.com/cjyhjy/moonbit-uri-template/actions/runs/38527270144) 已成功。以后以对应提交的真实运行结果更新材料。
+生成 `_build/releases/moonbit-uri-template-<版本>.zip`，内含编译后的核心、CLI、SDK tarball、示例、测试、许可证、Mooncakes 源码包和逐文件 SHA-256。脚本会解压产物并重新运行全部 Node 测试。使用者只需要 Node.js 22+。
 
 ## Mooncakes
 
-Mooncakes 是 MoonBit 的包仓库。开发和本地导入不需要账号，公开发布需要账号和命名空间。
+1. `npm test` 全部通过，检查 `./tools/moon package --list` 的包内容。
+2. `./tools/moon login`，凭据不进仓库。
+3. 确认 `moon.mod` 的版本号后执行 `./tools/moon publish`。
+4. 在全新工程中执行 `moon add cjyhjy/uri_template@<版本>` 并运行示例，确认注册表安装可用。
 
-1. 参赛者访问 [Mooncakes](https://mooncakes.io/) 完成注册，确认实际用户名。
-2. 将用户名与 `moon.mod` 和所有 import 对齐。
-3. 执行 `npm test`，审查真实结果与 `moon package --list`。
-4. 使用 `./tools/moon login` 登录，凭据不进入仓库。
-5. 确认发布名和版本后，使用 `./tools/moon publish`。
-6. 在全新工程中通过 `moon add <真实模块名>` 从注册表安装并运行示例；这才证明公开包可用。
+0.1.1 的发布日志和注册表安装记录见 `reports/publish-0.1.1.log`、`reports/registry.json`。
 
-本地打包成功和本地工作区消费通过不等于已发布到注册表。当前 0.1.1 实际发布响应为 200 OK，并已从注册表安装，在独立工程运行三个后端；见 reports/publish-0.1.1.log 与 reports/registry.json。该版工具链 dry-run 返回 202 与成功说明，却以失败退出；保留原始日志，不据此伪称实际发布失败或成功。
+## GitHub Release
 
-## 赛事材料
+推送标签后确认 Actions 运行成功，再附上便携包。[v0.1.1](https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.1.1) 对应提交 `d0a71cd`。
 
-提交公开仓库、README、可运行代码、必要测试和可复现演示说明；正式表单要求的个人身份、团队信息和参赛确认由用户核对。PROPOSAL.md 仅为 AI 辅助技术参考，不能直接上传为正式申报书；验收记录见 ACCEPTANCE.md。具体截止时刻与时区以官方通知为准，原计划提前于 10/31 提交。
+## 工具链
 
-## 工具链维护
-
-`toolchain.lock.json` 固定编译器版本与官方下载包校验值。官方历史下载的响应标注约 60 天保留期；过期后需要显式升级、更新校验值、重跑所有后端，并记录新版本差异。不得自动回退到 latest 以隐藏不可复现问题。
-
-## 申报书要求（用户提供的表单截图）
-
-Markdown、一页以内、由参赛者自己撰写，不使用 AI 编写。需包含项目名称、简介、方向和通用性、至少三个完整预期使用场景、核心功能、原创/移植/参考说明及许可证、仓库链接和不少于 10 个有效 commits。不能将 AI 辅助技术参考文档直接上传，也不能靠无意义拆分或空提交凑数。
-
-## 可直接运行的发布产物
-
-`npm run release:package` 生成 `_build/releases/moonbit-uri-template-<当前版本>.zip`：包含编译后的 MoonBit JS 核心、CLI、样例、完整 CLI 测试、许可证、Mooncakes 源码包和逐文件 SHA-256。打包脚本会解压产物并重新运行所有 CLI 测试。用户只需 Node.js 22+，无需安装 MoonBit 或第三方 npm 包。CI 同样生成并上传该产物。
+`toolchain.lock.json` 固定编译器版本和下载校验值。官方历史二进制大约保留 60 天，过期后需要显式升级、更新校验值、重跑全部后端，不能自动改用 latest。
