@@ -26,8 +26,9 @@ export function readProjectFile(file) {
   } finally { closeSync(fd); }
 }
 
-export function checkProject(text, file = 'manifest.json') {
+export function checkProject(text, file = 'manifest.json', { materialize = true } = {}) {
   const diagnostics = [], outputs = [];
+  let plannedBytes = 0;
   let parsed, activeRequest;
   const add = (code, message, path, error, template, suggestion) => {
     if (diagnostics.length >= 256) return;
@@ -52,7 +53,7 @@ export function checkProject(text, file = 'manifest.json') {
     schemaVersion: 1, ok: diagnostics.length === 0, file, diagnostics,
     // Atomic: no generated URL escapes if any request/contract failed.
     outputs: diagnostics.length ? [] : outputs,
-    totalOutputBytes: diagnostics.length ? 0 : outputs.reduce((n, x) => n + x.bytes, 0),
+    totalOutputBytes: diagnostics.length ? 0 : plannedBytes,
   });
   if (Buffer.byteLength(text) > MAX_FILE) { add("ProjectInputLimit", "manifest exceeds 1 MiB", ""); return finish(); }
   try { parsed = parseSource(text); }
@@ -153,10 +154,11 @@ export function checkProject(text, file = 'manifest.json') {
     const bytes = Number(result.output);
     if (bytes > remaining) { add('ProjectOutputLimit', 'aggregate output exceeds budget', path); return; }
     remaining -= bytes;
+    plannedBytes += bytes;
     planned.push({ req, entry, bytes, index: i });
   });
   activeRequest = undefined;
-  if (diagnostics.length) return finish();
+  if (diagnostics.length || !materialize) return finish();
   for (const { req, entry, bytes, index } of planned) {
     const result = call(entry.handle, 'trace', req.variables);
     if (result.error) { add(result.error.code, result.error.message, `/requests/${index}`); break; }

@@ -1,4 +1,4 @@
-// A standalone consumer: builds all URLs via the portable MoonBit library tool.
+// A standalone consumer: builds all URLs via the public typed catalog SDK.
 // Network access is GET-only and limited to GitHub's public repository API.
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -29,25 +29,20 @@ export async function githubCliFetch(uri) {
   return new Response(text.slice(boundary).replace(/^\r?\n\r?\n/, ''), { status, headers });
 }
 
-import { checkProject, readProjectFile } from '../../tools/project.mjs';
+import { readProjectFile } from '../../tools/project.mjs';
+import { prepareAudit, destinationProblems } from './contracts.mjs';
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 
 export async function runAudit(manifest, { fetcher = fetch, evidence = 'live-github-api', file = 'requests.json' } = {}) {
-  const plan = checkProject(manifest, file);
+  const plan = prepareAudit(manifest, file);
   const report = { schemaVersion: 1, evidence, startedAt: new Date().toISOString(), manifestSha256: sha(manifest),
-    status: 'running', checks: plan, responses: [] };
-  if (!plan.ok) { report.status = 'contract-failed'; return report; }
+    status: 'running', checks: plan.checks, executionPath: plan.executionPath,
+    sdk: { inspection: plan.inspection, error: plan.error, totalOutputBytes: plan.totalOutputBytes }, responses: [] };
+  if (!plan.ok) { report.status = plan.checks.ok ? 'sdk-contract-failed' : 'contract-failed'; return report; }
   // Validate every URL before the first network request. URL parsing can normalize
   // dot segments, so reject noncanonical paths as well as unexpected origins.
-  for (const item of plan.outputs) {
-    const url = new URL(item.uri);
-    if (url.origin !== 'https://api.github.com' || url.username || url.password || url.hash ||
-        !/^\/repos\/[A-Za-z0-9_-]+\/[A-Za-z0-9_.-]+(?:\/(?:commits|releases))?$/.test(url.pathname) ||
-        url.href !== item.uri || [...url.searchParams.keys()].some(k => k !== 'per_page') ||
-        (url.search && url.search !== '?per_page=1')) {
-      report.status = 'destination-rejected'; return report;
-    }
-  }
+  report.destinationProblems = destinationProblems(plan.outputs);
+  if (report.destinationProblems.length) { report.status = 'destination-rejected'; return report; }
   for (const item of plan.outputs) {
     let response;
     try {

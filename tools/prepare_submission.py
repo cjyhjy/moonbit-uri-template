@@ -23,15 +23,23 @@ if sha(archive.read_bytes()) != release["sha256"]:
     raise SystemExit("Release archive changed")
 live = load("reports/github-integration-portable-live.json")
 faults = load("reports/integration-faults.json")
+upgrades = load("reports/integration-upgrades.json")
 engine = sha((ROOT / "dist/engine.mjs").read_bytes())
 manifest = sha((ROOT / "integrations/github-audit/requests.json").read_bytes())
-for record in (live, faults):
+for record in (live, faults, upgrades):
     if record["status"] != "passed" or record["engineSha256"] != engine or record["manifestSha256"] != manifest:
         raise SystemExit("Integration evidence is failed or stale")
 if live.get("evidence") != "live-github-api" or len(live["responses"]) != 9:
     raise SystemExit("Nine real GitHub responses are required")
 if live.get("portableArchiveSha256") != release["sha256"]:
     raise SystemExit("Real consumer evidence does not match the portable archive")
+if live.get("executionPath") != "typed-catalog-sdk":
+    raise SystemExit("Real consumer evidence must use the typed catalog SDK")
+if (upgrades.get("evidence") != "intentional-upgrade-rehearsal"
+        or len(upgrades.get("results", [])) != 6
+        or upgrades.get("reviewerSha256") != sha((ROOT / "integrations/github-audit/upgrade.mjs").read_bytes())
+        or upgrades.get("contractsSha256") != sha((ROOT / "integrations/github-audit/contracts.mjs").read_bytes())):
+    raise SystemExit("Upgrade review evidence is missing or stale")
 peer_path = sorted((ROOT / "reports").glob("peer-audit-????????.json"))[-1]
 peer = json.loads(peer_path.read_text())
 benchmark = load("reports/peer-benchmark.json")
@@ -50,7 +58,7 @@ files = [
     "docs/COMPARISON.md", "docs/PERFORMANCE.md", "docs/API.md", "docs/SDK.md", "docs/OPTIMIZATION.md",
     "integrations/github-audit/README.md",
     "reports/verification.json", "reports/release.json", "reports/peer-benchmark.json",
-    "reports/github-integration-portable-live.json", "reports/integration-faults.json",
+    "reports/github-integration-portable-live.json", "reports/integration-faults.json", "reports/integration-upgrades.json",
     "reports/history/github-integration-anonymous-failed.json",
     "reports/tests-js.log", "reports/tests-wasm.log", "reports/tests-wasm-gc.log",
     "reports/tests-native.log", "reports/tests-cli.log", "reports/tests-workflow.log",

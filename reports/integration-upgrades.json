@@ -1,0 +1,1626 @@
+{
+  "status": "passed",
+  "evidence": "intentional-upgrade-rehearsal",
+  "generatedAt": "2026-10-20T11:08:57.189Z",
+  "engineSha256": "79ebf5a292bb16b83b791a76885414393481d2fc9ae1c614384cff6bbf7f7819",
+  "reviewerSha256": "e86128c73435d902fd013f1a3c165d6715d63f27c6d86e1edb88be7343a423cd",
+  "contractsSha256": "8cc44d3420ee9c5c639e7c4bd25ef96822699183bdac6de2eaa1930e0c19e367",
+  "manifestSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
+  "results": [
+    {
+      "name": "unchanged",
+      "expected": "unchanged",
+      "result": {
+        "schemaVersion": 1,
+        "evidence": "offline-upgrade-review",
+        "executionPath": "typed-catalog-sdk",
+        "baselineSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
+        "candidateSha256": "20074226da9169f2176fb5c192c10a8265f9b0cf2ab8b6ef240ffcca01354b45",
+        "status": "unchanged",
+        "requiresReview": false,
+        "networkCalls": 0,
+        "note": "Review evidence, not an automatic compatibility certificate or applied upgrade.",
+        "baseline": {
+          "checks": {
+            "ok": true,
+            "diagnostics": [],
+            "totalOutputBytes": 603
+          },
+          "destinations": []
+        },
+        "candidate": {
+          "checks": {
+            "ok": true,
+            "diagnostics": [],
+            "totalOutputBytes": 603
+          },
+          "ok": true,
+          "destinations": [],
+          "inspection": {
+            "ok": true,
+            "totalFindings": 0,
+            "requests": [
+              {
+                "index": 0,
+                "template": "repository",
+                "label": "ours/repository",
+                "findings": []
+              },
+              {
+                "index": 1,
+                "template": "commits",
+                "label": "ours/commits",
+                "findings": []
+              },
+              {
+                "index": 2,
+                "template": "releases",
+                "label": "ours/releases",
+                "findings": []
+              },
+              {
+                "index": 3,
+                "template": "repository",
+                "label": "magic/repository",
+                "findings": []
+              },
+              {
+                "index": 4,
+                "template": "commits",
+                "label": "magic/commits",
+                "findings": []
+              },
+              {
+                "index": 5,
+                "template": "releases",
+                "label": "magic/releases",
+                "findings": []
+              },
+              {
+                "index": 6,
+                "template": "repository",
+                "label": "jsj/repository",
+                "findings": []
+              },
+              {
+                "index": 7,
+                "template": "commits",
+                "label": "jsj/commits",
+                "findings": []
+              },
+              {
+                "index": 8,
+                "template": "releases",
+                "label": "jsj/releases",
+                "findings": []
+              }
+            ]
+          },
+          "totalOutputBytes": 603
+        },
+        "catalog": {
+          "added": [],
+          "removed": [],
+          "changed": [],
+          "totalChanges": 0,
+          "requiresReview": false
+        },
+        "typeChanges": [],
+        "batchBudgetChanges": [],
+        "requestChanges": [],
+        "existingRequests": {
+          "checks": {
+            "ok": true,
+            "diagnostics": [],
+            "totalOutputBytes": 603
+          },
+          "ok": true,
+          "destinations": [],
+          "inspection": {
+            "ok": true,
+            "totalFindings": 0,
+            "requests": [
+              {
+                "index": 0,
+                "template": "repository",
+                "label": "ours/repository",
+                "findings": []
+              },
+              {
+                "index": 1,
+                "template": "commits",
+                "label": "ours/commits",
+                "findings": []
+              },
+              {
+                "index": 2,
+                "template": "releases",
+                "label": "ours/releases",
+                "findings": []
+              },
+              {
+                "index": 3,
+                "template": "repository",
+                "label": "magic/repository",
+                "findings": []
+              },
+              {
+                "index": 4,
+                "template": "commits",
+                "label": "magic/commits",
+                "findings": []
+              },
+              {
+                "index": 5,
+                "template": "releases",
+                "label": "magic/releases",
+                "findings": []
+              },
+              {
+                "index": 6,
+                "template": "repository",
+                "label": "jsj/repository",
+                "findings": []
+              },
+              {
+                "index": 7,
+                "template": "commits",
+                "label": "jsj/commits",
+                "findings": []
+              },
+              {
+                "index": 8,
+                "template": "releases",
+                "label": "jsj/releases",
+                "findings": []
+              }
+            ]
+          },
+          "totalOutputBytes": 603
+        }
+      }
+    },
+    {
+      "name": "optional-query",
+      "expected": "review-required",
+      "result": {
+        "schemaVersion": 1,
+        "evidence": "offline-upgrade-review",
+        "executionPath": "typed-catalog-sdk",
+        "baselineSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
+        "candidateSha256": "74fbdd0ae405a8521053264b5604757a21c3689817692af04f0efc7c444a50e5",
+        "status": "review-required",
+        "requiresReview": true,
+        "networkCalls": 0,
+        "note": "Review evidence, not an automatic compatibility certificate or applied upgrade.",
+        "baseline": {
+          "checks": {
+            "ok": true,
+            "diagnostics": [],
+            "totalOutputBytes": 603
+          },
+          "destinations": []
+        },
+        "candidate": {
+          "checks": {
+            "ok": true,
+            "diagnostics": [],
+            "totalOutputBytes": 603
+          },
+          "ok": true,
+          "destinations": [],
+          "inspection": {
+            "ok": true,
+            "totalFindings": 0,
+            "requests": [
+              {
+                "index": 0,
+                "template": "repository",
+                "label": "ours/repository",
+                "findings": []
+              },
+              {
+                "index": 1,
+                "template": "commits",
+                "label": "ours/commits",
+                "findings": []
+              },
+              {
+                "index": 2,
+                "template": "releases",
+                "label": "ours/releases",
+                "findings": []
+              },
+              {
+                "index": 3,
+                "template": "repository",
+                "label": "magic/repository",
+                "findings": []
+              },
+              {
+                "index": 4,
+                "template": "commits",
+                "label": "magic/commits",
+                "findings": []
+              },
+              {
+                "index": 5,
+                "template": "releases",
+                "label": "magic/releases",
+                "findings": []
+              },
+              {
+                "index": 6,
+                "template": "repository",
+                "label": "jsj/repository",
+                "findings": []
+              },
+              {
+                "index": 7,
+                "template": "commits",
+                "label": "jsj/commits",
+                "findings": []
+              },
+              {
+                "index": 8,
+                "template": "releases",
+                "label": "jsj/releases",
+                "findings": []
+              }
+            ]
+          },
+          "totalOutputBytes": 603
+        },
+        "catalog": {
+          "added": [],
+          "removed": [],
+          "changed": [
+            {
+              "template": "repository",
+              "change": {
+                "offsetUnit": "unicode-code-point",
+                "addedVariables": [
+                  "per_page"
+                ],
+                "removedVariables": [],
+                "becameScalarOnly": [],
+                "becameCompositeCapable": [],
+                "newRepeatedVariables": [],
+                "oldLevel": 1,
+                "newLevel": 3,
+                "reservedAdded": false,
+                "fragmentAdded": false,
+                "literalsChanged": false,
+                "expressionLayoutChanged": true,
+                "sourceChanged": true,
+                "variableChanges": [],
+                "addedRequired": [],
+                "removedRequired": [],
+                "rejectUnusedBefore": true,
+                "rejectUnusedAfter": true,
+                "budgetChanges": [],
+                "requiresReview": true
+              }
+            }
+          ],
+          "totalChanges": 1,
+          "requiresReview": true
+        },
+        "typeChanges": [],
+        "batchBudgetChanges": [],
+        "requestChanges": [],
+        "existingRequests": {
+          "checks": {
+            "ok": true,
+            "diagnostics": [],
+            "totalOutputBytes": 603
+          },
+          "ok": true,
+          "destinations": [],
+          "inspection": {
+            "ok": true,
+            "totalFindings": 0,
+            "requests": [
+              {
+                "index": 0,
+                "template": "repository",
+                "label": "ours/repository",
+                "findings": []
+              },
+              {
+                "index": 1,
+                "template": "commits",
+                "label": "ours/commits",
+                "findings": []
+              },
+              {
+                "index": 2,
+                "template": "releases",
+                "label": "ours/releases",
+                "findings": []
+              },
+              {
+                "index": 3,
+                "template": "repository",
+                "label": "magic/repository",
+                "findings": []
+              },
+              {
+                "index": 4,
+                "template": "commits",
+                "label": "magic/commits",
+                "findings": []
+              },
+              {
+                "index": 5,
+                "template": "releases",
+                "label": "magic/releases",
+                "findings": []
+              },
+              {
+                "index": 6,
+                "template": "repository",
+                "label": "jsj/repository",
+                "findings": []
+              },
+              {
+                "index": 7,
+                "template": "commits",
+                "label": "jsj/commits",
+                "findings": []
+              },
+              {
+                "index": 8,
+                "template": "releases",
+                "label": "jsj/releases",
+                "findings": []
+              }
+            ]
+          },
+          "totalOutputBytes": 603
+        }
+      }
+    },
+    {
+      "name": "required-query-with-repaired-candidate",
+      "expected": "blocked",
+      "result": {
+        "schemaVersion": 1,
+        "evidence": "offline-upgrade-review",
+        "executionPath": "typed-catalog-sdk",
+        "baselineSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
+        "candidateSha256": "d67deee61c62d7e978cdf362e07dbdc856e4f8d0de58bd578c11536c7013c83a",
+        "status": "blocked",
+        "requiresReview": true,
+        "networkCalls": 0,
+        "note": "Review evidence, not an automatic compatibility certificate or applied upgrade.",
+        "baseline": {
+          "checks": {
+            "ok": true,
+            "diagnostics": [],
+            "totalOutputBytes": 603
+          },
+          "destinations": []
+        },
+        "candidate": {
+          "checks": {
+            "ok": true,
+            "diagnostics": [],
+            "totalOutputBytes": 636
+          },
+          "ok": true,
+          "destinations": [],
+          "inspection": {
+            "ok": true,
+            "totalFindings": 0,
+            "requests": [
+              {
+                "index": 0,
+                "template": "repository",
+                "label": "ours/repository",
+                "findings": []
+              },
+              {
+                "index": 1,
+                "template": "commits",
+                "label": "ours/commits",
+                "findings": []
+              },
+              {
+                "index": 2,
+                "template": "releases",
+                "label": "ours/releases",
+                "findings": []
+              },
+              {
+                "index": 3,
+                "template": "repository",
+                "label": "magic/repository",
+                "findings": []
+              },
+              {
+                "index": 4,
+                "template": "commits",
+                "label": "magic/commits",
+                "findings": []
+              },
+              {
+                "index": 5,
+                "template": "releases",
+                "label": "magic/releases",
+                "findings": []
+              },
+              {
+                "index": 6,
+                "template": "repository",
+                "label": "jsj/repository",
+                "findings": []
+              },
+              {
+                "index": 7,
+                "template": "commits",
+                "label": "jsj/commits",
+                "findings": []
+              },
+              {
+                "index": 8,
+                "template": "releases",
+                "label": "jsj/releases",
+                "findings": []
+              }
+            ]
+          },
+          "totalOutputBytes": 636
+        },
+        "catalog": {
+          "added": [],
+          "removed": [],
+          "changed": [
+            {
+              "template": "repository",
+              "change": {
+                "offsetUnit": "unicode-code-point",
+                "addedVariables": [
+                  "per_page"
+                ],
+                "removedVariables": [],
+                "becameScalarOnly": [],
+                "becameCompositeCapable": [],
+                "newRepeatedVariables": [],
+                "oldLevel": 1,
+                "newLevel": 3,
+                "reservedAdded": false,
+                "fragmentAdded": false,
+                "literalsChanged": false,
+                "expressionLayoutChanged": true,
+                "sourceChanged": true,
+                "variableChanges": [],
+                "addedRequired": [
+                  "per_page"
+                ],
+                "removedRequired": [],
+                "rejectUnusedBefore": true,
+                "rejectUnusedAfter": true,
+                "budgetChanges": [],
+                "requiresReview": true
+              }
+            }
+          ],
+          "totalChanges": 1,
+          "requiresReview": true
+        },
+        "typeChanges": [],
+        "batchBudgetChanges": [],
+        "requestChanges": [
+          {
+            "index": 0,
+            "kind": "changed",
+            "beforeTemplate": "repository",
+            "afterTemplate": "repository"
+          },
+          {
+            "index": 3,
+            "kind": "changed",
+            "beforeTemplate": "repository",
+            "afterTemplate": "repository"
+          },
+          {
+            "index": 6,
+            "kind": "changed",
+            "beforeTemplate": "repository",
+            "afterTemplate": "repository"
+          }
+        ],
+        "existingRequests": {
+          "checks": {
+            "ok": false,
+            "diagnostics": [
+              {
+                "code": "MissingBinding",
+                "message": "required variable per_page is missing",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/templates/0/template",
+                "requestIndex": 0,
+                "line": 8,
+                "column": 65,
+                "endLine": 8,
+                "endColumn": 73,
+                "offsetUnit": "utf-16-code-unit",
+                "templateLocation": {
+                  "name": "per_page",
+                  "start": 45,
+                  "end": 53,
+                  "offsetUnit": "unicode-code-point",
+                  "line": 1,
+                  "column": 46,
+                  "endLine": 1,
+                  "endColumn": 54,
+                  "utf16Start": 45,
+                  "utf16End": 53,
+                  "excerpt": "…ithub.com/repos/{owner}/{repo}{?per_page}",
+                  "marker": "                                 ^^^^^^^^"
+                }
+              },
+              {
+                "code": "MissingBinding",
+                "message": "required variable per_page is missing",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/templates/0/template",
+                "requestIndex": 3,
+                "line": 8,
+                "column": 65,
+                "endLine": 8,
+                "endColumn": 73,
+                "offsetUnit": "utf-16-code-unit",
+                "templateLocation": {
+                  "name": "per_page",
+                  "start": 45,
+                  "end": 53,
+                  "offsetUnit": "unicode-code-point",
+                  "line": 1,
+                  "column": 46,
+                  "endLine": 1,
+                  "endColumn": 54,
+                  "utf16Start": 45,
+                  "utf16End": 53,
+                  "excerpt": "…ithub.com/repos/{owner}/{repo}{?per_page}",
+                  "marker": "                                 ^^^^^^^^"
+                }
+              },
+              {
+                "code": "MissingBinding",
+                "message": "required variable per_page is missing",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/templates/0/template",
+                "requestIndex": 6,
+                "line": 8,
+                "column": 65,
+                "endLine": 8,
+                "endColumn": 73,
+                "offsetUnit": "utf-16-code-unit",
+                "templateLocation": {
+                  "name": "per_page",
+                  "start": 45,
+                  "end": 53,
+                  "offsetUnit": "unicode-code-point",
+                  "line": 1,
+                  "column": 46,
+                  "endLine": 1,
+                  "endColumn": 54,
+                  "utf16Start": 45,
+                  "utf16End": 53,
+                  "excerpt": "…ithub.com/repos/{owner}/{repo}{?per_page}",
+                  "marker": "                                 ^^^^^^^^"
+                }
+              }
+            ],
+            "totalOutputBytes": 0
+          },
+          "ok": false,
+          "destinations": [],
+          "inspection": {
+            "ok": false,
+            "totalFindings": 3,
+            "requests": [
+              {
+                "index": 0,
+                "template": "repository",
+                "label": "ours/repository",
+                "findings": [
+                  {
+                    "code": "MissingBinding",
+                    "variable": "per_page",
+                    "message": "required variable is not bound",
+                    "start": 45,
+                    "end": 53,
+                    "offsetUnit": "unicode-code-point",
+                    "line": 1,
+                    "column": 46,
+                    "endLine": 1,
+                    "endColumn": 54,
+                    "utf16Start": 45,
+                    "utf16End": 53,
+                    "excerpt": "…ithub.com/repos/{owner}/{repo}{?per_page}",
+                    "marker": "                                 ^^^^^^^^"
+                  }
+                ]
+              },
+              {
+                "index": 1,
+                "template": "commits",
+                "label": "ours/commits",
+                "findings": []
+              },
+              {
+                "index": 2,
+                "template": "releases",
+                "label": "ours/releases",
+                "findings": []
+              },
+              {
+                "index": 3,
+                "template": "repository",
+                "label": "magic/repository",
+                "findings": [
+                  {
+                    "code": "MissingBinding",
+                    "variable": "per_page",
+                    "message": "required variable is not bound",
+                    "start": 45,
+                    "end": 53,
+                    "offsetUnit": "unicode-code-point",
+                    "line": 1,
+                    "column": 46,
+                    "endLine": 1,
+                    "endColumn": 54,
+                    "utf16Start": 45,
+                    "utf16End": 53,
+                    "excerpt": "…ithub.com/repos/{owner}/{repo}{?per_page}",
+                    "marker": "                                 ^^^^^^^^"
+                  }
+                ]
+              },
+              {
+                "index": 4,
+                "template": "commits",
+                "label": "magic/commits",
+                "findings": []
+              },
+              {
+                "index": 5,
+                "template": "releases",
+                "label": "magic/releases",
+                "findings": []
+              },
+              {
+                "index": 6,
+                "template": "repository",
+                "label": "jsj/repository",
+                "findings": [
+                  {
+                    "code": "MissingBinding",
+                    "variable": "per_page",
+                    "message": "required variable is not bound",
+                    "start": 45,
+                    "end": 53,
+                    "offsetUnit": "unicode-code-point",
+                    "line": 1,
+                    "column": 46,
+                    "endLine": 1,
+                    "endColumn": 54,
+                    "utf16Start": 45,
+                    "utf16End": 53,
+                    "excerpt": "…ithub.com/repos/{owner}/{repo}{?per_page}",
+                    "marker": "                                 ^^^^^^^^"
+                  }
+                ]
+              },
+              {
+                "index": 7,
+                "template": "commits",
+                "label": "jsj/commits",
+                "findings": []
+              },
+              {
+                "index": 8,
+                "template": "releases",
+                "label": "jsj/releases",
+                "findings": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "type-contract",
+      "expected": "blocked",
+      "result": {
+        "schemaVersion": 1,
+        "evidence": "offline-upgrade-review",
+        "executionPath": "typed-catalog-sdk",
+        "baselineSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
+        "candidateSha256": "5b9dd87d3512a1767814a98adff623125d187b1d874408f3ca9fc06787e8c847",
+        "status": "blocked",
+        "requiresReview": true,
+        "networkCalls": 0,
+        "note": "Review evidence, not an automatic compatibility certificate or applied upgrade.",
+        "baseline": {
+          "checks": {
+            "ok": true,
+            "diagnostics": [],
+            "totalOutputBytes": 603
+          },
+          "destinations": []
+        },
+        "candidate": {
+          "checks": {
+            "ok": false,
+            "diagnostics": [
+              {
+                "code": "BindingType",
+                "message": "expected list",
+                "file": "<intentional-upgrade:type-contract>",
+                "path": "/requests/0/variables/owner",
+                "requestIndex": 0,
+                "line": 53,
+                "column": 18,
+                "endLine": 53,
+                "endColumn": 26,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "BindingType",
+                "message": "expected list",
+                "file": "<intentional-upgrade:type-contract>",
+                "path": "/requests/3/variables/owner",
+                "requestIndex": 3,
+                "line": 79,
+                "column": 18,
+                "endLine": 79,
+                "endColumn": 28,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "BindingType",
+                "message": "expected list",
+                "file": "<intentional-upgrade:type-contract>",
+                "path": "/requests/6/variables/owner",
+                "requestIndex": 6,
+                "line": 105,
+                "column": 18,
+                "endLine": 105,
+                "endColumn": 26,
+                "offsetUnit": "utf-16-code-unit"
+              }
+            ],
+            "totalOutputBytes": 0
+          },
+          "ok": false,
+          "destinations": [],
+          "inspection": {
+            "ok": true,
+            "totalFindings": 0,
+            "requests": [
+              {
+                "index": 0,
+                "template": "repository",
+                "label": "ours/repository",
+                "findings": []
+              },
+              {
+                "index": 1,
+                "template": "commits",
+                "label": "ours/commits",
+                "findings": []
+              },
+              {
+                "index": 2,
+                "template": "releases",
+                "label": "ours/releases",
+                "findings": []
+              },
+              {
+                "index": 3,
+                "template": "repository",
+                "label": "magic/repository",
+                "findings": []
+              },
+              {
+                "index": 4,
+                "template": "commits",
+                "label": "magic/commits",
+                "findings": []
+              },
+              {
+                "index": 5,
+                "template": "releases",
+                "label": "magic/releases",
+                "findings": []
+              },
+              {
+                "index": 6,
+                "template": "repository",
+                "label": "jsj/repository",
+                "findings": []
+              },
+              {
+                "index": 7,
+                "template": "commits",
+                "label": "jsj/commits",
+                "findings": []
+              },
+              {
+                "index": 8,
+                "template": "releases",
+                "label": "jsj/releases",
+                "findings": []
+              }
+            ]
+          }
+        },
+        "catalog": {
+          "added": [],
+          "removed": [],
+          "changed": [],
+          "totalChanges": 0,
+          "requiresReview": false
+        },
+        "typeChanges": [
+          {
+            "template": "repository",
+            "before": {
+              "owner": "scalar",
+              "repo": "scalar"
+            },
+            "after": {
+              "owner": "list",
+              "repo": "scalar"
+            }
+          }
+        ],
+        "batchBudgetChanges": [],
+        "requestChanges": [],
+        "existingRequests": {
+          "checks": {
+            "ok": false,
+            "diagnostics": [
+              {
+                "code": "BindingType",
+                "message": "expected list",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/requests/0/variables/owner",
+                "requestIndex": 0,
+                "line": 53,
+                "column": 18,
+                "endLine": 53,
+                "endColumn": 26,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "BindingType",
+                "message": "expected list",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/requests/3/variables/owner",
+                "requestIndex": 3,
+                "line": 79,
+                "column": 18,
+                "endLine": 79,
+                "endColumn": 28,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "BindingType",
+                "message": "expected list",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/requests/6/variables/owner",
+                "requestIndex": 6,
+                "line": 105,
+                "column": 18,
+                "endLine": 105,
+                "endColumn": 26,
+                "offsetUnit": "utf-16-code-unit"
+              }
+            ],
+            "totalOutputBytes": 0
+          },
+          "ok": false,
+          "destinations": [],
+          "inspection": {
+            "ok": true,
+            "totalFindings": 0,
+            "requests": [
+              {
+                "index": 0,
+                "template": "repository",
+                "label": "ours/repository",
+                "findings": []
+              },
+              {
+                "index": 1,
+                "template": "commits",
+                "label": "ours/commits",
+                "findings": []
+              },
+              {
+                "index": 2,
+                "template": "releases",
+                "label": "ours/releases",
+                "findings": []
+              },
+              {
+                "index": 3,
+                "template": "repository",
+                "label": "magic/repository",
+                "findings": []
+              },
+              {
+                "index": 4,
+                "template": "commits",
+                "label": "magic/commits",
+                "findings": []
+              },
+              {
+                "index": 5,
+                "template": "releases",
+                "label": "magic/releases",
+                "findings": []
+              },
+              {
+                "index": 6,
+                "template": "repository",
+                "label": "jsj/repository",
+                "findings": []
+              },
+              {
+                "index": 7,
+                "template": "commits",
+                "label": "jsj/commits",
+                "findings": []
+              },
+              {
+                "index": 8,
+                "template": "releases",
+                "label": "jsj/releases",
+                "findings": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "aggregate-budget",
+      "expected": "blocked",
+      "result": {
+        "schemaVersion": 1,
+        "evidence": "offline-upgrade-review",
+        "executionPath": "typed-catalog-sdk",
+        "baselineSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
+        "candidateSha256": "cbf1c646554944c8d6d768b84bfb4d45a0ad85c0b5eaca21ca014c525e5bbd07",
+        "status": "blocked",
+        "requiresReview": true,
+        "networkCalls": 0,
+        "note": "Review evidence, not an automatic compatibility certificate or applied upgrade.",
+        "baseline": {
+          "checks": {
+            "ok": true,
+            "diagnostics": [],
+            "totalOutputBytes": 603
+          },
+          "destinations": []
+        },
+        "candidate": {
+          "checks": {
+            "ok": false,
+            "diagnostics": [
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<intentional-upgrade:aggregate-budget>",
+                "path": "/requests/0",
+                "requestIndex": 0,
+                "line": 49,
+                "column": 5,
+                "endLine": 56,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<intentional-upgrade:aggregate-budget>",
+                "path": "/requests/1",
+                "requestIndex": 1,
+                "line": 57,
+                "column": 5,
+                "endLine": 65,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<intentional-upgrade:aggregate-budget>",
+                "path": "/requests/2",
+                "requestIndex": 2,
+                "line": 66,
+                "column": 5,
+                "endLine": 74,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<intentional-upgrade:aggregate-budget>",
+                "path": "/requests/3",
+                "requestIndex": 3,
+                "line": 75,
+                "column": 5,
+                "endLine": 82,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<intentional-upgrade:aggregate-budget>",
+                "path": "/requests/4",
+                "requestIndex": 4,
+                "line": 83,
+                "column": 5,
+                "endLine": 91,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<intentional-upgrade:aggregate-budget>",
+                "path": "/requests/5",
+                "requestIndex": 5,
+                "line": 92,
+                "column": 5,
+                "endLine": 100,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<intentional-upgrade:aggregate-budget>",
+                "path": "/requests/6",
+                "requestIndex": 6,
+                "line": 101,
+                "column": 5,
+                "endLine": 108,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<intentional-upgrade:aggregate-budget>",
+                "path": "/requests/7",
+                "requestIndex": 7,
+                "line": 109,
+                "column": 5,
+                "endLine": 117,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<intentional-upgrade:aggregate-budget>",
+                "path": "/requests/8",
+                "requestIndex": 8,
+                "line": 118,
+                "column": 5,
+                "endLine": 126,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              }
+            ],
+            "totalOutputBytes": 0
+          },
+          "ok": false,
+          "destinations": [],
+          "inspection": {
+            "ok": true,
+            "totalFindings": 0,
+            "requests": [
+              {
+                "index": 0,
+                "template": "repository",
+                "label": "ours/repository",
+                "findings": []
+              },
+              {
+                "index": 1,
+                "template": "commits",
+                "label": "ours/commits",
+                "findings": []
+              },
+              {
+                "index": 2,
+                "template": "releases",
+                "label": "ours/releases",
+                "findings": []
+              },
+              {
+                "index": 3,
+                "template": "repository",
+                "label": "magic/repository",
+                "findings": []
+              },
+              {
+                "index": 4,
+                "template": "commits",
+                "label": "magic/commits",
+                "findings": []
+              },
+              {
+                "index": 5,
+                "template": "releases",
+                "label": "magic/releases",
+                "findings": []
+              },
+              {
+                "index": 6,
+                "template": "repository",
+                "label": "jsj/repository",
+                "findings": []
+              },
+              {
+                "index": 7,
+                "template": "commits",
+                "label": "jsj/commits",
+                "findings": []
+              },
+              {
+                "index": 8,
+                "template": "releases",
+                "label": "jsj/releases",
+                "findings": []
+              }
+            ]
+          }
+        },
+        "catalog": {
+          "added": [],
+          "removed": [],
+          "changed": [],
+          "totalChanges": 0,
+          "requiresReview": false
+        },
+        "typeChanges": [],
+        "batchBudgetChanges": [
+          {
+            "name": "maxTotalOutputBytes",
+            "before": 4096,
+            "after": 1,
+            "tightened": true
+          }
+        ],
+        "requestChanges": [],
+        "existingRequests": {
+          "checks": {
+            "ok": false,
+            "diagnostics": [
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/requests/0",
+                "requestIndex": 0,
+                "line": 49,
+                "column": 5,
+                "endLine": 56,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/requests/1",
+                "requestIndex": 1,
+                "line": 57,
+                "column": 5,
+                "endLine": 65,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/requests/2",
+                "requestIndex": 2,
+                "line": 66,
+                "column": 5,
+                "endLine": 74,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/requests/3",
+                "requestIndex": 3,
+                "line": 75,
+                "column": 5,
+                "endLine": 82,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/requests/4",
+                "requestIndex": 4,
+                "line": 83,
+                "column": 5,
+                "endLine": 91,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/requests/5",
+                "requestIndex": 5,
+                "line": 92,
+                "column": 5,
+                "endLine": 100,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/requests/6",
+                "requestIndex": 6,
+                "line": 101,
+                "column": 5,
+                "endLine": 108,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/requests/7",
+                "requestIndex": 7,
+                "line": 109,
+                "column": 5,
+                "endLine": 117,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              },
+              {
+                "code": "ProjectOutputLimit",
+                "message": "aggregate output exceeds budget",
+                "file": "<existing-requests-with-candidate-definitions>",
+                "path": "/requests/8",
+                "requestIndex": 8,
+                "line": 118,
+                "column": 5,
+                "endLine": 126,
+                "endColumn": 6,
+                "offsetUnit": "utf-16-code-unit"
+              }
+            ],
+            "totalOutputBytes": 0
+          },
+          "ok": false,
+          "destinations": [],
+          "inspection": {
+            "ok": true,
+            "totalFindings": 0,
+            "requests": [
+              {
+                "index": 0,
+                "template": "repository",
+                "label": "ours/repository",
+                "findings": []
+              },
+              {
+                "index": 1,
+                "template": "commits",
+                "label": "ours/commits",
+                "findings": []
+              },
+              {
+                "index": 2,
+                "template": "releases",
+                "label": "ours/releases",
+                "findings": []
+              },
+              {
+                "index": 3,
+                "template": "repository",
+                "label": "magic/repository",
+                "findings": []
+              },
+              {
+                "index": 4,
+                "template": "commits",
+                "label": "magic/commits",
+                "findings": []
+              },
+              {
+                "index": 5,
+                "template": "releases",
+                "label": "magic/releases",
+                "findings": []
+              },
+              {
+                "index": 6,
+                "template": "repository",
+                "label": "jsj/repository",
+                "findings": []
+              },
+              {
+                "index": 7,
+                "template": "commits",
+                "label": "jsj/commits",
+                "findings": []
+              },
+              {
+                "index": 8,
+                "template": "releases",
+                "label": "jsj/releases",
+                "findings": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "destination-change",
+      "expected": "blocked",
+      "result": {
+        "schemaVersion": 1,
+        "evidence": "offline-upgrade-review",
+        "executionPath": "typed-catalog-sdk",
+        "baselineSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
+        "candidateSha256": "1a614103c592481046182241dea1b7cc94a6bbc92005dcf897bc9575a2e0db79",
+        "status": "blocked",
+        "requiresReview": true,
+        "networkCalls": 0,
+        "note": "Review evidence, not an automatic compatibility certificate or applied upgrade.",
+        "baseline": {
+          "checks": {
+            "ok": true,
+            "diagnostics": [],
+            "totalOutputBytes": 603
+          },
+          "destinations": []
+        },
+        "candidate": {
+          "checks": {
+            "ok": true,
+            "diagnostics": [],
+            "totalOutputBytes": 594
+          },
+          "ok": false,
+          "destinations": [
+            {
+              "code": "DestinationRejected",
+              "index": 0,
+              "template": "repository",
+              "label": "ours/repository"
+            },
+            {
+              "code": "DestinationRejected",
+              "index": 3,
+              "template": "repository",
+              "label": "magic/repository"
+            },
+            {
+              "code": "DestinationRejected",
+              "index": 6,
+              "template": "repository",
+              "label": "jsj/repository"
+            }
+          ],
+          "inspection": {
+            "ok": true,
+            "totalFindings": 0,
+            "requests": [
+              {
+                "index": 0,
+                "template": "repository",
+                "label": "ours/repository",
+                "findings": []
+              },
+              {
+                "index": 1,
+                "template": "commits",
+                "label": "ours/commits",
+                "findings": []
+              },
+              {
+                "index": 2,
+                "template": "releases",
+                "label": "ours/releases",
+                "findings": []
+              },
+              {
+                "index": 3,
+                "template": "repository",
+                "label": "magic/repository",
+                "findings": []
+              },
+              {
+                "index": 4,
+                "template": "commits",
+                "label": "magic/commits",
+                "findings": []
+              },
+              {
+                "index": 5,
+                "template": "releases",
+                "label": "magic/releases",
+                "findings": []
+              },
+              {
+                "index": 6,
+                "template": "repository",
+                "label": "jsj/repository",
+                "findings": []
+              },
+              {
+                "index": 7,
+                "template": "commits",
+                "label": "jsj/commits",
+                "findings": []
+              },
+              {
+                "index": 8,
+                "template": "releases",
+                "label": "jsj/releases",
+                "findings": []
+              }
+            ]
+          },
+          "totalOutputBytes": 594
+        },
+        "catalog": {
+          "added": [],
+          "removed": [],
+          "changed": [
+            {
+              "template": "repository",
+              "change": {
+                "offsetUnit": "unicode-code-point",
+                "addedVariables": [],
+                "removedVariables": [],
+                "becameScalarOnly": [],
+                "becameCompositeCapable": [],
+                "newRepeatedVariables": [],
+                "oldLevel": 1,
+                "newLevel": 1,
+                "reservedAdded": false,
+                "fragmentAdded": false,
+                "literalsChanged": true,
+                "expressionLayoutChanged": false,
+                "sourceChanged": true,
+                "variableChanges": [],
+                "addedRequired": [],
+                "removedRequired": [],
+                "rejectUnusedBefore": true,
+                "rejectUnusedAfter": true,
+                "budgetChanges": [],
+                "requiresReview": true
+              }
+            }
+          ],
+          "totalChanges": 1,
+          "requiresReview": true
+        },
+        "typeChanges": [],
+        "batchBudgetChanges": [],
+        "requestChanges": [],
+        "existingRequests": {
+          "checks": {
+            "ok": true,
+            "diagnostics": [],
+            "totalOutputBytes": 594
+          },
+          "ok": false,
+          "destinations": [
+            {
+              "code": "DestinationRejected",
+              "index": 0,
+              "template": "repository",
+              "label": "ours/repository"
+            },
+            {
+              "code": "DestinationRejected",
+              "index": 3,
+              "template": "repository",
+              "label": "magic/repository"
+            },
+            {
+              "code": "DestinationRejected",
+              "index": 6,
+              "template": "repository",
+              "label": "jsj/repository"
+            }
+          ],
+          "inspection": {
+            "ok": true,
+            "totalFindings": 0,
+            "requests": [
+              {
+                "index": 0,
+                "template": "repository",
+                "label": "ours/repository",
+                "findings": []
+              },
+              {
+                "index": 1,
+                "template": "commits",
+                "label": "ours/commits",
+                "findings": []
+              },
+              {
+                "index": 2,
+                "template": "releases",
+                "label": "ours/releases",
+                "findings": []
+              },
+              {
+                "index": 3,
+                "template": "repository",
+                "label": "magic/repository",
+                "findings": []
+              },
+              {
+                "index": 4,
+                "template": "commits",
+                "label": "magic/commits",
+                "findings": []
+              },
+              {
+                "index": 5,
+                "template": "releases",
+                "label": "magic/releases",
+                "findings": []
+              },
+              {
+                "index": 6,
+                "template": "repository",
+                "label": "jsj/repository",
+                "findings": []
+              },
+              {
+                "index": 7,
+                "template": "commits",
+                "label": "jsj/commits",
+                "findings": []
+              },
+              {
+                "index": 8,
+                "template": "releases",
+                "label": "jsj/releases",
+                "findings": []
+              }
+            ]
+          },
+          "totalOutputBytes": 594
+        }
+      }
+    }
+  ]
+}

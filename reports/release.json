@@ -1,11 +1,11 @@
 {
   "version": "0.2.0",
   "archive": "_build/releases/moonbit-uri-template-0.2.0.zip",
-  "sha256": "c9e9213d9c1fd140d13a976ed91905d585c1d63e77b68ffd9b2a80d7ba3acec1",
+  "sha256": "06303ad85ecb81754f014a254c3b98f6dd6f2c66e45dd2da74553c47b1a16ac9",
   "tested_from_extracted_archive": true,
   "test_scope": "CLI, SDK, project workflow and offline consumer",
-  "cli_tests": 78,
-  "cli_passed": 78,
+  "cli_tests": 87,
+  "cli_passed": 87,
   "files": [
     "LICENSE",
     "NOTICE",
@@ -24,10 +24,12 @@
     "examples/search.json",
     "examples/users.json",
     "integrations/github-audit/README.md",
+    "integrations/github-audit/contracts.mjs",
     "integrations/github-audit/integration.test.mjs",
     "integrations/github-audit/main.mjs",
     "integrations/github-audit/package.json",
     "integrations/github-audit/requests.json",
+    "integrations/github-audit/upgrade.mjs",
     "licenses/moonbit-core-LICENSE",
     "moonbit-uri-template-0.2.0.tgz",
     "package.json",
@@ -46,6 +48,6 @@
     "tools/suggestions.mjs"
   ],
   "required_node": ">=22",
-  "source_sha256": "84ff99f9c58247448166405f47346c00de503820befc0b85a3fccc515ee5f9fe",
+  "source_sha256": "af6a3dbefe72eb01a9ada1b51aa8e844a4533f1de3e96b8012a3762be1ca69da",
   "published": false
 }

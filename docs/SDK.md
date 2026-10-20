@@ -168,3 +168,5 @@ let results = catalog.expand_batch(jobs, reject_unused=true,
 `npm ci --ignore-scripts` 后运行 `npm test`。验证会打包 tarball，在临时空项目里离线安装，检查公共导入、运行结果、已安装 CLI，以及 TypeScript 正例和预期错误。证据在 `reports/sdk-package.json`；测试不依赖工作区相对导入。
 
 目前不提供 CommonJS 专用导出或 npm 公共版本，不声称已在全部 Node 版本实测。浏览器工作台已有独立入口，npm SDK 的浏览器打包兼容性未单独验收。真实 GitHub 案例仍是作者自建下游，不能视为外部用户采用。
+
+该客户端现直接使用公共 Node 目录接口生成实际 HTTP URL；完整配置升级命令还比较类型/整批预算，并重新检查旧请求和目标地址。使用步骤见 [GitHub 接入与升级审查](../integrations/github-audit/README.md)。升级演练报告与真实 HTTP 报告分别保存，不能相互代替。

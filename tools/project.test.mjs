@@ -11,6 +11,10 @@ test('project allows omitted optional query and exposes source origins', () => {
   const r = check(doc());
   assert.equal(r.ok, true); assert.equal(r.outputs[0].uri, '/users/42');
   assert.equal(r.totalOutputBytes, 9); assert.equal(r.outputs[0].origins[1].name, 'id');
+  const measured = checkProject(JSON.stringify(doc()), 'config.json', { materialize: false });
+  assert.equal(measured.ok, true);
+  assert.equal(measured.totalOutputBytes, r.totalOutputBytes);
+  assert.deepEqual(measured.outputs, []);
 });
 test('actionable typo suggests a unique unbound target without rewriting data', () => {
   const d = doc(); d.requests[0].variables = { id: '42', tgas: ['x'] };

@@ -1,13 +1,13 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-20T10:55:29.401935+00:00",
-  "git_head": "d220bfbd98d53479d75606f1af5e1bcefdd9bc83",
+  "verification_started_at_utc": "2026-10-20T11:08:48.025386+00:00",
+  "git_head": "3345c7ab45940d7ee2217a336dba1e94f5eecd8d",
   "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-20T10:55:29.828532+00:00",
+  "verified_at_utc": "2026-10-20T11:08:48.420644+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "84ff99f9c58247448166405f47346c00de503820befc0b85a3fccc515ee5f9fe",
+  "source_sha256": "af6a3dbefe72eb01a9ada1b51aa8e844a4533f1de3e96b8012a3762be1ca69da",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
@@ -1270,8 +1270,8 @@
     "failed": 0
   },
   "workflow": {
-    "total": 14,
-    "passed": 14,
+    "total": 23,
+    "passed": 23,
     "failed": 0,
     "network": "offline only; live evidence is separate"
   },
@@ -1282,8 +1282,8 @@
     "package": {
       "status": "passed",
       "artifact": "_build/releases/moonbit-uri-template-0.2.0.tgz",
-      "sha256": "785ea49e4879b1218dbfd378abb4b7120c69348c98fb8ee160aca2231af0243a",
-      "sourceSha256": "84ff99f9c58247448166405f47346c00de503820befc0b85a3fccc515ee5f9fe",
+      "sha256": "b6d067bb72f7c441c0c0de526311d26d3bfefbc0eab5225d88c49964997e571b",
+      "sourceSha256": "af6a3dbefe72eb01a9ada1b51aa8e844a4533f1de3e96b8012a3762be1ca69da",
       "node": "v26.7.0",
       "typescript": "Version 7.0.2",
       "cleanLocalInstall": true,
@@ -1412,6 +1412,8 @@
       "README.md",
       "expander.mbt",
       "api_test.mbt",
+      "integrations/github-audit/upgrade.mjs",
+      "integrations/github-audit/contracts.mjs",
       "integrations/github-audit/README.md",
       "integrations/github-audit/integration.test.mjs",
       "integrations/github-audit/package.json",
@@ -1439,7 +1441,7 @@
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "7dcedd93be7792250c223f4bb9a3442b554015e7d004fa6035dfdeede0f360aa",
+    "sha256": "9915768eafff36ccf7cdbd71d79e2cb5669678c2aa3d2fa4d51ae583eaaea9d2",
     "clean_downstream_backends": [
       "js",
       "wasm",

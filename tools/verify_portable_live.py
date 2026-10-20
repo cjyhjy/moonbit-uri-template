@@ -38,4 +38,9 @@ with tempfile.TemporaryDirectory(prefix="uri-real-consumer-") as temp:
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     if result.returncode or report["status"] != "passed":
         raise SystemExit("Real downstream run failed; see recorded report")
+    if (report.get("executionPath") != "typed-catalog-sdk"
+            or not report.get("sdk", {}).get("inspection", {}).get("ok")
+            or len(report["sdk"]["inspection"].get("requests", [])) != 9
+            or len(report.get("responses", [])) != 9):
+        raise SystemExit("Live evidence must exercise the typed catalog SDK for all nine requests")
 print("Portable downstream: nine real GitHub responses verified")

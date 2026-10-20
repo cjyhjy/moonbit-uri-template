@@ -1,7 +1,7 @@
 {
   "status": "passed",
   "evidence": "intentional-fault-injection",
-  "generatedAt": "2026-10-20T10:55:38.931Z",
+  "generatedAt": "2026-10-20T11:08:57.172Z",
   "engineSha256": "79ebf5a292bb16b83b791a76885414393481d2fc9ae1c614384cff6bbf7f7819",
   "manifestSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
   "results": [
@@ -15,7 +15,7 @@
       "result": {
         "schemaVersion": 1,
         "evidence": "intentional-fault-injection",
-        "startedAt": "2026-10-20T10:55:38.928Z",
+        "startedAt": "2026-10-20T11:08:57.169Z",
         "manifestSha256": "24fc22caa36e67c1a9cb943a7ab302c5e1d8b307ada13ac5e271bbec891d9220",
         "status": "contract-failed",
         "checks": {
@@ -70,6 +70,7 @@
           "outputs": [],
           "totalOutputBytes": 0
         },
+        "sdk": {},
         "responses": []
       }
     },
@@ -83,7 +84,7 @@
       "result": {
         "schemaVersion": 1,
         "evidence": "intentional-fault-injection",
-        "startedAt": "2026-10-20T10:55:38.930Z",
+        "startedAt": "2026-10-20T11:08:57.171Z",
         "manifestSha256": "0590f7a338950a6af6fe5bafe8135eb847fb4abe8e99eeeb317b56112a541ec9",
         "status": "contract-failed",
         "checks": {
@@ -119,6 +120,7 @@
           "outputs": [],
           "totalOutputBytes": 0
         },
+        "sdk": {},
         "responses": []
       }
     },
@@ -131,7 +133,7 @@
       "result": {
         "schemaVersion": 1,
         "evidence": "intentional-fault-injection",
-        "startedAt": "2026-10-20T10:55:38.931Z",
+        "startedAt": "2026-10-20T11:08:57.172Z",
         "manifestSha256": "1fcf336a88c6457b687f73cb48f095d472e7ae7f6822bd7535c31aa98a9f3c40",
         "status": "contract-failed",
         "checks": {
@@ -251,6 +253,7 @@
           "outputs": [],
           "totalOutputBytes": 0
         },
+        "sdk": {},
         "responses": []
       }
     }
