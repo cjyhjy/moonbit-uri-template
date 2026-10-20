@@ -1,9 +1,9 @@
 {
   "status": "prepared",
-  "generatedAt": "2026-10-20T12:59:22.139776+00:00",
-  "sourceSha256": "63149169b917fb9536cfd8d33cab409aad88bad77c42fc363f4b26141f91abac",
+  "generatedAt": "2026-10-20T14:31:01.770517+00:00",
+  "sourceSha256": "1b78edde9432052f1725ff0f5ba54b230c2791777a459b9d0b282f1144fa7d9e",
   "archive": "_build/submission/moonbit-uri-template-review-0.2.0.zip",
-  "sha256": "59018041ee6426bc64babfd02f2835b6f315dee2eefa6672920a3676d23eaf09",
+  "sha256": "c46b67bbf0b4d534ad5f22d31d01ba157480351db8f6daa197a3da34ad9b694c",
   "published": false,
   "formSubmitted": false,
   "emailSent": false,
@@ -11,11 +11,10 @@
     "READ_FIRST.txt",
     "docs/API.md",
     "docs/COMPARISON.md",
-    "docs/OPTIMIZATION.md",
+    "docs/CONFORMANCE.md",
     "docs/ORGANIZER_EMAIL.txt",
     "docs/PERFORMANCE.md",
     "docs/RESUBMISSION.md",
-    "docs/REVIEW_EVIDENCE.md",
     "docs/SDK.md",
     "integrations/github-audit/README.md",
     "moonbit-uri-template-0.2.0.zip",
@@ -54,6 +53,7 @@
     "reports/tests-wasm-gc.log",
     "reports/tests-wasm.log",
     "reports/tests-workflow.log",
-    "reports/verification.json"
+    "reports/verification.json",
+    "testdata/differential/results.json"
   ]
 }

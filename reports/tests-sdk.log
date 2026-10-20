@@ -1,30 +1,32 @@
-✔ catalog compiles named contracts once and preserves immutable snapshots (3.881917ms)
-✔ catalog definition validation has bounded counts text and named failures (0.388542ms)
-✔ catalog batches measure all requests and enforce aggregate metadata and output budgets (0.755875ms)
-✔ catalog inspection collects independent contract issues without treating optional omissions as errors (0.960916ms)
-✔ catalog policy audit validates empty catalogs and caps the combined report (1.18925ms)
-✔ catalog comparison includes additions removals and runtime-only contract changes (1.1615ms)
-✔ single-template inspection and policy audit preserve Unicode editor locations (0.296708ms)
-✔ analysis keeps source occurrences and comparison explains modifier changes (1.017542ms)
-✔ SDK comparison includes required unused and runtime budget changes (0.338084ms)
-✔ compiled SDK preserves required contract and reusable immutable options (1.676125ms)
-✔ compilation errors have useful locations and unknown contracts fail early (0.204834ms)
-✔ JS values cannot silently disappear or invoke getters during serialization (0.885792ms)
-✔ SDK batches enforce atomic budgets with an indexed error (0.280417ms)
-✔ prepared requireAll remains stable across check measure trace and repeated calls (2.873042ms)
-✔ SDK rejects excessive snapshot text before handing input to the core (17.203584ms)
-✔ runtime shape contracts share the core across expansion, measurement, tracing and inspection (1.24075ms)
-✔ catalog shape changes are reviewed and batch failures identify the endpoint (0.496333ms)
-✔ incremental sessions recompute each dependent endpoint once and keep prior snapshots (0.599958ms)
-✔ session output limits include cached endpoints and handle simultaneous growth and shrink (0.216416ms)
-✔ session no-ops null removal composite capture and URI-equivalent updates (0.315917ms)
-✔ session budgets cover patch and whole environment including empty cases (0.345375ms)
-✔ incremental SDK results match full catalog generation throughout a deterministic workload (80.900417ms)
-ℹ tests 22
+✔ catalog compiles named contracts once and preserves immutable snapshots (4.273083ms)
+✔ catalog definition validation has bounded counts text and named failures (0.423709ms)
+✔ catalog batches measure all requests and enforce aggregate metadata and output budgets (0.803417ms)
+✔ catalog inspection collects independent contract issues without treating optional omissions as errors (0.778375ms)
+✔ catalog policy audit validates empty catalogs and caps the combined report (1.934ms)
+✔ catalog comparison includes additions removals and runtime-only contract changes (1.544291ms)
+✔ single-template inspection and policy audit preserve Unicode editor locations (0.32825ms)
+✔ analysis keeps source occurrences and comparison explains modifier changes (1.173792ms)
+✔ SDK comparison includes required unused and runtime budget changes (0.373375ms)
+✔ compiled SDK preserves required contract and reusable immutable options (1.838584ms)
+✔ compilation errors have useful locations and unknown contracts fail early (0.319708ms)
+✔ JS values convert predictably and never invoke getters during serialization (1.163083ms)
+✔ SDK batches enforce atomic budgets with an indexed error (0.245583ms)
+✔ prepared requireAll remains stable across check measure trace and repeated calls (3.434584ms)
+✔ SDK rejects excessive snapshot text before handing input to the core (17.731666ms)
+✔ runtime shape contracts share the core across expansion, measurement, tracing and inspection (1.238792ms)
+✔ catalog shape changes are reviewed and batch failures identify the endpoint (0.524458ms)
+✔ incremental sessions recompute each dependent endpoint once and keep prior snapshots (0.583041ms)
+✔ session output limits include cached endpoints and handle simultaneous growth and shrink (0.189167ms)
+✔ session no-ops null removal composite capture and URI-equivalent updates (0.283834ms)
+✔ session budgets cover patch and whole environment including empty cases (0.31475ms)
+✔ incremental SDK results match full catalog generation throughout a deterministic workload (42.74725ms)
+✔ differential baseline still matches current output (18.74025ms)
+✔ every disagreement with both references is an explained RFC choice (0.138333ms)
+ℹ tests 24
 ℹ suites 0
-ℹ pass 22
+ℹ pass 24
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 159.100125
+ℹ duration_ms 126.341791
