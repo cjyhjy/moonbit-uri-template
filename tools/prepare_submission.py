@@ -47,7 +47,7 @@ if bundle.exists():
 bundle.mkdir()
 files = [
     "docs/RESUBMISSION.md", "docs/REVIEW_EVIDENCE.md", "docs/ORGANIZER_EMAIL.txt",
-    "docs/COMPARISON.md", "docs/PERFORMANCE.md", "docs/API.md", "docs/SDK.md",
+    "docs/COMPARISON.md", "docs/PERFORMANCE.md", "docs/API.md", "docs/SDK.md", "docs/OPTIMIZATION.md",
     "integrations/github-audit/README.md",
     "reports/verification.json", "reports/release.json", "reports/peer-benchmark.json",
     "reports/github-integration-portable-live.json", "reports/integration-faults.json",

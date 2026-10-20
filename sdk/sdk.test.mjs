@@ -2,6 +2,41 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { compileTemplate, expand, UriTemplateError } from './index.mjs';
 
+test('analysis keeps source occurrences and comparison explains modifier changes', () => {
+  const before = compileTemplate('😀/{x:2}{x:8}{?tags*}');
+  const after = compileTemplate('😀/{x:8}{x:2}{?tags}');
+  const info = before.analyze();
+  assert.equal(info.offsetUnit, 'unicode-code-point');
+  assert.equal(info.profiles[0].firstSpan.start, 3);
+  assert.deepEqual(info.profiles[0].prefixes, [2, 8]);
+  info.profiles[0].uses.length = 0;
+  assert.equal(before.analyze().profiles[0].uses.length, 2);
+  const d = before.compare(after);
+  assert.equal(d.variableChanges[0].prefixesChanged, true);
+  assert.equal(d.variableChanges[1].explodeChanged, true);
+  assert.equal(d.requiresReview, true);
+  assert.equal(before.compare(before).requiresReview, false);
+  assert.throws(() => before.compare('/{x}'), { code: 'InvalidInput' });
+});
+
+test('SDK comparison includes required unused and runtime budget changes', () => {
+  const before = compileTemplate('/{id}{?page}', { rejectUnused: false, maxOutput: 1024 });
+  const after = compileTemplate('/{id}{?page}', { required: ['id'], maxOutput: 128 });
+  const d = before.compare(after);
+  assert.equal(d.sourceChanged, false);
+  assert.equal(d.requiresReview, true);
+  assert.deepEqual(d.addedRequired, ['id']);
+  assert.deepEqual(d.removedRequired, []);
+  assert.equal(d.rejectUnusedBefore, false);
+  assert.equal(d.rejectUnusedAfter, true);
+  assert.deepEqual(d.budgetChanges, [{ name: 'maxOutput', before: 1024, after: 128, tightened: true }]);
+  const reversed = after.compare(before);
+  assert.deepEqual(reversed.removedRequired, ['id']);
+  assert.equal(reversed.budgetChanges[0].tightened, false);
+  assert.equal(compileTemplate('/{id}', { required: ['id', 'id'] })
+    .compare(compileTemplate('/{id}', { required: ['id'] })).requiresReview, false);
+});
+
 test('compiled SDK preserves required contract and reusable immutable options', () => {
   const options = { required: ['id'], requireAll: false };
   const t = compileTemplate('/users/{id}{?tags*}', options);

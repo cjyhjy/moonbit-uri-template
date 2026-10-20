@@ -1,4 +1,4 @@
-import { prepare_request, prepared_call } from '../dist/engine.mjs';
+import { prepare_request, prepared_call, prepared_compare } from '../dist/engine.mjs';
 import { locate } from '../tools/diagnostics.mjs';
 
 export class UriTemplateError extends Error {
@@ -78,6 +78,13 @@ export class CompiledTemplate {
   }
   get source() { return this.#source; }
   get variables() { return this.#names; }
+  analyze() { return JSON.parse(result(this.#handle, 'analyze', '{}', this.#source)); }
+  compare(newer) {
+    if (!(newer instanceof CompiledTemplate)) throw invalid('compare expects a compiled template');
+    const response = JSON.parse(prepared_compare(this.#handle, newer.#handle));
+    if (response.error) throw new UriTemplateError(response.error);
+    return JSON.parse(response.output);
+  }
   expand(variables = {}) { return this.#call('expand', variables); }
   measure(variables = {}) { return Number(this.#call('measure', variables)); }
   trace(variables = {}) { return JSON.parse(this.#call('trace', variables)); }

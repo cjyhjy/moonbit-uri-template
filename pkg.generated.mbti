@@ -37,6 +37,13 @@ pub(all) struct BatchLimits {
 pub fn BatchLimits::new(max_items? : Int, max_total_input_codepoints? : Int, max_total_output_bytes? : Int) -> Self
 pub fn BatchLimits::to_repr(Self) -> @debug.Repr
 
+pub(all) struct BindingFinding {
+  code : String
+  variable : String
+  span : Span?
+} derive(@debug.Debug)
+pub fn BindingFinding::to_repr(Self) -> @debug.Repr
+
 pub(all) struct BindingIssue {
   name : String
   span : Span
@@ -56,6 +63,13 @@ type BoundTemplate
 pub fn BoundTemplate::expand(Self, Variables, required? : Array[String], limits? : ExpansionLimits) -> Result[String, TemplateError]
 pub fn BoundTemplate::measure(Self, Variables, required? : Array[String], limits? : ExpansionLimits) -> Result[Int, TemplateError]
 
+pub(all) struct CatalogAudit {
+  entries : Array[CatalogEntryAudit]
+  total_findings : Int
+} derive(@debug.Debug)
+pub fn CatalogAudit::is_clean(Self) -> Bool
+pub fn CatalogAudit::to_repr(Self) -> @debug.Repr
+
 pub(all) struct CatalogBatchError {
   index : Int
   name : String
@@ -63,12 +77,28 @@ pub(all) struct CatalogBatchError {
 } derive(@debug.Debug)
 pub fn CatalogBatchError::to_repr(Self) -> @debug.Repr
 
+pub(all) struct CatalogContractDiff {
+  added : Array[String]
+  removed : Array[String]
+  changed : Array[(String, DetailedContractDiff)]
+} derive(@debug.Debug)
+pub fn CatalogContractDiff::to_repr(Self) -> @debug.Repr
+
 pub(all) struct CatalogDiff {
   added : Array[String]
   removed : Array[String]
   changed : Array[(String, ContractDiff)]
 } derive(@debug.Debug)
 pub fn CatalogDiff::to_repr(Self) -> @debug.Repr
+
+pub(all) struct CatalogEntryAudit {
+  name : String
+  expression_count : Int
+  variable_count : Int
+  max_level : Int
+  findings : Array[TemplateError]
+} derive(@debug.Debug)
+pub fn CatalogEntryAudit::to_repr(Self) -> @debug.Repr
 
 pub(all) struct CatalogError {
   name : String
@@ -91,6 +121,24 @@ pub(all) struct ContractDiff {
   source_changed : Bool
 } derive(@debug.Debug)
 pub fn ContractDiff::to_repr(Self) -> @debug.Repr
+
+pub(all) struct DetailedContractDiff {
+  added_variables : Array[String]
+  removed_variables : Array[String]
+  became_scalar_only : Array[String]
+  became_composite_capable : Array[String]
+  new_repeated_variables : Array[String]
+  old_level : Int
+  new_level : Int
+  reserved_added : Bool
+  fragment_added : Bool
+  literals_changed : Bool
+  expression_layout_changed : Bool
+  variable_changes : Array[VariableChange]
+  source_changed : Bool
+} derive(@debug.Debug)
+pub fn DetailedContractDiff::requires_review(Self) -> Bool
+pub fn DetailedContractDiff::to_repr(Self) -> @debug.Repr
 
 pub(all) struct Expansion {
   output : String
@@ -138,6 +186,20 @@ pub(all) struct ParseLimits {
 pub fn ParseLimits::new(max_template_codepoints? : Int, max_expressions? : Int, max_variables_per_expression? : Int, max_total_variables? : Int) -> Self
 pub fn ParseLimits::to_repr(Self) -> @debug.Repr
 
+pub(all) struct RequestAudit {
+  requests : Array[RequestInspection]
+  total_findings : Int
+} derive(@debug.Debug)
+pub fn RequestAudit::is_clean(Self) -> Bool
+pub fn RequestAudit::to_repr(Self) -> @debug.Repr
+
+pub(all) struct RequestInspection {
+  index : Int
+  name : String
+  findings : Array[BindingFinding]
+} derive(@debug.Debug)
+pub fn RequestInspection::to_repr(Self) -> @debug.Repr
+
 pub(all) struct Span {
   start : Int
   end : Int
@@ -145,11 +207,16 @@ pub(all) struct Span {
 pub fn Span::to_repr(Self) -> @debug.Repr
 
 type Template derive(@debug.Debug)
+pub fn Template::analyze(Self) -> TemplateAnalysis
 pub fn Template::audit(Self, TemplatePolicy) -> Array[TemplateError]
+pub fn Template::audit_with_limit(Self, TemplatePolicy, max_findings? : Int) -> Result[Array[TemplateError], TemplateError]
 pub fn Template::bind(Self, Variables, limits? : ExpansionLimits) -> Result[BoundTemplate, TemplateError]
 pub fn Template::check_bindings(Self, Variables) -> BindingReport
 pub fn Template::check_bindings_with_limits(Self, Variables, ExpansionLimits) -> Result[BindingReport, TemplateError]
+pub fn Template::check_contract(Self, Variables, required? : Array[String], reject_unused? : Bool, limits? : ExpansionLimits, max_findings? : Int) -> Result[Array[BindingFinding], TemplateError]
+pub fn Template::composite_capable_variables(Self) -> Array[String]
 pub fn Template::diff(Self, Self) -> ContractDiff
+pub fn Template::diff_contract(Self, Self) -> DetailedContractDiff
 pub fn Template::expand(Self, Variables) -> Result[String, TemplateError]
 pub fn Template::expand_batch(Self, Array[Variables], required? : Array[String], reject_unused? : Bool, limits? : ExpansionLimits, batch_limits? : BatchLimits) -> Result[Array[String], BatchError]
 pub fn Template::expand_checked(Self, Variables, required? : Array[String], reject_unused? : Bool, limits? : ExpansionLimits) -> Result[String, TemplateError]
@@ -158,15 +225,32 @@ pub fn Template::expand_with_limits(Self, Variables, ExpansionLimits) -> Result[
 pub fn Template::inspect(Self) -> Array[ExpressionInfo]
 pub fn Template::level(Self) -> Int
 pub fn Template::measure(Self, Variables, required? : Array[String], reject_unused? : Bool, limits? : ExpansionLimits) -> Result[Int, TemplateError]
+pub fn Template::reference_count(Self, String) -> Int
 pub fn Template::source(Self) -> String
 pub fn Template::to_repr(Self) -> @debug.Repr
+pub fn Template::variable_profiles(Self) -> Array[VariableProfile]
+pub fn Template::variable_uses(Self) -> Array[VariableUse]
 pub fn Template::variables(Self) -> Array[String]
 
+pub(all) struct TemplateAnalysis {
+  expressions : Array[ExpressionInfo]
+  uses : Array[VariableUse]
+  profiles : Array[VariableProfile]
+  max_level : Int
+  has_reserved_expansion : Bool
+  has_fragment : Bool
+} derive(@debug.Debug)
+pub fn TemplateAnalysis::to_repr(Self) -> @debug.Repr
+
 type TemplateCatalog
+pub fn TemplateCatalog::audit(Self, TemplatePolicy, max_findings? : Int) -> Result[CatalogAudit, CatalogError]
+pub fn TemplateCatalog::contains(Self, String) -> Bool
 pub fn TemplateCatalog::diff(Self, Self) -> CatalogDiff
+pub fn TemplateCatalog::diff_contract(Self, Self) -> CatalogContractDiff
 pub fn TemplateCatalog::expand(Self, String, Variables, required? : Array[String], reject_unused? : Bool, limits? : ExpansionLimits) -> Result[String, CatalogError]
 pub fn TemplateCatalog::expand_batch(Self, Array[CatalogRequest], reject_unused? : Bool, limits? : ExpansionLimits, batch_limits? : BatchLimits) -> Result[Array[String], CatalogBatchError]
 pub fn TemplateCatalog::get(Self, String) -> Result[Template, CatalogError]
+pub fn TemplateCatalog::inspect_requests(Self, Array[CatalogRequest], reject_unused? : Bool, limits? : ExpansionLimits, batch_limits? : BatchLimits, max_findings? : Int) -> Result[RequestAudit, CatalogBatchError]
 pub fn TemplateCatalog::measure(Self, String, Variables, required? : Array[String], limits? : ExpansionLimits) -> Result[Int, CatalogError]
 pub fn TemplateCatalog::measure_batch(Self, Array[CatalogRequest], reject_unused? : Bool, limits? : ExpansionLimits, batch_limits? : BatchLimits) -> Result[Array[Int], CatalogBatchError]
 pub fn TemplateCatalog::names(Self) -> Array[String]
@@ -198,6 +282,45 @@ pub(all) enum Value {
   Assoc(OrderedEntries)
 } derive(@debug.Debug)
 pub fn Value::to_repr(Self) -> @debug.Repr
+
+pub(all) struct VariableChange {
+  name : String
+  before : VariableProfile
+  after : VariableProfile
+  operators_changed : Bool
+  prefixes_changed : Bool
+  explode_changed : Bool
+  occurrences_changed : Bool
+  uses_changed : Bool
+} derive(@debug.Debug)
+pub fn VariableChange::to_repr(Self) -> @debug.Repr
+
+pub(all) struct VariableProfile {
+  name : String
+  occurrences : Int
+  first_span : Span
+  last_span : Span
+  scalar_only : Bool
+  uses_explode : Bool
+  uses_reserved : Bool
+  uses_query : Bool
+  uses_fragment : Bool
+  maximum_prefix : Int?
+  operators : Array[String]
+  prefixes : Array[Int]
+  uses : Array[VariableUse]
+} derive(@debug.Debug)
+pub fn VariableProfile::to_repr(Self) -> @debug.Repr
+
+pub(all) struct VariableUse {
+  name : String
+  operator : String
+  prefix : Int?
+  explode : Bool
+  expression_index : Int
+  span : Span
+} derive(@debug.Debug)
+pub fn VariableUse::to_repr(Self) -> @debug.Repr
 
 type Variables derive(@debug.Debug)
 pub fn Variables::from_entries(Array[(String, Value)]) -> Result[Self, TemplateError]

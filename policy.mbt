@@ -87,18 +87,27 @@ pub fn TemplatePolicy::new(
 }
 
 ///|
-pub fn Template::audit(
+pub fn Template::audit_with_limit(
   self : Template,
   policy : TemplatePolicy,
-) -> Array[TemplateError] {
+  max_findings~ : Int32 = 256,
+) -> Result[Array[TemplateError], TemplateError] {
+  if max_findings < 0 {
+    return Err(problem("InvalidLimit", "negative finding budget", 0, 0))
+  }
   let findings : Array[TemplateError] = []
   if policy.max_level < 0 || policy.max_level > 4 || policy.max_references < 0 {
-    return [problem("InvalidPolicy", "invalid level or reference limit", 0, 0)]
+    return Err(
+      problem("InvalidPolicy", "invalid level or reference limit", 0, 0),
+    )
   }
   let seen : Map[String, Bool] = Map([])
   let mut count = 0
   for info in self.inspect() {
     if info.level > policy.max_level {
+      if findings.length() == max_findings {
+        return Err(problem("FindingLimit", "findings exceed budget", 0, 0))
+      }
       findings.push(
         problem(
           "LevelPolicy",
@@ -113,6 +122,9 @@ pub fn Template::audit(
     if segment is Expression(op, specs) {
       for spec in specs {
         if count >= policy.max_references {
+          if findings.length() == max_findings {
+            return Err(problem("FindingLimit", "findings exceed budget", 0, 0))
+          }
           findings.push(
             problem(
               "ReferencePolicy",
@@ -124,6 +136,9 @@ pub fn Template::audit(
         }
         count = count + 1
         if policy.forbid_repeated_variables && seen.contains(spec.name) {
+          if findings.length() == max_findings {
+            return Err(problem("FindingLimit", "findings exceed budget", 0, 0))
+          }
           findings.push(
             problem(
               "RepeatedPolicy",
@@ -135,6 +150,9 @@ pub fn Template::audit(
         }
         seen[spec.name] = true
         if !policy.allow_reserved && (op == '+' || op == '#') {
+          if findings.length() == max_findings {
+            return Err(problem("FindingLimit", "findings exceed budget", 0, 0))
+          }
           findings.push(
             problem(
               "ReservedPolicy",
@@ -145,6 +163,9 @@ pub fn Template::audit(
           )
         }
         if !policy.allow_fragment && op == '#' {
+          if findings.length() == max_findings {
+            return Err(problem("FindingLimit", "findings exceed budget", 0, 0))
+          }
           findings.push(
             problem(
               "FragmentPolicy",
@@ -155,6 +176,9 @@ pub fn Template::audit(
           )
         }
         if !policy.allow_prefix && spec.modifier is Prefix(_) {
+          if findings.length() == max_findings {
+            return Err(problem("FindingLimit", "findings exceed budget", 0, 0))
+          }
           findings.push(
             problem(
               "PrefixPolicy",
@@ -165,6 +189,9 @@ pub fn Template::audit(
           )
         }
         if !policy.allow_explode && spec.modifier is Explode {
+          if findings.length() == max_findings {
+            return Err(problem("FindingLimit", "findings exceed budget", 0, 0))
+          }
           findings.push(
             problem(
               "ExplodePolicy",
@@ -175,6 +202,9 @@ pub fn Template::audit(
           )
         }
         if policy.allowed_variables is Some(names) && !names.contains(spec.name) {
+          if findings.length() == max_findings {
+            return Err(problem("FindingLimit", "findings exceed budget", 0, 0))
+          }
           findings.push(
             problem(
               "VariablePolicy",
@@ -187,7 +217,7 @@ pub fn Template::audit(
       }
     }
   }
-  findings
+  Ok(findings)
 }
 
 ///|
@@ -195,3 +225,15 @@ pub extend ExpressionInfo with Debug::{to_repr}
 
 ///|
 pub extend TemplatePolicy with Debug::{to_repr}
+
+///|
+/// Compatibility entry point. Use audit_with_limit for bounded reports.
+pub fn Template::audit(
+  self : Template,
+  policy : TemplatePolicy,
+) -> Array[TemplateError] {
+  match self.audit_with_limit(policy, max_findings=2147483647) {
+    Ok(findings) => findings
+    Err(error) => [error]
+  }
+}

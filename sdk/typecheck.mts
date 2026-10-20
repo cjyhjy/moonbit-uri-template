@@ -17,3 +17,10 @@ const dynamic: string = '/{x}';
 compileTemplate(dynamic).expand({ arbitrary: 'value' });
 const outcome = users.tryExpand({ id: '42' });
 if (!outcome.ok) console.log(outcome.error.code);
+const analysis = users.analyze();
+const count: number = analysis.profiles[0].occurrences;
+const change = users.compare(compileTemplate('/users/{+id}'));
+const review: boolean = change.requiresReview;
+void count; void review;
+// @ts-expect-error comparison requires a compiled object
+users.compare('/users/{id}');

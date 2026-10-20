@@ -5,6 +5,28 @@ import { fileURLToPath } from 'node:url';
 import { request } from '../dist/engine.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const cli = (...args) => spawnSync(process.execPath, ['tools/cli.mjs', ...args], { cwd: root, encoding: 'utf8' });
+test('analyze and compare expose complete structural changes with useful exit codes', () => {
+  const analysis = cli('analyze', '😀/{x:3}{+x}', '--json');
+  assert.equal(analysis.status, 0, analysis.stderr);
+  const report = JSON.parse(JSON.parse(analysis.stdout).output);
+  assert.equal(report.profiles[0].occurrences, 2);
+  assert.equal(report.profiles[0].firstSpan.start, 3);
+  const same = cli('compare', '/{x}', '/{x}', '--json');
+  assert.equal(same.status, 0, same.stderr);
+  assert.equal(JSON.parse(same.stdout).report.requiresReview, false);
+  const changed = cli('compare', '/{x}', '/{+x:2}', '--json');
+  assert.equal(changed.status, 1);
+  assert.equal(changed.stderr, '');
+  assert.equal(JSON.parse(changed.stdout).report.reservedAdded, true);
+  assert.deepEqual(JSON.parse(changed.stdout).report.becameScalarOnly, ['x']);
+  const invalid = cli('compare', '/{x}', '😀{x', '--json');
+  assert.equal(invalid.status, 2);
+  const error = JSON.parse(invalid.stderr).error;
+  assert.equal(error.templateSide, 'after');
+  assert.equal(error.start, 1);
+  assert.equal(error.utf16Start, 2);
+  assert.equal(cli('compare', '/{x}', '/{x}', '--json', '--json').status, 2);
+});
 for (const [name, args, expected] of [
   ['user query', ['expand', '/users/{id}{?page,limit}', '--vars-file', 'examples/users.json'], '/users/42?page=2&limit=20\n'],
   ['collection query', ['expand', '/search{?q,tags*}', '--vars-file', 'examples/search.json'], '/search?q=moon%20bit&tags=sdk&tags=api\n'],

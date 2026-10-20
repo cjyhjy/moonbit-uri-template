@@ -11,6 +11,8 @@ Usage:
   uri-template check TEMPLATE [--vars JSON | --vars-file FILE|-]
   uri-template validate TEMPLATE [--strict]
   uri-template variables TEMPLATE
+  uri-template analyze TEMPLATE [--strict] [--json]
+  uri-template compare BEFORE AFTER [--json]
   uri-template --help | --version
 
 Options:
@@ -32,6 +34,7 @@ Options:
   --max-json-depth N         JSON nesting depth (32)
 
 check reports missing/omitted/unused/invalid without expanding; findings exit 1.
+compare strictly parses both templates; changes exit 1 with report on stdout, errors exit 2.
 Required/unused flags apply to expand, measure and trace. Zero budgets are valid.
 Quote templates in the shell. Values: strings, string lists, string/null objects, null.
 Exit codes: 0 success; 1 template/expansion/preflight findings; 2 input/environment error.`;
@@ -67,6 +70,29 @@ async function main() {
     process.exitCode = await projectMain(args.slice(1));
     return;
   }
+  if (args[0] === 'compare') {
+    const [, before, after, ...flags] = args;
+    jsonMode = flags.includes('--json');
+    if (before === undefined || after === undefined || flags.length > 1 ||
+      flags.some(f => f !== '--json')) bad('Usage: uri-template compare BEFORE AFTER [--json]');
+    const { compileTemplate, UriTemplateError } = await import('../sdk/index.mjs');
+    let side = 'before';
+    try {
+      const old = compileTemplate(before);
+      side = 'after';
+      const next = compileTemplate(after);
+      const report = old.compare(next);
+      process.exitCode = report.requiresReview ? 1 : 0;
+      // Differences are a completed comparison, so the report stays on stdout.
+      process.stdout.write(JSON.stringify(jsonMode ? { schemaVersion: 1, exitCode: process.exitCode, report } : report, null, jsonMode ? 0 : 2) + '\n');
+    } catch (error) {
+      if (!(error instanceof UriTemplateError)) throw error;
+      process.exitCode = 2;
+      const detail = { ...error, templateSide: side, message: error.message };
+      process.stderr.write(jsonMode ? JSON.stringify({ schemaVersion: 1, exitCode: 2, error: detail }) + '\n' : `${side}: ${humanDiagnostic(error)}`);
+    }
+    return;
+  }
   const [command, template, ...flags] = args;
   for (let i = 0; i < flags.length; i++) {
     if (flags[i] === '--json') jsonMode = true;
@@ -98,7 +124,7 @@ async function main() {
       if (flag === '--vars') vars = value; else varsFile = value;
     }
   }
-  if (!['expand', 'check', 'validate', 'variables', 'measure', 'trace'].includes(command) || template === undefined) bad(help);
+  if (!['expand', 'check', 'validate', 'variables', 'measure', 'trace', 'analyze'].includes(command) || template === undefined) bad(help);
   if (hasVars && !['expand', 'check', 'measure', 'trace'].includes(command)) bad('variables input applies to expand or check');
   if (!['expand', 'measure', 'trace'].includes(command) && (config.required || config.requireAll || config.rejectUnused)) bad('required/unused flags apply to expand');
   if (varsFile !== undefined) {

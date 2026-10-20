@@ -16,6 +16,7 @@ RFC 6570 Level 4 URI Template 解析与展开库，核心使用 MoonBit 实现�
 - 带源片段和 caret 的 CLI 诊断、稳定 JSON 输出和 UTF-16 编辑器偏移。
 - 核心库支持 JS、wasm、wasm-gc、Native；Node CLI 与浏览器工作台调用同一份 MoonBit 核心。
 - JS/TypeScript 直接导入、字面量变量名提示、编译复用；多模板批量与明确的配置拼写建议。
+- 完整变量画像、逐次修饰符差异、目录审计；升级时检查必填和运行时预算变化。
 
 固定上游提交 `4171dac22aa67fc710b3f6df308a50bd08552986` 的 270 个标准/扩展/负例测试，以及公共 API、预算、绑定与 JSON 适配测试，在四个后端执行；Node CLI 另有专项回归。具体数量与当前状态见报告。[详细证据](reports/verification.json)
 

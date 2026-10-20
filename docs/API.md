@@ -166,3 +166,12 @@ CLI 另提供 `measure`（输出字节数）和 `trace`（URI 与来源 JSON）�
 ### 直接导入的 Node SDK
 
 公共 ESM 导出为 `compileTemplate`、`expand`、`CompiledTemplate`、`UriTemplateError`，带 `.d.mts` 声明。编译阶段拒绝非法模板和未知 required；默认严格解析及拒绝无用绑定。提供本地 npm tarball 的独立安装验证，尚未发布到 npm。详见 [SDK 接入指南](SDK.md)。
+
+### 分析、契约升级与审计
+
+- `Template.variable_uses/variable_profiles/analyze/reference_count/composite_capable_variables` 提供完整引用、画像与结构信息，位置仍使用码点。画像按变量首次出现顺序；每次使用保留自己的修饰符。
+- `Template.diff_contract` 返回 DetailedContractDiff，保留每项变化的旧/新画像、字面量和布局变化、前缀/操作符/explode 的逐次差异。`requires_review()` 对任意源码变化返回 true，并非“不兼容”证明。旧 `diff` 摘要接口不变。
+- `Template.audit_with_limit` 默认最多 256 条发现；超限返回 FindingLimit，不输出不完整报告。旧 `audit` 保留原返回类型与行为。
+- `Template.check_contract` 收集选择性必填、空集合、无用绑定、复合前缀和未知 required 问题，成功报告可含多个发现；预算错误以 Err 表示。required 名字计入输入码点和独立数量限额。
+- `TemplateCatalog.audit/inspect_requests/diff_contract/contains` 分别提供静态审计、跨模板绑定审计、详细目录差异与查询。绑定审计不生成 URI，也不检查输出总量。
+- Node `CompiledTemplate.analyze/compare` 对应核心分析/比较；compare 还包含 required、rejectUnused 及运行时预算变化。CLI 新增 analyze 与 compare，行为和例子见 SDK 指南。

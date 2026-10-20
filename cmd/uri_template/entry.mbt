@@ -27,3 +27,12 @@ pub fn prepared_call(
 ) -> String {
   prepared.call(command, variables)
 }
+
+///|
+#export_name("prepared_compare")
+pub fn prepared_compare(
+  before : @adapter.PreparedRequest,
+  after : @adapter.PreparedRequest,
+) -> String {
+  before.compare(after)
+}

@@ -21,4 +21,10 @@ ours.batch=2
 jsj.batch=2
 ours.selective_required=/users/42
 jsj.selective_required=missing_variable
+ours.profile=2,true,true
+jsj.profile=2,true,true
+ours.prefix_change=true
+ours.prefix_outputs=ab,abc
+jsj.prefix_flag=false
+jsj.prefix_outputs=ab,abc
 Warning: `exclude` in `/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/moon.mod` is deprecated; use `.gitignore` or `.moonignore` to control which files are packaged instead. `.moonignore` overrides `.gitignore` in the same directory.

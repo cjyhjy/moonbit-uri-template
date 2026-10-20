@@ -2,6 +2,8 @@
 
 ## 0.2.0 candidate usability follow-up (unreleased)
 
+- Full variable profiles, occurrence-level contract differences, bounded catalog policy/request audits and typed Node/CLI upgrade analysis.
+- Compiled Node comparisons include required bindings, unused-binding policy and runtime budget changes.
 - Typed ESM SDK with inferred variable names, selective required bindings, compiled reuse and atomic batches; independently installed local npm tarball.
 - MoonBit catalog batches across templates, with input/output budgets and indexed named failures.
 - Prepared template reuse in project checks and conservative typo repair suggestions with JSON Pointers.

@@ -1,5 +1,5 @@
 ./_build/native/debug/test/adapter/json/json.blackbox_test.exe adapter_test.mbt:0-5
-./_build/native/debug/test/uri_template.blackbox_test.exe limits_test.mbt:0-5/conformance_test.mbt:0-270/catalog_batch_test.mbt:0-2/bindings_test.mbt:0-3/api_test.mbt:0-10/advanced_test.mbt:0-8
+./_build/native/debug/test/uri_template.blackbox_test.exe limits_test.mbt:0-5/conformance_test.mbt:0-270/catalog_batch_test.mbt:0-2/bindings_test.mbt:0-3/api_test.mbt:0-10/analysis_test.mbt:0-8/advanced_test.mbt:0-8
 ./_build/native/debug/test/uri_template.whitebox_test.exe encoder_wbtest.mbt:0-2
 [cjyhjy/uri_template] test adapter/json/adapter_test.mbt:2 ("adapter typed values null and stable associative order") ok
 [cjyhjy/uri_template] test adapter/json/adapter_test.mbt:13 ("adapter input errors retain JSON pointers") ok
@@ -296,6 +296,14 @@
 [cjyhjy/uri_template] test api_test.mbt:156 ("strict grammar mode keeps expansion semantics and rejects literal apostrophes") ok
 [cjyhjy/uri_template] test api_test.mbt:173 ("large templates and collections expand iteratively in stable order") ok
 [cjyhjy/uri_template] test api_test.mbt:202 ("undefined composites are omitted before prefix validation") ok
+[cjyhjy/uri_template] test analysis_test.mbt:2 ("profiles preserve every modifier and Unicode source occurrence") ok
+[cjyhjy/uri_template] test analysis_test.mbt:27 ("contract diff sees modifier changes even when summaries match") ok
+[cjyhjy/uri_template] test analysis_test.mbt:44 ("contract diff distinguishes literal order reserved fragment and scalar restrictions") ok
+[cjyhjy/uri_template] test analysis_test.mbt:77 ("static catalog audits validate empty options and cap total findings") ok
+[cjyhjy/uri_template] test analysis_test.mbt:110 ("request audit collects independent defects with names and source ranges") ok
+[cjyhjy/uri_template] test analysis_test.mbt:141 ("audit budgets count contract metadata and include exact empty boundaries") ok
+[cjyhjy/uri_template] test analysis_test.mbt:237 ("catalog changes contain detailed upgrade findings") ok
+[cjyhjy/uri_template] test analysis_test.mbt:250 ("many required variables preserve missing-name precedence") ok
 [cjyhjy/uri_template] test advanced_test.mbt:2 ("measure and provenance cover Unicode percent encoding and repeated names") ok
 [cjyhjy/uri_template] test advanced_test.mbt:31 ("measure agrees across deterministic mixtures and all operators") ok
 [cjyhjy/uri_template] test advanced_test.mbt:48 ("batch is atomic and enforces cumulative budgets and item index") ok
@@ -306,4 +314,4 @@
 [cjyhjy/uri_template] test advanced_test.mbt:215 ("sparse normalization and catalog migration preserve explicit differences") ok
 [cjyhjy/uri_template] test encoder_wbtest.mbt:2 ("encoded prefix follows decoded code points without splitting octets") ok
 [cjyhjy/uri_template] test encoder_wbtest.mbt:18 ("IRI literal range boundaries exclude controls surrogates and noncharacters") ok
-Total tests: 305, passed: 305, failed: 0.
+Total tests: 313, passed: 313, failed: 0.

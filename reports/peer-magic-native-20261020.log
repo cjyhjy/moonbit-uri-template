@@ -1,2 +1,114 @@
 Total tests: 194, passed: 194, failed: 0.
 Warning: `exclude` in `/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/moon.mod` is deprecated; use `.gitignore` or `.moonignore` to control which files are packaged instead. `.moonignore` overrides `.gitignore` in the same directory.
+Warning: [0025]
+    ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/README.mbt.md:46:18 ]
+    │
+ 46 │   let template = UriTemplate::parse("hello/{name}")
+    │                  ─────┬─────  
+    │                       ╰─────── Warning (test_unqualified_package): `UriTemplate` is implicitly imported in test. Use `@moon-uri-template.UriTemplate` instead.
+────╯
+Warning: [0025]
+    ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/README.mbt.md:47:31 ]
+    │
+ 47 │   let variables : Map[String, UriValue] = { "name": Scalar("MoonBit") }
+    │                               ────┬───  
+    │                                   ╰───── Warning (test_unqualified_package): `UriValue` is implicitly imported in test. Use `@moon-uri-template.UriValue` instead.
+────╯
+Warning: [0025]
+    ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/README.mbt.md:57:18 ]
+    │
+ 57 │   let template = UriTemplate::parse(
+    │                  ─────┬─────  
+    │                       ╰─────── Warning (test_unqualified_package): `UriTemplate` is implicitly imported in test. Use `@moon-uri-template.UriTemplate` instead.
+────╯
+Warning: [0025]
+    ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/README.mbt.md:60:31 ]
+    │
+ 60 │   let variables : Map[String, UriValue] = {
+    │                               ────┬───  
+    │                                   ╰───── Warning (test_unqualified_package): `UriValue` is implicitly imported in test. Use `@moon-uri-template.UriValue` instead.
+────╯
+Warning: [0025]
+    ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/README.mbt.md:92:18 ]
+    │
+ 92 │   let template = UriTemplate::parse("{value:2}")
+    │                  ─────┬─────  
+    │                       ╰─────── Warning (test_unqualified_package): `UriTemplate` is implicitly imported in test. Use `@moon-uri-template.UriTemplate` instead.
+────╯
+Warning: [0025]
+    ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/README.mbt.md:93:31 ]
+    │
+ 93 │   let variables : Map[String, UriValue] = { "value": Scalar("月兔Moon") }
+    │                               ────┬───  
+    │                                   ╰───── Warning (test_unqualified_package): `UriValue` is implicitly imported in test. Use `@moon-uri-template.UriValue` instead.
+────╯
+Warning: [0025]
+     ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/README.mbt.md:103:18 ]
+     │
+ 103 │   let template = UriTemplate::parse("{?labels*}")
+     │                  ─────┬─────  
+     │                       ╰─────── Warning (test_unqualified_package): `UriTemplate` is implicitly imported in test. Use `@moon-uri-template.UriTemplate` instead.
+─────╯
+Warning: [0025]
+     ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/README.mbt.md:104:31 ]
+     │
+ 104 │   let variables : Map[String, UriValue] = {
+     │                               ────┬───  
+     │                                   ╰───── Warning (test_unqualified_package): `UriValue` is implicitly imported in test. Use `@moon-uri-template.UriValue` instead.
+─────╯
+Warning: [0025]
+     ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/README.mbt.md:116:18 ]
+     │
+ 116 │   let template = UriTemplate::parse("{?filters*}")
+     │                  ─────┬─────  
+     │                       ╰─────── Warning (test_unqualified_package): `UriTemplate` is implicitly imported in test. Use `@moon-uri-template.UriTemplate` instead.
+─────╯
+Warning: [0025]
+     ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/README.mbt.md:117:31 ]
+     │
+ 117 │   let variables : Map[String, UriValue] = {
+     │                               ────┬───  
+     │                                   ╰───── Warning (test_unqualified_package): `UriValue` is implicitly imported in test. Use `@moon-uri-template.UriValue` instead.
+─────╯
+Warning: [0025]
+     ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/README.mbt.md:132:18 ]
+     │
+ 132 │   let template = UriTemplate::parse_with_limits(
+     │                  ─────┬─────  
+     │                       ╰─────── Warning (test_unqualified_package): `UriTemplate` is implicitly imported in test. Use `@moon-uri-template.UriTemplate` instead.
+─────╯
+Warning: [0025]
+     ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/README.mbt.md:152:22 ]
+     │
+ 152 │   let rejected = try UriTemplate::parse("{unclosed") catch {
+     │                      ─────┬─────  
+     │                           ╰─────── Warning (test_unqualified_package): `UriTemplate` is implicitly imported in test. Use `@moon-uri-template.UriTemplate` instead.
+─────╯
+Warning: [0020]
+     ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/rfc_examples_wbtest.mbt:235:42 ]
+     │
+ 235 │     SyntaxError(offset=3, message="bad").to_string(),
+     │                                          ────┬────  
+     │                                              ╰────── Warning (deprecated): The method `to_string` is implicitly promoted from `impl Show for UriTemplateError`. This behavior is deprecated, either use `Show::to_string` instead or add a `extend UriTemplateError with Show::{to_string, ..}` declaration.
+─────╯
+Warning: [0020]
+     ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/rfc_examples_wbtest.mbt:239:50 ]
+     │
+ 239 │     InvalidValue(variable="name", message="bad").to_string(),
+     │                                                  ────┬────  
+     │                                                      ╰────── Warning (deprecated): The method `to_string` is implicitly promoted from `impl Show for UriTemplateError`. This behavior is deprecated, either use `Show::to_string` instead or add a `extend UriTemplateError with Show::{to_string, ..}` declaration.
+─────╯
+Warning: [0020]
+     ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/rfc_examples_wbtest.mbt:243:58 ]
+     │
+ 243 │     ParseLimitExceeded(kind="expression count", limit=2).to_string(),
+     │                                                          ────┬────  
+     │                                                              ╰────── Warning (deprecated): The method `to_string` is implicitly promoted from `impl Show for UriTemplateError`. This behavior is deprecated, either use `Show::to_string` instead or add a `extend UriTemplateError with Show::{to_string, ..}` declaration.
+─────╯
+Warning: [0020]
+     ╭─[ /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/rfc_examples_wbtest.mbt:247:34 ]
+     │
+ 247 │     OutputLimitExceeded(limit=5).to_string(),
+     │                                  ────┬────  
+     │                                      ╰────── Warning (deprecated): The method `to_string` is implicitly promoted from `impl Show for UriTemplateError`. This behavior is deprecated, either use `Show::to_string` instead or add a `extend UriTemplateError with Show::{to_string, ..}` declaration.
+─────╯

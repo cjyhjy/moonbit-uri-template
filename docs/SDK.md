@@ -69,6 +69,34 @@ JSON 配置用户可使用 `uri-template project requests.json --json`。例如 
 - SDK 整批输入预算计入序列化 JSON 标点；MoonBit 类型化批量按名字/值码点计数，两者的计数口径不同。
 - 字面量模板的 TypeScript 提示不替代运行时校验；动态字符串无法在编译期推导精确变量名。`requireAll` 运行时执行，声明文件不把该布尔选项推导成必填类型；需要静态必填提示使用 `required`。
 
+## 升级前分析与比较
+
+```ts
+const before = compileTemplate('/users/{id}{?page}', { maxOutput: 2048 });
+const after = compileTemplate('/users/{+id:3}{?page}', {
+  required: ['id'], maxOutput: 1024,
+});
+const analysis = before.analyze();
+const change = before.compare(after);
+console.log(change.reservedAdded);       // true
+console.log(change.becameScalarOnly);    // ['id']
+console.log(change.addedRequired);       // ['id']
+console.log(change.budgetChanges);       // maxOutput: 2048 -> 1024, tightened: true
+```
+
+`analyze` 包含每个变量的引用次数、操作符、前缀、explode、用途摘要及每次引用位置。所有 span 是原始模板的 Unicode 码点范围。返回结果是新快照，修改结果不会修改已编译模板。
+
+`compare` 包含字面量、表达式布局、变量增删、标量限制、重复引用、每次修饰符的变化，以及旧/新变量画像。即使最大前缀长度相同，也能识别 `{x:2}{x:8}` 与 `{x:8}{x:2}` 的顺序差异。它还比较编译对象保存的必填集合、rejectUnused 和运行时输入/输出预算；解析阶段预算不在运行时预算差异中。
+
+`requiresReview` 表示需要人工检查，**不等于必然不兼容**。任何模板源码变化都会触发检查，包括可能等价的不同写法；它不证明 URL 等价，也不代替应用的目标主机检查。
+
+```sh
+uri-template analyze '/users/{id}{?page}' --json
+uri-template compare '/users/{id}' '/users/{+id:3}' --json
+```
+
+compare 严格解析两份模板。无变化退出 0，有变化退出 1，比较报告均在 stdout；解析/输入失败退出 2 并写 stderr，包含 before/after 一侧和源位置。CLI 比较只接收模板文字；SDK 比较还能看见各对象的必填/运行时预算配置。
+
 ## MoonBit 多模板批量
 
 目录现在可以把不同模板的请求作为一个有总预算的计划执行：
@@ -92,6 +120,10 @@ let results = catalog.expand_batch(jobs, reject_unused=true,
 ```
 
 失败包含请求 `index`、目录 `name` 和原始错误。总输入预算包含请求模板名与绑定名字/值。每项预算和整批预算同时生效，空批次也会校验选项。
+
+目录另提供 `audit(policy, max_findings?)` 静态审计、`inspect_requests(jobs, ...)` 绑定契约检查和 `diff_contract(newer)` 详细升级对比。`inspect_requests` 返回全部请求的独立问题，不把可选遗漏当作错误；输出是否超限仍由 measure_batch/expand_batch 验证。单独的 `Template.check_contract` 同样可收集业务契约问题。
+
+审计发现默认最多 256 条，超过时返回 FindingLimit，不会返回“部分结果但检查通过”。请求审计将 required 名字计入输入预算：每项变量和 required 共用总码点预算，required 数量另受 max_bindings 限制；整批还计入模板名。空目录/空请求也校验预算。旧无界 `audit` 保持兼容，新代码可选 `audit_with_limit`。
 
 ## 验证与当前边界
 

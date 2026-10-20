@@ -296,11 +296,11 @@ pub fn PreparedRequest::call(
   command : String,
   variables_json : String,
 ) -> String {
-  if !["expand", "validate", "variables", "check", "measure", "trace"].contains(
-      command,
-    ) {
+  if ![
+      "expand", "validate", "variables", "check", "measure", "trace", "analyze",
+    ].contains(command) {
     return input_failure(
-      "InvalidCommand", "expected expand, validate, variables, check, measure, or trace",
+      "InvalidCommand", "expected expand, validate, variables, check, measure, trace, or analyze",
       "",
     )
   }
@@ -327,6 +327,9 @@ fn CompiledRequest::call(
     return success(
       Json::array(template.variables().map(Json::string)).stringify(),
     )
+  }
+  if command == "analyze" {
+    return success(analysis_json(template.analyze()).stringify())
   }
   if json_guard(variables_json, self.max_json, self.max_depth) is Some(code) {
     return input_failure(code, "variables JSON exceeds budget", "")

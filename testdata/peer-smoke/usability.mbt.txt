@@ -32,3 +32,16 @@
     Ok(s) => println("jsj.selective_required=" + s)
     Err(e) => println("jsj.selective_required=" + e.code())
   }
+  let op = @ours.parse("{x:2}{+x}{?tags*}").unwrap().variable_profiles()[0]
+  let jp = @jsj.parse("{x:2}{+x}{?tags*}").unwrap().variable_profiles()[0]
+  println("ours.profile=" + op.occurrences.to_string() + "," + op.scalar_only.to_string() + "," + op.uses_reserved.to_string())
+  println("jsj.profile=" + jp.occurrences.to_string() + "," + jp.scalar_only.to_string() + "," + jp.uses_reserved.to_string())
+  let prefix_before = @ours.parse("{x:2}").unwrap()
+  let prefix_after = @ours.parse("{x:3}").unwrap()
+  let prefix_vars = @ours.Variables::from_entries([("x", @ours.Scalar("abcd"))]).unwrap()
+  println("ours.prefix_change=" + prefix_before.diff_contract(prefix_after).variable_changes[0].prefixes_changed.to_string())
+  println("ours.prefix_outputs=" + prefix_before.expand(prefix_vars).unwrap() + "," + prefix_after.expand(prefix_vars).unwrap())
+  let jp_before = @jsj.parse("{x:2}").unwrap()
+  let jp_after = @jsj.parse("{x:3}").unwrap()
+  println("jsj.prefix_flag=" + jp_before.diff_contract(jp_after).has_flagged_changes().to_string())
+  println("jsj.prefix_outputs=" + jp_before.expand([("x", @jsj.Scalar("abcd"))]).unwrap() + "," + jp_after.expand([("x", @jsj.Scalar("abcd"))]).unwrap())

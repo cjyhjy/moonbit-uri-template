@@ -72,6 +72,6 @@ GitHub v0.1.1 已发布附件 `moonbit-uri-template-0.1.1.zip`，公开 SHA-256 
 
 ## 2026-10-20 候选版扩展验收
 
-本轮最新报告取代前文候选版测试数：JS、wasm、wasm-gc、Native 各 305 项通过；原 CLI 48 项、项目工作流及下游离线 14 项、Node SDK 6 项。源码归档独立消费者验证四后端的新计量/批量/目录接口。分发包解压验证同一组 68 项 Node 测试；npm tarball 另经独立离线安装、运行与 TypeScript 正反例检查。
+本轮最新报告取代前文候选版测试数：JS、wasm、wasm-gc、Native 各 313 项通过；CLI 49 项、项目工作流及下游离线 14 项、Node SDK 8 项。源码归档独立消费者验证四后端的计量/批量/目录、画像/差异和审计接口。分发包解压验证同一组 71 项 Node 测试；npm tarball 另经独立离线安装、运行与 TypeScript 正反例检查。
 
 真实客户端从全新解压目录运行，9 个 GitHub 请求的证据见 `reports/github-integration-portable-live.json`；主动故障注入单独见 `reports/integration-faults.json`。候选版的源码摘要与分发摘要必须和对应报告一致。复审材料入口见 RESUBMISSION.md。这些报告生成于源码提交前，保留当时 HEAD；正式发行、远端 CI、更新表单和发送邮件的状态应分别核对，不得从本地验收或源码推送推定完成。

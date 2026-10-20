@@ -27,6 +27,7 @@ pub fn InputError::to_repr(Self) -> @debug.Repr
 
 type PreparedRequest
 pub fn PreparedRequest::call(Self, String, String) -> String
+pub fn PreparedRequest::compare(Self, Self) -> String
 
 // Type aliases
 

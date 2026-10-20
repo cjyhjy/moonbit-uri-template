@@ -1,14 +1,16 @@
-✔ compiled SDK preserves required contract and reusable immutable options (5.373542ms)
-✔ compilation errors have useful locations and unknown contracts fail early (0.335292ms)
-✔ JS values cannot silently disappear or invoke getters during serialization (0.972334ms)
-✔ SDK batches enforce atomic budgets with an indexed error (0.339792ms)
-✔ prepared requireAll remains stable across check measure trace and repeated calls (3.649458ms)
-✔ SDK rejects excessive snapshot text before handing input to the core (17.180584ms)
-ℹ tests 6
+✔ analysis keeps source occurrences and comparison explains modifier changes (4.392083ms)
+✔ SDK comparison includes required unused and runtime budget changes (0.815041ms)
+✔ compiled SDK preserves required contract and reusable immutable options (2.703208ms)
+✔ compilation errors have useful locations and unknown contracts fail early (0.258042ms)
+✔ JS values cannot silently disappear or invoke getters during serialization (0.949ms)
+✔ SDK batches enforce atomic budgets with an indexed error (0.319792ms)
+✔ prepared requireAll remains stable across check measure trace and repeated calls (3.460083ms)
+✔ SDK rejects excessive snapshot text before handing input to the core (16.820458ms)
+ℹ tests 8
 ℹ suites 0
-ℹ pass 6
+ℹ pass 8
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 66.197666
+ℹ duration_ms 70.344708

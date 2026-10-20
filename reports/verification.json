@@ -1,18 +1,18 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-20T10:14:56.484015+00:00",
-  "git_head": "f28df2f03bb4a34bef0c6aaf065ecfe81b67c218",
+  "verification_started_at_utc": "2026-10-20T10:40:39.790744+00:00",
+  "git_head": "63caa70657fc9b53bf8ce49d16ff00de62687cbe",
   "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-20T10:14:56.903310+00:00",
+  "verified_at_utc": "2026-10-20T10:40:40.191825+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "966da70bcc838c8c5a494424634c81cbb512067b1129ad7c05d3ae71f4c175bc",
+  "source_sha256": "241d4577ed6bd1339207962678e8c5eff6c70418632e5263f588ce52b817064b",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
-      "total": 305,
-      "passed": 305,
+      "total": 313,
+      "passed": 313,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -324,8 +324,8 @@
       ]
     },
     "wasm": {
-      "total": 305,
-      "passed": 305,
+      "total": 313,
+      "passed": 313,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -637,8 +637,8 @@
       ]
     },
     "wasm-gc": {
-      "total": 305,
-      "passed": 305,
+      "total": 313,
+      "passed": 313,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -950,8 +950,8 @@
       ]
     },
     "native": {
-      "total": 305,
-      "passed": 305,
+      "total": 313,
+      "passed": 313,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -1265,8 +1265,8 @@
   },
   "fixture_literal_roundtrips": 10,
   "cli": {
-    "total": 48,
-    "passed": 48,
+    "total": 49,
+    "passed": 49,
     "failed": 0
   },
   "workflow": {
@@ -1276,14 +1276,14 @@
     "network": "offline only; live evidence is separate"
   },
   "sdk": {
-    "total": 6,
-    "passed": 6,
+    "total": 8,
+    "passed": 8,
     "failed": 0,
     "package": {
       "status": "passed",
       "artifact": "_build/releases/moonbit-uri-template-0.2.0.tgz",
-      "sha256": "70fba08d2e341e795be7c78eef0ae6ac7fa68f54164384968c5e5d97afd585b2",
-      "sourceSha256": "966da70bcc838c8c5a494424634c81cbb512067b1129ad7c05d3ae71f4c175bc",
+      "sha256": "f2e30a6e7ddb4c5b32236fb48619a004c8650621a4d72a60e5c9d06e3e4fd143",
+      "sourceSha256": "241d4577ed6bd1339207962678e8c5eff6c70418632e5263f588ce52b817064b",
       "node": "v26.7.0",
       "typescript": "Version 7.0.2",
       "cleanLocalInstall": true,
@@ -1294,7 +1294,8 @@
         "compiled reuse",
         "batch",
         "contract failure",
-        "installed CLI",
+        "analysis and comparison",
+        "installed CLI comparison",
         "TypeScript positive and expected-error cases"
       ],
       "files": [
@@ -1380,8 +1381,10 @@
       "adapter/json/moon.pkg",
       "adapter/json/adapter_test.mbt",
       "adapter/json/pkg.generated.mbti",
+      "adapter/json/analysis.mbt",
       "adapter/json/adapter.mbt",
       "adapter/json/request.mbt",
+      "catalog_audit.mbt",
       "docs/PROPOSAL_DRAFT.md",
       "docs/PROJECT_PLAN.md",
       "docs/CONFORMANCE.md",
@@ -1396,6 +1399,7 @@
       "docs/TEST_STRATEGY.md",
       "docs/RELEASE.md",
       "docs/RESEARCH.md",
+      "docs/OPTIMIZATION.md",
       "docs/PROPOSAL.md",
       "docs/REVIEW_EVIDENCE.md",
       "docs/ORGANIZER_EMAIL.txt",
@@ -1423,15 +1427,17 @@
       "examples/pkg.generated.mbti",
       "examples/users.json",
       "examples/resource.json",
+      "analysis_test.mbt",
       "advanced.mbt",
       "types.mbt",
+      "analysis.mbt",
       "conformance_test.mbt",
       "limits_test.mbt",
       "limits.mbt",
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "0f2fe4a2b6c126856cd7fe575ebe2c78681fbb9c6929f18e1e1c8169c9af7b49",
+    "sha256": "07b47c2930f727ba6d0521fb956ba9b5f5db50e006a25339ce0578336144ab24",
     "clean_downstream_backends": [
       "js",
       "wasm",

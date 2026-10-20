@@ -54,10 +54,45 @@ export class UriTemplateError extends Error implements Diagnostic {
   constructor(detail: Diagnostic, source?: string);
 }
 export type ExpansionResult = { ok: true; value: string } | { ok: false; error: UriTemplateError };
+export interface Span { start: number; end: number; }
+export interface VariableUse {
+  name: string; operator: string; prefix: number | null; explode: boolean;
+  expressionIndex: number; span: Span;
+}
+export interface VariableProfile {
+  name: string; occurrences: number; firstSpan: Span; lastSpan: Span;
+  scalarOnly: boolean; usesExplode: boolean; usesReserved: boolean;
+  usesQuery: boolean; usesFragment: boolean; maximumPrefix: number | null;
+  operators: string[]; prefixes: number[]; uses: VariableUse[];
+}
+export interface TemplateAnalysis {
+  offsetUnit: 'unicode-code-point'; maxLevel: number;
+  hasReservedExpansion: boolean; hasFragment: boolean;
+  expressions: Array<{ operator: string; level: number; span: Span; variables: string[] }>;
+  uses: VariableUse[]; profiles: VariableProfile[];
+}
+export interface TemplateComparison {
+  offsetUnit: 'unicode-code-point'; sourceChanged: boolean; requiresReview: boolean;
+  addedVariables: string[]; removedVariables: string[]; becameScalarOnly: string[];
+  becameCompositeCapable: string[]; newRepeatedVariables: string[];
+  oldLevel: number; newLevel: number; reservedAdded: boolean; fragmentAdded: boolean;
+  literalsChanged: boolean; expressionLayoutChanged: boolean;
+  variableChanges: Array<{
+    name: string; before: VariableProfile; after: VariableProfile;
+    operatorsChanged: boolean; prefixesChanged: boolean; explodeChanged: boolean;
+    occurrencesChanged: boolean; usesChanged: boolean;
+  }>;
+  addedRequired: string[]; removedRequired: string[];
+  rejectUnusedBefore: boolean; rejectUnusedAfter: boolean;
+  budgetChanges: Array<{ name: string; before: number; after: number; tightened: boolean }>;
+}
 export class CompiledTemplate<N extends string = string, R extends N = never> {
   private constructor();
   readonly source: string;
   readonly variables: readonly N[];
+  analyze(): TemplateAnalysis;
+  /** Review aid; does not certify URL equivalence or application compatibility. */
+  compare(newer: CompiledTemplate<any, any>): TemplateComparison;
   expand(variables: Bindings<N, R>): string;
   tryExpand(variables: Bindings<N, R>): ExpansionResult;
   measure(variables: Bindings<N, R>): number;

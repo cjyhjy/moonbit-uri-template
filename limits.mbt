@@ -64,7 +64,7 @@ fn exceeds_codepoints(text : String, limit : Int32) -> Bool {
 fn check_input_budget(
   vars : Variables,
   limits : ExpansionLimits,
-) -> Result[Unit, TemplateError] {
+) -> Result[Int32, TemplateError] {
   if limits.max_bindings < 0 ||
     limits.max_members < 0 ||
     limits.max_value_codepoints < 0 ||
@@ -131,7 +131,7 @@ fn check_input_budget(
       }
     }
   }
-  Ok(())
+  Ok(total)
 }
 
 ///|

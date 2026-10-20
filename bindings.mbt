@@ -127,8 +127,22 @@ fn Template::validate_bindings(
     Ok(_) => ()
   }
   let report = self.check_bindings(variables)
+  let referenced : Map[String, Bool] = Map([])
+  let absent : Map[String, BindingIssue] = Map([])
+  let empty : Map[String, BindingIssue] = Map([])
+  if !required.is_empty() {
+    for name in report.referenced {
+      referenced[name] = true
+    }
+    for issue in report.missing {
+      absent[issue.name] = issue
+    }
+    for issue in report.omitted {
+      empty[issue.name] = issue
+    }
+  }
   for name in required {
-    if !report.referenced.contains(name) {
+    if !referenced.contains(name) {
       return Err(
         problem(
           "UnknownRequired", "required name is not referenced by the template", 0,
@@ -136,29 +150,25 @@ fn Template::validate_bindings(
         ),
       )
     }
-    for issue in report.missing {
-      if issue.name == name {
-        return Err(
-          problem(
-            "MissingBinding",
-            "required variable is not bound",
-            issue.span.start,
-            issue.span.end,
-          ),
-        )
-      }
+    if absent.get(name) is Some(issue) {
+      return Err(
+        problem(
+          "MissingBinding",
+          "required variable is not bound",
+          issue.span.start,
+          issue.span.end,
+        ),
+      )
     }
-    for issue in report.omitted {
-      if issue.name == name {
-        return Err(
-          problem(
-            "OmittedBinding",
-            "required collection is empty and would be omitted",
-            issue.span.start,
-            issue.span.end,
-          ),
-        )
-      }
+    if empty.get(name) is Some(issue) {
+      return Err(
+        problem(
+          "OmittedBinding",
+          "required collection is empty and would be omitted",
+          issue.span.start,
+          issue.span.end,
+        ),
+      )
     }
   }
   if reject_unused && !report.unused.is_empty() {
