@@ -81,9 +81,14 @@ test "Unicode literal encoding and prefix boundaries" {
   )
   assert_eq(@lib.expand("{x:3}", vars).unwrap(), "%E4%B8%AD%F0%9F%98%80e")
   vars.set("x", @lib.Scalar("%E4%B8%AD%F0%9F%98%80abc"))
-  assert_eq(@lib.expand("{+x:1}", vars).unwrap(), "%E4%B8%AD")
-  assert_eq(@lib.expand("{+x:2}", vars).unwrap(), "%E4%B8%AD%F0%9F%98%80")
-  assert_eq(@lib.expand("{x:1}", vars).unwrap(), "%25E4%25B8%25AD")
+  // Prefix counts raw code points; a cut triplet's `%` is encoded, valid
+  // triplets pass through reserved expansion (matches Python uritemplate).
+  assert_eq(@lib.expand("{+x:1}", vars).unwrap(), "%25")
+  assert_eq(@lib.expand("{+x:2}", vars).unwrap(), "%25E")
+  assert_eq(@lib.expand("{+x:9}", vars).unwrap(), "%E4%B8%AD")
+  assert_eq(@lib.expand("{+x:21}", vars).unwrap(), "%E4%B8%AD%F0%9F%98%80")
+  assert_eq(@lib.expand("{x:1}", vars).unwrap(), "%25")
+  assert_eq(@lib.expand("{x:3}", vars).unwrap(), "%25E4")
 }
 
 ///|
@@ -224,4 +229,14 @@ test "undefined composites are omitted before prefix validation" {
     @lib.expand("{keys:2}", vars).unwrap_err().code,
     "PrefixOnComposite",
   )
+}
+
+///|
+test "reserved operators get their own diagnostic" {
+  for source in ["{=x}", "{,x}", "{!x}", "{@x}", "{|x}"] {
+    let error = @lib.parse(source).unwrap_err()
+    assert_eq(error.code, "ReservedOperator")
+    assert_eq(error.span.start, 1)
+    assert_eq(error.span.end, 2)
+  }
 }

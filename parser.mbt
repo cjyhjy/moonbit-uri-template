@@ -173,6 +173,19 @@ fn parse_impl(
         }) {
         op = cs[i]
         i = i + 1
+      } else if i < cs.length() &&
+        (match cs[i] {
+          '=' | ',' | '!' | '@' | '|' => true
+          _ => false
+        }) {
+        return Err(
+          problem(
+            "ReservedOperator",
+            "operator '\{cs[i]}' is reserved by RFC 6570 and not supported",
+            i,
+            i + 1,
+          ),
+        )
       }
       let specs : Array[VarSpec] = []
       let mut spec_start = i

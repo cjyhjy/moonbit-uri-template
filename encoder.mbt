@@ -89,53 +89,26 @@ fn encode_chars(
 }
 
 ///|
-fn hex_value(c : Char) -> Int32 {
-  if c >= '0' && c <= '9' {
-    c.to_int() - 48
-  } else if c >= 'A' && c <= 'F' {
-    c.to_int() - 55
-  } else {
-    c.to_int() - 87
-  }
-}
-
-///|
-fn pct_byte(cs : Array[Char], i : Int32) -> Int32 {
-  hex_value(cs[i + 1]) * 16 + hex_value(cs[i + 2])
-}
-
-// Count decoded Unicode code points, preserving existing percent triplets.
-
-///|
+/// First `length` code points of the raw value, before any encoding. This is
+/// what the reference implementations do for every operator; a percent
+/// triplet cut short by the limit is then encoded as a stray `%`.
 fn prefix(value : String, length : Int32) -> String {
-  let cs = value.to_array()
-  let mut i = 0
+  let mut index = 0
   let mut count = 0
-  while i < cs.length() && count < length {
-    if pct_at(cs, i, cs.length()) {
-      let b = pct_byte(cs, i)
-      let width = if b >= 0xC2 && b <= 0xDF {
-        2
-      } else if b >= 0xE0 && b <= 0xEF {
-        3
-      } else if b >= 0xF0 && b <= 0xF4 {
-        4
-      } else {
-        1
+  while index < value.length() && count < length {
+    let unit = value[index].to_int()
+    if unit >= 0xD800 && unit <= 0xDBFF && index + 1 < value.length() {
+      let next = value[index + 1].to_int()
+      if next >= 0xDC00 && next <= 0xDFFF {
+        index = index + 1
       }
-      let mut consumed = 1
-      while consumed < width && pct_at(cs, i + consumed * 3, cs.length()) {
-        let next = pct_byte(cs, i + consumed * 3)
-        if next < 0x80 || next > 0xBF {
-          break
-        }
-        consumed = consumed + 1
-      }
-      i = i + consumed * 3
-    } else {
-      i = i + 1
     }
+    index = index + 1
     count = count + 1
   }
-  chars_text(cs, 0, i)
+  if index == value.length() {
+    value
+  } else {
+    value.unsafe_substring(start=0, end=index)
+  }
 }

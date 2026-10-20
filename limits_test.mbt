@@ -97,7 +97,7 @@ test "output prefix percent escapes literals and failed call isolation" {
   let vars = @lib.Variables::from_entries([
     ("x", @lib.Scalar("%F0%9F%98%80rest")),
   ]).unwrap()
-  let t = @lib.parse("{+x:1}").unwrap()
+  let t = @lib.parse("{+x:12}").unwrap()
   assert_eq(
     t
     .expand_with_limits(vars, @lib.ExpansionLimits::new(max_output_bytes=12))

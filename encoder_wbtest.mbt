@@ -1,11 +1,11 @@
 ///|
-test "encoded prefix follows decoded code points without splitting octets" {
+test "prefix counts raw code points before encoding" {
   let cases = [
-    ("%2fabc", 1, "%2f"),
-    ("%C3%a9z", 1, "%C3%a9"),
-    ("%e4%b8%adz", 1, "%e4%b8%ad"),
-    ("%f0%9f%98%80z", 1, "%f0%9f%98%80"),
-    ("a%C3%A9z", 2, "a%C3%A9"),
+    ("%2fabc", 1, "%"),
+    ("%2fabc", 3, "%2f"),
+    ("%C3%a9z", 4, "%C3%"),
+    ("a%C3%A9z", 2, "a%"),
+    ("😀😀x", 1, "😀"),
     ("éz", 1, "e"),
     ("中文😀", 9999, "中文😀"),
   ]
