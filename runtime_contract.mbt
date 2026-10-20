@@ -18,6 +18,7 @@ struct ContractTemplate {
   template : Template
   rules : Array[BindingRule]
   required : Array[String]
+  required_sites : Array[BindingIssue]
   reject_unused : Bool
   spans : Map[String, Span]
 }
@@ -86,11 +87,14 @@ pub fn Template::with_contract(
     }
     kinds[rule.name] = rule.kind
   }
+  let required_sites : Array[BindingIssue] = []
   for name in required {
-    if !spans.contains(name) {
-      return Err(
-        problem("UnknownRequired", "required name is not referenced", 0, 0),
-      )
+    match spans.get(name) {
+      Some(span) => required_sites.push({ name, span, })
+      None =>
+        return Err(
+          problem("UnknownRequired", "required name is not referenced", 0, 0),
+        )
     }
   }
   let captured = rules.copy()
@@ -105,6 +109,7 @@ pub fn Template::with_contract(
     template: self,
     rules: captured,
     required: required.copy(),
+    required_sites,
     reject_unused,
     spans,
   })
@@ -148,12 +153,46 @@ pub fn ContractTemplate::validate(
       )
     }
   }
-  self.template.validate_bindings(
-    variables,
-    self.required,
-    self.reject_unused,
-    limits,
-  )
+  // Required names and every prefix shape were resolved at compilation. Avoid
+  // allocating a full diagnostic report (and scanning input a second time) on
+  // the success path. Preserve shape-before-presence-before-unused precedence.
+  for site in self.required_sites {
+    match variables.values.get(site.name) {
+      None =>
+        return Err(
+          problem(
+            "MissingBinding",
+            "required variable is not bound",
+            site.span.start,
+            site.span.end,
+          ),
+        )
+      Some(value) =>
+        if !defined(value) {
+          return Err(
+            problem(
+              "OmittedBinding",
+              "required collection is empty and would be omitted",
+              site.span.start,
+              site.span.end,
+            ),
+          )
+        }
+    }
+  }
+  if self.reject_unused {
+    for name in variables.values.keys() {
+      if !self.spans.contains(name) {
+        return Err(
+          problem(
+            "UnusedBinding", "bindings include names not referenced by the template",
+            0, 0,
+          ),
+        )
+      }
+    }
+  }
+  Ok(())
 }
 
 ///|

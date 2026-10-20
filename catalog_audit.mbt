@@ -41,20 +41,16 @@ fn check_contract_input(
     )
   }
   for name in required {
-    let mut individual = limits.max_value_codepoints
-    for _ in name.iter() {
-      if individual == 0 {
-        return Err(problem("ValueLimit", "required name exceeds budget", 0, 0))
-      }
-      if total == 0 {
-        return Err(
-          problem(
-            "TotalValueLimit", "bindings and required names exceed budget", 0, 0,
-          ),
-        )
-      }
-      individual = individual - 1
-      total = total - 1
+    total = consume_input_text(name, limits.max_value_codepoints, total)
+    if total == -1 {
+      return Err(problem("ValueLimit", "required name exceeds budget", 0, 0))
+    }
+    if total == -2 {
+      return Err(
+        problem(
+          "TotalValueLimit", "bindings and required names exceed budget", 0, 0,
+        ),
+      )
     }
   }
   Ok(())

@@ -1,0 +1,2091 @@
+{
+  "status": "passed",
+  "measuredAt": "2026-10-20T12:22:00.150008+00:00",
+  "sourceSha256": "80b9b44c7ad6b32a8d7052437d13073a9ac2dedb9f143f0927a695423b7c7aeb",
+  "gitHead": "7ffcefa91a2d020cd681796e09f0c60fbc053427",
+  "generatorSha256": "6c1b82fa4759080e80ba121c4636cd68db96137ab5ee7103e86921c205bf7873",
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "machine": "arm64",
+  "node": "v26.7.0",
+  "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
+  "peers": {
+    "magic": "8fecb90c2190e4715935b5f4ea0937b0b5c8d08b",
+    "jsj": "ee7d3be94e80459d5e4f2fc9eafcc8b1a11ae3df"
+  },
+  "method": {
+    "rounds": 5,
+    "warmupsPerProcess": 3,
+    "warmupIterations": 50,
+    "elapsedMs": "Monotonic time inside each fresh release executable, setup excluded.",
+    "peakRssBytes": "Whole child process peak, including setup/warmups/runtime. Not library allocation or timed-window RSS.",
+    "processWallMs": "Fresh executable startup plus setup, warmup and measured loop; compiler excluded.",
+    "execution": "One peer per executable; rounds rotate peer order; sequential execution.",
+    "semantics": "Public bounded APIs retain each library's checks. Limits and input representations differ.",
+    "coverage": "One host; no claim of all-platform superiority. Magic lacks matching public contract/session APIs."
+  },
+  "samples": [
+    {
+      "target": "js",
+      "scenario": "variables512",
+      "iterations": 500,
+      "expectedChecksum": 256000,
+      "peers": {
+        "ours": {
+          "binarySha256": "c47eaade5036930a3fb6e8789ed7b2183e66b38a10c5ff59a1cb1183ebefff3e",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_ours_variables512/resources_ours_variables512.js"
+          ],
+          "raw": [
+            {
+              "checksum": 256000,
+              "elapsedMs": 15.064583000000002,
+              "processWallMs": 52.446875000000006,
+              "peakRssBytes": 62193664
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 15.174000000000003,
+              "processWallMs": 55.813292,
+              "peakRssBytes": 61587456
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 15.749958,
+              "processWallMs": 56.57033400000001,
+              "peakRssBytes": 62029824
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 14.357041000000002,
+              "processWallMs": 54.553666,
+              "peakRssBytes": 61849600
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 14.584708999999997,
+              "processWallMs": 52.34408299999999,
+              "peakRssBytes": 62193664
+            }
+          ],
+          "elapsedMs": {
+            "median": 15.064583000000002,
+            "min": 14.357041000000002,
+            "max": 15.749958
+          },
+          "processWallMs": {
+            "median": 54.553666,
+            "min": 52.34408299999999,
+            "max": 56.57033400000001
+          },
+          "peakRssBytes": {
+            "median": 62029824,
+            "min": 61587456,
+            "max": 62193664
+          }
+        },
+        "magic": {
+          "binarySha256": "da1089e2a1fb861a1b456e7d334eb4ccccd0d9ff16a2ca91d2487a7d379c3515",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_magic_variables512/resources_magic_variables512.js"
+          ],
+          "raw": [
+            {
+              "checksum": 256000,
+              "elapsedMs": 51.566041999999996,
+              "processWallMs": 98.687875,
+              "peakRssBytes": 66846720
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 51.89533300000001,
+              "processWallMs": 98.367708,
+              "peakRssBytes": 66895872
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 51.284457999999994,
+              "processWallMs": 107.19616699999999,
+              "peakRssBytes": 66879488
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 52.86299999999999,
+              "processWallMs": 102.055584,
+              "peakRssBytes": 66895872
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 51.37762500000001,
+              "processWallMs": 100.506834,
+              "peakRssBytes": 66928640
+            }
+          ],
+          "elapsedMs": {
+            "median": 51.566041999999996,
+            "min": 51.284457999999994,
+            "max": 52.86299999999999
+          },
+          "processWallMs": {
+            "median": 100.506834,
+            "min": 98.367708,
+            "max": 107.19616699999999
+          },
+          "peakRssBytes": {
+            "median": 66895872,
+            "min": 66846720,
+            "max": 66928640
+          }
+        },
+        "jsj": {
+          "binarySha256": "dc45a99d9d295cd14703231f0128d8277250ccfbf7f1243e27bdc0cb2bdde85c",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_jsj_variables512/resources_jsj_variables512.js"
+          ],
+          "raw": [
+            {
+              "checksum": 256000,
+              "elapsedMs": 58.26499999999999,
+              "processWallMs": 110.71841699999999,
+              "peakRssBytes": 68829184
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 57.34395800000001,
+              "processWallMs": 112.829292,
+              "peakRssBytes": 69091328
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 59.064791,
+              "processWallMs": 116.11320900000001,
+              "peakRssBytes": 71925760
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 58.97250000000001,
+              "processWallMs": 115.171667,
+              "peakRssBytes": 69304320
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 59.973167,
+              "processWallMs": 115.04499999999999,
+              "peakRssBytes": 71909376
+            }
+          ],
+          "elapsedMs": {
+            "median": 58.97250000000001,
+            "min": 57.34395800000001,
+            "max": 59.973167
+          },
+          "processWallMs": {
+            "median": 115.04499999999999,
+            "min": 110.71841699999999,
+            "max": 116.11320900000001
+          },
+          "peakRssBytes": {
+            "median": 69304320,
+            "min": 68829184,
+            "max": 71925760
+          }
+        }
+      }
+    },
+    {
+      "target": "js",
+      "scenario": "contract512",
+      "iterations": 1000,
+      "expectedChecksum": 512000,
+      "peers": {
+        "ours": {
+          "binarySha256": "5bef595171856af31a0df9c264e010b368e461e4baa602c80bdfd7eaca54688f",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_ours_contract512/resources_ours_contract512.js"
+          ],
+          "raw": [
+            {
+              "checksum": 512000,
+              "elapsedMs": 27.734541999999998,
+              "processWallMs": 67.79083299999999,
+              "peakRssBytes": 62275584
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 27.523042,
+              "processWallMs": 67.38412499999998,
+              "peakRssBytes": 62193664
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 27.738167,
+              "processWallMs": 67.534916,
+              "peakRssBytes": 62062592
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 27.238917,
+              "processWallMs": 67.11587499999999,
+              "peakRssBytes": 62341120
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 27.14525,
+              "processWallMs": 66.226083,
+              "peakRssBytes": 62210048
+            }
+          ],
+          "elapsedMs": {
+            "median": 27.523042,
+            "min": 27.14525,
+            "max": 27.738167
+          },
+          "processWallMs": {
+            "median": 67.38412499999998,
+            "min": 66.226083,
+            "max": 67.79083299999999
+          },
+          "peakRssBytes": {
+            "median": 62210048,
+            "min": 62062592,
+            "max": 62341120
+          }
+        },
+        "jsj": {
+          "binarySha256": "9c74830973ee20ab6abe2a1ab2dc0d580aaceb828355684a10c17de4f9e90092",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_jsj_contract512/resources_jsj_contract512.js"
+          ],
+          "raw": [
+            {
+              "checksum": 512000,
+              "elapsedMs": 32.519875,
+              "processWallMs": 73.575792,
+              "peakRssBytes": 66879488
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 31.713292000000003,
+              "processWallMs": 72.916041,
+              "peakRssBytes": 68009984
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 31.427458,
+              "processWallMs": 72.60662500000001,
+              "peakRssBytes": 68124672
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 32.830625,
+              "processWallMs": 72.88133300000001,
+              "peakRssBytes": 68468736
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 32.820583,
+              "processWallMs": 73.248041,
+              "peakRssBytes": 68976640
+            }
+          ],
+          "elapsedMs": {
+            "median": 32.519875,
+            "min": 31.427458,
+            "max": 32.830625
+          },
+          "processWallMs": {
+            "median": 72.916041,
+            "min": 72.60662500000001,
+            "max": 73.575792
+          },
+          "peakRssBytes": {
+            "median": 68124672,
+            "min": 66879488,
+            "max": 68976640
+          }
+        }
+      }
+    },
+    {
+      "target": "js",
+      "scenario": "session200-one",
+      "iterations": 1000,
+      "expectedChecksum": 201000,
+      "peers": {
+        "ours": {
+          "binarySha256": "f318d20e30e86ed254d00f8d692f0f1bf49c4faed55036d158a6301083989b2e",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_ours_session200_one/resources_ours_session200_one.js"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.4115,
+              "processWallMs": 42.981708,
+              "peakRssBytes": 65142784
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.287958,
+              "processWallMs": 41.978125000000006,
+              "peakRssBytes": 65224704
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.344541999999997,
+              "processWallMs": 42.292875,
+              "peakRssBytes": 65847296
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.397209,
+              "processWallMs": 43.04875,
+              "peakRssBytes": 65306624
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.4743330000000014,
+              "processWallMs": 41.435292,
+              "peakRssBytes": 65273856
+            }
+          ],
+          "elapsedMs": {
+            "median": 6.397209,
+            "min": 6.287958,
+            "max": 6.4743330000000014
+          },
+          "processWallMs": {
+            "median": 42.292875,
+            "min": 41.435292,
+            "max": 43.04875
+          },
+          "peakRssBytes": {
+            "median": 65273856,
+            "min": 65142784,
+            "max": 65847296
+          }
+        },
+        "jsj": {
+          "binarySha256": "a8812ac60f1af36896f7aece999cef2823eccc71ae2946d8e518c04b6313acdb",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_jsj_session200_one/resources_jsj_session200_one.js"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 10.388374999999996,
+              "processWallMs": 47.52225,
+              "peakRssBytes": 63225856
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 10.893209000000002,
+              "processWallMs": 48.231459,
+              "peakRssBytes": 63193088
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 11.504291000000002,
+              "processWallMs": 48.92766700000001,
+              "peakRssBytes": 62930944
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 11.027625,
+              "processWallMs": 47.478209,
+              "peakRssBytes": 62996480
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 10.447375000000001,
+              "processWallMs": 46.10912499999999,
+              "peakRssBytes": 63373312
+            }
+          ],
+          "elapsedMs": {
+            "median": 10.893209000000002,
+            "min": 10.388374999999996,
+            "max": 11.504291000000002
+          },
+          "processWallMs": {
+            "median": 47.52225,
+            "min": 46.10912499999999,
+            "max": 48.92766700000001
+          },
+          "peakRssBytes": {
+            "median": 63193088,
+            "min": 62930944,
+            "max": 63373312
+          }
+        }
+      }
+    },
+    {
+      "target": "js",
+      "scenario": "session200-all",
+      "iterations": 200,
+      "expectedChecksum": 80000,
+      "peers": {
+        "ours": {
+          "binarySha256": "26769d1d7541c957d8c4d6faaa3793411af13b3acba0dcef5a678bfe02ada379",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_ours_session200_all/resources_ours_session200_all.js"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 32.245791999999994,
+              "processWallMs": 98.394,
+              "peakRssBytes": 79904768
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 32.81270800000001,
+              "processWallMs": 101.93970900000001,
+              "peakRssBytes": 83394560
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 32.07470800000001,
+              "processWallMs": 100.28641599999999,
+              "peakRssBytes": 84819968
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 32.401832999999996,
+              "processWallMs": 99.69924999999999,
+              "peakRssBytes": 79151104
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 32.692791,
+              "processWallMs": 100.311292,
+              "peakRssBytes": 80248832
+            }
+          ],
+          "elapsedMs": {
+            "median": 32.401832999999996,
+            "min": 32.07470800000001,
+            "max": 32.81270800000001
+          },
+          "processWallMs": {
+            "median": 100.28641599999999,
+            "min": 98.394,
+            "max": 101.93970900000001
+          },
+          "peakRssBytes": {
+            "median": 80248832,
+            "min": 79151104,
+            "max": 84819968
+          }
+        },
+        "jsj": {
+          "binarySha256": "7255b8f27012a0ea93ea7bfa1931b5c2a3b0d680a436dc60a81df798f379037b",
+          "command": [
+            "/opt/homebrew/bin/node",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/js/release/build/audit/resources_jsj_session200_all/resources_jsj_session200_all.js"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 31.518125000000005,
+              "processWallMs": 97.96025,
+              "peakRssBytes": 73580544
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 32.042209,
+              "processWallMs": 98.785708,
+              "peakRssBytes": 73613312
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 32.11075,
+              "processWallMs": 97.897875,
+              "peakRssBytes": 73875456
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 33.383458,
+              "processWallMs": 99.40616700000001,
+              "peakRssBytes": 72024064
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 33.676500000000004,
+              "processWallMs": 101.551334,
+              "peakRssBytes": 73596928
+            }
+          ],
+          "elapsedMs": {
+            "median": 32.11075,
+            "min": 31.518125000000005,
+            "max": 33.676500000000004
+          },
+          "processWallMs": {
+            "median": 98.785708,
+            "min": 97.897875,
+            "max": 101.551334
+          },
+          "peakRssBytes": {
+            "median": 73596928,
+            "min": 72024064,
+            "max": 73875456
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm",
+      "scenario": "variables512",
+      "iterations": 500,
+      "expectedChecksum": 256000,
+      "peers": {
+        "ours": {
+          "binarySha256": "bad01584c4d314d3395827e705b68a0aa1e646842fd822dee152820f800d7ba7",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_ours_variables512/resources_ours_variables512.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 256000,
+              "elapsedMs": 34.117666,
+              "processWallMs": 57.331833,
+              "peakRssBytes": 22085632
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 32.787584,
+              "processWallMs": 55.102875000000004,
+              "peakRssBytes": 21610496
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 33.941125,
+              "processWallMs": 56.17491700000001,
+              "peakRssBytes": 21659648
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 33.82325,
+              "processWallMs": 55.680499999999995,
+              "peakRssBytes": 21610496
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 32.822875,
+              "processWallMs": 54.909167,
+              "peakRssBytes": 21692416
+            }
+          ],
+          "elapsedMs": {
+            "median": 33.82325,
+            "min": 32.787584,
+            "max": 34.117666
+          },
+          "processWallMs": {
+            "median": 55.680499999999995,
+            "min": 54.909167,
+            "max": 57.331833
+          },
+          "peakRssBytes": {
+            "median": 21659648,
+            "min": 21610496,
+            "max": 22085632
+          }
+        },
+        "magic": {
+          "binarySha256": "e6b46a52a3231c1b356a6498289799d7b78b9c0bc52eb1a7127060a287aa1feb",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_magic_variables512/resources_magic_variables512.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 256000,
+              "elapsedMs": 60.055542,
+              "processWallMs": 92.00804099999999,
+              "peakRssBytes": 16531456
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 60.625208,
+              "processWallMs": 93.23166699999999,
+              "peakRssBytes": 16580608
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 59.22775,
+              "processWallMs": 90.969542,
+              "peakRssBytes": 16302080
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 59.653917,
+              "processWallMs": 91.61241700000001,
+              "peakRssBytes": 16384000
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 58.586,
+              "processWallMs": 90.240167,
+              "peakRssBytes": 16465920
+            }
+          ],
+          "elapsedMs": {
+            "median": 59.653917,
+            "min": 58.586,
+            "max": 60.625208
+          },
+          "processWallMs": {
+            "median": 91.61241700000001,
+            "min": 90.240167,
+            "max": 93.23166699999999
+          },
+          "peakRssBytes": {
+            "median": 16465920,
+            "min": 16302080,
+            "max": 16580608
+          }
+        },
+        "jsj": {
+          "binarySha256": "a5cc7e5e75094ed01e3260b6c7ff3cf4cf086d33d5607feba9dac2c1bc08d6f9",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_jsj_variables512/resources_jsj_variables512.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 256000,
+              "elapsedMs": 101.316583,
+              "processWallMs": 147.667334,
+              "peakRssBytes": 21217280
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 98.517541,
+              "processWallMs": 144.39683300000002,
+              "peakRssBytes": 20250624
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 97.87979199999998,
+              "processWallMs": 143.659667,
+              "peakRssBytes": 20709376
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 98.626917,
+              "processWallMs": 145.21699999999998,
+              "peakRssBytes": 20430848
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 98.686833,
+              "processWallMs": 143.981167,
+              "peakRssBytes": 20709376
+            }
+          ],
+          "elapsedMs": {
+            "median": 98.626917,
+            "min": 97.87979199999998,
+            "max": 101.316583
+          },
+          "processWallMs": {
+            "median": 144.39683300000002,
+            "min": 143.659667,
+            "max": 147.667334
+          },
+          "peakRssBytes": {
+            "median": 20709376,
+            "min": 20250624,
+            "max": 21217280
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm",
+      "scenario": "contract512",
+      "iterations": 1000,
+      "expectedChecksum": 512000,
+      "peers": {
+        "ours": {
+          "binarySha256": "7fe27268b9feee92082523c0c0993a06c3552dfa2666416b20a1a2df1d61c196",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_ours_contract512/resources_ours_contract512.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 512000,
+              "elapsedMs": 38.815083,
+              "processWallMs": 56.534082999999995,
+              "peakRssBytes": 19087360
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 39.101583,
+              "processWallMs": 57.193958,
+              "peakRssBytes": 18956288
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 39.338208,
+              "processWallMs": 57.05050000000001,
+              "peakRssBytes": 19202048
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 39.3265,
+              "processWallMs": 57.577791999999995,
+              "peakRssBytes": 19251200
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 39.206625,
+              "processWallMs": 57.667834000000006,
+              "peakRssBytes": 19415040
+            }
+          ],
+          "elapsedMs": {
+            "median": 39.206625,
+            "min": 38.815083,
+            "max": 39.338208
+          },
+          "processWallMs": {
+            "median": 57.193958,
+            "min": 56.534082999999995,
+            "max": 57.667834000000006
+          },
+          "peakRssBytes": {
+            "median": 19202048,
+            "min": 18956288,
+            "max": 19415040
+          }
+        },
+        "jsj": {
+          "binarySha256": "15840b49134ef672a6eec1dcfb03e79f57fa49a577959173f3c5d34d5a0b8a59",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_jsj_contract512/resources_jsj_contract512.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 512000,
+              "elapsedMs": 52.383333,
+              "processWallMs": 73.45204100000001,
+              "peakRssBytes": 18563072
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 51.5925,
+              "processWallMs": 72.45212500000001,
+              "peakRssBytes": 18563072
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 51.74575,
+              "processWallMs": 72.76179099999999,
+              "peakRssBytes": 18612224
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 52.507458,
+              "processWallMs": 73.80708299999999,
+              "peakRssBytes": 18546688
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 52.367375,
+              "processWallMs": 73.83824999999999,
+              "peakRssBytes": 18563072
+            }
+          ],
+          "elapsedMs": {
+            "median": 52.367375,
+            "min": 51.5925,
+            "max": 52.507458
+          },
+          "processWallMs": {
+            "median": 73.45204100000001,
+            "min": 72.45212500000001,
+            "max": 73.83824999999999
+          },
+          "peakRssBytes": {
+            "median": 18563072,
+            "min": 18546688,
+            "max": 18612224
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm",
+      "scenario": "session200-one",
+      "iterations": 1000,
+      "expectedChecksum": 201000,
+      "peers": {
+        "ours": {
+          "binarySha256": "7720521d9351a547200611164ab749ee3a08ae459cd47fc38c337713d568e51e",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_ours_session200_one/resources_ours_session200_one.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 15.482917,
+              "processWallMs": 29.630083,
+              "peakRssBytes": 17678336
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 15.651417000000002,
+              "processWallMs": 29.376709,
+              "peakRssBytes": 17661952
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 15.434625,
+              "processWallMs": 29.855874999999997,
+              "peakRssBytes": 17645568
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 15.40175,
+              "processWallMs": 29.374917,
+              "peakRssBytes": 17661952
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 15.357875,
+              "processWallMs": 29.309083,
+              "peakRssBytes": 17678336
+            }
+          ],
+          "elapsedMs": {
+            "median": 15.434625,
+            "min": 15.357875,
+            "max": 15.651417000000002
+          },
+          "processWallMs": {
+            "median": 29.376709,
+            "min": 29.309083,
+            "max": 29.855874999999997
+          },
+          "peakRssBytes": {
+            "median": 17661952,
+            "min": 17645568,
+            "max": 17678336
+          }
+        },
+        "jsj": {
+          "binarySha256": "1de1c7a16bb13edc4dd58b9fd4cc861ddf6daebe9b877bde94ebd92559dafe3d",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_jsj_session200_one/resources_jsj_session200_one.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 19.128541999999996,
+              "processWallMs": 34.296,
+              "peakRssBytes": 19267584
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 19.080166999999996,
+              "processWallMs": 34.168791000000006,
+              "peakRssBytes": 19316736
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 19.0975,
+              "processWallMs": 34.20525000000001,
+              "peakRssBytes": 19120128
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 19.11475,
+              "processWallMs": 34.319041999999996,
+              "peakRssBytes": 19054592
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 19.116083999999997,
+              "processWallMs": 34.069458,
+              "peakRssBytes": 19103744
+            }
+          ],
+          "elapsedMs": {
+            "median": 19.11475,
+            "min": 19.080166999999996,
+            "max": 19.128541999999996
+          },
+          "processWallMs": {
+            "median": 34.20525000000001,
+            "min": 34.069458,
+            "max": 34.319041999999996
+          },
+          "peakRssBytes": {
+            "median": 19120128,
+            "min": 19054592,
+            "max": 19316736
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm",
+      "scenario": "session200-all",
+      "iterations": 200,
+      "expectedChecksum": 80000,
+      "peers": {
+        "ours": {
+          "binarySha256": "4fa2b06c23be4bcd28080b6a2fd9f62c71f58ece7a8b4d21f52c05d6ccd479e0",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_ours_session200_all/resources_ours_session200_all.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 77.02429099999999,
+              "processWallMs": 159.20616700000002,
+              "peakRssBytes": 19218432
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 77.375,
+              "processWallMs": 161.32475,
+              "peakRssBytes": 19185664
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 77.299,
+              "processWallMs": 162.863125,
+              "peakRssBytes": 19398656
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 78.166791,
+              "processWallMs": 160.222042,
+              "peakRssBytes": 19283968
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 80.290916,
+              "processWallMs": 165.64200000000002,
+              "peakRssBytes": 19218432
+            }
+          ],
+          "elapsedMs": {
+            "median": 77.375,
+            "min": 77.02429099999999,
+            "max": 80.290916
+          },
+          "processWallMs": {
+            "median": 161.32475,
+            "min": 159.20616700000002,
+            "max": 165.64200000000002
+          },
+          "peakRssBytes": {
+            "median": 19218432,
+            "min": 19185664,
+            "max": 19398656
+          }
+        },
+        "jsj": {
+          "binarySha256": "d725e875ed5519708f445309a6ea0554fb50578d64c96c03bfc9e8ccd726b10f",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm/release/build/audit/resources_jsj_session200_all/resources_jsj_session200_all.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 58.675,
+              "processWallMs": 124.42462499999999,
+              "peakRssBytes": 21708800
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 58.784,
+              "processWallMs": 127.23579199999999,
+              "peakRssBytes": 21889024
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 57.119209,
+              "processWallMs": 122.636625,
+              "peakRssBytes": 21807104
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 56.091292,
+              "processWallMs": 121.29654199999997,
+              "peakRssBytes": 21610496
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 56.084125,
+              "processWallMs": 120.591167,
+              "peakRssBytes": 21725184
+            }
+          ],
+          "elapsedMs": {
+            "median": 57.119209,
+            "min": 56.084125,
+            "max": 58.784
+          },
+          "processWallMs": {
+            "median": 122.636625,
+            "min": 120.591167,
+            "max": 127.23579199999999
+          },
+          "peakRssBytes": {
+            "median": 21725184,
+            "min": 21610496,
+            "max": 21889024
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm-gc",
+      "scenario": "variables512",
+      "iterations": 500,
+      "expectedChecksum": 256000,
+      "peers": {
+        "ours": {
+          "binarySha256": "febed179cd7c813109ff9db3cea4aa4e685b6e7362531a6615efbe78e170cb3c",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_ours_variables512/resources_ours_variables512.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 256000,
+              "elapsedMs": 8.963834,
+              "processWallMs": 21.816875,
+              "peakRssBytes": 21364736
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 8.904834000000001,
+              "processWallMs": 21.534332999999997,
+              "peakRssBytes": 21250048
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 8.976833999999998,
+              "processWallMs": 21.859124999999995,
+              "peakRssBytes": 21528576
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 8.870833000000001,
+              "processWallMs": 21.631458,
+              "peakRssBytes": 21233664
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 9.095958,
+              "processWallMs": 21.917332999999996,
+              "peakRssBytes": 21299200
+            }
+          ],
+          "elapsedMs": {
+            "median": 8.963834,
+            "min": 8.870833000000001,
+            "max": 9.095958
+          },
+          "processWallMs": {
+            "median": 21.816875,
+            "min": 21.534332999999997,
+            "max": 21.917332999999996
+          },
+          "peakRssBytes": {
+            "median": 21299200,
+            "min": 21233664,
+            "max": 21528576
+          }
+        },
+        "magic": {
+          "binarySha256": "82a255e00abd10eff6f2a1d3e1e5c922c9a3c8c89ee712c8893a0e273d7b6017",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_magic_variables512/resources_magic_variables512.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 256000,
+              "elapsedMs": 14.283166999999999,
+              "processWallMs": 29.317375000000002,
+              "peakRssBytes": 20856832
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 13.846041,
+              "processWallMs": 29.039874999999995,
+              "peakRssBytes": 20840448
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 13.550875,
+              "processWallMs": 28.239832999999997,
+              "peakRssBytes": 20856832
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 13.989084,
+              "processWallMs": 29.185374999999997,
+              "peakRssBytes": 20873216
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 13.9485,
+              "processWallMs": 28.627792000000003,
+              "peakRssBytes": 20856832
+            }
+          ],
+          "elapsedMs": {
+            "median": 13.9485,
+            "min": 13.550875,
+            "max": 14.283166999999999
+          },
+          "processWallMs": {
+            "median": 29.039874999999995,
+            "min": 28.239832999999997,
+            "max": 29.317375000000002
+          },
+          "peakRssBytes": {
+            "median": 20856832,
+            "min": 20840448,
+            "max": 20873216
+          }
+        },
+        "jsj": {
+          "binarySha256": "9fcd767b9585637a7ec7d6e219274ff86d3942e8fa26ae6e9dcb596ca45e5366",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_jsj_variables512/resources_jsj_variables512.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 256000,
+              "elapsedMs": 21.190416000000003,
+              "processWallMs": 41.481583,
+              "peakRssBytes": 29605888
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 20.521791,
+              "processWallMs": 40.485458,
+              "peakRssBytes": 29704192
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 21.019875,
+              "processWallMs": 40.610583999999996,
+              "peakRssBytes": 29638656
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 20.829417,
+              "processWallMs": 40.291875,
+              "peakRssBytes": 29704192
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 20.710083,
+              "processWallMs": 40.823166,
+              "peakRssBytes": 29655040
+            }
+          ],
+          "elapsedMs": {
+            "median": 20.829417,
+            "min": 20.521791,
+            "max": 21.190416000000003
+          },
+          "processWallMs": {
+            "median": 40.610583999999996,
+            "min": 40.291875,
+            "max": 41.481583
+          },
+          "peakRssBytes": {
+            "median": 29655040,
+            "min": 29605888,
+            "max": 29704192
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm-gc",
+      "scenario": "contract512",
+      "iterations": 1000,
+      "expectedChecksum": 512000,
+      "peers": {
+        "ours": {
+          "binarySha256": "ce47738d8cd65a70687134aef0891d824c11374c703877e2cf06115bb7feda70",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_ours_contract512/resources_ours_contract512.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 512000,
+              "elapsedMs": 15.3915,
+              "processWallMs": 27.813667,
+              "peakRssBytes": 20201472
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 15.140125,
+              "processWallMs": 27.881,
+              "peakRssBytes": 20316160
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 15.503457999999998,
+              "processWallMs": 28.486666,
+              "peakRssBytes": 20332544
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 15.424333,
+              "processWallMs": 28.086833,
+              "peakRssBytes": 20332544
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 15.207291,
+              "processWallMs": 28.643958000000005,
+              "peakRssBytes": 20348928
+            }
+          ],
+          "elapsedMs": {
+            "median": 15.3915,
+            "min": 15.140125,
+            "max": 15.503457999999998
+          },
+          "processWallMs": {
+            "median": 28.086833,
+            "min": 27.813667,
+            "max": 28.643958000000005
+          },
+          "peakRssBytes": {
+            "median": 20332544,
+            "min": 20201472,
+            "max": 20348928
+          }
+        },
+        "jsj": {
+          "binarySha256": "9e214faf4a3a15a7e972269a52e4d4223f09ba487603ebb365a4cd474cad20d0",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_jsj_contract512/resources_jsj_contract512.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 512000,
+              "elapsedMs": 18.403166,
+              "processWallMs": 32.696584,
+              "peakRssBytes": 22069248
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 18.656540999999997,
+              "processWallMs": 32.985792,
+              "peakRssBytes": 22003712
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 18.410875,
+              "processWallMs": 33.27125,
+              "peakRssBytes": 22036480
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 18.2625,
+              "processWallMs": 33.440290999999995,
+              "peakRssBytes": 22020096
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 18.58325,
+              "processWallMs": 32.941709,
+              "peakRssBytes": 21970944
+            }
+          ],
+          "elapsedMs": {
+            "median": 18.410875,
+            "min": 18.2625,
+            "max": 18.656540999999997
+          },
+          "processWallMs": {
+            "median": 32.985792,
+            "min": 32.696584,
+            "max": 33.440290999999995
+          },
+          "peakRssBytes": {
+            "median": 22020096,
+            "min": 21970944,
+            "max": 22069248
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm-gc",
+      "scenario": "session200-one",
+      "iterations": 1000,
+      "expectedChecksum": 201000,
+      "peers": {
+        "ours": {
+          "binarySha256": "48ec8b20baa7e984d1406b543f756c8ad1270a198c8606aa2806bb19ba9c5278",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_ours_session200_one/resources_ours_session200_one.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 4.088834,
+              "processWallMs": 14.394249999999998,
+              "peakRssBytes": 21692416
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 4.270875,
+              "processWallMs": 15.127249999999998,
+              "peakRssBytes": 21774336
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 4.0965,
+              "processWallMs": 14.225791999999997,
+              "peakRssBytes": 21741568
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 3.994875,
+              "processWallMs": 13.935792,
+              "peakRssBytes": 21725184
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 4.087792,
+              "processWallMs": 14.343208000000002,
+              "peakRssBytes": 21692416
+            }
+          ],
+          "elapsedMs": {
+            "median": 4.088834,
+            "min": 3.994875,
+            "max": 4.270875
+          },
+          "processWallMs": {
+            "median": 14.343208000000002,
+            "min": 13.935792,
+            "max": 15.127249999999998
+          },
+          "peakRssBytes": {
+            "median": 21725184,
+            "min": 21692416,
+            "max": 21774336
+          }
+        },
+        "jsj": {
+          "binarySha256": "f40e166fa689512b7fd4594d346ee25014fefe1f78015e9ab57116ad18eed7c7",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_jsj_session200_one/resources_jsj_session200_one.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 5.930875,
+              "processWallMs": 17.072875,
+              "peakRssBytes": 23134208
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 5.946459000000001,
+              "processWallMs": 17.270625,
+              "peakRssBytes": 23117824
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.011584000000001,
+              "processWallMs": 16.963917,
+              "peakRssBytes": 23134208
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 5.894125,
+              "processWallMs": 17.182833000000002,
+              "peakRssBytes": 23101440
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 5.857042,
+              "processWallMs": 16.921708,
+              "peakRssBytes": 23085056
+            }
+          ],
+          "elapsedMs": {
+            "median": 5.930875,
+            "min": 5.857042,
+            "max": 6.011584000000001
+          },
+          "processWallMs": {
+            "median": 17.072875,
+            "min": 16.921708,
+            "max": 17.270625
+          },
+          "peakRssBytes": {
+            "median": 23117824,
+            "min": 23085056,
+            "max": 23134208
+          }
+        }
+      }
+    },
+    {
+      "target": "wasm-gc",
+      "scenario": "session200-all",
+      "iterations": 200,
+      "expectedChecksum": 80000,
+      "peers": {
+        "ours": {
+          "binarySha256": "aaa290cbc34e7a120980b0c5dad7a853fd22180467db8a411b98a5f288b24d83",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_ours_session200_all/resources_ours_session200_all.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 16.515458,
+              "processWallMs": 47.655249999999995,
+              "peakRssBytes": 29851648
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 17.086542,
+              "processWallMs": 49.37325,
+              "peakRssBytes": 29933568
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 16.962,
+              "processWallMs": 49.107541999999995,
+              "peakRssBytes": 29736960
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 17.266875,
+              "processWallMs": 49.874375,
+              "peakRssBytes": 30048256
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 16.808209,
+              "processWallMs": 50.055625000000006,
+              "peakRssBytes": 30031872
+            }
+          ],
+          "elapsedMs": {
+            "median": 16.962,
+            "min": 16.515458,
+            "max": 17.266875
+          },
+          "processWallMs": {
+            "median": 49.37325,
+            "min": 47.655249999999995,
+            "max": 50.055625000000006
+          },
+          "peakRssBytes": {
+            "median": 29933568,
+            "min": 29736960,
+            "max": 30048256
+          }
+        },
+        "jsj": {
+          "binarySha256": "01c5f9349516204f496136b066e79d4649631473f3d37e4c810f19b5276252d5",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun",
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/wasm-gc/release/build/audit/resources_jsj_session200_all/resources_jsj_session200_all.wasm"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 14.718292,
+              "processWallMs": 43.525542,
+              "peakRssBytes": 35028992
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 14.623916999999999,
+              "processWallMs": 43.614292,
+              "peakRssBytes": 35389440
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 15.446,
+              "processWallMs": 45.67083300000001,
+              "peakRssBytes": 35061760
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 14.939832999999998,
+              "processWallMs": 44.801042,
+              "peakRssBytes": 35520512
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 15.059125,
+              "processWallMs": 45.11716599999999,
+              "peakRssBytes": 35274752
+            }
+          ],
+          "elapsedMs": {
+            "median": 14.939832999999998,
+            "min": 14.623916999999999,
+            "max": 15.446
+          },
+          "processWallMs": {
+            "median": 44.801042,
+            "min": 43.525542,
+            "max": 45.67083300000001
+          },
+          "peakRssBytes": {
+            "median": 35274752,
+            "min": 35028992,
+            "max": 35520512
+          }
+        }
+      }
+    },
+    {
+      "target": "native",
+      "scenario": "variables512",
+      "iterations": 500,
+      "expectedChecksum": 256000,
+      "peers": {
+        "ours": {
+          "binarySha256": "57339095700b98088e93760672200a3090710d53f0b62f6d7f3f5918efde01b3",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_ours_variables512/resources_ours_variables512.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 256000,
+              "elapsedMs": 19.112875,
+              "processWallMs": 469.968292,
+              "peakRssBytes": 2310144
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 11.777709000000002,
+              "processWallMs": 18.061833999999998,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 11.691542,
+              "processWallMs": 17.796499999999998,
+              "peakRssBytes": 2293760
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 12.388542,
+              "processWallMs": 18.544791,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 11.736583000000001,
+              "processWallMs": 17.876707999999997,
+              "peakRssBytes": 2293760
+            }
+          ],
+          "elapsedMs": {
+            "median": 11.777709000000002,
+            "min": 11.691542,
+            "max": 19.112875
+          },
+          "processWallMs": {
+            "median": 18.061833999999998,
+            "min": 17.796499999999998,
+            "max": 469.968292
+          },
+          "peakRssBytes": {
+            "median": 2293760,
+            "min": 2277376,
+            "max": 2310144
+          }
+        },
+        "magic": {
+          "binarySha256": "066538854964304c22898371cb70cc67020da2996273988432e7615c6543d310",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_magic_variables512/resources_magic_variables512.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 256000,
+              "elapsedMs": 30.841334,
+              "processWallMs": 188.37179199999997,
+              "peakRssBytes": 2244608
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 21.418457999999998,
+              "processWallMs": 31.000458000000002,
+              "peakRssBytes": 2244608
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 22.233334,
+              "processWallMs": 31.813000000000002,
+              "peakRssBytes": 2244608
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 21.180625,
+              "processWallMs": 30.703833000000003,
+              "peakRssBytes": 2244608
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 21.064875,
+              "processWallMs": 30.257292000000007,
+              "peakRssBytes": 2244608
+            }
+          ],
+          "elapsedMs": {
+            "median": 21.418457999999998,
+            "min": 21.064875,
+            "max": 30.841334
+          },
+          "processWallMs": {
+            "median": 31.000458000000002,
+            "min": 30.257292000000007,
+            "max": 188.37179199999997
+          },
+          "peakRssBytes": {
+            "median": 2244608,
+            "min": 2244608,
+            "max": 2244608
+          }
+        },
+        "jsj": {
+          "binarySha256": "a406260a56ef9f13b7775f97745f250e71d6beb04ae1f4164a65a9cdb137d25f",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_jsj_variables512/resources_jsj_variables512.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 256000,
+              "elapsedMs": 46.929207999999996,
+              "processWallMs": 208.81225,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 36.585167,
+              "processWallMs": 50.220833000000006,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 37.41075,
+              "processWallMs": 51.495417,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 37.413708,
+              "processWallMs": 51.671375000000005,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 256000,
+              "elapsedMs": 36.887457999999995,
+              "processWallMs": 50.843834,
+              "peakRssBytes": 2277376
+            }
+          ],
+          "elapsedMs": {
+            "median": 37.41075,
+            "min": 36.585167,
+            "max": 46.929207999999996
+          },
+          "processWallMs": {
+            "median": 51.495417,
+            "min": 50.220833000000006,
+            "max": 208.81225
+          },
+          "peakRssBytes": {
+            "median": 2277376,
+            "min": 2277376,
+            "max": 2277376
+          }
+        }
+      }
+    },
+    {
+      "target": "native",
+      "scenario": "contract512",
+      "iterations": 1000,
+      "expectedChecksum": 512000,
+      "peers": {
+        "ours": {
+          "binarySha256": "002a36a6b087420b3ef30e80f929783b9be548a9d19e0bda9a6aee7b682b2bef",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_ours_contract512/resources_ours_contract512.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 512000,
+              "elapsedMs": 18.585792,
+              "processWallMs": 565.8340839999998,
+              "peakRssBytes": 2473984
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 13.525334,
+              "processWallMs": 18.506582999999996,
+              "peakRssBytes": 2473984
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 13.251333,
+              "processWallMs": 18.613374999999998,
+              "peakRssBytes": 2473984
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 13.764333,
+              "processWallMs": 18.726583,
+              "peakRssBytes": 2473984
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 13.449125,
+              "processWallMs": 18.45225,
+              "peakRssBytes": 2473984
+            }
+          ],
+          "elapsedMs": {
+            "median": 13.525334,
+            "min": 13.251333,
+            "max": 18.585792
+          },
+          "processWallMs": {
+            "median": 18.613374999999998,
+            "min": 18.45225,
+            "max": 565.8340839999998
+          },
+          "peakRssBytes": {
+            "median": 2473984,
+            "min": 2473984,
+            "max": 2473984
+          }
+        },
+        "jsj": {
+          "binarySha256": "783f3d2e8eaa3aed4538b6502aae6f407787f35da2ce1a7f40184d5c1681fc01",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_jsj_contract512/resources_jsj_contract512.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 512000,
+              "elapsedMs": 35.980833,
+              "processWallMs": 742.907042,
+              "peakRssBytes": 2424832
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 25.257542,
+              "processWallMs": 32.725375,
+              "peakRssBytes": 2424832
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 25.07575,
+              "processWallMs": 32.190166999999995,
+              "peakRssBytes": 2424832
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 25.541167,
+              "processWallMs": 32.468333,
+              "peakRssBytes": 2424832
+            },
+            {
+              "checksum": 512000,
+              "elapsedMs": 24.868917,
+              "processWallMs": 31.642416,
+              "peakRssBytes": 2424832
+            }
+          ],
+          "elapsedMs": {
+            "median": 25.257542,
+            "min": 24.868917,
+            "max": 35.980833
+          },
+          "processWallMs": {
+            "median": 32.468333,
+            "min": 31.642416,
+            "max": 742.907042
+          },
+          "peakRssBytes": {
+            "median": 2424832,
+            "min": 2424832,
+            "max": 2424832
+          }
+        }
+      }
+    },
+    {
+      "target": "native",
+      "scenario": "session200-one",
+      "iterations": 1000,
+      "expectedChecksum": 201000,
+      "peers": {
+        "ours": {
+          "binarySha256": "bcb77876fac54f9df403973e210e1b5defa5f0251d24195786fbe2f3d6eae450",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_ours_session200_one/resources_ours_session200_one.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 5.855542000000001,
+              "processWallMs": 761.232625,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 4.914208,
+              "processWallMs": 9.000000000000002,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 4.451625,
+              "processWallMs": 8.259540999999999,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 5.0827089999999995,
+              "processWallMs": 9.095790999999998,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 4.583125,
+              "processWallMs": 8.24925,
+              "peakRssBytes": 2277376
+            }
+          ],
+          "elapsedMs": {
+            "median": 4.914208,
+            "min": 4.451625,
+            "max": 5.855542000000001
+          },
+          "processWallMs": {
+            "median": 9.000000000000002,
+            "min": 8.24925,
+            "max": 761.232625
+          },
+          "peakRssBytes": {
+            "median": 2277376,
+            "min": 2277376,
+            "max": 2277376
+          }
+        },
+        "jsj": {
+          "binarySha256": "b7cc4ecf8000a2d8952cc6a1d2e84d95a79042022cf66ec07e8774a91ae4a0b2",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_jsj_session200_one/resources_jsj_session200_one.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 201000,
+              "elapsedMs": 11.707416,
+              "processWallMs": 836.115292,
+              "peakRssBytes": 2277376
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 7.720875,
+              "processWallMs": 12.2885,
+              "peakRssBytes": 2260992
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.51775,
+              "processWallMs": 10.877750000000002,
+              "peakRssBytes": 2260992
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 7.028125,
+              "processWallMs": 11.486249999999997,
+              "peakRssBytes": 2260992
+            },
+            {
+              "checksum": 201000,
+              "elapsedMs": 6.060958,
+              "processWallMs": 9.901584000000001,
+              "peakRssBytes": 2260992
+            }
+          ],
+          "elapsedMs": {
+            "median": 7.028125,
+            "min": 6.060958,
+            "max": 11.707416
+          },
+          "processWallMs": {
+            "median": 11.486249999999997,
+            "min": 9.901584000000001,
+            "max": 836.115292
+          },
+          "peakRssBytes": {
+            "median": 2260992,
+            "min": 2260992,
+            "max": 2277376
+          }
+        }
+      }
+    },
+    {
+      "target": "native",
+      "scenario": "session200-all",
+      "iterations": 200,
+      "expectedChecksum": 80000,
+      "peers": {
+        "ours": {
+          "binarySha256": "6224c43e4569d9bdb63d76c66584201185734f612a47a98362361f54e528ad49",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_ours_session200_all/resources_ours_session200_all.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 34.140625,
+              "processWallMs": 1056.4072500000002,
+              "peakRssBytes": 2342912
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 29.595625,
+              "processWallMs": 55.772417,
+              "peakRssBytes": 2342912
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 29.965375,
+              "processWallMs": 56.001958,
+              "peakRssBytes": 2342912
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 30.322458,
+              "processWallMs": 55.842541,
+              "peakRssBytes": 2342912
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 30.375042,
+              "processWallMs": 55.55012500000001,
+              "peakRssBytes": 2342912
+            }
+          ],
+          "elapsedMs": {
+            "median": 30.322458,
+            "min": 29.595625,
+            "max": 34.140625
+          },
+          "processWallMs": {
+            "median": 55.842541,
+            "min": 55.55012500000001,
+            "max": 1056.4072500000002
+          },
+          "peakRssBytes": {
+            "median": 2342912,
+            "min": 2342912,
+            "max": 2342912
+          }
+        },
+        "jsj": {
+          "binarySha256": "20f2b20592a4c204ae42b737e8d6d3a836fd292dc47e37e6715c0dff38085b9f",
+          "command": [
+            "/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/_build/native/release/build/audit/resources_jsj_session200_all/resources_jsj_session200_all.exe"
+          ],
+          "raw": [
+            {
+              "checksum": 80000,
+              "elapsedMs": 28.019458000000004,
+              "processWallMs": 595.466084,
+              "peakRssBytes": 2293760
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 20.885792000000002,
+              "processWallMs": 40.310125,
+              "peakRssBytes": 2293760
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 21.180916,
+              "processWallMs": 39.849625,
+              "peakRssBytes": 2293760
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 21.666833,
+              "processWallMs": 40.932042,
+              "peakRssBytes": 2293760
+            },
+            {
+              "checksum": 80000,
+              "elapsedMs": 21.80675,
+              "processWallMs": 40.361583,
+              "peakRssBytes": 2293760
+            }
+          ],
+          "elapsedMs": {
+            "median": 21.666833,
+            "min": 20.885792000000002,
+            "max": 28.019458000000004
+          },
+          "processWallMs": {
+            "median": 40.361583,
+            "min": 39.849625,
+            "max": 595.466084
+          },
+          "peakRssBytes": {
+            "median": 2293760,
+            "min": 2293760,
+            "max": 2293760
+          }
+        }
+      }
+    }
+  ]
+}

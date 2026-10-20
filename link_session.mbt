@@ -299,10 +299,7 @@ pub fn LinkSession::update(
     Err(error) => return Err({ name: "", error, })
     Ok(_) => ()
   }
-  let staged : Map[String, Value] = Map([])
-  for name, value in self.values.values {
-    staged[name] = value
-  }
+  let staged = self.values.values.copy()
   let affected : Map[Int32, Bool] = Map([])
   for change in changes {
     let (name, changed) = match change {
@@ -336,46 +333,45 @@ pub fn LinkSession::update(
   if affected.is_empty() {
     return Ok({ next: self, changes: [], recomputed: 0, })
   }
+  // Preserve catalog order without traversing every unchanged endpoint twice.
+  let indices = affected.keys().to_array()
+  indices.sort()
   // Release ALL affected lengths first, so growth/shrink is order-independent.
   let mut remaining = self.total_limit - self.total
-  for index in affected.keys() {
+  for index in indices {
     remaining = remaining + self.sizes[index]
   }
   let sizes = self.sizes.copy()
-  for index, endpoint in self.endpoints {
-    if affected.contains(index) {
-      let size = match endpoint.measure(next, self.limits) {
-        Err(e) => return Err(e)
-        Ok(size) => size
-      }
-      if size > remaining {
-        return Err(
-          session_problem(
-            "SessionOutputLimit", "snapshot output exceeds budget",
-          ),
-        )
-      }
-      remaining = remaining - size
-      sizes[index] = size
+  for index in indices {
+    let endpoint = self.endpoints[index]
+    let size = match endpoint.measure(next, self.limits) {
+      Err(e) => return Err(e)
+      Ok(size) => size
     }
+    if size > remaining {
+      return Err(
+        session_problem("SessionOutputLimit", "snapshot output exceeds budget"),
+      )
+    }
+    remaining = remaining - size
+    sizes[index] = size
   }
   let outputs = self.outputs.copy()
   let emitted : Array[LinkChange] = []
-  for index, endpoint in self.endpoints {
-    if affected.contains(index) {
-      let uri = match endpoint.render(next, self.limits) {
-        Err(e) => return Err(e)
-        Ok(uri) => uri
-      }
-      if uri != self.outputs[index] {
-        emitted.push({
-          name: endpoint.name,
-          before: self.outputs[index],
-          after: uri,
-        })
-      }
-      outputs[index] = uri
+  for index in indices {
+    let endpoint = self.endpoints[index]
+    let uri = match endpoint.render(next, self.limits) {
+      Err(e) => return Err(e)
+      Ok(uri) => uri
     }
+    if uri != self.outputs[index] {
+      emitted.push({
+        name: endpoint.name,
+        before: self.outputs[index],
+        after: uri,
+      })
+    }
+    outputs[index] = uri
   }
   // Copy only changed composites; unchanged captured values remain private.
   for change in changes {

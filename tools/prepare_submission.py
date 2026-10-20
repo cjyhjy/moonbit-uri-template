@@ -3,10 +3,12 @@
 import datetime
 import hashlib
 import json
+import math
 import shutil
 import zipfile
 from pathlib import Path
 from source_digest import source_digest
+from benchmark_resources import CASES
 
 ROOT = Path(__file__).resolve().parent.parent
 sha = lambda data: hashlib.sha256(data).hexdigest()
@@ -64,6 +66,27 @@ if peer["status"] != "passed" or peer["ours_source_sha256"] != digest:
     raise SystemExit("Peer audit is stale")
 if benchmark["status"] != "passed" or benchmark["sourceSha256"] != digest:
     raise SystemExit("Peer benchmark is stale")
+resources = load("reports/peer-resources.json")
+if resources.get("status") != "passed" or resources.get("sourceSha256") != digest:
+    raise SystemExit("Resource benchmark is failed or stale")
+expected_cases = {(target, case) for target in ("js", "wasm", "wasm-gc", "native") for case in CASES}
+actual_cases = [(row["target"], row["scenario"]) for row in resources["samples"]]
+if len(actual_cases) != len(expected_cases) or set(actual_cases) != expected_cases:
+    raise SystemExit("Resource benchmark coverage is incomplete or duplicated")
+if resources["peers"] != {name: peer["peers"][name]["commit"] for name in ("magic", "jsj")}:
+    raise SystemExit("Resource benchmark peer pins differ")
+for row in resources["samples"]:
+    iterations, expected, names = CASES[row["scenario"]]
+    if row["iterations"] != iterations or set(row["peers"]) != set(names):
+        raise SystemExit("Resource benchmark workload changed")
+    for data in row["peers"].values():
+        if len(data["raw"]) != 5:
+            raise SystemExit("Five fresh resource samples are required")
+        for sample in data["raw"]:
+            if (sample["checksum"] != iterations * expected
+                    or any(not math.isfinite(sample[key]) or sample[key] <= 0
+                           for key in ("elapsedMs", "processWallMs", "peakRssBytes"))):
+                raise SystemExit("Invalid resource sample")
 destination = ROOT / "_build/submission"
 destination.mkdir(exist_ok=True)
 bundle = destination / "moonbit-uri-template-review-0.2.0"
@@ -75,6 +98,8 @@ files = [
     "docs/COMPARISON.md", "docs/PERFORMANCE.md", "docs/API.md", "docs/SDK.md", "docs/OPTIMIZATION.md",
     "integrations/github-audit/README.md",
     "reports/verification.json", "reports/release.json", "reports/peer-benchmark.json",
+    "reports/peer-resources.json",
+    "reports/history/before-resource-optimization-20261020/peer-resources.json",
     "reports/github-links-portable-live.json",
     "reports/github-integration-portable-live.json", "reports/integration-faults.json", "reports/integration-upgrades.json",
     "reports/history/github-integration-anonymous-failed.json",

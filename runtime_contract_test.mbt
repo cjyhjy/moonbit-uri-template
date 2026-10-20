@@ -1,4 +1,45 @@
 ///|
+test "compiled validation preserves precedence first occurrence and mutable input" {
+  let t = @lib.parse("😀{x}{x:2}{?tags*,y}").unwrap()
+  let c = t
+    .with_contract([{ name: "tags", kind: @lib.ListKind, }], required=["y", "x"])
+    .unwrap()
+  let v = @lib.Variables::from_entries([
+    ("x", @lib.List([])),
+    ("tags", @lib.List(["a"])),
+    ("unused", @lib.Scalar("b")),
+  ]).unwrap()
+  // Implicit prefix shape wins over missing required and unused bindings.
+  let shape = c.validate(v).unwrap_err()
+  assert_eq(shape.code, "BindingType")
+  assert_eq(shape.span.start, 5)
+  v.set("x", @lib.Scalar("abc"))
+  let missing_y = c.validate(v).unwrap_err()
+  assert_eq(missing_y.code, "MissingBinding")
+  assert_eq(missing_y.span.start, 17)
+  v.set("y", @lib.Scalar(""))
+  v.remove("x")
+  let missing_x = c.validate(v).unwrap_err()
+  assert_eq(missing_x.code, "MissingBinding")
+  // Presence refers to the first use, not the later prefix's shape location.
+  assert_eq(missing_x.span.start, 2)
+  v.set("x", @lib.Scalar("abc"))
+  assert_eq(c.validate(v).unwrap_err().code, "UnusedBinding")
+  v.remove("unused")
+  assert_true(c.validate(v) is Ok(_))
+  v.set("tags", @lib.Assoc(@lib.OrderedEntries::from_entries([]).unwrap()))
+  assert_eq(c.validate(v).unwrap_err().code, "BindingType")
+  v.set("tags", @lib.List([]))
+  assert_true(c.validate(v) is Ok(_))
+  let required_tags = t
+    .with_contract([], required=["tags", "x"], reject_unused=false)
+    .unwrap()
+  assert_eq(required_tags.validate(v).unwrap_err().code, "OmittedBinding")
+  v.set("tags", @lib.List(["a"]))
+  assert_true(required_tags.validate(v) is Ok(_))
+}
+
+///|
 test "runtime contracts reject wrong empty shapes while preserving RFC omission" {
   let t = @lib.parse("/users/{id}{?fields*,filters*}").unwrap()
   let c = t

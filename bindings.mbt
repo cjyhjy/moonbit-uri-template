@@ -126,6 +126,30 @@ fn Template::validate_bindings(
     Err(e) => return Err(e)
     Ok(_) => ()
   }
+  if required.is_empty() && !reject_unused {
+    // No presence/unused report is requested. Keep the original first-prefix
+    // error and input-before-prefix precedence without building report arrays.
+    for segment in self.segments {
+      if segment is Expression(_, specs) {
+        for spec in specs {
+          if spec.modifier is Prefix(_) &&
+            variables.values.get(spec.name) is Some(value) &&
+            defined(value) &&
+            !(value is Scalar(_)) {
+            return Err(
+              problem(
+                "PrefixOnComposite",
+                "prefix is only valid on scalar values",
+                spec.span.start,
+                spec.span.end,
+              ),
+            )
+          }
+        }
+      }
+    }
+    return Ok(())
+  }
   let report = self.check_bindings(variables)
   let referenced : Map[String, Bool] = Map([])
   let absent : Map[String, BindingIssue] = Map([])

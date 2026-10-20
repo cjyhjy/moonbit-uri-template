@@ -23,6 +23,7 @@
     "check:project": "node tools/cli.mjs project integrations/github-audit/requests.json --github",
     "integration:live": "node integrations/github-audit/main.mjs --gh",
     "benchmark:peers": "node tools/benchmark_peers.mjs",
+    "benchmark:resources": "python3 tools/benchmark_resources.py",
     "test:sdk": "node --test sdk/sdk.test.mjs && tsc --noEmit --strict --module NodeNext --target ES2022 sdk/typecheck.mts",
     "package:sdk": "node tools/verify_sdk_package.mjs"
   },

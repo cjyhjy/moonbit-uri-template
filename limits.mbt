@@ -61,6 +61,50 @@ fn exceeds_codepoints(text : String, limit : Int32) -> Bool {
 }
 
 ///|
+// Return remaining total, or -1/-2 for the first individual/total overflow.
+// Walk UTF-16 directly to avoid a capturing iterator and per-character options.
+// Like String::iter, only a valid surrogate pair counts as one code point.
+fn consume_input_text(
+  text : String,
+  individual : Int32,
+  total : Int32,
+) -> Int32 {
+  let mut index = 0
+  let mut left = individual
+  let mut remaining = total
+  while index < text.length() {
+    if left == 0 {
+      return -1
+    }
+    if remaining == 0 {
+      return -2
+    }
+    let unit = text[index].to_int()
+    if unit >= 0xD800 && unit <= 0xDBFF && index + 1 < text.length() {
+      let next = text[index + 1].to_int()
+      if next >= 0xDC00 && next <= 0xDFFF {
+        index = index + 1
+      }
+    }
+    index = index + 1
+    left = left - 1
+    remaining = remaining - 1
+  }
+  remaining
+}
+
+///|
+fn input_text_error(remaining : Int32) -> TemplateError {
+  if remaining == -1 {
+    problem(
+      "ValueLimit", "a name, key or value exceeds code point budget", 0, 0,
+    )
+  } else {
+    problem("TotalValueLimit", "total input code points exceed budget", 0, 0)
+  }
+}
+
+///|
 fn check_input_budget(
   vars : Variables,
   limits : ExpansionLimits,
@@ -79,56 +123,47 @@ fn check_input_budget(
   let mut total = limits.max_total_value_codepoints
   // Includes unused bindings, binding names, associative keys and values.
   for name, value in vars.values {
-    let texts : Array[String] = [name]
-    match value {
-      Scalar(text) => texts.push(text)
-      List(items) => {
-        if items.length() > members {
-          return Err(
-            problem(
-              "MemberLimit", "total collection members exceed budget", 0, 0,
-            ),
-          )
-        }
-        members = members - items.length()
-        texts.push_iter(items.iter())
-      }
-      Assoc(entries) => {
-        if entries.entries.length() > members {
-          return Err(
-            problem(
-              "MemberLimit", "total collection members exceed budget", 0, 0,
-            ),
-          )
-        }
-        members = members - entries.entries.length()
-        for (key, text) in entries.entries {
-          texts.push(key)
-          texts.push(text)
-        }
-      }
+    // Collection count still takes precedence over its name/value lengths.
+    let count = match value {
+      Scalar(_) => 0
+      List(items) => items.length()
+      Assoc(entries) => entries.entries.length()
     }
-    for text in texts {
-      let mut individual = limits.max_value_codepoints
-      for _ in text.iter() {
-        if individual == 0 {
-          return Err(
-            problem(
-              "ValueLimit", "a name, key or value exceeds code point budget", 0,
-              0,
-            ),
-          )
+    if count > members {
+      return Err(
+        problem("MemberLimit", "total collection members exceed budget", 0, 0),
+      )
+    }
+    members = members - count
+    total = consume_input_text(name, limits.max_value_codepoints, total)
+    if total < 0 {
+      return Err(input_text_error(total))
+    }
+    match value {
+      Scalar(text) => {
+        total = consume_input_text(text, limits.max_value_codepoints, total)
+        if total < 0 {
+          return Err(input_text_error(total))
         }
-        if total == 0 {
-          return Err(
-            problem(
-              "TotalValueLimit", "total input code points exceed budget", 0, 0,
-            ),
-          )
-        }
-        individual = individual - 1
-        total = total - 1
       }
+      List(items) =>
+        for text in items {
+          total = consume_input_text(text, limits.max_value_codepoints, total)
+          if total < 0 {
+            return Err(input_text_error(total))
+          }
+        }
+      Assoc(entries) =>
+        for (key, text) in entries.entries {
+          total = consume_input_text(key, limits.max_value_codepoints, total)
+          if total < 0 {
+            return Err(input_text_error(total))
+          }
+          total = consume_input_text(text, limits.max_value_codepoints, total)
+          if total < 0 {
+            return Err(input_text_error(total))
+          }
+        }
     }
   }
   Ok(total)
