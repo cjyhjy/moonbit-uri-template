@@ -3,11 +3,12 @@ import { checkProject } from '../../tools/project.mjs';
 import { parseSource } from '../../tools/json-source.mjs';
 
 // Call only after project schema validation. The CLI's scalar/list/assoc schema
-// remains an application contract; the SDK owns template and batch semantics.
+// is also captured by the SDK, so direct plans and upgrade reviews enforce it.
 export function catalogFromDocument(doc) {
   return compileCatalog(Object.fromEntries(doc.templates.map(entry => [entry.name, {
     template: entry.template,
     required: entry.required ?? [],
+    types: entry.types ?? {},
     maxOutput: entry.maxOutputBytes ?? 8192,
   }])));
 }

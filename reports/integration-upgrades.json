@@ -1,11 +1,11 @@
 {
   "status": "passed",
   "evidence": "intentional-upgrade-rehearsal",
-  "generatedAt": "2026-10-20T11:29:05.967Z",
-  "sourceSha256": "a148cc0d5950cbbdbdf0d859af85f8149aaa1a5ffad818d4f88147053cbc5278",
-  "engineSha256": "79ebf5a292bb16b83b791a76885414393481d2fc9ae1c614384cff6bbf7f7819",
+  "generatedAt": "2026-10-20T11:47:37.922Z",
+  "sourceSha256": "36655b65b34098d0d6305d8f215cfb4c7157c62f681e9ed7da2d9e2f85bb0650",
+  "engineSha256": "ada5eebd38e6aaf44f20f55222d3cc8794343f1e172c8d55bc72f3ca5724d265",
   "reviewerSha256": "e86128c73435d902fd013f1a3c165d6715d63f27c6d86e1edb88be7343a423cd",
-  "contractsSha256": "8cc44d3420ee9c5c639e7c4bd25ef96822699183bdac6de2eaa1930e0c19e367",
+  "contractsSha256": "dbf7afe69d3fb4a650555c8deb64159c66db91afe2ae0024dec1d0348c09fbc4",
   "manifestSha256": "bb9cf262e588b1b1eeb51b036fc28de0a88c77feb72603264cec5d5ddb392bda",
   "results": [
     {
@@ -295,6 +295,9 @@
                 "expressionLayoutChanged": true,
                 "sourceChanged": true,
                 "variableChanges": [],
+                "typeChanges": [],
+                "typedBefore": true,
+                "typedAfter": true,
                 "addedRequired": [],
                 "removedRequired": [],
                 "rejectUnusedBefore": true,
@@ -496,6 +499,9 @@
                 "expressionLayoutChanged": true,
                 "sourceChanged": true,
                 "variableChanges": [],
+                "typeChanges": [],
+                "typedBefore": true,
+                "typedAfter": true,
                 "addedRequired": [
                   "per_page"
                 ],
@@ -800,14 +806,31 @@
           "ok": false,
           "destinations": [],
           "inspection": {
-            "ok": true,
-            "totalFindings": 0,
+            "ok": false,
+            "totalFindings": 3,
             "requests": [
               {
                 "index": 0,
                 "template": "repository",
                 "label": "ours/repository",
-                "findings": []
+                "findings": [
+                  {
+                    "code": "BindingType",
+                    "variable": "owner",
+                    "message": "binding does not match its declared type",
+                    "start": 30,
+                    "end": 35,
+                    "offsetUnit": "unicode-code-point",
+                    "line": 1,
+                    "column": 31,
+                    "endLine": 1,
+                    "endColumn": 36,
+                    "utf16Start": 30,
+                    "utf16End": 35,
+                    "excerpt": "https://api.github.com/repos/{owner}/{repo}",
+                    "marker": "                              ^^^^^"
+                  }
+                ]
               },
               {
                 "index": 1,
@@ -825,7 +848,24 @@
                 "index": 3,
                 "template": "repository",
                 "label": "magic/repository",
-                "findings": []
+                "findings": [
+                  {
+                    "code": "BindingType",
+                    "variable": "owner",
+                    "message": "binding does not match its declared type",
+                    "start": 30,
+                    "end": 35,
+                    "offsetUnit": "unicode-code-point",
+                    "line": 1,
+                    "column": 31,
+                    "endLine": 1,
+                    "endColumn": 36,
+                    "utf16Start": 30,
+                    "utf16End": 35,
+                    "excerpt": "https://api.github.com/repos/{owner}/{repo}",
+                    "marker": "                              ^^^^^"
+                  }
+                ]
               },
               {
                 "index": 4,
@@ -843,7 +883,24 @@
                 "index": 6,
                 "template": "repository",
                 "label": "jsj/repository",
-                "findings": []
+                "findings": [
+                  {
+                    "code": "BindingType",
+                    "variable": "owner",
+                    "message": "binding does not match its declared type",
+                    "start": 30,
+                    "end": 35,
+                    "offsetUnit": "unicode-code-point",
+                    "line": 1,
+                    "column": 31,
+                    "endLine": 1,
+                    "endColumn": 36,
+                    "utf16Start": 30,
+                    "utf16End": 35,
+                    "excerpt": "https://api.github.com/repos/{owner}/{repo}",
+                    "marker": "                              ^^^^^"
+                  }
+                ]
               },
               {
                 "index": 7,
@@ -863,9 +920,44 @@
         "catalog": {
           "added": [],
           "removed": [],
-          "changed": [],
-          "totalChanges": 0,
-          "requiresReview": false
+          "changed": [
+            {
+              "template": "repository",
+              "change": {
+                "offsetUnit": "unicode-code-point",
+                "addedVariables": [],
+                "removedVariables": [],
+                "becameScalarOnly": [],
+                "becameCompositeCapable": [],
+                "newRepeatedVariables": [],
+                "oldLevel": 1,
+                "newLevel": 1,
+                "reservedAdded": false,
+                "fragmentAdded": false,
+                "literalsChanged": false,
+                "expressionLayoutChanged": false,
+                "sourceChanged": false,
+                "variableChanges": [],
+                "typeChanges": [
+                  {
+                    "name": "owner",
+                    "before": "scalar",
+                    "after": "list"
+                  }
+                ],
+                "typedBefore": true,
+                "typedAfter": true,
+                "addedRequired": [],
+                "removedRequired": [],
+                "rejectUnusedBefore": true,
+                "rejectUnusedAfter": true,
+                "budgetChanges": [],
+                "requiresReview": true
+              }
+            }
+          ],
+          "totalChanges": 1,
+          "requiresReview": true
         },
         "typeChanges": [
           {
@@ -928,14 +1020,31 @@
           "ok": false,
           "destinations": [],
           "inspection": {
-            "ok": true,
-            "totalFindings": 0,
+            "ok": false,
+            "totalFindings": 3,
             "requests": [
               {
                 "index": 0,
                 "template": "repository",
                 "label": "ours/repository",
-                "findings": []
+                "findings": [
+                  {
+                    "code": "BindingType",
+                    "variable": "owner",
+                    "message": "binding does not match its declared type",
+                    "start": 30,
+                    "end": 35,
+                    "offsetUnit": "unicode-code-point",
+                    "line": 1,
+                    "column": 31,
+                    "endLine": 1,
+                    "endColumn": 36,
+                    "utf16Start": 30,
+                    "utf16End": 35,
+                    "excerpt": "https://api.github.com/repos/{owner}/{repo}",
+                    "marker": "                              ^^^^^"
+                  }
+                ]
               },
               {
                 "index": 1,
@@ -953,7 +1062,24 @@
                 "index": 3,
                 "template": "repository",
                 "label": "magic/repository",
-                "findings": []
+                "findings": [
+                  {
+                    "code": "BindingType",
+                    "variable": "owner",
+                    "message": "binding does not match its declared type",
+                    "start": 30,
+                    "end": 35,
+                    "offsetUnit": "unicode-code-point",
+                    "line": 1,
+                    "column": 31,
+                    "endLine": 1,
+                    "endColumn": 36,
+                    "utf16Start": 30,
+                    "utf16End": 35,
+                    "excerpt": "https://api.github.com/repos/{owner}/{repo}",
+                    "marker": "                              ^^^^^"
+                  }
+                ]
               },
               {
                 "index": 4,
@@ -971,7 +1097,24 @@
                 "index": 6,
                 "template": "repository",
                 "label": "jsj/repository",
-                "findings": []
+                "findings": [
+                  {
+                    "code": "BindingType",
+                    "variable": "owner",
+                    "message": "binding does not match its declared type",
+                    "start": 30,
+                    "end": 35,
+                    "offsetUnit": "unicode-code-point",
+                    "line": 1,
+                    "column": 31,
+                    "endLine": 1,
+                    "endColumn": 36,
+                    "utf16Start": 30,
+                    "utf16End": 35,
+                    "excerpt": "https://api.github.com/repos/{owner}/{repo}",
+                    "marker": "                              ^^^^^"
+                  }
+                ]
               },
               {
                 "index": 7,
@@ -1517,6 +1660,9 @@
                 "expressionLayoutChanged": false,
                 "sourceChanged": true,
                 "variableChanges": [],
+                "typeChanges": [],
+                "typedBefore": true,
+                "typedAfter": true,
                 "addedRequired": [],
                 "removedRequired": [],
                 "rejectUnusedBefore": true,

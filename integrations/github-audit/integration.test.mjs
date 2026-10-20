@@ -7,7 +7,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { runAudit } from './main.mjs';
 import { reviewUpgrade } from './upgrade.mjs';
-import { destinationProblems } from './contracts.mjs';
+import { destinationProblems, catalogFromDocument } from './contracts.mjs';
 const original = JSON.parse(readFileSync(new URL('requests.json', import.meta.url)));
 
 test('typo prevents every network call and returns both missing and unused findings', async () => {
@@ -115,7 +115,8 @@ test('upgrade catches type-only aggregate budget and destination-only regression
   typed.templates[0].types.owner = 'list';
   const t = review(typed);
   assert.equal(t.status, 'blocked');
-  assert.equal(t.catalog.requiresReview, false);
+  assert.equal(t.catalog.requiresReview, true);
+  assert.deepEqual(t.catalog.changed[0].change.typeChanges, [{name:"owner",before:"scalar",after:"list"}]);
   assert.equal(t.typeChanges.length, 1);
   assert.equal(t.candidate.checks.diagnostics[0].code, 'BindingType');
   const bounded = structuredClone(original);
@@ -180,4 +181,14 @@ test('upgrade CLI is offline and reports deterministic exit statuses', () => {
     assert.equal(blocked.status, 1);
     assert.equal(JSON.parse(blocked.stdout).status, 'blocked');
   } finally { rmSync(temporary, { recursive: true, force: true }); }
+});
+
+
+test('the actual client catalog enforces types even outside the project-file checker', () => {
+  const catalog = catalogFromDocument(original);
+  assert.throws(() => catalog.expand('repository', {owner:['someone'],repo:'core'}),
+    error => error.code === 'BindingType' && error.templateName === 'repository');
+  const report = catalog.inspect([{template:'repository',variables:{owner:['someone'],repo:'core'}}]);
+  assert.equal(report.ok, false);
+  assert.equal(report.requests[0].findings[0].code, 'BindingType');
 });

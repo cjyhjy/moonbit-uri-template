@@ -50,6 +50,15 @@ pub(all) struct BindingIssue {
 } derive(@debug.Debug)
 pub fn BindingIssue::to_repr(Self) -> @debug.Repr
 
+pub(all) enum BindingKind {
+  ScalarKind
+  ListKind
+  AssocKind
+} derive(Eq, @debug.Debug)
+pub fn BindingKind::equal(Self, Self) -> Bool
+pub fn BindingKind::not_equal(Self, Self) -> Bool
+pub fn BindingKind::to_repr(Self) -> @debug.Repr
+
 pub(all) struct BindingReport {
   referenced : Array[String]
   missing : Array[BindingIssue]
@@ -58,6 +67,12 @@ pub(all) struct BindingReport {
   invalid : Array[TemplateError]
 } derive(@debug.Debug)
 pub fn BindingReport::to_repr(Self) -> @debug.Repr
+
+pub(all) struct BindingRule {
+  name : String
+  kind : BindingKind
+} derive(@debug.Debug)
+pub fn BindingRule::to_repr(Self) -> @debug.Repr
 
 type BoundTemplate
 pub fn BoundTemplate::expand(Self, Variables, required? : Array[String], limits? : ExpansionLimits) -> Result[String, TemplateError]
@@ -121,6 +136,13 @@ pub(all) struct ContractDiff {
   source_changed : Bool
 } derive(@debug.Debug)
 pub fn ContractDiff::to_repr(Self) -> @debug.Repr
+
+type ContractTemplate
+pub fn ContractTemplate::expand(Self, Variables, limits? : ExpansionLimits) -> Result[String, TemplateError]
+pub fn ContractTemplate::expand_mapped(Self, Variables, limits? : ExpansionLimits) -> Result[Expansion, TemplateError]
+pub fn ContractTemplate::inspect(Self, Variables, limits? : ExpansionLimits, max_findings? : Int) -> Result[Array[BindingFinding], TemplateError]
+pub fn ContractTemplate::measure(Self, Variables, limits? : ExpansionLimits) -> Result[Int, TemplateError]
+pub fn ContractTemplate::validate(Self, Variables, limits? : ExpansionLimits) -> Result[Unit, TemplateError]
 
 pub(all) struct DetailedContractDiff {
   added_variables : Array[String]
@@ -231,6 +253,7 @@ pub fn Template::to_repr(Self) -> @debug.Repr
 pub fn Template::variable_profiles(Self) -> Array[VariableProfile]
 pub fn Template::variable_uses(Self) -> Array[VariableUse]
 pub fn Template::variables(Self) -> Array[String]
+pub fn Template::with_contract(Self, Array[BindingRule], required? : Array[String], reject_unused? : Bool, max_rules? : Int, max_rule_codepoints? : Int) -> Result[ContractTemplate, TemplateError]
 
 pub(all) struct TemplateAnalysis {
   expressions : Array[ExpressionInfo]

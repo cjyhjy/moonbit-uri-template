@@ -1,6 +1,6 @@
 # 同类对比与本轮增量证据
 
-核查日期：2026-10-20。本项目 0.2.0 候选版已补齐计量、批量、目录、预绑定、策略、来源映射等主要功能类别，并提供项目级请求契约检查与实际 GitHub 客户端。可以证明若干任务上的具体优势，仍不应声称所有接口、性能、成熟度或许可证偏好全面胜出。
+核查日期：2026-10-20。JSJ222 本轮固定到新版 ee7d3be；旧 76b1191 对比及样本保留在 reports/history/before-runtime-contract-20261020，不与本轮新版结果混用。本项目 0.2.0 候选版已补齐计量、批量、目录、预绑定、策略、来源映射等主要功能类别，并提供项目级请求契约检查与实际 GitHub 客户端。可以证明若干任务上的具体优势，仍不应声称所有接口、性能、成熟度或许可证偏好全面胜出。
 
 ## 固定比较范围
 
@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | 本项目 | 本分支 0.2.0 候选源码；源码摘要见 verification.json | 四后端标准/API 测试、工具测试、独立归档消费者与真实网络案例 |
 | [Magic486](https://github.com/Magic486/moon-uri-template/tree/8fecb90c2190e4715935b5f4ea0937b0b5c8d08b) | 8fecb90c2190e4715935b5f4ea0937b0b5c8d08b，源码 0.1.2 | 固定工具链的原项目三后端测试与共享探针 |
-| [JSJ222](https://github.com/JSJ222/MoonUriTemplate/tree/76b11916c91cd48d42102104fab82337a276b225) | 76b11916c91cd48d42102104fab82337a276b225，源码 0.1.0 | 同上 |
+| [JSJ222](https://github.com/JSJ222/MoonUriTemplate/tree/ee7d3be94e80459d5e4f2fc9eafcc8b1a11ae3df) | ee7d3be94e80459d5e4f2fc9eafcc8b1a11ae3df，源码 0.2.0 | 同上 |
 
 对比脚本会核对 HEAD 并记录远端最新提交，不静默改变快照；没有修改同类核心源码。当前结果见 [同类执行记录](../reports/peer-audit-20261020.json)。本分支包含新接口源码；代码推送不等于 GitHub Release、Mooncakes 或 npm 正式发行，不能拿原 0.1.1 的发布记录证明新接口已经注册表发布。
 
@@ -39,7 +39,9 @@ node tools/integration_evidence.mjs
 | Node 运行时契约变化 | 除模板结构外，比较必填集合、无用绑定策略和输入/输出预算变化 | 未见对应公开入口 | 固定快照未见同等 Node 接口 |
 | 稀疏成员 | 显式 sparse_list/sparse_assoc 规范化；JSON 列表 null 拒绝 | 当前 JSON null 拒绝 | SparseList/SparseAssoc 类型与桥接 |
 | 绑定预检 | missing/omitted/unused/invalid，含位置 | 未见对应报告 API | Missing/Unused/Duplicate/CompositePrefix |
-| 必填 | 选择子集；空标量有效、空集合拒绝 | 未见对应公开 API | expand_required 要求所有引用名存在，空集合可通过 |
+| 必填 | 选择子集；空标量有效、空集合拒绝 | 未见对应公开 API | 新 with_contract 支持选择子集及定义值检查；旧 expand_required 保留全部引用名策略 |
+| 公共值类型契约 | MoonBit with_contract、Node types；校验/收集发现/计量/展开/映射/批量；类型变化审查 | 未见对应公开入口 | 新 with_contract 支持类型、选择性必填、validate/expand |
+| 增量链接会话 | 尚未提供共享绑定快照及依赖选择性重算 | 未见对应公开入口 | 已有不可变会话、原子补丁、受影响端点重算和整体输出预算 |
 | 输出来源 | 每次变量出现/字面量范围，含变量名 | 未见对应公开 API | 表达式/字面量级范围 |
 | 位置 | 核心码点；展示给出 UTF-16；项目文件行列 | UTF-16 | UTF-16 |
 | CLI | Node 便携 CLI、stdin、预检、计量/trace、项目检查与 JSON 协议 | MoonBit CLI，含 inspect | 当前 cmd 为示例入口 |
@@ -64,13 +66,16 @@ node tools/integration_evidence.mjs
 | 同上必填检查 | OmittedBinding | 无对应必填探针 | 接受，展开为空 |
 | `/users/{id}{?page}`，仅提供 id=42；要求 id 必填 | `/users/42` | 无对应必填探针 | expand_required 报 missing_variable，因为它要求 page 也存在 |
 | `{x}`，x=emoji，输出预算 11 字节 | 拒绝 | 拒绝 | 拒绝 |
+| 新公共类型契约：id 必填、tags 可选，仅 id=42 | `/users/42` | 未见对应公开入口 | `/users/42` |
+| 新类型契约：id 声明标量，传空列表 | 拒绝 | 未见对应公开入口 | 拒绝 |
+| 两端点会话只修改搜索词 q | 尚无会话入口 | 未见对应公开入口 | 重算 1 个端点，旧快照保持不变 |
 | `{?x,y}`，x=a,y=b；计量 | 8 字节 | 无对应计量探针 | 8 字节 |
 | 同上来源映射 | 两条变量来源 | 无对应映射探针 | 一条表达式来源 |
 | 同上两次批量展开 | 返回两项 | 无对应批量探针 | 返回两项 |
 | `{x:2}{+x}{?tags*}` 的 x 画像 | 2 次、仅标量、有 reserved | 无对应画像探针 | 相同摘要 |
 | `{x:2}` 改为 `{x:3}`，x=abcd | 输出 ab→abc；明确 prefixes_changed=true | 未执行差异接口探针 | 输出 ab→abc；摘要 has_flagged_changes=false |
 
-必填空集合是业务契约差异，不是对方 RFC 错误。JSJ222 可以使用其预检结果自行组合选择性必填；这里比较的是对应直接公开入口。
+必填空集合是业务契约差异，不是对方 RFC 错误。JSJ222 新增的 with_contract 已直接支持选择性必填和定义值检查；上表旧 expand_required 行只描述该旧入口，不代表新版能力缺失。
 
 JSJ222 的 has_flagged_changes 只覆盖它明确列出的契约字段，原测试也说明它不保证 URI 等价。上述前缀案例证明本项目提供更细的直接变化报告，不把对方的有限摘要误判为 RFC 实现错误。我们的 requires_review 对全部源码变化均触发，也可能要求审查实际等价的改写，不冒充兼容性判定器。
 
@@ -82,11 +87,13 @@ Magic486 的 API 集中、默认有界、MoonBit 原生命令行和 MIT 许可�
 
 此前 JSJ222 在变量画像、详细契约变化和跨目录审计方面的功能类别差距，本轮已补齐；同输入画像与前缀差异在共享探针中验证。本项目另保留逐次修饰符差异，并在 Node 层比较必填和预算配置。JSJ222 仍有第一类 SparseList/SparseAssoc 及对应 JSON 桥接，本项目选择显式规范化与严格列表输入，两者并非完全同一套接口。它已有编码前计量，不能将分配前预算描述成本项目独有。
 
+JSJ222 本次新版已加入运行时类型契约和增量链接会话。前者本项目已补入核心与 SDK 并完成共享探针；后者本项目尚未具备，必须保留为实际功能差距，不能将重新展开整个目录冒充依赖选择性更新。
+
 本项目尚无长期第三方采用或跨平台统一性能/RSS 证据。旧核心便利 API 为兼容性保留无输入预算策略；需要调用有界入口。新增后端测试通过也不等于同类该后端不能工作。
 
 ## 测试数量与性能证据
 
-本次同类原项目测试：Magic486 每后端 194/194（根包 186，含子包 194）；JSJ222 每后端 119/119，覆盖 JS/wasm-gc/Native。本项目每后端 315/315，覆盖四后端。不同项目一个测试函数所包含的向量数量不同，**这些数字不是质量排名**。
+本次同类原项目测试：Magic486 每后端 194/194（根包 186，含子包 194）；JSJ222 每后端 134/134，覆盖 JS/wasm-gc/Native。本项目每后端 320/320，覆盖四后端。不同项目一个测试函数所包含的向量数量不同，**这些数字不是质量排名**。
 
 同机性能使用固定提交、固定工具链、JS release、轮换执行顺序和输出校验，完整结果见 [性能说明](PERFORMANCE.md) 与 `reports/peer-benchmark.json`。真实接入见 [技术证据说明](REVIEW_EVIDENCE.md)。
 

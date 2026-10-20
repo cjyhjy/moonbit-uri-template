@@ -1,0 +1,33 @@
+{
+  "checked_at_utc": "2026-10-14T13:24:03.407643+00:00",
+  "scope": "Source snapshots, public API inspection and small shared smoke cases only; not complete conformance or performance ranking.",
+  "ours": "0.1.1 core, local source",
+  "peers": {
+    "Magic486/moon-uri-template": {
+      "commit": "8fecb90c2190e4715935b5f4ea0937b0b5c8d08b",
+      "url": "https://github.com/Magic486/moon-uri-template"
+    },
+    "JSJ222/moonuritemplate": {
+      "commit": "76b11916c91cd48d42102104fab82337a276b225",
+      "url": "https://github.com/JSJ222/MoonUriTemplate"
+    }
+  },
+  "backends": {
+    "js": {
+      "exit_code": 0,
+      "stdout": "ours.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nmagic.uri=/users/team%2Fa?tags=a%20b&tags=sdk\njsj.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nours.offset=1\nmagic.error=URI Template syntax error at 2: unclosed expression\njsj.offset=2\nmagic.null=invalid value for 'id': expected a string, array of strings, or object of strings\njsj.null=accepted\n",
+      "warnings_present": true
+    },
+    "wasm-gc": {
+      "exit_code": 0,
+      "stdout": "ours.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nmagic.uri=/users/team%2Fa?tags=a%20b&tags=sdk\njsj.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nours.offset=1\nmagic.error=URI Template syntax error at 2: unclosed expression\njsj.offset=2\nmagic.null=invalid value for 'id': expected a string, array of strings, or object of strings\njsj.null=accepted\n",
+      "warnings_present": true
+    },
+    "native": {
+      "exit_code": 0,
+      "stdout": "ours.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nmagic.uri=/users/team%2Fa?tags=a%20b&tags=sdk\njsj.uri=/users/team%2Fa?tags=a%20b&tags=sdk\nours.offset=1\nmagic.error=URI Template syntax error at 2: unclosed expression\njsj.offset=2\nmagic.null=invalid value for 'id': expected a string, array of strings, or object of strings\njsj.null=accepted\n",
+      "warnings_present": true
+    }
+  },
+  "consumer_sha256": "f52d027eff3e99012a26adbaf5ceb6ff41ea292fadb037cc16c7fd273920e3b2"
+}

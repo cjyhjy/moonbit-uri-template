@@ -1,0 +1,45 @@
+{
+  "registry_index_commit": "a98cb3302f4b09d5334a551d1115810054d84679",
+  "module_indexes_scanned": 3007,
+  "scope": "Latest entry names, descriptions and keywords; not source-level feature inspection.",
+  "matches": [
+    {
+      "name": "Magic486/moon-uri-template",
+      "version": "0.1.2",
+      "description": "RFC 6570 Level 4 URI Template parser and expander for MoonBit",
+      "repository": "https://github.com/Magic486/moon-uri-template",
+      "license": "MIT",
+      "created_at": "2026-07-25T09:06:21.194748+00:00",
+      "deps": {
+        "moonbitlang/x": "0.4.45"
+      }
+    },
+    {
+      "name": "xubowen1234/moonuri",
+      "version": "0.1.1",
+      "description": "RFC 3986 URI parsing, query parameters, percent encoding, path templates, and reference resolution",
+      "repository": "https://github.com/xubowen1234/moonuri",
+      "license": "MIT",
+      "created_at": "2026-09-10T06:40:54.511855+00:00",
+      "deps": null
+    },
+    {
+      "name": "JSJ222/moonuritemplate",
+      "version": "0.1.0",
+      "description": "RFC 6570 Level 4 URI Template parser and expansion library",
+      "repository": "https://github.com/JSJ222/MoonUriTemplate",
+      "license": "Apache-2.0",
+      "created_at": "2026-10-03T08:03:26.799356+00:00",
+      "deps": null
+    },
+    {
+      "name": "cjyhjy/uri_template",
+      "version": "0.1.0",
+      "description": "RFC 6570 Level 4 URI Template parser and expander",
+      "repository": "https://github.com/cjyhjy/moonbit-uri-template",
+      "license": "Apache-2.0",
+      "created_at": "2026-10-14T06:57:11.240204+00:00",
+      "deps": null
+    }
+  ]
+}

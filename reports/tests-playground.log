@@ -1,9 +1,9 @@
-✔ workbench analyzes references while preserving optional omission semantics (4.237875ms)
-✔ workbench reports candidate-only contracts and same bindings independently (1.89425ms)
-✔ workbench selection offsets address Unicode template and JSON editors correctly (0.591875ms)
-✔ workbench rejects duplicate JSON and excessive input before core analysis (1.375416ms)
-✔ workbench cancellation and superseded messages cannot restore stale results (0.175041ms)
-✔ workbench timeout and worker startup failures stop computation and allow retry (0.089459ms)
+✔ workbench analyzes references while preserving optional omission semantics (4.262292ms)
+✔ workbench reports candidate-only contracts and same bindings independently (1.990375ms)
+✔ workbench selection offsets address Unicode template and JSON editors correctly (0.594667ms)
+✔ workbench rejects duplicate JSON and excessive input before core analysis (1.304417ms)
+✔ workbench cancellation and superseded messages cannot restore stale results (0.193292ms)
+✔ workbench timeout and worker startup failures stop computation and allow retry (0.090167ms)
 ℹ tests 6
 ℹ suites 0
 ℹ pass 6
@@ -11,4 +11,4 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 47.218583
+ℹ duration_ms 47.086042

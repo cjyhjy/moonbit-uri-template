@@ -1,0 +1,26 @@
+{
+  "verified_at_utc": "2026-10-14T07:12:32.321739+00:00",
+  "module": "cjyhjy/uri_template",
+  "version": "0.1.0",
+  "source": "Mooncakes registry; fresh consumer without moon.work or local path dependency",
+  "install_command": "moon add cjyhjy/uri_template@0.1.0",
+  "backends": {
+    "js": {
+      "output": "/users/42?tags=a%20b&tags=sdk",
+      "exit_code": 0
+    },
+    "wasm-gc": {
+      "output": "/users/42?tags=a%20b&tags=sdk",
+      "exit_code": 0
+    },
+    "native": {
+      "output": "/users/42?tags=a%20b&tags=sdk",
+      "exit_code": 0
+    }
+  },
+  "dependency_tree": "acceptance/registry_consumer@0.0.0 (local /private/tmp/uri-template-registry-cdxkfjb2):\n└─ cjyhjy/uri_template -> cjyhjy/uri_template@0.1.0",
+  "release_commit": "974b981543741df511d9ddd2fa3544cf060520f0",
+  "github_release": "https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.1.0",
+  "github_ci": "https://github.com/cjyhjy/moonbit-uri-template/actions/runs/38524624092",
+  "github_asset_sha256": "1f3ccd4693d3905fbb6c3282d7995bf312af4579c23cf108eb11e7a47e5774de"
+}

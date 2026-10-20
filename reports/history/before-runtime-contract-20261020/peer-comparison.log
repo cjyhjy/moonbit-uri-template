@@ -1,0 +1,29 @@
+js
+ours.uri=/users/team%2Fa?tags=a%20b&tags=sdk
+magic.uri=/users/team%2Fa?tags=a%20b&tags=sdk
+jsj.uri=/users/team%2Fa?tags=a%20b&tags=sdk
+ours.offset=1
+magic.error=URI Template syntax error at 2: unclosed expression
+jsj.offset=2
+magic.null=invalid value for 'id': expected a string, array of strings, or object of strings
+jsj.null=accepted
+
+wasm-gc
+ours.uri=/users/team%2Fa?tags=a%20b&tags=sdk
+magic.uri=/users/team%2Fa?tags=a%20b&tags=sdk
+jsj.uri=/users/team%2Fa?tags=a%20b&tags=sdk
+ours.offset=1
+magic.error=URI Template syntax error at 2: unclosed expression
+jsj.offset=2
+magic.null=invalid value for 'id': expected a string, array of strings, or object of strings
+jsj.null=accepted
+
+native
+ours.uri=/users/team%2Fa?tags=a%20b&tags=sdk
+magic.uri=/users/team%2Fa?tags=a%20b&tags=sdk
+jsj.uri=/users/team%2Fa?tags=a%20b&tags=sdk
+ours.offset=1
+magic.error=URI Template syntax error at 2: unclosed expression
+jsj.offset=2
+magic.null=invalid value for 'id': expected a string, array of strings, or object of strings
+jsj.null=accepted

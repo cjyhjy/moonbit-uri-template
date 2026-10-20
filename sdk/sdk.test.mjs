@@ -211,3 +211,46 @@ test('SDK rejects excessive snapshot text before handing input to the core', () 
   assert.throws(() => t.expand({ x: 'a'.repeat(4194305) }), e => e.code === 'JsonInputLimit');
   assert.throws(() => compileTemplate('{x}', { required: ['x'.repeat(65537)] }), e => e.code === 'JsonInputLimit');
 });
+
+
+test('runtime shape contracts share the core across expansion, measurement, tracing and inspection', () => {
+  const options = {required:['id'], types:{id:'scalar', tags:'list', meta:'assoc'}};
+  const t = compileTemplate('/users/{id}{?tags*,meta*}', options);
+  options.types.id = 'list';
+  assert.equal(t.expand({id:'',tags:[],meta:{}}), '/users/');
+  for (const method of ['expand', 'measure', 'trace']) {
+    assert.throws(() => t[method]({id:[]}), e => e.code === 'BindingType');
+    assert.throws(() => t[method]({id:'42',tags:''}), e => e.code === 'BindingType');
+  }
+  const issues = t.inspect({id:'42',tags:''});
+  assert.equal(issues[0].code, 'BindingType');
+  assert.equal(issues[0].variable, 'tags');
+  assert.throws(() => t.inspect({id:'42',tags:''}, {maxFindings:0}), e => e.code === 'FindingLimit');
+  const bounded = compileTemplate('/{id}', {types:{id:'scalar'}, required:['id'], maxTotalValue:4});
+  for (const method of ['expand','measure','trace','inspect'])
+    assert.throws(() => bounded[method]({id:'1'}), e => e.code === 'TotalValueLimit');
+  assert.equal(t.tryExpand({id:[]}).ok, false);
+  assert.throws(() => t.expandMany([{id:'42'}, {id:[]}]), e => e.code === 'BindingType' && e.index === 1);
+  assert.throws(() => compileTemplate('/{id}', {types:{typo:'scalar'}}), e => e.code === 'UnknownRule');
+  assert.throws(() => compileTemplate('/{id:2}', {types:{id:'list'}}), e => e.code === 'IncompatibleRule');
+  assert.throws(() => compileTemplate('/{id}', {types:{id:'number'}}), e => e.code === 'InvalidOptions' && e.path === '/types/id');
+  assert.throws(() => compileTemplate('/{id:2}', {types:{}}).expand({id:[]}), e => e.code === 'BindingType');
+  assert.equal(compileTemplate('/{id:2}').expand({id:[]}), '/');
+});
+
+test('catalog shape changes are reviewed and batch failures identify the endpoint', () => {
+  const catalog = compileCatalog({user:{template:'/{id}{?tags*}', required:['id'], types:{id:'scalar',tags:'list'}}});
+  assert.deepEqual(catalog.expandMany([{template:'user',variables:{id:'42'}}]), ['/42']);
+  for (const command of ['expandMany','measureMany']) {
+    assert.throws(() => catalog[command]([{template:'user',variables:{id:[]}}]),
+      e => e.code === 'BindingType' && e.index === 0 && e.templateName === 'user');
+  }
+  assert.equal(catalog.inspect([{template:'user',variables:{id:[]}}]).ok, false);
+  const before = compileTemplate('/{id}', {types:{id:'list'}});
+  const after = compileTemplate('/{id}', {types:{id:'scalar'}});
+  assert.deepEqual(before.compare(after).typeChanges, [{name:'id',before:'list',after:'scalar'}]);
+  assert.equal(before.compare(after).requiresReview, true);
+  assert.equal(after.compare(after).requiresReview, false);
+  assert.equal(compileTemplate('/{id:2}').compare(compileTemplate('/{id:2}', {types:{}})).requiresReview, true);
+  assert.equal(catalog.compare(compileCatalog({user:{template:'/{id}{?tags*}',required:['id'],types:{id:'scalar',tags:'scalar'}}})).changed.length, 1);
+});

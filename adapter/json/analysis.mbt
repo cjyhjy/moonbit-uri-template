@@ -203,6 +203,46 @@ pub fn PreparedRequest::compare(
       )
     }
   }
+  let type_changes : Array[Json] = []
+  let type_names = before.types.keys().to_array()
+  for name in after.types.keys() {
+    if !before.types.contains(name) {
+      type_names.push(name)
+    }
+  }
+  type_names.sort()
+  for name in type_names {
+    let old = before.types.get(name)
+    let next = after.types.get(name)
+    if old != next {
+      type_changes.push(
+        Json::object(
+          Map([
+            ("name", Json::string(name)),
+            (
+              "before",
+              match old {
+                Some(s) => Json::string(s)
+                None => Json::null()
+              },
+            ),
+            (
+              "after",
+              match next {
+                Some(s) => Json::string(s)
+                None => Json::null()
+              },
+            ),
+          ]),
+        ),
+      )
+    }
+  }
+  let typed_before = before.contract is Some(_)
+  let typed_after = after.contract is Some(_)
+  fields["typeChanges"] = Json::array(type_changes)
+  fields["typedBefore"] = bool_json(typed_before)
+  fields["typedAfter"] = bool_json(typed_after)
   fields["addedRequired"] = strings_json(added)
   fields["removedRequired"] = strings_json(removed)
   fields["rejectUnusedBefore"] = bool_json(before.reject_unused)
@@ -213,7 +253,9 @@ pub fn PreparedRequest::compare(
     !added.is_empty() ||
     !removed.is_empty() ||
     before.reject_unused != after.reject_unused ||
-    !budgets.is_empty(),
+    !budgets.is_empty() ||
+    !type_changes.is_empty() ||
+    typed_before != typed_after,
   )
   success(Json::object(fields).stringify())
 }

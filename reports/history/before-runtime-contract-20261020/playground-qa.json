@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-17",
+  "mode": "local browser UI verification",
+  "url": "http://127.0.0.1:4173/",
+  "observations": [
+    "Initial SDK preset produces 55 ASCII bytes and reports optional page as missing",
+    "Missing preset reports id and page missing, tags omitted, paeg unused; expansion fails at id",
+    "Budget preset fails at 18 bytes, succeeds at 19 with /hello/%F0%9F%98%80",
+    "Chinese and emoji unclosed expression highlights {id at code point 10 / UTF16 11",
+    "Copy action displays URI copied status",
+    "390x844 viewport verified; DOM scrollWidth 375 <= innerWidth 390; no horizontal overflow",
+    "Browser console had no error/warn entries at inspection",
+    "Editing template invalidates result and preflight, disables copy, and asks for a new run"
+  ],
+  "screenshots": [
+    "playground-desktop.png",
+    "playground-mobile.png"
+  ],
+  "not_automated": [
+    "system clipboard byte comparison",
+    "forced worker timeout path"
+  ]
+}

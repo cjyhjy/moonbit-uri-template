@@ -1,4 +1,10 @@
 export type Value = string | readonly string[] | Readonly<Record<string, string | null>> | null;
+export type BindingKind = 'scalar' | 'list' | 'assoc';
+type ValueForKind<K> = K extends 'scalar' ? string : K extends 'list' ? readonly string[] :
+  K extends 'assoc' ? Readonly<Record<string, string | null>> : Value;
+type TypedBindings<N extends string, R extends N, K> =
+  { [P in N]?: P extends keyof K ? ValueForKind<K[P]> | null : Value } &
+  { [P in R]: Exclude<P extends keyof K ? ValueForKind<K[P]> : Value, null> };
 export type Operator = '+' | '#' | '.' | '/' | ';' | '?' | '&';
 type StripOperator<S extends string> = S extends `${Operator}${infer Rest}` ? Rest : S;
 type StripModifier<S extends string> = S extends `${infer Name}:${string}` ? Name : S extends `${infer Name}*` ? Name : S;
@@ -21,6 +27,7 @@ export interface Limits {
   maxJsonDepth?: number;
 }
 export interface CompileOptions<N extends string = string, R extends N = never> extends Limits {
+  types?: Partial<Readonly<Record<N, BindingKind>>>;
   strict?: boolean;
   rejectUnused?: boolean;
   required?: readonly R[];
@@ -84,31 +91,33 @@ export interface TemplateComparison {
     operatorsChanged: boolean; prefixesChanged: boolean; explodeChanged: boolean;
     occurrencesChanged: boolean; usesChanged: boolean;
   }>;
+  typeChanges: Array<{ name: string; before: BindingKind | null; after: BindingKind | null }>;
+  typedBefore: boolean; typedAfter: boolean;
   addedRequired: string[]; removedRequired: string[];
   rejectUnusedBefore: boolean; rejectUnusedAfter: boolean;
   budgetChanges: Array<{ name: string; before: number; after: number; tightened: boolean }>;
 }
-export class CompiledTemplate<N extends string = string, R extends N = never> {
+export class CompiledTemplate<N extends string = string, R extends N = never, K = {}> {
   private constructor();
   readonly source: string;
   readonly variables: readonly N[];
   analyze(): TemplateAnalysis;
   /** Review aid; does not certify URL equivalence or application compatibility. */
   compare(newer: CompiledTemplate<any, any>): TemplateComparison;
-  expand(variables: Bindings<N, R>): string;
-  tryExpand(variables: Bindings<N, R>): ExpansionResult;
-  measure(variables: Bindings<N, R>): number;
-  trace(variables: Bindings<N, R>): Trace;
+  expand(variables: TypedBindings<N, R, K>): string;
+  tryExpand(variables: TypedBindings<N, R, K>): ExpansionResult;
+  measure(variables: TypedBindings<N, R, K>): number;
+  trace(variables: TypedBindings<N, R, K>): Trace;
   /** Reports unbound optional variables too; this is not a contract verdict. */
   check(variables: Partial<Record<N, Value>>): BindingReport;
   /** Checks the configured business contract; optional omissions are allowed. */
   inspect(variables?: Readonly<Record<string, Value>>, options?: FindingLimits): BindingFinding[];
   audit(policy?: TemplatePolicy, options?: FindingLimits): Diagnostic[];
-  expandMany(inputs: readonly Bindings<N, R>[], limits?: BatchLimits): string[];
+  expandMany(inputs: readonly TypedBindings<N, R, K>[], limits?: BatchLimits): string[];
 }
-export function compileTemplate<const S extends string, const R extends TemplateVariables<S> = never>(
-  source: S, options?: CompileOptions<TemplateVariables<S>, R>
-): CompiledTemplate<TemplateVariables<S>, R>;
+export function compileTemplate<const S extends string, const R extends TemplateVariables<S> = never, const K extends Partial<Record<TemplateVariables<S>, BindingKind>> = {}>(
+  source: S, options?: CompileOptions<TemplateVariables<S>, R> & { types?: K }
+): CompiledTemplate<TemplateVariables<S>, R, K>;
 export function expand<const S extends string, const R extends TemplateVariables<S> = never>(
   source: S, variables: Bindings<TemplateVariables<S>, R>, options?: CompileOptions<TemplateVariables<S>, R>
 ): string;
@@ -126,10 +135,11 @@ type CatalogKey<D> = Extract<keyof D, string>;
 type RequiredFor<D extends CatalogDefinition> = D extends { requireAll: true }
   ? TemplateVariables<D['template']>
   : D extends { required: readonly (infer R)[] } ? Extract<R, TemplateVariables<D['template']>> : never;
+type TypesFor<D> = D extends { types: infer K } ? K : {};
 type CatalogBindings<D extends CatalogDefinitions, K extends CatalogKey<D>> =
-  Bindings<TemplateVariables<D[K]['template']>, RequiredFor<D[K]>>;
+  TypedBindings<TemplateVariables<D[K]['template']>, RequiredFor<D[K]>, TypesFor<D[K]>>;
 type ValidateCatalog<D extends CatalogDefinitions> = {
-  readonly [K in keyof D]: { readonly required?: readonly TemplateVariables<D[K]['template']>[] };
+  readonly [K in keyof D]: { readonly required?: readonly TemplateVariables<D[K]['template']>[]; readonly types?: Partial<Record<TemplateVariables<D[K]['template']>, BindingKind>> };
 };
 export type CatalogRequest<D extends CatalogDefinitions> = {
   [K in CatalogKey<D>]: { template: K; variables: CatalogBindings<D, K>; label?: string };
@@ -155,7 +165,7 @@ export class CompiledCatalog<D extends CatalogDefinitions = CatalogDefinitions> 
   readonly names: readonly CatalogKey<D>[];
   readonly size: number;
   has(name: string): boolean;
-  get<K extends CatalogKey<D>>(name: K): CompiledTemplate<TemplateVariables<D[K]['template']>, RequiredFor<D[K]>>;
+  get<K extends CatalogKey<D>>(name: K): CompiledTemplate<TemplateVariables<D[K]['template']>, RequiredFor<D[K]>, TypesFor<D[K]>>;
   expand<K extends CatalogKey<D>>(name: K, variables: CatalogBindings<D, K>): string;
   measure<K extends CatalogKey<D>>(name: K, variables: CatalogBindings<D, K>): number;
   trace<K extends CatalogKey<D>>(name: K, variables: CatalogBindings<D, K>): Trace;

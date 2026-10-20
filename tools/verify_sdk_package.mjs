@@ -39,6 +39,11 @@ assert.equal(catalog.inspect(jobs).ok, true);
 assert.equal(catalog.inspect([{template:'repo',variables:{owner:'a'}}]).ok, false);
 assert.equal(catalog.audit({allowReserved:false}).ok, true);
 assert.equal(catalog.compare(catalog).requiresReview, false);
+const typed = compileTemplate('/{id}{?tags*}', {required:['id'],types:{id:'scalar',tags:'list'}});
+assert.equal(typed.expand({id:'42',tags:['sdk']}), '/42?tags=sdk');
+assert.equal(typed.tryExpand({id:[]}).error.code, 'BindingType');
+assert.equal(typed.inspect({id:'42',tags:''})[0].code, 'BindingType');
+assert.equal(typed.compare(compileTemplate('/{id}{?tags*}', {required:['id'],types:{id:'scalar',tags:'scalar'}})).typeChanges[0].name, 'tags');
 console.log('installed SDK passed');`;
   writeFileSync(join(temporary, 'consumer.mjs'), source);
   run('node', ['consumer.mjs'], temporary);
@@ -52,7 +57,7 @@ console.log('installed SDK passed');`;
     sourceSha256: run('python3', ['-c', 'from pathlib import Path; import sys; sys.path.insert(0,"tools"); from source_digest import source_digest; print(source_digest(Path.cwd()))']).trim(),
     node: process.version, typescript: run(join(root, 'node_modules/.bin/tsc'), ['--version']).trim(),
     cleanLocalInstall: true, offlineInstall: true, published: false,
-    checks: ['ESM public export', 'compiled reuse', 'batch', 'contract failure', 'analysis and comparison', 'typed catalog batch inspection audit and comparison', 'installed CLI comparison', 'TypeScript positive and expected-error cases'],
+    checks: ['ESM public export', 'compiled reuse', 'runtime shape contracts and type-change review', 'batch', 'contract failure', 'analysis and comparison', 'typed catalog batch inspection audit and comparison', 'installed CLI comparison', 'TypeScript positive and expected-error cases'],
     files: pack.files.map(x => x.path) };
   writeFileSync(join(root, 'reports/sdk-package.json'), JSON.stringify(report, null, 2) + '\n');
   console.log('SDK tarball: clean offline install, runtime and TypeScript checks passed');

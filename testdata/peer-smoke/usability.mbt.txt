@@ -45,3 +45,20 @@
   let jp_after = @jsj.parse("{x:3}").unwrap()
   println("jsj.prefix_flag=" + jp_before.diff_contract(jp_after).has_flagged_changes().to_string())
   println("jsj.prefix_outputs=" + jp_before.expand([("x", @jsj.Scalar("abcd"))]).unwrap() + "," + jp_after.expand([("x", @jsj.Scalar("abcd"))]).unwrap())
+
+  let typed_ours = @ours.parse("/users/{id}{?tags*}").unwrap().with_contract(
+    [{name:"id",kind:@ours.ScalarKind},{name:"tags",kind:@ours.ListKind}], required=["id"],
+  ).unwrap()
+  let typed_jsj = @jsj.parse("/users/{id}{?tags*}").unwrap().with_contract(
+    [{name:"id",kind:@jsj.TextValue,required:true},{name:"tags",kind:@jsj.ListValue,required:false}],
+  ).unwrap()
+  println("ours.typed_selective=" + typed_ours.expand(@ours.Variables::from_entries([("id",@ours.Scalar("42"))]).unwrap()).unwrap())
+  println("jsj.typed_selective=" + typed_jsj.expand([("id",@jsj.Scalar("42"))]).unwrap())
+  println("ours.typed_empty_wrong=" + (typed_ours.validate(@ours.Variables::from_entries([("id",@ours.List([]))]).unwrap()) is Err(_)).to_string())
+  println("jsj.typed_empty_wrong=" + (typed_jsj.validate([("id",@jsj.List([]))]) is Err(_)).to_string())
+  let links = @jsj.compile_catalog([("search","/search{?q}"),("health","/health")]).unwrap()
+    .start_session([("q",@jsj.Scalar("old"))]).unwrap()
+  let update = links.update([@jsj.SetBinding("q",@jsj.Scalar("new"))]).unwrap()
+  println("jsj.incremental_recomputed=" + update.recomputed().to_string())
+  println("jsj.incremental_old=" + links.links()[0].1)
+  println("jsj.incremental_new=" + update.changes()[0].after)

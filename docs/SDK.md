@@ -182,3 +182,24 @@ let results = catalog.expand_batch(jobs, reject_unused=true,
 目前不提供 CommonJS 专用导出或 npm 公共版本，不声称已在全部 Node 版本实测。浏览器工作台已有独立入口，npm SDK 的浏览器打包兼容性未单独验收。真实 GitHub 案例仍是作者自建下游，不能视为外部用户采用。
 
 该客户端现直接使用公共 Node 目录接口生成实际 HTTP URL；完整配置升级命令还比较类型/整批预算，并重新检查旧请求和目标地址。使用步骤见 [GitHub 接入与升级审查](../integrations/github-audit/README.md)。升级演练报告与真实 HTTP 报告分别保存，不能相互代替。
+
+## 公共运行时类型契约
+
+```ts
+const users = compileTemplate('/users/{id}{?fields*,filter*}', {
+  required: ['id'],
+  types: { id: 'scalar', fields: 'list', filter: 'assoc' },
+});
+users.expand({ id: '42', fields: ['name', 'email'] });
+// TypeScript 提示错误，绕过类型检查的 JavaScript 调用也会被核心拒绝：
+// users.expand({ id: [] });
+const findings = users.inspect({ id: '42', fields: '' }); // BindingType
+```
+
+`types` 是可选声明，值为 `scalar`、`list` 或 `assoc`。它由 MoonBit 核心检查，并覆盖 `expand`、`measure`、`trace`、批量和 `inspect`；同样适用于目录定义及 `get` 返回的对象。类型化的 `compileTemplate` 和目录调用保留静态形状提示，动态模板仍须依靠运行时校验。
+
+未声明的普通变量保持任意 RFC 值类型；显式 `types: {}` 也开启前缀变量的标量约束，空复合值不能绕过。完全省略 `types` 则保留旧入口行为。可选变量仍可省略；必填空字符串有效，必填空集合拒绝；可选的错误类型即使为空也拒绝。`check` 仍是原始 RFC 绑定报告，业务契约检查使用 `inspect`。
+
+重复或未引用的规则、与前缀冲突的类型会在编译时报错。核心声明数量和名字总码点有界；JSON 选项还有固定上限。类型检查不做数字格式、域名或完整 JSON Schema 验证。`compare` 新增 `typeChanges`、`typedBefore` 和 `typedAfter`；类型或契约模式变化即使模板原文相同也要求审查。实际 GitHub 客户端把配置中的 `types` 直接传给公共 SDK，文件检查和 SDK 调用都执行约束。
+
+类型契约的输入总码点预算与 `inspect` 一致，计入绑定名字、键、值及必填名字；例如 id="1" 且 id 必填，共计 2+1+2=5 码点。`validate`、计量、展开和预检在该边界上一致。规则声明的大小在编译阶段另行限制。

@@ -175,3 +175,24 @@ CLI 另提供 `measure`（输出字节数）和 `trace`（URI 与来源 JSON）�
 - `Template.check_contract` 收集选择性必填、空集合、无用绑定、复合前缀和未知 required 问题，成功报告可含多个发现；预算错误以 Err 表示。required 名字计入输入码点和独立数量限额。
 - `TemplateCatalog.audit/inspect_requests/diff_contract/contains` 分别提供静态审计、跨模板绑定审计、详细目录差异与查询。绑定审计不生成 URI，也不检查输出总量。
 - Node `CompiledTemplate.analyze/compare` 对应核心分析/比较；compare 还包含 required、rejectUnused 及运行时预算变化。CLI 新增 analyze 与 compare，行为和例子见 SDK 指南。
+
+## 编译运行时值类型契约
+
+```moonbit
+let endpoint = @uri.parse("/users/{id}{?fields*}").unwrap().with_contract(
+  [{ name: "id", kind: @uri.ScalarKind }, { name: "fields", kind: @uri.ListKind }],
+  required=["id"],
+).unwrap()
+let vars = @uri.Variables::from_entries([("id", @uri.Scalar("42"))]).unwrap()
+let output = endpoint.expand(vars).unwrap()
+```
+
+`Template.with_contract` 返回不暴露内部表示的 `ContractTemplate`。规则由 `BindingRule` 和 `BindingKind`（`ScalarKind`、`ListKind`、`AssocKind`）声明，默认拒绝无用绑定；可通过 `reject_unused=false` 放宽。编译时复制规则和必填数组，不保留调用方可变数组；检查重复/未知规则、未知必填、前缀类型冲突。声明与必填各默认最多 4096 项，二者名字合计最多 65536 码点，可用 `max_rules` 和 `max_rule_codepoints` 调整。
+
+- `validate(vars, limits~)`：仅校验输入预算、类型、必填与无用绑定，不构造输出，也不检查输出长度。
+- `inspect(vars, limits~, max_findings~)`：收集独立问题，默认最多 256 条，超限返回错误；保留变量名和源码码点范围，不复制绑定值。
+- `expand` / `measure` / `expand_mapped`：共用已验证的核心编码器，遵守输出预算；分别生成 URI、仅计量、生成带来源的 URI。
+
+空标量有定义，空集合会被省略；声明错误类型的可选值即使为空也拒绝。所有前缀变量隐式要求标量。未声明的普通变量保持 RFC 值域。`BindingType` 带预期形状说明及变量位置，不泄漏输入内容；`inspect` 可能同时报告必填/前缀与形状问题。类型契约是选择性的新入口，不改变旧 `Template.expand` 的省略语义。验证会扫描输入与规则；`inspect` 另构建完整绑定报告，这不是零分配接口。
+
+类型契约的输入总码点预算与 `inspect` 一致，计入绑定名字、键、值及必填名字；例如 id="1" 且 id 必填，共计 2+1+2=5 码点。`validate`、计量、展开和预检在该边界上一致。规则声明的大小在编译阶段另行限制。

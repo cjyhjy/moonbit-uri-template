@@ -27,7 +27,8 @@ fn template_failure(e : @template.TemplateError) -> String {
   ])
   if [
       "BindingLimit", "MemberLimit", "ValueLimit", "TotalValueLimit", "InvalidLimit",
-      "UnknownRequired", "UnusedBinding", "InvalidPolicy", "FindingLimit",
+      "UnknownRequired", "UnusedBinding", "InvalidPolicy", "FindingLimit", "UnknownRule",
+      "DuplicateRule", "ContractLimit",
     ].contains(e.code) {
     fields["scope"] = Json::string("bindings-or-options")
   } else {
@@ -126,6 +127,8 @@ struct PreparedRequest {
 ///|
 priv struct CompiledRequest {
   template : @template.Template
+  contract : @template.ContractTemplate?
+  types : Map[String, String]
   limits : @template.ExpansionLimits
   required : Array[String]
   reject_unused : Bool
@@ -179,6 +182,9 @@ fn compile_request(
   let mut require_all = false
   let mut reject_unused = false
   let required : Array[String] = []
+  let types : Map[String, String] = Map([])
+  let rules : Array[@template.BindingRule] = []
+  let mut typed = false
   for key, value in fields {
     if numbers.contains(key) {
       match value {
@@ -210,6 +216,32 @@ fn compile_request(
         require_all = flag
       } else {
         reject_unused = flag
+      }
+    } else if key == "types" {
+      typed = true
+      guard value is Object(entries) else {
+        return prepare_failure(
+          "InvalidOptions", "types must be an object", "/types",
+        )
+      }
+      let names = entries.keys().to_array()
+      names.sort()
+      for name in names {
+        let kind = match entries[name] {
+          String("scalar") => @template.ScalarKind
+          String("list") => @template.ListKind
+          String("assoc") => @template.AssocKind
+          _ =>
+            return prepare_failure(
+              "InvalidOptions",
+              "expected scalar, list or assoc",
+              "/types/" + pointer(name),
+            )
+        }
+        if entries[name] is String(text) {
+          types[name] = text
+        }
+        rules.push({ name, kind, })
       }
     } else if key == "required" {
       guard value is Array(items) else {
@@ -272,8 +304,18 @@ fn compile_request(
       }
     }
   }
+  let contract = if typed {
+    match template.with_contract(rules, required~, reject_unused~) {
+      Err(e) => return Err(template_failure(e))
+      Ok(c) => Some(c)
+    }
+  } else {
+    None
+  }
   Ok({
     template,
+    contract,
+    types,
     limits,
     required,
     reject_unused,
@@ -345,14 +387,21 @@ fn CompiledRequest::call(
     }
   }
   if command == "measure" {
-    return match template.measure(vars, required~, reject_unused~, limits~) {
+    let measured = match self.contract {
+      Some(contract) => contract.measure(vars, limits~)
+      None => template.measure(vars, required~, reject_unused~, limits~)
+    }
+    return match measured {
       Ok(n) => success(n.to_string())
       Err(e) => template_failure(e)
     }
   }
   if command == "trace" {
-    return match
-      template.expand_mapped(vars, required~, reject_unused~, limits~) {
+    let mapped = match self.contract {
+      Some(contract) => contract.expand_mapped(vars, limits~)
+      None => template.expand_mapped(vars, required~, reject_unused~, limits~)
+    }
+    return match mapped {
       Err(e) => template_failure(e)
       Ok(r) =>
         success(
@@ -390,7 +439,11 @@ fn CompiledRequest::call(
         )
     }
   }
-  match template.expand_checked(vars, required~, reject_unused~, limits~) {
+  let expanded = match self.contract {
+    Some(contract) => contract.expand(vars, limits~)
+    None => template.expand_checked(vars, required~, reject_unused~, limits~)
+  }
+  match expanded {
     Ok(value) => success(value)
     Err(e) => template_failure(e)
   }

@@ -1,0 +1,23 @@
+✔ catalog compiles named contracts once and preserves immutable snapshots (3.811125ms)
+✔ catalog definition validation has bounded counts text and named failures (0.375917ms)
+✔ catalog batches measure all requests and enforce aggregate metadata and output budgets (0.763375ms)
+✔ catalog inspection collects independent contract issues without treating optional omissions as errors (0.720875ms)
+✔ catalog policy audit validates empty catalogs and caps the combined report (1.035834ms)
+✔ catalog comparison includes additions removals and runtime-only contract changes (1.128166ms)
+✔ single-template inspection and policy audit preserve Unicode editor locations (0.29ms)
+✔ analysis keeps source occurrences and comparison explains modifier changes (1.22075ms)
+✔ SDK comparison includes required unused and runtime budget changes (0.352709ms)
+✔ compiled SDK preserves required contract and reusable immutable options (1.582ms)
+✔ compilation errors have useful locations and unknown contracts fail early (0.224208ms)
+✔ JS values cannot silently disappear or invoke getters during serialization (3.210542ms)
+✔ SDK batches enforce atomic budgets with an indexed error (0.344042ms)
+✔ prepared requireAll remains stable across check measure trace and repeated calls (3.038833ms)
+✔ SDK rejects excessive snapshot text before handing input to the core (16.795083ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 76.249583

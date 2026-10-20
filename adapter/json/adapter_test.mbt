@@ -1,4 +1,42 @@
 ///|
+test "runtime shape bridge rejects empty wrong kinds and reports type-only changes" {
+  let typed = @json.prepare_request(
+    "/{id}{?tags*}", "{\"required\":[\"id\"],\"types\":{\"id\":\"scalar\",\"tags\":\"list\"}}",
+  )
+  for command in ["expand", "measure", "trace"] {
+    assert_true(typed.call(command, "{\"id\":[]}").contains("BindingType"))
+    assert_true(
+      typed
+      .call(command, "{\"id\":\"42\",\"tags\":\"SECRET\"}")
+      .contains("BindingType"),
+    )
+    assert_false(
+      typed
+      .call(command, "{\"id\":\"42\",\"tags\":\"SECRET\"}")
+      .contains("SECRET"),
+    )
+  }
+  assert_true(
+    typed.inspect("{\"id\":\"42\",\"tags\":\"\"}", 1).contains("BindingType"),
+  )
+  assert_true(
+    typed.inspect("{\"id\":\"42\",\"tags\":\"\"}", 0).contains("FindingLimit"),
+  )
+  assert_true(typed.call("expand", "{\"id\":\"42\"}").contains("/42"))
+  let newer = @json.prepare_request(
+    "/{id}{?tags*}", "{\"required\":[\"id\"],\"types\":{\"id\":\"scalar\",\"tags\":\"scalar\"}}",
+  )
+  let diff = typed.compare(newer)
+  assert_true(diff.contains("typeChanges"))
+  assert_true(diff.contains("list") && diff.contains("scalar"))
+  assert_true(
+    @json.prepare_request("/{id}", "{\"types\":{\"typo\":\"scalar\"}}")
+    .call("variables", "{}")
+    .contains("UnknownRule"),
+  )
+}
+
+///|
 test "prepared contract inspection separates optional omissions and bounded findings" {
   let request = @json.prepare_request(
     "/{id}{?page}", "{\"required\":[\"id\"],\"rejectUnused\":true}",

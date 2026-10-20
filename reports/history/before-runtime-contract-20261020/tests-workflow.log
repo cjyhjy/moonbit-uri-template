@@ -1,0 +1,31 @@
+✔ typo prevents every network call and returns both missing and unused findings (6.564ms)
+✔ client verifies all destinations before any request (3.170417ms)
+✔ offline HTTP failures and malformed success payloads are never success evidence (11.751209ms)
+✔ offline success reads all nine outputs using the compiled core (2.02875ms)
+✔ catalog metadata input budget fails before any HTTP even if project variables fit (0.591917ms)
+✔ malformed relative and normalized destinations return failures without throwing (0.091667ms)
+✔ upgrade no-op and object key reordering pass without compatibility claims (4.429375ms)
+✔ upgrade optional variable requires review while existing requests still pass (3.23225ms)
+✔ upgrade checks retained requests even when candidate requests were repaired (2.656208ms)
+✔ upgrade catches type-only aggregate budget and destination-only regressions (6.390209ms)
+✔ upgrade rejects invalid definitions duplicate keys and unbounded request shapes (5.198458ms)
+✔ upgrade reports binding changes without copying secret values or generated URLs (2.123583ms)
+✔ upgrade CLI is offline and reports deterministic exit statuses (200.300042ms)
+✔ project allows omitted optional query and exposes source origins (4.165625ms)
+✔ actionable typo suggests a unique unbound target without rewriting data (0.814917ms)
+✔ project blocks missing unused empty required and incompatible types (0.77625ms)
+✔ file positions track JSON escapes and surrogate pairs (0.284708ms)
+✔ reject duplicate keys including escaped spellings and excessive depth (0.106834ms)
+✔ aggregate output and input budgets are atomic and boundary-inclusive (0.947875ms)
+✔ schema typos catalog duplicates unknown names and invalid limits fail closed (0.786291ms)
+✔ diagnostics have a hard cap and direct API input obeys file budget (8.019375ms)
+✔ annotation metadata and message escape control characters (0.11875ms)
+✔ measure trace CLI honor required and exact output budget (142.923292ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 294.190625

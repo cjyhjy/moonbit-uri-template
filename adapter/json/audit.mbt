@@ -12,6 +12,7 @@ fn finding_json(f : @template.BindingFinding) -> Json {
           "UnknownRequired" => "required name is not referenced"
           "UnusedBinding" => "binding is not referenced"
           "PrefixOnComposite" => "prefix requires a scalar"
+          "BindingType" => "binding does not match its declared type"
           _ => "binding contract finding"
         },
       ),
@@ -41,6 +42,13 @@ pub fn PreparedRequest::inspect(
   let vars = match parse_variables(variables_json) {
     Err(e) => return input_failure(e.code, e.message, e.path)
     Ok(vars) => vars
+  }
+  if c.contract is Some(contract) {
+    return match contract.inspect(vars, limits=c.limits, max_findings~) {
+      Err(e) => template_failure(e)
+      Ok(findings) =>
+        success(Json::array(findings.map(finding_json)).stringify())
+    }
   }
   match
     c.template.check_contract(

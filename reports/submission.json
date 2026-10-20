@@ -1,9 +1,9 @@
 {
   "status": "prepared",
-  "generatedAt": "2026-10-20T11:29:21.371087+00:00",
-  "sourceSha256": "a148cc0d5950cbbdbdf0d859af85f8149aaa1a5ffad818d4f88147053cbc5278",
+  "generatedAt": "2026-10-20T11:47:54.953041+00:00",
+  "sourceSha256": "36655b65b34098d0d6305d8f215cfb4c7157c62f681e9ed7da2d9e2f85bb0650",
   "archive": "_build/submission/moonbit-uri-template-review-0.2.0.zip",
-  "sha256": "b51dd162c6cd280490fa479ff3fe35de24cb2dfa11872474cce67eb6ca053456",
+  "sha256": "a97757593e36e0b7aa0e0927785895ea2451b881d0326aa271785483d6294ee0",
   "published": false,
   "formSubmitted": false,
   "emailSent": false,

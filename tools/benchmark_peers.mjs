@@ -18,7 +18,7 @@ const work = new URL('../_build/peer-audit/', import.meta.url);
 const folder = new URL('benchmark/', work);
 mkdirSync(folder, { recursive: true });
 writeFileSync(new URL('moon.work', work), 'members = ["ours", "magic", "jsj", "consumer", "benchmark"]\n');
-writeFileSync(new URL('moon.mod', folder), 'name = "audit/benchmark"\nimport { "cjyhjy/uri_template@0.2.0", "Magic486/moon-uri-template@0.1.2", "JSJ222/moonuritemplate@0.1.0" }\n');
+writeFileSync(new URL('moon.mod', folder), 'name = "audit/benchmark"\nimport { "cjyhjy/uri_template@0.2.0", "Magic486/moon-uri-template@0.1.2", "JSJ222/moonuritemplate@0.2.0" }\n');
 writeFileSync(new URL('moon.pkg', folder), `import { "cjyhjy/uri_template" @ours, "Magic486/moon-uri-template" @magic, "JSJ222/moonuritemplate" @jsj }
 pkgtype(kind: "foreign_library")
 supported_targets = "js"

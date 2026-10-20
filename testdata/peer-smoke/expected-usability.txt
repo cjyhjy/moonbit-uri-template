@@ -27,3 +27,10 @@ ours.prefix_change=true
 ours.prefix_outputs=ab,abc
 jsj.prefix_flag=false
 jsj.prefix_outputs=ab,abc
+ours.typed_selective=/users/42
+jsj.typed_selective=/users/42
+ours.typed_empty_wrong=true
+jsj.typed_empty_wrong=true
+jsj.incremental_recomputed=1
+jsj.incremental_old=/search?q=old
+jsj.incremental_new=/search?q=new

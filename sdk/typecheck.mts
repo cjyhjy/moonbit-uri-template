@@ -45,3 +45,20 @@ catalog.expandMany([{ template: 'search', variables: { id: '42' } }]);
 catalog.get('search').expand({});
 // @ts-expect-error required variable must occur in the literal template
 compileCatalog({ user: { template: '/{id}', required: ['typo'] } });
+
+const shaped = compileTemplate('/{id}{?tags*,meta*}', {
+  required: ['id'], types: {id:'scalar', tags:'list', meta:'assoc'},
+});
+shaped.expand({id:'42',tags:['sdk'],meta:{sort:'new'}});
+// @ts-expect-error id is a scalar, including at compile time
+shaped.expand({id:[]});
+// @ts-expect-error optional list has the wrong shape
+shaped.measure({id:'42',tags:'sdk'});
+// @ts-expect-error type declarations must reference a variable
+compileTemplate('/{id}', {types:{typo:'scalar'}});
+const shapedCatalog = compileCatalog({ user: {template:'/{id}{?tags*}', required:['id'], types:{id:'scalar',tags:'list'}} });
+shapedCatalog.expand('user', {id:'42',tags:['sdk']});
+// @ts-expect-error catalog batches enforce the declared shape
+shapedCatalog.expandMany([{template:'user',variables:{id:['42']}}]);
+// @ts-expect-error get preserves the declared shape
+shapedCatalog.get('user').expand({id:'42',tags:'sdk'});

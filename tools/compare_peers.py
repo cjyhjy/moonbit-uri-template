@@ -9,7 +9,7 @@ REPORTS = ROOT/'reports'
 STAMP = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d')
 MOON = str(ROOT/'tools/moon')
 PEERS = {'magic': ('Magic486/moon-uri-template', '8fecb90c2190e4715935b5f4ea0937b0b5c8d08b'),
-         'jsj': ('JSJ222/MoonUriTemplate', '76b11916c91cd48d42102104fab82337a276b225')}
+         'jsj': ('JSJ222/MoonUriTemplate', 'ee7d3be94e80459d5e4f2fc9eafcc8b1a11ae3df')}
 report = {'date': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'status': 'running', 'peers': {}, 'ours_source_sha256': source_digest(ROOT),
           'toolchain': subprocess.check_output([MOON,'version','--all'],text=True).strip()}
 def save(): (REPORTS/f'peer-audit-{STAMP}.json').write_text(json.dumps(report, ensure_ascii=False, indent=2)+'\n')
@@ -21,6 +21,8 @@ try:
         if not folder.exists():
             subprocess.run(['git','clone','--quiet','https://github.com/'+repo,str(folder)],check=True)
             subprocess.run(['git','checkout','--quiet',pin],cwd=folder,check=True)
+        if subprocess.check_output(['git','status','--porcelain'],cwd=folder,text=True).strip():
+            raise RuntimeError('Peer checkout has local changes: '+name)
         actual = subprocess.check_output(['git','rev-parse','HEAD'],cwd=folder,text=True).strip()
         if actual != pin: raise RuntimeError('Peer checkout does not match pin: '+name)
         remote = subprocess.check_output(['git','ls-remote','https://github.com/'+repo,'HEAD'],text=True).split()[0]
@@ -46,7 +48,7 @@ try:
     for name in ('moon.mod','moon.pkg'): shutil.copyfile(ROOT/name,ours/name)
     consumer = WORK/'consumer'; consumer.mkdir(exist_ok=True)
     (WORK/'moon.work').write_text('members = ["ours", "magic", "jsj", "consumer"]\n')
-    (consumer/'moon.mod').write_text('name = "audit/consumer"\nimport { "cjyhjy/uri_template@0.2.0", "Magic486/moon-uri-template@0.1.2", "JSJ222/moonuritemplate@0.1.0" }\n')
+    (consumer/'moon.mod').write_text('name = "audit/consumer"\nimport { "cjyhjy/uri_template@0.2.0", "Magic486/moon-uri-template@0.1.2", "JSJ222/moonuritemplate@0.2.0" }\n')
     (consumer/'moon.pkg').write_text('import { "cjyhjy/uri_template" @ours, "Magic486/moon-uri-template" @magic, "JSJ222/moonuritemplate" @jsj }\npkgtype(kind: "executable")\n')
     source = (ROOT/'testdata/peer-smoke/main.mbt.txt').read_text()
     additions = (ROOT/'testdata/peer-smoke/usability.mbt.txt').read_text()

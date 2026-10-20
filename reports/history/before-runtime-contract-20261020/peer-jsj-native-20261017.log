@@ -1,0 +1,2 @@
+Total tests: 313, passed: 313, failed: 0.
+Warning: `exclude` in `/Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/peer-audit/magic/moon.mod` is deprecated; use `.gitignore` or `.moonignore` to control which files are packaged instead. `.moonignore` overrides `.gitignore` in the same directory.
