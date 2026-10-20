@@ -2,7 +2,6 @@
 /// Private copy-on-write blocks. Names/slot index are shared across snapshots;
 /// active indices avoid scanning the catalog's unbound variables.
 priv struct SessionBindings {
-  names : Array[String]
   slots : Map[String, Int32]
   blocks : Array[Array[Value?]]
   active : Array[Int32]
@@ -27,7 +26,7 @@ fn SessionBindings::capture(
     blocks[index / 32][index % 32] = Some(value.captured())
     active.push(index)
   }
-  { names, slots, blocks, active, }
+  { slots, blocks, active, }
 }
 
 ///|
@@ -36,19 +35,6 @@ fn SessionBindings::get(self : SessionBindings, name : String) -> Value? {
     None => None
     Some(index) => self.blocks[index / 32][index % 32]
   }
-}
-
-///|
-fn SessionBindings::entries(self : SessionBindings) -> Iter2[String, Value] {
-  let mut cursor = 0
-  Iter2::new(fn() {
-    if cursor == self.active.length() {
-      return None
-    }
-    let index = self.active[cursor]
-    cursor = cursor + 1
-    Some((self.names[index], self.blocks[index / 32][index % 32].unwrap()))
-  })
 }
 
 ///|
@@ -115,4 +101,96 @@ fn SessionBindings::capture_changed(
       self.blocks[index / 32][index % 32] = Some(value.captured())
     }
   }
+}
+
+///|
+/// Persistent array in blocks of 32: an update copies the block spine and the
+/// touched blocks only, so retained snapshots share unchanged entries.
+priv struct Chunks[T] {
+  blocks : Array[Array[T]]
+  length : Int32
+}
+
+///|
+fn[T] Chunks::from_array(items : Array[T]) -> Chunks[T] {
+  let blocks : Array[Array[T]] = []
+  let mut start = 0
+  while start < items.length() {
+    let end = if start + 32 < items.length() {
+      start + 32
+    } else {
+      items.length()
+    }
+    blocks.push(items[start:end].to_owned())
+    start = end
+  }
+  { blocks, length: items.length(), }
+}
+
+///|
+fn[T] Chunks::at(self : Chunks[T], index : Int32) -> T {
+  self.blocks[index / 32][index % 32]
+}
+
+///|
+/// Indices must be sorted; returns a new version and leaves self unchanged.
+fn[T] Chunks::with_updates(
+  self : Chunks[T],
+  indices : Array[Int32],
+  values : Array[T],
+) -> Chunks[T] {
+  let blocks = self.blocks.copy()
+  let mut last = -1
+  for k, index in indices {
+    let block = index / 32
+    if block != last {
+      blocks[block] = blocks[block].copy()
+      last = block
+    }
+    blocks[block][index % 32] = values[k]
+  }
+  { blocks, length: self.length, }
+}
+
+///|
+/// Members and code points of one binding, counted as the input budget does.
+fn binding_cost(name : String, value : Value) -> (Int32, Int32) {
+  let mut points = codepoints(name)
+  let members = match value {
+    Scalar(text) => {
+      points = points + codepoints(text)
+      0
+    }
+    List(items) => {
+      for text in items {
+        points = points + codepoints(text)
+      }
+      items.length()
+    }
+    Assoc(entries) => {
+      for pair in entries.entries {
+        points = points + codepoints(pair.0) + codepoints(pair.1)
+      }
+      entries.entries.length()
+    }
+  }
+  (members, points)
+}
+
+///|
+fn codepoints(text : String) -> Int32 {
+  let mut count = 0
+  let mut index = 0
+  while index < text.length() {
+    let unit = text[index].to_int()
+    if unit >= 0xD800 && unit <= 0xDBFF && index + 1 < text.length() {
+      let next = text[index + 1].to_int()
+      if next >= 0xDC00 && next <= 0xDFFF {
+        index = index + 1
+      }
+    }
+    index = index + 1
+    count = count + 1
+  }
+  count
 }

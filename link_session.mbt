@@ -25,8 +25,11 @@ struct LinkSession {
   endpoints : Array[SessionEndpoint]
   dependencies : Map[String, Array[Int32]]
   values : SessionBindings
-  outputs : Array[String]
-  sizes : Array[Int32]
+  outputs : Chunks[String]
+  sizes : Chunks[Int32]
+  positions : Map[String, Int32]
+  members_used : Int32
+  points_used : Int32
   total : Int32
   limits : ExpansionLimits
   total_limit : Int32
@@ -57,7 +60,7 @@ pub fn LinkUpdate::recomputed(self : LinkUpdate) -> Int32 {
 
 ///|
 pub fn LinkSession::links(self : LinkSession) -> Array[(String, String)] {
-  self.endpoints.mapi((i, endpoint) => (endpoint.name, self.outputs[i]))
+  self.endpoints.mapi((i, endpoint) => (endpoint.name, self.outputs.at(i)))
 }
 
 ///|
@@ -70,10 +73,8 @@ pub fn LinkSession::get(
   self : LinkSession,
   name : String,
 ) -> Result[String, CatalogError] {
-  for index, endpoint in self.endpoints {
-    if endpoint.name == name {
-      return Ok(self.outputs[index])
-    }
+  if self.positions.get(name) is Some(index) {
+    return Ok(self.outputs.at(index))
   }
   Err({
     name,
@@ -216,6 +217,17 @@ pub fn TemplateCatalog::start_session(
     dependencies.keys().to_array(),
     variables,
   )
+  let mut members_used = 0
+  let mut points_used = 0
+  for name, value in variables.values {
+    let (members, points) = binding_cost(name, value)
+    members_used = members_used + members
+    points_used = points_used + points
+  }
+  let positions : Map[String, Int32] = Map([])
+  for index, endpoint in endpoints {
+    positions[endpoint.name] = index
+  }
   let sizes : Array[Int32] = []
   let mut remaining = max_total_output_bytes
   for endpoint in endpoints {
@@ -242,8 +254,11 @@ pub fn TemplateCatalog::start_session(
     endpoints,
     dependencies,
     values: captured,
-    outputs,
-    sizes,
+    outputs: Chunks::from_array(outputs),
+    sizes: Chunks::from_array(sizes),
+    positions,
+    members_used,
+    points_used,
     total: max_total_output_bytes - remaining,
     limits,
     total_limit: max_total_output_bytes,
@@ -306,9 +321,35 @@ pub fn LinkSession::update(
       affected[index] = true
     }
   }
-  match check_input_entries(next.active.length(), next.entries(), self.limits) {
-    Err(error) => return Err({ name: "", error, })
-    Ok(_) => ()
+  // Only changed bindings are re-counted; unchanged ones were checked before.
+  if next.active.length() > self.limits.max_bindings {
+    return Err(session_problem("BindingLimit", "binding count exceeds budget"))
+  }
+  let mut members_used = self.members_used
+  let mut points_used = self.points_used
+  for name in changed_names {
+    if self.values.get(name) is Some(old) {
+      let (members, points) = binding_cost(name, old)
+      members_used = members_used - members
+      points_used = points_used - points
+    }
+    if next.get(name) is Some(value) {
+      let (members, points) = binding_cost(name, value)
+      members_used = members_used + members
+      points_used = points_used + points
+    }
+  }
+  if members_used > self.limits.max_members {
+    return Err(
+      session_problem("MemberLimit", "total collection members exceed budget"),
+    )
+  }
+  if points_used > self.limits.max_total_value_codepoints {
+    return Err(
+      session_problem(
+        "TotalValueLimit", "total input code points exceed budget",
+      ),
+    )
   }
   if affected.is_empty() {
     return Ok({ next: self, changes: [], recomputed: 0, })
@@ -319,9 +360,9 @@ pub fn LinkSession::update(
   // Release ALL affected lengths first, so growth/shrink is order-independent.
   let mut remaining = self.total_limit - self.total
   for index in indices {
-    remaining = remaining + self.sizes[index]
+    remaining = remaining + self.sizes.at(index)
   }
-  let sizes = self.sizes.copy()
+  let sizes : Array[Int32] = []
   for index in indices {
     let endpoint = self.endpoints[index]
     let size = match endpoint.measure(next, self.limits) {
@@ -334,9 +375,9 @@ pub fn LinkSession::update(
       )
     }
     remaining = remaining - size
-    sizes[index] = size
+    sizes.push(size)
   }
-  let outputs = self.outputs.copy()
+  let outputs : Array[String] = []
   let emitted : Array[LinkChange] = []
   for index in indices {
     let endpoint = self.endpoints[index]
@@ -344,14 +385,11 @@ pub fn LinkSession::update(
       Err(e) => return Err(e)
       Ok(uri) => uri
     }
-    if uri != self.outputs[index] {
-      emitted.push({
-        name: endpoint.name,
-        before: self.outputs[index],
-        after: uri,
-      })
+    let before = self.outputs.at(index)
+    if uri != before {
+      emitted.push({ name: endpoint.name, before, after: uri, })
     }
-    outputs[index] = uri
+    outputs.push(uri)
   }
   // Copy only changed composites; unchanged captured values remain private.
   next.capture_changed(changed_names)
@@ -359,8 +397,10 @@ pub fn LinkSession::update(
     next: {
       ..self,
       values: next,
-      outputs,
-      sizes,
+      outputs: self.outputs.with_updates(indices, outputs),
+      sizes: self.sizes.with_updates(indices, sizes),
+      members_used,
+      points_used,
       total: self.total_limit - remaining,
     },
     changes: emitted,

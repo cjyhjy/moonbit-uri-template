@@ -238,3 +238,48 @@ test "incremental snapshots match full regeneration across 200 state changes" {
     assert_eq(session.links(), c.start_session(vars).unwrap().links())
   }
 }
+
+///|
+test "session budgets are tracked incrementally across many updates" {
+  let c = @lib.compile_catalog([("a", "/a{?tags*}"), ("b", "/b{?q}")]).unwrap()
+  let limits = @lib.ExpansionLimits::new(
+    max_members=4,
+    max_total_value_codepoints=20,
+  )
+  let v = @lib.Variables::from_entries([
+    ("tags", @lib.List(["x", "y", "z"])),
+    ("q", @lib.Scalar("a")),
+  ]).unwrap()
+  // tags 4 + x y z 3 + q 1 + a 1 = 9 code points, 3 members.
+  let s0 = c.start_session(v, limits~).unwrap()
+  assert_eq(
+    s0
+    .update([@lib.SetBinding("tags", @lib.List(["1", "2", "3", "4", "5"]))])
+    .unwrap_err().error.code,
+    "MemberLimit",
+  )
+  // Replacing values repeatedly must not accumulate cost.
+  let mut s = s0
+  for i in 0..<50 {
+    s = s
+      .update([@lib.SetBinding("q", @lib.Scalar("v\{i % 10}"))])
+      .unwrap()
+      .session()
+  }
+  assert_eq(s.get("b").unwrap(), "/b?q=v9")
+  // q costs 1 + 2 = 3 now; 11 more points push the total to 21.
+  assert_eq(
+    s
+    .update([@lib.SetBinding("tags", @lib.List(["abcdefghijklmn"]))])
+    .unwrap_err().error.code,
+    "TotalValueLimit",
+  )
+  // Removing a binding releases its members for the next patch.
+  let freed = s.update([@lib.RemoveBinding("tags")]).unwrap().session()
+  let refilled = freed
+    .update([@lib.SetBinding("tags", @lib.List(["1", "2", "3", "4"]))])
+    .unwrap()
+    .session()
+  assert_eq(refilled.get("a").unwrap(), "/a?tags=1&tags=2&tags=3&tags=4")
+  assert_eq(s0.get("a").unwrap(), "/a?tags=x&tags=y&tags=z")
+}

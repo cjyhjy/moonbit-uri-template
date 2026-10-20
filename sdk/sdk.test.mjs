@@ -306,6 +306,7 @@ test('session no-ops null removal composite capture and URI-equivalent updates',
   const assoc = old.update({items:{z:'2',a:'1',absent:null}}).session;
   assert.equal(assoc.get('list'),'?z=2&a=1');
   assert.equal(assoc.update({items:{z:'2',a:'1',absent:null}}).recomputed,0);
+  assert.equal(assoc.update({items:{a:'1',z:'2',absent:null}}).session.get('list'),'?a=1&z=2');
   // Removing an omitted member still updates captured input size.
   assert.equal(assoc.update({items:{a:'1',z:'2'}}).recomputed,1);
 });
@@ -319,7 +320,7 @@ test('session budgets cover patch and whole environment including empty cases', 
   assert.throws(() => catalog.startSession({}, {maxDependencyEdges:1}),e => e.code === 'DependencyLimit');
   assert.throws(() => catalog.startSession({x:['a','b']},{maxMembers:1}),e => e.code === 'MemberLimit');
   assert.throws(() => catalog.startSession({x:'aa'},{maxValueCodepoints:1}),e => e.code === 'ValueLimit');
-  const bounded = catalog.startSession({x:'a'},{maxTotalInputCodepoints:9});
+  const bounded = catalog.startSession({x:'a'},{maxTotalInputCodepoints:3});
   assert.throws(() => bounded.update({y:'b'}),e => e.code === 'SessionInputLimit');
   const zeroPatch = catalog.startSession({}, {maxPatchBindings:0});
   assert.throws(() => zeroPatch.update({x:null}),e => e.code === 'PatchLimit');

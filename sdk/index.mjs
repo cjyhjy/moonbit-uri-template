@@ -340,51 +340,60 @@ function sessionLimits(value) {
     maxTotalInputCodepoints:4194304, maxTotalOutputBytes:4194304, maxPatchBindings:4096,
     maxDependencyEdges:65536});
 }
-function checkSessionValues(values, dependencies, limits) {
-  const names = Object.keys(values);
-  if (names.filter(name => values[name] !== null).length > limits.maxBindings)
-    throw sessionProblem('BindingLimit', 'shared binding count exceeds budget');
-  let members = limits.maxMembers;
-  const text = value => spendText(value, limits.maxValueCodepoints, 'ValueLimit');
-  for (const name of names) {
-    if (!dependencies.has(name)) throw sessionProblem('UnusedBinding', 'shared binding is not used by any endpoint');
-    text(name);
-    const value = values[name];
-    if (typeof value === 'string') text(value);
-    else if (Array.isArray(value)) {
-      if (value.length > members) throw sessionProblem('MemberLimit', 'shared members exceed budget');
-      members -= value.length;
-      for (const item of value) {
-        if (typeof item !== 'string') throw invalid('list members must be strings');
-        text(item);
-      }
-    } else if (plain(value)) {
-      const keys = Object.keys(value);
-      if (keys.length > members) throw sessionProblem('MemberLimit', 'shared members exceed budget');
-      members -= keys.length;
-      for (const key of keys) {
-        text(key);
-        if (typeof value[key] === 'string') text(value[key]);
-        else if (value[key] !== null) throw invalid('associative members must be strings or null');
-      }
-    } else if (value !== null) throw invalid('invalid shared value');
+// Persistent arrays in blocks of 32: an update copies the spine and touched
+// blocks only, so retained snapshots share everything that did not change.
+const chunk = items => { const blocks = []; for (let i = 0; i < items.length; i += 32) blocks.push(items.slice(i, i + 32)); return blocks; };
+const at = (blocks, i) => blocks[i >> 5][i & 31];
+function withUpdates(blocks, updates) {
+  const next = blocks.slice(), copied = new Set();
+  for (const [i, value] of updates) {
+    const b = i >> 5;
+    if (!copied.has(b)) { next[b] = next[b].slice(); copied.add(b); }
+    next[b][i & 31] = value;
   }
-  // Includes JSON punctuation and null fields, just as the SDK batch budgets do.
-  spendText(JSON.stringify(values), limits.maxTotalInputCodepoints, 'SessionInputLimit');
+  return next;
+}
+// Members and code points of one binding (name, keys and values), validated
+// against per-value limits. Matches the MoonBit core's input budget.
+function bindingCost(name, value, limits) {
+  const text = t => limits.maxValueCodepoints - spendText(t, limits.maxValueCodepoints, 'ValueLimit');
+  let points = text(name), members = 0;
+  if (typeof value === 'string') points += text(value);
+  else if (Array.isArray(value)) {
+    for (const item of value) {
+      if (typeof item !== 'string') throw invalid('list members must be strings');
+      points += text(item);
+    }
+    members = value.length;
+  } else if (plain(value)) {
+    for (const [key, item] of Object.entries(value)) {
+      if (item !== null && typeof item !== 'string') throw invalid('associative members must be strings or null');
+      points += text(key) + (item === null ? 0 : text(item));
+      members++;
+    }
+  } else throw invalid('invalid shared value');
+  return {members, points};
+}
+function checkUsage(usage, limits) {
+  if (usage.bindings > limits.maxBindings) throw sessionProblem('BindingLimit', 'shared binding count exceeds budget');
+  if (usage.members > limits.maxMembers) throw sessionProblem('MemberLimit', 'shared members exceed budget');
+  if (usage.points > limits.maxTotalInputCodepoints) throw sessionProblem('SessionInputLimit', 'shared input exceeds budget');
 }
 function equalSessionValue(a, b) {
   if (a === b) return true;
   if (Array.isArray(a) && Array.isArray(b)) return a.length === b.length && a.every((x,i) => x === b[i]);
   if (!plain(a) || !plain(b)) return false;
-  // Key order is immaterial to the JSON core. Retain null-member differences:
-  // they change captured input size even if the resulting URI is unchanged.
+  // Key order changes the URI; null members change captured input size.
   const ak = Object.keys(a), bk = Object.keys(b);
-  return ak.length === bk.length && ak.every(k => Object.hasOwn(b,k) && a[k] === b[k]);
+  return ak.length === bk.length && ak.every((k, i) => k === bk[i] && a[k] === b[k]);
 }
-function sessionCall(entry, command, values) {
-  const subset = Object.create(null);
-  for (const name of entry.template.variables) if (Object.hasOwn(values,name)) subset[name] = values[name];
-  try { return result(entry.handle, command, JSON.stringify(subset), entry.template.source); }
+function sessionExpand(s, index, values) {
+  const entry = s.entries[index], subset = Object.create(null);
+  for (const name of entry.template.variables) {
+    const value = at(values, s.slots.get(name));
+    if (value !== undefined) subset[name] = value;
+  }
+  try { return result(entry.handle, 'expand', JSON.stringify(subset), entry.template.source); }
   catch (error) {
     if (error instanceof UriTemplateError) error.templateName = entry.name;
     throw error;
@@ -393,24 +402,34 @@ function sessionCall(entry, command, values) {
 function createSession(catalog, variables, options) {
   const limits = sessionLimits(options), entries = [...catalog].sort(([a],[b]) => a < b ? -1 : a > b ? 1 : 0)
     .map(([name, entry]) => ({...entry,name}));
-  const dependencies = new Map();
+  const dependencies = new Map(), slots = new Map(), positions = new Map();
   let edges = limits.maxDependencyEdges;
-  for (let i=0;i<entries.length;i++) for (const variable of entries[i].template.variables) {
-    if (edges-- === 0) throw sessionProblem('DependencyLimit', 'endpoint dependencies exceed budget');
-    if (!dependencies.has(variable)) dependencies.set(variable, []);
-    dependencies.get(variable).push(i);
+  for (let i=0;i<entries.length;i++) {
+    positions.set(entries[i].name, i);
+    for (const variable of entries[i].template.variables) {
+      if (edges-- === 0) throw sessionProblem('DependencyLimit', 'endpoint dependencies exceed budget');
+      if (!dependencies.has(variable)) { dependencies.set(variable, []); slots.set(variable, slots.size); }
+      dependencies.get(variable).push(i);
+    }
   }
-  const values = JSON.parse(jsonSnapshot(variables));
-  checkSessionValues(values, dependencies, limits);
-  for (const key of Object.keys(values)) if (values[key] === null) delete values[key];
-  let remaining = limits.maxTotalOutputBytes;
-  const sizes = entries.map(entry => {
-    const bytes = Number(sessionCall(entry,'measure',values));
-    if (bytes > remaining) throw sessionProblem('SessionOutputLimit','snapshot output exceeds budget');
-    remaining -= bytes; return bytes;
+  const captured = JSON.parse(jsonSnapshot(variables)), initial = new Array(slots.size).fill(undefined);
+  const usage = {bindings:0, members:0, points:0};
+  for (const [name, value] of Object.entries(captured)) {
+    if (!dependencies.has(name)) throw sessionProblem('UnusedBinding', 'shared binding is not used by any endpoint');
+    if (value === null) continue;
+    const cost = bindingCost(name, value, limits);
+    usage.bindings++; usage.members += cost.members; usage.points += cost.points;
+    initial[slots.get(name)] = value;
+  }
+  checkUsage(usage, limits);
+  const s = {entries, dependencies, slots, positions, limits, values: chunk(initial)};
+  let total = 0;
+  const outputs = entries.map((_, i) => {
+    const uri = sessionExpand(s, i, s.values);
+    if (uri.length > limits.maxTotalOutputBytes - total) throw sessionProblem('SessionOutputLimit','snapshot output exceeds budget');
+    total += uri.length; return uri;
   });
-  const outputs = entries.map(entry => sessionCall(entry,'expand',values));
-  return new LinkSession(sessionKey, {entries,dependencies,values,limits,sizes,outputs,total:limits.maxTotalOutputBytes-remaining});
+  return new LinkSession(sessionKey, {...s, usage, outputs: chunk(outputs), total});
 }
 export class LinkSession {
   #state;
@@ -419,46 +438,51 @@ export class LinkSession {
     this.#state = state; Object.freeze(this);
   }
   get totalBytes() { return this.#state.total; }
-  links() { return this.#state.entries.map((e,i) => ({template:e.name,uri:this.#state.outputs[i],bytes:this.#state.sizes[i]})); }
+  links() {
+    const s = this.#state;
+    return s.entries.map((e,i) => { const uri = at(s.outputs, i); return {template:e.name, uri, bytes:uri.length}; });
+  }
   get(name) {
-    const index = this.#state.entries.findIndex(e => e.name === name);
-    if (index < 0) throw new UriTemplateError({code:'UnknownTemplate',message:'template name is not in session',templateName:name});
-    return this.#state.outputs[index];
+    const index = this.#state.positions.get(name);
+    if (index === undefined) throw new UriTemplateError({code:'UnknownTemplate',message:'template name is not in session',templateName:name});
+    return at(this.#state.outputs, index);
   }
   update(patch) {
     const s = this.#state;
     if (!plain(patch)) throw invalid('patch must be an object; null removes a binding');
     if (Reflect.ownKeys(patch).length > s.limits.maxPatchBindings) throw sessionProblem('PatchLimit','patch count exceeds budget');
     const captured = JSON.parse(jsonSnapshot(patch));
-    checkSessionValues(captured,s.dependencies,s.limits);
-    const values = Object.assign(Object.create(null),s.values), affected = new Set();
-    for (const [name,value] of Object.entries(captured)) {
-      if (value === null) {
-        if (!Object.hasOwn(values,name)) continue;
-        delete values[name];
-      } else {
-        if (Object.hasOwn(values,name) && equalSessionValue(value,values[name])) continue;
-        values[name] = value;
+    const usage = {...s.usage}, valueUpdates = new Map(), affected = new Set();
+    // Only patched bindings are costed; the rest were checked when they were set.
+    for (const [name, value] of Object.entries(captured)) {
+      if (!s.dependencies.has(name)) throw sessionProblem('UnusedBinding', 'shared binding is not used by any endpoint');
+      const slot = s.slots.get(name), before = at(s.values, slot);
+      const next = value === null ? undefined : value;
+      const cost = next === undefined ? null : bindingCost(name, next, s.limits);
+      if (before === undefined ? next === undefined : next !== undefined && equalSessionValue(before, next)) continue;
+      if (before !== undefined) {
+        const old = bindingCost(name, before, s.limits);
+        usage.bindings--; usage.members -= old.members; usage.points -= old.points;
       }
+      if (cost) { usage.bindings++; usage.members += cost.members; usage.points += cost.points; }
+      valueUpdates.set(slot, next);
       for (const i of s.dependencies.get(name)) affected.add(i);
     }
-    checkSessionValues(values,s.dependencies,s.limits);
+    checkUsage(usage, s.limits);
     if (affected.size === 0) return {session:this,changes:[],recomputed:0};
+    const values = withUpdates(s.values, valueUpdates), ordered = [...affected].sort((a,b)=>a-b);
     let remaining = s.limits.maxTotalOutputBytes - s.total;
-    for (const i of affected) remaining += s.sizes[i];
-    const sizes = [...s.sizes], outputs = [...s.outputs], changes = [];
-    const ordered = [...affected].sort((a,b)=>a-b);
+    for (const i of ordered) remaining += at(s.outputs, i).length;
+    const outputUpdates = new Map(), changes = [];
     for (const i of ordered) {
-      const size = Number(sessionCall(s.entries[i],'measure',values));
-      if (size > remaining) throw sessionProblem('SessionOutputLimit','snapshot output exceeds budget');
-      remaining -= size; sizes[i] = size;
+      const uri = sessionExpand(s, i, values), before = at(s.outputs, i);
+      if (uri.length > remaining) throw sessionProblem('SessionOutputLimit','snapshot output exceeds budget');
+      remaining -= uri.length;
+      if (uri !== before) changes.push({template:s.entries[i].name, before, after:uri});
+      outputUpdates.set(i, uri);
     }
-    for (const i of ordered) {
-      const uri = sessionCall(s.entries[i],'expand',values);
-      if (uri !== outputs[i]) changes.push({template:s.entries[i].name,before:outputs[i],after:uri});
-      outputs[i] = uri;
-    }
-    return {session:new LinkSession(sessionKey,{...s,values,sizes,outputs,total:s.limits.maxTotalOutputBytes-remaining}),
-      changes,recomputed:affected.size};
+    const next = {...s, values, usage, outputs: withUpdates(s.outputs, outputUpdates),
+      total: s.limits.maxTotalOutputBytes - remaining};
+    return {session:new LinkSession(sessionKey, next), changes, recomputed:affected.size};
   }
 }
