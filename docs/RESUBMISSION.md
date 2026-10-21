@@ -1,6 +1,6 @@
 # 复审材料
 
-初审意见是选题与 Mooncakes 上已有的 RFC 6570 库重叠。本次补充的内容如下。
+初审意见是选题与 Mooncakes 上已有的 RFC 6570 库重叠。下表列出本项目相对已有库新增的能力，以及评委可以直接查看的证据。
 
 ## 新增价值
 
@@ -28,12 +28,3 @@ node integrations/github-audit/main.mjs --gh   # 联网，需要已登录 GitHub
 ```
 
 源码仓库：`npm test`、`npm run compare:peers`、`npm run benchmark:peers`、`npm run benchmark:resources`。
-
-材料包由 `python3 tools/prepare_submission.py` 生成，内含便携包、报告和 `SHA256SUMS.json`。
-
-## 提交
-
-- 通过[原报名表](https://bxup9uklfcb.feishu.cn/share/base/form/shrcnWUMlgpbwHaXgzV7HmNhNhg)的“查看提交记录”修改原记录，表单最多提交三次。通知允许在 2026-10-31 前修改。
-- 表单要求：Markdown 申报书一页以内，由参赛者本人撰写，不得用 AI 编写；至少三个完整使用场景；说明原创、移植或参考关系；仓库不少于 10 个有效提交。
-- 本目录的材料只作技术附件，`项目申报书.md` 需要本人更新。
-- 邮件草稿见 [ORGANIZER_EMAIL.txt](ORGANIZER_EMAIL.txt)。发送前确认收件地址，附件中不要包含联系方式或令牌。
