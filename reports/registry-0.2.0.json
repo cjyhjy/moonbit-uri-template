@@ -1,0 +1,27 @@
+{
+  "verified_at_utc": "2026-10-21T15:12:07.300259+00:00",
+  "module": "cjyhjy/uri_template",
+  "version": "0.2.0",
+  "source": "Mooncakes registry; fresh consumer without moon.work or local path dependency",
+  "consumer_path": "/var/folders/sm/v6v7286s07j8z7x50805469c0000gn/T/uri-template-registry-020-05xf_c9l",
+  "install_command": "moon add cjyhjy/uri_template@0.2.0",
+  "backends": {
+    "js": {
+      "output": "/users/42?page=2\n/users/99?page=2",
+      "exit_code": 0
+    },
+    "wasm": {
+      "output": "/users/42?page=2\n/users/99?page=2",
+      "exit_code": 0
+    },
+    "wasm-gc": {
+      "output": "/users/42?page=2\n/users/99?page=2",
+      "exit_code": 0
+    },
+    "native": {
+      "output": "/users/42?page=2\n/users/99?page=2",
+      "exit_code": 0
+    }
+  },
+  "dependency_tree": "acceptance/registry_consumer@0.0.0 (local /private/var/folders/sm/v6v7286s07j8z7x50805469c0000gn/T/uri-template-registry-020-05xf_c9l):\n\u2514\u2500 cjyhjy/uri_template -> cjyhjy/uri_template@0.2.0\n"
+}

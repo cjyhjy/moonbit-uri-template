@@ -1,0 +1,28 @@
+$ moon update
+Registry index updated successfully
+Symbols updated successfully
+
+$ moon add cjyhjy/uri_template@0.2.0
+Registry index updated successfully
+Symbols updated successfully
+Downloading cjyhjy/uri_template@0.2.0
+
+$ moon run . --target js
+/users/42?page=2
+/users/99?page=2
+
+$ moon run . --target wasm
+/users/42?page=2
+/users/99?page=2
+
+$ moon run . --target wasm-gc
+/users/42?page=2
+/users/99?page=2
+
+$ moon run . --target native
+/users/42?page=2
+/users/99?page=2
+
+$ moon tree
+acceptance/registry_consumer@0.0.0 (local /private/var/folders/sm/v6v7286s07j8z7x50805469c0000gn/T/uri-template-registry-020-05xf_c9l):
+└─ cjyhjy/uri_template -> cjyhjy/uri_template@0.2.0

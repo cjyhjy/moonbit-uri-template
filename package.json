@@ -1,7 +1,6 @@
 {
   "name": "moonbit-uri-template",
   "version": "0.2.0",
-  "private": true,
   "type": "module",
   "description": "MoonBit RFC 6570 library and CLI",
   "license": "Apache-2.0",
@@ -52,5 +51,13 @@
   ],
   "devDependencies": {
     "typescript": "7.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjyhjy/moonbit-uri-template.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

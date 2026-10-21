@@ -129,4 +129,6 @@ tools/verify.py
 tools/verify_portable_live.py
 tools/verify_sdk_package.mjs
 types.mbt
+申报材料/回复初审邮件.txt
+申报材料/申报修改备注.txt
 Package to /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/publish/cjyhjy-uri_template-0.2.0.zip
