@@ -1,0 +1,12 @@
+{
+  "status": "blocked",
+  "published": false,
+  "workflow": "https://github.com/cjyhjy/moonbit-uri-template/actions/runs/39657151957",
+  "git_commit": "63cac8293abc8dd555a630565ca49ed7026b13c2",
+  "tests": "passed in GitHub Actions",
+  "provenance_signed": true,
+  "publish_error": "E404 after placeholder removal",
+  "bootstrap_retry_error": "E403: cannot be republished until 24 hours have passed",
+  "unpublished_at": "2026-10-21T18:55:32.925Z",
+  "retry_not_before": "2026-10-22T18:55:33Z"
+}
