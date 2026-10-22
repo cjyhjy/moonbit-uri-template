@@ -7,13 +7,14 @@ RFC 6570 Level 4 URI 模板库。核心用 MoonBit 编写，无第三方运行�
 → /users/42?page=2&tags=sdk&tags=api
 ```
 
-版本：0.1.1 已发布到 Mooncakes（`cjyhjy/uri_template`）；本分支为 0.2.0 候选版。
+版本：0.2.0 已发布到 Mooncakes（`cjyhjy/uri_template`）；本分支为 0.3.0，新增 OpenAPI 路径检查，并将首次发布到 npm。
 
 ## 为什么用它
 
 - **展开结果和主流实现一致。** 除 270 条上游标准用例外，另有 644 条用例与 Python `uritemplate`、`std-uritemplate` 逐字节比对，其中 583 条三方完全一致，其余分歧逐条说明理由（见 [一致性](docs/CONFORMANCE.md)）。前缀截断按原始码点计数，与两个参考实现一致；另外两个 MoonBit 同类库在这里都与参考实现不同。
 - **发请求前发现配置错误。** 可选择性声明必填变量和值类型（标量/列表/关联），并检查无用绑定和输入/输出预算；出错时给出模板位置、JSON 文件行列和拼写修复建议。
 - **按 JS 开发者习惯工作。** 数字和布尔值会自动转成字符串，`undefined` 视为未绑定，对象成员保持插入顺序；TypeScript 能从字面量模板推导变量名并检查必填项。
+- **检查 OpenAPI 描述。** 0.4 秒检查完 GitHub 官方 OpenAPI 描述的 1242 个接口，发现 2 处违反规范的等价路径（[OpenAPI](docs/OPENAPI.md)）。
 - **快。** 固定负载下，与两个同类库同机对比，全部场景的耗时中位数最低（[性能](docs/PERFORMANCE.md)）。
 
 ## Node / TypeScript
@@ -65,9 +66,12 @@ node tools/cli.mjs validate '/users/{id'
 
 node tools/cli.mjs project integrations/github-audit/requests.json --github
 # 一次检查整个请求配置，输出 GitHub Actions 注解
+
+node tools/cli.mjs openapi api.github.com.json
+# api.github.com.json:29475:50 EquivalentPaths: same path hierarchy as /orgs/{org}/attestations/{attestation_id}
 ```
 
-命令：`expand`、`measure`、`trace`、`check`、`validate`、`variables`、`analyze`、`compare`、`project`。退出码 0 成功，1 模板或检查问题，2 参数/文件/JSON 错误。
+命令：`expand`、`measure`、`trace`、`check`、`validate`、`variables`、`analyze`、`compare`、`project`、`openapi`。退出码 0 成功，1 模板或检查问题，2 参数/文件/JSON 错误。
 
 ## 从源码开始
 
@@ -89,10 +93,12 @@ npm run playground           # 浏览器工作台 http://127.0.0.1:4173
 | [API](docs/API.md) | MoonBit 公共接口 |
 | [一致性](docs/CONFORMANCE.md) | RFC 语义选择、上游用例与差分结果 |
 | [同类对比](docs/COMPARISON.md) | 与 Magic486、JSJ222 的功能和行为对比 |
+| [OpenAPI](docs/OPENAPI.md) | OpenAPI 路径检查与公开文档实测 |
 | [性能](docs/PERFORMANCE.md) | 基准方法与结果 |
 | [架构](docs/ARCHITECTURE.md) | 模块划分与测试策略 |
 | [发布](docs/RELEASE.md) | 打包、发布与工具链维护 |
 | [GitHub 接入案例](integrations/github-audit/README.md) | 真实下游客户端 |
+| [公共 API 客户端](integrations/public-clients/README.md) | npm、Open Library 只读客户端 |
 | [AI 辅助说明](docs/AI_USAGE.md) | 开发方式 |
 
 ## 范围

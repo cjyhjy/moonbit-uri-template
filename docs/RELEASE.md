@@ -4,7 +4,7 @@
 
 - GitHub：`cjyhjy/moonbit-uri-template`
 - Mooncakes：`cjyhjy/uri_template`，已发布 0.2.0（2026-10-21）
-- npm：未发布；分发包内含 `moonbit-uri-template-0.2.0.tgz`
+- npm：首次发布为 0.3.0（`moonbit-uri-template`）
 
 ## 便携分发包
 
@@ -45,12 +45,12 @@ npm run release:package
 身份验证由账号持有人在 npm 页面完成。正式版本必须验证 provenance 和注册表安装。
 
 ```sh
-git tag v0.2.0
-git push origin v0.2.0
+git tag v0.3.0
+git push origin v0.3.0
 ```
 
 标签应指向已提交并审核的发布内容。只有工作流成功且在全新目录中执行
-`npm install moonbit-uri-template@0.2.0`、验证 SDK 和 CLI 后，才记录 npm 发布完成。
+`npm install moonbit-uri-template@0.3.0`、验证 SDK 和 CLI 后，才记录 npm 发布完成。
 npm 同名同版本不能重复发布；认证配置应在推送标签前完成。
 
 ## GitHub Release
@@ -61,11 +61,6 @@ npm 同名同版本不能重复发布；认证配置应在推送标签前完成�
 
 `toolchain.lock.json` 固定编译器版本和下载校验值。官方历史二进制大约保留 60 天，过期后需要显式升级、更新校验值、重跑全部后端，不能自动改用 latest。
 
-## 0.2.0 npm 首次发布状态
+## npm 首次发布记录
 
-2026-10-21：可信发布授权成功，GitHub 四后端和 SDK 验证通过，但正式发布失败。
-提前拒绝唯一暂存记录导致占位包被删除；npm 返回 E403，要求等待 24 小时才能重建。
-删除时间为 2026-10-21T18:55:32.925Z，至少等到 2026-10-22T18:55:33Z 后再尝试。
-保留 `v0.2.0` 标签；恢复初始化包并核验可信发布配置后，重新运行发布工作流即可。
-失败运行：https://github.com/cjyhjy/moonbit-uri-template/actions/runs/39657151957
-来源证明签名成功不代表 npm 包已发布。正式 0.2.0 尚未上线。
+2026-10-21 用 `v0.2.0` 尝试首次发布：可信发布授权和 GitHub 上的全部验证通过，但初始化暂存记录被提前拒绝，占位包随之删除，npm 要求 24 小时后才能重建（`reports/npm-release-0.2.0.json`）。npm 因此从 0.3.0 开始发布；`v0.2.0` 标签保留，对应 Mooncakes 0.2.0。

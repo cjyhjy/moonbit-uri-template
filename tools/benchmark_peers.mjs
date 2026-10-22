@@ -9,6 +9,7 @@ if (!auditName) throw new Error('Run npm run compare:peers first');
 const audit = JSON.parse(readFileSync(new URL(auditName, reportDir)));
 if (audit.status !== 'passed') throw new Error('Peer audit must pass first');
 const root = new URL('../', import.meta.url);
+const version = readFileSync(new URL('moon.mod', root), 'utf8').match(/^version = "([^"]+)"/m)[1];
 for (const name of readdirSync(root).filter(n => n.endsWith('.mbt') && !n.endsWith('_test.mbt') && !n.endsWith('_wbtest.mbt'))) {
   if (!readFileSync(new URL(name, root)).equals(readFileSync(new URL('_build/peer-audit/ours/' + name, root)))) throw new Error('Core changed; run npm run compare:peers');
 }
@@ -18,7 +19,7 @@ const work = new URL('../_build/peer-audit/', import.meta.url);
 const folder = new URL('benchmark/', work);
 mkdirSync(folder, { recursive: true });
 writeFileSync(new URL('moon.work', work), 'members = ["ours", "magic", "jsj", "consumer", "benchmark"]\n');
-writeFileSync(new URL('moon.mod', folder), 'name = "audit/benchmark"\nimport { "cjyhjy/uri_template@0.2.0", "Magic486/moon-uri-template@0.1.2", "JSJ222/moonuritemplate@0.2.0" }\n');
+writeFileSync(new URL('moon.mod', folder), `name = "audit/benchmark"\nimport { "cjyhjy/uri_template@${version}", "Magic486/moon-uri-template@0.1.2", "JSJ222/moonuritemplate@0.2.0" }\n`);
 writeFileSync(new URL('moon.pkg', folder), `import { "cjyhjy/uri_template" @ours, "Magic486/moon-uri-template" @magic, "JSJ222/moonuritemplate" @jsj }
 pkgtype(kind: "foreign_library")
 supported_targets = "js"

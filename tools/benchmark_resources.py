@@ -5,6 +5,7 @@ import datetime
 import hashlib
 import json
 import platform
+import re
 import resource
 import shutil
 import statistics
@@ -19,7 +20,7 @@ from source_digest import source_digest
 ROOT = Path(__file__).resolve().parent.parent
 WORK = ROOT / "_build/peer-audit"
 MODULES = {
-    "ours": ("cjyhjy/uri_template", "0.2.0"),
+    "ours": ("cjyhjy/uri_template", re.search(r'^version = "([^"]+)"', (ROOT / "moon.mod").read_text(), re.M)[1]),
     "magic": ("Magic486/moon-uri-template", "0.1.2"),
     "jsj": ("JSJ222/moonuritemplate", "0.2.0"),
 }

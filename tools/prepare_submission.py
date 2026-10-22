@@ -89,12 +89,12 @@ for row in resources["samples"]:
                 raise SystemExit("Invalid resource sample")
 destination = ROOT / "_build/submission"
 destination.mkdir(exist_ok=True)
-bundle = destination / "moonbit-uri-template-review-0.2.0"
+bundle = destination / "moonbit-uri-template-review-" + json.loads((ROOT / "package.json").read_text())["version"]
 if bundle.exists():
     shutil.rmtree(bundle)  # generated directory only, never source/user documents
 bundle.mkdir()
 files = [
-    "docs/RESUBMISSION.md", "docs/ORGANIZER_EMAIL.txt", "docs/CONFORMANCE.md",
+    "docs/RESUBMISSION.md", "docs/CONFORMANCE.md", "docs/OPENAPI.md",
     "docs/COMPARISON.md", "docs/PERFORMANCE.md", "docs/API.md", "docs/SDK.md",
     "testdata/differential/results.json",
     "integrations/github-audit/README.md",
@@ -120,9 +120,7 @@ for name in files:
 shutil.copyfile(archive, bundle / archive.name)
 (bundle / "READ_FIRST.txt").write_text(
     "Start with docs/RESUBMISSION.md.\n"
-    "The portable release includes the full Mooncakes source archive.\n"
-    "This is a local review package, not a published release or submitted application.\n"
-    "The technical supplement and draft email are AI-assisted; the entrant must independently write the application proposal as required by the form.\n",
+    "The portable release includes the full Mooncakes source archive.\n",
     encoding="utf8",
 )
 checksums = {str(p.relative_to(bundle)): sha(p.read_bytes()) for p in sorted(bundle.rglob("*")) if p.is_file()}

@@ -45,6 +45,7 @@
 | Node / TypeScript SDK | ✓，从模板推导变量名 | — | — |
 | CLI | Node 便携 CLI，含 check / trace / compare / project | MoonBit CLI，含 inspect | 示例入口 |
 | 请求配置文件检查（行列、Actions 注解、改名建议） | ✓ | — | — |
+| OpenAPI 路径与参数声明检查 | ✓，含 GitHub、Stripe 官方描述的实测 | — | — |
 | 浏览器工作台 | ✓ | — | — |
 | 已验证后端 | JS、wasm、wasm-gc、Native | JS、wasm-gc、Native | JS、wasm-gc、Native |
 
