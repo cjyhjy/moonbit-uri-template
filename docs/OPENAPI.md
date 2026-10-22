@@ -6,7 +6,7 @@ OpenAPI 的路径是 URI 模板。`uri-template openapi` 用本库的核心解�
 node tools/cli.mjs openapi examples/openapi.json          # Checked 1 OpenAPI operations
 node tools/cli.mjs openapi spec.json --json               # 结构化报告
 node tools/cli.mjs openapi spec.json --max-bytes 67108864 # 默认上限 32 MiB
-npm run openapi:public                                    # 检查 GitHub、Stripe 的官方描述
+npm run openapi:public                                    # 检查 GitHub、Stripe、Cloudflare 的官方描述
 ```
 
 支持 OpenAPI 3.0.x、3.1.x 的 JSON 文档。
@@ -19,6 +19,7 @@ npm run openapi:public                                    # 检查 GitHub、Stri
 | --- | --- | --- | --- | --- |
 | [github/rest-api-description](https://github.com/github/rest-api-description/blob/755ee33b4a81d51f6f07a902cce26cbec3b822f2/descriptions/api.github.com/api.github.com.json) `755ee33` | 13.5 MB | 1242 | 0.4 s | 2 处 `EquivalentPaths` |
 | [stripe/openapi](https://github.com/stripe/openapi/blob/b339867409bf2fb41b6c3411804de1ec4ebf6a49/openapi/spec3.json) `b339867` | 8.3 MB | 612 | 0.2 s | 无 |
+| [cloudflare/api-schemas](https://github.com/cloudflare/api-schemas/blob/b3bacb18fcfbb6c5b5c4e9cc0990d055673b39a4/openapi.json) `b3bacb1` | 27.5 MB | 3767 | 0.8 s | 无 |
 
 GitHub 的两处：
 
@@ -40,7 +41,7 @@ OpenAPI 规定“层级相同、只是变量名不同的路径 MUST NOT 同时�
 | `PathParameterRequired` | 路径参数没有 `required: true` |
 | `DuplicateParameter` | 同一参数列表中 `in` 和 `name` 重复 |
 | `EquivalentPaths` | 层级相同的模板路径 |
-| `InvalidPath` / `InvalidPathTemplate` | 不以 `/` 开头、含 `?` `#`、括号不配对，或字面量含 RFC 3986 路径不允许的字符（如 `[`、`|`、未编码的中文） |
+| `InvalidPath` / `InvalidPathTemplate` | 不以 `/` 开头；含查询串 `?` 或片段 `#`（片段不会发给服务器）；括号不配对；字面量含 RFC 3986 路径不允许的字符（如 `[`、`|`、未编码的中文） |
 
 - Path Item 级参数由每个接口继承，接口级按 `(in, name)` 覆盖；一个接口的声明不会替另一个接口补缺。
 - 没有任何接口的 Path Item（例如按权限过滤后）不要求声明路径参数。

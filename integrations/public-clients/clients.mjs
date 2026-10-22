@@ -20,8 +20,9 @@ export function bookUrl(isbn) {
   return booksTemplate.expand({bibkeys:'ISBN:'+isbn,format:'json',jscmd:'data'});
 }
 async function getJson(url,fetcher) {
-  const response=await fetcher(url,{method:'GET',redirect:'error',signal:AbortSignal.timeout(15000),headers:{Accept:'application/json','User-Agent':'moonbit-uri-template-integration/0.2 (+https://github.com/cjyhjy/moonbit-uri-template)'}});
+  const response=await fetcher(url,{method:'GET',redirect:'error',signal:AbortSignal.timeout(15000),headers:{Accept:'application/json','User-Agent':'moonbit-uri-template-integration/0.3 (+https://github.com/cjyhjy/moonbit-uri-template)'}});
   if(!response.ok) throw new Error('HTTP '+response.status);
+  if(!response.body) throw new Error('EmptyResponse');
   const chunks=[];let length=0;
   for await(const chunk of response.body) {length+=chunk.length;if(length>1048576) {throw new Error('ResponseSizeLimit');}chunks.push(chunk);}
   const bytes=Buffer.concat(chunks);

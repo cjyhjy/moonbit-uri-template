@@ -7,6 +7,8 @@ const ptr = x => x.replaceAll('~', '~0').replaceAll('/', '~1');
 const methods = ['get','put','post','delete','options','head','patch','trace'];
 // Public descriptions are large: GitHub's is 13.5 MB.
 export const DEFAULT_MAX_BYTES = 33554432;
+// Cloudflare's description nests 44 levels deep.
+const MAX_DEPTH = 128;
 export function checkOpenAPI(text, file = 'openapi.json', {maxBytes = DEFAULT_MAX_BYTES} = {}) {
   const diagnostics = [], operations = [];
   let parsed, complete = true;
@@ -19,7 +21,7 @@ export function checkOpenAPI(text, file = 'openapi.json', {maxBytes = DEFAULT_MA
   };
   const finish = () => ({schemaVersion:1,ok:diagnostics.length === 0,complete,file,scope:'OpenAPI 3.0/3.1 JSON path-parameter consistency',operations,diagnostics});
   if (Buffer.byteLength(text) > maxBytes) { add('OpenAPIInputLimit',`document exceeds ${maxBytes} bytes`,'',true); return finish(); }
-  try { parsed = parseSource(text); } catch(e) { add(e.code ?? 'InvalidJson',e.message,e.path ?? '',true); return finish(); }
+  try { parsed = parseSource(text, MAX_DEPTH); } catch(e) { add(e.code ?? 'InvalidJson',e.message,e.path ?? '',true); return finish(); }
   const doc = parsed.value;
   if (!obj(doc) || !/^3\.(0|1)\.\d+$/.test(doc.openapi ?? '')) { add('UnsupportedVersion','expected OpenAPI 3.0.x or 3.1.x','/openapi',true); return finish(); }
   // 3.1 documents may describe only webhooks or components.
@@ -68,7 +70,7 @@ export function checkOpenAPI(text, file = 'openapi.json', {maxBytes = DEFAULT_MA
   for (const [path,raw] of Object.entries(doc.paths)) {
     if (path.startsWith('x-')) continue;
     const where = '/paths/'+ptr(path);
-    if (!path.startsWith('/') || /[?#]/.test(path)) { add('InvalidPath','path must start with / and cannot contain query or fragment',where); continue; }
+    if (!path.startsWith('/')) { add('InvalidPath','path must start with /',where); continue; }
     const names = [], aliases = new Map();
     // OAS names need not satisfy RFC 6570 varname grammar. Use opaque aliases.
     const normalized = path.replace(/\{([^{}]+)\}/g, (_,name) => {
@@ -78,8 +80,10 @@ export function checkOpenAPI(text, file = 'openapi.json', {maxBytes = DEFAULT_MA
     const literal = path.replace(/\{[^{}]+\}/g,'');
     if (/[{}]/.test(literal)) { add('InvalidPathTemplate','unbalanced or empty path placeholder',where); continue; }
     // RFC 6570 literals admit more than RFC 3986 pchar (e.g. [ ] and non-ASCII); OAS paths use pchar.
-    const bad = literal.replace(/%[0-9A-Fa-f]{2}/g,'').match(/[^A-Za-z0-9\-._~!$&'()*+,;=:@/]/u);
-    if (bad) { add('InvalidPath',`path literal contains ${JSON.stringify(bad[0])}; percent-encode it`,where); continue; }
+    const bad = literal.replace(/%[0-9A-Fa-f]{2}/g,'').match(/[^A-Za-z0-9\-._~!$&'()*+,;=:@/]/u)?.[0];
+    if (bad === '?') { add('InvalidPath','path contains a query string; declare query parameters instead',where); continue; }
+    if (bad === '#') { add('InvalidPath','path contains a fragment, which is never sent to the server',where); continue; }
+    if (bad) { add('InvalidPath',`path literal contains ${JSON.stringify(bad)}; percent-encode it`,where); continue; }
     let core;
     // Non-strict parsing admits the apostrophe, which OAS path literals allow.
     try { core = compileTemplate(normalized); } catch(e) { add('InvalidPathTemplate',e.message,where); continue; }

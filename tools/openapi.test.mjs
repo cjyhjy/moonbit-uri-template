@@ -28,6 +28,13 @@ test('path items without operations need no path parameters',()=>{
  assert.deepEqual(codes(doc({parameters:[parameter('id',{required:false})]})),['PathParameterRequired']);
 });
 test('repeated placeholders are not an error before OpenAPI 3.2',()=>{for(const v of ['3.0.3','3.1.0']){const d=doc(undefined,'/a/{id}/b/{id}');d.openapi=v;assert.equal(check(d).ok,true,v);}});
+test('real descriptions nest deeper than 32 levels',()=>{
+ const d=doc();let s={type:'string'};for(let i=0;i<40;i++)s={items:s};d.components={schemas:{deep:s}};assert.equal(check(d).ok,true);
+});
+test('query and fragment in a path are reported by name',()=>{
+ assert.match(check(doc(undefined,'/files/{id}#get')).diagnostics[0].message,/fragment/);
+ assert.match(check(doc(undefined,'/files/{id}?x=1')).diagnostics[0].message,/query/);
+});
 test('path literals follow RFC 3986 pchar',()=>{
  for(const path of ["/o'brien/{id}",'/a%5Bb%5D/{id}','/v1/{id}:cancel','/a;b=c/@x/{id}']) assert.equal(check(doc(undefined,path)).ok,true,path);
  for(const path of ['/a[b]/{id}','/中文/{id}','/a|b/{id}','/100%/{id}','/a%zz/{id}']) assert.deepEqual(codes(doc(undefined,path)),['InvalidPath'],path);
@@ -60,7 +67,7 @@ test('invalid parameter and operation shapes rejected',()=>{
  for(const item of [{get:null},{get:{parameters:{}}},{parameters:[null],get:{}},{get:{parameters:[{name:'id',in:'wrong'}]}}]) assert.equal(check(doc(item)).ok,false);
 });
 test('duplicate JSON keys, malformed JSON, depth and input limits',()=>{
- for(const text of ['{"openapi":"3.1.0","paths":{},"paths":{}}','{','['.repeat(34)+']'.repeat(34),]) assert.equal(checkOpenAPI(text).complete,false);
+ for(const text of ['{"openapi":"3.1.0","paths":{},"paths":{}}','{','['.repeat(130)+']'.repeat(130),]) assert.equal(checkOpenAPI(text).complete,false);
  const r=checkOpenAPI(JSON.stringify(doc()),'spec.json',{maxBytes:16});assert.equal(r.diagnostics[0].code,'OpenAPIInputLimit');assert.equal(r.complete,false);
 });
 test('diagnostics have source locations and bounded output',()=>{

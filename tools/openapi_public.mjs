@@ -11,6 +11,9 @@ const specs = [
   { name: 'stripe', repository: 'stripe/openapi', commit: 'b339867409bf2fb41b6c3411804de1ec4ebf6a49',
     file: 'openapi/spec3.json',
     sha256: '7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776' },
+  { name: 'cloudflare', repository: 'cloudflare/api-schemas', commit: 'b3bacb18fcfbb6c5b5c4e9cc0990d055673b39a4',
+    file: 'openapi.json',
+    sha256: '4ba217d8b7316bbc84a94370a216e6fb4ab77180cac82464f91e8969e19a48fd' },
 ];
 
 async function download(url) {
