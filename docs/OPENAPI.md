@@ -29,7 +29,7 @@ GitHub 的两处：
 /users/{username}/attestations/{subject_digest} GET
 ```
 
-OpenAPI 规定“层级相同、只是变量名不同的路径 MUST NOT 同时存在，因为它们是同一个路径”。按路径匹配请求的路由和代码生成器只能靠 HTTP 方法区分这两组接口。
+OpenAPI 规定“层级相同、只是变量名不同的路径 MUST NOT 同时存在，因为它们是同一个路径”。按路径匹配请求的路由和代码生成器只能靠 HTTP 方法区分这两组接口。已报告给上游：[github/rest-api-description#7367](https://github.com/github/rest-api-description/issues/7367)。
 
 ## 检查项
 
