@@ -1,0 +1,48 @@
+// Check pinned public OpenAPI descriptions; the documents are downloaded, not vendored.
+import { createHash } from 'node:crypto';
+import { writeFileSync } from 'node:fs';
+import { checkOpenAPI } from './openapi.mjs';
+
+const MAX_BYTES = 67108864;
+const specs = [
+  { name: 'github', repository: 'github/rest-api-description', commit: '755ee33b4a81d51f6f07a902cce26cbec3b822f2',
+    file: 'descriptions/api.github.com/api.github.com.json',
+    sha256: '3177ad6a86ca04c57a9bef3fc24e28a339efb8eb040c6f950af3d3ed2fee7fa3' },
+  { name: 'stripe', repository: 'stripe/openapi', commit: 'b339867409bf2fb41b6c3411804de1ec4ebf6a49',
+    file: 'openapi/spec3.json',
+    sha256: '7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776' },
+];
+
+async function download(url) {
+  const response = await fetch(url, { redirect: 'error', signal: AbortSignal.timeout(60000) });
+  if (!response.ok) throw new Error('HTTP ' + response.status);
+  const chunks = [];
+  let length = 0;
+  for await (const chunk of response.body) {
+    length += chunk.length;
+    if (length > MAX_BYTES) throw new Error('ResponseSizeLimit');
+    chunks.push(chunk);
+  }
+  return Buffer.concat(chunks);
+}
+
+const report = { schemaVersion: 1, evidence: 'pinned-public-openapi', node: process.version, startedAt: new Date().toISOString(), results: [] };
+for (const spec of specs) {
+  const url = `https://raw.githubusercontent.com/${spec.repository}/${spec.commit}/${spec.file}`;
+  const bytes = await download(url);
+  const sha256 = createHash('sha256').update(bytes).digest('hex');
+  if (sha256 !== spec.sha256) throw new Error(`${spec.name}: checksum mismatch`);
+  const text = new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+  const started = performance.now();
+  const result = checkOpenAPI(text, spec.file, { maxBytes: MAX_BYTES });
+  const elapsedMs = Math.round(performance.now() - started);
+  report.results.push({
+    name: spec.name, repository: spec.repository, commit: spec.commit, url, bytes: bytes.length, sha256,
+    openapi: JSON.parse(text).openapi, elapsedMs, ok: result.ok, complete: result.complete,
+    operations: result.operations.length, diagnostics: result.diagnostics,
+  });
+  console.log(`${spec.name}: ${result.operations.length} operations, ${result.diagnostics.length} findings, ${elapsedMs} ms`);
+  for (const d of result.diagnostics) console.log(`  ${d.file}:${d.line}:${d.column} ${d.code}: ${d.message}`);
+}
+report.finishedAt = new Date().toISOString();
+writeFileSync(new URL('../reports/openapi-public.json', import.meta.url), JSON.stringify(report, null, 2) + '\n');

@@ -7,6 +7,7 @@ Usage:
   uri-template expand TEMPLATE [--vars JSON | --vars-file FILE|-]
   uri-template measure TEMPLATE [--vars JSON | --vars-file FILE|-]
   uri-template trace TEMPLATE [--vars JSON | --vars-file FILE|-]
+  uri-template openapi FILE.json [--json] [--max-bytes N]
   uri-template project MANIFEST.json [--json | --github]
   uri-template check TEMPLATE [--vars JSON | --vars-file FILE|-]
   uri-template validate TEMPLATE [--strict]
@@ -65,6 +66,11 @@ function readBounded(file, maxChars) {
 async function main() {
   if (args.length === 1 && ['--help', '-h'].includes(args[0])) { console.log(help); return; }
   if (args.length === 1 && args[0] === '--version') { console.log('0.2.0'); return; }
+  if (args[0] === 'openapi') {
+    const { openapiMain } = await import('./openapi.mjs');
+    process.exitCode = await openapiMain(args.slice(1));
+    return;
+  }
   if (args[0] === 'project') {
     const { projectMain } = await import('./project.mjs');
     process.exitCode = await projectMain(args.slice(1));

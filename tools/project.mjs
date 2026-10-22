@@ -10,16 +10,16 @@ const ptr = key => key.replaceAll('~', '~0').replaceAll('/', '~1');
 const call = (handle, command, vars) =>
   JSON.parse(prepared_call(handle, command, JSON.stringify(vars)));
 
-export function readProjectFile(file) {
+export function readProjectFile(file, max = MAX_FILE) {
   const fd = openSync(file, 'r'), chunks = [];
   let size = 0;
   try {
     while (true) {
-      const buf = Buffer.alloc(Math.min(65536, MAX_FILE + 1 - size));
+      const buf = Buffer.alloc(Math.min(65536, max + 1 - size));
       const n = readSync(fd, buf, 0, buf.length, null);
       if (!n) break;
       size += n;
-      if (size > MAX_FILE) throw Object.assign(new Error('manifest exceeds 1 MiB'), { code: 'ProjectInputLimit' });
+      if (size > max) throw Object.assign(new Error('input exceeds byte limit'), { code: 'ProjectInputLimit' });
       chunks.push(buf.subarray(0, n));
     }
     return new TextDecoder('utf-8', { fatal: true }).decode(Buffer.concat(chunks));

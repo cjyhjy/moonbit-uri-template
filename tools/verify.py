@@ -103,7 +103,7 @@ cli_pass = re.search(r'(?:#|ℹ) pass (\d+)',cli)
 cli_fail = re.search(r'(?:#|ℹ) fail (\d+)',cli)
 if not cli_total or not cli_pass or not cli_fail or cli_fail[1] != '0' or cli_total[1]!=cli_pass[1]: raise SystemExit('CLI test report missing')
 report['cli'] = {'total':int(cli_total[1]),'passed':int(cli_pass[1]),'failed':0}
-workflow = run(['node','--test','tools/project.test.mjs','integrations/github-audit/integration.test.mjs'], log='tests-workflow.log')
+workflow = run(['node','--test','tools/project.test.mjs','tools/openapi.test.mjs','integrations/public-clients/clients.test.mjs','integrations/github-audit/integration.test.mjs'], log='tests-workflow.log')
 workflow_total = re.search(r'(?:#|ℹ) tests (\d+)', workflow)
 workflow_pass = re.search(r'(?:#|ℹ) pass (\d+)', workflow)
 workflow_fail = re.search(r'(?:#|ℹ) fail (\d+)', workflow)

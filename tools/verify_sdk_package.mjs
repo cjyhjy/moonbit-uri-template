@@ -55,6 +55,8 @@ console.log('installed SDK passed');`;
   run('node', ['consumer.mjs'], temporary);
   run('node', ['node_modules/moonbit-uri-template/tools/cli.mjs', 'validate', '/{id}'], temporary);
   run('node', ['node_modules/moonbit-uri-template/tools/cli.mjs', 'compare', '/{id}', '/{id}', '--json'], temporary);
+  writeFileSync(join(temporary, 'openapi.json'), JSON.stringify({openapi:'3.1.0',paths:{'/pets/{id}':{get:{parameters:[{name:'id',in:'path',required:true}]}}}}));
+  run('node', ['node_modules/moonbit-uri-template/tools/cli.mjs', 'openapi', 'openapi.json', '--json'], temporary);
   const types = readFileSync(join(root, 'sdk/typecheck.mts'), 'utf8').replace("'./index.mjs'", "'moonbit-uri-template'");
   writeFileSync(join(temporary, 'consumer.mts'), types);
   run(join(root, 'node_modules/.bin/tsc'), ['--noEmit', '--strict', '--module', 'NodeNext', '--target', 'ES2022', 'consumer.mts'], temporary);
@@ -63,7 +65,7 @@ console.log('installed SDK passed');`;
     sourceSha256: run('python3', ['-c', 'from pathlib import Path; import sys; sys.path.insert(0,"tools"); from source_digest import source_digest; print(source_digest(Path.cwd()))']).trim(),
     node: process.version, typescript: run(join(root, 'node_modules/.bin/tsc'), ['--version']).trim(),
     cleanLocalInstall: true, offlineInstall: true, published: false,
-    checks: ['ESM public export', 'compiled reuse', 'incremental immutable sessions', 'runtime shape contracts and type-change review', 'batch', 'contract failure', 'analysis and comparison', 'typed catalog batch inspection audit and comparison', 'installed CLI comparison', 'TypeScript positive and expected-error cases'],
+    checks: ['ESM public export', 'compiled reuse', 'incremental immutable sessions', 'runtime shape contracts and type-change review', 'batch', 'contract failure', 'analysis and comparison', 'typed catalog batch inspection audit and comparison', 'installed CLI comparison', 'installed OpenAPI CLI', 'TypeScript positive and expected-error cases'],
     files: pack.files.map(x => x.path) };
   writeFileSync(join(root, 'reports/sdk-package.json'), JSON.stringify(report, null, 2) + '\n');
   console.log('SDK tarball: clean offline install, runtime and TypeScript checks passed');

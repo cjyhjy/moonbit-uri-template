@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "evidence": "live-public-api",
+  "startedAt": "2026-10-22T10:50:11.208Z",
+  "contractOrigin": "locally curated; not an official upstream OpenAPI document",
+  "externalUserFeedback": false,
+  "results": [
+    {
+      "name": "npm-unscoped",
+      "ok": true,
+      "url": "https://registry.npmjs.org/typescript/7.0.2",
+      "status": 200,
+      "bytes": 4833,
+      "sha256": "28a8ef314c6bbc3fddb831088f80eb2fcac6351cb618c8ac029f7229f587b8aa",
+      "result": {
+        "name": "typescript",
+        "version": "7.0.2"
+      }
+    },
+    {
+      "name": "npm-scoped",
+      "ok": true,
+      "url": "https://registry.npmjs.org/%40types%2Fnode/22.0.0",
+      "status": 200,
+      "bytes": 4835,
+      "sha256": "d58e3c4d7d76532fa83c1f6ec30e78b08706b6a069fe1b1d2d24f7ee2ea15ce2",
+      "result": {
+        "name": "@types/node",
+        "version": "22.0.0"
+      }
+    },
+    {
+      "name": "openlibrary-book",
+      "ok": true,
+      "url": "https://openlibrary.org/api/books?bibkeys=ISBN%3A9780980200447&format=json&jscmd=data",
+      "status": 200,
+      "bytes": 2105,
+      "sha256": "85ec8f6d08bcff7bd85d8be4440e3fff7adbda944e0f10843cab2be3530eec7e",
+      "result": {
+        "isbn": "9780980200447",
+        "title": "Slow reading"
+      }
+    }
+  ],
+  "finishedAt": "2026-10-22T10:50:14.665Z",
+  "ok": true
+}

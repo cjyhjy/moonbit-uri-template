@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "evidence": "pinned-public-openapi",
+  "node": "v26.7.0",
+  "startedAt": "2026-10-22T11:08:45.238Z",
+  "results": [
+    {
+      "name": "github",
+      "repository": "github/rest-api-description",
+      "commit": "755ee33b4a81d51f6f07a902cce26cbec3b822f2",
+      "url": "https://raw.githubusercontent.com/github/rest-api-description/755ee33b4a81d51f6f07a902cce26cbec3b822f2/descriptions/api.github.com/api.github.com.json",
+      "bytes": 13502446,
+      "sha256": "3177ad6a86ca04c57a9bef3fc24e28a339efb8eb040c6f950af3d3ed2fee7fa3",
+      "openapi": "3.0.3",
+      "elapsedMs": 422,
+      "ok": false,
+      "complete": true,
+      "operations": 1242,
+      "diagnostics": [
+        {
+          "code": "EquivalentPaths",
+          "message": "same path hierarchy as /orgs/{org}/attestations/{attestation_id}",
+          "file": "descriptions/api.github.com/api.github.com.json",
+          "path": "/paths/~1orgs~1{org}~1attestations~1{subject_digest}",
+          "line": 29475,
+          "column": 50
+        },
+        {
+          "code": "EquivalentPaths",
+          "message": "same path hierarchy as /users/{username}/attestations/{attestation_id}",
+          "file": "descriptions/api.github.com/api.github.com.json",
+          "path": "/paths/~1users~1{username}~1attestations~1{subject_digest}",
+          "line": 98404,
+          "column": 56
+        }
+      ]
+    },
+    {
+      "name": "stripe",
+      "repository": "stripe/openapi",
+      "commit": "b339867409bf2fb41b6c3411804de1ec4ebf6a49",
+      "url": "https://raw.githubusercontent.com/stripe/openapi/b339867409bf2fb41b6c3411804de1ec4ebf6a49/openapi/spec3.json",
+      "bytes": 8317513,
+      "sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
+      "openapi": "3.0.0",
+      "elapsedMs": 245,
+      "ok": true,
+      "complete": true,
+      "operations": 612,
+      "diagnostics": []
+    }
+  ],
+  "finishedAt": "2026-10-22T11:08:49.943Z"
+}

@@ -26,7 +26,11 @@
     "test:sdk": "node --test sdk/sdk.test.mjs && tsc --noEmit --strict --module NodeNext --target ES2022 sdk/typecheck.mts",
     "package:sdk": "node tools/verify_sdk_package.mjs",
     "test:differential": "node --test tools/differential.test.mjs",
-    "differential": ".venv-diff/bin/python tools/differential.py"
+    "differential": ".venv-diff/bin/python tools/differential.py",
+    "test:openapi": "node --test tools/openapi.test.mjs",
+    "test:public-clients": "node --test integrations/public-clients/clients.test.mjs",
+    "integration:public": "node integrations/public-clients/live.mjs",
+    "openapi:public": "node tools/openapi_public.mjs"
   },
   "exports": {
     ".": {
@@ -47,7 +51,10 @@
     "tools/diagnostics.mjs",
     "tools/suggestions.mjs",
     "LICENSE",
-    "NOTICE"
+    "NOTICE",
+    "tools/openapi.mjs",
+    "docs/OPENAPI.md",
+    "examples/openapi.json"
   ],
   "devDependencies": {
     "typescript": "7.0.2"

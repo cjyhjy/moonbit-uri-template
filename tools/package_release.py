@@ -33,9 +33,9 @@ archive_path = release_dir/filename
 with tempfile.TemporaryDirectory(prefix='uri-template-release-') as temporary:
     bundle = Path(temporary)/f'moonbit-uri-template-{VERSION}'
     bundle.mkdir()
-    files = ['tools/cli.mjs', 'tools/cli.test.mjs', 'tools/diagnostics.mjs', 'tools/serve-playground.mjs',
+    files = ['integrations/public-clients/clients.mjs', 'integrations/public-clients/live.mjs', 'integrations/public-clients/README.md', 'tools/openapi.mjs', 'docs/OPENAPI.md', 'examples/openapi.json', 'tools/cli.mjs', 'tools/cli.test.mjs', 'tools/diagnostics.mjs', 'tools/serve-playground.mjs',
              'dist/engine.mjs', 'package.json',
-             'tools/project.mjs', 'tools/project.test.mjs', 'tools/json-source.mjs', 'tools/suggestions.mjs',
+             'tools/project.mjs', 'tools/project.test.mjs','tools/openapi.test.mjs','integrations/public-clients/clients.test.mjs', 'tools/json-source.mjs', 'tools/suggestions.mjs',
              'tools/playground.test.mjs',
              'sdk/index.mjs', 'sdk/index.d.mts', 'sdk/sdk.test.mjs',
              'tools/differential.test.mjs', 'testdata/differential/results.json',
@@ -69,7 +69,7 @@ with tempfile.TemporaryDirectory(prefix='uri-template-release-') as temporary:
     if not license_file.exists(): raise SystemExit('MoonBit standard library license not found')
     (bundle/'licenses').mkdir()
     shutil.copyfile(license_file, bundle/'licenses/moonbit-core-LICENSE')
-    (bundle/'README.md').write_text(f'''# MoonBit URI Template {VERSION}\n\nLocal release candidate, not a registry publication. Portable CLI compiled from MoonBit. Requires Node.js 22+. No runtime npm dependencies. Typed ESM SDK installation: npm install ./moonbit-uri-template-0.2.0.tgz (see docs/SDK.md).\n\n```sh\nnode tools/cli.mjs expand '/users/{{id}}{{?page}}' --vars-file examples/users.json\nnode tools/cli.mjs validate '%27{{x}}%27' --strict\nnode --test sdk/sdk.test.mjs tools/differential.test.mjs tools/cli.test.mjs tools/project.test.mjs tools/playground.test.mjs integrations/github-audit/integration.test.mjs\nnode tools/cli.mjs project integrations/github-audit/requests.json --json\nnode tools/serve-playground.mjs  # http://127.0.0.1:4173\n```\n\nThe included {source.name} is the Mooncakes source archive.\nVerification evidence: reports/verification.json.\nThe compiled engine includes MoonBit's Apache-2.0 standard library; its license is in licenses/.\n''')
+    (bundle/'README.md').write_text(f'''# MoonBit URI Template {VERSION}\n\nLocal release candidate, not a registry publication. Portable CLI compiled from MoonBit. Requires Node.js 22+. No runtime npm dependencies. Typed ESM SDK installation: npm install ./moonbit-uri-template-{VERSION}.tgz (see docs/SDK.md).\n\n```sh\nnode tools/cli.mjs expand '/users/{{id}}{{?page}}' --vars-file examples/users.json\nnode tools/cli.mjs validate '%27{{x}}%27' --strict\nnode --test sdk/sdk.test.mjs tools/differential.test.mjs tools/cli.test.mjs tools/project.test.mjs tools/playground.test.mjs integrations/github-audit/integration.test.mjs\nnode tools/cli.mjs project integrations/github-audit/requests.json --json\nnode tools/serve-playground.mjs  # http://127.0.0.1:4173\n```\n\nThe included {source.name} is the Mooncakes source archive.\nVerification evidence: reports/verification.json.\nThe compiled engine includes MoonBit's Apache-2.0 standard library; its license is in licenses/.\n''')
     paths = sorted(p for p in bundle.rglob('*') if p.is_file())
     checksums = {str(p.relative_to(bundle)): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
     (bundle/'SHA256SUMS.json').write_text(json.dumps(checksums, indent=2)+'\n')
@@ -90,7 +90,7 @@ with tempfile.TemporaryDirectory(prefix='uri-template-release-') as temporary:
     for name, expected in check.items():
         if hashlib.sha256((installed/name).read_bytes()).hexdigest() != expected:
             raise SystemExit('Release checksum mismatch: '+name)
-    tests = subprocess.run(['node','--test','sdk/sdk.test.mjs','tools/differential.test.mjs','tools/cli.test.mjs','tools/project.test.mjs','tools/playground.test.mjs','integrations/github-audit/integration.test.mjs'],cwd=installed,text=True,capture_output=True)
+    tests = subprocess.run(['node','--test','sdk/sdk.test.mjs','tools/differential.test.mjs','tools/cli.test.mjs','tools/project.test.mjs','tools/openapi.test.mjs','integrations/public-clients/clients.test.mjs','tools/playground.test.mjs','integrations/github-audit/integration.test.mjs'],cwd=installed,text=True,capture_output=True)
     output = tests.stdout+tests.stderr
     (ROOT/'reports/release-cli.log').write_text(output)
     if tests.returncode: print(output); raise SystemExit(tests.returncode)
