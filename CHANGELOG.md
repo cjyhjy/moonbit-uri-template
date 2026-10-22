@@ -4,7 +4,7 @@
 
 ### Added
 
-- `uri-template openapi FILE.json` checks OpenAPI 3.0/3.1 path templates against path-parameter declarations: missing, unused, optional and duplicate parameters, repeated placeholders and equivalent templated paths, with JSON Pointer and line/column diagnostics. Default input limit 32 MiB (`--max-bytes`).
+- `uri-template openapi FILE.json` checks OpenAPI 3.0/3.1 path templates against path-parameter declarations: missing, unused, optional and duplicate parameters, equivalent templated paths and RFC 3986 path literals, with JSON Pointer and line/column diagnostics. Default input limit 32 MiB (`--max-bytes`).
 - `npm run openapi:public` checks the pinned GitHub (1242 operations) and Stripe (612 operations) OpenAPI descriptions; it reports two equivalent-path conflicts in GitHub's description.
 - Read-only npm registry and Open Library clients whose URLs come from the SDK (`integrations/public-clients`).
 

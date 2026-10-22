@@ -27,8 +27,11 @@ test('path items without operations need no path parameters',()=>{
  for(const item of [{},{summary:'filtered'},{'x-internal':true}]) assert.equal(check(doc(item)).ok,true);
  assert.deepEqual(codes(doc({parameters:[parameter('id',{required:false})]})),['PathParameterRequired']);
 });
-test('repeated placeholders are reported once per repeat',()=>assert.deepEqual(codes(doc(undefined,'/a/{id}/b/{id}')),['DuplicatePathPlaceholder']));
-test('OAS path literals may contain an apostrophe',()=>assert.equal(check(doc(undefined,"/o'brien/{id}")).ok,true));
+test('repeated placeholders are not an error before OpenAPI 3.2',()=>{for(const v of ['3.0.3','3.1.0']){const d=doc(undefined,'/a/{id}/b/{id}');d.openapi=v;assert.equal(check(d).ok,true,v);}});
+test('path literals follow RFC 3986 pchar',()=>{
+ for(const path of ["/o'brien/{id}",'/a%5Bb%5D/{id}','/v1/{id}:cancel','/a;b=c/@x/{id}']) assert.equal(check(doc(undefined,path)).ok,true,path);
+ for(const path of ['/a[b]/{id}','/中文/{id}','/a|b/{id}','/100%/{id}','/a%zz/{id}']) assert.deepEqual(codes(doc(undefined,path)),['InvalidPath'],path);
+});
 test('3.1 documents without paths are complete',()=>{
  assert.equal(check({openapi:'3.1.0',webhooks:{}}).ok,true);
  assert.equal(check({openapi:'3.0.3'}).complete,false);

@@ -26,23 +26,35 @@ async function download(url) {
   return Buffer.concat(chunks);
 }
 
-const report = { schemaVersion: 1, evidence: 'pinned-public-openapi', node: process.version, startedAt: new Date().toISOString(), results: [] };
-for (const spec of specs) {
-  const url = `https://raw.githubusercontent.com/${spec.repository}/${spec.commit}/${spec.file}`;
-  const bytes = await download(url);
-  const sha256 = createHash('sha256').update(bytes).digest('hex');
-  if (sha256 !== spec.sha256) throw new Error(`${spec.name}: checksum mismatch`);
-  const text = new TextDecoder('utf-8', { fatal: true }).decode(bytes);
-  const started = performance.now();
-  const result = checkOpenAPI(text, spec.file, { maxBytes: MAX_BYTES });
-  const elapsedMs = Math.round(performance.now() - started);
-  report.results.push({
-    name: spec.name, repository: spec.repository, commit: spec.commit, url, bytes: bytes.length, sha256,
-    openapi: JSON.parse(text).openapi, elapsedMs, ok: result.ok, complete: result.complete,
-    operations: result.operations.length, diagnostics: result.diagnostics,
-  });
-  console.log(`${spec.name}: ${result.operations.length} operations, ${result.diagnostics.length} findings, ${elapsedMs} ms`);
-  for (const d of result.diagnostics) console.log(`  ${d.file}:${d.line}:${d.column} ${d.code}: ${d.message}`);
+const output = new URL('../reports/openapi-public.json', import.meta.url);
+const report = { schemaVersion: 1, evidence: 'pinned-public-openapi', status: 'running', node: process.version, startedAt: new Date().toISOString(), results: [] };
+const save = () => writeFileSync(output, JSON.stringify(report, null, 2) + '\n');
+// Overwrite first so a failed run never leaves an earlier result in place.
+save();
+try {
+  for (const spec of specs) {
+    const url = `https://raw.githubusercontent.com/${spec.repository}/${spec.commit}/${spec.file}`;
+    const bytes = await download(url);
+    const sha256 = createHash('sha256').update(bytes).digest('hex');
+    if (sha256 !== spec.sha256) throw new Error(`${spec.name}: checksum mismatch`);
+    const text = new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+    const started = performance.now();
+    const result = checkOpenAPI(text, spec.file, { maxBytes: MAX_BYTES });
+    const elapsedMs = Math.round(performance.now() - started);
+    report.results.push({
+      name: spec.name, repository: spec.repository, commit: spec.commit, url, bytes: bytes.length, sha256,
+      openapi: JSON.parse(text).openapi, elapsedMs, ok: result.ok, complete: result.complete,
+      operations: result.operations.length, diagnostics: result.diagnostics,
+    });
+    console.log(`${spec.name}: ${result.operations.length} operations, ${result.diagnostics.length} findings, ${elapsedMs} ms`);
+    for (const d of result.diagnostics) console.log(`  ${d.file}:${d.line}:${d.column} ${d.code}: ${d.message}`);
+  }
+  report.status = 'completed';
+} catch (error) {
+  report.status = 'failed';
+  report.error = error.message;
+  process.exitCode = 1;
+  console.error(error.message);
 }
 report.finishedAt = new Date().toISOString();
-writeFileSync(new URL('../reports/openapi-public.json', import.meta.url), JSON.stringify(report, null, 2) + '\n');
+save();

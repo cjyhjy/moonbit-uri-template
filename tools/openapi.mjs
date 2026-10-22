@@ -73,10 +73,13 @@ export function checkOpenAPI(text, file = 'openapi.json', {maxBytes = DEFAULT_MA
     // OAS names need not satisfy RFC 6570 varname grammar. Use opaque aliases.
     const normalized = path.replace(/\{([^{}]+)\}/g, (_,name) => {
       if (!aliases.has(name)) { aliases.set(name,'v'+names.length); names.push(name); }
-      else add('DuplicatePathPlaceholder',`placeholder ${name} appears more than once`,where);
       return '{'+aliases.get(name)+'}';
     });
-    if (/[{}]/.test(path.replace(/\{[^{}]+\}/g,''))) { add('InvalidPathTemplate','unbalanced or empty path placeholder',where); continue; }
+    const literal = path.replace(/\{[^{}]+\}/g,'');
+    if (/[{}]/.test(literal)) { add('InvalidPathTemplate','unbalanced or empty path placeholder',where); continue; }
+    // RFC 6570 literals admit more than RFC 3986 pchar (e.g. [ ] and non-ASCII); OAS paths use pchar.
+    const bad = literal.replace(/%[0-9A-Fa-f]{2}/g,'').match(/[^A-Za-z0-9\-._~!$&'()*+,;=:@/]/u);
+    if (bad) { add('InvalidPath',`path literal contains ${JSON.stringify(bad[0])}; percent-encode it`,where); continue; }
     let core;
     // Non-strict parsing admits the apostrophe, which OAS path literals allow.
     try { core = compileTemplate(normalized); } catch(e) { add('InvalidPathTemplate',e.message,where); continue; }

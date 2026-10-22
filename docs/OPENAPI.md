@@ -39,9 +39,8 @@ OpenAPI 规定“层级相同、只是变量名不同的路径 MUST NOT 同时�
 | `UnusedPathParameter` | 声明了路径参数，路径中却没有 |
 | `PathParameterRequired` | 路径参数没有 `required: true` |
 | `DuplicateParameter` | 同一参数列表中 `in` 和 `name` 重复 |
-| `DuplicatePathPlaceholder` | 同一占位符在路径中出现多次（OpenAPI 3.2 明确禁止） |
 | `EquivalentPaths` | 层级相同的模板路径 |
-| `InvalidPath` / `InvalidPathTemplate` | 不以 `/` 开头、含 `?` `#`、括号不配对或字面量非法 |
+| `InvalidPath` / `InvalidPathTemplate` | 不以 `/` 开头、含 `?` `#`、括号不配对，或字面量含 RFC 3986 路径不允许的字符（如 `[`、`|`、未编码的中文） |
 
 - Path Item 级参数由每个接口继承，接口级按 `(in, name)` 覆盖；一个接口的声明不会替另一个接口补缺。
 - 没有任何接口的 Path Item（例如按权限过滤后）不要求声明路径参数。
