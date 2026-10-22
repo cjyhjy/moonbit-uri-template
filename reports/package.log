@@ -32,9 +32,10 @@ conformance_test.mbt
 docs/AI_USAGE.md
 docs/API.md
 docs/ARCHITECTURE.md
+docs/CLAUDE_HANDOFF_OPENAPI.md
 docs/COMPARISON.md
 docs/CONFORMANCE.md
-docs/ORGANIZER_EMAIL.txt
+docs/OPENAPI.md
 docs/PERFORMANCE.md
 docs/RELEASE.md
 docs/RESUBMISSION.md
@@ -43,6 +44,7 @@ encoder.mbt
 encoder_wbtest.mbt
 examples/main.mbt
 examples/moon.pkg
+examples/openapi.json
 examples/pkg.generated.mbti
 examples/resource.json
 examples/search.json
@@ -56,6 +58,10 @@ integrations/github-audit/main.mjs
 integrations/github-audit/package.json
 integrations/github-audit/requests.json
 integrations/github-audit/upgrade.mjs
+integrations/public-clients/README.md
+integrations/public-clients/clients.mjs
+integrations/public-clients/clients.test.mjs
+integrations/public-clients/live.mjs
 limits.mbt
 limits_test.mbt
 limits_wbtest.mbt
@@ -115,6 +121,9 @@ tools/json-source.mjs
 tools/moon
 tools/moonbit_literal.py
 tools/moonfmt
+tools/openapi.mjs
+tools/openapi.test.mjs
+tools/openapi_public.mjs
 tools/package_release.py
 tools/playground-browser-qa.js.txt
 tools/playground.test.mjs
@@ -131,4 +140,4 @@ tools/verify_sdk_package.mjs
 types.mbt
 申报材料/回复初审邮件.txt
 申报材料/申报修改备注.txt
-Package to /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/publish/cjyhjy-uri_template-0.2.0.zip
+Package to /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/publish/cjyhjy-uri_template-0.3.0.zip

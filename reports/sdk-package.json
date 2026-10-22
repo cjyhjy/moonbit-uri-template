@@ -1,8 +1,8 @@
 {
   "status": "passed",
-  "artifact": "_build/releases/moonbit-uri-template-0.2.0.tgz",
-  "sha256": "3b4b0f9fb3c5f695dd518ac29e33856283be7a04cefd6f38cc18925e380e7a76",
-  "sourceSha256": "2c181ebefab6f00be6ff27c8a297fd334e83f06597ad18506ca1f37bc5cc9e3e",
+  "artifact": "_build/releases/moonbit-uri-template-0.3.0.tgz",
+  "sha256": "b159a086b37b837e4bffb4d0f9c7b29d2b034c82ac349e73dafd9b0deb56d96c",
+  "sourceSha256": "a11e2b73a362e67ade9cc5918647bdeaa1866e9c891ad3dddb4fc94246fd5652",
   "node": "v26.7.0",
   "typescript": "Version 7.0.2",
   "cleanLocalInstall": true,
@@ -18,6 +18,7 @@
     "analysis and comparison",
     "typed catalog batch inspection audit and comparison",
     "installed CLI comparison",
+    "installed OpenAPI CLI",
     "TypeScript positive and expected-error cases"
   ],
   "files": [
@@ -26,13 +27,16 @@
     "README.md",
     "dist/engine.mjs",
     "dist/licenses/moonbit-core-LICENSE",
+    "docs/OPENAPI.md",
     "docs/SDK.md",
+    "examples/openapi.json",
     "package.json",
     "sdk/index.d.mts",
     "sdk/index.mjs",
     "tools/cli.mjs",
     "tools/diagnostics.mjs",
     "tools/json-source.mjs",
+    "tools/openapi.mjs",
     "tools/project.mjs",
     "tools/suggestions.mjs"
   ]
