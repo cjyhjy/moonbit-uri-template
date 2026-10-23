@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "published": true,
+  "package": "moonbit-uri-template",
+  "version": "0.3.0",
+  "verified_at_utc": "2026-10-23T06:42:38.274574+00:00",
+  "git_commit": "0db06740d87d27296bc47776e40a53d56489af82",
+  "workflow": "https://github.com/cjyhjy/moonbit-uri-template/actions/runs/39912754748",
+  "registry": "https://registry.npmjs.org/",
+  "dist_tags": {
+    "latest": "0.3.0"
+  },
+  "integrity": "sha512-vWCNBhOXGBrsn4SEgHdRQ9QShSaIXNoZjOwPyYWSaix1mJMhiKQ7goxxV/P69TJr/Vr2FhjLuNLcF/0KGcY87g==",
+  "ci_tarball_sha256": "95fd8a295fc7a6a1f1b4188b06ccc94aed8fcd9f30a69d3f064ac85ce7d1853c",
+  "ci_tarball_matches_registry_and_install": true,
+  "trusted_publishing": true,
+  "registry_signature_verified": true,
+  "provenance_verified": true,
+  "provenance_statement": {
+    "_type": "https://in-toto.io/Statement/v1",
+    "subject": [
+      {
+        "name": "pkg:npm/moonbit-uri-template@0.3.0",
+        "digest": {
+          "sha512": "bd608d061397181aec9f848480775143d4128526885cda198cec0fc985926a2c7598932188a43b828c7157f3faf5326bfd5af61618cbb8d2dc17fd0a19c63cee"
+        }
+      }
+    ],
+    "predicateType": "https://slsa.dev/provenance/v1",
+    "predicate": {
+      "buildDefinition": {
+        "buildType": "https://slsa-framework.github.io/github-actions-buildtypes/workflow/v1",
+        "externalParameters": {
+          "workflow": {
+            "ref": "refs/tags/v0.3.0",
+            "repository": "https://github.com/cjyhjy/moonbit-uri-template",
+            "path": ".github/workflows/publish-npm.yml"
+          }
+        },
+        "internalParameters": {
+          "github": {
+            "event_name": "push",
+            "repository_id": "1418473171",
+            "repository_owner_id": "175118861"
+          }
+        },
+        "resolvedDependencies": [
+          {
+            "uri": "git+https://github.com/cjyhjy/moonbit-uri-template@refs/tags/v0.3.0",
+            "digest": {
+              "gitCommit": "0db06740d87d27296bc47776e40a53d56489af82"
+            }
+          }
+        ]
+      },
+      "runDetails": {
+        "builder": {
+          "id": "https://github.com/actions/runner/github-hosted"
+        },
+        "metadata": {
+          "invocationId": "https://github.com/cjyhjy/moonbit-uri-template/actions/runs/39912754748/attempts/1"
+        }
+      }
+    }
+  },
+  "fresh_project_install": true,
+  "fresh_npm_cache": true,
+  "install_source": "npm registry, not local tarball",
+  "checks": [
+    "SDK runtime and contracts",
+    "catalog and immutable sessions",
+    "CLI validate and compare",
+    "OpenAPI CLI valid and missing-parameter cases",
+    "TypeScript strict positive and expected-error cases",
+    "npm audit signatures"
+  ],
+  "bootstrap": "0.0.0-bootstrap remains staged and unapproved; latest is 0.3.0"
+}

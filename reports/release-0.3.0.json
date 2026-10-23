@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "tag": "v0.3.0",
+  "source_commit": "0db06740d87d27296bc47776e40a53d56489af82",
+  "portable_extracted_tests": 132,
+  "assets": {
+    "SHA256SUMS.txt": {
+      "bytes": 290,
+      "sha256": "56b230e7528b65e11800ed4f6d0665fbe7acaa7671977b04333f0c5e4a48d3f1"
+    },
+    "cjyhjy-uri_template-0.3.0.zip": {
+      "bytes": 244848,
+      "sha256": "9cbef8bb1b95bfb7a7aa47eea18d9c8e3359c6bb6ae32b604e972d4f3b7053e4"
+    },
+    "moonbit-uri-template-0.3.0.tgz": {
+      "bytes": 104807,
+      "sha256": "95fd8a295fc7a6a1f1b4188b06ccc94aed8fcd9f30a69d3f064ac85ce7d1853c"
+    },
+    "moonbit-uri-template-0.3.0.zip": {
+      "bytes": 599341,
+      "sha256": "359c8c8f2f709939b2d80300c7337be7a4a00feeca4bd02f669a1de9a5120f00"
+    }
+  },
+  "moon_registry_validation": "reports/registry-0.3.0.json",
+  "npm_registry_validation": "reports/npm-release-0.3.0.json",
+  "github_release": "https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.3.0",
+  "github_assets_verified": true
+}

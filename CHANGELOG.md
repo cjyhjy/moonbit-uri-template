@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0 — unreleased
+## 0.3.0 — 2026-10-23 (npm and Mooncakes)
 
 ### Added
 
@@ -10,7 +10,7 @@
 
 ### Changes
 
-- The MoonBit core is unchanged from 0.2.0. npm's first release will be 0.3.0.
+- The MoonBit core is unchanged from 0.2.0. npm's first release is 0.3.0, published using GitHub Trusted Publishing with verified provenance.
 
 ## 0.2.0 — 2026-10-21 (Mooncakes)
 
