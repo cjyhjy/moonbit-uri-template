@@ -137,13 +137,18 @@ export function runWorker(path, timeout = 15000) {
 }
 
 export function compareBaseline(results, baseline) {
-  return results.flatMap(row => {
+  const actualIds = new Set(results.map(row => row.id));
+  const regressions = results.flatMap(row => {
     const expected = baseline.documents.find(item => item.id === row.id);
     if (!expected) return [{id:row.id,reason:'not present in baseline'}];
     if (expected.sha256 !== row.sha256) return [{id:row.id,reason:'input changed'}];
     if (!row.semanticSha256 || expected.semanticSha256 !== row.semanticSha256) return [{id:row.id,reason:'analysis changed or failed'}];
     return [];
   });
+  for (const expected of baseline.documents) {
+    if (!actualIds.has(expected.id)) regressions.push({id:expected.id,reason:'missing from results'});
+  }
+  return regressions;
 }
 
 async function check(lockPath, reportPath, limit, allowDownload, baselinePath) {
@@ -187,7 +192,7 @@ async function check(lockPath, reportPath, limit, allowDownload, baselinePath) {
 async function main(args) {
   if (args[0] === '--worker' && args.length === 2) return worker(args[1]);
   if (args.length === 0 || args.includes('--help')) {
-    console.log('Usage: node tools/openapi_corpus.mjs snapshot|check [--limit N] [--manifest FILE] [--report FILE] [--index FILE] [--baseline FILE] [--download]\nSnapshot downloads and pins public catalog documents. Check uses the local hash cache unless --download is supplied. Reports distinguish diagnostics, incomplete checks and process failures; they do not assert upstream bugs. --baseline fails on any changed analysis or input.');
+    console.log('Usage: node tools/openapi_corpus.mjs snapshot|check [--limit N] [--manifest FILE] [--report FILE] [--index FILE] [--baseline FILE] [--download]\nSnapshot downloads and pins public catalog documents. Check uses the local hash cache unless --download is supplied. Reports distinguish diagnostics, incomplete checks and process failures; they do not assert upstream bugs. --baseline fails on any changed analysis or input, and on missing documents. It compares the entire supplied baseline; --limit does not narrow the baseline.');
     return;
   }
   const [mode, ...rest] = args, options = {limit: mode === 'snapshot' ? 50 : Infinity, manifest: LOCK, report: REPORT};

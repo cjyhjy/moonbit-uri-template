@@ -22,11 +22,25 @@ test('incomplete results remain incomplete and warning-only results remain clean
   assert.equal(inspectReport({...report,complete:true}).outcome,'complete-with-diagnostics');
   assert.equal(inspectReport({...report,ok:true,complete:true,diagnostics:[{code:'ExampleShapeMismatch',severity:'warning'}]}).outcome,'complete-clean');
 });
-test('corpus baseline fails closed on missing inputs, changed bytes or changed semantics', () => {
+test('corpus baseline fails closed on unknown inputs, changed bytes or changed semantics', () => {
   const row={id:'example',sha256:'input',semanticSha256:'output'}, baseline={documents:[row]};
   assert.deepEqual(compareBaseline([row],baseline),[]);
-  for (const changed of [{...row,id:'unknown'},{...row,sha256:'other'},{...row,semanticSha256:'different'},{...row,semanticSha256:undefined,outcome:'crash'}])
+  assert.deepEqual(compareBaseline([{...row,id:'unknown'}],baseline),[
+    {id:'unknown',reason:'not present in baseline'}, {id:'example',reason:'missing from results'},
+  ]);
+  for (const changed of [{...row,sha256:'other'},{...row,semanticSha256:'different'},{...row,semanticSha256:undefined,outcome:'crash'}])
     assert.equal(compareBaseline([changed],baseline).length,1);
+});
+test('corpus baseline rejects removed documents and limited results without narrowing coverage', () => {
+  const first={id:'first',sha256:'input-a',semanticSha256:'output-a'};
+  const second={id:'second',sha256:'input-b',semanticSha256:'output-b'};
+  const baseline={documents:[first,second]};
+  assert.deepEqual(compareBaseline([second,first],baseline),[]);
+  assert.deepEqual(compareBaseline([first],baseline),[{id:'second',reason:'missing from results'}]);
+  assert.deepEqual(compareBaseline([],baseline),[
+    {id:'first',reason:'missing from results'}, {id:'second',reason:'missing from results'},
+  ]);
+  assert.deepEqual(compareBaseline([first],{documents:[first]}),[]);
 });
 test('isolated corpus worker reports actual analysis, process failures and deadlines', () => {
   const dir=mkdtempSync(join(tmpdir(),'uri-corpus-'));

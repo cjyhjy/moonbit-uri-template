@@ -1,13 +1,13 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-23T13:20:15.011147+00:00",
-  "git_head": "df943218b12bd557f72a86de0598061e5eea1c4d",
+  "verification_started_at_utc": "2026-10-23T13:34:44.516494+00:00",
+  "git_head": "42828ea7aec0699f1572336c31b572958bb4de86",
   "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-23T13:20:15.563906+00:00",
+  "verified_at_utc": "2026-10-23T13:34:45.171632+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "98b23e53931b18acaa29fd8f3dfb2535a8a60d00aedcb47915145fb590a681b9",
+  "source_sha256": "cb18ebdad33e30b82b653ecd618ef4cb680fd6ad28e8daa98f0bb7e51f5f7445",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
@@ -1270,8 +1270,8 @@
     "failed": 0
   },
   "workflow": {
-    "total": 71,
-    "passed": 71,
+    "total": 72,
+    "passed": 72,
     "failed": 0,
     "network": "offline only; live evidence is separate"
   },
@@ -1283,7 +1283,7 @@
       "status": "passed",
       "artifact": "_build/releases/moonbit-uri-template-0.4.0.tgz",
       "sha256": "2d089aa621200655998c6370d4af588f3560654ddc2b5ad82e7918a61e28deba",
-      "sourceSha256": "98b23e53931b18acaa29fd8f3dfb2535a8a60d00aedcb47915145fb590a681b9",
+      "sourceSha256": "cb18ebdad33e30b82b653ecd618ef4cb680fd6ad28e8daa98f0bb7e51f5f7445",
       "node": "v26.7.0",
       "typescript": "Version 7.0.2",
       "cleanLocalInstall": true,
@@ -1657,7 +1657,7 @@
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "ee735f11f554e302455298ecb4dc90659541d9795967e14cb0e5b60471c55b32",
+    "sha256": "1adb87ee607da6bd92e8be826bf6ab00bef2b72bc4146c05dbfa2a043f6bfacb",
     "clean_downstream_backends": [
       "js",
       "wasm",

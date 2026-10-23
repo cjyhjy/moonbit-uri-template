@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "status": "completed",
-  "startedAt": "2026-10-23T13:18:48.680Z",
+  "startedAt": "2026-10-23T13:35:09.819Z",
   "evidence": "APIs.guru catalog copies, potentially transformed; verify original sources before upstream attribution",
   "manifestSha256": "8f7df6f5dfb254fe89de355ce4d821237e579b41888e30c35328971138871591",
   "node": "v26.7.0",
   "analyzerSha256": "174bd2a01116be38c8f18c092704ba6579b33f184a2d48820a82d0523efcb864",
   "adapterSha256": "485eb082c271c7c4d2c60ead9509663d4139026f8b5e5b7f2865b14f127344ed",
-  "runnerSha256": "645b28fc9925eed471798ee2c34f4d0718808ca3ae66029d719935c82d4642f2",
+  "runnerSha256": "ab7ce922708591e7b7f33ac2a76dbf0667699f3ebe0caef16685a419df378afc",
   "externalUserFeedback": false,
   "results": [
     {
@@ -31,7 +31,7 @@
       "semanticSha256": "6370c9c69ba233b7dabc6e10e47e5312413edb47ff51cfb91961e5965ea97e16",
       "elapsedMs": 11,
       "externalReferences": 0,
-      "maxRssKiB": 69488
+      "maxRssKiB": 69664
     },
     {
       "id": "adyen.com:BalancePlatformTransferNotification-v3",
@@ -52,9 +52,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "07e9361f04882d45245a8be31c13dd6d9f6c49d97fb207e123cb054a85da5df8",
-      "elapsedMs": 6,
+      "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 66128
+      "maxRssKiB": 67568
     },
     {
       "id": "wolframalpha.com",
@@ -77,7 +77,7 @@
       "semanticSha256": "ad3c09fb73f81e7c1849391ead4b3b59ec2955e35828122a7b8195254f16ab1a",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 61760
+      "maxRssKiB": 61472
     },
     {
       "id": "urlbox.io",
@@ -100,7 +100,7 @@
       "semanticSha256": "ae6144e400f1a87ad451272ec6e7eb66088ed7773ef2b2e531ce3caa7924e8ef",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 62384
+      "maxRssKiB": 62528
     },
     {
       "id": "discourse.local",
@@ -123,7 +123,7 @@
       "semanticSha256": "c8a099135652bef9fcb0b31a31bf3e8d4ec5c2f8e5c89ad11546c6343ebbddfe",
       "elapsedMs": 28,
       "externalReferences": 0,
-      "maxRssKiB": 90400
+      "maxRssKiB": 92400
     },
     {
       "id": "vercel.com",
@@ -165,9 +165,9 @@
         }
       ],
       "semanticSha256": "d4169ebca84d5c7dc67be4ec9430e0c2cde720a11103f0bbc42a4153754984c4",
-      "elapsedMs": 52,
+      "elapsedMs": 53,
       "externalReferences": 0,
-      "maxRssKiB": 125984
+      "maxRssKiB": 125280
     },
     {
       "id": "xero.com:xero_assets",
@@ -190,7 +190,7 @@
       "semanticSha256": "4d7fedf36987b144587e6a7ae5191a5b5a625a4761c8c71ef988e6aa31919541",
       "elapsedMs": 8,
       "externalReferences": 0,
-      "maxRssKiB": 64176
+      "maxRssKiB": 64160
     },
     {
       "id": "amazonaws.com:serverlessrepo",
@@ -211,9 +211,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "49c92c79cf030b5e131a13bb01fe4bcc9cfa7b1dca034a4e0ad34acd8c22f601",
-      "elapsedMs": 15,
+      "elapsedMs": 14,
       "externalReferences": 0,
-      "maxRssKiB": 73808
+      "maxRssKiB": 73888
     },
     {
       "id": "apisetu.gov.in:transportdl",
@@ -236,7 +236,7 @@
       "semanticSha256": "0444d20f69af21533c6ead557ec26022f117f5b2b3e20747c5a77de65779e09f",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 66400
+      "maxRssKiB": 66384
     },
     {
       "id": "apideck.com:ats",
@@ -261,7 +261,7 @@
       "semanticSha256": "b3ba60fbe81710648e1c89ccdc2ea29dbfdf7c9a7acc94fcc9402963abd63cfd",
       "elapsedMs": 14,
       "externalReferences": 0,
-      "maxRssKiB": 72672
+      "maxRssKiB": 72464
     },
     {
       "id": "ebay.com:sell-recommendation",
@@ -284,7 +284,7 @@
       "semanticSha256": "4c0133ba6b1f33cae9816e43f2bb5f7b4ba9b24b54618c05b592c0ac04f0be72",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 63200
+      "maxRssKiB": 63248
     },
     {
       "id": "daniweb.com",
@@ -305,9 +305,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "28ff9c4ca60f93c04c84438bbfbd82ee7a06d8415d9041d25d192365a071f0cc",
-      "elapsedMs": 15,
+      "elapsedMs": 16,
       "externalReferences": 0,
-      "maxRssKiB": 80368
+      "maxRssKiB": 80576
     },
     {
       "id": "files.com",
@@ -328,9 +328,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "a84e78348a5a7386e753c153b29b544cf1687ee0c8e4bbc7ef5f136a87b174b0",
-      "elapsedMs": 65,
+      "elapsedMs": 66,
       "externalReferences": 0,
-      "maxRssKiB": 136864
+      "maxRssKiB": 137488
     },
     {
       "id": "stoplight.io",
@@ -353,7 +353,7 @@
       "semanticSha256": "2be80ebfc4432aca9acdd384644fcb2665d591412aded3bf5928511e4906c59e",
       "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63536
+      "maxRssKiB": 63824
     },
     {
       "id": "twilio.com:twilio_microvisor_v1",
@@ -376,7 +376,7 @@
       "semanticSha256": "d6e53aaf9679f4131c9cf531382d90301992c2f001b79300e68885faa9d10307",
       "elapsedMs": 9,
       "externalReferences": 0,
-      "maxRssKiB": 66304
+      "maxRssKiB": 66320
     },
     {
       "id": "ptv.vic.gov.au",
@@ -399,7 +399,7 @@
       "semanticSha256": "3f8106f971c3749d519f2ce2d5030e69da009ee9bce77b18abd3830864eeca51",
       "elapsedMs": 17,
       "externalReferences": 0,
-      "maxRssKiB": 80352
+      "maxRssKiB": 77664
     },
     {
       "id": "fungenerators.com:uuid",
@@ -422,7 +422,7 @@
       "semanticSha256": "60bb6c64abb2855c7bc77b1e53a55257fc845c9a8bb8a9f33fcb16a9016133aa",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 62224
+      "maxRssKiB": 62192
     },
     {
       "id": "va.gov:confirmation",
@@ -445,7 +445,7 @@
       "semanticSha256": "ab93c181fedef3bd585e48e0532511a9838cb1626d277811afa92144e9f7c048",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 62320
+      "maxRssKiB": 62368
     },
     {
       "id": "googleapis.com:dialogflow",
@@ -466,7 +466,7 @@
       },
       "diagnostics": [],
       "semanticSha256": "20f9848045ab7e0bea854adf2be65e4fee7a00f163c8ded1f70e09655819bf6c",
-      "elapsedMs": 38,
+      "elapsedMs": 43,
       "externalReferences": 0,
       "maxRssKiB": 105792
     },
@@ -491,7 +491,7 @@
       "semanticSha256": "724e180a038730c2a2200c380a4d9dbaec892e08ffdf954ec3b9c92ca780f544",
       "elapsedMs": 17,
       "externalReferences": 0,
-      "maxRssKiB": 78944
+      "maxRssKiB": 79056
     },
     {
       "id": "vtex.local:Subscriptions-API-(v3)",
@@ -514,7 +514,7 @@
       "semanticSha256": "ae331959d8612cd19a342876a75a4e5f48cdb6a5892bbad047c83cdd8de26959",
       "elapsedMs": 12,
       "externalReferences": 0,
-      "maxRssKiB": 70688
+      "maxRssKiB": 70816
     },
     {
       "id": "nytimes.com:movie_reviews",
@@ -537,7 +537,7 @@
       "semanticSha256": "c9af5fed110aa9cb941ab8b2a2d2116095f04cbf489c9313e237010ff6673fd6",
       "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63664
+      "maxRssKiB": 63552
     },
     {
       "id": "seldon.local:wrapper",
@@ -560,7 +560,7 @@
       "semanticSha256": "2621be56d65ecb71f7e8bde9fe8625bd77046a992f971227e22ff598c776350c",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63904
+      "maxRssKiB": 64128
     },
     {
       "id": "sportsdata.io:mlb-v3-projections",
@@ -581,9 +581,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "0642409b0e5aadb8958a23a034154947a768b3df3568d1fbe9e583052d6d6ad6",
-      "elapsedMs": 9,
+      "elapsedMs": 8,
       "externalReferences": 0,
-      "maxRssKiB": 67024
+      "maxRssKiB": 66112
     },
     {
       "id": "enode.io",
@@ -606,7 +606,7 @@
       "semanticSha256": "92180942a08613ab0a6528aec38dd8dbe1709c19b673d6a2b520bc8a12f8fd5a",
       "elapsedMs": 11,
       "externalReferences": 0,
-      "maxRssKiB": 68432
+      "maxRssKiB": 68208
     },
     {
       "id": "hubapi.com:webhooks",
@@ -627,9 +627,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "e3090f6b01c70013a51a38fbe2af1401c219ce978843a3fff70f317f659e4e8b",
-      "elapsedMs": 7,
+      "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63872
+      "maxRssKiB": 63680
     },
     {
       "id": "ip2location.io",
@@ -650,9 +650,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "5715672035b3409b9032c099cc95d68995ef8c52160bd4ec02f02071a4e4c4b2",
-      "elapsedMs": 5,
+      "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 61808
+      "maxRssKiB": 61856
     },
     {
       "id": "openchannel.io:market",
@@ -673,9 +673,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "465a5a0ceb5a6ec8e01dbed3b3397756ce36288afc3a53614131b61dcd456790",
-      "elapsedMs": 18,
+      "elapsedMs": 16,
       "externalReferences": 0,
-      "maxRssKiB": 85088
+      "maxRssKiB": 85248
     },
     {
       "id": "github.com:ghes-3.5",
@@ -696,9 +696,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "53ac80937db6f217b9f9c89b219f31abc0c8811c2c29e3c183c9d4082a1553e2",
-      "elapsedMs": 193,
+      "elapsedMs": 186,
       "externalReferences": 0,
-      "maxRssKiB": 262288
+      "maxRssKiB": 262272
     },
     {
       "id": "google.home",
@@ -721,7 +721,7 @@
       "semanticSha256": "60b07767b4d8899a1236298c3cee74595c1f8ce415562b746f7a73e4b92c6f58",
       "elapsedMs": 15,
       "externalReferences": 0,
-      "maxRssKiB": 72896
+      "maxRssKiB": 72576
     },
     {
       "id": "circuitsandbox.net",
@@ -754,9 +754,9 @@
         }
       ],
       "semanticSha256": "ef3019b4cdd59933d89902d468148714e8a9d0589f5ce0bcabec8931636a468e",
-      "elapsedMs": 25,
+      "elapsedMs": 24,
       "externalReferences": 0,
-      "maxRssKiB": 93344
+      "maxRssKiB": 91568
     },
     {
       "id": "ote-godaddy.com:countries",
@@ -779,7 +779,7 @@
       "semanticSha256": "e839e316ea657aaacf3e7067affd9a45002f12f6cf3d66189f682dd41ad3cc88",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 63152
+      "maxRssKiB": 63056
     },
     {
       "id": "telnyx.com",
@@ -877,9 +877,9 @@
         }
       ],
       "semanticSha256": "30c67474ef932c67e266dc614bcb6359dec9120458e30b7b0c41876d2b8b1ee2",
-      "elapsedMs": 80,
+      "elapsedMs": 87,
       "externalReferences": 0,
-      "maxRssKiB": 167184
+      "maxRssKiB": 166720
     },
     {
       "id": "box.com",
@@ -1084,9 +1084,9 @@
         }
       ],
       "semanticSha256": "5477022d797f7b1d99df04ad83c920c8d92d9ebf13f329913a2fc0572f66d390",
-      "elapsedMs": 79,
+      "elapsedMs": 64,
       "externalReferences": 0,
-      "maxRssKiB": 136032
+      "maxRssKiB": 135808
     },
     {
       "id": "parliament.uk:treaties",
@@ -1109,7 +1109,7 @@
       "semanticSha256": "7c0eeef2c8415130f3efe0dbcb71cd6ad78d01f3295b68e02fff7ec13c238f9e",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63568
+      "maxRssKiB": 63856
     },
     {
       "id": "openpolicy.local",
@@ -1144,7 +1144,7 @@
       "semanticSha256": "19b6128c45ea05653b3c6523f28534890dd3f5462aaaefe47f42e363ca094a3b",
       "elapsedMs": 11,
       "externalReferences": 0,
-      "maxRssKiB": 67024
+      "maxRssKiB": 66896
     },
     {
       "id": "nexmo.com:numbers",
@@ -1167,7 +1167,7 @@
       "semanticSha256": "351f7fe3daf8a3e54aefa95f215f1bd0a3fb503b15f1cd589e66e828909305c4",
       "elapsedMs": 8,
       "externalReferences": 0,
-      "maxRssKiB": 64032
+      "maxRssKiB": 64144
     },
     {
       "id": "amadeus.com:amadeus-travel-recommendations",
@@ -1190,7 +1190,7 @@
       "semanticSha256": "7e2022f761ff62bea64f74cb3badc43cb8a03eac568cfd8deb0d26dfb2f8fac1",
       "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63504
+      "maxRssKiB": 63440
     },
     {
       "id": "microsoft.com:cognitiveservices-Ocr",
@@ -1213,7 +1213,7 @@
       "semanticSha256": "ea385d660461487edb2a41e731ddb6e26a35e816bd915032f0a5f48dce2f5fdb",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63680
+      "maxRssKiB": 63616
     },
     {
       "id": "keyserv.solutions",
@@ -1234,9 +1234,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "b7835769291c7fcaebb84181b59698f1731548bd2cc7c416d098376d943a501c",
-      "elapsedMs": 7,
+      "elapsedMs": 8,
       "externalReferences": 0,
-      "maxRssKiB": 66224
+      "maxRssKiB": 64544
     },
     {
       "id": "gambitcomm.local:mimic",
@@ -1259,7 +1259,7 @@
       "semanticSha256": "22646f8393dba64d68bc42462e7f73db2ea0e85f2078a6ccb2c3782c9872cb2a",
       "elapsedMs": 36,
       "externalReferences": 0,
-      "maxRssKiB": 111024
+      "maxRssKiB": 113040
     },
     {
       "id": "atlassian.com:jira",
@@ -1320,9 +1320,9 @@
         }
       ],
       "semanticSha256": "dbe3098909c31cb0556a28ba1f6d8ec509ec84830211b281dbac1cfc4711a74d",
-      "elapsedMs": 109,
+      "elapsedMs": 108,
       "externalReferences": 0,
-      "maxRssKiB": 206512
+      "maxRssKiB": 206768
     },
     {
       "id": "tisane.ai",
@@ -1343,9 +1343,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "2c7f3f5c503c9c97efce6367281ffbc1b55f641c883bbd163d6da9723d3d9231",
-      "elapsedMs": 10,
+      "elapsedMs": 9,
       "externalReferences": 0,
-      "maxRssKiB": 67328
+      "maxRssKiB": 67376
     },
     {
       "id": "cloudrf.com",
@@ -1368,7 +1368,7 @@
       "semanticSha256": "c9a30225c8edeeadc2eedcef63baaad96a2aa76c55f7188ee83b2ce6762d6eed",
       "elapsedMs": 8,
       "externalReferences": 0,
-      "maxRssKiB": 64080
+      "maxRssKiB": 63968
     },
     {
       "id": "papinet.io:order_status",
@@ -1391,7 +1391,7 @@
       "semanticSha256": "c71abaafc5c17d98a94ba46823447b01cc0d5abacdc2724a3e0c139fb9af3256",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 62560
+      "maxRssKiB": 62368
     },
     {
       "id": "mailboxvalidator.com:disposable",
@@ -1412,9 +1412,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "6c90d8173914cf4b1ffa09acac952766f864dd26778f4a1c663eeb612134e21c",
-      "elapsedMs": 6,
+      "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 61968
+      "maxRssKiB": 61424
     },
     {
       "id": "mist.com",
@@ -1435,9 +1435,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "afa60813c537215a2cd0413a7deadbe924910fdfe2f4419916653a526ef4599a",
-      "elapsedMs": 201,
+      "elapsedMs": 188,
       "externalReferences": 0,
-      "maxRssKiB": 240208
+      "maxRssKiB": 240368
     },
     {
       "id": "walletobjects.googleapis.com:pay-passes",
@@ -1458,9 +1458,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "4c9fefa812107e71f61b77805d03b3a331315abed264f18f43fb665438342203",
-      "elapsedMs": 35,
+      "elapsedMs": 36,
       "externalReferences": 0,
-      "maxRssKiB": 110528
+      "maxRssKiB": 109248
     },
     {
       "id": "hackathonwatch.com",
@@ -1483,7 +1483,7 @@
       "semanticSha256": "6a60767a6d36133b1fda44cf789b7feab1a0cc247b3f3e3e594c71c4d3307716",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 61920
+      "maxRssKiB": 61968
     },
     {
       "id": "surevoip.co.uk",
@@ -1504,9 +1504,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "abafdcaa9587983cb9fb7dd66c0bc1be18d2d6c8bc393b3d8b8ce07912974b2f",
-      "elapsedMs": 8,
+      "elapsedMs": 9,
       "externalReferences": 0,
-      "maxRssKiB": 64784
+      "maxRssKiB": 64512
     },
     {
       "id": "shorten.rest",
@@ -1527,9 +1527,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "e742f67970bf09d3a9d62a43f2bd11d430cb448cd1b607986beb258bf72511bd",
-      "elapsedMs": 6,
+      "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63856
+      "maxRssKiB": 64176
     },
     {
       "id": "portfoliooptimizer.io",
@@ -1550,9 +1550,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "28222afc2ebe6431cdb341e7d913458b13771e872f83aa425cf02c4da5ec6907",
-      "elapsedMs": 28,
+      "elapsedMs": 29,
       "externalReferences": 0,
-      "maxRssKiB": 90320
+      "maxRssKiB": 89296
     },
     {
       "id": "gsmtasks.com",
@@ -1573,9 +1573,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "ced34e8f74dc73fda06630bdba3723fcb712a92c96863050447876fe001d71e6",
-      "elapsedMs": 114,
+      "elapsedMs": 116,
       "externalReferences": 0,
-      "maxRssKiB": 196336
+      "maxRssKiB": 196544
     },
     {
       "id": "openbankingproject.ch",
@@ -1596,9 +1596,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "58569c16a10cb2ee340bf76e188ed0ac3f3aca92a808dc44cf8a5313d9892491",
-      "elapsedMs": 49,
+      "elapsedMs": 39,
       "externalReferences": 0,
-      "maxRssKiB": 107456
+      "maxRssKiB": 107792
     },
     {
       "id": "deutschebahn.com:reisezentren",
@@ -1621,7 +1621,7 @@
       "semanticSha256": "5785d6750ae43d03a4873165a27ca57898a2363bbda6aaca32f5c9b457fd0b52",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 62560
+      "maxRssKiB": 62512
     },
     {
       "id": "gov.bc.ca:open511",
@@ -1665,9 +1665,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "071154f7455947ef4391b91761c30cb5bad0749e1b0054395dcb70f91eb01984",
-      "elapsedMs": 12,
+      "elapsedMs": 11,
       "externalReferences": 0,
-      "maxRssKiB": 68512
+      "maxRssKiB": 68768
     },
     {
       "id": "amentum.space:atmosphere",
@@ -1690,7 +1690,7 @@
       "semanticSha256": "50108269e3848b0d39a08aaca6be735e04be36c5a6c5b1102407985f3807ec92",
       "elapsedMs": 8,
       "externalReferences": 0,
-      "maxRssKiB": 64256
+      "maxRssKiB": 64160
     },
     {
       "id": "interzoid.com:getglobaltime",
@@ -1713,7 +1713,7 @@
       "semanticSha256": "724a30950dfa9d3da01b60e9b76b3eb6a7b18a8d901acb51edf31068bbf72aca",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 61808
+      "maxRssKiB": 61680
     },
     {
       "id": "lgtm.com",
@@ -1757,7 +1757,7 @@
       "semanticSha256": "8e58422035cd7ab3d2eab9e68a0c6a4271390e91f2a0fe97ab8e8078a81f0073",
       "elapsedMs": 12,
       "externalReferences": 0,
-      "maxRssKiB": 74624
+      "maxRssKiB": 74512
     },
     {
       "id": "apache.org:airflow",
@@ -1778,9 +1778,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "5e1af52b2fc98dc50ebbf54b5f24440459866a915ca88b1a1e55e4961c79f0a2",
-      "elapsedMs": 19,
+      "elapsedMs": 20,
       "externalReferences": 0,
-      "maxRssKiB": 86176
+      "maxRssKiB": 85584
     },
     {
       "id": "openai.com",
@@ -1803,7 +1803,7 @@
       "semanticSha256": "b8ffd1761918dbacf0cea498025a342ed7df0686e47943c36137015dc3a5cd01",
       "elapsedMs": 13,
       "externalReferences": 0,
-      "maxRssKiB": 72848
+      "maxRssKiB": 72880
     },
     {
       "id": "lambdatest.com",
@@ -1824,9 +1824,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "49190736dc3a9260c4ee19108c790de2fbde4550be434738989476013eadfafd",
-      "elapsedMs": 7,
+      "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63456
+      "maxRssKiB": 63744
     },
     {
       "id": "pandascore.co",
@@ -1849,9 +1849,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "ecfa93036e1e022aec74a7d1b948a7dcbddd02e1b25898e233651e4ed1e95055",
-      "elapsedMs": 69,
+      "elapsedMs": 70,
       "externalReferences": 0,
-      "maxRssKiB": 134032
+      "maxRssKiB": 134224
     },
     {
       "id": "docker.com:dvp",
@@ -1874,7 +1874,7 @@
       "semanticSha256": "c461218e566cb94893f66db85ea3dd36deb0462ba4dd6903bf28da0a92399d8d",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63648
+      "maxRssKiB": 63936
     },
     {
       "id": "linqr.app",
@@ -1897,7 +1897,7 @@
       "semanticSha256": "cfe68afcb0d0a6582661d583edb012f3ad91a8e1608c5984357ad99158677f2d",
       "elapsedMs": 20,
       "externalReferences": 0,
-      "maxRssKiB": 87184
+      "maxRssKiB": 87136
     },
     {
       "id": "getpostman.com",
@@ -1920,7 +1920,7 @@
       "semanticSha256": "a3ae9de05c92d8ef0759b7d2cffc3dcd0f125c017b7110d0838cc16765ac80da",
       "elapsedMs": 18,
       "externalReferences": 0,
-      "maxRssKiB": 83312
+      "maxRssKiB": 83600
     },
     {
       "id": "nowpayments.io",
@@ -1943,7 +1943,7 @@
       "semanticSha256": "01e226d4e7429a1503df97cb1831d1f6bea98567b6a60239643c1ef7f0b761e6",
       "elapsedMs": 12,
       "externalReferences": 0,
-      "maxRssKiB": 70672
+      "maxRssKiB": 71440
     },
     {
       "id": "datasette.local",
@@ -1966,7 +1966,7 @@
       "semanticSha256": "8ebf43e574d1227bb500bc7c8d2aa6cfcd55227c278f54a6a4eda9a18be0de26",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 61456
+      "maxRssKiB": 61200
     },
     {
       "id": "opensuse.org:obs",
@@ -2044,9 +2044,9 @@
         }
       ],
       "semanticSha256": "9a6a7dae372efcda31de769856c1c080239da2c9a4435f7c6a7a563df6dbfd45",
-      "elapsedMs": 23,
+      "elapsedMs": 22,
       "externalReferences": 0,
-      "maxRssKiB": 90848
+      "maxRssKiB": 90416
     },
     {
       "id": "codesearch.debian.net",
@@ -2069,7 +2069,7 @@
       "semanticSha256": "61432cdce9f5c015c92d6d922305c7ffea59a0fbf949c28cfc4b5e05e53c684c",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 62288
+      "maxRssKiB": 62544
     },
     {
       "id": "ibanapi.com",
@@ -2090,9 +2090,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "43559a6b6e78b1937f9593aadfdf512fc74b49e0bb2b4bf083335c63a636bd65",
-      "elapsedMs": 6,
+      "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 63504
+      "maxRssKiB": 63104
     },
     {
       "id": "thebluealliance.com",
@@ -2113,9 +2113,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "dc7046142e8b456c4868054a4b98680a3b330d834c215d00391941e9d1231273",
-      "elapsedMs": 20,
+      "elapsedMs": 19,
       "externalReferences": 0,
-      "maxRssKiB": 85008
+      "maxRssKiB": 84736
     },
     {
       "id": "neowsapp.com",
@@ -2138,7 +2138,7 @@
       "semanticSha256": "d9a29ca7ed4fba395167db6b3802a7ec0841f234a66dd1e8a33c11e9b2ff7d6d",
       "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63584
+      "maxRssKiB": 63616
     },
     {
       "id": "highwaysengland.co.uk",
@@ -2161,7 +2161,7 @@
       "semanticSha256": "be5ac5a57a8763c7a09107592adce1062c67961cc99aecf46421ec32a5eb07ea",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63360
+      "maxRssKiB": 63872
     },
     {
       "id": "cpy.re:peertube",
@@ -2182,9 +2182,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "95ada107cb1ccf5738eb1b54110a65507d64d3f4634ea8e1f57e8a9af6db8eb9",
-      "elapsedMs": 34,
+      "elapsedMs": 35,
       "externalReferences": 0,
-      "maxRssKiB": 102432
+      "maxRssKiB": 102416
     },
     {
       "id": "nordigen.com",
@@ -2207,7 +2207,7 @@
       "semanticSha256": "37b035850130c26c631bd8c9f817bed734f2ce3ddd1ecacfd02e56fc00c73d34",
       "elapsedMs": 15,
       "externalReferences": 0,
-      "maxRssKiB": 73648
+      "maxRssKiB": 73680
     },
     {
       "id": "visualstudio.com",
@@ -2230,7 +2230,7 @@
       "semanticSha256": "8709d29412b6e001f3f485d4554d44f291f5874362cafc8ed7e573c9ffecfaf4",
       "elapsedMs": 31,
       "externalReferences": 0,
-      "maxRssKiB": 93728
+      "maxRssKiB": 93584
     },
     {
       "id": "fulfillment.com",
@@ -2265,7 +2265,7 @@
       "semanticSha256": "e578156c6fb47de482a7a9edac65d890c3f8fe2909a9d0dfda3993438c2a6e60",
       "elapsedMs": 11,
       "externalReferences": 0,
-      "maxRssKiB": 70432
+      "maxRssKiB": 70160
     },
     {
       "id": "rev.ai",
@@ -2288,7 +2288,7 @@
       "semanticSha256": "6e6c83f5eff1a4d08bd9d7cfec36105931351aac0a64f261823768ed3a980d92",
       "elapsedMs": 10,
       "externalReferences": 0,
-      "maxRssKiB": 67328
+      "maxRssKiB": 67376
     },
     {
       "id": "logoraisr.com",
@@ -2311,7 +2311,7 @@
       "semanticSha256": "64c21f21d54ef769ea66e0f7f19305d45deaac2b4dc574df91682027b03ff45f",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63584
+      "maxRssKiB": 63744
     },
     {
       "id": "flickr.com",
@@ -2533,9 +2533,9 @@
         }
       ],
       "semanticSha256": "f51b5696b1c1d9e89ee72a78751ce7a89604eea6cbd66378a5f99e7c85425866",
-      "elapsedMs": 10,
+      "elapsedMs": 11,
       "externalReferences": 0,
-      "maxRssKiB": 69296
+      "maxRssKiB": 69120
     },
     {
       "id": "geodesystems.com",
@@ -2556,9 +2556,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "30c79787f8eaf6394c236ead1509776c47d5ef64310b5cbf035f471bc0dbd214",
-      "elapsedMs": 93,
+      "elapsedMs": 89,
       "externalReferences": 0,
-      "maxRssKiB": 173104
+      "maxRssKiB": 175936
     },
     {
       "id": "spotify.com:sonallux",
@@ -2579,9 +2579,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "5a540782ff302ce7651ce6d08ab5d533e4557f441bba306835bbec0db5f06797",
-      "elapsedMs": 27,
+      "elapsedMs": 28,
       "externalReferences": 0,
-      "maxRssKiB": 94368
+      "maxRssKiB": 96112
     },
     {
       "id": "meilisearch.com",
@@ -2604,7 +2604,7 @@
       "semanticSha256": "45ce9cfcb0564a96bf0ba181f0a6cff0534d1588e864a12e0f6ac48e20f60546",
       "elapsedMs": 11,
       "externalReferences": 0,
-      "maxRssKiB": 70144
+      "maxRssKiB": 70304
     },
     {
       "id": "getthedata.com:bng2latlong",
@@ -2627,7 +2627,7 @@
       "semanticSha256": "0b62cdca7d422b8bbf1be717fa8ac8082cc53477b0373f5122e0a7f108ed49e3",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 61744
+      "maxRssKiB": 61664
     },
     {
       "id": "icons8.com",
@@ -2707,7 +2707,7 @@
       "semanticSha256": "032d9096eba0b5c133ab3acf65e304a41254f10dc60f8a914a8c422727f03008",
       "elapsedMs": 8,
       "externalReferences": 0,
-      "maxRssKiB": 65984
+      "maxRssKiB": 65968
     },
     {
       "id": "nfusionsolutions.biz",
@@ -2730,7 +2730,7 @@
       "semanticSha256": "75cf8933a137b935778670a9a9a10aca771708201cf1c15a6d8f786c222fd13c",
       "elapsedMs": 9,
       "externalReferences": 0,
-      "maxRssKiB": 67504
+      "maxRssKiB": 67312
     },
     {
       "id": "api2pdf.com",
@@ -2753,7 +2753,7 @@
       "semanticSha256": "dde9505b74141b5e0b8f8162aeaa41c485d7e27ff2070f085b2d6a537b50d8c0",
       "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63776
+      "maxRssKiB": 63888
     },
     {
       "id": "pressassociation.io",
@@ -2774,9 +2774,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "0f76e8ec4b91b54f65b98da6d1c1d5f9a05b134ad7e784fb2f43f67813e9fad0",
-      "elapsedMs": 10,
+      "elapsedMs": 9,
       "externalReferences": 0,
-      "maxRssKiB": 67104
+      "maxRssKiB": 66832
     },
     {
       "id": "windows.net:graphrbac",
@@ -2799,7 +2799,7 @@
       "semanticSha256": "f0fc5ffefd9889d4f03546cad2f055fd99ffc702da4c89b44ecabea8a99e9756",
       "elapsedMs": 17,
       "externalReferences": 0,
-      "maxRssKiB": 78992
+      "maxRssKiB": 81264
     },
     {
       "id": "clever-cloud.com",
@@ -2822,7 +2822,7 @@
       "semanticSha256": "5b97f79ce2c59ca7730fb9e6fc7ae6080fb63277fca59b7e3444e303cb19901b",
       "elapsedMs": 31,
       "externalReferences": 0,
-      "maxRssKiB": 108864
+      "maxRssKiB": 100528
     },
     {
       "id": "motaword.com",
@@ -2845,7 +2845,7 @@
       "semanticSha256": "648b40ea54ac3fede2e92a5d6a780b605355e11a323474292d70e6b9c1424c1c",
       "elapsedMs": 31,
       "externalReferences": 0,
-      "maxRssKiB": 97232
+      "maxRssKiB": 98816
     },
     {
       "id": "asana.com",
@@ -2878,9 +2878,9 @@
         }
       ],
       "semanticSha256": "e6c9d6193246b9315564aad8c85b86ebb1ac237def9e5b4e4cadec7559228aff",
-      "elapsedMs": 42,
+      "elapsedMs": 44,
       "externalReferences": 0,
-      "maxRssKiB": 114960
+      "maxRssKiB": 114688
     },
     {
       "id": "britbox.co.uk",
@@ -2913,9 +2913,9 @@
         }
       ],
       "semanticSha256": "ab99112947ca25ee047ae9012933c790792f03e40dcfd63caa201d35c280a283",
-      "elapsedMs": 35,
+      "elapsedMs": 37,
       "externalReferences": 0,
-      "maxRssKiB": 105280
+      "maxRssKiB": 104368
     },
     {
       "id": "ip2whois.com",
@@ -2938,7 +2938,7 @@
       "semanticSha256": "79ad464119c5f00028d4c11839bb1916737ea16a85aa076aa31a5b875632e103",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 61424
+      "maxRssKiB": 61648
     },
     {
       "id": "intellifi.nl",
@@ -2963,7 +2963,7 @@
       "semanticSha256": "a8133cea1b80af67819fb3b5e8e542bc34959da1a592f364b2ac4ce75e4a0444",
       "elapsedMs": 22,
       "externalReferences": 0,
-      "maxRssKiB": 83680
+      "maxRssKiB": 83712
     },
     {
       "id": "flat.io",
@@ -2984,9 +2984,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "d99cc249c2ff55ce7d213a5347a9246fe55ea743b42861225e248f2ba8ca2421",
-      "elapsedMs": 23,
+      "elapsedMs": 22,
       "externalReferences": 0,
-      "maxRssKiB": 88336
+      "maxRssKiB": 86592
     },
     {
       "id": "trakt.tv",
@@ -3021,7 +3021,7 @@
       "semanticSha256": "759f8f40490b441c5e392b20cd607e975f1da64a1fc273582906ba0a2c3e2b17",
       "elapsedMs": 50,
       "externalReferences": 0,
-      "maxRssKiB": 121872
+      "maxRssKiB": 131424
     },
     {
       "id": "wellknown.ai",
@@ -3044,7 +3044,7 @@
       "semanticSha256": "ef37fb77997cf2ad477b8152c654dceb3066bc1894ac5ceef47bfaba4e84e9f6",
       "elapsedMs": 3,
       "externalReferences": 0,
-      "maxRssKiB": 61232
+      "maxRssKiB": 61104
     },
     {
       "id": "facecheck.id",
@@ -3067,7 +3067,7 @@
       "semanticSha256": "e26979f00bef62336d37e8906cf1ef90efdc5baa928ecddd739c02d629f0615d",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 63072
+      "maxRssKiB": 63104
     },
     {
       "id": "rapidapi.com:dynamicdocs",
@@ -3090,7 +3090,7 @@
       "semanticSha256": "fe5ad962ef9b21b267d1a7f51f1fba83c6ef6c5853c80e93aafa7aa3f3d70257",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 62272
+      "maxRssKiB": 62288
     },
     {
       "id": "groundhog-day.com",
@@ -3113,7 +3113,7 @@
       "semanticSha256": "6bf82934f089ad1bdc25be73185509166fd7ea6936dec74831b6e0535d576272",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63760
+      "maxRssKiB": 63728
     },
     {
       "id": "wheretocredit.com",
@@ -3136,7 +3136,7 @@
       "semanticSha256": "f32df089be4339693ecd4c0f7aaf64767ca6bbdd0cc7088fdd46830617e48c39",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 62352
+      "maxRssKiB": 62304
     },
     {
       "id": "ljaero.com:dflight",
@@ -3157,9 +3157,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "17e1688288110362062afc43768ae76012ffd10416ec4350d6191ad8a3b551fa",
-      "elapsedMs": 32,
+      "elapsedMs": 33,
       "externalReferences": 0,
-      "maxRssKiB": 91488
+      "maxRssKiB": 91920
     },
     {
       "id": "clickmeter.com",
@@ -3182,7 +3182,7 @@
       "semanticSha256": "a4fc4eb6fe7bf5e1d72ec1f1df62699ff7b81afac7e157f8070a4f9f11cca0d2",
       "elapsedMs": 23,
       "externalReferences": 0,
-      "maxRssKiB": 94960
+      "maxRssKiB": 95232
     },
     {
       "id": "iptwist.com",
@@ -3205,7 +3205,7 @@
       "semanticSha256": "71e4e88cced2a3a3d69313eb84c841d8a5c5b324d04b614b2f8ce8883449af3e",
       "elapsedMs": 3,
       "externalReferences": 0,
-      "maxRssKiB": 61504
+      "maxRssKiB": 61552
     },
     {
       "id": "optimade.local",
@@ -3228,7 +3228,7 @@
       "semanticSha256": "a2301bf86f0b2dcca5514370941524fc0ec1d53eb817c109d43692847ae33b6c",
       "elapsedMs": 14,
       "externalReferences": 0,
-      "maxRssKiB": 75392
+      "maxRssKiB": 73696
     },
     {
       "id": "digitalocean.com",
@@ -3249,9 +3249,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "4125a83d3c059a4aae1195ff407a59cc75edeca8de1bdb2c5d7c38f4681a23f0",
-      "elapsedMs": 87,
+      "elapsedMs": 85,
       "externalReferences": 0,
-      "maxRssKiB": 160864
+      "maxRssKiB": 162832
     },
     {
       "id": "trapstreet.com",
@@ -3274,7 +3274,7 @@
       "semanticSha256": "7d74593da58c0cdfe675bba4d4a4023fbd12b9731580b1628b313237ee12862d",
       "elapsedMs": 3,
       "externalReferences": 0,
-      "maxRssKiB": 61392
+      "maxRssKiB": 61184
     },
     {
       "id": "edrv.io",
@@ -3297,7 +3297,7 @@
       "semanticSha256": "669be4836f7dd0fa0e789d522dabf39077b1dd7111e08b6bacca4beb243be19b",
       "elapsedMs": 15,
       "externalReferences": 0,
-      "maxRssKiB": 76608
+      "maxRssKiB": 76768
     },
     {
       "id": "exlibrisgroup.com:tasklists",
@@ -3320,7 +3320,7 @@
       "semanticSha256": "6fe13ffe73923823fe4bad5f5627a6819d4382518dd38d9c698bd8938e1163e0",
       "elapsedMs": 10,
       "externalReferences": 0,
-      "maxRssKiB": 68832
+      "maxRssKiB": 69008
     },
     {
       "id": "billingo.hu",
@@ -3343,7 +3343,7 @@
       "semanticSha256": "9893d80008e00eeb80951456cb055905be6d5a9e4389890d87c1c34ede5478bf",
       "elapsedMs": 13,
       "externalReferences": 0,
-      "maxRssKiB": 72768
+      "maxRssKiB": 72448
     },
     {
       "id": "zeno.fm",
@@ -3366,7 +3366,7 @@
       "semanticSha256": "d5ac83c17f0fae9614d236bcf3d9085c8df885498a0a4fa634b07d5d4d5048b1",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63872
+      "maxRssKiB": 63632
     },
     {
       "id": "openbanking.org.uk:event-notifications-openapi",
@@ -3387,9 +3387,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "956b3040a9be509b93cb7db4502d5b9bd1e866a6b5b630eda0875bed2f6b41ac",
-      "elapsedMs": 4,
+      "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 62272
+      "maxRssKiB": 61968
     },
     {
       "id": "opendatanetwork.com",
@@ -3412,7 +3412,7 @@
       "semanticSha256": "4a903cbc089968b2e52637b5023eaf9aeebee53bb4a93159b60b05a8972e7951",
       "elapsedMs": 9,
       "externalReferences": 0,
-      "maxRssKiB": 64944
+      "maxRssKiB": 64608
     },
     {
       "id": "tomtom.com:routing",
@@ -3433,9 +3433,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "15c833c951d94373368685be0c1a59ac4982b775800562e8f58f961a40669cf8",
-      "elapsedMs": 12,
+      "elapsedMs": 11,
       "externalReferences": 0,
-      "maxRssKiB": 69504
+      "maxRssKiB": 69520
     },
     {
       "id": "tokenjay.app",
@@ -3458,7 +3458,7 @@
       "semanticSha256": "53ce87517f0fe25e148c33d7cf75a92f4cae079630d40a0bf27930d354ecee17",
       "elapsedMs": 9,
       "externalReferences": 0,
-      "maxRssKiB": 66816
+      "maxRssKiB": 66992
     },
     {
       "id": "sinao.app",
@@ -3479,9 +3479,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "1c25d70f57da521be1c421b02f3e840903b893a0475692ea30afd7c3c6fd3b79",
-      "elapsedMs": 40,
+      "elapsedMs": 41,
       "externalReferences": 0,
-      "maxRssKiB": 115184
+      "maxRssKiB": 116592
     },
     {
       "id": "onsched.com:utility",
@@ -3504,7 +3504,7 @@
       "semanticSha256": "860d1a11980a376e823b6cdd093867659a6731b75ee4badb05441dcbcbb9eb27",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 61632
+      "maxRssKiB": 61584
     },
     {
       "id": "firstinspires.org",
@@ -3527,7 +3527,7 @@
       "semanticSha256": "07e9361f04882d45245a8be31c13dd6d9f6c49d97fb207e123cb054a85da5df8",
       "elapsedMs": 3,
       "externalReferences": 0,
-      "maxRssKiB": 62720
+      "maxRssKiB": 62608
     },
     {
       "id": "presalytics.io:story",
@@ -3550,7 +3550,7 @@
       "semanticSha256": "f8f6300939d195b3bad13c038ce9fbd63a9cb6b999da98be6fa169518b0f7a1e",
       "elapsedMs": 11,
       "externalReferences": 0,
-      "maxRssKiB": 70656
+      "maxRssKiB": 69952
     },
     {
       "id": "ix-api.net",
@@ -3747,9 +3747,9 @@
         }
       ],
       "semanticSha256": "dfcaee9a550e83123258810a8a54572f2602b4d4b940edd0cb6dccee072b75be",
-      "elapsedMs": 33,
+      "elapsedMs": 34,
       "externalReferences": 0,
-      "maxRssKiB": 100608
+      "maxRssKiB": 99200
     },
     {
       "id": "twitter.com:current",
@@ -3793,7 +3793,7 @@
       "semanticSha256": "fe67c7465cb7f56077d7a6ea05398b7c5c5895d685bf9d501866ceb529dcc519",
       "elapsedMs": 37,
       "externalReferences": 0,
-      "maxRssKiB": 98096
+      "maxRssKiB": 98016
     },
     {
       "id": "reloadly.com",
@@ -3816,7 +3816,7 @@
       "semanticSha256": "5add1f3d40880a44ee7d335ce2deb012349b9d0f8009e859ecb9235372d21e99",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 61840
+      "maxRssKiB": 61680
     },
     {
       "id": "1password.com:events",
@@ -3839,7 +3839,7 @@
       "semanticSha256": "4534b8d6f513363dc370d83c310579a672c7a96eb46a42743b84e39c6252d8f2",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 63136
+      "maxRssKiB": 63200
     },
     {
       "id": "combell.com",
@@ -3860,9 +3860,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "a2beb5248fb4ac5eb59bb37edffc58e39431698804df9a8e9cc34f0c8413e60e",
-      "elapsedMs": 17,
+      "elapsedMs": 18,
       "externalReferences": 0,
-      "maxRssKiB": 83424
+      "maxRssKiB": 83440
     },
     {
       "id": "bbci.co.uk",
@@ -3885,7 +3885,7 @@
       "semanticSha256": "fe148a82f47d54851492108d58f489fb4c144fc183b9abbc04083196f24bc0cc",
       "elapsedMs": 14,
       "externalReferences": 0,
-      "maxRssKiB": 73328
+      "maxRssKiB": 73456
     },
     {
       "id": "influxdata.com",
@@ -3908,7 +3908,7 @@
       "semanticSha256": "645046b2fcf21ab62f3c720307a6d22a205f181e7839019e1fe30eb812213dec",
       "elapsedMs": 34,
       "externalReferences": 0,
-      "maxRssKiB": 102320
+      "maxRssKiB": 100656
     },
     {
       "id": "randomlovecraft.com",
@@ -3929,9 +3929,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "c309dea792334c9cc55f255b12b9f7d77d96995ffc0801b1edcb003a98442632",
-      "elapsedMs": 4,
+      "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 61776
+      "maxRssKiB": 62160
     },
     {
       "id": "exude-api.herokuapp.com",
@@ -3954,7 +3954,7 @@
       "semanticSha256": "a6ebf1c07db47a6fe3ce462b69a5fd901847a5aa0d56abeeb1017f6bd338d797",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 62064
+      "maxRssKiB": 61824
     },
     {
       "id": "nsidc.org",
@@ -3977,7 +3977,7 @@
       "semanticSha256": "7b8735a263f0c8675617aa2e1cd09b35103c6339f3f4d5ab3869a7319adcbc35",
       "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63264
+      "maxRssKiB": 63408
     },
     {
       "id": "telegram.org",
@@ -3998,9 +3998,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "0e20b16f2b061610f27b6fd68ce10652fa7a27cf864d1f15d12ab4c0c53cbe2f",
-      "elapsedMs": 28,
+      "elapsedMs": 32,
       "externalReferences": 0,
-      "maxRssKiB": 92496
+      "maxRssKiB": 92176
     },
     {
       "id": "digitalnz.org",
@@ -4023,7 +4023,7 @@
       "semanticSha256": "5a3b693974c3722544af925d840e18cc24bde4c8566589de54ce3f849f2b7577",
       "elapsedMs": 8,
       "externalReferences": 0,
-      "maxRssKiB": 64640
+      "maxRssKiB": 64848
     },
     {
       "id": "bungie.net",
@@ -4044,9 +4044,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "a92cfc943c155d28c9447f926f04e3cf3045aab42b7abf8e17eb67e423b552ac",
-      "elapsedMs": 68,
+      "elapsedMs": 71,
       "externalReferences": 0,
-      "maxRssKiB": 146384
+      "maxRssKiB": 146272
     },
     {
       "id": "whapi.com:bets",
@@ -4067,9 +4067,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "5e1f8b317c5ec5f4d2c2fd24ad3154071ccdadabc1b35ccb7604f87c628a6450",
-      "elapsedMs": 9,
+      "elapsedMs": 10,
       "externalReferences": 0,
-      "maxRssKiB": 65472
+      "maxRssKiB": 65728
     },
     {
       "id": "slack.com",
@@ -4090,9 +4090,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "e64a02246cd4d70c2884fc0c60472c84d7856364d2321c0a1e2f826e06b5e488",
-      "elapsedMs": 49,
+      "elapsedMs": 50,
       "externalReferences": 0,
-      "maxRssKiB": 123680
+      "maxRssKiB": 123104
     },
     {
       "id": "adobe.com:aem",
@@ -4115,7 +4115,7 @@
       "semanticSha256": "bcf34987d406610c0ad5d778aced649b2b6c41827a69c8c33625557afad95be4",
       "elapsedMs": 15,
       "externalReferences": 0,
-      "maxRssKiB": 82096
+      "maxRssKiB": 76592
     },
     {
       "id": "neutrinoapi.net",
@@ -4138,7 +4138,7 @@
       "semanticSha256": "99995133b001e91e133c20f022caa232b71cd1b426c22ed48fd7300cf3fbc1d3",
       "elapsedMs": 13,
       "externalReferences": 0,
-      "maxRssKiB": 72624
+      "maxRssKiB": 72432
     },
     {
       "id": "trashnothing.com",
@@ -4161,7 +4161,7 @@
       "semanticSha256": "6a368b0c44066177215afd84e8a3d517e32b4c8d098caaf3ae6df244e32892d2",
       "elapsedMs": 18,
       "externalReferences": 0,
-      "maxRssKiB": 83936
+      "maxRssKiB": 82160
     },
     {
       "id": "vmware.local:vrni",
@@ -4184,7 +4184,7 @@
       "semanticSha256": "5487d4600bbd51924ead6c925a28bf608a31366fdfdee83803f450da46de2fa5",
       "elapsedMs": 31,
       "externalReferences": 0,
-      "maxRssKiB": 95328
+      "maxRssKiB": 100656
     },
     {
       "id": "tfl.gov.uk",
@@ -4205,9 +4205,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "73f004176769af931adef51480213feceb37704cb01d16ea254058341cfd0964",
-      "elapsedMs": 22,
+      "elapsedMs": 21,
       "externalReferences": 0,
-      "maxRssKiB": 87024
+      "maxRssKiB": 88848
     },
     {
       "id": "redhat.local:patchman-engine",
@@ -4230,7 +4230,7 @@
       "semanticSha256": "c21e140aeec47bb59adb58a9fad2dbdc0f541ab0a67a741e745c55bdbd7c6f0b",
       "elapsedMs": 12,
       "externalReferences": 0,
-      "maxRssKiB": 73824
+      "maxRssKiB": 74448
     },
     {
       "id": "linode.com",
@@ -4251,9 +4251,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "30989e0afca56dcb75eca452661536b65395de43b9e6b8c1ed6e65859715a483",
-      "elapsedMs": 59,
+      "elapsedMs": 61,
       "externalReferences": 0,
-      "maxRssKiB": 134256
+      "maxRssKiB": 136480
     },
     {
       "id": "6-dot-authentiqio.appspot.com",
@@ -4276,7 +4276,7 @@
       "semanticSha256": "470dbd7406db872c4fa71010104bbfdf423d1335ea548a81cc3f455edaed4c0f",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63856
+      "maxRssKiB": 63680
     },
     {
       "id": "mercure.local",
@@ -4299,7 +4299,7 @@
       "semanticSha256": "6e6c79ba7d6db6c8cc98011a48de25120cb41508d4156bce595f07ade13893ea",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 63136
+      "maxRssKiB": 63056
     },
     {
       "id": "apiz.ebay.com:commerce-identity",
@@ -4322,7 +4322,7 @@
       "semanticSha256": "0286d8278f3389bb325a6302a72856d4af29354a5f160225311e23f4935b0345",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 63344
+      "maxRssKiB": 63264
     },
     {
       "id": "truanon.com",
@@ -4343,9 +4343,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "1c1accc763abc4e7efedbeb76c5f9dfa7cf298dab54603948ad0a22b43ac7b0d",
-      "elapsedMs": 5,
+      "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 62016
+      "maxRssKiB": 61792
     },
     {
       "id": "pdfbroker.io",
@@ -4368,7 +4368,7 @@
       "semanticSha256": "8f6dadb7327dacb63ee79348eaad7fa2eebd0234eabd2c634d92b227946b0cdf",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 64000
+      "maxRssKiB": 64048
     },
     {
       "id": "departureboard.io",
@@ -4391,7 +4391,7 @@
       "semanticSha256": "f9faf316c63ace4755ef56b052d2faacb0f51f2b431817f001c56e41404331c7",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63856
+      "maxRssKiB": 63824
     },
     {
       "id": "mineskin.org",
@@ -4412,9 +4412,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "4169df07bd07aa4e257386a07645bcfdd45a04f163a9a0a420f197afa57c3f5c",
-      "elapsedMs": 7,
+      "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63584
+      "maxRssKiB": 63408
     },
     {
       "id": "exavault.com",
@@ -4437,7 +4437,7 @@
       "semanticSha256": "9c058be04b3a9e321475200171ad6866acd91b136affe3cda095acd91bf8d195",
       "elapsedMs": 31,
       "externalReferences": 0,
-      "maxRssKiB": 90592
+      "maxRssKiB": 90864
     },
     {
       "id": "figshare.com",
@@ -4458,9 +4458,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "1e60b0d459b65facbf06eb9b4629b16d3e1c39b406b39cf1521cdda758114c98",
-      "elapsedMs": 32,
+      "elapsedMs": 29,
       "externalReferences": 0,
-      "maxRssKiB": 94192
+      "maxRssKiB": 94256
     },
     {
       "id": "openfigi.com",
@@ -4483,7 +4483,7 @@
       "semanticSha256": "1c3ce7599789a6e02b785855a1acaee0d209459569a86985897a4b3796b00da7",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 63248
+      "maxRssKiB": 63184
     },
     {
       "id": "arespass.net",
@@ -4506,7 +4506,7 @@
       "semanticSha256": "f092ee63404c9e5cf7bb6ff967d1e3a203d171762b7d0c876672b1682cd6a037",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 63312
+      "maxRssKiB": 63568
     },
     {
       "id": "payrun.io",
@@ -4527,9 +4527,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "10a56cf54be89af90188e491b0d5dddebf5a48199e26c84ecfc1c5d1cdb5c273",
-      "elapsedMs": 70,
+      "elapsedMs": 68,
       "externalReferences": 0,
-      "maxRssKiB": 156400
+      "maxRssKiB": 157328
     },
     {
       "id": "peoplefinderspro.com",
@@ -4552,7 +4552,7 @@
       "semanticSha256": "4031de54ff7b6a619af5e4410d5f0df3750cf715fd8dac8f63db2da6b39f039c",
       "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63840
+      "maxRssKiB": 63856
     },
     {
       "id": "openindex.ai",
@@ -4575,7 +4575,7 @@
       "semanticSha256": "16189c713f68faaee771d7e454163d89b90c673cfcdd90c28184a5eb13022337",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 62256
+      "maxRssKiB": 62208
     },
     {
       "id": "nic.at:domainfinder",
@@ -4598,7 +4598,7 @@
       "semanticSha256": "5114479a7089335070a4969f94ca96e070dc55763b9c6d1069c4c3d4e16e2894",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 61504
+      "maxRssKiB": 61488
     },
     {
       "id": "bitbucket.org",
@@ -4619,9 +4619,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "d90bdfa764c768bd95c83761684f6c226be171b8b2bdf7af1d92490853d8cb0c",
-      "elapsedMs": 66,
+      "elapsedMs": 57,
       "externalReferences": 0,
-      "maxRssKiB": 147440
+      "maxRssKiB": 150992
     },
     {
       "id": "apidapp.com",
@@ -4644,7 +4644,7 @@
       "semanticSha256": "80535b5130f254a1deb735d01833bdade203b7b7b967728e283439fe49edaae4",
       "elapsedMs": 9,
       "externalReferences": 0,
-      "maxRssKiB": 65536
+      "maxRssKiB": 65568
     },
     {
       "id": "autodealerdata.com",
@@ -4667,7 +4667,7 @@
       "semanticSha256": "8a8cd8dc0512b713021b0ab2656199936f111cd17aa30f1c71ef86b614d76fdb",
       "elapsedMs": 13,
       "externalReferences": 0,
-      "maxRssKiB": 74704
+      "maxRssKiB": 75072
     },
     {
       "id": "pocketsmith.com",
@@ -4690,7 +4690,7 @@
       "semanticSha256": "7833053685f529cb6cb9ccd5408d3c2d5ce4cc8b20361aba59745a215d61eaa0",
       "elapsedMs": 15,
       "externalReferences": 0,
-      "maxRssKiB": 78272
+      "maxRssKiB": 78160
     },
     {
       "id": "orthanc-server.com",
@@ -4713,7 +4713,7 @@
       "semanticSha256": "be968d6ef3f76a7976653571a3692d1f0ab4d94fc550c3913a68129bacf46cc8",
       "elapsedMs": 35,
       "externalReferences": 0,
-      "maxRssKiB": 120400
+      "maxRssKiB": 119040
     },
     {
       "id": "impala.travel:hotels",
@@ -4736,9 +4736,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "800b7a8abaa3f6f048259802765db613ff7e125b79e932bb19ac1227fae85d65",
-      "elapsedMs": 25,
+      "elapsedMs": 27,
       "externalReferences": 0,
-      "maxRssKiB": 88816
+      "maxRssKiB": 88832
     },
     {
       "id": "ip2location.com:geolocation",
@@ -4773,7 +4773,7 @@
       "semanticSha256": "fc3a0810d81dbab576f5ac6b8cd4aae3f2c73b55230c4ec5e51d50df09a2b85d",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 62128
+      "maxRssKiB": 62176
     },
     {
       "id": "bikewise.org",
@@ -4796,7 +4796,7 @@
       "semanticSha256": "27be64b2530383b30fbbc6b2165b2658c1cfafb374a1578742ecc7a10a473724",
       "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63904
+      "maxRssKiB": 64000
     },
     {
       "id": "meraki.com",
@@ -4817,9 +4817,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "f8fd04d2f61bcad85c68fca66b9f267d850b856e010694fac1db0245d8af7618",
-      "elapsedMs": 45,
+      "elapsedMs": 46,
       "externalReferences": 0,
-      "maxRssKiB": 121792
+      "maxRssKiB": 124896
     },
     {
       "id": "obono.at",
@@ -4842,7 +4842,7 @@
       "semanticSha256": "04f3dc72c65a4b015dc57cd4c32b1cfed0872ebf444e3d5e36e296e055ad7ad1",
       "elapsedMs": 8,
       "externalReferences": 0,
-      "maxRssKiB": 64560
+      "maxRssKiB": 64624
     },
     {
       "id": "taxrates.io",
@@ -4865,7 +4865,7 @@
       "semanticSha256": "9e648db761a325c6c49576a4825b87e6dea773e6589e430045ce2ca647dce6c9",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63776
+      "maxRssKiB": 63728
     },
     {
       "id": "ipinfodb.com",
@@ -4911,7 +4911,7 @@
       "semanticSha256": "fd8811488b2a2d0a8b815a5aa5055bf9ae0d2753fbcf9e6ff5d66994d6415cd9",
       "elapsedMs": 9,
       "externalReferences": 0,
-      "maxRssKiB": 69632
+      "maxRssKiB": 67072
     },
     {
       "id": "contract-p.fit",
@@ -4946,7 +4946,7 @@
       "semanticSha256": "723eb78644d47333c12e3b0c26d19d91ed533c73a5a8207aa597cb223f16c150",
       "elapsedMs": 19,
       "externalReferences": 0,
-      "maxRssKiB": 83952
+      "maxRssKiB": 83392
     },
     {
       "id": "stellastra.com",
@@ -4999,7 +4999,7 @@
       "semanticSha256": "e9b1fd3f392d7b6681655709233891135cc3f61671303da9f6d16a70451bc782",
       "elapsedMs": 5,
       "externalReferences": 0,
-      "maxRssKiB": 62352
+      "maxRssKiB": 62240
     },
     {
       "id": "firmalyzer.com:iotvas",
@@ -5022,7 +5022,7 @@
       "semanticSha256": "8344a022fd9e72fb9d3f928a0e84f779c55202bdba2d79c92f10727264bafa76",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63808
+      "maxRssKiB": 63968
     },
     {
       "id": "vonage.com:vgis",
@@ -5043,9 +5043,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "41b7074ee31ba8547f2a4c7772a38bf753967ab390a87be543b829fb689dbac2",
-      "elapsedMs": 9,
+      "elapsedMs": 10,
       "externalReferences": 0,
-      "maxRssKiB": 67648
+      "maxRssKiB": 67232
     },
     {
       "id": "wordnik.com",
@@ -5068,7 +5068,7 @@
       "semanticSha256": "0624bcb3e57055af509c526b5316f999abb5b7cc14954616a6bd643a21012920",
       "elapsedMs": 11,
       "externalReferences": 0,
-      "maxRssKiB": 69184
+      "maxRssKiB": 69440
     },
     {
       "id": "ndhm.gov.in:ndhm-hip",
@@ -5091,7 +5091,7 @@
       "semanticSha256": "e4ee3f393239c2b523c130b5d0b03d376840d02d20ae17fb0452c7df2c92f8ba",
       "elapsedMs": 15,
       "externalReferences": 0,
-      "maxRssKiB": 75360
+      "maxRssKiB": 75136
     },
     {
       "id": "archive.org:wayback",
@@ -5114,7 +5114,7 @@
       "semanticSha256": "a2e24af08e6740838db4fcfc616bf2a03a90f6771d6f8d41a7c6992efa1c0118",
       "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63360
+      "maxRssKiB": 63312
     },
     {
       "id": "clubhouseapi.com",
@@ -5137,7 +5137,7 @@
       "semanticSha256": "233d330662f33373fb847970b24db3547a9c2403a0b0975b26e474c4f911fa7e",
       "elapsedMs": 10,
       "externalReferences": 0,
-      "maxRssKiB": 68112
+      "maxRssKiB": 68320
     },
     {
       "id": "anchore.io",
@@ -5160,7 +5160,7 @@
       "semanticSha256": "f4b0b33d5d1d7fcd55a76c856bb25dd5c7b1d4dd5d68647d5f32ceee9da8e0b2",
       "elapsedMs": 21,
       "externalReferences": 0,
-      "maxRssKiB": 87056
+      "maxRssKiB": 87632
     },
     {
       "id": "interactivebrokers.com",
@@ -5183,7 +5183,7 @@
       "semanticSha256": "3f4dcae1ea8c263ee22169ae85e2f0fd099a5ed909549f33ff857fab6b8c4c3c",
       "elapsedMs": 9,
       "externalReferences": 0,
-      "maxRssKiB": 67328
+      "maxRssKiB": 67216
     },
     {
       "id": "okta.local",
@@ -5206,7 +5206,7 @@
       "semanticSha256": "1ea9898980bc821f3407bb48d12698cfe2aa4993d1de82d9941b1b1732240c21",
       "elapsedMs": 7,
       "externalReferences": 0,
-      "maxRssKiB": 63376
+      "maxRssKiB": 63648
     },
     {
       "id": "id4i.de",
@@ -5229,7 +5229,7 @@
       "semanticSha256": "dc8b7415ab9db18364d61431df06a1446246ca20dce92e975470ec5949c594f2",
       "elapsedMs": 30,
       "externalReferences": 0,
-      "maxRssKiB": 95152
+      "maxRssKiB": 97488
     },
     {
       "id": "velopayments.com",
@@ -5250,9 +5250,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "97e63c463441a0323d59faa8f0394f252e18b911aa28bd03e46f533f3911b102",
-      "elapsedMs": 49,
+      "elapsedMs": 48,
       "externalReferences": 0,
-      "maxRssKiB": 115488
+      "maxRssKiB": 116384
     },
     {
       "id": "canada-holidays.ca",
@@ -5275,7 +5275,7 @@
       "semanticSha256": "c151b9637f9dad1938ed71d36608ca69bb1b7a4c977a6fe2cce73daadac7bd7a",
       "elapsedMs": 8,
       "externalReferences": 0,
-      "maxRssKiB": 64352
+      "maxRssKiB": 64240
     },
     {
       "id": "remove.bg",
@@ -5298,7 +5298,7 @@
       "semanticSha256": "a52406f84a484247d0b5bf203fa9d38f67012f669e3a27cdfa017de7c6dd337f",
       "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 64304
+      "maxRssKiB": 64016
     },
     {
       "id": "wso2apistore.com:transform",
@@ -5321,7 +5321,7 @@
       "semanticSha256": "7ef6fb7bb6d0463226dd650314ee350bb382ee9510f146dd42912f28d5712fe7",
       "elapsedMs": 4,
       "externalReferences": 0,
-      "maxRssKiB": 61504
+      "maxRssKiB": 61376
     },
     {
       "id": "gerermesaffaires.com",
@@ -5342,9 +5342,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "ab8bc220eb3023e10ed5a991bbeb1e8011f2e49d84a5cf62f0e751bc73502661",
-      "elapsedMs": 49,
+      "elapsedMs": 46,
       "externalReferences": 0,
-      "maxRssKiB": 122576
+      "maxRssKiB": 120880
     },
     {
       "id": "doqs.dev",
@@ -5367,7 +5367,7 @@
       "semanticSha256": "f1449923aa727d16ce4f8c2ba0260f64b1b6f35914cf8c3a7f53f50ad7de8e5d",
       "elapsedMs": 8,
       "externalReferences": 0,
-      "maxRssKiB": 64400
+      "maxRssKiB": 64784
     },
     {
       "id": "i-cue.solutions",
@@ -5390,7 +5390,7 @@
       "semanticSha256": "962a1a4686923e3db7853804e163d84af4ac7d2619b170e18b19f3afbd8b7567",
       "elapsedMs": 13,
       "externalReferences": 0,
-      "maxRssKiB": 75824
+      "maxRssKiB": 75968
     },
     {
       "id": "superset.apache.local:superset",
@@ -5425,9 +5425,9 @@
         }
       ],
       "semanticSha256": "ce025661999de9452e622618ca14d11481a69173d6b75f2ebdb62fa768f027e0",
-      "elapsedMs": 29,
+      "elapsedMs": 27,
       "externalReferences": 0,
-      "maxRssKiB": 93232
+      "maxRssKiB": 93344
     },
     {
       "id": "nasa.gov:asteroids neows",
@@ -5448,9 +5448,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "d5d2b13b14f6fd92d07404b21441ae72a05a53290d3416ea530410ba78d29775",
-      "elapsedMs": 5,
+      "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63216
+      "maxRssKiB": 63440
     },
     {
       "id": "worldtimeapi.org",
@@ -5473,7 +5473,7 @@
       "semanticSha256": "10cd052153aa15b541157d273c674a07f8e3a78454e19170dd64e1907044a18c",
       "elapsedMs": 6,
       "externalReferences": 0,
-      "maxRssKiB": 63616
+      "maxRssKiB": 63360
     },
     {
       "id": "sakari.io",
@@ -5494,9 +5494,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "05dad7cdf1f86cdc640499efb34c5f8ec9ad58c402b63a45fefb197526f9c4a4",
-      "elapsedMs": 12,
+      "elapsedMs": 13,
       "externalReferences": 0,
-      "maxRssKiB": 70400
+      "maxRssKiB": 70512
     },
     {
       "id": "iqualify.com",
@@ -5521,7 +5521,7 @@
       "semanticSha256": "fc7bc59da50a14ef1a29ce352653acca9f55845057f66fdd21b885cb537dac67",
       "elapsedMs": 18,
       "externalReferences": 0,
-      "maxRssKiB": 87312
+      "maxRssKiB": 88032
     },
     {
       "id": "ticketmaster.com:publish",
@@ -5542,9 +5542,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "4b069d241fc1fd38298507abd81e88915f78f47b8890ffbac7ae9351e544d8b1",
-      "elapsedMs": 9,
+      "elapsedMs": 8,
       "externalReferences": 0,
-      "maxRssKiB": 66992
+      "maxRssKiB": 67248
     },
     {
       "id": "rumble.run",
@@ -5565,9 +5565,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "144482497a7cf0163350ae02db0c8a2b09c814d47861a60c8736260e86a19f5c",
-      "elapsedMs": 17,
+      "elapsedMs": 18,
       "externalReferences": 0,
-      "maxRssKiB": 81328
+      "maxRssKiB": 81136
     },
     {
       "id": "svix.com",
@@ -5588,9 +5588,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "e00251fdc9aa87e2c7035065e47753b5fcc31b3cb48f4c2972cea5082f7ea1a2",
-      "elapsedMs": 29,
+      "elapsedMs": 30,
       "externalReferences": 0,
-      "maxRssKiB": 96784
+      "maxRssKiB": 96880
     },
     {
       "id": "hetzner.cloud",
@@ -5611,9 +5611,9 @@
       },
       "diagnostics": [],
       "semanticSha256": "842ad70497d1bc43959fa70871a8c96dd9fb943ebd4f4f4ae9194a1cf8842339",
-      "elapsedMs": 64,
+      "elapsedMs": 57,
       "externalReferences": 0,
-      "maxRssKiB": 130224
+      "maxRssKiB": 128864
     }
   ],
   "summary": {
@@ -5641,5 +5641,5 @@
   },
   "baselineSha256": "ad92ff01c8ff66e5d5287a06a3264c4b6f6cff91496491ea00b566ed56a293cb",
   "regressions": [],
-  "finishedAt": "2026-10-23T13:19:01.305Z"
+  "finishedAt": "2026-10-23T13:35:22.440Z"
 }
