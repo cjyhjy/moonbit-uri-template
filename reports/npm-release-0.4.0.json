@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "published": true,
+  "package": "moonbit-uri-template",
+  "version": "0.4.0",
+  "verified_at_utc": "2026-10-23T10:48:20.517258+00:00",
+  "git_commit": "e76a153f8ef056021fa9e1612fd6e8ff148d4a9f",
+  "workflow": "https://github.com/cjyhjy/moonbit-uri-template/actions/runs/39941357185",
+  "registry": "https://registry.npmjs.org/",
+  "dist_tags": {
+    "latest": "0.4.0"
+  },
+  "integrity": "sha512-1LIUQspMTrWROICC/Z/WLezDcAPDEjn5X9Ao9gh2dgGQn3cCh/6U2Ssjxkmr/2N5v22crqyy7JjA478miZbUsw==",
+  "ci_tarball_sha256": "b567826090a19916bc8a6fd9dbebe8101fd39d62e0d051fb7710ff797c4ba599",
+  "ci_tarball_matches_registry_and_install": true,
+  "trusted_publishing": true,
+  "registry_signature_verified": true,
+  "provenance_verified": true,
+  "provenance_statement": {
+    "_type": "https://in-toto.io/Statement/v1",
+    "subject": [
+      {
+        "name": "pkg:npm/moonbit-uri-template@0.4.0",
+        "digest": {
+          "sha512": "d4b21442ca4c4eb591388082fd9fd62decc37003c31239f95fd028f608767601909f770287fe94d92b23c649abff6379bf6d9caeacb2ec98c0e3bf268996d4b3"
+        }
+      }
+    ],
+    "predicateType": "https://slsa.dev/provenance/v1",
+    "predicate": {
+      "buildDefinition": {
+        "buildType": "https://slsa-framework.github.io/github-actions-buildtypes/workflow/v1",
+        "externalParameters": {
+          "workflow": {
+            "ref": "refs/tags/v0.4.0",
+            "repository": "https://github.com/cjyhjy/moonbit-uri-template",
+            "path": ".github/workflows/publish-npm.yml"
+          }
+        },
+        "internalParameters": {
+          "github": {
+            "event_name": "push",
+            "repository_id": "1418473171",
+            "repository_owner_id": "175118861"
+          }
+        },
+        "resolvedDependencies": [
+          {
+            "uri": "git+https://github.com/cjyhjy/moonbit-uri-template@refs/tags/v0.4.0",
+            "digest": {
+              "gitCommit": "e76a153f8ef056021fa9e1612fd6e8ff148d4a9f"
+            }
+          }
+        ]
+      },
+      "runDetails": {
+        "builder": {
+          "id": "https://github.com/actions/runner/github-hosted"
+        },
+        "metadata": {
+          "invocationId": "https://github.com/cjyhjy/moonbit-uri-template/actions/runs/39941357185/attempts/1"
+        }
+      }
+    }
+  },
+  "fresh_project_install": true,
+  "fresh_npm_cache": true,
+  "install_source": "npm registry, not local tarball",
+  "sdk_openapi_tests": 37,
+  "checks": [
+    "SDK and OpenAPI public test suites",
+    "TypeScript strict positive and expected-error cases",
+    "CLI version",
+    "OpenAPI CLI valid, invalid and unpaired surrogate exit codes",
+    "npm audit signatures",
+    "CI tarball equals registry tarball and install integrity"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "url": "https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.4.0",
+  "tag": "v0.4.0",
+  "git_commit": "e76a153f8ef056021fa9e1612fd6e8ff148d4a9f",
+  "verified_at_utc": "2026-10-23T10:49:59.126473+00:00",
+  "downloaded_assets_match_originals": true,
+  "github_asset_digests_match": true,
+  "portable_archive_tests": 148,
+  "portable_embedded_npm_payload_matches_published": true,
+  "portable_embedded_npm_archive_metadata_differs": true,
+  "source_archive_excludes_local_submission_and_collaboration_files": true,
+  "assets": [
+    {
+      "name": "cjyhjy-uri_template-0.4.0.zip",
+      "sha256": "ae030896452f98b241619862e2c423c25bcf964d4eb6e74b64842b3c585e10f9",
+      "bytes": 282119,
+      "url": "https://github.com/cjyhjy/moonbit-uri-template/releases/download/v0.4.0/cjyhjy-uri_template-0.4.0.zip"
+    },
+    {
+      "name": "moonbit-uri-template-0.4.0.tgz",
+      "sha256": "b567826090a19916bc8a6fd9dbebe8101fd39d62e0d051fb7710ff797c4ba599",
+      "bytes": 128325,
+      "url": "https://github.com/cjyhjy/moonbit-uri-template/releases/download/v0.4.0/moonbit-uri-template-0.4.0.tgz"
+    },
+    {
+      "name": "moonbit-uri-template-0.4.0.zip",
+      "sha256": "b81df66d7da8aa7b4bd270801ecc02aa516b6c7f92367f98a33f179d6968e868",
+      "bytes": 709854,
+      "url": "https://github.com/cjyhjy/moonbit-uri-template/releases/download/v0.4.0/moonbit-uri-template-0.4.0.zip"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "sha256": "69f6cd092003e9ce242dadf700e9a5270a846936377e2f0ea10f61d0687def0f",
+      "bytes": 290,
+      "url": "https://github.com/cjyhjy/moonbit-uri-template/releases/download/v0.4.0/SHA256SUMS.txt"
+    }
+  ]
+}

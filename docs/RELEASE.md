@@ -3,8 +3,8 @@
 ## 名称
 
 - GitHub：`cjyhjy/moonbit-uri-template`
-- Mooncakes：`cjyhjy/uri_template`，已发布 0.3.0（2026-10-23）
-- npm：已发布 0.3.0（`moonbit-uri-template`，2026-10-23），通过 GitHub Trusted Publishing 发布，签名和全新工程安装验证通过。
+- Mooncakes：`cjyhjy/uri_template`，已发布 0.4.0（2026-10-23）
+- npm：已发布 0.4.0（`moonbit-uri-template`，2026-10-23），通过 GitHub Trusted Publishing 发布，签名和全新工程安装验证通过。
 
 ## 便携分发包
 
@@ -20,6 +20,8 @@ npm run release:package
 2. `./tools/moon login`，凭据不进仓库。
 3. 确认 `moon.mod` 的版本号后执行 `./tools/moon publish`。
 4. 在全新工程中执行 `moon add cjyhjy/uri_template@<版本>` 并运行示例，确认注册表安装可用。
+
+0.4.0 的发布日志见 `reports/publish-0.4.0.log`；全新工程、独立缓存从 Mooncakes 安装，OpenAPI 示例四后端运行通过，见 `reports/registry-0.4.0.json`。
 
 0.3.0 的发布日志见 `reports/publish-0.3.0.log`；全新工程从 Mooncakes 安装并通过四后端运行的记录见 `reports/registry-0.3.0.json`。
 
@@ -57,6 +59,8 @@ npm 同名同版本不能重复发布；认证配置应在推送标签前完成�
 
 ## GitHub Release
 
+[v0.4.0](https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.4.0) 对应提交 `e76a153`，附带便携包、npm 原始 tarball、Mooncakes 源码包和 SHA-256 校验文件。便携包解压后 148 项测试通过；附件回验与 SHA-256 见 `reports/github-release-0.4.0.json`。
+
 [v0.3.0](https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.3.0) 对应提交 `0db0674`，附带便携包、npm 原始 tarball、Mooncakes 源码包和 SHA-256 校验文件。便携包解压后 132 项测试通过。
 
 推送标签后确认 Actions 运行成功，再附上便携包。[v0.1.1](https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.1.1) 对应提交 `d0a71cd`。
@@ -76,3 +80,9 @@ npm 同名同版本不能重复发布；认证配置应在推送标签前完成�
 全新目录、全新 npm 缓存，从官方注册表安装后，SDK、CLI、OpenAPI 正反例和 TypeScript 严格检查均通过。`npm audit signatures` 验证注册表签名及 provenance；来源声明中的仓库、工作流、标签、提交均与发布一致，安装包完整性与 CI 产物一致。结构化证据见 `reports/npm-release-0.3.0.json`。
 
 初始化 `0.0.0-bootstrap` 仍保持暂存且未批准，不是正式版本；此次未删除它。
+
+## npm 0.4.0 发布完成
+
+2026-10-23，标签 `v0.4.0`（提交 `e76a153`）通过 [GitHub Actions](https://github.com/cjyhjy/moonbit-uri-template/actions/runs/39941357185) 使用 Trusted Publishing 正式发布。`latest` 指向 `0.4.0`。
+
+全新目录、全新 npm 缓存从官方注册表安装，SDK/OpenAPI 37 项测试、TypeScript 严格检查及 CLI 正反例和孤立代理字符退出码验证通过。`npm audit signatures` 验证签名及 provenance；仓库、工作流、标签、提交均匹配，CI 原始 tarball 与注册表 tarball 及安装完整性一致。见 `reports/npm-release-0.4.0.json`。此次未操作初始化暂存记录。

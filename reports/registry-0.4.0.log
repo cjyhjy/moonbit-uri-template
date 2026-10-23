@@ -1,0 +1,28 @@
+$ moon update
+Registry index cloned successfully
+Symbols updated successfully
+
+$ moon add cjyhjy/uri_template@0.4.0
+Registry index updated successfully
+Symbols updated successfully
+Downloading cjyhjy/uri_template@0.4.0
+
+$ moon run . --target js
+/repos/{owner}/{repo}/commits{?per_page}
+/repos/octo/hello%20world/commits?per_page=10
+
+$ moon run . --target wasm
+/repos/{owner}/{repo}/commits{?per_page}
+/repos/octo/hello%20world/commits?per_page=10
+
+$ moon run . --target wasm-gc
+/repos/{owner}/{repo}/commits{?per_page}
+/repos/octo/hello%20world/commits?per_page=10
+
+$ moon run . --target native
+/repos/{owner}/{repo}/commits{?per_page}
+/repos/octo/hello%20world/commits?per_page=10
+
+$ moon tree
+acceptance/registry_consumer@0.0.0 (local /private<fresh-project>/consumer):
+└─ cjyhjy/uri_template -> cjyhjy/uri_template@0.4.0

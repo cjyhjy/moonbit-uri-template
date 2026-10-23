@@ -1,0 +1,57 @@
+publish	Publish the verified tarball with provenance	﻿2026-10-23T10:46:19.5977427Z ##[group]Run node --input-type=module <<'JS'
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.5977765Z ^[[36;1mnode --input-type=module <<'JS'^[[0m
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.5978009Z ^[[36;1mimport assert from 'node:assert/strict';^[[0m
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.5978271Z ^[[36;1mimport { readFileSync } from 'node:fs';^[[0m
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.5978531Z ^[[36;1mimport { createHash } from 'node:crypto';^[[0m
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.5978825Z ^[[36;1mimport { execFileSync } from 'node:child_process';^[[0m
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.5979162Z ^[[36;1mconst pkg = JSON.parse(readFileSync('package.json', 'utf8'));^[[0m
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.5979558Z ^[[36;1mconst report = JSON.parse(readFileSync('reports/sdk-package.json', 'utf8'));^[[0m
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.5979912Z ^[[36;1massert.equal(report.status, 'passed');^[[0m
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.5980261Z ^[[36;1massert.equal(report.artifact, `_build/releases/${pkg.name}-${pkg.version}.tgz`);^[[0m
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.5981134Z ^[[36;1massert.equal(createHash('sha256').update(readFileSync(report.artifact)).digest('hex'), report.sha256);^[[0m
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.5981782Z ^[[36;1mexecFileSync('npm', ['publish', report.artifact, '--provenance', '--access', 'public'], { stdio: 'inherit' });^[[0m
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.5982336Z ^[[36;1mJS^[[0m
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.6036247Z shell: /usr/bin/bash -e {0}
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.6036461Z env:
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.6036669Z   NPM_CONFIG_USERCONFIG: /home/runner/work/_temp/.npmrc
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.6036948Z   NODE_AUTH_TOKEN: XXXXX-XXXXX-XXXXX-XXXXX
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.6037164Z ##[endgroup]
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.8328838Z npm warn Unknown user config "always-auth". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9070480Z npm notice
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9072363Z npm notice 📦  moonbit-uri-template@0.4.0
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9072767Z npm notice Tarball Contents
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9076660Z npm notice 11.4kB LICENSE
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9094077Z npm notice 800B NOTICE
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9094518Z npm notice 5.9kB README.md
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9094915Z npm notice 675.2kB dist/engine.mjs
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9095502Z npm notice 11.4kB dist/licenses/moonbit-core-LICENSE
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9095821Z npm notice 7.5kB docs/OPENAPI.md
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9096057Z npm notice 7.5kB docs/SDK.md
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9096316Z npm notice 243B examples/openapi.json
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9096558Z npm notice 2.5kB package.json
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9096792Z npm notice 11.7kB sdk/index.d.mts
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9097027Z npm notice 24.8kB sdk/index.mjs
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9097263Z npm notice 2.2kB sdk/openapi.d.mts
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9097502Z npm notice 5.8kB sdk/openapi.mjs
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9097725Z npm notice 8.8kB tools/cli.mjs
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9097966Z npm notice 2.2kB tools/diagnostics.mjs
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9098234Z npm notice 2.8kB tools/json-source.mjs
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9098486Z npm notice 5.0kB tools/openapi.mjs
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9098729Z npm notice 12.1kB tools/project.mjs
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9098979Z npm notice 991B tools/suggestions.mjs
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9099206Z npm notice Tarball Details
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9099552Z npm notice name: moonbit-uri-template
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9099933Z npm notice version: 0.4.0
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9100562Z npm notice filename: moonbit-uri-template-0.4.0.tgz
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9100958Z npm notice package size: 128.3 kB
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9101281Z npm notice unpacked size: 798.9 kB
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9101682Z npm notice shasum: 75f495962fff36bc1b9b2ef3147cd863bf7ddf58
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9102200Z npm notice integrity: sha512-1LIUQspMTrWRO[...]JjA478miZbUsw==
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9102606Z npm notice total files: 19
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:19.9102865Z npm notice
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:20.9358519Z npm notice npm tokens that bypass 2FA are being restricted for account changes and direct publishing. Learn how to prepare: https://gh.io/npm-gat-bypass2fa-deprecation
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:21.0734347Z npm notice Publishing to https://registry.npmjs.org/ with tag latest and public access
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:23.5267803Z npm notice publish Signed provenance statement with source and build information from GitHub Actions
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:23.5269495Z npm notice publish Provenance statement published to transparency log: https://search.sigstore.dev/?logIndex=3417765561
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:28.0079636Z npm notice Your package is being processed and may take a few minutes to become available.
+publish	Publish the verified tarball with provenance	2026-10-23T10:46:28.0082499Z + moonbit-uri-template@0.4.0
