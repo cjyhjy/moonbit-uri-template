@@ -7,9 +7,27 @@ GET /repos/{owner}/{repo}/commits
 → /repos/{owner}/{repo}/commits{?sha,path,author,committer,since,until,per_page,page}
 ```
 
-支持 OpenAPI 3.0.x、3.1.x 的 JSON 文档。
+支持 OpenAPI 3.0.x、3.1.x 的 JSON 文档。分析在 MoonBit 包 `cjyhjy/uri_template/openapi` 中实现，Node SDK 和命令行调用的是同一份编译结果。
 
-## 在代码里使用
+## MoonBit
+
+```moonbit
+// moon.pkg: import { "cjyhjy/uri_template/openapi", "cjyhjy/uri_template" @uri }
+let analysis = @openapi.analyze_text(source).unwrap()
+println(analysis.operations()[0].template.unwrap())
+// /repos/{owner}/{repo}/commits{?per_page}
+let api = @openapi.compile_analysis(analysis).unwrap()
+let vars = @uri.Variables::new()
+vars.set("owner", @uri.Scalar("octo"))
+vars.set("repo", @uri.Scalar("hello world"))
+vars.set("per_page", @uri.Scalar("10"))
+println(api.expand("repos/list-commits", vars).unwrap())
+// /repos/octo/hello%20world/commits?per_page=10
+```
+
+`Analysis` 提供 `operations()`、`diagnostics()`、`ok()`、`complete()`；`Operation`、`Parameter`、`Diagnostic` 是只读结构体。完整示例：`moon run examples/openapi_moonbit`。
+
+## Node / TypeScript
 
 ```js
 import { compileOpenApi } from 'moonbit-uri-template/openapi';
@@ -26,7 +44,7 @@ github.expand('repos/list-commits', { owner: 'a', repo: 'b', perpage: 5 });
 - 路径参数和 `required: true` 的 query 参数必须提供；schema 类型明确时检查值的形状（标量、列表、对象）。
 - header、cookie 参数可以一起传入，不进入 URL。
 - 参数名不符合 RFC 6570 变量名语法时按附录 C.3 百分号编码，例如 `filter[since]` 在模板中是 `filter%5Bsince%5D`。
-- GitHub 的完整描述（13.5 MB、1242 个接口）编译约 60 ms；之后每次展开约 4 µs。
+- GitHub 的完整描述（13.5 MB、1242 个接口）编译约 180 ms；之后每次展开约 5 µs。
 - `strict: true` 时，文档有任何错误级诊断都会抛出 `OpenApiInvalid`。
 
 ## 命令行
@@ -47,9 +65,9 @@ npm run openapi:public                            # 检查 GitHub、Stripe、Clo
 
 | 文档 | 大小 | 接口 | 生成模板 | 无对应写法的参数 | 错误 | 警告 | 耗时 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [GitHub](https://github.com/github/rest-api-description/blob/755ee33b4a81d51f6f07a902cce26cbec3b822f2/descriptions/api.github.com/api.github.com.json) `755ee33` | 13.5 MB | 1242 | 1242 | 0 | 2 | 2 | 0.4 s |
-| [Stripe](https://github.com/stripe/openapi/blob/b339867409bf2fb41b6c3411804de1ec4ebf6a49/openapi/spec3.json) `b339867` | 8.3 MB | 612 | 612 | 366（`deepObject`） | 0 | 0 | 0.2 s |
-| [Cloudflare](https://github.com/cloudflare/api-schemas/blob/b3bacb18fcfbb6c5b5c4e9cc0990d055673b39a4/openapi.json) `b3bacb1` | 27.5 MB | 3767 | 3767 | 0 | 0 | 1783 | 0.9 s |
+| [GitHub](https://github.com/github/rest-api-description/blob/755ee33b4a81d51f6f07a902cce26cbec3b822f2/descriptions/api.github.com/api.github.com.json) `755ee33` | 13.5 MB | 1242 | 1242 | 0 | 2 | 2 | 0.6 s |
+| [Stripe](https://github.com/stripe/openapi/blob/b339867409bf2fb41b6c3411804de1ec4ebf6a49/openapi/spec3.json) `b339867` | 8.3 MB | 612 | 612 | 366（`deepObject`） | 0 | 0 | 0.3 s |
+| [Cloudflare](https://github.com/cloudflare/api-schemas/blob/b3bacb18fcfbb6c5b5c4e9cc0990d055673b39a4/openapi.json) `b3bacb1` | 27.5 MB | 3767 | 3767 | 0 | 0 | 1783 | 1.3 s |
 
 **GitHub 的 2 个错误**是层级相同的路径：
 
@@ -106,5 +124,6 @@ OpenAPI 规定“层级相同、只是变量名不同的路径 MUST NOT 同时�
 - 没有任何接口的 Path Item（例如按权限过滤后）不要求声明路径参数。
 - 文档内的 `$ref` 按 JSON Pointer 解析，支持 `~0` `~1` 和百分号解码；外部引用、循环引用和缺失目标会让报告标为不完整。
 - 诊断给出 JSON Pointer 和文件行列。
+- 字符串或对象键里有孤立的 UTF-16 代理字符（如 `"\ud800"`）时不做分析：报 `InvalidInput`（`string contains an unpaired UTF-16 surrogate`），指向该字段，退出码 2。与 SDK 对变量的处理一致。
 
 不检查 schema 本身、响应、security 和 server URL；YAML 文档需要先转换成 JSON。

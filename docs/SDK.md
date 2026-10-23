@@ -157,7 +157,7 @@ github.expand('repos/list-commits', { owner: 'cjyhjy', repo: 'moonbit-uri-templa
 // https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=5
 ```
 
-每个接口的路径参数和 query 参数按 OpenAPI 附录 C 合成一个模板；必填项、值的形状和未知参数名都会检查。`analyzeOpenApi(document)` 只返回模板和诊断。详见 [OpenAPI](OPENAPI.md)。
+分析由 MoonBit 的 `openapi` 包完成。每个接口的路径参数和 query 参数按 OpenAPI 附录 C 合成一个模板；必填项、值的形状和未知参数名都会检查。`analyzeOpenApi(document)` 只返回模板和诊断。详见 [OpenAPI](OPENAPI.md)。
 
 ## 工作台
 

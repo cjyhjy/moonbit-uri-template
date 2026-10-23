@@ -14,6 +14,7 @@
 | `Template::variables()` | 变量名，按首次出现去重 |
 | `Template::source()` | 原始模板文本 |
 | `Variables::new / from_entries / set / remove` | 构造绑定；`set` 复制集合，`from_entries` 拒绝重复名 |
+| `Variables::get / names` | 读取绑定（返回副本）和绑定名（插入顺序） |
 | `OrderedEntries::from_entries(entries)` | 有序关联值，拒绝重复键 |
 | `sparse_list / sparse_assoc` | 把含 `None` 的成员规范化（省略 `None`） |
 
@@ -115,6 +116,22 @@ before.get("search")         // /search?q=old，旧快照不变
 
 - `parse_variables(json)`：字符串、数字（保留 JSON 原文）、布尔、null（未绑定），以及由它们组成的数组和对象。对象成员保持文档顺序。嵌套集合或数组中的 null 报 `InvalidValueType`，附 JSON Pointer。
 - `request(command, template, variables_json)` / `request_with_options(...)`：返回 JSON 信封（`exitCode` 加 `output` 或 `error`）。
+
+## OpenAPI 包
+
+`cjyhjy/uri_template/openapi`，签名见 [openapi/pkg.generated.mbti](../openapi/pkg.generated.mbti)，用法见 [OpenAPI](OPENAPI.md)。
+
+| 接口 | 说明 |
+| --- | --- |
+| `analyze(Json)` / `analyze_text(String)` | 分析描述，返回 `Analysis`：`operations()`、`diagnostics()`、`ok()`、`complete()`、`truncated()`、`to_json()` |
+| `compile(Json, base_url?, strict?)` / `compile_analysis(Analysis, base_url?, strict?)` | 得到 `Templates`；`strict` 时有错误级诊断即失败 |
+| `Templates::get(operation)` | 按 `operationId` 或 `"GET /path"` 取 `Operation` |
+| `Templates::expand(operation, Variables)` | 变量按 OpenAPI 参数名绑定；header、cookie 参数不进入 URL |
+| `template_name(name)` | OpenAPI 参数名对应的 RFC 6570 变量名（附录 C.3 百分号编码） |
+
+`Operation`（`id`、`http_method`、`path`、`template`、`parameters`、`unsupported`、`example`）、`Parameter`、`Unsupported`、`Diagnostic` 为只读结构体；`Severity`、`Shape`、`ParameterLocation` 为枚举。错误为 `OpenApiError`（`code`、`message`、`path`）。
+
+核心的 `Variables` 另有只读的 `get(name)` 和 `names()`，返回副本。
 
 ## 错误
 

@@ -5,8 +5,10 @@
 ```mermaid
 flowchart TD
   MB[MoonBit 下游] --> Core
-  OAS[OpenAPI sdk/openapi.mjs] --> SDK
+  MB --> OAS
   SDK[Node SDK sdk/index.mjs] --> Adapter
+  OAS[openapi 包] --> Core
+  Adapter --> OAS
   CLI[Node CLI tools/cli.mjs] --> Adapter
   Web[浏览器工作台 / Worker] --> Adapter
   Adapter[JSON 适配包 adapter/json] --> Core
@@ -32,7 +34,8 @@ flowchart TD
 | `link_session.mbt` / `session_bindings.mbt` | 增量链接会话与分块持久存储 |
 | `adapter/json/` | JSON 变量转换与请求信封 |
 | `sdk/` | Node SDK 与 TypeScript 声明 |
-| `sdk/openapi.mjs` | 按 OpenAPI 附录 C 把接口参数合成模板、检查描述；展开走 SDK |
+| `openapi/` | OpenAPI 分析：按附录 C 把接口参数合成模板、检查描述、按接口名展开 |
+| `sdk/openapi.mjs` | OpenAPI 的 JS 包装：对象快照、冻结和错误封装 |
 | `tools/project.mjs` / `tools/openapi.mjs` | 请求配置检查、OpenAPI 命令行（带源位置的 JSON 解析） |
 | `integrations/` | GitHub 巡检客户端，npm、Open Library 只读客户端 |
 
