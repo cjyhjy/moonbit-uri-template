@@ -1,0 +1,52 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "cjyhjy/uri_template/openapi"
+
+import {
+  "cjyhjy/uri_template",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn analyze(Json) -> Analysis
+
+pub fn analyze_text(String) -> Result[Analysis, OpenApiError]
+
+pub fn compile(Json, base_url? : String, strict? : Bool) -> Result[Templates, OpenApiError]
+
+pub fn compile_analysis(Analysis, String, Bool) -> Result[Templates, OpenApiError]
+
+pub fn template_name(String) -> String
+
+// Errors
+
+// Types and methods
+pub struct Analysis {
+  data : Json
+}
+pub fn Analysis::diagnostics(Self) -> Array[Json]
+pub fn Analysis::operations(Self) -> Array[Json]
+pub fn Analysis::to_json(Self) -> Json
+
+pub(all) struct OpenApiError {
+  code : String
+  message : String
+  path : String
+} derive(Eq, @debug.Debug)
+pub fn OpenApiError::equal(Self, Self) -> Bool
+pub fn OpenApiError::not_equal(Self, Self) -> Bool
+pub fn OpenApiError::to_repr(Self) -> @debug.Repr
+
+pub struct Templates {
+  analysis : Analysis
+  by_key : Map[String, Json]
+  compiled : Map[String, @uri_template.ContractTemplate]
+  base_url : String
+}
+pub fn Templates::analysis(Self) -> Analysis
+pub fn Templates::expand(Self, String, Json) -> Result[String, OpenApiError]
+pub fn Templates::expand_with_names(Self, String, Json, Array[String]) -> Result[String, OpenApiError]
+pub fn Templates::get(Self, String) -> Result[Json, OpenApiError]
+
+// Type aliases
+
+// Traits

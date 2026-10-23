@@ -7,6 +7,12 @@ import {
 }
 
 // Values
+pub fn openapi_analyze(String) -> String
+
+pub fn openapi_name(String) -> String
+
+pub fn openapi_prepare(String, String, Bool) -> PreparedOpenApi
+
 pub fn parse_variables(String) -> Result[@uri_template.Variables, InputError]
 
 pub fn prepare_request(String, String) -> PreparedRequest
@@ -24,6 +30,10 @@ pub(all) struct InputError {
   path : String
 } derive(@debug.Debug)
 pub fn InputError::to_repr(Self) -> @debug.Repr
+
+type PreparedOpenApi
+pub fn PreparedOpenApi::expand(Self, String, String, String) -> String
+pub fn PreparedOpenApi::report(Self) -> String
 
 type PreparedRequest
 pub fn PreparedRequest::audit(Self, String, Int) -> String

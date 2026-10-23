@@ -1,0 +1,5 @@
+import {
+  "cjyhjy/uri_template" @core,
+  "moonbitlang/core/json",
+  "moonbitlang/core/encoding/utf8",
+}

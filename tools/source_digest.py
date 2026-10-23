@@ -4,7 +4,7 @@ from pathlib import Path
 
 def source_digest(root: Path) -> str:
     entries = []
-    for folder in ('adapter', 'cmd', 'examples', 'testdata', 'tools', 'bench', 'playground', 'integrations', 'sdk'):
+    for folder in ('openapi', 'adapter', 'cmd', 'examples', 'testdata', 'tools', 'bench', 'playground', 'integrations', 'sdk'):
         base = root/folder
         if base.exists():
             entries.extend(p for p in base.rglob('*') if p.is_file() and '__pycache__' not in p.parts)
