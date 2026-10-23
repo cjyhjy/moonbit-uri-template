@@ -1,0 +1,45 @@
+name: Integration feedback
+description: Report an actual installation or client integration experience.
+title: '[Integration feedback] '
+body:
+  - type: markdown
+    attributes:
+      value: 'Describe your own use of the package. Do not include tokens, private API descriptions, customer data, or personal information.'
+  - type: input
+    id: environment
+    attributes:
+      label: Environment and package version
+      placeholder: 'Linux x86_64, MoonBit 0.10.15, uri_template 0.4.0; or Node 22, npm package 0.4.0'
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: What did you try to integrate?
+      description: 'A public repository or API name is useful when you can share it.'
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Commands or minimal reproduction
+      description: 'Include installation, the import or CLI command, and the error code if any. Remove credentials.'
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Actual result and what you expected
+      description: 'Successful usage is welcome too. Which step was difficult: installation, types, diagnostics, OpenAPI input, or HTTP?'
+    validations:
+      required: true
+  - type: dropdown
+    id: use
+    attributes:
+      label: How was it used?
+      options:
+        - Installed and ran an example
+        - Integrated into a project
+        - Attempted installation but could not proceed
+    validations:
+      required: true

@@ -33,7 +33,7 @@ archive_path = release_dir/filename
 with tempfile.TemporaryDirectory(prefix='uri-template-release-') as temporary:
     bundle = Path(temporary)/f'moonbit-uri-template-{VERSION}'
     bundle.mkdir()
-    files = ['integrations/public-clients/clients.mjs', 'integrations/public-clients/live.mjs', 'integrations/public-clients/README.md', 'tools/openapi.mjs', 'docs/OPENAPI.md', 'examples/openapi.json', 'tools/cli.mjs', 'tools/cli.test.mjs', 'tools/diagnostics.mjs', 'tools/serve-playground.mjs',
+    files = ['integrations/public-clients/clients.mjs', 'integrations/public-clients/live.mjs', 'integrations/public-clients/README.md', 'tools/openapi.mjs', 'tools/yaml-source.mjs', 'tools/yaml-source.test.mjs', 'docs/OPENAPI.md', 'examples/openapi.json', 'tools/cli.mjs', 'tools/cli.test.mjs', 'tools/diagnostics.mjs', 'tools/serve-playground.mjs',
              'dist/engine.mjs', 'package.json',
              'tools/project.mjs', 'tools/project.test.mjs','tools/openapi.test.mjs','integrations/public-clients/clients.test.mjs', 'tools/json-source.mjs', 'tools/suggestions.mjs',
              'tools/playground.test.mjs',
@@ -50,6 +50,8 @@ with tempfile.TemporaryDirectory(prefix='uri-template-release-') as temporary:
              'dist/playground/compute.mjs', 'dist/playground/controller.mjs', 'dist/playground/json-source.mjs',
              'LICENSE', 'NOTICE', 'examples/search.json', 'examples/users.json', 'examples/resource.json',
              'reports/verification.json']
+    files.extend(str(p.relative_to(ROOT)) for p in (ROOT/'dist/vendor/yaml').rglob('*') if p.is_file())
+    files.append('dist/licenses/yaml-LICENSE')
     for name in files:
         target = bundle/name
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -90,7 +92,7 @@ with tempfile.TemporaryDirectory(prefix='uri-template-release-') as temporary:
     for name, expected in check.items():
         if hashlib.sha256((installed/name).read_bytes()).hexdigest() != expected:
             raise SystemExit('Release checksum mismatch: '+name)
-    tests = subprocess.run(['node','--test','sdk/sdk.test.mjs','sdk/openapi.test.mjs','tools/differential.test.mjs','tools/cli.test.mjs','tools/project.test.mjs','tools/openapi.test.mjs','integrations/public-clients/clients.test.mjs','tools/playground.test.mjs','integrations/github-audit/integration.test.mjs'],cwd=installed,text=True,capture_output=True)
+    tests = subprocess.run(['node','--test','sdk/sdk.test.mjs','sdk/openapi.test.mjs','tools/differential.test.mjs','tools/cli.test.mjs','tools/project.test.mjs','tools/openapi.test.mjs','tools/yaml-source.test.mjs','integrations/public-clients/clients.test.mjs','tools/playground.test.mjs','integrations/github-audit/integration.test.mjs'],cwd=installed,text=True,capture_output=True)
     output = tests.stdout+tests.stderr
     (ROOT/'reports/release-cli.log').write_text(output)
     if tests.returncode: print(output); raise SystemExit(tests.returncode)

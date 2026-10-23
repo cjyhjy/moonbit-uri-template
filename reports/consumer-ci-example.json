@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "package": "moonbit-uri-template@0.4.0",
+  "checkedAt": "2026-10-23T13:19:45.920444+00:00",
+  "cases": [
+    {
+      "expectedExit": 0,
+      "actualExit": 0,
+      "diagnostics": []
+    },
+    {
+      "expectedExit": 1,
+      "actualExit": 1,
+      "diagnostics": [
+        "MissingPathParameter"
+      ]
+    },
+    {
+      "expectedExit": 2,
+      "actualExit": 2,
+      "diagnostics": [
+        "UnsupportedVersion"
+      ]
+    }
+  ]
+}

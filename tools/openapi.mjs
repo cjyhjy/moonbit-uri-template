@@ -1,6 +1,7 @@
 // CLI and source positions for the SDK's OpenAPI analysis; no second URI engine.
 import { analyzeOpenApi } from '../sdk/openapi.mjs';
 import { parseSource, filePosition } from './json-source.mjs';
+import { parseYamlSource } from './yaml-source.mjs';
 import { readProjectFile } from './project.mjs';
 // Public descriptions are large: GitHub's is 13.5 MB.
 export const DEFAULT_MAX_BYTES = 33554432;
@@ -19,12 +20,16 @@ const hasUnpairedSurrogate = value => {
   return false;
 };
 
-export function checkOpenAPI(text, file = 'openapi.json', {maxBytes = DEFAULT_MAX_BYTES} = {}) {
-  const failed = (code, message, path = '', offset = 0) => ({schemaVersion:2,ok:false,complete:false,file,scope:SCOPE,operations:[],
+export function checkOpenAPI(text, file = 'openapi.json', {maxBytes = DEFAULT_MAX_BYTES, format = 'auto'} = {}) {
+  const yaml = format === 'yaml' || (format === 'auto' && /\.ya?ml$/i.test(file));
+  const scope = yaml ? SCOPE.replace('JSON', 'YAML 1.2') : SCOPE;
+  const failed = (code, message, path = '', offset = 0) => ({schemaVersion:2,ok:false,complete:false,file,scope,operations:[],
     diagnostics:[{code,severity:'error',message,file,path,...filePosition(text,offset)}],truncated:{errors:0,warnings:0}});
   if (Buffer.byteLength(text) > maxBytes) return failed('OpenAPIInputLimit',`document exceeds ${maxBytes} bytes`);
+  if (!['auto','json','yaml'].includes(format)) return failed('InvalidArguments', 'format must be auto, json or yaml');
   let parsed;
-  try { parsed = parseSource(text, MAX_DEPTH); } catch(e) { return failed(e.code ?? 'InvalidJson',e.message,e.path ?? '',e.start ?? 0); }
+  try { parsed = yaml ? parseYamlSource(text, MAX_DEPTH, maxBytes) : parseSource(text, MAX_DEPTH); }
+  catch(e) { return failed(e.code ?? (yaml ? 'InvalidYaml' : 'InvalidJson'),e.message,e.path ?? '',e.start ?? 0); }
   const report = analyzeOpenApi(parsed.value);
   // Diagnostics point at the JSON value their pointer names, or at the document root.
   // Line starts are indexed once; slicing a 27 MB document per diagnostic took seconds.
@@ -37,21 +42,22 @@ export function checkOpenAPI(text, file = 'openapi.json', {maxBytes = DEFAULT_MA
     while (lo < hi) { const mid = (lo + hi + 1) >> 1; if (starts[mid] <= offset) lo = mid; else hi = mid - 1; }
     return { line: lo + 1, column: offset - starts[lo] + 1 };
   };
-  return {...report,file,scope:SCOPE,diagnostics:report.diagnostics.map(d => ({...d,file,...at(d.path)}))};
+  return {...report,file,scope,diagnostics:report.diagnostics.map(d => ({...d,file,...at(d.path)}))};
 }
 
 function parseArgs(args) {
   const [file, ...rest] = args;
-  let json = false, templates = false, maxBytes = DEFAULT_MAX_BYTES;
+  let json = false, templates = false, maxBytes = DEFAULT_MAX_BYTES, format = 'auto';
   if (!file || file.startsWith('--')) return null;
   for (let i = 0; i < rest.length; i++) {
     if (rest[i] === '--json' && !json) json = true;
     else if (rest[i] === '--templates' && !templates) templates = true;
     else if (rest[i] === '--max-bytes' && /^[1-9]\d{0,9}$/.test(rest[i+1] ?? '')) maxBytes = Number(rest[++i]);
+    else if (rest[i] === '--format' && ['auto','json','yaml'].includes(rest[i+1])) format = rest[++i];
     else return null;
   }
   if (json && templates) return null;
-  return {file, json, templates, maxBytes};
+  return {file, json, templates, maxBytes, format};
 }
 const line = d => `${d.file ?? ''}:${d.line ?? 1}:${d.column ?? 1} ${d.severity === 'warning' ? 'warning ' : ''}${d.code}: ${d.message}\n`;
 export function summary(report) {
@@ -64,13 +70,13 @@ export async function openapiMain(args) {
   const options = parseArgs(args), json = args.includes('--json');
   let report;
   if (!options) {
-    report = {ok:false,complete:false,operations:[],diagnostics:[{code:'InvalidArguments',severity:'error',message:'Usage: uri-template openapi FILE.json [--json | --templates] [--max-bytes N]'}],truncated:{errors:0,warnings:0}};
+    report = {ok:false,complete:false,operations:[],diagnostics:[{code:'InvalidArguments',severity:'error',message:'Usage: uri-template openapi FILE [--format auto|json|yaml] [--json | --templates] [--max-bytes N]'}],truncated:{errors:0,warnings:0}};
   } else {
-    const {file, maxBytes} = options;
-    try { report = checkOpenAPI(readProjectFile(file, maxBytes), file, {maxBytes}); }
+    const {file, maxBytes, format} = options;
+    try { report = checkOpenAPI(readProjectFile(file, maxBytes), file, {maxBytes, format}); }
     catch(e) { report = {ok:false,complete:false,operations:[],truncated:{errors:0,warnings:0},diagnostics:[e.code === 'ProjectInputLimit'
       ? {code:'OpenAPIInputLimit',severity:'error',message:`document exceeds ${maxBytes} bytes; raise with --max-bytes`}
-      : {code:'FileError',severity:'error',message:'cannot read OpenAPI JSON as UTF-8'}]}; }
+      : {code:'FileError',severity:'error',message:'cannot read OpenAPI document as UTF-8'}]}; }
   }
   const exit = report.ok ? 0 : report.complete ? 1 : 2;
   const stream = exit ? process.stderr : process.stdout;

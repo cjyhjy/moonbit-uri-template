@@ -4,6 +4,7 @@ import argparse
 import datetime
 import hashlib
 import json
+import platform
 from pathlib import Path
 import re
 import shutil
@@ -48,6 +49,7 @@ def main():
     report = dict(status='running', evidence='live-public-api' if args.live else 'offline-registry-consumer',
                   started_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
                   source_sha256=fingerprint(), verifier_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), backend='native', externalUserFeedback=False,
+                  system=platform.system(), machine=platform.machine(),
                   dependencies={'cjyhjy/uri_template': metadata['uri_template_version'], 'moonbitlang/async': metadata['async_version']},
                   toolchain=json.loads((ROOT / 'toolchain.lock.json').read_text()), checks=[])
     logs = []

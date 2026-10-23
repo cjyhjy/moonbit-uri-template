@@ -49,6 +49,7 @@
     "sdk/openapi.mjs",
     "sdk/openapi.d.mts",
     "dist/engine.mjs",
+    "dist/vendor/yaml",
     "dist/licenses",
     "docs/SDK.md",
     "tools/cli.mjs",
@@ -59,11 +60,13 @@
     "LICENSE",
     "NOTICE",
     "tools/openapi.mjs",
+    "tools/yaml-source.mjs",
     "docs/OPENAPI.md",
     "examples/openapi.json"
   ],
   "devDependencies": {
-    "typescript": "7.0.2"
+    "typescript": "7.0.2",
+    "yaml": "2.9.1"
   },
   "repository": {
     "type": "git",

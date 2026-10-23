@@ -1,0 +1,51 @@
+{
+  "description": "Small self-contained reductions of public catalog findings, not full upstream descriptions. Expected diagnostics follow the documented checker scope; warnings do not prove an API service is broken.",
+  "cases": [
+    {
+      "name": "Vercel deployment paths differ only in variable names even across methods",
+      "source": "https://openapi.vercel.sh",
+      "sourceSha256": "d7ec32de1033238abb1aefeffe3c85990738d56e99f94604f745b6a353dc14f7",
+      "sourcePointer": "/paths/~1v13~1deployments~1{id}",
+      "spec": {"openapi":"3.0.3","paths":{
+        "/v13/deployments/{idOrUrl}":{"get":{"parameters":[{"name":"idOrUrl","in":"path","required":true}]}},
+        "/v13/deployments/{id}":{"delete":{"parameters":[{"name":"id","in":"path","required":true}]}}
+      }},
+      "expected": [{"code":"EquivalentPaths","severity":"error"}]
+    },
+    {
+      "name": "Box documentation fragment is not a request path",
+      "catalogId": "box.com",
+      "sourcePointer": "/paths/~1files~1{file_id}#add_shared_link",
+      "spec": {"openapi":"3.0.0","paths":{"/files/{file_id}#add_shared_link":{"put":{"parameters":[{"name":"file_id","in":"path","required":true}]}}}},
+      "expected": [{"code":"InvalidPath","severity":"error"}]
+    },
+    {
+      "name": "Flickr query-dispatched documentation needs separate path and query parameters",
+      "catalogId": "flickr.com",
+      "sourcePointer": "/paths/~1rest?method=flickr.favorites.getContext",
+      "spec": {"openapi":"3.0.0","paths":{"/rest?method=flickr.favorites.getContext":{"get":{}}}},
+      "expected": [{"code":"InvalidPath","severity":"error"}]
+    },
+    {
+      "name": "Telnyx serialized string example is not an array value",
+      "catalogId": "telnyx.com",
+      "sourcePointer": "/paths/~1available_phone_numbers/get/parameters/9/schema/example",
+      "spec": {"openapi":"3.0.0","paths":{"/available_phone_numbers":{"get":{"parameters":[{"name":"filter[features]","in":"query","schema":{"type":"array","items":{"type":"string"},"example":"sms,mms"}}]}}}},
+      "expected": [{"code":"ExampleShapeMismatch","severity":"warning"}]
+    },
+    {
+      "name": "OPA arbitrary nested input cannot use RFC 6570 flat-object serialization",
+      "catalogId": "openpolicy.local",
+      "sourcePointer": "/components/parameters/inputParameter/schema/example",
+      "spec": {"openapi":"3.0.0","paths":{"/v1/data":{"get":{"parameters":[{"name":"input","in":"query","schema":{"type":"object","example":{"user":{"role":"admin"}}}}]}}}},
+      "expected": [{"code":"ExampleNotSerializable","severity":"warning"}]
+    },
+    {
+      "name": "A corrected array example produces repeated query keys",
+      "basis": "self-authored corrected counterpart to the Telnyx shape case",
+      "spec": {"openapi":"3.1.0","paths":{"/numbers":{"get":{"operationId":"numbers","parameters":[{"name":"tags","in":"query","schema":{"type":"array","items":{"type":"string"}},"example":["sms","mms"]}]}}}},
+      "expected": [],
+      "template": "/numbers{?tags*}"
+    }
+  ]
+}

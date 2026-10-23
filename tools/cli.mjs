@@ -7,7 +7,7 @@ Usage:
   uri-template expand TEMPLATE [--vars JSON | --vars-file FILE|-]
   uri-template measure TEMPLATE [--vars JSON | --vars-file FILE|-]
   uri-template trace TEMPLATE [--vars JSON | --vars-file FILE|-]
-  uri-template openapi FILE.json [--json] [--max-bytes N]
+  uri-template openapi FILE [--format auto|json|yaml] [--json | --templates] [--max-bytes N]
   uri-template project MANIFEST.json [--json | --github]
   uri-template check TEMPLATE [--vars JSON | --vars-file FILE|-]
   uri-template validate TEMPLATE [--strict]

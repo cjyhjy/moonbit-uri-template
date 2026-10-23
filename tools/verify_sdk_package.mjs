@@ -14,7 +14,7 @@ function run(cmd, args, cwd = root) {
 const out = join(root, '_build/releases');
 mkdirSync(out, { recursive: true });
 const pack = JSON.parse(run('npm', ['pack', '--ignore-scripts', '--json', '--pack-destination', out]))[0];
-for (const f of ['sdk/index.mjs', 'sdk/index.d.mts', 'dist/engine.mjs', 'dist/licenses/moonbit-core-LICENSE'])
+for (const f of ['sdk/index.mjs', 'sdk/index.d.mts', 'dist/engine.mjs', 'dist/licenses/moonbit-core-LICENSE', 'dist/vendor/yaml/dist/index.js', 'dist/vendor/yaml/LICENSE', 'tools/yaml-source.mjs'])
   if (!pack.files.some(x => x.path === f)) throw new Error('missing package file ' + f);
 if (pack.files.some(x => /(^|\/)(reports|\.git|node_modules|\.toolchain)\//.test(x.path)))
   throw new Error('private or development files leaked into SDK package');
@@ -57,6 +57,9 @@ console.log('installed SDK passed');`;
   run('node', ['node_modules/moonbit-uri-template/tools/cli.mjs', 'compare', '/{id}', '/{id}', '--json'], temporary);
   writeFileSync(join(temporary, 'openapi.json'), JSON.stringify({openapi:'3.1.0',paths:{'/pets/{id}':{get:{parameters:[{name:'id',in:'path',required:true}]}}}}));
   run('node', ['node_modules/moonbit-uri-template/tools/cli.mjs', 'openapi', 'openapi.json', '--json'], temporary);
+  writeFileSync(join(temporary, 'openapi.yaml'), 'openapi: 3.1.0\npaths:\n  /pets/{id}:\n    get:\n      parameters: [{name: id, in: path, required: true}]\n');
+  const yamlReport = JSON.parse(run('node', ['node_modules/moonbit-uri-template/tools/cli.mjs', 'openapi', 'openapi.yaml', '--json'], temporary));
+  if (!yamlReport.ok || yamlReport.operations[0].template !== '/pets/{id}') throw new Error('installed YAML parser or core analysis failed');
   writeFileSync(join(temporary, 'openapi-consumer.mjs'), `import assert from 'node:assert/strict';
 import { compileOpenApi } from 'moonbit-uri-template/openapi';
 const api = compileOpenApi(JSON.parse(await (await import('node:fs/promises')).readFile('openapi.json', 'utf8')));
@@ -70,7 +73,7 @@ assert.equal(api.expand('GET /pets/{id}', { id: 'a b' }), '/pets/a%20b');`);
     sourceSha256: run('python3', ['-c', 'from pathlib import Path; import sys; sys.path.insert(0,"tools"); from source_digest import source_digest; print(source_digest(Path.cwd()))']).trim(),
     node: process.version, typescript: run(join(root, 'node_modules/.bin/tsc'), ['--version']).trim(),
     cleanLocalInstall: true, offlineInstall: true, published: false,
-    checks: ['ESM public export', 'compiled reuse', 'incremental immutable sessions', 'runtime shape contracts and type-change review', 'batch', 'contract failure', 'analysis and comparison', 'typed catalog batch inspection audit and comparison', 'installed CLI comparison', 'installed OpenAPI CLI and openapi subpath', 'TypeScript positive and expected-error cases'],
+    checks: ['ESM public export', 'compiled reuse', 'incremental immutable sessions', 'runtime shape contracts and type-change review', 'batch', 'contract failure', 'analysis and comparison', 'typed catalog batch inspection audit and comparison', 'installed CLI comparison', 'installed OpenAPI CLI and openapi subpath', 'bundled YAML parser in offline installed CLI', 'TypeScript positive and expected-error cases'],
     files: pack.files.map(x => x.path) };
   writeFileSync(join(root, 'reports/sdk-package.json'), JSON.stringify(report, null, 2) + '\n');
   console.log('SDK tarball: clean offline install, runtime and TypeScript checks passed');

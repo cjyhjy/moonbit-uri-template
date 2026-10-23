@@ -15,6 +15,11 @@ on:
       - 'toolchain.lock.json'
       - '.github/workflows/native-client.yml'
   workflow_dispatch:
+    inputs:
+      live:
+        description: 'Also run three read-only GitHub HTTPS requests (no token)'
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -28,12 +33,16 @@ jobs:
       - name: Update package index
         run: tools/moon update
       - name: Test independent registry consumer without public API requests
+        if: github.event_name != 'workflow_dispatch' || !inputs.live
         run: python3 tools/verify_native_client.py
+      - name: Verify native HTTPS against the pinned GitHub description
+        if: github.event_name == 'workflow_dispatch' && inputs.live
+        run: python3 tools/verify_native_client.py --live
       - name: Upload native-client evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native-client-offline
+          name: native-client-${{ github.event_name == 'workflow_dispatch' && inputs.live && 'live' || 'offline' }}
           path: |
-            reports/native-client-offline.json
-            reports/native-client-offline.log
+            reports/native-client-${{ github.event_name == 'workflow_dispatch' && inputs.live && 'live' || 'offline' }}.json
+            reports/native-client-${{ github.event_name == 'workflow_dispatch' && inputs.live && 'live' || 'offline' }}.log

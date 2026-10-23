@@ -1,0 +1,30 @@
+# Copy to .github/workflows/openapi-check.yml in a consuming repository.
+# This example uses the published 0.4.0 package and a JSON description.
+# Source-tree YAML support is newer than that release; use JSON with this pin.
+name: Check OpenAPI URL templates
+on:
+  pull_request:
+    paths: ['openapi.json', '.github/workflows/openapi-check.yml']
+  push:
+    paths: ['openapi.json', '.github/workflows/openapi-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check the description with the published CLI
+        # Exit 0: no errors in supported scope; 1: findings; 2: incomplete/input failure.
+        # Keep the CLI exit status. Warnings alone do not fail the job.
+        run: npx --yes --package moonbit-uri-template@0.4.0 uri-template openapi openapi.json --json > openapi-report.json 2>&1
+      - name: Retain the report, including on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: openapi-report
+          path: openapi-report.json

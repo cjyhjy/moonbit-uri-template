@@ -1,7 +1,7 @@
 {
   "status": "passed",
   "baseline": "eeec975",
-  "measuredAt": "2026-10-23T10:36:49.425Z",
+  "measuredAt": "2026-10-23T13:15:11.337Z",
   "publicReport": "Exact deep equality except node, startedAt, finishedAt and results[].elapsedMs",
   "documents": [
     {

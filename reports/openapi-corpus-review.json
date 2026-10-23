@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-23T13:16:30.386964+00:00",
+  "reviewer": "Codex",
+  "manifestSha256": "8f7df6f5dfb254fe89de355ce4d821237e579b41888e30c35328971138871591",
+  "coverage": "Representative diagnosis patterns and one current official source; not an exhaustive false-positive-rate study.",
+  "catalogSummary": {
+    "documents": 200,
+    "providers": 200,
+    "operations": 12963,
+    "documentsWithErrorDiagnostics": 11,
+    "errorDiagnostics": 63,
+    "warningDiagnostics": 40,
+    "crashes": 0,
+    "timeouts": 0,
+    "incomplete": 0
+  },
+  "patterns": [
+    {
+      "code": "EquivalentPaths",
+      "count": 10,
+      "assessment": "The catalog path pairs differ only in placeholder names. OpenAPI forbids these pairs even when methods differ. Current upstream status must be checked separately.",
+      "rule": "https://spec.openapis.org/oas/v3.1.1.html#paths-object"
+    },
+    {
+      "code": "InvalidPath",
+      "count": 53,
+      "assessment": "19 fragment paths (Box), 34 query-string paths (openSUSE, Flickr, Icons8). These may encode documentation variants, but cannot be used as plain OpenAPI path templates without changing the request target. Keep the existing diagnostic.",
+      "rule": "https://spec.openapis.org/oas/v3.1.1.html#paths-object"
+    },
+    {
+      "code": "ExampleShapeMismatch",
+      "count": 38,
+      "assessment": "Representative Telnyx and Jira cases supply serialized strings where the schema says array. Keep these as warnings: they do not prove a live service failure.",
+      "rule": "https://spec.openapis.org/oas/v3.1.1.html#parameter-object"
+    },
+    {
+      "code": "ExampleNotSerializable",
+      "count": 2,
+      "assessment": "Box and OPA nested examples exceed RFC 6570 flat values. This is a checker/serialization limitation warning, not a claim that the API is broken.",
+      "rule": "https://www.rfc-editor.org/rfc/rfc6570#section-2.3"
+    }
+  ],
+  "officialVerification": {
+    "url": "https://openapi.vercel.sh",
+    "sha256": "d7ec32de1033238abb1aefeffe3c85990738d56e99f94604f745b6a353dc14f7",
+    "bytes": 11846292,
+    "operations": 472,
+    "confirmedPair": [
+      {
+        "method": "GET",
+        "path": "/v13/deployments/{idOrUrl}"
+      },
+      {
+        "method": "DELETE",
+        "path": "/v13/deployments/{id}"
+      }
+    ],
+    "finding": "EquivalentPaths",
+    "note": "One of the two Vercel catalog pairs persists. The current description has four equivalent-path diagnostics overall; no upstream report sent."
+  },
+  "regressionCases": "testdata/openapi-corpus/regressions.json",
+  "externalReferenceDecision": "No external references in these 200 normalized catalog copies. This does not estimate prevalence in raw multi-file sources; defer automatic external fetching until a concrete consumer needs it.",
+  "yamlDecision": "60 of 200 catalog entries point to original YAML URLs. Implement bounded YAML input at the Node CLI boundary and compare all 60 catalog JSON/YAML pairs.",
+  "externalUserFeedback": false
+}

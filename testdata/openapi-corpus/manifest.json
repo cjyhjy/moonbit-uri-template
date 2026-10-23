@@ -1,0 +1,4294 @@
+{
+  "schemaVersion": 1,
+  "status": "complete",
+  "createdAt": "2026-10-23T13:05:43.748Z",
+  "catalog": {
+    "url": "https://api.apis.guru/v2/list.json",
+    "sha256": "dfac835d2d1f13dfdb82723d72be1acf567df53c1b710bf6d68e28b795696e66",
+    "bytes": 8855894,
+    "entries": 2529
+  },
+  "selection": "uri-template-corpus-v1: preferred OpenAPI 3.0/3.1, one per provider first, 3.1 providers first, SHA-256 order",
+  "evidence": "APIs.guru catalog copies, potentially transformed; verify original sources before upstream attribution",
+  "requested": 200,
+  "documents": [
+    {
+      "id": "codat.io:sync-for-expenses",
+      "provider": "codat.io",
+      "version": "prealpha",
+      "openapi": "3.1.0",
+      "url": "https://api.apis.guru/v2/specs/codat.io/sync-for-expenses/prealpha/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/codat.io/sync-for-expenses/prealpha/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/codatio/oas/main/json/Codat-Expenses.json",
+          "version": "3.1"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "80ac157144261e8d026ad749257104831fc7efe889d5ea7004e5c2787d6d0b1b",
+      "bytes": 57707,
+      "status": "pinned"
+    },
+    {
+      "id": "adyen.com:BalancePlatformTransferNotification-v3",
+      "provider": "adyen.com",
+      "version": "3",
+      "openapi": "3.1.0",
+      "url": "https://api.apis.guru/v2/specs/adyen.com/BalancePlatformTransferNotification-v3/3/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/adyen.com/BalancePlatformTransferNotification-v3/3/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/Adyen/adyen-openapi/main/json/BalancePlatformTransferNotification-v3.json",
+          "version": "3.1"
+        }
+      ],
+      "categories": [
+        "payment"
+      ],
+      "sha256": "8cb9d919480995d998e8d0d048ff09d0d34737d70e2617be12908093ee0d24ce",
+      "bytes": 57431,
+      "status": "pinned"
+    },
+    {
+      "id": "wolframalpha.com",
+      "provider": "wolframalpha.com",
+      "version": "v0.1",
+      "openapi": "3.1.0",
+      "url": "https://api.apis.guru/v2/specs/wolframalpha.com/v0.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/wolframalpha.com/v0.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://www.wolframalpha.com/.well-known/apispec.json",
+          "version": "3.1"
+        }
+      ],
+      "categories": [
+        "machine_learning"
+      ],
+      "sha256": "49dc67897f210bd9334607a2ed96d2ac6535c02b659222fdf28a920e3aa74322",
+      "bytes": 3021,
+      "status": "pinned"
+    },
+    {
+      "id": "urlbox.io",
+      "provider": "urlbox.io",
+      "version": "v1",
+      "openapi": "3.1.0",
+      "url": "https://api.apis.guru/v2/specs/urlbox.io/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/urlbox.io/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://www.urlbox.io/.well-known/open-api.yaml",
+          "version": "3.1"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "aad17b47891d5d897fe31e8c32a6b78cd418f7fdda833190ade89d0d1fd56745",
+      "bytes": 11445,
+      "status": "pinned"
+    },
+    {
+      "id": "discourse.local",
+      "provider": "discourse.local",
+      "version": "latest",
+      "openapi": "3.1.0",
+      "url": "https://api.apis.guru/v2/specs/discourse.local/latest/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/discourse.local/latest/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "http://docs.discourse.org/openapi.json",
+          "version": "3.1"
+        }
+      ],
+      "categories": [
+        "social"
+      ],
+      "sha256": "7233e6c489f6e23d7f8d64038b24112e1e30ace1ffba6e31a2e7bd76fdf0944b",
+      "bytes": 570300,
+      "status": "pinned"
+    },
+    {
+      "id": "vercel.com",
+      "provider": "vercel.com",
+      "version": "0.0.1",
+      "openapi": "3.1.0",
+      "url": "https://api.apis.guru/v2/specs/vercel.com/0.0.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/vercel.com/0.0.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://openapi.vercel.sh",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "hosting"
+      ],
+      "sha256": "0f92aad225ff03a997b1127e7692ba2ad30a8560797945146bcc47139ca6491b",
+      "bytes": 1323217,
+      "status": "pinned"
+    },
+    {
+      "id": "xero.com:xero_assets",
+      "provider": "xero.com",
+      "version": "2.9.4",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/xero.com/xero_assets/2.9.4/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/xero.com/xero_assets/2.9.4/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/XeroAPI/Xero-OpenAPI/master/xero_assets.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "6101aed6032c48a3bc72ee9c91b73872b40de4053506de5ea556759eb10d8a15",
+      "bytes": 36480,
+      "status": "pinned"
+    },
+    {
+      "id": "amazonaws.com:serverlessrepo",
+      "provider": "amazonaws.com",
+      "version": "2017-09-08",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/amazonaws.com/serverlessrepo/2017-09-08/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/amazonaws.com/serverlessrepo/2017-09-08/openapi.yaml",
+      "origins": [
+        {
+          "contentType": "application/json",
+          "url": "https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/serverlessrepo-2017-09-08.normal.json",
+          "converter": {
+            "url": "https://github.com/mermade/aws2openapi",
+            "version": "1.0.0"
+          },
+          "x-apisguru-driver": "external"
+        }
+      ],
+      "categories": [
+        "cloud"
+      ],
+      "sha256": "d620eaf5b1bdfeebf8fe9b427629e152d989d5cb44710970673eddbc586b804d",
+      "bytes": 157150,
+      "status": "pinned"
+    },
+    {
+      "id": "apisetu.gov.in:transportdl",
+      "provider": "apisetu.gov.in",
+      "version": "3.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/apisetu.gov.in/transportdl/3.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/apisetu.gov.in/transportdl/3.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://apisetu.gov.in/api_specification_v8/transportdl.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "c604e80d70bf0e06772d1a738dfdeab9541dc6709a2348ea1909abb2c11558d9",
+      "bytes": 77872,
+      "status": "pinned"
+    },
+    {
+      "id": "apideck.com:ats",
+      "provider": "apideck.com",
+      "version": "9.3.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/apideck.com/ats/9.3.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/apideck.com/ats/9.3.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/ats.yml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "917f83ef9741061f13e199175bd2288956076bee398d7b19ca6b7cc472c47803",
+      "bytes": 143196,
+      "status": "pinned"
+    },
+    {
+      "id": "ebay.com:sell-recommendation",
+      "provider": "ebay.com",
+      "version": "1.1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/ebay.com/sell-recommendation/1.1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/ebay.com/sell-recommendation/1.1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://developer.ebay.com/api-docs/master/sell/recommendation/openapi/3/sell_recommendation_v1_oas3.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "ecommerce"
+      ],
+      "sha256": "17db4b92473eef3d4bb8ebf1ccc202bf8dda7031657a2bd6008c9ec44a2ce1bc",
+      "bytes": 20468,
+      "status": "pinned"
+    },
+    {
+      "id": "daniweb.com",
+      "provider": "daniweb.com",
+      "version": "4",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/daniweb.com/4/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/daniweb.com/4/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://www.daniweb.com/connect/developers/swagger",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "62ba8e91c4d289b3eee2cbcfb5120f73663e728d9e0e72b82a8e9abdacb3d5e8",
+      "bytes": 212691,
+      "status": "pinned"
+    },
+    {
+      "id": "files.com",
+      "provider": "files.com",
+      "version": "0.0.1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/files.com/0.0.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/files.com/0.0.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://app.files.com/api/rest/v1/swagger_doc.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "186017043b2d8618ab0de469e991deac386dff521e2fb5d86e38e217067e8b8c",
+      "bytes": 1222205,
+      "status": "pinned"
+    },
+    {
+      "id": "stoplight.io",
+      "provider": "stoplight.io",
+      "version": "api-v1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/stoplight.io/api-v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/stoplight.io/api-v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.stoplight.io/v1/versions/wDcMCTKXwn8X4ynL9/export/oas.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "6d765e177876f7620115d8ea09dd8140a44f47e9b1848bc4def0c20fe547e7ed",
+      "bytes": 18812,
+      "status": "pinned"
+    },
+    {
+      "id": "twilio.com:twilio_microvisor_v1",
+      "provider": "twilio.com",
+      "version": "1.42.0",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/twilio.com/twilio_microvisor_v1/1.42.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/twilio.com/twilio_microvisor_v1/1.42.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/twilio/twilio-oai/main/spec/json/twilio_microvisor_v1.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "telecom",
+        "messaging"
+      ],
+      "sha256": "cd7426cf07b212220d0cdff650ff779e78eab6ae49ae54486fda03732dba703c",
+      "bytes": 57632,
+      "status": "pinned"
+    },
+    {
+      "id": "ptv.vic.gov.au",
+      "provider": "ptv.vic.gov.au",
+      "version": "v3",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/ptv.vic.gov.au/v3/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/ptv.vic.gov.au/v3/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "http://timetableapi.ptv.vic.gov.au/swagger/docs/v3",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "transport"
+      ],
+      "sha256": "bce384b4974f83ed4543e970b5a54288b7dd2bcffb0a5fa21dd9d17b757a570d",
+      "bytes": 217274,
+      "status": "pinned"
+    },
+    {
+      "id": "fungenerators.com:uuid",
+      "provider": "fungenerators.com",
+      "version": "1.5",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/fungenerators.com/uuid/1.5/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/fungenerators.com/uuid/1.5/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://fungenerators.com/yaml/uuid.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "text"
+      ],
+      "sha256": "57cf7b6c68c3e155dd7664d97b5739981e65d9de53c68566b698e0ad64e02a54",
+      "bytes": 8259,
+      "status": "pinned"
+    },
+    {
+      "id": "va.gov:confirmation",
+      "provider": "va.gov",
+      "version": "0.0.1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/va.gov/confirmation/0.0.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/va.gov/confirmation/0.0.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.va.gov/services/veteran_confirmation/docs/v0/api",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "779b5b7447c7bbaa2cbdf16a7b845889d08438653cae705ab5994941fb5bd799",
+      "bytes": 9759,
+      "status": "pinned"
+    },
+    {
+      "id": "googleapis.com:dialogflow",
+      "provider": "googleapis.com",
+      "version": "v3beta1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/googleapis.com/dialogflow/v3beta1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/googleapis.com/dialogflow/v3beta1/openapi.yaml",
+      "origins": [
+        {
+          "format": "google",
+          "url": "https://dialogflow.googleapis.com/$discovery/rest?version=v3beta1",
+          "version": "v1"
+        }
+      ],
+      "categories": [
+        "analytics",
+        "media"
+      ],
+      "sha256": "1c0f17114756180871dcf974e7db09bc7a17e375851f10318cab53727762ebc6",
+      "bytes": 655049,
+      "status": "pinned"
+    },
+    {
+      "id": "appwrite.io:client",
+      "provider": "appwrite.io",
+      "version": "0.9.3",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/appwrite.io/client/0.9.3/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/appwrite.io/client/0.9.3/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://appwrite.io/specs/open-api3?platform=client",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "e8aae9c22146a9ca800c6caa4c02ebc538dbc6bb7907cf74a1e8fa5f067a585c",
+      "bytes": 183121,
+      "status": "pinned"
+    },
+    {
+      "id": "vtex.local:Subscriptions-API-(v3)",
+      "provider": "vtex.local",
+      "version": "1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/vtex.local/Subscriptions-API-(v3)/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/vtex.local/Subscriptions-API-(v3)/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/vtex/openapi-schemas/master/VTEX - Subscriptions API (v3).json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "bcaea66cab98e5cff665b85e6b32db90794703755343b4def1165699925c6adc",
+      "bytes": 101404,
+      "status": "pinned"
+    },
+    {
+      "id": "nytimes.com:movie_reviews",
+      "provider": "nytimes.com",
+      "version": "2.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/nytimes.com/movie_reviews/2.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/nytimes.com/movie_reviews/2.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/nytimes/public_api_specs/master/movie_reviews/movie_reviews_v2.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "media",
+        "open_data"
+      ],
+      "sha256": "45a62156b14d24af7ea1fc9c79536f5a16c1ad43d6448ebb59005c0c9c3ca0c5",
+      "bytes": 11799,
+      "status": "pinned"
+    },
+    {
+      "id": "seldon.local:wrapper",
+      "provider": "seldon.local",
+      "version": "0.1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/seldon.local/wrapper/0.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/seldon.local/wrapper/0.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/SeldonIO/seldon-core/master/openapi/wrapper.oas3.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "machine_learning"
+      ],
+      "sha256": "5171504e12b3d79827652111c215eef478e6b6e1bddcb26a49f090b86915649b",
+      "bytes": 25736,
+      "status": "pinned"
+    },
+    {
+      "id": "sportsdata.io:mlb-v3-projections",
+      "provider": "sportsdata.io",
+      "version": "1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/sportsdata.io/mlb-v3-projections/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/sportsdata.io/mlb-v3-projections/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "swagger",
+          "url": "https://fantasydata.com/downloads/swagger/mlb-v3-projections.json",
+          "version": "2.0"
+        }
+      ],
+      "categories": [
+        "entertainment"
+      ],
+      "sha256": "6dd3a4b172975f88f8625cb4fc1e8a995dd980bf213f17408c258094fec22dbd",
+      "bytes": 58835,
+      "status": "pinned"
+    },
+    {
+      "id": "enode.io",
+      "provider": "enode.io",
+      "version": "1.3.10",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/enode.io/1.3.10/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/enode.io/1.3.10/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://docs.enode.io/OpenAPI-Enode-v1.3.10.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "location"
+      ],
+      "sha256": "b7e513e2be60e55178d56fd35b76f82ebda6eea1c4188bc1aada07cd5135883e",
+      "bytes": 73409,
+      "status": "pinned"
+    },
+    {
+      "id": "hubapi.com:webhooks",
+      "provider": "hubapi.com",
+      "version": "v3",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/hubapi.com/webhooks/v3/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/hubapi.com/webhooks/v3/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.hubspot.com/api-catalog-public/v1/apis/webhooks/v3",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "customer_relation"
+      ],
+      "sha256": "8d0edb781b13555293cad83ee53cf62055a791595fc7b6166b22f364bfea4d01",
+      "bytes": 30798,
+      "status": "pinned"
+    },
+    {
+      "id": "ip2location.io",
+      "provider": "ip2location.io",
+      "version": "1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/ip2location.io/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/ip2location.io/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.swaggerhub.com/apis/ip2location/ip2location-io-ip-geolocation-api/1.0",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "decf9cd2a0c70f4a5f2ed6ac5bff0f2caf0aa40d1f3b3e91bfa5a10560f88edb",
+      "bytes": 5148,
+      "status": "pinned"
+    },
+    {
+      "id": "openchannel.io:market",
+      "provider": "openchannel.io",
+      "version": "2.0.24",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/openchannel.io/market/2.0.24/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/openchannel.io/market/2.0.24/openapi.yaml",
+      "origins": [
+        {
+          "format": "swagger",
+          "url": "https://api.swaggerhub.com/apis/OpenChannel/Market-API/2.0.24",
+          "version": "2.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "1b59eb9a15a4671f49da2c011d92e0d40a62c41c4530586233aababa10e0ed36",
+      "bytes": 182563,
+      "status": "pinned"
+    },
+    {
+      "id": "github.com:ghes-3.5",
+      "provider": "github.com",
+      "version": "1.1.4",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/github.com/ghes-3.5/1.1.4/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/github.com/ghes-3.5/1.1.4/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/ghes-3.5/ghes-3.5.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "collaboration",
+        "developer_tools"
+      ],
+      "sha256": "f048e49bbf2851523b57ff95f307e8d0df836a00d6043fe39a6186ed1eff3649",
+      "bytes": 4013943,
+      "status": "pinned"
+    },
+    {
+      "id": "google.home",
+      "provider": "google.home",
+      "version": "2.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/google.home/2.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/google.home/2.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/rithvikvibhu/GHLocalApi/master/GoogleHome.openapi3.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "02597ec6cf1824f53a6147452fdad61e386217fbcee9ec604509dfd37461fb62",
+      "bytes": 184953,
+      "status": "pinned"
+    },
+    {
+      "id": "circuitsandbox.net",
+      "provider": "circuitsandbox.net",
+      "version": "2.9.235",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/circuitsandbox.net/2.9.235/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/circuitsandbox.net/2.9.235/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://circuitsandbox.net/rest/v2/swagger",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "messaging"
+      ],
+      "sha256": "7ee1f03a9aea5f00630891e87df8669c7bedfe718377d223efe022f946b526a0",
+      "bytes": 339458,
+      "status": "pinned"
+    },
+    {
+      "id": "ote-godaddy.com:countries",
+      "provider": "ote-godaddy.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/ote-godaddy.com/countries/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/ote-godaddy.com/countries/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "swagger",
+          "url": "https://developer.godaddy.com/swagger/swagger_countries.json",
+          "version": "2.0"
+        }
+      ],
+      "categories": [
+        "hosting"
+      ],
+      "sha256": "d3d4a426991eeb0527fea3a1140b73ed79d17875f9d12fca68c97986b38ec977",
+      "bytes": 12283,
+      "status": "pinned"
+    },
+    {
+      "id": "telnyx.com",
+      "provider": "telnyx.com",
+      "version": "2.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/telnyx.com/2.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/telnyx.com/2.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/team-telnyx/openapi/master/openapi/spec3.yml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "telecom"
+      ],
+      "sha256": "6def51a3e68326861eef2054f9df2f568ff961e813adcc0409f7afc33d0f01d4",
+      "bytes": 1534861,
+      "status": "pinned"
+    },
+    {
+      "id": "box.com",
+      "provider": "box.com",
+      "version": "2.0.0",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/box.com/2.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/box.com/2.0.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "openapi",
+          "url": "https://opensource.box.com/box-openapi/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "cloud"
+      ],
+      "sha256": "d377227c5cf71625eb9d7567dd096ba2507568712c5e3fb5691b5d13c11e6a58",
+      "bytes": 1452351,
+      "status": "pinned"
+    },
+    {
+      "id": "parliament.uk:treaties",
+      "provider": "parliament.uk",
+      "version": "v1",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/parliament.uk/treaties/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/parliament.uk/treaties/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://treaties-api.parliament.uk/swagger/v1/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "25ebe45eeeb4e27358b95c55af3a2851837fd828d3091637ad32ed1da51bb00d",
+      "bytes": 23437,
+      "status": "pinned"
+    },
+    {
+      "id": "openpolicy.local",
+      "provider": "openpolicy.local",
+      "version": "0.28.0",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/openpolicy.local/0.28.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/openpolicy.local/0.28.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/open-policy-agent/contrib/master/open_api/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "fa631e752f368468c5d6462366984ec942d31adacbfa364a4db4603f0391a7de",
+      "bytes": 58876,
+      "status": "pinned"
+    },
+    {
+      "id": "nexmo.com:numbers",
+      "provider": "nexmo.com",
+      "version": "1.0.20",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/nexmo.com/numbers/1.0.20/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/nexmo.com/numbers/1.0.20/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/nexmo/api-specification/master/definitions/numbers.yml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "943ff9c3602cf2b17b6a7d36158283f658ee066e10be6533e61249cc1a675c68",
+      "bytes": 24734,
+      "status": "pinned"
+    },
+    {
+      "id": "amadeus.com:amadeus-travel-recommendations",
+      "provider": "amadeus.com",
+      "version": "1.0.3",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/amadeus.com/amadeus-travel-recommendations/1.0.3/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/amadeus.com/amadeus-travel-recommendations/1.0.3/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/amadeus4dev/amadeus-open-api-specification/main/spec/json/TravelRecommendations_v1_swagger_specification.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "3d55e394188137707e8c2c611a512dc855ca9b471cf2e6b0abcfa18b2d608277",
+      "bytes": 17312,
+      "status": "pinned"
+    },
+    {
+      "id": "microsoft.com:cognitiveservices-Ocr",
+      "provider": "microsoft.com",
+      "version": "2.1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-Ocr/2.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-Ocr/2.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/ComputerVision/stable/v2.1/Ocr.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools",
+        "cloud"
+      ],
+      "sha256": "dd44adb5be1018b7baabe60e6a4d549471904ae4a6287062e96b77e064a1283a",
+      "bytes": 34199,
+      "status": "pinned"
+    },
+    {
+      "id": "keyserv.solutions",
+      "provider": "keyserv.solutions",
+      "version": "1.4.5",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/keyserv.solutions/1.4.5/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/keyserv.solutions/1.4.5/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://keyserv.solutions/v1/spec.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "iot"
+      ],
+      "sha256": "da5638d3e6d2660881be3cb2ad92e34d9abe0f2529b8fcb43f74e9eb1fe51378",
+      "bytes": 29521,
+      "status": "pinned"
+    },
+    {
+      "id": "gambitcomm.local:mimic",
+      "provider": "gambitcomm.local",
+      "version": "21.00",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/gambitcomm.local/mimic/21.00/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/gambitcomm.local/mimic/21.00/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://www.gambitcomm.com/docs/mimic.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "iot"
+      ],
+      "sha256": "1aeac6b89392645c6cbe39a417dfb8c192842e880e32907b2aa705524c7a3fc4",
+      "bytes": 450965,
+      "status": "pinned"
+    },
+    {
+      "id": "atlassian.com:jira",
+      "provider": "atlassian.com",
+      "version": "1001.0.0-SNAPSHOT",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/atlassian.com/jira/1001.0.0-SNAPSHOT/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/atlassian.com/jira/1001.0.0-SNAPSHOT/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://developer.atlassian.com/cloud/jira/platform/swagger-v3.v3.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "866a6ae6a8d5b292a7b2477f6e1fa95bffbf133c4f848b28dac8989a0c6e309a",
+      "bytes": 2570764,
+      "status": "pinned"
+    },
+    {
+      "id": "tisane.ai",
+      "provider": "tisane.ai",
+      "version": "1.0.0",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/tisane.ai/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/tisane.ai/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "openapi",
+          "url": "https://www.postman.com/collections/15057172-1e147114-3936-4a52-a21e-681e72b90b53-TzeUnUQU",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "text"
+      ],
+      "sha256": "e2ca9b8e2f2475112253cc99339dae5769d0e532ff987482ef6e628fcb1f6c76",
+      "bytes": 84214,
+      "status": "pinned"
+    },
+    {
+      "id": "cloudrf.com",
+      "provider": "cloudrf.com",
+      "version": "2.0.0",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/cloudrf.com/2.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/cloudrf.com/2.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.cloudrf.com/swagger-ui/Cloud-RF_API2.0.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "telecom",
+        "location"
+      ],
+      "sha256": "3ab288da4439820f20e66529b5d626546c764bbd22ec78b2f8077c0f9d0b63f3",
+      "bytes": 31127,
+      "status": "pinned"
+    },
+    {
+      "id": "papinet.io:order_status",
+      "provider": "papinet.io",
+      "version": "1.0.0",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/papinet.io/order_status/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/papinet.io/order_status/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/papinet/papiNet-API/master/1.0.0/papiNet-API.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "ecommerce"
+      ],
+      "sha256": "b1f9b696c7c1b601d23727553b83a1b04885468c127d2ebf460977cec1be8944",
+      "bytes": 8647,
+      "status": "pinned"
+    },
+    {
+      "id": "mailboxvalidator.com:disposable",
+      "provider": "mailboxvalidator.com",
+      "version": "1.0.0",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/mailboxvalidator.com/disposable/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/mailboxvalidator.com/disposable/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "openapi",
+          "url": "https://api.swaggerhub.com/apis/mailboxvalidator/MailboxValidator-Disposable-Email-Checker/1.0.0",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "email"
+      ],
+      "sha256": "00c1613f9035080da5da4d2364e04a430e6140fd6989bda188bd1febebf3b15f",
+      "bytes": 2964,
+      "status": "pinned"
+    },
+    {
+      "id": "mist.com",
+      "provider": "mist.com",
+      "version": "0.36.1",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/mist.com/0.36.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/mist.com/0.36.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/tmunzer/mist_openapi/main/mist.openapi.yml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "enterprise"
+      ],
+      "sha256": "3400d5c7b18d0e36d728b1c57a0329e212222a6a808e9b327e8e37f731975210",
+      "bytes": 3387250,
+      "status": "pinned"
+    },
+    {
+      "id": "walletobjects.googleapis.com:pay-passes",
+      "provider": "walletobjects.googleapis.com",
+      "version": "v1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/walletobjects.googleapis.com/pay-passes/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/walletobjects.googleapis.com/pay-passes/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "google",
+          "url": "https://walletobjects.googleapis.com/$discovery/rest?version=v1",
+          "version": "v1"
+        }
+      ],
+      "categories": [],
+      "sha256": "8b20b6dbfee5b2e5f7525a8f0a30f456a874bcfa36b7fdacd8428433463d8eb7",
+      "bytes": 450278,
+      "status": "pinned"
+    },
+    {
+      "id": "hackathonwatch.com",
+      "provider": "hackathonwatch.com",
+      "version": "0.1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/hackathonwatch.com/0.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/hackathonwatch.com/0.1/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/lucybot/api-spec-converter",
+            "version": "2.7.31"
+          },
+          "format": "swagger",
+          "url": "http://www.hackathonwatch.com/api/swagger_doc",
+          "version": "1.2"
+        }
+      ],
+      "categories": [
+        "social"
+      ],
+      "sha256": "b88950407b9be2e7fc559e706c34e9c25e2085999899158344cc9f134f903891",
+      "bytes": 3302,
+      "status": "pinned"
+    },
+    {
+      "id": "surevoip.co.uk",
+      "provider": "surevoip.co.uk",
+      "version": "9dcb0dc8",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/surevoip.co.uk/9dcb0dc8/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/surevoip.co.uk/9dcb0dc8/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/SureVoIP/API-Specification/master/openapi/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "telecom"
+      ],
+      "sha256": "b1a58166963e26b36924e5438f3c9bf69ea9c3b3d81e21bd58babb2d2c64baf1",
+      "bytes": 33676,
+      "status": "pinned"
+    },
+    {
+      "id": "shorten.rest",
+      "provider": "shorten.rest",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/shorten.rest/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/shorten.rest/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://docs.shorten.rest/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "7fdf7f00fa48e0461daf0a259d75150567513aed2806fac95ad5d510569442fb",
+      "bytes": 24020,
+      "status": "pinned"
+    },
+    {
+      "id": "portfoliooptimizer.io",
+      "provider": "portfoliooptimizer.io",
+      "version": "1.0.9",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/portfoliooptimizer.io/1.0.9/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/portfoliooptimizer.io/1.0.9/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://docs.portfoliooptimizer.io/openapi/portfoliooptimizer.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "01a45aac0be5d97c8d562a4d95f8b04b845ee8ff6308f08fd5262a4c4c536af0",
+      "bytes": 541716,
+      "status": "pinned"
+    },
+    {
+      "id": "gsmtasks.com",
+      "provider": "gsmtasks.com",
+      "version": "2.4.13",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/gsmtasks.com/2.4.13/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/gsmtasks.com/2.4.13/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/oeklo/gsmtasks-schema/v2.4.13/GSMTasks.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "ac289a63d2231d332285d7e16a6ccdf6ce0d7294b280095d8dfd51736eec25c6",
+      "bytes": 1889269,
+      "status": "pinned"
+    },
+    {
+      "id": "openbankingproject.ch",
+      "provider": "openbankingproject.ch",
+      "version": "1.3.8_2020-12-14 - Swiss edition 1.3.8.1-CH",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/openbankingproject.ch/1.3.8_2020-12-14 - Swiss edition 1.3.8.1-CH/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/openbankingproject.ch/1.3.8_2020-12-14 - Swiss edition 1.3.8.1-CH/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/openbankingproject-ch/obp-apis/master/swiss-ng-api.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "bd435a477b4921cd99a1ea319baa828339cb03b8b108568af895104164005bba",
+      "bytes": 568333,
+      "status": "pinned"
+    },
+    {
+      "id": "deutschebahn.com:reisezentren",
+      "provider": "deutschebahn.com",
+      "version": "v1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/deutschebahn.com/reisezentren/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/deutschebahn.com/reisezentren/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://developer.deutschebahn.com/store/api-docs/DBOpenData/Reisezentren/v1",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "transport",
+        "open_data"
+      ],
+      "sha256": "28d5f7c5d915659cea58e3c46f431b1afa974780d1319857a919bd10548bea2f",
+      "bytes": 8854,
+      "status": "pinned"
+    },
+    {
+      "id": "gov.bc.ca:open511",
+      "provider": "gov.bc.ca",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/gov.bc.ca/open511/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/gov.bc.ca/open511/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/bcgov/api-specs/master/open511/open511_OAS3.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "b6a046e51799181cc1d1c6a18a594d1517ee4f64b2acbbd254c4710b5abfe021",
+      "bytes": 9932,
+      "status": "pinned"
+    },
+    {
+      "id": "izettle.com:products",
+      "provider": "izettle.com",
+      "version": "1.0.0",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/izettle.com/products/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/izettle.com/products/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://products.izettle.com/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "ecommerce"
+      ],
+      "sha256": "21952dc4b4cf72dc135aabd6860880508543fef1fbad855260c81e5fc8dfd072",
+      "bytes": 75137,
+      "status": "pinned"
+    },
+    {
+      "id": "amentum.space:atmosphere",
+      "provider": "amentum.space",
+      "version": "1.1.1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/amentum.space/atmosphere/1.1.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/amentum.space/atmosphere/1.1.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://atmosphere.amentum.space/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "location"
+      ],
+      "sha256": "e056ad4a39a3248a199e908defc3af214d3ce8f8a910654ebfc29179a475af83",
+      "bytes": 29760,
+      "status": "pinned"
+    },
+    {
+      "id": "interzoid.com:getglobaltime",
+      "provider": "interzoid.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/interzoid.com/getglobaltime/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/interzoid.com/getglobaltime/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://oas.interzoid.com/api/getglobaltime.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "5a35b9444a7c5b8527a0d8d6c0eeac46992dab766ddc0afe5588bf892c90a31b",
+      "bytes": 4590,
+      "status": "pinned"
+    },
+    {
+      "id": "lgtm.com",
+      "provider": "lgtm.com",
+      "version": "v1.0",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/lgtm.com/v1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/lgtm.com/v1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://lgtm.com/api/v1.0/openapi",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "69a1c8a4de6c09fa1fa8ec54b55b0b43904c29b0d51d2f44a4246a2474af9ad0",
+      "bytes": 119083,
+      "status": "pinned"
+    },
+    {
+      "id": "apache.org:airflow",
+      "provider": "apache.org",
+      "version": "2.5.1",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/apache.org/airflow/2.5.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/apache.org/airflow/2.5.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://airflow.apache.org/docs/apache-airflow/stable/_specs/v1.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "messaging"
+      ],
+      "sha256": "d64b718d898f5f0d3da615e61a9491e31f603dff4dbd64ba6365b472026b1b87",
+      "bytes": 192450,
+      "status": "pinned"
+    },
+    {
+      "id": "openai.com",
+      "provider": "openai.com",
+      "version": "1.2.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/openai.com/1.2.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/openai.com/1.2.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "machine_learning"
+      ],
+      "sha256": "8ab0b2055010705b1c6f8462e742b325afaef3617503d35f6b2a67dac241517f",
+      "bytes": 145331,
+      "status": "pinned"
+    },
+    {
+      "id": "lambdatest.com",
+      "provider": "lambdatest.com",
+      "version": "1.0.1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/lambdatest.com/1.0.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/lambdatest.com/1.0.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://screenshot-public-api.s3.amazonaws.com/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "be21e207a1af80728a5de31a49cbe8200dd64b591f9d5a5dfe03e8c0bc4b4a0a",
+      "bytes": 33415,
+      "status": "pinned"
+    },
+    {
+      "id": "pandascore.co",
+      "provider": "pandascore.co",
+      "version": "2.23.1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/pandascore.co/2.23.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/pandascore.co/2.23.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "blob:https://developers.pandascore.co/blobId",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "entertainment"
+      ],
+      "sha256": "d8fd0a99b69306865eb66df122c489f7758f7e9a2ff3b70ee8da6b3548aa6f34",
+      "bytes": 1327738,
+      "status": "pinned"
+    },
+    {
+      "id": "docker.com:dvp",
+      "provider": "docker.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/docker.com/dvp/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/docker.com/dvp/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/docker/docs/main/docker-hub/api/dvp.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools",
+        "developer_tools"
+      ],
+      "sha256": "f9c8e880a47f974cc51a39c5128c94f061c356d36a7a850c9dc46b8116fa9a42",
+      "bytes": 22026,
+      "status": "pinned"
+    },
+    {
+      "id": "linqr.app",
+      "provider": "linqr.app",
+      "version": "2.0",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/linqr.app/2.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/linqr.app/2.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://linqr.app/openapi/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "c661ca2530a65bcbfbb2d0227112c1f6fdfbb2ce48de35df4dc3134048eb2ff7",
+      "bytes": 584525,
+      "status": "pinned"
+    },
+    {
+      "id": "getpostman.com",
+      "provider": "getpostman.com",
+      "version": "1.20.0",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/getpostman.com/1.20.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/getpostman.com/1.20.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://gist.githubusercontent.com/MikeRalphson/f5dd7e7e712a4f2caa8f1783f1053dbc/raw/05fb7ae8b877b37d93413a0b8183bf60c2e1bdfe/postman-api.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "46310b1a5744441e2c28a718178d2f9fc127270a53c4ee011202be2e5eb1ca3e",
+      "bytes": 286368,
+      "status": "pinned"
+    },
+    {
+      "id": "nowpayments.io",
+      "provider": "nowpayments.io",
+      "version": "1.0.0",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/nowpayments.io/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/nowpayments.io/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "postman",
+          "url": "https://www.postman.com/collections/7907941-9f217404-4263-42ad-b6b1-03a3d95b7d22-S1a32n38",
+          "version": "2.x"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "85581a63711cd56fc67fcfab7af68c459ab8d084777ae96bfa08d31f7aec5a15",
+      "bytes": 113057,
+      "status": "pinned"
+    },
+    {
+      "id": "datasette.local",
+      "provider": "datasette.local",
+      "version": "v1",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/datasette.local/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/datasette.local/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://datasette.io/-/chatgpt-openapi-schema.yml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "256ed0eda6ca3e68a36d1277a31ef8eb977cfe902c81b4897dbc9881275b2606",
+      "bytes": 2102,
+      "status": "pinned"
+    },
+    {
+      "id": "opensuse.org:obs",
+      "provider": "opensuse.org",
+      "version": "2.10.50",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/opensuse.org/obs/2.10.50/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/opensuse.org/obs/2.10.50/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://build.opensuse.org/apidocs-new/OBS-v2.10.50.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "85ad1dde31a66bf4f79dfe91b44608ba6dba6a2289a7d9e0040ab9abff4c7e90",
+      "bytes": 288264,
+      "status": "pinned"
+    },
+    {
+      "id": "codesearch.debian.net",
+      "provider": "codesearch.debian.net",
+      "version": "1.4.0",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/codesearch.debian.net/1.4.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/codesearch.debian.net/1.4.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://codesearch.debian.net/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "8aeb2656ecc787e2d51664f4a1068b2d9a6c56e820071485fd875e7cf0d45740",
+      "bytes": 9434,
+      "status": "pinned"
+    },
+    {
+      "id": "ibanapi.com",
+      "provider": "ibanapi.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/ibanapi.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/ibanapi.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.ibanapi.com/docs/api-docs.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "38013c417dd6802ccbd9e32c7145f5f7a5ff84a286a30a0b8b200aee05a6925d",
+      "bytes": 11635,
+      "status": "pinned"
+    },
+    {
+      "id": "thebluealliance.com",
+      "provider": "thebluealliance.com",
+      "version": "3.8.2",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/thebluealliance.com/3.8.2/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/thebluealliance.com/3.8.2/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://www.thebluealliance.com/swagger/api_v3.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "74566c1cbd7462555112c1d2f1d4e1037f729365e8e9410d7d2dfa1d6d7e3caa",
+      "bytes": 233583,
+      "status": "pinned"
+    },
+    {
+      "id": "neowsapp.com",
+      "provider": "neowsapp.com",
+      "version": "1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/neowsapp.com/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/neowsapp.com/1.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/lucybot/api-spec-converter",
+            "version": "2.7.31"
+          },
+          "format": "swagger",
+          "url": "http://www.neowsapp.com/api-docs",
+          "version": "1.2"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "a91598b64d5816c5bf1f369d72779e89d18ddb6eabf0102e06f9a08a79706146",
+      "bytes": 22363,
+      "status": "pinned"
+    },
+    {
+      "id": "highwaysengland.co.uk",
+      "provider": "highwaysengland.co.uk",
+      "version": "v1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/highwaysengland.co.uk/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/highwaysengland.co.uk/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "http://webtris.highwaysengland.co.uk/api/swagger/docs/v1",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "c5e67bf25c2bda2111a3e74d31b1dda9b0a71ad887de8f611c1059505841d589",
+      "bytes": 21137,
+      "status": "pinned"
+    },
+    {
+      "id": "cpy.re:peertube",
+      "provider": "cpy.re",
+      "version": "5.1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/cpy.re/peertube/5.1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/cpy.re/peertube/5.1.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/Chocobozzz/PeerTube/develop/support/doc/api/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "social"
+      ],
+      "sha256": "ee5e30870db6f65f162d210b87946a8ef4fbb5d881eb2c6aa01006afca4196f4",
+      "bytes": 374605,
+      "status": "pinned"
+    },
+    {
+      "id": "nordigen.com",
+      "provider": "nordigen.com",
+      "version": "2.0 (v2)",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/nordigen.com/2.0 (v2)/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/nordigen.com/2.0 (v2)/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://ob.nordigen.com/api/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "b8d83e01bc39641e43d064d9ddf6e95c081296e710cba90cb35bca68f7f935d2",
+      "bytes": 202167,
+      "status": "pinned"
+    },
+    {
+      "id": "visualstudio.com",
+      "provider": "visualstudio.com",
+      "version": "v1",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/visualstudio.com/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/visualstudio.com/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://online.visualstudio.com/api/v1/swagger",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools",
+        "collaboration"
+      ],
+      "sha256": "8c1cb1da326ddbe7027b306b25c73ee819b7b8d7ec632b05aad6e7a085c27664",
+      "bytes": 387330,
+      "status": "pinned"
+    },
+    {
+      "id": "fulfillment.com",
+      "provider": "fulfillment.com",
+      "version": "2.0",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/fulfillment.com/2.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/fulfillment.com/2.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "openapi",
+          "url": "https://fulfillment.github.io/api/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "ecommerce"
+      ],
+      "sha256": "cb5e209f7d9a5d90e441eaf391ffe50a81f4aa038fe1edc8aad24447c830154d",
+      "bytes": 107565,
+      "status": "pinned"
+    },
+    {
+      "id": "rev.ai",
+      "provider": "rev.ai",
+      "version": "v1",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/rev.ai/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/rev.ai/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "http://api.rev.ai/openapi/v1/documentation.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "text"
+      ],
+      "sha256": "2b8675b1c4fc28a6909922057d5ffbb25fd8a729329b8e2a9a9e5daa2a04c63b",
+      "bytes": 89292,
+      "status": "pinned"
+    },
+    {
+      "id": "logoraisr.com",
+      "provider": "logoraisr.com",
+      "version": "v1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/logoraisr.com/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/logoraisr.com/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://docs.logoraisr.com/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "media"
+      ],
+      "sha256": "25ee15ec52ccb519d68acd30da6259732c32dd51003b8b043dcaa29e599558fa",
+      "bytes": 38049,
+      "status": "pinned"
+    },
+    {
+      "id": "flickr.com",
+      "provider": "flickr.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/flickr.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/flickr.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/flickr/flickr-api-swagger/master/dist/schema.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "media"
+      ],
+      "sha256": "fbf246213c69bb23af513e15f4df75545a2fcefad6227c86b39466c61d9631f0",
+      "bytes": 81226,
+      "status": "pinned"
+    },
+    {
+      "id": "geodesystems.com",
+      "provider": "geodesystems.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/geodesystems.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/geodesystems.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/lucybot/api-spec-converter",
+            "version": "2.7.31"
+          },
+          "format": "swagger",
+          "url": "https://geodesystems.com/repository/swagger/api-docs",
+          "version": "1.2"
+        }
+      ],
+      "categories": [],
+      "sha256": "a247e41403c18838cdba824bb64978a17db6576d2fb9f0c8738a0221fa4fcf04",
+      "bytes": 1329482,
+      "status": "pinned"
+    },
+    {
+      "id": "spotify.com:sonallux",
+      "provider": "spotify.com",
+      "version": "2023.2.27",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/spotify.com/sonallux/2023.2.27/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/spotify.com/sonallux/2023.2.27/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/sonallux/spotify-web-api/main/fixed-spotify-open-api.yml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "media"
+      ],
+      "sha256": "d71eff045735eb3304322d03d0632d2742addcd05cd676b7d61d718c2664b244",
+      "bytes": 354112,
+      "status": "pinned"
+    },
+    {
+      "id": "meilisearch.com",
+      "provider": "meilisearch.com",
+      "version": "1.0.0",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/meilisearch.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/meilisearch.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "postman",
+          "url": "https://raw.githubusercontent.com/meilisearch/documentation/master/.vuepress/public/postman/meilisearch-collection.json",
+          "version": "2.x"
+        }
+      ],
+      "categories": [],
+      "sha256": "2ed7c497c0fce8ea87b8ae6788cbba5b6ae8f75af4494348f59aa582de886aa2",
+      "bytes": 55263,
+      "status": "pinned"
+    },
+    {
+      "id": "getthedata.com:bng2latlong",
+      "provider": "getthedata.com",
+      "version": "1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/getthedata.com/bng2latlong/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/getthedata.com/bng2latlong/1.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "openapi",
+          "url": "https://www.getthedata.com/bng2latlong/openapi",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "location"
+      ],
+      "sha256": "caf300a96b3c992dbcabec39a54e9dc48c0feb3bdab470a5cddfbcc65a994d9a",
+      "bytes": 3904,
+      "status": "pinned"
+    },
+    {
+      "id": "icons8.com",
+      "provider": "icons8.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/icons8.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/icons8.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "apiBlueprint",
+          "url": "https://raw.githubusercontent.com/icons8/api-docs/master/apiary.apib",
+          "version": "1A"
+        }
+      ],
+      "categories": [
+        "media"
+      ],
+      "sha256": "b836aa3c48570b3c5025af982657d454a7842533290a9972ecb4d0c4c5625a78",
+      "bytes": 63914,
+      "status": "pinned"
+    },
+    {
+      "id": "nfusionsolutions.biz",
+      "provider": "nfusionsolutions.biz",
+      "version": "1",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/nfusionsolutions.biz/1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/nfusionsolutions.biz/1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.nfusionsolutions.biz/swagger/1/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "84d376a5873db147e1d2007ccdd8fbd6bb1a9f877db75d24f12443bc1217839f",
+      "bytes": 48357,
+      "status": "pinned"
+    },
+    {
+      "id": "api2pdf.com",
+      "provider": "api2pdf.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/api2pdf.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/api2pdf.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/lucybot/api-spec-converter",
+            "version": "2.7.18"
+          },
+          "format": "openapi",
+          "url": "https://app.swaggerhub.com/apiproxy/schema/file/api2pdf/api2pdf/1.0.0/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "017ad88f15603c158ad7b89dbe7547aa697bf0266cdeed854be484be1d30da42",
+      "bytes": 26043,
+      "status": "pinned"
+    },
+    {
+      "id": "pressassociation.io",
+      "provider": "pressassociation.io",
+      "version": "2.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/pressassociation.io/2.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/pressassociation.io/2.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/PressAssociation/tv-api-v2-development-kit/master/swagger.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "media"
+      ],
+      "sha256": "de9bf65a05e03c0b7548aa9988313f63bb4b488f5d40df96223939cef144bb1d",
+      "bytes": 80850,
+      "status": "pinned"
+    },
+    {
+      "id": "windows.net:graphrbac",
+      "provider": "windows.net",
+      "version": "1.6",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/windows.net/graphrbac/1.6/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/windows.net/graphrbac/1.6/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/graphrbac/data-plane/Microsoft.GraphRbac/stable/1.6/graphrbac.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "cloud"
+      ],
+      "sha256": "742c23c7aeb6988c8771e089a699cfc618894abb8b0e591958a2ec14a13c3442",
+      "bytes": 177712,
+      "status": "pinned"
+    },
+    {
+      "id": "clever-cloud.com",
+      "provider": "clever-cloud.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/clever-cloud.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/clever-cloud.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://www.clever-cloud.com/doc/api/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "cloud"
+      ],
+      "sha256": "7b4c4de4ce693e739fd8a28185a6236d9d1637bd28ea50f94c6e373726d56211",
+      "bytes": 288164,
+      "status": "pinned"
+    },
+    {
+      "id": "motaword.com",
+      "provider": "motaword.com",
+      "version": "1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/motaword.com/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/motaword.com/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.motaword.com/swagger",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "text"
+      ],
+      "sha256": "85afa6258284a8618d31149c43d5bc676df01d4a1789f7d00a617e2732af490a",
+      "bytes": 466627,
+      "status": "pinned"
+    },
+    {
+      "id": "asana.com",
+      "provider": "asana.com",
+      "version": "1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/asana.com/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/asana.com/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/Asana/developer-docs/master/defs/asana_oas.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "40c1c94d476c897f707c2974a3aeedee1d0b8a6eab8b7654819c0effa0f8ffa6",
+      "bytes": 604802,
+      "status": "pinned"
+    },
+    {
+      "id": "britbox.co.uk",
+      "provider": "britbox.co.uk",
+      "version": "3.730.300-ref-1-39-0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/britbox.co.uk/3.730.300-ref-1-39-0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/britbox.co.uk/3.730.300-ref-1-39-0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://isl.britbox.co.uk/api/spec",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "entertainment"
+      ],
+      "sha256": "b9f4162f026c7fefbd1e69854306e3bf19fee4a3ec004fb784d1e6c4e83c3040",
+      "bytes": 537470,
+      "status": "pinned"
+    },
+    {
+      "id": "ip2whois.com",
+      "provider": "ip2whois.com",
+      "version": "1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/ip2whois.com/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/ip2whois.com/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.swaggerhub.com/apis/ip2whois/ip2whois-domain-lookup/1.0",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "3aa4cd454518be52689090cc5089f26cf2478b9ca27e4b8b7433483c4073d9d8",
+      "bytes": 3447,
+      "status": "pinned"
+    },
+    {
+      "id": "intellifi.nl",
+      "provider": "intellifi.nl",
+      "version": "2.23.2+0.gfbc3926.dirty",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/intellifi.nl/2.23.2+0.gfbc3926.dirty/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/intellifi.nl/2.23.2+0.gfbc3926.dirty/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://intellifi-nl.github.io/brain-rest-api-spec/openapi.yml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "iot"
+      ],
+      "sha256": "0e000dac5305e4961ccb58e1ecacb22138154d3fa4a4a07a6522ff854cf81fe4",
+      "bytes": 165024,
+      "status": "pinned"
+    },
+    {
+      "id": "flat.io",
+      "provider": "flat.io",
+      "version": "2.13.0",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/flat.io/2.13.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/flat.io/2.13.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/FlatIO/api-reference/master/spec/swagger.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "media",
+        "collaboration"
+      ],
+      "sha256": "6fce1e81caac6f005261caae82c590b919c9a2548d1bc78a165ab74fb8b62da7",
+      "bytes": 281536,
+      "status": "pinned"
+    },
+    {
+      "id": "trakt.tv",
+      "provider": "trakt.tv",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/trakt.tv/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/trakt.tv/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "swagger",
+          "url": "https://trakt.docs.apiary.io/api-description-document",
+          "version": "2.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "db6fd46c79539eeaeaaf7ba291a47a30142aa67b0c4e0c98929ec9142f7d69b0",
+      "bytes": 938284,
+      "status": "pinned"
+    },
+    {
+      "id": "wellknown.ai",
+      "provider": "wellknown.ai",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/wellknown.ai/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/wellknown.ai/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://www.wellknown.ai/api/doc",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "19694c7355f94f9407cdb38b286f8044693498a1efb085117e1b092eb4466d07",
+      "bytes": 1454,
+      "status": "pinned"
+    },
+    {
+      "id": "facecheck.id",
+      "provider": "facecheck.id",
+      "version": "v1.02",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/facecheck.id/v1.02/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/facecheck.id/v1.02/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://facecheck.id/Swagger/v1/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "a066fa5ea1082c80d092c7b7caa9f113f20b9c8f2e3ffb9744ba75d727308203",
+      "bytes": 10477,
+      "status": "pinned"
+    },
+    {
+      "id": "rapidapi.com:dynamicdocs",
+      "provider": "rapidapi.com",
+      "version": "1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/rapidapi.com/dynamicdocs/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/rapidapi.com/dynamicdocs/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://advicement.io/open_api_spec/dynamicdocs.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "text",
+        "developer_tools"
+      ],
+      "sha256": "a339ae193ca24d5072f51494d30af651e04449c98644caaccb576b30469e48b0",
+      "bytes": 8419,
+      "status": "pinned"
+    },
+    {
+      "id": "groundhog-day.com",
+      "provider": "groundhog-day.com",
+      "version": "1.2.1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/groundhog-day.com/1.2.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/groundhog-day.com/1.2.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.swaggerhub.com/apis/pcraig3/groundhog-day-api/1.2.1",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "ae79821693f72db2af997f31c90264a75ec896ab14d79fbdda246c1613246938",
+      "bytes": 40207,
+      "status": "pinned"
+    },
+    {
+      "id": "wheretocredit.com",
+      "provider": "wheretocredit.com",
+      "version": "1.0",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/wheretocredit.com/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/wheretocredit.com/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://www.wheretocredit.com/swagger/v1/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "transport"
+      ],
+      "sha256": "fe07e467754aa356a6c6559b219c20ecf94a7d60054553c2695eabc803b81da2",
+      "bytes": 10575,
+      "status": "pinned"
+    },
+    {
+      "id": "ljaero.com:dflight",
+      "provider": "ljaero.com",
+      "version": "V 1.0.0",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/ljaero.com/dflight/V 1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/ljaero.com/dflight/V 1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://dflight-api.ljaero.com/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "11da0a19ca2d080f9c84bce6415a2063603e435e647642145058651dbb95c5eb",
+      "bytes": 707927,
+      "status": "pinned"
+    },
+    {
+      "id": "clickmeter.com",
+      "provider": "clickmeter.com",
+      "version": "v2",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/clickmeter.com/v2/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/clickmeter.com/v2/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "http://api.v2.clickmeter.com.s3.amazonaws.com/docs/api-docs-v2.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "marketing"
+      ],
+      "sha256": "52b9b006edb9f67a3fb8dfdf7086808c8f1ae3cde08952b0b4d10b2decef07c1",
+      "bytes": 297582,
+      "status": "pinned"
+    },
+    {
+      "id": "iptwist.com",
+      "provider": "iptwist.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/iptwist.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/iptwist.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "openapi",
+          "url": "https://iptwist.com/schema",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "a8c3c72d06d9dd7a9b692501a799e0e8f29bc35f4d75f820b1d54437d8b5e683",
+      "bytes": 3059,
+      "status": "pinned"
+    },
+    {
+      "id": "optimade.local",
+      "provider": "optimade.local",
+      "version": "1.1.0~develop",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/optimade.local/1.1.0~develop/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/optimade.local/1.1.0~develop/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/Materials-Consortia/OPTIMADE/master/schemas/openapi_schema.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "6fa8a055c11759dc3c1e0b1d98b4ea01627f3460c1c16d4fb2d1da29b8095eed",
+      "bytes": 209824,
+      "status": "pinned"
+    },
+    {
+      "id": "digitalocean.com",
+      "provider": "digitalocean.com",
+      "version": "2.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/digitalocean.com/2.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/digitalocean.com/2.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/digitalocean/openapi/main/specification/DigitalOcean-public.v2.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "hosting"
+      ],
+      "sha256": "21c7fd1ddfb7476410fe75934acb74be59e0747b27361a0e67da7f396ef861c5",
+      "bytes": 1908923,
+      "status": "pinned"
+    },
+    {
+      "id": "trapstreet.com",
+      "provider": "trapstreet.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/trapstreet.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/trapstreet.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://gist.githubusercontent.com/MikeRalphson/e455f437f87a149ae0501d8cefe2ecab/raw/8f3608b72b0ab6eb6b0cea1c54ff9d84df7de05d/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "location"
+      ],
+      "sha256": "f6ba7acd9d20f7833e4c5aee80e73398e2ad010cec84b1b9ad01c425f62b0abb",
+      "bytes": 1556,
+      "status": "pinned"
+    },
+    {
+      "id": "edrv.io",
+      "provider": "edrv.io",
+      "version": "v1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/edrv.io/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/edrv.io/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://developers.edrv.io/openapi/5f15c43c87b0d6001ea97414",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data",
+        "transport",
+        "location"
+      ],
+      "sha256": "6f52402c1c941fc22da7c3377a19d2e40c69aa99f4f6012ece5eac5528bb98fe",
+      "bytes": 97439,
+      "status": "pinned"
+    },
+    {
+      "id": "exlibrisgroup.com:tasklists",
+      "provider": "exlibrisgroup.com",
+      "version": "1.0",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/exlibrisgroup.com/tasklists/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/exlibrisgroup.com/tasklists/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://developers.exlibrisgroup.com/wp-content/uploads/alma/openapi/tasklists.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "text"
+      ],
+      "sha256": "bc80b2ccf642b6727accceed5f605c281c6f4aa5d9055a6bba5ff79ac043f37c",
+      "bytes": 94003,
+      "status": "pinned"
+    },
+    {
+      "id": "billingo.hu",
+      "provider": "billingo.hu",
+      "version": "3.0.7",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/billingo.hu/3.0.7/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/billingo.hu/3.0.7/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.swaggerhub.com/apis/Billingo/Billingo/3.0.7",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "a29f85aa7f7ac72f734d20bb07d705728bd2a0dcb5268d94711ebe22a9d676fb",
+      "bytes": 119624,
+      "status": "pinned"
+    },
+    {
+      "id": "zeno.fm",
+      "provider": "zeno.fm",
+      "version": "0.6-99cfdac",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/zeno.fm/0.6-99cfdac/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/zeno.fm/0.6-99cfdac/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.zeno.fm/v3/api-docs",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "media"
+      ],
+      "sha256": "6bb10d38e3165189025e24c94bae4d0d5b71b78a485bd821325c3d4bceb16a86",
+      "bytes": 25858,
+      "status": "pinned"
+    },
+    {
+      "id": "openbanking.org.uk:event-notifications-openapi",
+      "provider": "openbanking.org.uk",
+      "version": "3.1.7",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/openbanking.org.uk/event-notifications-openapi/3.1.7/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/openbanking.org.uk/event-notifications-openapi/3.1.7/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/OpenBankingUK/read-write-api-specs/master/dist/openapi/event-notifications-openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "3bb8997fff4ad062debd7c86662a99c108ffee3a8c42e6dfa3a95e4e38818d84",
+      "bytes": 7334,
+      "status": "pinned"
+    },
+    {
+      "id": "opendatanetwork.com",
+      "provider": "opendatanetwork.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/opendatanetwork.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/opendatanetwork.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "apiBlueprint",
+          "url": "https://raw.githubusercontent.com/socrata/odn-backend/master/opendatanetwork-apiary.apib",
+          "version": "1A"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "c4ebb2d3ae6d2d61155ba4db1049170768fd9b66ac38a7c949a8a68f5ddc8644",
+      "bytes": 38223,
+      "status": "pinned"
+    },
+    {
+      "id": "tomtom.com:routing",
+      "provider": "tomtom.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/tomtom.com/routing/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/tomtom.com/routing/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/lucybot/api-spec-converter",
+            "version": "2.7.31"
+          },
+          "format": "openapi",
+          "url": "https://developer.tomtom.com/system/files/swagger_models/routing_api.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "location"
+      ],
+      "sha256": "f063a949ae9619bf553104db5180a32fbf7343839531554a8fb7ae88ec70f67b",
+      "bytes": 49187,
+      "status": "pinned"
+    },
+    {
+      "id": "tokenjay.app",
+      "provider": "tokenjay.app",
+      "version": "1.0.0",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/tokenjay.app/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/tokenjay.app/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.tokenjay.app/api-docs",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "86b496ce1950e6b3011701876ec900830c3d0a8b73677eedbf4713f3a9316fc4",
+      "bytes": 55880,
+      "status": "pinned"
+    },
+    {
+      "id": "sinao.app",
+      "provider": "sinao.app",
+      "version": "1.1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/sinao.app/1.1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/sinao.app/1.1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.sinao.app/v1/swagger.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "04f24b3c6e8dcb751255b5802186a7092720a2988dd4b67845adcf8bb16fe15a",
+      "bytes": 477647,
+      "status": "pinned"
+    },
+    {
+      "id": "onsched.com:utility",
+      "provider": "onsched.com",
+      "version": "v1",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/onsched.com/utility/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/onsched.com/utility/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://sandbox-api.onsched.com/swagger/utility/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "collaboration"
+      ],
+      "sha256": "7585e37fd5bee065ce727275b821d7e775420d3138a98ea77505a715d297dee9",
+      "bytes": 3046,
+      "status": "pinned"
+    },
+    {
+      "id": "firstinspires.org",
+      "provider": "firstinspires.org",
+      "version": "1.0.0",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/firstinspires.org/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/firstinspires.org/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "postman",
+          "url": "https://frc-api-docs.firstinspires.org/api/collections/13920602/TW6zHTEi?segregateAuth=true&versionTag=latest",
+          "version": "2.x"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "3dff85489d5d1e682f64ee77ef94fbe8dabae7ae774eb3531bca4cc2acd273c7",
+      "bytes": 15193,
+      "status": "pinned"
+    },
+    {
+      "id": "presalytics.io:story",
+      "provider": "presalytics.io",
+      "version": "0.3.1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/presalytics.io/story/0.3.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/presalytics.io/story/0.3.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.presalytics.io/story/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "analytics"
+      ],
+      "sha256": "617f0660281fde4a82b671c4162e6eb9e59cdd9c351583a0fc8e73e1c206ee74",
+      "bytes": 69529,
+      "status": "pinned"
+    },
+    {
+      "id": "ix-api.net",
+      "provider": "ix-api.net",
+      "version": "2.1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/ix-api.net/2.1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/ix-api.net/2.1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://docs.ix-api.net/v2/ix-api-latest.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "security"
+      ],
+      "sha256": "9be42db17b3a6237d70258488067750f7cdb4cb4384e324e614fde8180712124",
+      "bytes": 671109,
+      "status": "pinned"
+    },
+    {
+      "id": "twitter.com:current",
+      "provider": "twitter.com",
+      "version": "2.61",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/twitter.com/current/2.61/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/twitter.com/current/2.61/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.twitter.com/2/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "social"
+      ],
+      "sha256": "8e912c4f563b3bdbec0213054bf85dda4c33659cd4378527567883c8fa6ea469",
+      "bytes": 395148,
+      "status": "pinned"
+    },
+    {
+      "id": "reloadly.com",
+      "provider": "reloadly.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/reloadly.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/reloadly.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "openapi",
+          "url": "https://topupsapi.docs.apiary.io/api-description-document",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "telecom"
+      ],
+      "sha256": "da682ee6289d6761568ba5b596c5896b1dbf493924f2020dfd3f69f8c6b7a701",
+      "bytes": 4680,
+      "status": "pinned"
+    },
+    {
+      "id": "1password.com:events",
+      "provider": "1password.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/1password.com/events/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/1password.com/events/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://i.1password.com/media/1password-events-reporting/1password-events-api.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "security"
+      ],
+      "sha256": "a0b312c4d85d4bc07894225260c79e88e8a1d568218bb9c297b4fd0d78b85a22",
+      "bytes": 14312,
+      "status": "pinned"
+    },
+    {
+      "id": "combell.com",
+      "provider": "combell.com",
+      "version": "v2",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/combell.com/v2/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/combell.com/v2/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.combell.com/v2/documentation/swagger-v2.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "hosting"
+      ],
+      "sha256": "f9cfed9d7105be9972d74eed0aae5c75419c3a632a5c2f1a5c91d50510895b23",
+      "bytes": 185176,
+      "status": "pinned"
+    },
+    {
+      "id": "bbci.co.uk",
+      "provider": "bbci.co.uk",
+      "version": "1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/bbci.co.uk/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/bbci.co.uk/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/Mermade/bbcparse/master/iblApi/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "media"
+      ],
+      "sha256": "0da4e53dce293a52c24dcea2234834f8513df08d05772851323a885a43981f8f",
+      "bytes": 94208,
+      "status": "pinned"
+    },
+    {
+      "id": "influxdata.com",
+      "provider": "influxdata.com",
+      "version": "2.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/influxdata.com/2.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/influxdata.com/2.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "blob:https://docs.influxdata.com/blobId",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "iot"
+      ],
+      "sha256": "7a95795d106730673032a8dda5f56d56a1f28f868b925d471ddcfe7ac87f7ea4",
+      "bytes": 505125,
+      "status": "pinned"
+    },
+    {
+      "id": "randomlovecraft.com",
+      "provider": "randomlovecraft.com",
+      "version": "1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/randomlovecraft.com/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/randomlovecraft.com/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/dekadans/randomlovecraft.com/master/public/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "text"
+      ],
+      "sha256": "7f10001ce90b0581aac26f3932016bc4d74a07fc7d569e825c29632c3d72b38a",
+      "bytes": 5553,
+      "status": "pinned"
+    },
+    {
+      "id": "exude-api.herokuapp.com",
+      "provider": "exude-api.herokuapp.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/exude-api.herokuapp.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/exude-api.herokuapp.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "http://uttesh.com/exude-api/exude-service-open-api.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "text"
+      ],
+      "sha256": "ef1b187ba042918ce62d9d27c9f54463c299b654bf56f2ac51ceb1139acd75dc",
+      "bytes": 4247,
+      "status": "pinned"
+    },
+    {
+      "id": "nsidc.org",
+      "provider": "nsidc.org",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/nsidc.org/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/nsidc.org/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/lucybot/api-spec-converter",
+            "version": "2.7.31"
+          },
+          "format": "swagger",
+          "url": "http://documentation-index-vm.apps.nsidc.org/api-docs",
+          "version": "1.2"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "f419ed0eca489340473b11a18de5a192a37450104d2de65646a55470bfaaadd9",
+      "bytes": 11914,
+      "status": "pinned"
+    },
+    {
+      "id": "telegram.org",
+      "provider": "telegram.org",
+      "version": "5.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/telegram.org/5.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/telegram.org/5.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://josxa.stoplight.io/api/v1/projects/josxa/bot-api/nodes/openapi.json?branch=main",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "messaging"
+      ],
+      "sha256": "cebab51778f0341333daafbe124bf7944197ca8c09a6b4740f72f1ae84c6c087",
+      "bytes": 603748,
+      "status": "pinned"
+    },
+    {
+      "id": "digitalnz.org",
+      "provider": "digitalnz.org",
+      "version": "3",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/digitalnz.org/3/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/digitalnz.org/3/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.swaggerhub.com/apis/DigitalNZ/Records/3",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "9cdf46ecbfa0ed72788796b5dae04393e091e1c37593f90280eff52d00d850d3",
+      "bytes": 40805,
+      "status": "pinned"
+    },
+    {
+      "id": "bungie.net",
+      "provider": "bungie.net",
+      "version": "2.18.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/bungie.net/2.18.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/bungie.net/2.18.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/Bungie-net/api/master/openapi-2.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "media"
+      ],
+      "sha256": "09875f2e1f9b223a52b2cc25e24199f77e5704df039a2ad06a86aeb5afafa791",
+      "bytes": 1729805,
+      "status": "pinned"
+    },
+    {
+      "id": "whapi.com:bets",
+      "provider": "whapi.com",
+      "version": "2.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/whapi.com/bets/2.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/whapi.com/bets/2.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://developer.williamhill.com/wh-docs/docs-sdks/bets/swagger/docs",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "entertainment"
+      ],
+      "sha256": "f8060d74a4b99cda84cda3f00d4db3d2f68f11b2540b58af563ff3c11b9025ac",
+      "bytes": 51743,
+      "status": "pinned"
+    },
+    {
+      "id": "slack.com",
+      "provider": "slack.com",
+      "version": "1.7.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/slack.com/1.7.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/slack.com/1.7.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/slackapi/slack-api-specs/master/web-api/slack_web_openapi_v2.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "collaboration",
+        "messaging"
+      ],
+      "sha256": "a623a38a3be7e3b6bc47e74401b509d4e044025b4ce8eefe611034c7bca1077a",
+      "bytes": 998622,
+      "status": "pinned"
+    },
+    {
+      "id": "adobe.com:aem",
+      "provider": "adobe.com",
+      "version": "3.7.1-pre.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/adobe.com/aem/3.7.1-pre.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/adobe.com/aem/3.7.1-pre.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/shinesolutions/swagger-aem/master/conf/api.yml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "marketing"
+      ],
+      "sha256": "ec812606758838d0b58608eef3dab96a4336f08d0d765cee4a966866d685e895",
+      "bytes": 98130,
+      "status": "pinned"
+    },
+    {
+      "id": "neutrinoapi.net",
+      "provider": "neutrinoapi.net",
+      "version": "3.6.3",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/neutrinoapi.net/3.6.3/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/neutrinoapi.net/3.6.3/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://www.neutrinoapi.com/api/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "email",
+        "messaging",
+        "telecom",
+        "location",
+        "text"
+      ],
+      "sha256": "ca231a952bf5bb28b42f169c78ada1d623223affe6cbdda84723f57610e0913c",
+      "bytes": 161406,
+      "status": "pinned"
+    },
+    {
+      "id": "trashnothing.com",
+      "provider": "trashnothing.com",
+      "version": "1.3",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/trashnothing.com/1.3/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/trashnothing.com/1.3/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "http://trashnothing.com/api/trashnothing-openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "social"
+      ],
+      "sha256": "edbecc6159452637615fc079a6013ede1e66f7dcbae30037f824e0e0a3cea829",
+      "bytes": 254588,
+      "status": "pinned"
+    },
+    {
+      "id": "vmware.local:vrni",
+      "provider": "vmware.local",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/vmware.local/vrni/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/vmware.local/vrni/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "swagger",
+          "url": "https://vdc-download.vmware.com/vmwb-repository/dcr-public/c1b5a60c-3635-4b8c-84b2-3ea54172cf31/f8595072-cedd-4f97-9b05-1720e0f41f92/vrni_api_spec.json",
+          "version": "2.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "6f25f81f28890a4c1f47cf9150f3e20bce22dd71cfed4b2387cdf2586541ffa5",
+      "bytes": 360972,
+      "status": "pinned"
+    },
+    {
+      "id": "tfl.gov.uk",
+      "provider": "tfl.gov.uk",
+      "version": "v1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/tfl.gov.uk/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/tfl.gov.uk/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.tfl.gov.uk/swagger/docs/v1",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "transport",
+        "open_data"
+      ],
+      "sha256": "8ec97a3a03307f0849135f0b69096598fd32a82770ef8cdf10992ab53c57b0b4",
+      "bytes": 299442,
+      "status": "pinned"
+    },
+    {
+      "id": "redhat.local:patchman-engine",
+      "provider": "redhat.local",
+      "version": "v1.15.3",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/redhat.local/patchman-engine/v1.15.3/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/redhat.local/patchman-engine/v1.15.3/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/RedHatInsights/patchman-engine/master/docs/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "a17634c91e5535e712e7cd3c2ad9076b3d4bf2f329cc182ea2908dec208051d4",
+      "bytes": 74385,
+      "status": "pinned"
+    },
+    {
+      "id": "linode.com",
+      "provider": "linode.com",
+      "version": "4.145.0",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/linode.com/4.145.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/linode.com/4.145.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "openapi",
+          "url": "https://www.linode.com/docs/api/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "cloud"
+      ],
+      "sha256": "f8de7e6d551673a8871009982b3936674a9a54ff56c9439ead5282986cb1bfbd",
+      "bytes": 1177644,
+      "status": "pinned"
+    },
+    {
+      "id": "6-dot-authentiqio.appspot.com",
+      "provider": "6-dot-authentiqio.appspot.com",
+      "version": "6",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/6-dot-authentiqio.appspot.com/6/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/6-dot-authentiqio.appspot.com/6/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/AuthentiqID/authentiq-docs/master/docs/swagger/issuer.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "security"
+      ],
+      "sha256": "c80f55a97519b0b77838e17d309a1dea17c9659a3316c17b9b084c4ed7037a82",
+      "bytes": 27382,
+      "status": "pinned"
+    },
+    {
+      "id": "mercure.local",
+      "provider": "mercure.local",
+      "version": "0.3.2",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/mercure.local/0.3.2/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/mercure.local/0.3.2/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/dunglas/mercure/main/spec/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "messaging"
+      ],
+      "sha256": "a2729f41492a121cb017d6e5ce098f18b72402aaed534d3e738baee5ee052a5e",
+      "bytes": 10633,
+      "status": "pinned"
+    },
+    {
+      "id": "apiz.ebay.com:commerce-identity",
+      "provider": "apiz.ebay.com",
+      "version": "v1.1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/apiz.ebay.com/commerce-identity/v1.1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/apiz.ebay.com/commerce-identity/v1.1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://developer.ebay.com/api-docs/master/commerce/identity/openapi/3/commerce_identity_v1_oas3.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "ecommerce"
+      ],
+      "sha256": "ba2ad8e8895bb7ee73280eb80601cbe883511b5d168a891ab17dc7a41a04647f",
+      "bytes": 15699,
+      "status": "pinned"
+    },
+    {
+      "id": "truanon.com",
+      "provider": "truanon.com",
+      "version": "1.0.0",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/truanon.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/truanon.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "postman",
+          "url": "https://www.postman.com/collections/097655c06fff1bf6a966",
+          "version": "2.x"
+        }
+      ],
+      "categories": [
+        "security"
+      ],
+      "sha256": "bc7d1a6cf8362062daa4dbabe5bf659d64dc65d4ba27ec7d776a62cd16e8d561",
+      "bytes": 3877,
+      "status": "pinned"
+    },
+    {
+      "id": "pdfbroker.io",
+      "provider": "pdfbroker.io",
+      "version": "v1",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/pdfbroker.io/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/pdfbroker.io/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.pdfbroker.io/swagger/v1/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "text"
+      ],
+      "sha256": "3a333b5e001bb01a44dbcc2ddbe1ee52b945768bb52e442ad94ee36e48f21e20",
+      "bytes": 39513,
+      "status": "pinned"
+    },
+    {
+      "id": "departureboard.io",
+      "provider": "departureboard.io",
+      "version": "2.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/departureboard.io/2.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/departureboard.io/2.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/lucybot/api-spec-converter",
+            "version": "2.7.31"
+          },
+          "format": "openapi",
+          "url": "https://api.departureboard.io/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "transport"
+      ],
+      "sha256": "34401192ca426acc48dcb3e58542901eb71227691c276a5852304f6d48d44c3e",
+      "bytes": 36773,
+      "status": "pinned"
+    },
+    {
+      "id": "mineskin.org",
+      "provider": "mineskin.org",
+      "version": "1.0.0",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/mineskin.org/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/mineskin.org/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.mineskin.org/openapi.yml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "b59b40ec02ad8b712219b92658d36524960c1af3ebc5d441911566100fa9c3d0",
+      "bytes": 17612,
+      "status": "pinned"
+    },
+    {
+      "id": "exavault.com",
+      "provider": "exavault.com",
+      "version": "2.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/exavault.com/2.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/exavault.com/2.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "2.6.0"
+          },
+          "format": "openapi",
+          "url": "https://exavault-website.cdn.prismic.io/exavault-website/2d2d871e-394d-433e-9305-f38b6656f279_evapi_2.0_public.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "storage"
+      ],
+      "sha256": "6b82f90c27a69ad96ef88ee046d0d9994cd669af5eef3a4b46d2ab187c3bc124",
+      "bytes": 496638,
+      "status": "pinned"
+    },
+    {
+      "id": "figshare.com",
+      "provider": "figshare.com",
+      "version": "2.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/figshare.com/2.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/figshare.com/2.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "http://docs.figshare.com/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "f83eef4ab2350a4a7bcebb2caa80e02294a0c29e84803e55698c08153ffa67e8",
+      "bytes": 397081,
+      "status": "pinned"
+    },
+    {
+      "id": "openfigi.com",
+      "provider": "openfigi.com",
+      "version": "1.4.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/openfigi.com/1.4.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/openfigi.com/1.4.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.openfigi.com/schema",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "d449ef6331040b75366606316e93170c2a7c6921753e9afd4c5c2c3d1caf25be",
+      "bytes": 14080,
+      "status": "pinned"
+    },
+    {
+      "id": "arespass.net",
+      "provider": "arespass.net",
+      "version": "1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/arespass.net/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/arespass.net/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://arespass.net/assets/arespassv1.0-openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "5028f38d4bb8e5f2b9ea3686c58727817b0ad10f4301fdbc74a9498f30063c0c",
+      "bytes": 17766,
+      "status": "pinned"
+    },
+    {
+      "id": "payrun.io",
+      "provider": "payrun.io",
+      "version": "22.23.10.42",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/payrun.io/22.23.10.42/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/payrun.io/22.23.10.42/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.test.payrun.io/swagger/json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "a6adfd5b1b1446bcfe8692701c7065f6bbc472307fd22ce1d2e7aaa544ecae19",
+      "bytes": 1329857,
+      "status": "pinned"
+    },
+    {
+      "id": "peoplefinderspro.com",
+      "provider": "peoplefinderspro.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/peoplefinderspro.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/peoplefinderspro.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "swagger",
+          "url": "https://pfent1821.docs.apiary.io/api-description-document",
+          "version": "2.0"
+        }
+      ],
+      "categories": [
+        "marketing"
+      ],
+      "sha256": "78cc3d3f2e498d6ae4b6942f09492fabe3889a03997811798d7f103269b0ed15",
+      "bytes": 21953,
+      "status": "pinned"
+    },
+    {
+      "id": "openindex.ai",
+      "provider": "openindex.ai",
+      "version": "1.0.0",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/openindex.ai/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/openindex.ai/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://retriever.openindex.ai/.well-known/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "machine_learning"
+      ],
+      "sha256": "b77faa2191cfb7cef49578def5faac842927c9ec894dae22eb51ef2cc45056d9",
+      "bytes": 8792,
+      "status": "pinned"
+    },
+    {
+      "id": "nic.at:domainfinder",
+      "provider": "nic.at",
+      "version": "1.1.0",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/nic.at/domainfinder/1.1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/nic.at/domainfinder/1.1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://domainfinder.nic.at/openapi/",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "f0d4740e14072fd49f8de02a9e30b199ab958e4ec076b69edbc76c683a4a6355",
+      "bytes": 1733,
+      "status": "pinned"
+    },
+    {
+      "id": "bitbucket.org",
+      "provider": "bitbucket.org",
+      "version": "2.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/bitbucket.org/2.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/bitbucket.org/2.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://bitbucket.org/api/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools",
+        "collaboration"
+      ],
+      "sha256": "f41a6949a8b64b022f53c0791ef599768c5b45a5ed48dc6e7057ea04594759d7",
+      "bytes": 1205553,
+      "status": "pinned"
+    },
+    {
+      "id": "apidapp.com",
+      "provider": "apidapp.com",
+      "version": "2019-02-14T164701Z",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/apidapp.com/2019-02-14T164701Z/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/apidapp.com/2019-02-14T164701Z/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://apidapp.s3.amazonaws.com/ApiDapp-Start-swagger-7/ApiDapp-Start-swagger+(7).json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "03f9b7b50e7e053302ac498bc8db310707ec271f656664ea177387fe47db6b33",
+      "bytes": 43600,
+      "status": "pinned"
+    },
+    {
+      "id": "autodealerdata.com",
+      "provider": "autodealerdata.com",
+      "version": "1.0",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/autodealerdata.com/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/autodealerdata.com/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.autodealerdata.com/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "ecommerce"
+      ],
+      "sha256": "060fee5261a7973096764d9e669f901b4a4491aca130a13b643549a18a8169ee",
+      "bytes": 110515,
+      "status": "pinned"
+    },
+    {
+      "id": "pocketsmith.com",
+      "provider": "pocketsmith.com",
+      "version": "2.0",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/pocketsmith.com/2.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/pocketsmith.com/2.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/pocketsmith/api/master/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "631fd97d3cca1371c65a14d5d3bdb29f873005021a2244e361a3b99ecba9c12c",
+      "bytes": 141421,
+      "status": "pinned"
+    },
+    {
+      "id": "orthanc-server.com",
+      "provider": "orthanc-server.com",
+      "version": "1.11.3",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/orthanc-server.com/1.11.3/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/orthanc-server.com/1.11.3/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.orthanc-server.com/orthanc-openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "collaboration"
+      ],
+      "sha256": "f89d96473b9588617b3a0a6a0053dd0bbac92f8308bd7c31fcb4f050e79170e8",
+      "bytes": 570471,
+      "status": "pinned"
+    },
+    {
+      "id": "impala.travel:hotels",
+      "provider": "impala.travel",
+      "version": "1.003",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/impala.travel/hotels/1.003/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/impala.travel/hotels/1.003/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://docs.impala.travel/api/v1/projects/impala/booking-api/nodes/spec/openapi.seller.yaml?branch=v1.003",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "ecommerce"
+      ],
+      "sha256": "883316fb1961c20ddf2ceb82b4cd2a944772ab03631f8ffbc2e4d7d26b52c52b",
+      "bytes": 450861,
+      "status": "pinned"
+    },
+    {
+      "id": "ip2location.com:geolocation",
+      "provider": "ip2location.com",
+      "version": "1.0",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/ip2location.com/geolocation/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/ip2location.com/geolocation/1.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "openapi",
+          "url": "https://api.swaggerhub.com/apis/ip2location/ip2location-ip-geolocation/1.0",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "location"
+      ],
+      "sha256": "f832d88ef3e91d4023c8f58dcebfb167c56839c835cd047e4b7518086eb8c471",
+      "bytes": 6601,
+      "status": "pinned"
+    },
+    {
+      "id": "bikewise.org",
+      "provider": "bikewise.org",
+      "version": "v2",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/bikewise.org/v2/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/bikewise.org/v2/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/lucybot/api-spec-converter",
+            "version": "2.7.31"
+          },
+          "format": "swagger",
+          "url": "https://bikewise.org/api/v2/swagger_doc",
+          "version": "1.2"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "cc1c87fca27da236fc2d86a910d6bbe74ff93da4d8f683e69761508f555e7446",
+      "bytes": 12107,
+      "status": "pinned"
+    },
+    {
+      "id": "meraki.com",
+      "provider": "meraki.com",
+      "version": "0.0.0-streaming",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/meraki.com/0.0.0-streaming/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/meraki.com/0.0.0-streaming/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.meraki.com/api/v0/openapiSpec",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "iot",
+        "enterprise"
+      ],
+      "sha256": "b9def10a16529b24d305c05fa4a8aab41cb38b43b84263d51fa48d0ebb81fe7e",
+      "bytes": 867509,
+      "status": "pinned"
+    },
+    {
+      "id": "obono.at",
+      "provider": "obono.at",
+      "version": "1.4.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/obono.at/1.4.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/obono.at/1.4.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://app.obono.at/api/docs/api.yml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "ecommerce"
+      ],
+      "sha256": "2aaafca63cbb1206165660fdd11fe41c00cb371dbebc249b2b8814e4866bdd06",
+      "bytes": 39530,
+      "status": "pinned"
+    },
+    {
+      "id": "taxrates.io",
+      "provider": "taxrates.io",
+      "version": "1.0.0",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/taxrates.io/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/taxrates.io/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://www.postman.com/collections/10601972-0bdabb72-f66a-4b75-bb29-e1c01dc81baa-TVev6RW8",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "0cb83bdfdc47b6efbafc23fcbc6117c4ea3b55f6874836b4da38152751ccbd05",
+      "bytes": 41918,
+      "status": "pinned"
+    },
+    {
+      "id": "ipinfodb.com",
+      "provider": "ipinfodb.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/ipinfodb.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/ipinfodb.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "7.0.4"
+          },
+          "format": "openapi",
+          "url": "https://api.swaggerhub.com/apis/ipinfodb/ipinfodb-ip-address-lookup/1.0",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "location"
+      ],
+      "sha256": "ae9f0de25b7e1deea63a204fb0858418d95dc5842c4469de780ae697f43b98d2",
+      "bytes": 666,
+      "status": "pinned"
+    },
+    {
+      "id": "opentargets.io",
+      "provider": "opentargets.io",
+      "version": "19.02.1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/opentargets.io/19.02.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/opentargets.io/19.02.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "http://api.opentargets.io/v3/platform/swagger",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "80c795b4097974aade99a6d11a2a4822792a7342f5ed8c9887e92c16bb156e52",
+      "bytes": 41817,
+      "status": "pinned"
+    },
+    {
+      "id": "contract-p.fit",
+      "provider": "contract-p.fit",
+      "version": "1.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/contract-p.fit/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/contract-p.fit/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://cfportal.contract-p.fit/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "text"
+      ],
+      "sha256": "9aee24e5532b9d124af13946d0ea478c99e5a76edf8602353e6dc8f9b6510257",
+      "bytes": 212131,
+      "status": "pinned"
+    },
+    {
+      "id": "stellastra.com",
+      "provider": "stellastra.com",
+      "version": "1.0",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/stellastra.com/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/stellastra.com/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://stellastra.com/stellastra.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "c75ec96017a319da210d725fbfd6b9336d65bd83a78d46153f67799ce7a454b1",
+      "bytes": 9198,
+      "status": "pinned"
+    },
+    {
+      "id": "firmalyzer.com:iotvas",
+      "provider": "firmalyzer.com",
+      "version": "1.0",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/firmalyzer.com/iotvas/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/firmalyzer.com/iotvas/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://iotvas-api.firmalyzer.com/api/v1/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "iot",
+        "security"
+      ],
+      "sha256": "4ec7951b6146c298e7575a0cc37895ff92427597c2b88604391658497a89e5d9",
+      "bytes": 27491,
+      "status": "pinned"
+    },
+    {
+      "id": "vonage.com:vgis",
+      "provider": "vonage.com",
+      "version": "1.0.1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/vonage.com/vgis/1.0.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/vonage.com/vgis/1.0.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/nexmo/api-specification/master/definitions/vonage-business-cloud/vgis.yml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "f818eadce81ffd50dd2f4c625be14c6cdb65b7023c2d45e68313b1ec6e16c2db",
+      "bytes": 63466,
+      "status": "pinned"
+    },
+    {
+      "id": "wordnik.com",
+      "provider": "wordnik.com",
+      "version": "4.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/wordnik.com/4.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/wordnik.com/4.0/openapi.yaml",
+      "origins": [
+        {
+          "converter": {
+            "url": "https://github.com/mermade/oas-kit",
+            "version": "2.6.2"
+          },
+          "format": "openapi",
+          "url": "https://developer.wordnik.com/api-docs/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "text"
+      ],
+      "sha256": "c9cc9aed84551df2651fc830c8819a32560f3a53ff6b2afb6171da87b1e905a7",
+      "bytes": 70675,
+      "status": "pinned"
+    },
+    {
+      "id": "ndhm.gov.in:ndhm-hip",
+      "provider": "ndhm.gov.in",
+      "version": "0.5",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/ndhm.gov.in/ndhm-hip/0.5/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/ndhm.gov.in/ndhm-hip/0.5/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://apisetu.gov.in/api_specification_v8/ndhm-hip.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "3a3dbc1310d7a77f85f81eaebad6ba8e404e82545988af38e6773ec3b75f8cd4",
+      "bytes": 143289,
+      "status": "pinned"
+    },
+    {
+      "id": "archive.org:wayback",
+      "provider": "archive.org",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/archive.org/wayback/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/archive.org/wayback/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/ArchiveLabs/api.archive.org/master/swagger/wayback.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "search"
+      ],
+      "sha256": "65811db19834a32d2bdbcd55d4cc06aaef756c8997fa62abbf9a0446fa7d9337",
+      "bytes": 12306,
+      "status": "pinned"
+    },
+    {
+      "id": "clubhouseapi.com",
+      "provider": "clubhouseapi.com",
+      "version": "1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/clubhouseapi.com/1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/clubhouseapi.com/1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/zhuowei/ClubhouseAPI/main/doc/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "social"
+      ],
+      "sha256": "2a14418d5c6f63ec80b65015dea6611519c57d21e5d37fc3cd5583e595bc139f",
+      "bytes": 60447,
+      "status": "pinned"
+    },
+    {
+      "id": "anchore.io",
+      "provider": "anchore.io",
+      "version": "0.1.20",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/anchore.io/0.1.20/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/anchore.io/0.1.20/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/anchore/anchore-engine/master/anchore_engine/services/apiext/swagger/swagger.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "664fde9931941ae811ff98d087e40306553024928ed206547173704029a932ae",
+      "bytes": 252760,
+      "status": "pinned"
+    },
+    {
+      "id": "interactivebrokers.com",
+      "provider": "interactivebrokers.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/interactivebrokers.com/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/interactivebrokers.com/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "swagger",
+          "url": "https://www.interactivebrokers.co.uk/webtradingapi/swagger.yaml",
+          "version": "2.0"
+        }
+      ],
+      "categories": [
+        "financial"
+      ],
+      "sha256": "7d157e713fe02c1df6ea36fbaa5a43acfc1d5cd7f5ac40049f25d302200a0aca",
+      "bytes": 68944,
+      "status": "pinned"
+    },
+    {
+      "id": "okta.local",
+      "provider": "okta.local",
+      "version": "1.0.0",
+      "openapi": "3.0.3",
+      "url": "https://api.apis.guru/v2/specs/okta.local/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/okta.local/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "postman",
+          "url": "https://www.postman.com/collections/1755573c5cf5fbf7968b",
+          "version": "1.0"
+        }
+      ],
+      "categories": [
+        "security"
+      ],
+      "sha256": "24d758ad8e32c83bc900c60695636d02366cebc5e38187857d2c2089c14b1b06",
+      "bytes": 18640,
+      "status": "pinned"
+    },
+    {
+      "id": "id4i.de",
+      "provider": "id4i.de",
+      "version": "1.0.2",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/id4i.de/1.0.2/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/id4i.de/1.0.2/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://backend.id4i.de/docs/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "enterprise"
+      ],
+      "sha256": "f1578e549ca0c3e685a5f904c15400459b873d4908b0d6d60ff6631a489a823a",
+      "bytes": 540709,
+      "status": "pinned"
+    },
+    {
+      "id": "velopayments.com",
+      "provider": "velopayments.com",
+      "version": "2.34.63",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/velopayments.com/2.34.63/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/velopayments.com/2.34.63/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/velopaymentsapi/VeloOpenApi/master/spec/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "ecommerce"
+      ],
+      "sha256": "d4508fd429c7280f10390753ff7ff73d2468672d29cb018cf10c6e66bb38aa58",
+      "bytes": 867694,
+      "status": "pinned"
+    },
+    {
+      "id": "canada-holidays.ca",
+      "provider": "canada-holidays.ca",
+      "version": "1.8.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/canada-holidays.ca/1.8.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/canada-holidays.ca/1.8.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.swaggerhub.com/apis/pcraig3/canada-holidays/1.8.0",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "open_data"
+      ],
+      "sha256": "46fe3254f7fd63885f0f7cf8c32b3659b2894f46184cd16e5802c85e6a2dc6e5",
+      "bytes": 44648,
+      "status": "pinned"
+    },
+    {
+      "id": "remove.bg",
+      "provider": "remove.bg",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/remove.bg/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/remove.bg/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://www.remove.bg/api/swagger.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "e1b74240c1ee4b39babb257a0715746d6141ff90ffd30ad66eb2c14c84f87ec4",
+      "bytes": 44954,
+      "status": "pinned"
+    },
+    {
+      "id": "wso2apistore.com:transform",
+      "provider": "wso2apistore.com",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/wso2apistore.com/transform/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/wso2apistore.com/transform/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://developers.wso2apistore.com/api-docs/manjular-AT-wso2.com-AT-developer/Transform/1.0.0",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "developer_tools"
+      ],
+      "sha256": "f3c121308f8fc31c51d3d070e8c0e8827d4476cda6f45e002b2a020c07a7469a",
+      "bytes": 2196,
+      "status": "pinned"
+    },
+    {
+      "id": "gerermesaffaires.com",
+      "provider": "gerermesaffaires.com",
+      "version": "1.0.6",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/gerermesaffaires.com/1.0.6/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/gerermesaffaires.com/1.0.6/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.gerermesaffaires.com/wp-content/uploads/2022/09/GmaAPI-GererMesAffairesAPI-1.0.6-swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "b245ec10f577c922c90b9a9c250a030c56616302a58107b73f2e9f5200e9dd64",
+      "bytes": 716519,
+      "status": "pinned"
+    },
+    {
+      "id": "doqs.dev",
+      "provider": "doqs.dev",
+      "version": "1.0",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/doqs.dev/1.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/doqs.dev/1.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.doqs.dev/v1/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "e70fc545122ad7c82108b37b18ec0c19a0fff512df94bb53c265f73a152a322d",
+      "bytes": 39511,
+      "status": "pinned"
+    },
+    {
+      "id": "i-cue.solutions",
+      "provider": "i-cue.solutions",
+      "version": "v1",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/i-cue.solutions/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/i-cue.solutions/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.i-cue.solutions/swagger/v1/swagger.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "analytics"
+      ],
+      "sha256": "53ae087434ad041f80413f26cd9dd9a1b1e46b76f92a7f02001e70ec40407481",
+      "bytes": 105563,
+      "status": "pinned"
+    },
+    {
+      "id": "superset.apache.local:superset",
+      "provider": "superset.apache.local",
+      "version": "v1",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/superset.apache.local/superset/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/superset.apache.local/superset/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/apache/superset/master/docs/src/resources/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "enterprise"
+      ],
+      "sha256": "f7161279680a0d3d1ed862d7fc4398e061f9eb61d6c9fe896d3d271e6b74a377",
+      "bytes": 401473,
+      "status": "pinned"
+    },
+    {
+      "id": "nasa.gov:asteroids neows",
+      "provider": "nasa.gov",
+      "version": "3.4.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/nasa.gov/asteroids neows/3.4.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/nasa.gov/asteroids neows/3.4.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "swagger",
+          "url": "https://raw.githubusercontent.com/nasa/api-docs/gh-pages/assets/json/Asteroids%20NeoWs",
+          "version": "2.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "4789024a28c9dcb6b35c580462ad55026987857f3d17f6de83b550039297a619",
+      "bytes": 16646,
+      "status": "pinned"
+    },
+    {
+      "id": "worldtimeapi.org",
+      "provider": "worldtimeapi.org",
+      "version": "20210108",
+      "openapi": "3.0.1",
+      "url": "https://api.apis.guru/v2/specs/worldtimeapi.org/20210108/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/worldtimeapi.org/20210108/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "http://worldtimeapi.org/api",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "location"
+      ],
+      "sha256": "4eda5ebcef1f9fb5aaf87e7430eb0c039d346b39b825ede236be2941d30613a9",
+      "bytes": 13386,
+      "status": "pinned"
+    },
+    {
+      "id": "sakari.io",
+      "provider": "sakari.io",
+      "version": "1.0.1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/sakari.io/1.0.1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/sakari.io/1.0.1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://developer.sakari.io/openapi.yaml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "messaging"
+      ],
+      "sha256": "8816505b1e7b0a2c0626fe56f159342fb3db2714d4df906b982e4b8c2980e57c",
+      "bytes": 96875,
+      "status": "pinned"
+    },
+    {
+      "id": "iqualify.com",
+      "provider": "iqualify.com",
+      "version": "v1",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/iqualify.com/v1/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/iqualify.com/v1/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.iqualify.com/v1/management.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "education"
+      ],
+      "sha256": "a700b96153b704ae3d58bcb32cd3f88697257aa357a203c8d9d3cfc830223255",
+      "bytes": 199024,
+      "status": "pinned"
+    },
+    {
+      "id": "ticketmaster.com:publish",
+      "provider": "ticketmaster.com",
+      "version": "v2",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/ticketmaster.com/publish/v2/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/ticketmaster.com/publish/v2/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/ticketmaster-api/ticketmaster-api.github.io/dev/_data/orgs/publish-api/v1/api.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "ecommerce"
+      ],
+      "sha256": "70f3bed59c130bf6309077490dcd00e81c1b49376d7ccf09ed55d88b261a97a1",
+      "bytes": 66981,
+      "status": "pinned"
+    },
+    {
+      "id": "rumble.run",
+      "provider": "rumble.run",
+      "version": "2.15.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/rumble.run/2.15.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/rumble.run/2.15.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://raw.githubusercontent.com/RumbleDiscovery/rumble-api/main/rumble-api.yml",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "monitoring"
+      ],
+      "sha256": "1bd9c8cefc09e2993ff161a3edce7fad97f8ffeb3b12c6e64074a727faca8b82",
+      "bytes": 192978,
+      "status": "pinned"
+    },
+    {
+      "id": "svix.com",
+      "provider": "svix.com",
+      "version": "1.4",
+      "openapi": "3.0.2",
+      "url": "https://api.apis.guru/v2/specs/svix.com/1.4/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/svix.com/1.4/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://api.svix.com/api/v1/openapi.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [],
+      "sha256": "3113a9cdc3103acfeada8965eedd8b559dc13b1e85729c0fb3ca12344c8eb2a9",
+      "bytes": 441046,
+      "status": "pinned"
+    },
+    {
+      "id": "hetzner.cloud",
+      "provider": "hetzner.cloud",
+      "version": "1.0.0",
+      "openapi": "3.0.0",
+      "url": "https://api.apis.guru/v2/specs/hetzner.cloud/1.0.0/openapi.json",
+      "yamlUrl": "https://api.apis.guru/v2/specs/hetzner.cloud/1.0.0/openapi.yaml",
+      "origins": [
+        {
+          "format": "openapi",
+          "url": "https://docs.hetzner.cloud/spec.json",
+          "version": "3.0"
+        }
+      ],
+      "categories": [
+        "hosting"
+      ],
+      "sha256": "31312e25858be13253b4bf8c49f4b77e2330b74580c910cae625f8b4e242dab3",
+      "bytes": 1480231,
+      "status": "pinned"
+    }
+  ]
+}

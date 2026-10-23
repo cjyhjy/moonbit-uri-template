@@ -1,6 +1,6 @@
 $ <repository>/tools/moon check --target native
-Using cached cjyhjy/uri_template@0.4.0
 Using cached moonbitlang/async@0.22.5
+Using cached cjyhjy/uri_template@0.4.0
 Finished. moon: ran 30 tasks, now up to date
 
 $ <repository>/tools/moon tree
@@ -48,4 +48,4 @@ $ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project
 {"ok":true,"mode":"plan","documentErrors":2,"documentWarnings":2,"requests":[{"operation_id":"repos/get","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template","repository":"cjyhjy/moonbit-uri-template"},{"operation_id":"repos/list-commits","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=2","repository":"cjyhjy/moonbit-uri-template"},{"operation_id":"repos/list-releases","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=2","repository":"cjyhjy/moonbit-uri-template"}]}
 
 $ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project>/app/github.json <fresh-project>/app/requests.json --live
-{"ok":true,"mode":"live","documentErrors":2,"documentWarnings":2,"results":[{"operationId":"repos/get","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template","status":200,"bytes":5658,"requestId":"1D24:1D1A6A:8152E:1A9F3F:6ADB58D3","summary":{"full_name":"cjyhjy/moonbit-uri-template","id":1418473171}},{"operationId":"repos/list-commits","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=2","status":200,"bytes":3007,"requestId":"1D2C:C2939:7E19C:19E6EB:6ADB58D4","summary":{"count":2,"first":"6cb59c27684d81e79887fe05e0cc2b876872a9c5"}},{"operationId":"repos/list-releases","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=2","status":200,"bytes":18450,"requestId":"EF20:2C6A7B:70C86:173F45:6ADB58D5","summary":{"count":2,"first":"v0.4.0"}}]}
+{"ok":true,"mode":"live","documentErrors":2,"documentWarnings":2,"results":[{"operationId":"repos/get","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template","status":200,"bytes":5658,"requestId":"1D82:96636:296D9F:8856F8:6ADB5E6A","summary":{"full_name":"cjyhjy/moonbit-uri-template","id":1418473171}},{"operationId":"repos/list-commits","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=2","status":200,"bytes":3002,"requestId":"D748:3F920E:2BF190:90B22B:6ADB5E6B","summary":{"count":2,"first":"df943218b12bd557f72a86de0598061e5eea1c4d"}},{"operationId":"repos/list-releases","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=2","status":200,"bytes":18450,"requestId":"E464:198217:2A0920:898A8F:6ADB5E6D","summary":{"count":2,"first":"v0.4.0"}}]}

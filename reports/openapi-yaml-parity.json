@@ -1,0 +1,2986 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "startedAt": "2026-10-23T13:20:26.427Z",
+  "evidence": "same-catalog-document-json-yaml-parity",
+  "analyzerSha256": "174bd2a01116be38c8f18c092704ba6579b33f184a2d48820a82d0523efcb864",
+  "runnerSha256": "64842ce7c1734fd0e96e4803a713100fdd05962436a5f051f566854fb2d9f4cf",
+  "adapterSha256": "485eb082c271c7c4d2c60ead9509663d4139026f8b5e5b7f2865b14f127344ed",
+  "parserVersion": "2.9.1",
+  "results": [
+    {
+      "id": "urlbox.io",
+      "json": {
+        "sha256": "aad17b47891d5d897fe31e8c32a6b78cd418f7fdda833190ade89d0d1fd56745",
+        "bytes": 11445,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 1,
+        "templates": 1,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "ae6144e400f1a87ad451272ec6e7eb66088ed7773ef2b2e531ce3caa7924e8ef",
+        "elapsedMs": 4,
+        "externalReferences": 0,
+        "maxRssKiB": 62608
+      },
+      "yaml": {
+        "sha256": "5cb22f13a79eb345ebf79a9ecc91b8cd563e34a091bb2f2f14e82185bbd489fd",
+        "bytes": 8247,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 1,
+        "templates": 1,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "ae6144e400f1a87ad451272ec6e7eb66088ed7773ef2b2e531ce3caa7924e8ef",
+        "elapsedMs": 9,
+        "externalReferences": null,
+        "maxRssKiB": 63968
+      },
+      "equal": true
+    },
+    {
+      "id": "xero.com:xero_assets",
+      "json": {
+        "sha256": "6101aed6032c48a3bc72ee9c91b73872b40de4053506de5ea556759eb10d8a15",
+        "bytes": 36480,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 6,
+        "templates": 6,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "4d7fedf36987b144587e6a7ae5191a5b5a625a4761c8c71ef988e6aa31919541",
+        "elapsedMs": 8,
+        "externalReferences": 0,
+        "maxRssKiB": 64192
+      },
+      "yaml": {
+        "sha256": "30a433ba98ce230a9ee04f3be5aa35dc66a7f2e202cd297d282c19f058b19f09",
+        "bytes": 29240,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 6,
+        "templates": 6,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "4d7fedf36987b144587e6a7ae5191a5b5a625a4761c8c71ef988e6aa31919541",
+        "elapsedMs": 15,
+        "externalReferences": null,
+        "maxRssKiB": 70000
+      },
+      "equal": true
+    },
+    {
+      "id": "apisetu.gov.in:transportdl",
+      "json": {
+        "sha256": "c604e80d70bf0e06772d1a738dfdeab9541dc6709a2348ea1909abb2c11558d9",
+        "bytes": 77872,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 2,
+        "templates": 2,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "0444d20f69af21533c6ead557ec26022f117f5b2b3e20747c5a77de65779e09f",
+        "elapsedMs": 8,
+        "externalReferences": 0,
+        "maxRssKiB": 66304
+      },
+      "yaml": {
+        "sha256": "8726f82d6cdda0ad177d4680fff53c6f1aef7bb1c42a7f2707ad5b6da7a9d959",
+        "bytes": 54227,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 2,
+        "templates": 2,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "0444d20f69af21533c6ead557ec26022f117f5b2b3e20747c5a77de65779e09f",
+        "elapsedMs": 19,
+        "externalReferences": null,
+        "maxRssKiB": 73776
+      },
+      "equal": true
+    },
+    {
+      "id": "apideck.com:ats",
+      "json": {
+        "sha256": "917f83ef9741061f13e199175bd2288956076bee398d7b19ca6b7cc472c47803",
+        "bytes": 143196,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 5,
+        "templates": 5,
+        "unsupportedParameters": {
+          "style deepObject has no RFC 6570 equivalent": 1
+        },
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "b3ba60fbe81710648e1c89ccdc2ea29dbfdf7c9a7acc94fcc9402963abd63cfd",
+        "elapsedMs": 14,
+        "externalReferences": 0,
+        "maxRssKiB": 72496
+      },
+      "yaml": {
+        "sha256": "eacdff638dde056ce405e30d200769a52139073020b317efad34cf5b62e3fa9a",
+        "bytes": 113175,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 5,
+        "templates": 5,
+        "unsupportedParameters": {
+          "style deepObject has no RFC 6570 equivalent": 1
+        },
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "b3ba60fbe81710648e1c89ccdc2ea29dbfdf7c9a7acc94fcc9402963abd63cfd",
+        "elapsedMs": 30,
+        "externalReferences": null,
+        "maxRssKiB": 81328
+      },
+      "equal": true
+    },
+    {
+      "id": "fungenerators.com:uuid",
+      "json": {
+        "sha256": "57cf7b6c68c3e155dd7664d97b5739981e65d9de53c68566b698e0ad64e02a54",
+        "bytes": 8259,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 3,
+        "templates": 3,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "60bb6c64abb2855c7bc77b1e53a55257fc845c9a8bb8a9f33fcb16a9016133aa",
+        "elapsedMs": 5,
+        "externalReferences": 0,
+        "maxRssKiB": 62560
+      },
+      "yaml": {
+        "sha256": "e733c9ca554fd645c3da864dc60a2d4d7ace2266c41140ba0982d03912f3a3b6",
+        "bytes": 7948,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 3,
+        "templates": 3,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "60bb6c64abb2855c7bc77b1e53a55257fc845c9a8bb8a9f33fcb16a9016133aa",
+        "elapsedMs": 9,
+        "externalReferences": null,
+        "maxRssKiB": 64272
+      },
+      "equal": true
+    },
+    {
+      "id": "telnyx.com",
+      "json": {
+        "sha256": "6def51a3e68326861eef2054f9df2f568ff961e813adcc0409f7afc33d0f01d4",
+        "bytes": 1534861,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 361,
+        "templates": 355,
+        "unsupportedParameters": {
+          "content-based serialization has no RFC 6570 equivalent": 6
+        },
+        "codes": {
+          "ExampleShapeMismatch": 8
+        },
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter filter[features] is a scalar but its schema is a list",
+            "path": "/paths/~1available_phone_number_blocks/get/parameters/9/schema/example",
+            "file": "catalog.json",
+            "line": 994,
+            "column": 26
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter filter[features] is a scalar but its schema is a list",
+            "path": "/paths/~1available_phone_numbers/get/parameters/9/schema/example",
+            "file": "catalog.json",
+            "line": 1173,
+            "column": 26
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter filter is a scalar but its schema is an object",
+            "path": "/paths/~1detail_records/get/parameters/2/examples/filter[cld][contains]=456/value",
+            "file": "catalog.json",
+            "line": 5012,
+            "column": 26
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter sort is a scalar but its schema is a list",
+            "path": "/paths/~1detail_records/get/parameters/5/examples/sort=-created_at/value",
+            "file": "catalog.json",
+            "line": 5071,
+            "column": 26
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter sort is a scalar but its schema is a list",
+            "path": "/paths/~1message_detail_records/get/parameters/18/schema/example",
+            "file": "catalog.json",
+            "line": 7222,
+            "column": 26
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter connections is a scalar but its schema is a list",
+            "path": "/paths/~1reports~1cdr_usage_reports~1sync/get/parameters/4/schema/example",
+            "file": "catalog.json",
+            "line": 12406,
+            "column": 26
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter profiles is a scalar but its schema is a list",
+            "path": "/paths/~1reports~1mdr_usage_reports~1sync/get/parameters/3/schema/example",
+            "file": "catalog.json",
+            "line": 12564,
+            "column": 26
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter sort is a scalar but its schema is a list",
+            "path": "/paths/~1reports~1wdrs/get/parameters/12/schema/example",
+            "file": "catalog.json",
+            "line": 12923,
+            "column": 26
+          }
+        ],
+        "semanticSha256": "30c67474ef932c67e266dc614bcb6359dec9120458e30b7b0c41876d2b8b1ee2",
+        "elapsedMs": 82,
+        "externalReferences": 0,
+        "maxRssKiB": 164624
+      },
+      "yaml": {
+        "sha256": "d2b48b397b0f16f70267f938fbe9a17b62010d8e25d9ae47533add15e5ab5028",
+        "bytes": 1181492,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 361,
+        "templates": 355,
+        "unsupportedParameters": {
+          "content-based serialization has no RFC 6570 equivalent": 6
+        },
+        "codes": {
+          "ExampleShapeMismatch": 8
+        },
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter filter[features] is a scalar but its schema is a list",
+            "path": "/paths/~1available_phone_number_blocks/get/parameters/9/schema/example",
+            "file": "catalog.yaml",
+            "line": 609,
+            "column": 22
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter filter[features] is a scalar but its schema is a list",
+            "path": "/paths/~1available_phone_numbers/get/parameters/9/schema/example",
+            "file": "catalog.yaml",
+            "line": 728,
+            "column": 22
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter filter is a scalar but its schema is an object",
+            "path": "/paths/~1detail_records/get/parameters/2/examples/filter[cld][contains]=456/value",
+            "file": "catalog.yaml",
+            "line": 3334,
+            "column": 22
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter sort is a scalar but its schema is a list",
+            "path": "/paths/~1detail_records/get/parameters/5/examples/sort=-created_at/value",
+            "file": "catalog.yaml",
+            "line": 3377,
+            "column": 22
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter sort is a scalar but its schema is a list",
+            "path": "/paths/~1message_detail_records/get/parameters/18/schema/example",
+            "file": "catalog.yaml",
+            "line": 4764,
+            "column": 22
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter connections is a scalar but its schema is a list",
+            "path": "/paths/~1reports~1cdr_usage_reports~1sync/get/parameters/4/schema/example",
+            "file": "catalog.yaml",
+            "line": 8075,
+            "column": 22
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter profiles is a scalar but its schema is a list",
+            "path": "/paths/~1reports~1mdr_usage_reports~1sync/get/parameters/3/schema/example",
+            "file": "catalog.yaml",
+            "line": 8175,
+            "column": 22
+          },
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter sort is a scalar but its schema is a list",
+            "path": "/paths/~1reports~1wdrs/get/parameters/12/schema/example",
+            "file": "catalog.yaml",
+            "line": 8407,
+            "column": 22
+          }
+        ],
+        "semanticSha256": "30c67474ef932c67e266dc614bcb6359dec9120458e30b7b0c41876d2b8b1ee2",
+        "elapsedMs": 183,
+        "externalReferences": null,
+        "maxRssKiB": 214992
+      },
+      "equal": true
+    },
+    {
+      "id": "openpolicy.local",
+      "json": {
+        "sha256": "fa631e752f368468c5d6462366984ec942d31adacbfa364a4db4603f0391a7de",
+        "bytes": 58876,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 16,
+        "templates": 16,
+        "unsupportedParameters": {},
+        "codes": {
+          "ExampleNotSerializable": 1
+        },
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [
+          {
+            "code": "ExampleNotSerializable",
+            "severity": "warning",
+            "message": "example for query parameter input nests values deeper than RFC 6570 defines",
+            "path": "/components/parameters/inputParameter/schema/example",
+            "file": "catalog.json",
+            "line": 705,
+            "column": 22
+          }
+        ],
+        "semanticSha256": "19b6128c45ea05653b3c6523f28534890dd3f5462aaaefe47f42e363ca094a3b",
+        "elapsedMs": 11,
+        "externalReferences": 0,
+        "maxRssKiB": 66992
+      },
+      "yaml": {
+        "sha256": "98e28f811bbff65097ebfd2571d8c94453cef9f0585276db54d7b89949117a1c",
+        "bytes": 47297,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 16,
+        "templates": 16,
+        "unsupportedParameters": {},
+        "codes": {
+          "ExampleNotSerializable": 1
+        },
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [
+          {
+            "code": "ExampleNotSerializable",
+            "severity": "warning",
+            "message": "example for query parameter input nests values deeper than RFC 6570 defines",
+            "path": "/components/parameters/inputParameter/schema/example",
+            "file": "catalog.yaml",
+            "line": 607,
+            "column": 11
+          }
+        ],
+        "semanticSha256": "19b6128c45ea05653b3c6523f28534890dd3f5462aaaefe47f42e363ca094a3b",
+        "elapsedMs": 20,
+        "externalReferences": null,
+        "maxRssKiB": 74720
+      },
+      "equal": true
+    },
+    {
+      "id": "nexmo.com:numbers",
+      "json": {
+        "sha256": "943ff9c3602cf2b17b6a7d36158283f658ee066e10be6533e61249cc1a675c68",
+        "bytes": 24734,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 5,
+        "templates": 5,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "351f7fe3daf8a3e54aefa95f215f1bd0a3fb503b15f1cd589e66e828909305c4",
+        "elapsedMs": 8,
+        "externalReferences": 0,
+        "maxRssKiB": 64160
+      },
+      "yaml": {
+        "sha256": "63daaaff7b3d014c19bd12b12f52cb9d78351c3a49a77f3a0a2baf850146b1bf",
+        "bytes": 18842,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 5,
+        "templates": 5,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "351f7fe3daf8a3e54aefa95f215f1bd0a3fb503b15f1cd589e66e828909305c4",
+        "elapsedMs": 15,
+        "externalReferences": null,
+        "maxRssKiB": 67728
+      },
+      "equal": true
+    },
+    {
+      "id": "gambitcomm.local:mimic",
+      "json": {
+        "sha256": "1aeac6b89392645c6cbe39a417dfb8c192842e880e32907b2aa705524c7a3fc4",
+        "bytes": 450965,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 356,
+        "templates": 356,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "22646f8393dba64d68bc42462e7f73db2ea0e85f2078a6ccb2c3782c9872cb2a",
+        "elapsedMs": 37,
+        "externalReferences": 0,
+        "maxRssKiB": 112416
+      },
+      "yaml": {
+        "sha256": "520669c60b74810ea583b6088d5d25cf01a499cdc8b336ab089b290900165465",
+        "bytes": 317738,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 356,
+        "templates": 356,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "22646f8393dba64d68bc42462e7f73db2ea0e85f2078a6ccb2c3782c9872cb2a",
+        "elapsedMs": 75,
+        "externalReferences": null,
+        "maxRssKiB": 129360
+      },
+      "equal": true
+    },
+    {
+      "id": "cloudrf.com",
+      "json": {
+        "sha256": "3ab288da4439820f20e66529b5d626546c764bbd22ec78b2f8077c0f9d0b63f3",
+        "bytes": 31127,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 11,
+        "templates": 11,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "c9a30225c8edeeadc2eedcef63baaad96a2aa76c55f7188ee83b2ce6762d6eed",
+        "elapsedMs": 7,
+        "externalReferences": 0,
+        "maxRssKiB": 64128
+      },
+      "yaml": {
+        "sha256": "d94c0c60a27b81bc91984ec2697018c16240bb1e3d37aa3e4a6823c595fe26d0",
+        "bytes": 23399,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 11,
+        "templates": 11,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "c9a30225c8edeeadc2eedcef63baaad96a2aa76c55f7188ee83b2ce6762d6eed",
+        "elapsedMs": 15,
+        "externalReferences": null,
+        "maxRssKiB": 73424
+      },
+      "equal": true
+    },
+    {
+      "id": "papinet.io:order_status",
+      "json": {
+        "sha256": "b1f9b696c7c1b601d23727553b83a1b04885468c127d2ebf460977cec1be8944",
+        "bytes": 8647,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 2,
+        "templates": 2,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "c71abaafc5c17d98a94ba46823447b01cc0d5abacdc2724a3e0c139fb9af3256",
+        "elapsedMs": 5,
+        "externalReferences": 0,
+        "maxRssKiB": 62384
+      },
+      "yaml": {
+        "sha256": "728e314faa912224caca7af0ec47bb6113e0a48a500fbcb3880297e138f2f531",
+        "bytes": 6218,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 2,
+        "templates": 2,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "c71abaafc5c17d98a94ba46823447b01cc0d5abacdc2724a3e0c139fb9af3256",
+        "elapsedMs": 9,
+        "externalReferences": null,
+        "maxRssKiB": 64496
+      },
+      "equal": true
+    },
+    {
+      "id": "mist.com",
+      "json": {
+        "sha256": "3400d5c7b18d0e36d728b1c57a0329e212222a6a808e9b327e8e37f731975210",
+        "bytes": 3387250,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 775,
+        "templates": 775,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "afa60813c537215a2cd0413a7deadbe924910fdfe2f4419916653a526ef4599a",
+        "elapsedMs": 181,
+        "externalReferences": 0,
+        "maxRssKiB": 240416
+      },
+      "yaml": {
+        "sha256": "e58168c73a8703e1f5e83cd002bda267c35c5244769ba6f07e0e688b2e861fac",
+        "bytes": 2470775,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 775,
+        "templates": 775,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "afa60813c537215a2cd0413a7deadbe924910fdfe2f4419916653a526ef4599a",
+        "elapsedMs": 399,
+        "externalReferences": null,
+        "maxRssKiB": 306400
+      },
+      "equal": true
+    },
+    {
+      "id": "surevoip.co.uk",
+      "json": {
+        "sha256": "b1a58166963e26b36924e5438f3c9bf69ea9c3b3d81e21bd58babb2d2c64baf1",
+        "bytes": 33676,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 30,
+        "templates": 30,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "abafdcaa9587983cb9fb7dd66c0bc1be18d2d6c8bc393b3d8b8ce07912974b2f",
+        "elapsedMs": 12,
+        "externalReferences": 0,
+        "maxRssKiB": 65216
+      },
+      "yaml": {
+        "sha256": "e9e2a806567542cb1e65f56ca50f378372daf28482509d0a8cfabed800a7674b",
+        "bytes": 24148,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 30,
+        "templates": 30,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "abafdcaa9587983cb9fb7dd66c0bc1be18d2d6c8bc393b3d8b8ce07912974b2f",
+        "elapsedMs": 16,
+        "externalReferences": null,
+        "maxRssKiB": 74416
+      },
+      "equal": true
+    },
+    {
+      "id": "portfoliooptimizer.io",
+      "json": {
+        "sha256": "01a45aac0be5d97c8d562a4d95f8b04b845ee8ff6308f08fd5262a4c4c536af0",
+        "bytes": 541716,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 83,
+        "templates": 83,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "28222afc2ebe6431cdb341e7d913458b13771e872f83aa425cf02c4da5ec6907",
+        "elapsedMs": 29,
+        "externalReferences": 0,
+        "maxRssKiB": 90272
+      },
+      "yaml": {
+        "sha256": "22a521e8baa8e744907f0c17b487682e8072ce9c45f86865b0d6cc8f924ac7fd",
+        "bytes": 400573,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 83,
+        "templates": 83,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "28222afc2ebe6431cdb341e7d913458b13771e872f83aa425cf02c4da5ec6907",
+        "elapsedMs": 62,
+        "externalReferences": null,
+        "maxRssKiB": 116448
+      },
+      "equal": true
+    },
+    {
+      "id": "gsmtasks.com",
+      "json": {
+        "sha256": "ac289a63d2231d332285d7e16a6ccdf6ce0d7294b280095d8dfd51736eec25c6",
+        "bytes": 1889269,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 261,
+        "templates": 261,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "ced34e8f74dc73fda06630bdba3723fcb712a92c96863050447876fe001d71e6",
+        "elapsedMs": 118,
+        "externalReferences": 0,
+        "maxRssKiB": 190208
+      },
+      "yaml": {
+        "sha256": "e0edd5f5b768771961ec1bc4a5f2fa3eca574be5d9f31e7486a702629a824bcb",
+        "bytes": 1317583,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 261,
+        "templates": 261,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "ced34e8f74dc73fda06630bdba3723fcb712a92c96863050447876fe001d71e6",
+        "elapsedMs": 266,
+        "externalReferences": null,
+        "maxRssKiB": 245312
+      },
+      "equal": true
+    },
+    {
+      "id": "openbankingproject.ch",
+      "json": {
+        "sha256": "bd435a477b4921cd99a1ea319baa828339cb03b8b108568af895104164005bba",
+        "bytes": 568333,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 34,
+        "templates": 34,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "58569c16a10cb2ee340bf76e188ed0ac3f3aca92a808dc44cf8a5313d9892491",
+        "elapsedMs": 40,
+        "externalReferences": 0,
+        "maxRssKiB": 106192
+      },
+      "yaml": {
+        "sha256": "6c154f517e6fd2c5691d02807e2166874f3dbfe36373ea8852d85adea557900d",
+        "bytes": 472978,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 34,
+        "templates": 34,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "58569c16a10cb2ee340bf76e188ed0ac3f3aca92a808dc44cf8a5313d9892491",
+        "elapsedMs": 78,
+        "externalReferences": null,
+        "maxRssKiB": 122992
+      },
+      "equal": true
+    },
+    {
+      "id": "apache.org:airflow",
+      "json": {
+        "sha256": "d64b718d898f5f0d3da615e61a9491e31f603dff4dbd64ba6365b472026b1b87",
+        "bytes": 192450,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 73,
+        "templates": 73,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "5e1af52b2fc98dc50ebbf54b5f24440459866a915ca88b1a1e55e4961c79f0a2",
+        "elapsedMs": 19,
+        "externalReferences": 0,
+        "maxRssKiB": 86128
+      },
+      "yaml": {
+        "sha256": "aca7e2d2f0d2961e1d3731192000aea3a391471716e0c9512ed893df9767c6d6",
+        "bytes": 147439,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 73,
+        "templates": 73,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "5e1af52b2fc98dc50ebbf54b5f24440459866a915ca88b1a1e55e4961c79f0a2",
+        "elapsedMs": 42,
+        "externalReferences": null,
+        "maxRssKiB": 99488
+      },
+      "equal": true
+    },
+    {
+      "id": "openai.com",
+      "json": {
+        "sha256": "8ab0b2055010705b1c6f8462e742b325afaef3617503d35f6b2a67dac241517f",
+        "bytes": 145331,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 28,
+        "templates": 28,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "b8ffd1761918dbacf0cea498025a342ed7df0686e47943c36137015dc3a5cd01",
+        "elapsedMs": 14,
+        "externalReferences": 0,
+        "maxRssKiB": 72608
+      },
+      "yaml": {
+        "sha256": "ed8f4ff415be24c2f1dfde64243f79b8107bc7612b7f778f8ef344bbf54384bd",
+        "bytes": 131333,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 28,
+        "templates": 28,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "b8ffd1761918dbacf0cea498025a342ed7df0686e47943c36137015dc3a5cd01",
+        "elapsedMs": 28,
+        "externalReferences": null,
+        "maxRssKiB": 77840
+      },
+      "equal": true
+    },
+    {
+      "id": "lambdatest.com",
+      "json": {
+        "sha256": "be21e207a1af80728a5de31a49cbe8200dd64b591f9d5a5dfe03e8c0bc4b4a0a",
+        "bytes": 33415,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 9,
+        "templates": 9,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "49190736dc3a9260c4ee19108c790de2fbde4550be434738989476013eadfafd",
+        "elapsedMs": 6,
+        "externalReferences": 0,
+        "maxRssKiB": 63648
+      },
+      "yaml": {
+        "sha256": "47d2c7d2e4c69cc6306018bb96baea6b45a8d2dc0e80a7601d01e5f10b36b28b",
+        "bytes": 22935,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 9,
+        "templates": 9,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "49190736dc3a9260c4ee19108c790de2fbde4550be434738989476013eadfafd",
+        "elapsedMs": 14,
+        "externalReferences": null,
+        "maxRssKiB": 69872
+      },
+      "equal": true
+    },
+    {
+      "id": "docker.com:dvp",
+      "json": {
+        "sha256": "f9c8e880a47f974cc51a39c5128c94f061c356d36a7a850c9dc46b8116fa9a42",
+        "bytes": 22026,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 8,
+        "templates": 8,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "c461218e566cb94893f66db85ea3dd36deb0462ba4dd6903bf28da0a92399d8d",
+        "elapsedMs": 7,
+        "externalReferences": 0,
+        "maxRssKiB": 63728
+      },
+      "yaml": {
+        "sha256": "e1b07835729b71be70a42452c37609d4cee2024b1defaddad5ae3bd3de9b6b3a",
+        "bytes": 16636,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 8,
+        "templates": 8,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "c461218e566cb94893f66db85ea3dd36deb0462ba4dd6903bf28da0a92399d8d",
+        "elapsedMs": 13,
+        "externalReferences": null,
+        "maxRssKiB": 69968
+      },
+      "equal": true
+    },
+    {
+      "id": "getpostman.com",
+      "json": {
+        "sha256": "46310b1a5744441e2c28a718178d2f9fc127270a53c4ee011202be2e5eb1ca3e",
+        "bytes": 286368,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 57,
+        "templates": 57,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "a3ae9de05c92d8ef0759b7d2cffc3dcd0f125c017b7110d0838cc16765ac80da",
+        "elapsedMs": 18,
+        "externalReferences": 0,
+        "maxRssKiB": 83360
+      },
+      "yaml": {
+        "sha256": "6c5b7a4a321544c0c08cb64145a806c98b0c435540cc22fd90fed78c73d8ab58",
+        "bytes": 218554,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 57,
+        "templates": 57,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "a3ae9de05c92d8ef0759b7d2cffc3dcd0f125c017b7110d0838cc16765ac80da",
+        "elapsedMs": 41,
+        "externalReferences": null,
+        "maxRssKiB": 92048
+      },
+      "equal": true
+    },
+    {
+      "id": "datasette.local",
+      "json": {
+        "sha256": "256ed0eda6ca3e68a36d1277a31ef8eb977cfe902c81b4897dbc9881275b2606",
+        "bytes": 2102,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 1,
+        "templates": 1,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "8ebf43e574d1227bb500bc7c8d2aa6cfcd55227c278f54a6a4eda9a18be0de26",
+        "elapsedMs": 4,
+        "externalReferences": 0,
+        "maxRssKiB": 61360
+      },
+      "yaml": {
+        "sha256": "2c43eb01ed2f61fcde606d4e3ebf189827f93553a022e59389af6808aa263a28",
+        "bytes": 1481,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 1,
+        "templates": 1,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "8ebf43e574d1227bb500bc7c8d2aa6cfcd55227c278f54a6a4eda9a18be0de26",
+        "elapsedMs": 7,
+        "externalReferences": null,
+        "maxRssKiB": 62528
+      },
+      "equal": true
+    },
+    {
+      "id": "opensuse.org:obs",
+      "json": {
+        "sha256": "85ad1dde31a66bf4f79dfe91b44608ba6dba6a2289a7d9e0040ab9abff4c7e90",
+        "bytes": 288264,
+        "outcome": "complete-with-diagnostics",
+        "ok": false,
+        "complete": true,
+        "operations": 75,
+        "templates": 75,
+        "unsupportedParameters": {},
+        "codes": {
+          "InvalidPath": 6
+        },
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [
+          {
+            "code": "InvalidPath",
+            "severity": "error",
+            "message": "path contains a query string; declare query parameters instead",
+            "path": "/paths/~1build~1{project_name}~1{repository_name}~1{architecture_name}~1{package_name}~1{file_name}?view=fileinfo",
+            "file": "catalog.json",
+            "line": 2746,
+            "column": 109
+          },
+          {
+            "code": "InvalidPath",
+            "severity": "error",
+            "message": "path contains a query string; declare query parameters instead",
+            "path": "/paths/~1published~1{project_name}~1{repository_name}~1{architecture_name}~1{binary_filename}?view=ymp",
+            "file": "catalog.json",
+            "line": 5672,
+            "column": 99
+          },
+          {
+            "code": "InvalidPath",
+            "severity": "error",
+            "message": "path contains a query string; declare query parameters instead",
+            "path": "/paths/~1published~1{project_name}~1{repository_name}?view=status",
+            "file": "catalog.json",
+            "line": 5844,
+            "column": 64
+          },
+          {
+            "code": "InvalidPath",
+            "severity": "error",
+            "message": "path contains a query string; declare query parameters instead",
+            "path": "/paths/~1request~1{id}?cmd=diff",
+            "file": "catalog.json",
+            "line": 6712,
+            "column": 31
+          },
+          {
+            "code": "InvalidPath",
+            "severity": "error",
+            "message": "path contains a query string; declare query parameters instead",
+            "path": "/paths/~1request?view=collection",
+            "file": "catalog.json",
+            "line": 7042,
+            "column": 33
+          },
+          {
+            "code": "InvalidPath",
+            "severity": "error",
+            "message": "path contains a query string; declare query parameters instead",
+            "path": "/paths/~1worker?cmd=checkconstraints",
+            "file": "catalog.json",
+            "line": 7764,
+            "column": 37
+          }
+        ],
+        "semanticSha256": "9a6a7dae372efcda31de769856c1c080239da2c9a4435f7c6a7a563df6dbfd45",
+        "elapsedMs": 23,
+        "externalReferences": 0,
+        "maxRssKiB": 91168
+      },
+      "yaml": {
+        "sha256": "5c8433848be54015c072538a2b0cd4f7ec40555e97620f309f277f3cc210badd",
+        "bytes": 210522,
+        "outcome": "complete-with-diagnostics",
+        "ok": false,
+        "complete": true,
+        "operations": 75,
+        "templates": 75,
+        "unsupportedParameters": {},
+        "codes": {
+          "InvalidPath": 6
+        },
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [
+          {
+            "code": "InvalidPath",
+            "severity": "error",
+            "message": "path contains a query string; declare query parameters instead",
+            "path": "/paths/~1build~1{project_name}~1{repository_name}~1{architecture_name}~1{package_name}~1{file_name}?view=fileinfo",
+            "file": "catalog.yaml",
+            "line": 1941,
+            "column": 5
+          },
+          {
+            "code": "InvalidPath",
+            "severity": "error",
+            "message": "path contains a query string; declare query parameters instead",
+            "path": "/paths/~1published~1{project_name}~1{repository_name}~1{architecture_name}~1{binary_filename}?view=ymp",
+            "file": "catalog.yaml",
+            "line": 3945,
+            "column": 5
+          },
+          {
+            "code": "InvalidPath",
+            "severity": "error",
+            "message": "path contains a query string; declare query parameters instead",
+            "path": "/paths/~1published~1{project_name}~1{repository_name}?view=status",
+            "file": "catalog.yaml",
+            "line": 4054,
+            "column": 5
+          },
+          {
+            "code": "InvalidPath",
+            "severity": "error",
+            "message": "path contains a query string; declare query parameters instead",
+            "path": "/paths/~1request~1{id}?cmd=diff",
+            "file": "catalog.yaml",
+            "line": 4663,
+            "column": 5
+          },
+          {
+            "code": "InvalidPath",
+            "severity": "error",
+            "message": "path contains a query string; declare query parameters instead",
+            "path": "/paths/~1request?view=collection",
+            "file": "catalog.yaml",
+            "line": 4898,
+            "column": 5
+          },
+          {
+            "code": "InvalidPath",
+            "severity": "error",
+            "message": "path contains a query string; declare query parameters instead",
+            "path": "/paths/~1worker?cmd=checkconstraints",
+            "file": "catalog.yaml",
+            "line": 5383,
+            "column": 5
+          }
+        ],
+        "semanticSha256": "9a6a7dae372efcda31de769856c1c080239da2c9a4435f7c6a7a563df6dbfd45",
+        "elapsedMs": 46,
+        "externalReferences": null,
+        "maxRssKiB": 97088
+      },
+      "equal": true
+    },
+    {
+      "id": "codesearch.debian.net",
+      "json": {
+        "sha256": "8aeb2656ecc787e2d51664f4a1068b2d9a6c56e820071485fd875e7cf0d45740",
+        "bytes": 9434,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 2,
+        "templates": 2,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "61432cdce9f5c015c92d6d922305c7ffea59a0fbf949c28cfc4b5e05e53c684c",
+        "elapsedMs": 5,
+        "externalReferences": 0,
+        "maxRssKiB": 62544
+      },
+      "yaml": {
+        "sha256": "01667ce07b6374eb656c2add233ee475e46fbbcb758ec0d12c31cf47e10a6ad0",
+        "bytes": 7432,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 2,
+        "templates": 2,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "61432cdce9f5c015c92d6d922305c7ffea59a0fbf949c28cfc4b5e05e53c684c",
+        "elapsedMs": 9,
+        "externalReferences": null,
+        "maxRssKiB": 64112
+      },
+      "equal": true
+    },
+    {
+      "id": "cpy.re:peertube",
+      "json": {
+        "sha256": "ee5e30870db6f65f162d210b87946a8ef4fbb5d881eb2c6aa01006afca4196f4",
+        "bytes": 374605,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 186,
+        "templates": 186,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "95ada107cb1ccf5738eb1b54110a65507d64d3f4634ea8e1f57e8a9af6db8eb9",
+        "elapsedMs": 35,
+        "externalReferences": 0,
+        "maxRssKiB": 102512
+      },
+      "yaml": {
+        "sha256": "19a92da948328133f6570a5442a4da69e86c4c09c9f5cd4e4fbfab25a0ec358f",
+        "bytes": 263090,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 186,
+        "templates": 186,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "95ada107cb1ccf5738eb1b54110a65507d64d3f4634ea8e1f57e8a9af6db8eb9",
+        "elapsedMs": 69,
+        "externalReferences": null,
+        "maxRssKiB": 121536
+      },
+      "equal": true
+    },
+    {
+      "id": "rev.ai",
+      "json": {
+        "sha256": "2b8675b1c4fc28a6909922057d5ffbb25fd8a729329b8e2a9a9e5daa2a04c63b",
+        "bytes": 89292,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 7,
+        "templates": 7,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "6e6c83f5eff1a4d08bd9d7cfec36105931351aac0a64f261823768ed3a980d92",
+        "elapsedMs": 10,
+        "externalReferences": 0,
+        "maxRssKiB": 67264
+      },
+      "yaml": {
+        "sha256": "e6648313a07961449f066591e1cde49fdbf7962649ef2f4ac8f5c1946d976771",
+        "bytes": 74443,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 7,
+        "templates": 7,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "6e6c83f5eff1a4d08bd9d7cfec36105931351aac0a64f261823768ed3a980d92",
+        "elapsedMs": 19,
+        "externalReferences": null,
+        "maxRssKiB": 75936
+      },
+      "equal": true
+    },
+    {
+      "id": "spotify.com:sonallux",
+      "json": {
+        "sha256": "d71eff045735eb3304322d03d0632d2742addcd05cd676b7d61d718c2664b244",
+        "bytes": 354112,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 89,
+        "templates": 89,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "5a540782ff302ce7651ce6d08ab5d533e4557f441bba306835bbec0db5f06797",
+        "elapsedMs": 30,
+        "externalReferences": 0,
+        "maxRssKiB": 95440
+      },
+      "yaml": {
+        "sha256": "641e83c4226420f440a2a03d7222af298353e74defe8ac288d80668068e900e3",
+        "bytes": 286013,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 89,
+        "templates": 89,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "5a540782ff302ce7651ce6d08ab5d533e4557f441bba306835bbec0db5f06797",
+        "elapsedMs": 57,
+        "externalReferences": null,
+        "maxRssKiB": 106016
+      },
+      "equal": true
+    },
+    {
+      "id": "pressassociation.io",
+      "json": {
+        "sha256": "de9bf65a05e03c0b7548aa9988313f63bb4b488f5d40df96223939cef144bb1d",
+        "bytes": 80850,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 18,
+        "templates": 18,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "0f76e8ec4b91b54f65b98da6d1c1d5f9a05b134ad7e784fb2f43f67813e9fad0",
+        "elapsedMs": 10,
+        "externalReferences": 0,
+        "maxRssKiB": 67024
+      },
+      "yaml": {
+        "sha256": "a558b098af9eea2e5d6ff2506b9353f942826509a88cf324e6788bbf4f065ddb",
+        "bytes": 93557,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 18,
+        "templates": 18,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "0f76e8ec4b91b54f65b98da6d1c1d5f9a05b134ad7e784fb2f43f67813e9fad0",
+        "elapsedMs": 18,
+        "externalReferences": null,
+        "maxRssKiB": 73552
+      },
+      "equal": true
+    },
+    {
+      "id": "asana.com",
+      "json": {
+        "sha256": "40c1c94d476c897f707c2974a3aeedee1d0b8a6eab8b7654819c0effa0f8ffa6",
+        "bytes": 604802,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 167,
+        "templates": 167,
+        "unsupportedParameters": {},
+        "codes": {
+          "ExampleShapeMismatch": 1
+        },
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter time_periods is a scalar but its schema is a list",
+            "path": "/paths/~1goals/get/parameters/5/example",
+            "file": "catalog.json",
+            "line": 1293,
+            "column": 24
+          }
+        ],
+        "semanticSha256": "e6c9d6193246b9315564aad8c85b86ebb1ac237def9e5b4e4cadec7559228aff",
+        "elapsedMs": 43,
+        "externalReferences": 0,
+        "maxRssKiB": 114592
+      },
+      "yaml": {
+        "sha256": "0490b48c3ed9269c139a32554d8e1d3270b7315513eaf886fb063c4232b41c78",
+        "bytes": 469144,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 167,
+        "templates": 167,
+        "unsupportedParameters": {},
+        "codes": {
+          "ExampleShapeMismatch": 1
+        },
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [
+          {
+            "code": "ExampleShapeMismatch",
+            "severity": "warning",
+            "message": "example for query parameter time_periods is a scalar but its schema is a list",
+            "path": "/paths/~1goals/get/parameters/5/example",
+            "file": "catalog.yaml",
+            "line": 1139,
+            "column": 20
+          }
+        ],
+        "semanticSha256": "e6c9d6193246b9315564aad8c85b86ebb1ac237def9e5b4e4cadec7559228aff",
+        "elapsedMs": 85,
+        "externalReferences": null,
+        "maxRssKiB": 143728
+      },
+      "equal": true
+    },
+    {
+      "id": "intellifi.nl",
+      "json": {
+        "sha256": "0e000dac5305e4961ccb58e1ecacb22138154d3fa4a4a07a6522ff854cf81fe4",
+        "bytes": 165024,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 77,
+        "templates": 77,
+        "unsupportedParameters": {
+          "name is also used by a path parameter": 1
+        },
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "a8133cea1b80af67819fb3b5e8e542bc34959da1a592f364b2ac4ce75e4a0444",
+        "elapsedMs": 22,
+        "externalReferences": 0,
+        "maxRssKiB": 83504
+      },
+      "yaml": {
+        "sha256": "31f0d761553271cebd23b8453bb666c9f5b7f98926ad49e4c73a2fdc793d12ca",
+        "bytes": 117894,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 77,
+        "templates": 77,
+        "unsupportedParameters": {
+          "name is also used by a path parameter": 1
+        },
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "a8133cea1b80af67819fb3b5e8e542bc34959da1a592f364b2ac4ce75e4a0444",
+        "elapsedMs": 43,
+        "externalReferences": null,
+        "maxRssKiB": 93008
+      },
+      "equal": true
+    },
+    {
+      "id": "flat.io",
+      "json": {
+        "sha256": "6fce1e81caac6f005261caae82c590b919c9a2548d1bc78a165ab74fb8b62da7",
+        "bytes": 281536,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 81,
+        "templates": 81,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "d99cc249c2ff55ce7d213a5347a9246fe55ea743b42861225e248f2ba8ca2421",
+        "elapsedMs": 20,
+        "externalReferences": 0,
+        "maxRssKiB": 87616
+      },
+      "yaml": {
+        "sha256": "d0f86ba21938b2cd73eb124fadbe3bd1ee90484a7ed70ec78e1f61871040f1ef",
+        "bytes": 213271,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 81,
+        "templates": 81,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "d99cc249c2ff55ce7d213a5347a9246fe55ea743b42861225e248f2ba8ca2421",
+        "elapsedMs": 45,
+        "externalReferences": null,
+        "maxRssKiB": 97312
+      },
+      "equal": true
+    },
+    {
+      "id": "digitalocean.com",
+      "json": {
+        "sha256": "21c7fd1ddfb7476410fe75934acb74be59e0747b27361a0e67da7f396ef861c5",
+        "bytes": 1908923,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 290,
+        "templates": 290,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "4125a83d3c059a4aae1195ff407a59cc75edeca8de1bdb2c5d7c38f4681a23f0",
+        "elapsedMs": 85,
+        "externalReferences": 0,
+        "maxRssKiB": 163168
+      },
+      "yaml": {
+        "sha256": "2b7b040e296e92e40b5163e0bf90c3be95043ec4d27e193c491017614f69a54e",
+        "bytes": 1567548,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 290,
+        "templates": 290,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "4125a83d3c059a4aae1195ff407a59cc75edeca8de1bdb2c5d7c38f4681a23f0",
+        "elapsedMs": 175,
+        "externalReferences": null,
+        "maxRssKiB": 203920
+      },
+      "equal": true
+    },
+    {
+      "id": "trapstreet.com",
+      "json": {
+        "sha256": "f6ba7acd9d20f7833e4c5aee80e73398e2ad010cec84b1b9ad01c425f62b0abb",
+        "bytes": 1556,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 1,
+        "templates": 1,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "7d74593da58c0cdfe675bba4d4a4023fbd12b9731580b1628b313237ee12862d",
+        "elapsedMs": 3,
+        "externalReferences": 0,
+        "maxRssKiB": 61328
+      },
+      "yaml": {
+        "sha256": "708877c73950ad5c0b49a2ed89b4ab192ff054a4c68ba7a21353af827dd88ca0",
+        "bytes": 1059,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 1,
+        "templates": 1,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "7d74593da58c0cdfe675bba4d4a4023fbd12b9731580b1628b313237ee12862d",
+        "elapsedMs": 6,
+        "externalReferences": null,
+        "maxRssKiB": 62160
+      },
+      "equal": true
+    },
+    {
+      "id": "exlibrisgroup.com:tasklists",
+      "json": {
+        "sha256": "bc80b2ccf642b6727accceed5f605c281c6f4aa5d9055a6bba5ff79ac043f37c",
+        "bytes": 94003,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 10,
+        "templates": 10,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "6fe13ffe73923823fe4bad5f5627a6819d4382518dd38d9c698bd8938e1163e0",
+        "elapsedMs": 10,
+        "externalReferences": 0,
+        "maxRssKiB": 68800
+      },
+      "yaml": {
+        "sha256": "a36fe1c4f2f69c25514afcadcdf2e7fc61096258355b33917c833eb68e7d2364",
+        "bytes": 72268,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 10,
+        "templates": 10,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "6fe13ffe73923823fe4bad5f5627a6819d4382518dd38d9c698bd8938e1163e0",
+        "elapsedMs": 20,
+        "externalReferences": null,
+        "maxRssKiB": 74064
+      },
+      "equal": true
+    },
+    {
+      "id": "openbanking.org.uk:event-notifications-openapi",
+      "json": {
+        "sha256": "3bb8997fff4ad062debd7c86662a99c108ffee3a8c42e6dfa3a95e4e38818d84",
+        "bytes": 7334,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 1,
+        "templates": 1,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "956b3040a9be509b93cb7db4502d5b9bd1e866a6b5b630eda0875bed2f6b41ac",
+        "elapsedMs": 4,
+        "externalReferences": 0,
+        "maxRssKiB": 62144
+      },
+      "yaml": {
+        "sha256": "bfbc8d948531ed6228142b33a6c27ff5c127192945e17a7d5a53505c153bdc04",
+        "bytes": 5531,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 1,
+        "templates": 1,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "956b3040a9be509b93cb7db4502d5b9bd1e866a6b5b630eda0875bed2f6b41ac",
+        "elapsedMs": 8,
+        "externalReferences": null,
+        "maxRssKiB": 64464
+      },
+      "equal": true
+    },
+    {
+      "id": "tomtom.com:routing",
+      "json": {
+        "sha256": "f063a949ae9619bf553104db5180a32fbf7343839531554a8fb7ae88ec70f67b",
+        "bytes": 49187,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 4,
+        "templates": 4,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "15c833c951d94373368685be0c1a59ac4982b775800562e8f58f961a40669cf8",
+        "elapsedMs": 11,
+        "externalReferences": 0,
+        "maxRssKiB": 69488
+      },
+      "yaml": {
+        "sha256": "52c3b7ea6da0f61c7b8acf1da24ff47b29ed09ca72e4b45a24d49e6f09c75596",
+        "bytes": 36580,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 4,
+        "templates": 4,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "15c833c951d94373368685be0c1a59ac4982b775800562e8f58f961a40669cf8",
+        "elapsedMs": 20,
+        "externalReferences": null,
+        "maxRssKiB": 74656
+      },
+      "equal": true
+    },
+    {
+      "id": "sinao.app",
+      "json": {
+        "sha256": "04f24b3c6e8dcb751255b5802186a7092720a2988dd4b67845adcf8bb16fe15a",
+        "bytes": 477647,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 272,
+        "templates": 272,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "1c25d70f57da521be1c421b02f3e840903b893a0475692ea30afd7c3c6fd3b79",
+        "elapsedMs": 43,
+        "externalReferences": 0,
+        "maxRssKiB": 116624
+      },
+      "yaml": {
+        "sha256": "61bb6803510d421ecd79d086c154e65802ce509bad12a64567264f9bbd4e9982",
+        "bytes": 319232,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 272,
+        "templates": 272,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "1c25d70f57da521be1c421b02f3e840903b893a0475692ea30afd7c3c6fd3b79",
+        "elapsedMs": 86,
+        "externalReferences": null,
+        "maxRssKiB": 139968
+      },
+      "equal": true
+    },
+    {
+      "id": "1password.com:events",
+      "json": {
+        "sha256": "a0b312c4d85d4bc07894225260c79e88e8a1d568218bb9c297b4fd0d78b85a22",
+        "bytes": 14312,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 3,
+        "templates": 3,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "4534b8d6f513363dc370d83c310579a672c7a96eb46a42743b84e39c6252d8f2",
+        "elapsedMs": 5,
+        "externalReferences": 0,
+        "maxRssKiB": 63392
+      },
+      "yaml": {
+        "sha256": "c0e70fad988bf24b4365b4afa26c5a2f00e325ff4245f9095f5cab9e1c1a382a",
+        "bytes": 10422,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 3,
+        "templates": 3,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "4534b8d6f513363dc370d83c310579a672c7a96eb46a42743b84e39c6252d8f2",
+        "elapsedMs": 10,
+        "externalReferences": null,
+        "maxRssKiB": 67440
+      },
+      "equal": true
+    },
+    {
+      "id": "bbci.co.uk",
+      "json": {
+        "sha256": "0da4e53dce293a52c24dcea2234834f8513df08d05772851323a885a43981f8f",
+        "bytes": 94208,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 30,
+        "templates": 30,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "fe148a82f47d54851492108d58f489fb4c144fc183b9abbc04083196f24bc0cc",
+        "elapsedMs": 13,
+        "externalReferences": 0,
+        "maxRssKiB": 73520
+      },
+      "yaml": {
+        "sha256": "c9438d0085c77e5902fedb3bb344c655d52b906a4108299d89ecdce265e3c5eb",
+        "bytes": 63050,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 30,
+        "templates": 30,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "fe148a82f47d54851492108d58f489fb4c144fc183b9abbc04083196f24bc0cc",
+        "elapsedMs": 26,
+        "externalReferences": null,
+        "maxRssKiB": 78912
+      },
+      "equal": true
+    },
+    {
+      "id": "randomlovecraft.com",
+      "json": {
+        "sha256": "7f10001ce90b0581aac26f3932016bc4d74a07fc7d569e825c29632c3d72b38a",
+        "bytes": 5553,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 4,
+        "templates": 4,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "c309dea792334c9cc55f255b12b9f7d77d96995ffc0801b1edcb003a98442632",
+        "elapsedMs": 5,
+        "externalReferences": 0,
+        "maxRssKiB": 61792
+      },
+      "yaml": {
+        "sha256": "9b330ee2b4790e518b5b414aceaf620e3601ba02eff559be9b89dddae06ecd75",
+        "bytes": 3682,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 4,
+        "templates": 4,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "c309dea792334c9cc55f255b12b9f7d77d96995ffc0801b1edcb003a98442632",
+        "elapsedMs": 8,
+        "externalReferences": null,
+        "maxRssKiB": 63712
+      },
+      "equal": true
+    },
+    {
+      "id": "adobe.com:aem",
+      "json": {
+        "sha256": "ec812606758838d0b58608eef3dab96a4336f08d0d765cee4a966866d685e895",
+        "bytes": 98130,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 48,
+        "templates": 48,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "bcf34987d406610c0ad5d778aced649b2b6c41827a69c8c33625557afad95be4",
+        "elapsedMs": 15,
+        "externalReferences": 0,
+        "maxRssKiB": 82224
+      },
+      "yaml": {
+        "sha256": "39c3c956fccd98931add84b2cf90cd00a0a6b2244591b91af8bc4aa8dbd591fa",
+        "bytes": 65175,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 48,
+        "templates": 48,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "bcf34987d406610c0ad5d778aced649b2b6c41827a69c8c33625557afad95be4",
+        "elapsedMs": 29,
+        "externalReferences": null,
+        "maxRssKiB": 91584
+      },
+      "equal": true
+    },
+    {
+      "id": "trashnothing.com",
+      "json": {
+        "sha256": "edbecc6159452637615fc079a6013ede1e66f7dcbae30037f824e0e0a3cea829",
+        "bytes": 254588,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 76,
+        "templates": 76,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "6a368b0c44066177215afd84e8a3d517e32b4c8d098caaf3ae6df244e32892d2",
+        "elapsedMs": 18,
+        "externalReferences": 0,
+        "maxRssKiB": 84512
+      },
+      "yaml": {
+        "sha256": "90892648c36232d6b222d00aae981d7ffda5da9fbe8d98553c7b15f7b91ba286",
+        "bytes": 202889,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 76,
+        "templates": 76,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "6a368b0c44066177215afd84e8a3d517e32b4c8d098caaf3ae6df244e32892d2",
+        "elapsedMs": 45,
+        "externalReferences": null,
+        "maxRssKiB": 93360
+      },
+      "equal": true
+    },
+    {
+      "id": "linode.com",
+      "json": {
+        "sha256": "f8de7e6d551673a8871009982b3936674a9a54ff56c9439ead5282986cb1bfbd",
+        "bytes": 1177644,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 350,
+        "templates": 350,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "30989e0afca56dcb75eca452661536b65395de43b9e6b8c1ed6e65859715a483",
+        "elapsedMs": 61,
+        "externalReferences": 0,
+        "maxRssKiB": 133120
+      },
+      "yaml": {
+        "sha256": "c14dd2d4f47b1941b4a43aaa245c99528a5d16b6b1c239f4c4e335d31861ed8c",
+        "bytes": 967717,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 350,
+        "templates": 350,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "30989e0afca56dcb75eca452661536b65395de43b9e6b8c1ed6e65859715a483",
+        "elapsedMs": 131,
+        "externalReferences": null,
+        "maxRssKiB": 186608
+      },
+      "equal": true
+    },
+    {
+      "id": "6-dot-authentiqio.appspot.com",
+      "json": {
+        "sha256": "c80f55a97519b0b77838e17d309a1dea17c9659a3316c17b9b084c4ed7037a82",
+        "bytes": 27382,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 14,
+        "templates": 14,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "470dbd7406db872c4fa71010104bbfdf423d1335ea548a81cc3f455edaed4c0f",
+        "elapsedMs": 7,
+        "externalReferences": 0,
+        "maxRssKiB": 64080
+      },
+      "yaml": {
+        "sha256": "275d8f4c7d112692b226fb1ca08607d792ab7b6cf2b7f819f51d575cac569590",
+        "bytes": 19019,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 14,
+        "templates": 14,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "470dbd7406db872c4fa71010104bbfdf423d1335ea548a81cc3f455edaed4c0f",
+        "elapsedMs": 14,
+        "externalReferences": null,
+        "maxRssKiB": 72464
+      },
+      "equal": true
+    },
+    {
+      "id": "mercure.local",
+      "json": {
+        "sha256": "a2729f41492a121cb017d6e5ce098f18b72402aaed534d3e738baee5ee052a5e",
+        "bytes": 10633,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 5,
+        "templates": 5,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "6e6c79ba7d6db6c8cc98011a48de25120cb41508d4156bce595f07ade13893ea",
+        "elapsedMs": 5,
+        "externalReferences": 0,
+        "maxRssKiB": 63232
+      },
+      "yaml": {
+        "sha256": "471ae51d4d79b06ecbd6cba6975e4f37a18dc085b5b51adfd78476e84ab6288f",
+        "bytes": 7769,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 5,
+        "templates": 5,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "6e6c79ba7d6db6c8cc98011a48de25120cb41508d4156bce595f07ade13893ea",
+        "elapsedMs": 10,
+        "externalReferences": null,
+        "maxRssKiB": 64560
+      },
+      "equal": true
+    },
+    {
+      "id": "mineskin.org",
+      "json": {
+        "sha256": "b59b40ec02ad8b712219b92658d36524960c1af3ebc5d441911566100fa9c3d0",
+        "bytes": 17612,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 9,
+        "templates": 9,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "4169df07bd07aa4e257386a07645bcfdd45a04f163a9a0a420f197afa57c3f5c",
+        "elapsedMs": 6,
+        "externalReferences": 0,
+        "maxRssKiB": 63696
+      },
+      "yaml": {
+        "sha256": "3da2ff2da746a3d6b027e0e126b470e391f962f8f41b7374bf3b7eeac6a3fa8d",
+        "bytes": 11551,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 9,
+        "templates": 9,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "4169df07bd07aa4e257386a07645bcfdd45a04f163a9a0a420f197afa57c3f5c",
+        "elapsedMs": 12,
+        "externalReferences": null,
+        "maxRssKiB": 67312
+      },
+      "equal": true
+    },
+    {
+      "id": "exavault.com",
+      "json": {
+        "sha256": "6b82f90c27a69ad96ef88ee046d0d9994cd669af5eef3a4b46d2ab187c3bc124",
+        "bytes": 496638,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 59,
+        "templates": 59,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "9c058be04b3a9e321475200171ad6866acd91b136affe3cda095acd91bf8d195",
+        "elapsedMs": 30,
+        "externalReferences": 0,
+        "maxRssKiB": 90080
+      },
+      "yaml": {
+        "sha256": "e9bab0e7c687c0d93c739f633a502f5b9c35e34d884969db2c2278aea56785ef",
+        "bytes": 382318,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 59,
+        "templates": 59,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "9c058be04b3a9e321475200171ad6866acd91b136affe3cda095acd91bf8d195",
+        "elapsedMs": 73,
+        "externalReferences": null,
+        "maxRssKiB": 115936
+      },
+      "equal": true
+    },
+    {
+      "id": "arespass.net",
+      "json": {
+        "sha256": "5028f38d4bb8e5f2b9ea3686c58727817b0ad10f4301fdbc74a9498f30063c0c",
+        "bytes": 17766,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 2,
+        "templates": 2,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "f092ee63404c9e5cf7bb6ff967d1e3a203d171762b7d0c876672b1682cd6a037",
+        "elapsedMs": 5,
+        "externalReferences": 0,
+        "maxRssKiB": 63472
+      },
+      "yaml": {
+        "sha256": "9e993656ceffe15e3218dbaf2592bca0212f2d2e246f029b4611250f3eac9795",
+        "bytes": 14684,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 2,
+        "templates": 2,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "f092ee63404c9e5cf7bb6ff967d1e3a203d171762b7d0c876672b1682cd6a037",
+        "elapsedMs": 10,
+        "externalReferences": null,
+        "maxRssKiB": 67808
+      },
+      "equal": true
+    },
+    {
+      "id": "openindex.ai",
+      "json": {
+        "sha256": "b77faa2191cfb7cef49578def5faac842927c9ec894dae22eb51ef2cc45056d9",
+        "bytes": 8792,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 1,
+        "templates": 1,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "16189c713f68faaee771d7e454163d89b90c673cfcdd90c28184a5eb13022337",
+        "elapsedMs": 4,
+        "externalReferences": 0,
+        "maxRssKiB": 62304
+      },
+      "yaml": {
+        "sha256": "46e4a4b197726e82848fa9c72c2d77ffc33c5194853e6b893ad972a86c2ad642",
+        "bytes": 6016,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 1,
+        "templates": 1,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "16189c713f68faaee771d7e454163d89b90c673cfcdd90c28184a5eb13022337",
+        "elapsedMs": 9,
+        "externalReferences": null,
+        "maxRssKiB": 63744
+      },
+      "equal": true
+    },
+    {
+      "id": "impala.travel:hotels",
+      "json": {
+        "sha256": "883316fb1961c20ddf2ceb82b4cd2a944772ab03631f8ffbc2e4d7d26b52c52b",
+        "bytes": 450861,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 10,
+        "templates": 10,
+        "unsupportedParameters": {
+          "style deepObject has no RFC 6570 equivalent": 11
+        },
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "800b7a8abaa3f6f048259802765db613ff7e125b79e932bb19ac1227fae85d65",
+        "elapsedMs": 26,
+        "externalReferences": 0,
+        "maxRssKiB": 89024
+      },
+      "yaml": {
+        "sha256": "569ad77a96505dcc9bd92a6ccaafa753b88897f4f9ffee770c9eab347638d782",
+        "bytes": 325298,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 10,
+        "templates": 10,
+        "unsupportedParameters": {
+          "style deepObject has no RFC 6570 equivalent": 11
+        },
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "800b7a8abaa3f6f048259802765db613ff7e125b79e932bb19ac1227fae85d65",
+        "elapsedMs": 58,
+        "externalReferences": null,
+        "maxRssKiB": 106752
+      },
+      "equal": true
+    },
+    {
+      "id": "obono.at",
+      "json": {
+        "sha256": "2aaafca63cbb1206165660fdd11fe41c00cb371dbebc249b2b8814e4866bdd06",
+        "bytes": 39530,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 18,
+        "templates": 18,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "04f3dc72c65a4b015dc57cd4c32b1cfed0872ebf444e3d5e36e296e055ad7ad1",
+        "elapsedMs": 8,
+        "externalReferences": 0,
+        "maxRssKiB": 64672
+      },
+      "yaml": {
+        "sha256": "d0553e4af6ada7d7a1e3b112a3b2552d41728349f7eb2d3ba891c2e26ad12322",
+        "bytes": 28488,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 18,
+        "templates": 18,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "04f3dc72c65a4b015dc57cd4c32b1cfed0872ebf444e3d5e36e296e055ad7ad1",
+        "elapsedMs": 17,
+        "externalReferences": null,
+        "maxRssKiB": 75888
+      },
+      "equal": true
+    },
+    {
+      "id": "vonage.com:vgis",
+      "json": {
+        "sha256": "f818eadce81ffd50dd2f4c625be14c6cdb65b7023c2d45e68313b1ec6e16c2db",
+        "bytes": 63466,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 20,
+        "templates": 20,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "41b7074ee31ba8547f2a4c7772a38bf753967ab390a87be543b829fb689dbac2",
+        "elapsedMs": 9,
+        "externalReferences": 0,
+        "maxRssKiB": 67424
+      },
+      "yaml": {
+        "sha256": "8c99560c6699acab989705cf34b1370c4fbf3721ffe732cf40fb5cdc8adaf593",
+        "bytes": 45338,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 20,
+        "templates": 20,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "41b7074ee31ba8547f2a4c7772a38bf753967ab390a87be543b829fb689dbac2",
+        "elapsedMs": 20,
+        "externalReferences": null,
+        "maxRssKiB": 76544
+      },
+      "equal": true
+    },
+    {
+      "id": "ndhm.gov.in:ndhm-hip",
+      "json": {
+        "sha256": "3a3dbc1310d7a77f85f81eaebad6ba8e404e82545988af38e6773ec3b75f8cd4",
+        "bytes": 143289,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 30,
+        "templates": 30,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "e4ee3f393239c2b523c130b5d0b03d376840d02d20ae17fb0452c7df2c92f8ba",
+        "elapsedMs": 15,
+        "externalReferences": 0,
+        "maxRssKiB": 75392
+      },
+      "yaml": {
+        "sha256": "47ecbc0b9b8551dc80ddc097f0b7e6cca6f465183bc04c86c5b87710881b97d3",
+        "bytes": 107193,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 30,
+        "templates": 30,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "e4ee3f393239c2b523c130b5d0b03d376840d02d20ae17fb0452c7df2c92f8ba",
+        "elapsedMs": 30,
+        "externalReferences": null,
+        "maxRssKiB": 86992
+      },
+      "equal": true
+    },
+    {
+      "id": "clubhouseapi.com",
+      "json": {
+        "sha256": "2a14418d5c6f63ec80b65015dea6611519c57d21e5d37fc3cd5583e595bc139f",
+        "bytes": 60447,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 41,
+        "templates": 41,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "233d330662f33373fb847970b24db3547a9c2403a0b0975b26e474c4f911fa7e",
+        "elapsedMs": 10,
+        "externalReferences": 0,
+        "maxRssKiB": 68320
+      },
+      "yaml": {
+        "sha256": "23af1112c149dc93d1752b6c2ee44b44b24b87274976bf730320aea4ca8b3031",
+        "bytes": 41399,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 41,
+        "templates": 41,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "233d330662f33373fb847970b24db3547a9c2403a0b0975b26e474c4f911fa7e",
+        "elapsedMs": 21,
+        "externalReferences": null,
+        "maxRssKiB": 77104
+      },
+      "equal": true
+    },
+    {
+      "id": "anchore.io",
+      "json": {
+        "sha256": "664fde9931941ae811ff98d087e40306553024928ed206547173704029a932ae",
+        "bytes": 252760,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 112,
+        "templates": 112,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "f4b0b33d5d1d7fcd55a76c856bb25dd5c7b1d4dd5d68647d5f32ceee9da8e0b2",
+        "elapsedMs": 21,
+        "externalReferences": 0,
+        "maxRssKiB": 88432
+      },
+      "yaml": {
+        "sha256": "5544fb79c6291aab13409f4a923d0efcd7f5ef65c1c5d5a7d97d801b66c77a43",
+        "bytes": 182537,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 112,
+        "templates": 112,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "f4b0b33d5d1d7fcd55a76c856bb25dd5c7b1d4dd5d68647d5f32ceee9da8e0b2",
+        "elapsedMs": 48,
+        "externalReferences": null,
+        "maxRssKiB": 94816
+      },
+      "equal": true
+    },
+    {
+      "id": "interactivebrokers.com",
+      "json": {
+        "sha256": "7d157e713fe02c1df6ea36fbaa5a43acfc1d5cd7f5ac40049f25d302200a0aca",
+        "bytes": 68944,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 16,
+        "templates": 16,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "3f4dcae1ea8c263ee22169ae85e2f0fd099a5ed909549f33ff857fab6b8c4c3c",
+        "elapsedMs": 9,
+        "externalReferences": 0,
+        "maxRssKiB": 67568
+      },
+      "yaml": {
+        "sha256": "3c0260f54f23c52b0586a384f465c101a85c09436f00a23647448cedbfabc528",
+        "bytes": 50460,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 16,
+        "templates": 16,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "3f4dcae1ea8c263ee22169ae85e2f0fd099a5ed909549f33ff857fab6b8c4c3c",
+        "elapsedMs": 18,
+        "externalReferences": null,
+        "maxRssKiB": 75536
+      },
+      "equal": true
+    },
+    {
+      "id": "velopayments.com",
+      "json": {
+        "sha256": "d4508fd429c7280f10390753ff7ff73d2468672d29cb018cf10c6e66bb38aa58",
+        "bytes": 867694,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 100,
+        "templates": 100,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "97e63c463441a0323d59faa8f0394f252e18b911aa28bd03e46f533f3911b102",
+        "elapsedMs": 45,
+        "externalReferences": 0,
+        "maxRssKiB": 120720
+      },
+      "yaml": {
+        "sha256": "c21f01bc4c0db249c1f9a5472447ba0c193cb205914223f41acb3ce3ea151687",
+        "bytes": 669795,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 100,
+        "templates": 100,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "97e63c463441a0323d59faa8f0394f252e18b911aa28bd03e46f533f3911b102",
+        "elapsedMs": 113,
+        "externalReferences": null,
+        "maxRssKiB": 167840
+      },
+      "equal": true
+    },
+    {
+      "id": "remove.bg",
+      "json": {
+        "sha256": "e1b74240c1ee4b39babb257a0715746d6141ff90ffd30ad66eb2c14c84f87ec4",
+        "bytes": 44954,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 3,
+        "templates": 3,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "a52406f84a484247d0b5bf203fa9d38f67012f669e3a27cdfa017de7c6dd337f",
+        "elapsedMs": 6,
+        "externalReferences": 0,
+        "maxRssKiB": 64560
+      },
+      "yaml": {
+        "sha256": "7b3ca644ed2852d62014e5dc8b65074a15d4b0d8df6df333f29d9188b922c345",
+        "bytes": 35277,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 3,
+        "templates": 3,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "a52406f84a484247d0b5bf203fa9d38f67012f669e3a27cdfa017de7c6dd337f",
+        "elapsedMs": 14,
+        "externalReferences": null,
+        "maxRssKiB": 71760
+      },
+      "equal": true
+    },
+    {
+      "id": "sakari.io",
+      "json": {
+        "sha256": "8816505b1e7b0a2c0626fe56f159342fb3db2714d4df906b982e4b8c2980e57c",
+        "bytes": 96875,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 26,
+        "templates": 26,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "05dad7cdf1f86cdc640499efb34c5f8ec9ad58c402b63a45fefb197526f9c4a4",
+        "elapsedMs": 12,
+        "externalReferences": 0,
+        "maxRssKiB": 70800
+      },
+      "yaml": {
+        "sha256": "147c189da635e21125321bf68b6ba8ff2eb10032bcf958de4c132523379dcc3b",
+        "bytes": 83728,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 26,
+        "templates": 26,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "05dad7cdf1f86cdc640499efb34c5f8ec9ad58c402b63a45fefb197526f9c4a4",
+        "elapsedMs": 23,
+        "externalReferences": null,
+        "maxRssKiB": 76384
+      },
+      "equal": true
+    },
+    {
+      "id": "rumble.run",
+      "json": {
+        "sha256": "1bd9c8cefc09e2993ff161a3edce7fad97f8ffeb3b12c6e64074a727faca8b82",
+        "bytes": 192978,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 116,
+        "templates": 116,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "144482497a7cf0163350ae02db0c8a2b09c814d47861a60c8736260e86a19f5c",
+        "elapsedMs": 18,
+        "externalReferences": 0,
+        "maxRssKiB": 80976
+      },
+      "yaml": {
+        "sha256": "c28ee37e5da8706c84caa25f232315fd0a7f57cbc43d90217da59fa3114475c3",
+        "bytes": 133033,
+        "outcome": "complete-clean",
+        "ok": true,
+        "complete": true,
+        "operations": 116,
+        "templates": 116,
+        "unsupportedParameters": {},
+        "codes": {},
+        "truncated": {
+          "errors": 0,
+          "warnings": 0
+        },
+        "diagnostics": [],
+        "semanticSha256": "144482497a7cf0163350ae02db0c8a2b09c814d47861a60c8736260e86a19f5c",
+        "elapsedMs": 42,
+        "externalReferences": null,
+        "maxRssKiB": 92256
+      },
+      "equal": true
+    }
+  ],
+  "manifestSha256": "c85cffbd7d2f27e9cfd0d086178edc0812cfb2c3f7369515bbebf42af0b7f7bd",
+  "summary": {
+    "documents": 60,
+    "equal": 60
+  },
+  "finishedAt": "2026-10-23T13:20:35.752Z"
+}

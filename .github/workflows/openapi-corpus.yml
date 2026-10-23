@@ -1,0 +1,33 @@
+name: Verify public OpenAPI corpus
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: python3 tools/bootstrap.py
+      - run: node tools/build.mjs
+      - uses: actions/cache@v4
+        with:
+          path: _build/openapi-corpus
+          key: openapi-corpus-${{ hashFiles('testdata/openapi-corpus/*manifest.json') }}
+      - name: Check 200 hash-pinned catalog documents
+        run: node tools/openapi_corpus.mjs check --download --baseline testdata/openapi-corpus/baseline.json
+      - name: Compare hash-pinned JSON and YAML pairs
+        run: node tools/verify_yaml_corpus.mjs --download
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-openapi-corpus
+          path: |
+            reports/openapi-corpus.json
+            reports/openapi-yaml-parity.json
