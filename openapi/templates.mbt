@@ -12,7 +12,7 @@ pub extend OpenApiError with Debug::{to_repr}
 pub extend OpenApiError with Eq::{equal, not_equal}
 
 ///|
-pub struct Templates {
+struct Templates {
   analysis : Analysis
   by_key : Map[String, Json]
   compiled : Map[String, @core.ContractTemplate]
@@ -86,7 +86,7 @@ pub fn Templates::get(
   key : String,
 ) -> Result[Json, OpenApiError] {
   match self.by_key.get(key) {
-    Some(op) => Ok(op)
+    Some(op) => Ok(copy_json(op))
     None =>
       Err({
         code: "UnknownOperation",
@@ -118,7 +118,6 @@ pub fn Templates::expand_with_names(
     Err(e) => return Err(e)
   }
   let unsupported = array(get(op, "unsupported"))
-  let params = array(get(op, "parameters"))
   guard get(op, "template") is String(source) else {
     let reasons = unsupported
       .map(fn(u) { str(get(u, "name")) + " (" + str(get(u, "reason")) + ")" })
@@ -142,30 +141,18 @@ pub fn Templates::expand_with_names(
       path: "",
     })
   }
+  let selected = match
+    self.binding_names(
+      key,
+      names.map(fn(name) { (name, has(variables, name)) }),
+    ) {
+    Ok(v) => v
+    Err(e) => return Err(e)
+  }
   let mapped : Map[String, Json] = Map([])
-  for name in names {
-    let blocked = unsupported
-      .iter()
-      .find_first(fn(p) { get(p, "name") == Json::string(name) })
-    if blocked is Some(u) && has(variables, name) {
-      return Err({
-        code: "UnsupportedParameter",
-        message: name + ": " + str(get(u, "reason")),
-        path: "/" + ptr(name),
-      })
-    }
-    guard params
-      .iter()
-      .find_first(fn(p) { get(p, "name") == Json::string(name) })
-      is Some(param) else {
-      return Err({
-        code: "UnknownParameter",
-        message: key + " has no parameter " + name,
-        path: "/" + ptr(name),
-      })
-    }
-    if get(param, "variable") is String(v) && has(variables, name) {
-      mapped[v] = get(variables, name)
+  for (name, variable) in selected {
+    if has(variables, name) {
+      mapped[variable] = get(variables, name)
     }
   }
   let cache_key = str(get(op, "method")) + " " + str(get(op, "path"))
@@ -176,25 +163,21 @@ pub fn Templates::expand_with_names(
         Ok(t) => t
         Err(e) => return Err({ code: e.code, message: e.message, path: "", })
       }
-      let required : Array[String] = []
-      let rules : Array[@core.BindingRule] = []
-      for p in params {
-        if get(p, "variable") is String(v) {
-          if get(p, "required") == Json::boolean(true) && !required.contains(v) {
-            required.push(v)
-          }
-          if get(p, "shape") is String(s) {
-            rules.push({
-              name: v,
-              kind: match s {
-                "list" => @core.ListKind
-                "assoc" => @core.AssocKind
-                _ => @core.ScalarKind
-              },
-            })
-          }
-        }
+      let options = match self.contract_options(key) {
+        Ok(v) => v
+        Err(e) => return Err(e)
       }
+      let required = array(get(options, "required")).map(str)
+      let rules = entries(get(options, "types")).map(fn(pair) {
+        @core.BindingRule::{
+          name: pair.0,
+          kind: match str(pair.1) {
+            "list" => @core.ListKind
+            "assoc" => @core.AssocKind
+            _ => @core.ScalarKind
+          },
+        }
+      })
       let ct = match t.with_contract(rules, required~) {
         Ok(v) => v
         Err(e) => return Err({ code: e.code, message: e.message, path: "", })
@@ -224,4 +207,92 @@ pub fn Templates::expand_with_names(
     Ok(uri) => Ok(self.base_url + uri)
     Err(e) => Err({ code: e.code, message: e.message, path: "", })
   }
+}
+
+///|
+/// Validate supplied parameter names before the host snapshots URI values.
+pub fn Templates::binding_names(
+  self : Templates,
+  key : String,
+  names : Array[(String, Bool)],
+) -> Result[Array[(String, String)], OpenApiError] {
+  let op = match self.get(key) {
+    Ok(v) => v
+    Err(e) => return Err(e)
+  }
+  let unsupported = array(get(op, "unsupported"))
+  let params = array(get(op, "parameters"))
+  guard get(op, "template") is String(_) else {
+    let reasons = unsupported
+      .map(fn(u) { str(get(u, "name")) + " (" + str(get(u, "reason")) + ")" })
+      .join("; ")
+    return Err({
+      code: "UnsupportedOperation",
+      message: key +
+      " has no RFC 6570 template: " +
+      (if reasons == "" {
+        "its path parameters are not declared"
+      } else {
+        reasons
+      }),
+      path: "",
+    })
+  }
+  let mapped : Array[(String, String)] = []
+  for (name, defined) in names {
+    let blocked = unsupported
+      .iter()
+      .find_first(fn(p) { get(p, "name") == Json::string(name) })
+    if blocked is Some(u) && defined {
+      return Err({
+        code: "UnsupportedParameter",
+        message: name + ": " + str(get(u, "reason")),
+        path: "/" + ptr(name),
+      })
+    }
+    guard params
+      .iter()
+      .find_first(fn(p) { get(p, "name") == Json::string(name) })
+      is Some(param) else {
+      return Err({
+        code: "UnknownParameter",
+        message: key + " has no parameter " + name,
+        path: "/" + ptr(name),
+      })
+    }
+    if get(param, "variable") is String(v) {
+      mapped.push((name, v))
+    }
+  }
+  Ok(mapped)
+}
+
+///|
+/// SDK contract options, derived from the same analyzed parameters as native expansion.
+pub fn Templates::contract_options(
+  self : Templates,
+  key : String,
+) -> Result[Json, OpenApiError] {
+  let op = match self.get(key) {
+    Ok(v) => v
+    Err(e) => return Err(e)
+  }
+  match self.binding_names(key, []) {
+    Err(e) => return Err(e)
+    Ok(_) => ()
+  }
+  let required : Array[Json] = []
+  let types : Map[String, Json] = Map([])
+  for p in array(get(op, "parameters")) {
+    if get(p, "variable") is String(v) {
+      if get(p, "required") == Json::boolean(true) &&
+        !required.contains(Json::string(v)) {
+        required.push(Json::string(v))
+      }
+      if get(p, "shape") is String(s) {
+        types[v] = Json::string(s)
+      }
+    }
+  }
+  Ok({ "required": Json::array(required), "types": Json::object(types) })
 }

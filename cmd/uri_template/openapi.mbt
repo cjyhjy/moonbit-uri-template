@@ -36,3 +36,22 @@ pub fn openapi_expand(
 ) -> String {
   prepared.expand(key, variables, names)
 }
+
+///|
+#export_name("openapi_bindings")
+pub fn openapi_bindings(
+  prepared : @adapter.PreparedOpenApi,
+  key : String,
+  names : String,
+) -> String {
+  prepared.bindings(key, names)
+}
+
+///|
+#export_name("openapi_contract")
+pub fn openapi_contract(
+  prepared : @adapter.PreparedOpenApi,
+  key : String,
+) -> String {
+  prepared.contract(key)
+}

@@ -32,6 +32,8 @@ pub(all) struct InputError {
 pub fn InputError::to_repr(Self) -> @debug.Repr
 
 type PreparedOpenApi
+pub fn PreparedOpenApi::bindings(Self, String, String) -> String
+pub fn PreparedOpenApi::contract(Self, String) -> String
 pub fn PreparedOpenApi::expand(Self, String, String, String) -> String
 pub fn PreparedOpenApi::report(Self) -> String
 

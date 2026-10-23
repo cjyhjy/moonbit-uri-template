@@ -1,21 +1,21 @@
 ///|
-pub struct Analysis {
+struct Analysis {
   data : Json
 }
 
 ///|
 pub fn Analysis::to_json(self : Analysis) -> Json {
-  self.data
+  copy_json(self.data)
 }
 
 ///|
 pub fn Analysis::operations(self : Analysis) -> Array[Json] {
-  array(get(self.data, "operations")).copy()
+  array(get(self.data, "operations")).map(copy_json)
 }
 
 ///|
 pub fn Analysis::diagnostics(self : Analysis) -> Array[Json] {
-  array(get(self.data, "diagnostics")).copy()
+  array(get(self.data, "diagnostics")).map(copy_json)
 }
 
 ///|
@@ -745,4 +745,16 @@ pub fn analyze_text(source : String) -> Result[Analysis, OpenApiError] {
       })
   }
   Ok(analyze(doc))
+}
+
+///|
+fn copy_json(value : Json) -> Json {
+  match value {
+    Object(m) =>
+      Json::object(
+        Map::from_iter(m.iter().map(fn(p) { (p.0, copy_json(p.1)) })),
+      )
+    Array(xs) => Json::array(xs.map(copy_json))
+    _ => value
+  }
 }

@@ -2,7 +2,6 @@
 package "cjyhjy/uri_template/openapi"
 
 import {
-  "cjyhjy/uri_template",
   "moonbitlang/core/debug",
 }
 
@@ -20,9 +19,7 @@ pub fn template_name(String) -> String
 // Errors
 
 // Types and methods
-pub struct Analysis {
-  data : Json
-}
+type Analysis
 pub fn Analysis::diagnostics(Self) -> Array[Json]
 pub fn Analysis::operations(Self) -> Array[Json]
 pub fn Analysis::to_json(Self) -> Json
@@ -36,13 +33,10 @@ pub fn OpenApiError::equal(Self, Self) -> Bool
 pub fn OpenApiError::not_equal(Self, Self) -> Bool
 pub fn OpenApiError::to_repr(Self) -> @debug.Repr
 
-pub struct Templates {
-  analysis : Analysis
-  by_key : Map[String, Json]
-  compiled : Map[String, @uri_template.ContractTemplate]
-  base_url : String
-}
+type Templates
 pub fn Templates::analysis(Self) -> Analysis
+pub fn Templates::binding_names(Self, String, Array[(String, Bool)]) -> Result[Array[(String, String)], OpenApiError]
+pub fn Templates::contract_options(Self, String) -> Result[Json, OpenApiError]
 pub fn Templates::expand(Self, String, Json) -> Result[String, OpenApiError]
 pub fn Templates::expand_with_names(Self, String, Json, Array[String]) -> Result[String, OpenApiError]
 pub fn Templates::get(Self, String) -> Result[Json, OpenApiError]

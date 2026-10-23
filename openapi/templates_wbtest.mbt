@@ -152,3 +152,55 @@ test "same source with different operation contracts does not share cached contr
   assert_eq(api.expand("optional", {}), Ok("/q"))
   assert_true(api.expand("required", {}) is Err({ code: "MissingBinding", .. }))
 }
+
+///|
+test "host binding selection preserves undefined names and skips request headers" {
+  let doc : Json = {
+    "openapi": "3.1.0",
+    "paths": {
+      "/q": {
+        "get": {
+          "parameters": [
+            { "name": "q[x]", "in": "query" },
+            { "name": "Accept", "in": "header" },
+            { "name": "deep", "in": "query", "style": "deepObject" },
+          ],
+        },
+      },
+    },
+  }
+  let api = compile(doc).unwrap()
+  assert_eq(
+    api.binding_names("GET /q", [("q[x]", false), ("Accept", true)]),
+    Ok([("q[x]", "q%5Bx%5D")]),
+  )
+  assert_eq(api.binding_names("GET /q", [("deep", false)]), Ok([]))
+  assert_true(
+    api.binding_names("GET /q", [("deep", true)])
+    is Err({ code: "UnsupportedParameter", .. }),
+  )
+  assert_true(
+    api.binding_names("GET /q", [("unknown", false)])
+    is Err({ code: "UnknownParameter", .. }),
+  )
+}
+
+///|
+test "public analysis and operation snapshots cannot mutate compiled state" {
+  let doc : Json = {
+    "openapi": "3.1.0",
+    "paths": {
+      "/q": { "get": { "parameters": [{ "name": "q", "in": "query" }] } },
+    },
+  }
+  let api = compile(doc).unwrap()
+  let snapshot = api.get("GET /q").unwrap()
+  if snapshot is Object(m) {
+    m["template"] = Json::string("/changed")
+  }
+  let ops = api.analysis().operations()
+  if ops[0] is Object(m) {
+    m["template"] = Json::string("/changed")
+  }
+  assert_eq(api.expand("GET /q", { "q": "a" }), Ok("/q?q=a"))
+}
