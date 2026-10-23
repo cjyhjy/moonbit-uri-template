@@ -11,7 +11,7 @@ const check = d => checkOpenAPI(JSON.stringify(d));
 const codes = d => check(d).diagnostics.map(x=>x.code);
 test('same core validates inherited and overridden parameters per operation',()=>{
  const d=doc({parameters:[parameter()],get:{parameters:[parameter('id',{description:'override'})]},post:{}});
- const r=check(d); assert.equal(r.ok,true); assert.equal(r.operations.length,2); assert.equal(r.operations[0].coreTemplate,'/pets/{v0}');
+ const r=check(d); assert.equal(r.ok,true); assert.equal(r.operations.length,2); assert.equal(r.operations[0].template,'/pets/{id}');
 });
 test('operation-only declaration does not cover siblings',()=>assert.deepEqual(codes(doc({get:{parameters:[parameter()]},post:{}})),['MissingPathParameter']));
 test('missing, unused, optional and query names are distinct',()=>{
@@ -81,6 +81,8 @@ test('CLI exit codes and JSON streams for clean, findings and unsupported input'
  }  const file=join(dir,'spec.json');writeFileSync(file,JSON.stringify(doc()));
   const limited=spawnSync(process.execPath,['tools/cli.mjs','openapi',file,'--max-bytes','16'],{encoding:'utf8'});
   assert.equal(limited.status,2);assert.match(limited.stderr,/--max-bytes/);
-  for(const bad of [['--max-bytes','0'],['--max-bytes'],['--json','--json'],['--other']]) assert.equal(spawnSync(process.execPath,['tools/cli.mjs','openapi',file,...bad],{encoding:'utf8'}).status,2,bad.join(' '));
+  const listed=spawnSync(process.execPath,['tools/cli.mjs','openapi','examples/openapi.json','--templates'],{encoding:'utf8'});
+  assert.equal(listed.status,0);assert.match(listed.stdout,/^GET \/users\/\{user-id\}\t\/users\/\{user%2Did\}\n/);assert.match(listed.stdout,/1 RFC 6570 templates/);
+  for(const bad of [['--max-bytes','0'],['--max-bytes'],['--json','--json'],['--other'],['--json','--templates']]) assert.equal(spawnSync(process.execPath,['tools/cli.mjs','openapi',file,...bad],{encoding:'utf8'}).status,2,bad.join(' '));
  }finally{rmSync(dir,{recursive:true,force:true});}
 });

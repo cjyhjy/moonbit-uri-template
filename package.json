@@ -27,7 +27,7 @@
     "package:sdk": "node tools/verify_sdk_package.mjs",
     "test:differential": "node --test tools/differential.test.mjs",
     "differential": ".venv-diff/bin/python tools/differential.py",
-    "test:openapi": "node --test tools/openapi.test.mjs",
+    "test:openapi": "node --test tools/openapi.test.mjs sdk/openapi.test.mjs",
     "test:public-clients": "node --test integrations/public-clients/clients.test.mjs",
     "integration:public": "node integrations/public-clients/live.mjs",
     "openapi:public": "node tools/openapi_public.mjs"
@@ -36,12 +36,18 @@
     ".": {
       "types": "./sdk/index.d.mts",
       "import": "./sdk/index.mjs"
+    },
+    "./openapi": {
+      "types": "./sdk/openapi.d.mts",
+      "import": "./sdk/openapi.mjs"
     }
   },
   "types": "./sdk/index.d.mts",
   "files": [
     "sdk/index.mjs",
     "sdk/index.d.mts",
+    "sdk/openapi.mjs",
+    "sdk/openapi.d.mts",
     "dist/engine.mjs",
     "dist/licenses",
     "docs/SDK.md",

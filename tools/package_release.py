@@ -37,7 +37,7 @@ with tempfile.TemporaryDirectory(prefix='uri-template-release-') as temporary:
              'dist/engine.mjs', 'package.json',
              'tools/project.mjs', 'tools/project.test.mjs','tools/openapi.test.mjs','integrations/public-clients/clients.test.mjs', 'tools/json-source.mjs', 'tools/suggestions.mjs',
              'tools/playground.test.mjs',
-             'sdk/index.mjs', 'sdk/index.d.mts', 'sdk/sdk.test.mjs',
+             'sdk/index.mjs', 'sdk/index.d.mts', 'sdk/sdk.test.mjs', 'sdk/openapi.mjs', 'sdk/openapi.d.mts', 'sdk/openapi.test.mjs',
              'tools/differential.test.mjs', 'testdata/differential/results.json',
              'dist/licenses/moonbit-core-LICENSE', 'reports/sdk-package.json', 'docs/SDK.md',
              'integrations/github-audit/main.mjs', 'integrations/github-audit/package.json',
@@ -90,7 +90,7 @@ with tempfile.TemporaryDirectory(prefix='uri-template-release-') as temporary:
     for name, expected in check.items():
         if hashlib.sha256((installed/name).read_bytes()).hexdigest() != expected:
             raise SystemExit('Release checksum mismatch: '+name)
-    tests = subprocess.run(['node','--test','sdk/sdk.test.mjs','tools/differential.test.mjs','tools/cli.test.mjs','tools/project.test.mjs','tools/openapi.test.mjs','integrations/public-clients/clients.test.mjs','tools/playground.test.mjs','integrations/github-audit/integration.test.mjs'],cwd=installed,text=True,capture_output=True)
+    tests = subprocess.run(['node','--test','sdk/sdk.test.mjs','sdk/openapi.test.mjs','tools/differential.test.mjs','tools/cli.test.mjs','tools/project.test.mjs','tools/openapi.test.mjs','integrations/public-clients/clients.test.mjs','tools/playground.test.mjs','integrations/github-audit/integration.test.mjs'],cwd=installed,text=True,capture_output=True)
     output = tests.stdout+tests.stderr
     (ROOT/'reports/release-cli.log').write_text(output)
     if tests.returncode: print(output); raise SystemExit(tests.returncode)

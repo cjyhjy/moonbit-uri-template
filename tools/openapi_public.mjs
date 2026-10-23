@@ -1,7 +1,7 @@
 // Check pinned public OpenAPI descriptions; the documents are downloaded, not vendored.
 import { createHash } from 'node:crypto';
 import { writeFileSync } from 'node:fs';
-import { checkOpenAPI } from './openapi.mjs';
+import { checkOpenAPI, summary } from './openapi.mjs';
 
 const MAX_BYTES = 67108864;
 const specs = [
@@ -29,6 +29,7 @@ async function download(url) {
   return Buffer.concat(chunks);
 }
 
+const tally = items => items.reduce((counts, x) => ({ ...counts, [x]: (counts[x] ?? 0) + 1 }), {});
 const output = new URL('../reports/openapi-public.json', import.meta.url);
 const report = { schemaVersion: 1, evidence: 'pinned-public-openapi', status: 'running', node: process.version, startedAt: new Date().toISOString(), results: [] };
 const save = () => writeFileSync(output, JSON.stringify(report, null, 2) + '\n');
@@ -47,10 +48,16 @@ try {
     report.results.push({
       name: spec.name, repository: spec.repository, commit: spec.commit, url, bytes: bytes.length, sha256,
       openapi: JSON.parse(text).openapi, elapsedMs, ok: result.ok, complete: result.complete,
-      operations: result.operations.length, diagnostics: result.diagnostics,
+      operations: result.operations.length,
+      templates: result.operations.filter(o => o.template !== null).length,
+      examples: result.operations.filter(o => o.example !== null).length,
+      unsupported: tally(result.operations.flatMap(o => o.unsupported.map(u => u.reason))),
+      errors: tally(result.diagnostics.filter(d => d.severity === 'error').map(d => d.code)),
+      warnings: tally(result.diagnostics.filter(d => d.severity === 'warning').map(d => d.code)),
+      truncated: result.truncated, diagnostics: result.diagnostics,
     });
-    console.log(`${spec.name}: ${result.operations.length} operations, ${result.diagnostics.length} findings, ${elapsedMs} ms`);
-    for (const d of result.diagnostics) console.log(`  ${d.file}:${d.line}:${d.column} ${d.code}: ${d.message}`);
+    console.log(`${spec.name} (${elapsedMs} ms): ${summary(result).trim()}`);
+    for (const d of result.diagnostics.filter(d => d.severity === 'error')) console.log(`  ${d.file}:${d.line}:${d.column} ${d.code}: ${d.message}`);
   }
   report.status = 'completed';
 } catch (error) {

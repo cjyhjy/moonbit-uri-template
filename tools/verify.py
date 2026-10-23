@@ -109,7 +109,7 @@ workflow_pass = re.search(r'(?:#|ℹ) pass (\d+)', workflow)
 workflow_fail = re.search(r'(?:#|ℹ) fail (\d+)', workflow)
 if not workflow_total or not workflow_pass or not workflow_fail or workflow_fail[1] != '0' or workflow_total[1] != workflow_pass[1]: raise SystemExit('Workflow tests incomplete')
 report['workflow'] = {'total':int(workflow_total[1]), 'passed':int(workflow_pass[1]), 'failed':0, 'network':'offline only; live evidence is separate'}
-sdk = run(['node', '--test', 'sdk/sdk.test.mjs', 'tools/differential.test.mjs'], log='tests-sdk.log')
+sdk = run(['node', '--test', 'sdk/sdk.test.mjs', 'sdk/openapi.test.mjs', 'tools/differential.test.mjs'], log='tests-sdk.log')
 sdk_total = re.search(r'(?:#|ℹ) tests (\d+)', sdk)
 sdk_pass = re.search(r'(?:#|ℹ) pass (\d+)', sdk)
 sdk_fail = re.search(r'(?:#|ℹ) fail (\d+)', sdk)

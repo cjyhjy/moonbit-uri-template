@@ -1,4 +1,5 @@
 import { compileTemplate, compileCatalog, expand, type TemplateVariables } from './index.mjs';
+import { compileOpenApi, analyzeOpenApi } from './openapi.mjs';
 const users = compileTemplate('/users/{id}{?tags*}', { required: ['id'] });
 users.expand({ id: '42', tags: ['sdk'] });
 users.expandMany([{ id: '42' }]);
@@ -73,3 +74,12 @@ links.get('typo');
 links.update({page:2});
 // @ts-expect-error objects are not scalar values
 links.update({page:new Date()});
+const api = compileOpenApi({ openapi: '3.1.0', paths: {} }, { baseUrl: 'https://api.example.com' });
+const url: string = api.expand('getUser', { id: 42, tags: ['a'], 'X-Trace': undefined });
+const firstTemplate: string | null = api.operations[0]?.template ?? null;
+const warnings: number = analyzeOpenApi({}).diagnostics.filter(d => d.severity === 'warning').length;
+void url; void firstTemplate; void warnings;
+// @ts-expect-error variables are plain values, not dates
+api.expand('getUser', { id: new Date() });
+// @ts-expect-error baseUrl is a string
+compileOpenApi('{}', { baseUrl: 1 });

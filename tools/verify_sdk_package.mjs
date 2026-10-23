@@ -57,7 +57,12 @@ console.log('installed SDK passed');`;
   run('node', ['node_modules/moonbit-uri-template/tools/cli.mjs', 'compare', '/{id}', '/{id}', '--json'], temporary);
   writeFileSync(join(temporary, 'openapi.json'), JSON.stringify({openapi:'3.1.0',paths:{'/pets/{id}':{get:{parameters:[{name:'id',in:'path',required:true}]}}}}));
   run('node', ['node_modules/moonbit-uri-template/tools/cli.mjs', 'openapi', 'openapi.json', '--json'], temporary);
-  const types = readFileSync(join(root, 'sdk/typecheck.mts'), 'utf8').replace("'./index.mjs'", "'moonbit-uri-template'");
+  writeFileSync(join(temporary, 'openapi-consumer.mjs'), `import assert from 'node:assert/strict';
+import { compileOpenApi } from 'moonbit-uri-template/openapi';
+const api = compileOpenApi(JSON.parse(await (await import('node:fs/promises')).readFile('openapi.json', 'utf8')));
+assert.equal(api.expand('GET /pets/{id}', { id: 'a b' }), '/pets/a%20b');`);
+  run('node', ['openapi-consumer.mjs'], temporary);
+  const types = readFileSync(join(root, 'sdk/typecheck.mts'), 'utf8').replace("'./index.mjs'", "'moonbit-uri-template'").replace("'./openapi.mjs'", "'moonbit-uri-template/openapi'");
   writeFileSync(join(temporary, 'consumer.mts'), types);
   run(join(root, 'node_modules/.bin/tsc'), ['--noEmit', '--strict', '--module', 'NodeNext', '--target', 'ES2022', 'consumer.mts'], temporary);
   const report = { status: 'passed', artifact: '_build/releases/' + pack.filename,
@@ -65,7 +70,7 @@ console.log('installed SDK passed');`;
     sourceSha256: run('python3', ['-c', 'from pathlib import Path; import sys; sys.path.insert(0,"tools"); from source_digest import source_digest; print(source_digest(Path.cwd()))']).trim(),
     node: process.version, typescript: run(join(root, 'node_modules/.bin/tsc'), ['--version']).trim(),
     cleanLocalInstall: true, offlineInstall: true, published: false,
-    checks: ['ESM public export', 'compiled reuse', 'incremental immutable sessions', 'runtime shape contracts and type-change review', 'batch', 'contract failure', 'analysis and comparison', 'typed catalog batch inspection audit and comparison', 'installed CLI comparison', 'installed OpenAPI CLI', 'TypeScript positive and expected-error cases'],
+    checks: ['ESM public export', 'compiled reuse', 'incremental immutable sessions', 'runtime shape contracts and type-change review', 'batch', 'contract failure', 'analysis and comparison', 'typed catalog batch inspection audit and comparison', 'installed CLI comparison', 'installed OpenAPI CLI and openapi subpath', 'TypeScript positive and expected-error cases'],
     files: pack.files.map(x => x.path) };
   writeFileSync(join(root, 'reports/sdk-package.json'), JSON.stringify(report, null, 2) + '\n');
   console.log('SDK tarball: clean offline install, runtime and TypeScript checks passed');
