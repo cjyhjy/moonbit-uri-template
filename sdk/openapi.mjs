@@ -70,9 +70,14 @@ export class OpenApiTemplates {
     if (key !== clientKey) throw new UriTemplateError({ code: 'InvalidInput', message: 'use compileOpenApi()' });
     this.#operations = Object.freeze(analysis.operations.map(op => Object.freeze({ ...op, parameters: Object.freeze(op.parameters), unsupported: Object.freeze(op.unsupported) })));
     this.#byKey = new Map();
+    const register = (key, op) => {
+      // null is a permanent ambiguity marker; an operation's own alias is safe.
+      if (!this.#byKey.has(key)) this.#byKey.set(key, op);
+      else if (this.#byKey.get(key) !== op) this.#byKey.set(key, null);
+    };
     for (const op of this.#operations) {
-      this.#byKey.set(`${op.method} ${op.path}`, op);
-      if (op.id !== null && !this.#byKey.has(op.id)) this.#byKey.set(op.id, op);
+      register(`${op.method} ${op.path}`, op);
+      if (op.id !== null) register(op.id, op);
     }
     this.diagnostics = Object.freeze(analysis.diagnostics);
     this.#base = baseUrl;
@@ -82,6 +87,8 @@ export class OpenApiTemplates {
   get operations() { return this.#operations; }
   get(key) {
     const op = this.#byKey.get(key);
+    // Let the MoonBit lookup provide the canonical ambiguity error.
+    if (op === null) unwrap(openapi_contract(this.#handle, key));
     if (!op) throw new UriTemplateError({ code: 'UnknownOperation', message: `no operation ${key}` });
     return op;
   }
@@ -94,12 +101,12 @@ export class OpenApiTemplates {
     const selected = unwrap(openapi_bindings(this.#handle, key, JSON.stringify(entries.map(([name, value]) => [name, value !== undefined]))));
     const vars = {};
     for (const [name, variable] of selected) vars[variable] = captured.get(name);
-    return this.#base + this.#template(op).expand(vars);
+    return this.#base + this.#template(op, key).expand(vars);
   }
-  #template(op) {
+  #template(op, key) {
     let compiled = this.#compiled.get(op);
     if (!compiled) {
-      const options = unwrap(openapi_contract(this.#handle, `${op.method} ${op.path}`));
+      const options = unwrap(openapi_contract(this.#handle, key));
       compiled = compileTemplate(op.template, options);
       this.#compiled.set(op, compiled);
     }

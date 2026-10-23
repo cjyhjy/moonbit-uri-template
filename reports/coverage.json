@@ -1,6 +1,6 @@
 {
-  "covered_instrumentation_points": 384,
-  "total_instrumentation_points": 404,
+  "covered_instrumentation_points": 2436,
+  "total_instrumentation_points": 3020,
   "scope": "MoonBit instrumented packages; examples are separately executed by verify.py without instrumentation.",
   "purpose": "Diagnostic only; no arbitrary percentage gate. Standard conformance remains the release gate."
 }

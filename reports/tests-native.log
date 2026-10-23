@@ -1,6 +1,6 @@
 ./_build/native/debug/test/adapter/json/json.blackbox_test.exe adapter_test.mbt:0-9
 ./_build/native/debug/test/openapi/openapi.blackbox_test.exe openapi_test.mbt:0-1
-./_build/native/debug/test/openapi/openapi.whitebox_test.exe templates_wbtest.mbt:0-5/parity_wbtest.mbt:0-20
+./_build/native/debug/test/openapi/openapi.whitebox_test.exe templates_wbtest.mbt:0-12/parity_wbtest.mbt:0-20
 ./_build/native/debug/test/uri_template.blackbox_test.exe snapshot_regression_test.mbt:0-3/runtime_contract_test.mbt:0-5/link_session_test.mbt:0-8/limits_test.mbt:0-5/conformance_test.mbt:0-270/catalog_batch_test.mbt:0-2/bindings_test.mbt:0-3/api_test.mbt:0-11/analysis_test.mbt:0-8/advanced_test.mbt:0-8
 ./_build/native/debug/test/uri_template.whitebox_test.exe limits_wbtest.mbt:0-2/encoder_wbtest.mbt:0-2
 [cjyhjy/uri_template] test adapter/json/adapter_test.mbt:2 ("runtime shape bridge rejects empty wrong kinds and reports type-only changes") ok
@@ -18,6 +18,13 @@
 [cjyhjy/uri_template] test openapi/templates_wbtest.mbt:101 ("native unsupported parameters and strict compilation") ok
 [cjyhjy/uri_template] test openapi/templates_wbtest.mbt:139 ("same source with different operation contracts does not share cached contract") ok
 [cjyhjy/uri_template] test openapi/templates_wbtest.mbt:173 ("public analysis and operation snapshots cannot mutate compiled state") ok
+[cjyhjy/uri_template] test openapi/templates_wbtest.mbt:201 ("required unsupported query parameters cannot be omitted") ok
+[cjyhjy/uri_template] test openapi/templates_wbtest.mbt:241 ("URL bindings take precedence over same-name header and cookie parameters") ok
+[cjyhjy/uri_template] test openapi/templates_wbtest.mbt:306 ("required non-URL parameters do not make same-name optional query bindings required") ok
+[cjyhjy/uri_template] test openapi/templates_wbtest.mbt:340 ("required header and cookie do not require same-name unsupported optional queries") ok
+[cjyhjy/uri_template] test openapi/templates_wbtest.mbt:372 ("operationId and another operation method-path key are ambiguous in either order") ok
+[cjyhjy/uri_template] test openapi/templates_wbtest.mbt:400 ("three duplicate operationIds stay ambiguous after method-path cache warmup") ok
+[cjyhjy/uri_template] test openapi/templates_wbtest.mbt:433 ("operationId equal to its own method-path key remains unambiguous") ok
 [cjyhjy/uri_template] test openapi/parity_wbtest.mbt:4 ("JS analysis parity fixture 0") ok
 [cjyhjy/uri_template] test openapi/parity_wbtest.mbt:15 ("JS analysis parity fixture 1") ok
 [cjyhjy/uri_template] test openapi/parity_wbtest.mbt:26 ("JS analysis parity fixture 2") ok
@@ -365,4 +372,4 @@
 [cjyhjy/uri_template] test limits_wbtest.mbt:31 ("input text accounting agrees with character iterator at every boundary") ok
 [cjyhjy/uri_template] test encoder_wbtest.mbt:2 ("prefix counts raw code points before encoding") ok
 [cjyhjy/uri_template] test encoder_wbtest.mbt:18 ("IRI literal range boundaries exclude controls surrogates and noncharacters") ok
-Total tests: 362, passed: 362, failed: 0.
+Total tests: 369, passed: 369, failed: 0.

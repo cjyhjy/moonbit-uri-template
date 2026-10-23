@@ -14,7 +14,7 @@ pub extend OpenApiError with Eq::{equal, not_equal}
 ///|
 struct Templates {
   analysis : Analysis
-  by_key : Map[String, Operation]
+  by_key : Map[String, Operation?]
   compiled : Map[String, @core.ContractTemplate]
   base_url : String
 }
@@ -63,11 +63,15 @@ pub fn compile_analysis(
       },
     })
   }
-  let by_key : Map[String, Operation] = Map([])
+  let by_key : Map[String, Operation?] = Map([])
   for operation in analysis.operations() {
-    by_key[operation.http_method + " " + operation.path] = operation
-    if operation.id is Some(id) && !by_key.contains(id) {
-      by_key[id] = operation
+    register_operation(
+      by_key,
+      operation.http_method + " " + operation.path,
+      operation,
+    )
+    if operation.id is Some(id) {
+      register_operation(by_key, id, operation)
     }
   }
   let mut base = base_url
@@ -78,12 +82,36 @@ pub fn compile_analysis(
 }
 
 ///|
+// None records a permanently ambiguous alias; later insertions cannot hide it.
+fn register_operation(
+  by_key : Map[String, Operation?],
+  key : String,
+  operation : Operation,
+) -> Unit {
+  match by_key.get(key) {
+    None => by_key[key] = Some(operation)
+    Some(Some(previous)) =>
+      if previous.http_method != operation.http_method ||
+        previous.path != operation.path {
+        by_key[key] = None
+      }
+    Some(None) => ()
+  }
+}
+
+///|
 fn Templates::operation(
   self : Templates,
   key : String,
 ) -> Result[Operation, OpenApiError] {
   match self.by_key.get(key) {
-    Some(operation) => Ok(operation)
+    Some(Some(operation)) => Ok(operation)
+    Some(None) =>
+      Err({
+        code: "AmbiguousOperation",
+        message: "multiple operations match " + key,
+        path: "",
+      })
     None =>
       Err({
         code: "UnknownOperation",
@@ -125,6 +153,21 @@ fn Templates::compiled_operation(
   key : String,
   operation : Operation,
 ) -> Result[@core.ContractTemplate, OpenApiError] {
+  // Unsupported optional query parameters may be omitted, required ones cannot.
+  for item in operation.unsupported {
+    if item.location == Query &&
+      operation.parameters.any(fn(parameter) {
+        parameter.name == item.name &&
+        parameter.location == item.location &&
+        parameter.required
+      }) {
+      return Err({
+        code: "UnsupportedParameter",
+        message: item.name + ": " + item.reason,
+        path: "/" + ptr(item.name),
+      })
+    }
+  }
   let cache_key = operation.http_method + " " + operation.path
   match self.compiled.get(cache_key) {
     Some(template) => Ok(template)
@@ -194,10 +237,21 @@ pub fn Templates::expand(
         })
       None => ()
     }
-    guard operation.parameters
+    // Header/cookie bindings share the flat input namespace but cannot shadow
+    // a URL binding with the same name.
+    let preferred = operation.parameters
       .iter()
-      .find_first(fn(parameter) { parameter.name == name })
-      is Some(parameter) else {
+      .find_first(fn(parameter) {
+        parameter.name == name && parameter.variable != None
+      })
+    let parameter = match preferred {
+      Some(_) => preferred
+      None =>
+        operation.parameters
+        .iter()
+        .find_first(fn(parameter) { parameter.name == name })
+    }
+    guard parameter is Some(parameter) else {
       return Err({
         code: "UnknownParameter",
         message: key + " has no parameter " + name,

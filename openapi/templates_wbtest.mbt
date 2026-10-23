@@ -196,3 +196,250 @@ test "public analysis and operation snapshots cannot mutate compiled state" {
   }
   assert_eq(api.expand("GET /q", bindings({ "q": "a" }).unwrap()), Ok("/q?q=a"))
 }
+
+///|
+test "required unsupported query parameters cannot be omitted" {
+  for required in [false, true] {
+    let doc : Json = {
+      "openapi": "3.1.0",
+      "paths": {
+        "/search": {
+          "get": {
+            "operationId": "search",
+            "parameters": [
+              {
+                "name": "filter",
+                "in": "query",
+                "style": "deepObject",
+                "required": required,
+                "schema": { "type": "object" },
+              },
+            ],
+          },
+        },
+      },
+    }
+    for strict in [false, true] {
+      let api = compile(doc, strict~).unwrap()
+      if required {
+        assert_true(
+          api.expand("search", @core.Variables::new())
+          is Err({ code: "UnsupportedParameter", path: "/filter", .. }),
+        )
+      } else {
+        assert_eq(api.expand("search", @core.Variables::new()), Ok("/search"))
+      }
+      assert_true(
+        api.expand("search", bindings({ "filter": { "a": "b" } }).unwrap())
+        is Err({ code: "UnsupportedParameter", path: "/filter", .. }),
+      )
+    }
+  }
+}
+
+///|
+test "URL bindings take precedence over same-name header and cookie parameters" {
+  for location in ["header", "cookie"] {
+    for url_location in ["path", "query"] {
+      for ignored_first in [false, true] {
+        let ignored : Json = {
+          "name": "id",
+          "in": location,
+          "required": true,
+          "schema": { "type": "object" },
+        }
+        let url : Json = {
+          "name": "id",
+          "in": url_location,
+          "required": true,
+          "schema": {
+            "type": if url_location == "path" {
+              "string"
+            } else {
+              "array"
+            },
+          },
+        }
+        let parameters = Json::array(
+          if ignored_first {
+            [ignored, url]
+          } else {
+            [url, ignored]
+          },
+        )
+        let operation : Json = { "operationId": "op", "parameters": parameters }
+        let paths : Json = if url_location == "path" {
+          { "/a/{id}": { "get": operation } }
+        } else {
+          { "/a": { "get": operation } }
+        }
+        let api = compile({ "openapi": "3.1.0", "paths": paths }, strict=true).unwrap()
+        assert_true(
+          api.expand("op", @core.Variables::new())
+          is Err({ code: "MissingBinding", .. }),
+        )
+        if url_location == "path" {
+          assert_eq(
+            api.expand("op", bindings({ "id": "x y" }).unwrap()),
+            Ok("/a/x%20y"),
+          )
+          assert_true(
+            api.expand("op", bindings({ "id": ["x", "y"] }).unwrap())
+            is Err({ code: "BindingType", .. }),
+          )
+        } else {
+          assert_eq(
+            api.expand("op", bindings({ "id": ["x", "y"] }).unwrap()),
+            Ok("/a?id=x&id=y"),
+          )
+          assert_true(
+            api.expand("op", bindings({ "id": "x" }).unwrap())
+            is Err({ code: "BindingType", .. }),
+          )
+        }
+      }
+    }
+  }
+}
+
+///|
+test "required non-URL parameters do not make same-name optional query bindings required" {
+  for location in ["header", "cookie"] {
+    let api = compile({
+      "openapi": "3.1.0",
+      "paths": {
+        "/q": {
+          "get": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": location,
+                "required": true,
+                "schema": { "type": "array" },
+              },
+              { "name": "id", "in": "query", "schema": { "type": "string" } },
+              { "name": "trace", "in": location, "required": true },
+            ],
+          },
+        },
+      },
+    }).unwrap()
+    assert_eq(api.expand("GET /q", @core.Variables::new()), Ok("/q"))
+    assert_eq(
+      api.expand("GET /q", bindings({ "id": "x", "trace": "t" }).unwrap()),
+      Ok("/q?id=x"),
+    )
+    assert_eq(
+      api.expand("GET /q", bindings({ "trace": "t" }).unwrap()),
+      Ok("/q"),
+    )
+  }
+}
+
+///|
+test "required header and cookie do not require same-name unsupported optional queries" {
+  for location in ["header", "cookie"] {
+    let api = compile(
+      {
+        "openapi": "3.1.0",
+        "paths": {
+          "/search": {
+            "get": {
+              "parameters": [
+                { "name": "filter", "in": location, "required": true },
+                {
+                  "name": "filter",
+                  "in": "query",
+                  "style": "deepObject",
+                  "schema": { "type": "object" },
+                },
+              ],
+            },
+          },
+        },
+      },
+      strict=true,
+    ).unwrap()
+    assert_eq(api.expand("GET /search", @core.Variables::new()), Ok("/search"))
+    assert_true(
+      api.expand("GET /search", bindings({ "filter": { "a": "b" } }).unwrap())
+      is Err({ code: "UnsupportedParameter", path: "/filter", .. }),
+    )
+  }
+}
+
+///|
+test "operationId and another operation method-path key are ambiguous in either order" {
+  for collision_first in [false, true] {
+    let collision : Json = { "get": { "operationId": "GET /b" } }
+    let target : Json = { "get": { "operationId": "target" } }
+    let paths = if collision_first {
+      Json::object(Map([("/a", collision), ("/b", target)]))
+    } else {
+      Json::object(Map([("/b", target), ("/a", collision)]))
+    }
+    let api = compile({ "openapi": "3.1.0", "paths": paths }, strict=true).unwrap()
+    assert_true(api.get("GET /b") is Err({ code: "AmbiguousOperation", .. }))
+    assert_true(
+      api.expand("GET /b", @core.Variables::new())
+      is Err({ code: "AmbiguousOperation", .. }),
+    )
+    assert_eq(api.get("GET /a").unwrap().path, "/a")
+    assert_eq(api.expand("GET /a", @core.Variables::new()), Ok("/a"))
+    assert_eq(api.get("target").unwrap().path, "/b")
+    assert_eq(api.expand("target", @core.Variables::new()), Ok("/b"))
+    assert_true(api.get("GET /b") is Err({ code: "AmbiguousOperation", .. }))
+    assert_true(
+      api.expand("GET /b", @core.Variables::new())
+      is Err({ code: "AmbiguousOperation", .. }),
+    )
+  }
+}
+
+///|
+test "three duplicate operationIds stay ambiguous after method-path cache warmup" {
+  let doc : Json = {
+    "openapi": "3.1.0",
+    "paths": {
+      "/a": { "get": { "operationId": "duplicate" } },
+      "/b": { "get": { "operationId": "duplicate" } },
+      "/c": { "get": { "operationId": "duplicate" } },
+    },
+  }
+  assert_true(compile(doc, strict=true) is Err({ code: "OpenApiInvalid", .. }))
+  let api = compile(doc).unwrap()
+  assert_true(api.get("duplicate") is Err({ code: "AmbiguousOperation", .. }))
+  assert_true(
+    api.expand("duplicate", @core.Variables::new())
+    is Err({ code: "AmbiguousOperation", .. }),
+  )
+  for _ in 0..<2 {
+    for path in ["/a", "/b", "/c"] {
+      let key = "GET " + path
+      assert_eq(api.get(key).unwrap().path, path)
+      assert_eq(api.expand(key, @core.Variables::new()), Ok(path))
+      assert_true(
+        api.get("duplicate") is Err({ code: "AmbiguousOperation", .. }),
+      )
+      assert_true(
+        api.expand("duplicate", @core.Variables::new())
+        is Err({ code: "AmbiguousOperation", .. }),
+      )
+    }
+  }
+}
+
+///|
+test "operationId equal to its own method-path key remains unambiguous" {
+  let api = compile({
+    "openapi": "3.1.0",
+    "paths": {
+      "/self": { "get": { "operationId": "GET /self" } },
+      "/other": { "get": { "operationId": "other" } },
+    },
+  }).unwrap()
+  assert_eq(api.get("GET /self").unwrap().path, "/self")
+  assert_eq(api.expand("GET /self", @core.Variables::new()), Ok("/self"))
+  assert_eq(api.expand("other", @core.Variables::new()), Ok("/other"))
+  assert_true(api.get("unknown") is Err({ code: "UnknownOperation", .. }))
+}

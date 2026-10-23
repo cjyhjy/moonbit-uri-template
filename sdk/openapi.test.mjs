@@ -131,6 +131,105 @@ test('unsupported parameters and operations fail with the reason', () => {
   assert.throws(() => none.expand('op', { id: '1' }), { code: 'UnsupportedOperation' });
 });
 
+for (const strict of [false, true]) {
+  test(`required unsupported query parameters fail even when omitted (strict=${strict})`, () => {
+    const api = compileOpenApi(doc('/search', [
+      p('filter', 'query', { required: true, style: 'deepObject', schema: { type: 'object' } }),
+      p('page', 'query', { required: true }),
+    ]), { strict });
+    for (const variables of [{ page: '1' }, { page: '1', filter: undefined }, { page: '1', filter: { status: 'open' } }]) {
+      assert.throws(() => api.expand('op', variables), { code: 'UnsupportedParameter', message: /filter.*deepObject/ });
+    }
+  });
+
+  test(`optional unsupported query parameters may be omitted while supported required parameters remain required (strict=${strict})`, () => {
+    const api = compileOpenApi(doc('/search', [
+      p('filter', 'query', { style: 'deepObject', schema: { type: 'object' } }),
+      p('page', 'query', { required: true }),
+    ]), { strict });
+    assert.equal(api.expand('op', { page: '1' }), '/search?page=1');
+    assert.equal(api.expand('op', { page: '1', filter: undefined }), '/search?page=1');
+    assert.throws(() => api.expand('op', { page: '1', filter: { status: 'open' } }), { code: 'UnsupportedParameter' });
+    assert.throws(() => api.expand('op', {}), { code: 'MissingBinding' });
+    assert.throws(() => api.expand('op', { page: undefined }), { code: 'MissingBinding' });
+  });
+
+  for (const urlLocation of ['path', 'query']) {
+    for (const ignoredLocation of ['header', 'cookie']) {
+      for (const ignoredFirst of [false, true]) {
+        test(`flat bindings select ${urlLocation} over same-named ${ignoredLocation} (${ignoredFirst ? 'ignored first' : 'URL first'}, strict=${strict})`, () => {
+          const url = p('id', urlLocation, { required: true });
+          const ignored = p('id', ignoredLocation);
+          const parameters = ignoredFirst ? [ignored, url] : [url, ignored];
+          parameters.push(p('session', ignoredLocation, { required: true }));
+          const path = urlLocation === 'path' ? '/items/{id}' : '/items';
+          const api = compileOpenApi(doc(path, parameters), { strict });
+          const expected = urlLocation === 'path' ? '/items/a%20b' : '/items?id=a%20b';
+          assert.equal(api.expand('op', { id: 'a b' }), expected);
+          assert.equal(api.expand('op', { id: 'a b', session: 'ignored' }), expected);
+          assert.throws(() => api.expand('op', { session: 'ignored' }), { code: 'MissingBinding' });
+        });
+      }
+    }
+  }
+
+  for (const ignoredLocation of ['header', 'cookie']) {
+    for (const ignoredFirst of [false, true]) {
+      test(`a required ${ignoredLocation} does not make a same-named unsupported query required (${ignoredFirst ? 'ignored first' : 'query first'}, strict=${strict})`, () => {
+        const query = p('filter', 'query', { style: 'deepObject', schema: { type: 'object' } });
+        const ignored = p('filter', ignoredLocation, { required: true });
+        const api = compileOpenApi(doc('/search', ignoredFirst ? [ignored, query] : [query, ignored]), { strict });
+        assert.equal(api.expand('op'), '/search');
+        assert.equal(api.expand('op', { filter: undefined }), '/search');
+        assert.throws(() => api.expand('op', { filter: { status: 'open' } }), { code: 'UnsupportedParameter' });
+      });
+    }
+  }
+
+  for (const reverse of [false, true]) {
+    test(`operationId and another operation's method-path alias are ambiguous (${reverse ? 'reversed paths' : 'forward paths'}, strict=${strict})`, () => {
+      const paths = [
+        ['/a', { get: { operationId: 'GET /b' } }],
+        ['/b', { get: { operationId: 'target' } }],
+        ['/c', { get: { operationId: 'other' } }],
+      ];
+      if (reverse) paths.reverse();
+      const api = compileOpenApi({ openapi: '3.1.0', paths: Object.fromEntries(paths) }, { strict });
+      assert.throws(() => api.get('GET /b'), { code: 'AmbiguousOperation' });
+      assert.throws(() => api.expand('GET /b'), { code: 'AmbiguousOperation' });
+      assert.equal(api.get('GET /a').path, '/a');
+      assert.equal(api.expand('GET /a'), '/a');
+      assert.equal(api.get('target').path, '/b');
+      assert.equal(api.expand('target'), '/b');
+      assert.equal(api.expand('other'), '/c');
+      assert.equal(api.expand('GET /c'), '/c');
+      assert.throws(() => api.get('GET /b'), { code: 'AmbiguousOperation' });
+      assert.throws(() => api.expand('GET /b'), { code: 'AmbiguousOperation' });
+    });
+  }
+
+  test(`an operationId equal to its own method-path alias remains unambiguous (strict=${strict})`, () => {
+    const api = compileOpenApi(doc('/items/{id}', [p('id', 'path')], { operationId: 'GET /items/{id}' }), { strict });
+    assert.equal(api.get('GET /items/{id}').path, '/items/{id}');
+    assert.equal(api.expand('GET /items/{id}', { id: 'a b' }), '/items/a%20b');
+  });
+}
+
+for (const reverse of [false, true]) {
+  test(`duplicate operationIds remain ambiguous while method-path aliases work (${reverse ? 'reversed paths' : 'forward paths'})`, () => {
+    const paths = ['/a', '/b', '/c'].map(path => [path, { get: { operationId: 'shared' } }]);
+    if (reverse) paths.reverse();
+    const api = compileOpenApi({ openapi: '3.1.0', paths: Object.fromEntries(paths) });
+    assert.equal(api.diagnostics.filter(d => d.code === 'DuplicateOperationId').length, 2);
+    assert.throws(() => api.get('shared'), { code: 'AmbiguousOperation' });
+    assert.throws(() => api.expand('shared'), { code: 'AmbiguousOperation' });
+    for (const [path] of paths) {
+      assert.equal(api.get(`GET ${path}`).path, path);
+      assert.equal(api.expand(`GET ${path}`), path);
+    }
+  });
+}
+
 test('strict mode rejects errors; incomplete documents always throw', () => {
   const d = { openapi: '3.1.0', paths: { '/a/{x}': { get: {} } } };
   assert.equal(compileOpenApi(d).diagnostics[0].code, 'MissingPathParameter');
