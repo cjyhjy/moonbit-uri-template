@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "published": true,
+  "package": "moonbit-uri-template",
+  "version": "0.5.0",
+  "verified_at_utc": "2026-10-23T13:51:29.445775+00:00",
+  "git_commit": "2ee68d88ccbff7ff070a1f7e17151e5ac1777d94",
+  "workflow": "https://github.com/cjyhjy/moonbit-uri-template/actions/runs/39964291966",
+  "registry": "https://registry.npmjs.org/",
+  "dist_tags": {
+    "latest": "0.5.0"
+  },
+  "trusted_publishing": true,
+  "provenance_transparency_log": "https://search.sigstore.dev/?logIndex=3420407282",
+  "registry_signature_verified": true,
+  "ci_tarball_sha256": "f652addf888916b840dbab3dc65a1c6f5a77b1981d43994b26e00682cf0f948c",
+  "registry_tarball_matches_ci": true,
+  "fresh_project_install": true,
+  "fresh_npm_cache": true,
+  "checks": [
+    "uri-template --version prints 0.5.0",
+    "YAML OpenAPI input with --templates; MissingPathParameter at YAML line 10, column 10; exit 1",
+    "moonbit-uri-template/openapi compileOpenApi and expand",
+    "dist/licenses contains moonbit-core-LICENSE and yaml-LICENSE"
+  ]
+}

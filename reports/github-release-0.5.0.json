@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "url": "https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.5.0",
+  "tag": "v0.5.0",
+  "git_commit": "2ee68d88ccbff7ff070a1f7e17151e5ac1777d94",
+  "verified_at_utc": "2026-10-23T13:51:29.445775+00:00",
+  "portable_archive_tests": 155,
+  "assets": [
+    {
+      "name": "moonbit-uri-template-0.5.0.zip",
+      "sha256": "c22965b60ffd443658ec6a2a69725d21a561af8749525c7d2dc52333175d0078"
+    },
+    {
+      "name": "moonbit-uri-template-0.5.0.tgz",
+      "sha256": "f652addf888916b840dbab3dc65a1c6f5a77b1981d43994b26e00682cf0f948c"
+    },
+    {
+      "name": "cjyhjy-uri_template-0.5.0.zip",
+      "sha256": "8e27f6bb6f0d33ac18939c57b9740684a30fba786c8cc7f8dbf0a542f7a28ae8"
+    }
+  ]
+}

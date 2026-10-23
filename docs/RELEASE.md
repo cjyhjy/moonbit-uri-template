@@ -3,8 +3,8 @@
 ## 名称
 
 - GitHub：`cjyhjy/moonbit-uri-template`
-- Mooncakes：`cjyhjy/uri_template`，已发布 0.4.0（2026-10-23）
-- npm：已发布 0.4.0（`moonbit-uri-template`，2026-10-23），通过 GitHub Trusted Publishing 发布，签名和全新工程安装验证通过。
+- Mooncakes：`cjyhjy/uri_template`，已发布 0.5.0（2026-10-23）
+- npm：已发布 0.5.0（`moonbit-uri-template`，2026-10-23），通过 GitHub Trusted Publishing 发布，签名和全新工程安装验证通过。
 
 ## 便携分发包
 
@@ -20,6 +20,8 @@ npm run release:package
 2. `./tools/moon login`，凭据不进仓库。
 3. 确认 `moon.mod` 的版本号后执行 `./tools/moon publish`。
 4. 在全新工程中执行 `moon add cjyhjy/uri_template@<版本>` 并运行示例，确认注册表安装可用。
+
+0.5.0 的发布日志见 `reports/publish-0.5.0.log`；全新工程、独立 MOON_HOME 从 Mooncakes 安装，OpenAPI 示例四后端运行通过，见 `reports/registry-0.5.0.json`。
 
 0.4.0 的发布日志见 `reports/publish-0.4.0.log`；全新工程、独立缓存从 Mooncakes 安装，OpenAPI 示例四后端运行通过，见 `reports/registry-0.4.0.json`。
 
@@ -49,15 +51,17 @@ npm run release:package
 身份验证由账号持有人在 npm 页面完成。正式版本必须验证 provenance 和注册表安装。
 
 ```sh
-git tag v0.3.0
-git push origin v0.3.0
+git tag v<版本>
+git push origin v<版本>
 ```
 
 标签应指向已提交并审核的发布内容。只有工作流成功且在全新目录中执行
-`npm install moonbit-uri-template@0.3.0`、验证 SDK 和 CLI 后，才记录 npm 发布完成。
+`npm install moonbit-uri-template@<版本>`、验证 SDK 和 CLI 后，才记录 npm 发布完成。
 npm 同名同版本不能重复发布；认证配置应在推送标签前完成。
 
 ## GitHub Release
+
+[v0.5.0](https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.5.0) 对应提交 `2ee68d8`，附件同上。npm 注册表中的 tarball 与 CI 原件、Release 附件逐字节相同；见 `reports/npm-release-0.5.0.json`、`reports/github-release-0.5.0.json`。
 
 [v0.4.0](https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.4.0) 对应提交 `e76a153`，附带便携包、npm 原始 tarball、Mooncakes 源码包和 SHA-256 校验文件。便携包解压后 148 项测试通过；附件回验与 SHA-256 见 `reports/github-release-0.4.0.json`。
 

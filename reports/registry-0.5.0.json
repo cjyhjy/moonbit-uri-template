@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "verified_at_utc": "2026-10-23T13:51:29.445775+00:00",
+  "module": "cjyhjy/uri_template",
+  "version": "0.5.0",
+  "source": "Mooncakes registry; fresh project and MOON_HOME, no moon.work or path dependency",
+  "install_command": "moon add cjyhjy/uri_template@0.5.0",
+  "program": "examples/openapi_moonbit/main.mbt",
+  "backends": {
+    "js": {
+      "exit_code": 0,
+      "output": "/repos/{owner}/{repo}/commits{?per_page}\n/repos/octo/hello%20world/commits?per_page=10"
+    },
+    "wasm": {
+      "exit_code": 0,
+      "output": "/repos/{owner}/{repo}/commits{?per_page}\n/repos/octo/hello%20world/commits?per_page=10"
+    },
+    "wasm-gc": {
+      "exit_code": 0,
+      "output": "/repos/{owner}/{repo}/commits{?per_page}\n/repos/octo/hello%20world/commits?per_page=10"
+    },
+    "native": {
+      "exit_code": 0,
+      "output": "/repos/{owner}/{repo}/commits{?per_page}\n/repos/octo/hello%20world/commits?per_page=10"
+    }
+  },
+  "package_excludes_local_submission_and_collaboration_files": true
+}
