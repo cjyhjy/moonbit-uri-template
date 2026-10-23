@@ -94,6 +94,9 @@ test('CLI reports unpaired surrogates at values and object keys with exit 2',()=
  const key='{"openapi":"3.1.0",\n"\\udfff":true,"paths":{}}';
  const kr=checkOpenAPI(key,'key.json');
  assert.equal(kr.diagnostics[0].path,'/\udfff');assert.deepEqual([kr.diagnostics[0].line,kr.diagnostics[0].column],[2,1]);
+ const nested='{"openapi":"3.1.0",\n"😀":{"description":"\\ud800"},"paths":{}}';
+ const nr=checkOpenAPI(nested,'nested.json');
+ assert.equal(nr.diagnostics[0].path,'/😀/description');assert.deepEqual([nr.diagnostics[0].line,nr.diagnostics[0].column],[2,21]);
  const dir=mkdtempSync(join(tmpdir(),'openapi-surrogate-'));
  try {
   const file=join(dir,'spec.json');writeFileSync(file,value);

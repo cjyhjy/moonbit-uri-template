@@ -7,6 +7,17 @@ export const DEFAULT_MAX_BYTES = 33554432;
 // Cloudflare's description nests 44 levels deep.
 const MAX_DEPTH = 128;
 const SCOPE = 'OpenAPI 3.0/3.1 JSON paths, path parameters and RFC 6570 serialization of path and query parameters';
+const hasUnpairedSurrogate = value => {
+  for (let i = 0; i < value.length; i++) {
+    const unit = value.charCodeAt(i);
+    if (unit >= 0xd800 && unit <= 0xdbff) {
+      const next = value.charCodeAt(i + 1);
+      if (!(next >= 0xdc00 && next <= 0xdfff)) return true;
+      i++;
+    } else if (unit >= 0xdc00 && unit <= 0xdfff) return true;
+  }
+  return false;
+};
 
 export function checkOpenAPI(text, file = 'openapi.json', {maxBytes = DEFAULT_MAX_BYTES} = {}) {
   const failed = (code, message, path = '', offset = 0) => ({schemaVersion:2,ok:false,complete:false,file,scope:SCOPE,operations:[],
@@ -20,8 +31,7 @@ export function checkOpenAPI(text, file = 'openapi.json', {maxBytes = DEFAULT_MA
   const starts = [0];
   for (let i = text.indexOf('\n'); i !== -1; i = text.indexOf('\n', i + 1)) starts.push(i + 1);
   const at = path => {
-    const key = report.diagnostics.some(d => d.code === 'InvalidInput' && d.path === path) &&
-      [...path].some(c => { const n = c.charCodeAt(0); return n >= 0xd800 && n <= 0xdfff; });
+    const key = report.diagnostics.some(d => d.code === 'InvalidInput' && d.path === path) && hasUnpairedSurrogate(path);
     const offset = ((key ? parsed.keys.get(path) : null) ?? parsed.nodes.get(path) ?? parsed.nodes.get(''))?.start ?? 0;
     let lo = 0, hi = starts.length - 1;
     while (lo < hi) { const mid = (lo + hi + 1) >> 1; if (starts[mid] <= offset) lo = mid; else hi = mid - 1; }
