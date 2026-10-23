@@ -1,13 +1,13 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-23T13:34:44.516494+00:00",
-  "git_head": "42828ea7aec0699f1572336c31b572958bb4de86",
+  "verification_started_at_utc": "2026-10-23T13:48:03.889328+00:00",
+  "git_head": "af4ab095d5c08b27f8decbbe2f40b9141c7978a7",
   "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-23T13:34:45.171632+00:00",
+  "verified_at_utc": "2026-10-23T13:48:04.524173+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "cb18ebdad33e30b82b653ecd618ef4cb680fd6ad28e8daa98f0bb7e51f5f7445",
+  "source_sha256": "ea9ea9f406ffe29320057d33f2722bb131f1a32d11cc85b250df1861f407b596",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
@@ -1281,9 +1281,9 @@
     "failed": 0,
     "package": {
       "status": "passed",
-      "artifact": "_build/releases/moonbit-uri-template-0.4.0.tgz",
-      "sha256": "2d089aa621200655998c6370d4af588f3560654ddc2b5ad82e7918a61e28deba",
-      "sourceSha256": "cb18ebdad33e30b82b653ecd618ef4cb680fd6ad28e8daa98f0bb7e51f5f7445",
+      "artifact": "_build/releases/moonbit-uri-template-0.5.0.tgz",
+      "sha256": "e9bdf56ae2671c55d283b29e927977ed18b79b9d17e2a834d8ee15edf861a3e8",
+      "sourceSha256": "ea9ea9f406ffe29320057d33f2722bb131f1a32d11cc85b250df1861f407b596",
       "node": "v26.7.0",
       "typescript": "Version 7.0.2",
       "cleanLocalInstall": true,
@@ -1657,7 +1657,7 @@
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "1adb87ee607da6bd92e8be826bf6ab00bef2b72bc4146c05dbfa2a043f6bfacb",
+    "sha256": "8e27f6bb6f0d33ac18939c57b9740684a30fba786c8cc7f8dbf0a542f7a28ae8",
     "clean_downstream_backends": [
       "js",
       "wasm",

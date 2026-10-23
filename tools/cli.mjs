@@ -65,7 +65,7 @@ function readBounded(file, maxChars) {
 }
 async function main() {
   if (args.length === 1 && ['--help', '-h'].includes(args[0])) { console.log(help); return; }
-  if (args.length === 1 && args[0] === '--version') { console.log('0.4.0'); return; }
+  if (args.length === 1 && args[0] === '--version') { console.log('0.5.0'); return; }
   if (args[0] === 'openapi') {
     const { openapiMain } = await import('./openapi.mjs');
     process.exitCode = await openapiMain(args.slice(1));

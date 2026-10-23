@@ -62,7 +62,7 @@ npm run openapi:public                            # 检查 GitHub、Stripe、Clo
 
 退出码：0 无错误（可以有警告），1 有错误，2 输入无效或检查不完整（外部引用、OpenAPI 3.2、超过上限等）。
 
-YAML 只接受与 JSON 等价的 YAML 1.2：拒绝重复键、自定义标签、多文档、merge key 和非有限数；别名最多展开 100 次，嵌套 128 层，展开后的大小计入同一上限。诊断给出 YAML 原文的行列。YAML 读取用随包附带的 `yaml` 库（ISC），分析仍在 MoonBit 中完成。已发布的 0.4.0 只读 JSON；YAML 输入在下一个版本发布。
+YAML 只接受与 JSON 等价的 YAML 1.2：拒绝重复键、自定义标签、多文档、merge key 和非有限数；别名最多展开 100 次，嵌套 128 层，展开后的大小计入同一上限。诊断给出 YAML 原文的行列。YAML 读取用随包附带的 `yaml` 库（ISC），分析仍在 MoonBit 中完成。命令行从 0.5.0 起接受 YAML。
 
 下游仓库可以直接复制 [examples/ci/openapi-check.yml](../examples/ci/openapi-check.yml)，在 CI 中用已发布的 npm 包检查自己的描述。
 
@@ -116,7 +116,7 @@ node tools/verify_yaml_corpus.mjs --download   # 其中 60 份的原始格式是
 | `ExampleShapeMismatch` | 38 | IX-API 19、Telnyx 8 等 9 份 |
 | `ExampleNotSerializable` | 2 | Box、OPA |
 
-Vercel 官方地址 `https://openapi.vercel.sh` 的当前描述同样有这个问题：`GET /v13/deployments/{idOrUrl}` 与 `DELETE /v13/deployments/{id}` 层级相同。代表性发现的最小复现保存在 `testdata/openapi-corpus/regressions.json`，并作为测试运行。
+Vercel 官方地址 `https://openapi.vercel.sh` 的当前描述（2026-10-23）有 4 对层级相同的路径，例如 `GET /v13/deployments/{idOrUrl}` 与 `DELETE /v13/deployments/{id}`，已报告给上游：[vercel/sdk#420](https://github.com/vercel/sdk/issues/420)。代表性发现的最小复现保存在 `testdata/openapi-corpus/regressions.json`，并作为测试运行。
 
 目录中的描述可能经过 APIs.guru 转换，引用某个服务商的问题前应以其官方来源为准。手动触发的 CI 工作流 `.github/workflows/openapi-corpus.yml` 会重新下载并对照基线。
 

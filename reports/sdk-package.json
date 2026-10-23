@@ -1,8 +1,8 @@
 {
   "status": "passed",
-  "artifact": "_build/releases/moonbit-uri-template-0.4.0.tgz",
-  "sha256": "2d089aa621200655998c6370d4af588f3560654ddc2b5ad82e7918a61e28deba",
-  "sourceSha256": "cb18ebdad33e30b82b653ecd618ef4cb680fd6ad28e8daa98f0bb7e51f5f7445",
+  "artifact": "_build/releases/moonbit-uri-template-0.5.0.tgz",
+  "sha256": "e9bdf56ae2671c55d283b29e927977ed18b79b9d17e2a834d8ee15edf861a3e8",
+  "sourceSha256": "ea9ea9f406ffe29320057d33f2722bb131f1a32d11cc85b250df1861f407b596",
   "node": "v26.7.0",
   "typescript": "Version 7.0.2",
   "cleanLocalInstall": true,
