@@ -1,13 +1,13 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-23T09:56:19.792073+00:00",
-  "git_head": "54d006f3507dfefa0439ebec1323596058644a54",
+  "verification_started_at_utc": "2026-10-23T10:31:56.983643+00:00",
+  "git_head": "a6ea93eaab644e6813dc89001f75952daa535846",
   "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-23T09:56:20.257718+00:00",
+  "verified_at_utc": "2026-10-23T10:31:57.507677+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "caeeda9a62e46177d543997fbf11920253c5ef8c159a65e84e335a16d2c2e5a8",
+  "source_sha256": "cbbd1ea9e9ffe16fdf910e9d2a59da0470b75f5e9a833e54d43edf083fb63db3",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
@@ -1270,20 +1270,20 @@
     "failed": 0
   },
   "workflow": {
-    "total": 52,
-    "passed": 52,
+    "total": 53,
+    "passed": 53,
     "failed": 0,
     "network": "offline only; live evidence is separate"
   },
   "sdk": {
-    "total": 38,
-    "passed": 38,
+    "total": 39,
+    "passed": 39,
     "failed": 0,
     "package": {
       "status": "passed",
       "artifact": "_build/releases/moonbit-uri-template-0.3.0.tgz",
-      "sha256": "4b9eedd6dbf50808ad0e3e6d38e823cf44f6f998590962d1553ac35407e5a914",
-      "sourceSha256": "caeeda9a62e46177d543997fbf11920253c5ef8c159a65e84e335a16d2c2e5a8",
+      "sha256": "104042514a2e16722c579a58699dc8323b98b5cc47908d4bedccd2dc4e5ff7dd",
+      "sourceSha256": "cbbd1ea9e9ffe16fdf910e9d2a59da0470b75f5e9a833e54d43edf083fb63db3",
       "node": "v26.7.0",
       "typescript": "Version 7.0.2",
       "cleanLocalInstall": true,
@@ -1437,7 +1437,9 @@
       "openapi/templates_wbtest.mbt",
       "openapi/pkg.generated.mbti",
       "openapi/templates.mbt",
+      "openapi/openapi_test.mbt",
       "openapi/helpers.mbt",
+      "openapi/types.mbt",
       "openapi/analysis.mbt",
       "openapi/parity_wbtest.mbt",
       "bindings_test.mbt",
@@ -1472,6 +1474,9 @@
       "examples/main.mbt",
       "examples/pkg.generated.mbti",
       "examples/users.json",
+      "examples/openapi_moonbit/moon.pkg",
+      "examples/openapi_moonbit/main.mbt",
+      "examples/openapi_moonbit/pkg.generated.mbti",
       "examples/resource.json",
       "examples/openapi.json",
       "limits_wbtest.mbt",
@@ -1491,12 +1496,22 @@
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "fc76a7b4192c2ceac523ba0cc4222bb00c7a8e0870f3d338c6b1a4514bc3afc7",
+    "sha256": "d6cb1c140373051344aaf5d620a9dfb505068d900134028b478880edf25816a0",
     "clean_downstream_backends": [
       "js",
       "wasm",
       "wasm-gc",
       "native"
     ]
+  },
+  "openapi_example": {
+    "status": "passed",
+    "backends": [
+      "js",
+      "wasm",
+      "wasm-gc",
+      "native"
+    ],
+    "package": "examples/openapi_moonbit"
   }
 }

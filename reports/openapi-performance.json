@@ -4,7 +4,7 @@
   "node": "v26.7.0",
   "platform": "darwin",
   "arch": "arm64",
-  "measuredAt": "2026-10-23T09:56:50.622Z",
+  "measuredAt": "2026-10-23T10:32:38.922Z",
   "documents": [
     {
       "name": "github",
@@ -26,84 +26,84 @@
   },
   "parse": [
     {
-      "parseMs": 125.374042,
+      "parseMs": 116.603292,
       "paths": 2353,
-      "maxRSSKiB": 332656
+      "maxRSSKiB": 336080
     },
     {
-      "parseMs": 122.103125,
+      "parseMs": 117.05891599999998,
       "paths": 2353,
-      "maxRSSKiB": 333808
+      "maxRSSKiB": 334144
     },
     {
-      "parseMs": 116.188916,
+      "parseMs": 117.29475000000001,
       "paths": 2353,
-      "maxRSSKiB": 333632
+      "maxRSSKiB": 334064
     },
     {
-      "parseMs": 117.709292,
+      "parseMs": 116.70766699999999,
       "paths": 2353,
-      "maxRSSKiB": 333760
+      "maxRSSKiB": 334096
     },
     {
-      "parseMs": 116.82679200000001,
+      "parseMs": 115.74237500000001,
       "paths": 2353,
-      "maxRSSKiB": 333840
+      "maxRSSKiB": 334832
     }
   ],
   "sdk": [
     {
-      "compileMs": 174.956333,
-      "expandUs": 6.998652099999999,
+      "compileMs": 169.09083299999998,
+      "expandUs": 4.468585399999999,
       "operations": 1242,
-      "maxRSSKiB": 316848
+      "maxRSSKiB": 313184
     },
     {
-      "compileMs": 158.322959,
-      "expandUs": 6.923987499999998,
+      "compileMs": 161.3805,
+      "expandUs": 4.629550000000002,
       "operations": 1242,
-      "maxRSSKiB": 316000
+      "maxRSSKiB": 312640
     },
     {
-      "compileMs": 162.665625,
-      "expandUs": 6.97047295,
+      "compileMs": 164.379459,
+      "expandUs": 4.590739600000001,
       "operations": 1242,
-      "maxRSSKiB": 315984
+      "maxRSSKiB": 313472
     },
     {
-      "compileMs": 160.898209,
-      "expandUs": 6.930266649999998,
+      "compileMs": 160.09475,
+      "expandUs": 4.516660399999999,
       "operations": 1242,
-      "maxRSSKiB": 317392
+      "maxRSSKiB": 313408
     },
     {
-      "compileMs": 159.36833399999998,
-      "expandUs": 6.924268749999999,
+      "compileMs": 159.40587499999998,
+      "expandUs": 4.516743750000002,
       "operations": 1242,
-      "maxRSSKiB": 315808
+      "maxRSSKiB": 312912
     }
   ],
   "cli": [
     {
       "name": "github",
       "samplesMs": [
-        532.8649169999999,
-        525.7247079999997,
-        542.0995419999999,
-        532.5186249999997,
-        518.0074589999995
+        630.724209,
+        600.0290410000002,
+        631.1895830000003,
+        603.3277090000001,
+        633.9514579999995
       ]
     },
     {
       "name": "cloudflare",
       "samplesMs": [
-        1211.233792,
-        1177.8180409999995,
-        1167.5546669999994,
-        1174.872958,
-        1158.6403329999994
+        1341.6767499999996,
+        1299.2412079999995,
+        1301.637917,
+        1264.3549170000006,
+        1270.6638750000002
       ]
     }
   ],
-  "sourceSha256": "caeeda9a62e46177d543997fbf11920253c5ef8c159a65e84e335a16d2c2e5a8"
+  "sourceSha256": "cbbd1ea9e9ffe16fdf910e9d2a59da0470b75f5e9a833e54d43edf083fb63db3"
 }

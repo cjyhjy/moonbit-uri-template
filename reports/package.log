@@ -1,5 +1,5 @@
 Running moon check ...
-Finished. moon: ran 10 tasks, now up to date
+Finished. moon: ran 12 tasks, now up to date
 Check passed
 AGENTS.md
 CHANGELOG.md
@@ -52,6 +52,9 @@ encoder_wbtest.mbt
 examples/main.mbt
 examples/moon.pkg
 examples/openapi.json
+examples/openapi_moonbit/main.mbt
+examples/openapi_moonbit/moon.pkg
+examples/openapi_moonbit/pkg.generated.mbti
 examples/pkg.generated.mbti
 examples/resource.json
 examples/search.json
@@ -79,10 +82,12 @@ moon.pkg
 openapi/analysis.mbt
 openapi/helpers.mbt
 openapi/moon.pkg
+openapi/openapi_test.mbt
 openapi/parity_wbtest.mbt
 openapi/pkg.generated.mbti
 openapi/templates.mbt
 openapi/templates_wbtest.mbt
+openapi/types.mbt
 operator.mbt
 package-lock.json
 package.json

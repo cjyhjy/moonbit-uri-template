@@ -1,5 +1,5 @@
 {
-  "status": "compatibility-gap",
+  "status": "passed",
   "baseline": "eeec975",
   "scope": "Additional boundary case beyond the prescribed fixtures and pinned public descriptions",
   "input": {
@@ -11,15 +11,39 @@
     },
     "description": "\ud800"
   },
-  "baselineResult": {
+  "previousResult": {
     "complete": true,
     "operations": 1,
     "diagnostics": []
   },
-  "migratedResult": {
-    "code": "InvalidJson",
-    "message": "OpenAPI document is not valid JSON"
+  "currentResult": {
+    "ok": false,
+    "complete": false,
+    "operations": 0,
+    "diagnostics": [
+      {
+        "code": "InvalidInput",
+        "severity": "error",
+        "message": "string contains an unpaired UTF-16 surrogate",
+        "path": "/description"
+      }
+    ],
+    "truncated": {
+      "errors": 0,
+      "warnings": 0
+    }
   },
-  "cause": "JS JSON.stringify escapes the isolated UTF-16 surrogate; MoonBit core/json rejects the escaped unpaired surrogate. The original analyzer ignores this description field.",
-  "decisionRequired": "Preserve the original acceptance of non-well-formed Unicode via an explicitly reviewed transport strategy, or authorize and document a narrowed input contract. No semantic change has been approved."
+  "decision": "Reject unpaired UTF-16 surrogates with the existing SDK InvalidInput convention. analyzeOpenApi returns an incomplete report; compileOpenApi throws OpenApiInvalid with the report diagnostics; CLI exits 2 and attaches the source location.",
+  "scanPolicy": "The JavaScript fallback scans only after the MoonBit JSON parser returns InvalidJson. Input is neither deleted nor replaced.",
+  "coverage": [
+    "leading and trailing unpaired surrogate",
+    "object key",
+    "description",
+    "path",
+    "parameter name",
+    "example value",
+    "object and JSON text entry points",
+    "valid surrogate pair, Chinese text and literal backslash-u text",
+    "SDK and CLI report shape, source location and exit code"
+  ]
 }
