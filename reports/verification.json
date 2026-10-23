@@ -1,9 +1,9 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-23T10:31:56.983643+00:00",
-  "git_head": "a6ea93eaab644e6813dc89001f75952daa535846",
-  "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-23T10:31:57.507677+00:00",
+  "verification_started_at_utc": "2026-10-23T10:36:08.876002+00:00",
+  "git_head": "02742e4072731b5f27b8e2746291c193b848c143",
+  "working_tree_dirty": false,
+  "verified_at_utc": "2026-10-23T10:36:09.468292+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
@@ -1496,7 +1496,7 @@
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "d6cb1c140373051344aaf5d620a9dfb505068d900134028b478880edf25816a0",
+    "sha256": "4008996bd53f5a0d6fb35d8b029e92593adf9de700a45c723f5092a528a487d6",
     "clean_downstream_backends": [
       "js",
       "wasm",
