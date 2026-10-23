@@ -36,7 +36,7 @@ for (const [name, args, expected] of [
   ['empty template', ['expand', ''], '\n'],
   ['missing variable', ['expand', '/a{?x}'], '/a\n'],
   ['null and empty', ['expand', '{?a,b,c}', '--vars', '{"a":null,"b":"","c":[]}'], '?b=\n'],
-  ['version', ['--version'], '0.3.0\n'],
+  ['version', ['--version'], '0.4.0\n'],
 ]) test(name, () => {
   const result = cli(...args);
   assert.equal(result.status, 0, result.stderr);

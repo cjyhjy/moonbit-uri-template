@@ -1,6 +1,6 @@
 {
   "name": "moonbit-uri-template",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "type": "module",
   "description": "MoonBit RFC 6570 library and CLI",
   "license": "Apache-2.0",

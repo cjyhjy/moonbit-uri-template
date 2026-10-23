@@ -134,6 +134,10 @@ archive_path=ROOT/'_build/publish'/f'{module_name.replace("/","-")}-{module_vers
 if not archive_path.exists(): raise SystemExit('Package archive missing')
 with zipfile.ZipFile(archive_path) as archive:
     names = archive.namelist()
+    private_paths = ('申报材料/', 'docs/collaboration/', 'AGENTS.md', 'CLAUDE.md',
+                     'docs/COLLABORATION.md', 'docs/CLAUDE_HANDOFF_OPENAPI.md')
+    if any(n.startswith(private_paths) for n in names):
+        raise SystemExit('Local submission or collaboration file in package')
     if any('.toolchain/' in n or '/.git/' in n or n.startswith('.git/') or 'dist/' in n for n in names): raise SystemExit('Unexpected build/private file in package')
     for required in ('moon.mod','moon.pkg','LICENSE','README.md','parser.mbt','conformance_test.mbt','toolchain.lock.json'):
         if required not in names: raise SystemExit('Missing package file: '+required)

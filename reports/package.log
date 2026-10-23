@@ -1,9 +1,7 @@
 Running moon check ...
 Finished. moon: ran 12 tasks, now up to date
 Check passed
-AGENTS.md
 CHANGELOG.md
-CLAUDE.md
 LICENSE
 NOTICE
 README.md
@@ -36,8 +34,6 @@ conformance_test.mbt
 docs/AI_USAGE.md
 docs/API.md
 docs/ARCHITECTURE.md
-docs/CLAUDE_HANDOFF_OPENAPI.md
-docs/COLLABORATION.md
 docs/COMPARISON.md
 docs/CONFORMANCE.md
 docs/OPENAPI.md
@@ -45,8 +41,6 @@ docs/PERFORMANCE.md
 docs/RELEASE.md
 docs/REVIEW.md
 docs/SDK.md
-docs/collaboration/CLAUDE.md
-docs/collaboration/CODEX.md
 encoder.mbt
 encoder_wbtest.mbt
 examples/main.mbt
@@ -161,6 +155,4 @@ tools/verify_openapi_parity.mjs
 tools/verify_portable_live.py
 tools/verify_sdk_package.mjs
 types.mbt
-申报材料/回复初审邮件.txt
-申报材料/申报修改备注.txt
-Package to /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/publish/cjyhjy-uri_template-0.3.0.zip
+Package to /Users/cjy/Documents/ChatGPT/黑客松比赛项目/_build/publish/cjyhjy-uri_template-0.4.0.zip

@@ -4,6 +4,7 @@ from pathlib import Path
 
 def source_digest(root: Path) -> str:
     entries = []
+    entries.append(root/'.moonignore')
     for folder in ('openapi', 'adapter', 'cmd', 'examples', 'testdata', 'tools', 'bench', 'playground', 'integrations', 'sdk'):
         base = root/folder
         if base.exists():

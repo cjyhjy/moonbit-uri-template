@@ -7,3 +7,9 @@ __pycache__/
 reports/
 项目申报书.md
 node_modules/
+/申报材料/
+/AGENTS.md
+/CLAUDE.md
+/docs/COLLABORATION.md
+/docs/CLAUDE_HANDOFF_OPENAPI.md
+/docs/collaboration/
