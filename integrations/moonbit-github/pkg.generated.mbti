@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "cjyhjy/uri_template_github_client"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub async fn read_input(String, Int) -> String
+
+pub async fn run(String, Json, live? : Bool) -> Json
+
+// Errors
+pub(all) suberror ClientError {
+  ClientError(String, String)
+} derive(@debug.Debug)
+pub fn ClientError::to_repr(Self) -> @debug.Repr
+
+// Types and methods
+
+// Type aliases
+
+// Traits

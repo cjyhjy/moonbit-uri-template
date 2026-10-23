@@ -1,0 +1,75 @@
+$ <repository>/tools/moon check --target native
+Using cached cjyhjy/uri_template@0.4.0
+Using cached moonbitlang/async@0.22.5
+Warning: [0020]
+     ╭─[ <fresh-project>/app/client.mbt:271:52 ]
+     │
+ 271 │     let body = @json.parse(@utf8.decode(bytes[:]), max_nesting_depth~)
+     │                                                    ─────────┬────────
+     │                                                             ╰────────── Warning (deprecated):
+─────╯
+Warning: [0020]
+    ╭─[ <fresh-project>/app/cmd/main/main.mbt:17:7 ]
+    │
+ 17 │       max_nesting_depth~,
+    │       ─────────┬────────
+    │                ╰────────── Warning (deprecated):
+────╯
+Finished. moon: ran 30 tasks, now up to date (2 warnings, 0 errors)
+
+$ <repository>/tools/moon tree
+cjyhjy/uri_template_github_client@0.1.0 (local <fresh-project>/app):
+├─ cjyhjy/uri_template -> cjyhjy/uri_template@0.4.0
+└─ moonbitlang/async -> moonbitlang/async@0.22.5
+
+$ <repository>/tools/moon test --target native --frozen
+Total tests: 12, passed: 12, failed: 0.
+libtool: warning: 'stub.o' has no symbols
+libtool: warning: 'watch_windows.o' has no symbols
+libtool: warning: 'epoll.o' has no symbols
+libtool: warning: 'iocp.o' has no symbols
+libtool: warning: 'io_windows.o' has no symbols
+libtool: warning: 'schannel.o' has no symbols
+Warning: [0020]
+     ╭─[ <fresh-project>/app/client.mbt:271:52 ]
+     │
+ 271 │     let body = @json.parse(@utf8.decode(bytes[:]), max_nesting_depth~)
+     │                                                    ─────────┬────────
+     │                                                             ╰────────── Warning (deprecated):
+─────╯
+Warning: [0020]
+    ╭─[ <fresh-project>/app/cmd/main/main.mbt:17:7 ]
+    │
+ 17 │       max_nesting_depth~,
+    │       ─────────┬────────
+    │                ╰────────── Warning (deprecated):
+────╯
+
+$ <repository>/tools/moon build --target native --frozen
+libtool: warning: 'watch_windows.o' has no symbols
+libtool: warning: 'stub.o' has no symbols
+libtool: warning: 'epoll.o' has no symbols
+libtool: warning: 'iocp.o' has no symbols
+libtool: warning: 'io_windows.o' has no symbols
+libtool: warning: 'schannel.o' has no symbols
+Warning: [0020]
+     ╭─[ <fresh-project>/app/client.mbt:271:52 ]
+     │
+ 271 │     let body = @json.parse(@utf8.decode(bytes[:]), max_nesting_depth~)
+     │                                                    ─────────┬────────
+     │                                                             ╰────────── Warning (deprecated):
+─────╯
+Warning: [0020]
+    ╭─[ <fresh-project>/app/cmd/main/main.mbt:17:7 ]
+    │
+ 17 │       max_nesting_depth~,
+    │       ─────────┬────────
+    │                ╰────────── Warning (deprecated):
+────╯
+Finished. moon: ran 71 tasks, now up to date (2 warnings, 0 errors)
+
+$ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project>/app/offline.json <fresh-project>/app/requests.json
+{"ok":true,"mode":"plan","documentErrors":0,"documentWarnings":0,"requests":[{"operation_id":"repos/get","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template","repository":"cjyhjy/moonbit-uri-template"},{"operation_id":"repos/list-commits","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=2","repository":"cjyhjy/moonbit-uri-template"},{"operation_id":"repos/list-releases","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=2","repository":"cjyhjy/moonbit-uri-template"}]}
+
+$ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project>/app/offline.json <fresh-project>/app/invalid.json --live
+{"ok":false,"code":"MissingBinding","message":"required variable is not bound"}

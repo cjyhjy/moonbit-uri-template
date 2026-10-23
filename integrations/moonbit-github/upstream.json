@@ -1,0 +1,8 @@
+{
+  "repository": "github/rest-api-description",
+  "commit": "755ee33b4a81d51f6f07a902cce26cbec3b822f2",
+  "path": "descriptions/api.github.com/api.github.com.json",
+  "sha256": "3177ad6a86ca04c57a9bef3fc24e28a339efb8eb040c6f950af3d3ed2fee7fa3",
+  "uri_template_version": "0.4.0",
+  "async_version": "0.22.5"
+}

@@ -1,0 +1,8 @@
+import {
+  "moonbitlang/async",
+  "cjyhjy/uri_template_github_client" @client,
+  "moonbitlang/core/env",
+  "moonbitlang/core/json",
+}
+
+pkgtype(kind: "executable")

@@ -8,7 +8,7 @@ def source_digest(root: Path) -> str:
     for folder in ('openapi', 'adapter', 'cmd', 'examples', 'testdata', 'tools', 'bench', 'playground', 'integrations', 'sdk'):
         base = root/folder
         if base.exists():
-            entries.extend(p for p in base.rglob('*') if p.is_file() and '__pycache__' not in p.parts)
+            entries.extend(p for p in base.rglob('*') if p.is_file() and not {'__pycache__', '_build', '.mooncakes', 'node_modules'}.intersection(p.relative_to(root).parts))
     entries.extend(p for p in root.iterdir() if p.is_file() and p.suffix in ('.mbt', '.mbti', '.pkg', '.mod', '.json'))
     hashed = hashlib.sha256()
     for path in sorted(set(entries)):

@@ -1,7 +1,7 @@
 {
   "version": "0.4.0",
   "archive": "_build/releases/moonbit-uri-template-0.4.0.zip",
-  "sha256": "b81df66d7da8aa7b4bd270801ecc02aa516b6c7f92367f98a33f179d6968e868",
+  "sha256": "1c385526addaf03f315312f0d8777428d02f829a495a3e8aef744fca8aa5f260",
   "tested_from_extracted_archive": true,
   "test_scope": "CLI, SDK, project workflow and offline consumer",
   "cli_tests": 148,
@@ -66,6 +66,6 @@
     "tools/suggestions.mjs"
   ],
   "required_node": ">=22",
-  "source_sha256": "c10d735c799b673b8707f0f990ea386e61d2f8347c201817f883f42c1a33dea0",
+  "source_sha256": "bcd98f2086d9fed3f9a99cb0c2fd5e2c478a0c48b7248e975be4976c0a3bec92",
   "published": false
 }

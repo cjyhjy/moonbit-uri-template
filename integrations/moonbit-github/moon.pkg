@@ -1,0 +1,11 @@
+import {
+  "cjyhjy/uri_template" @uri,
+  "cjyhjy/uri_template/openapi",
+  "moonbitlang/async",
+  "moonbitlang/async/http",
+  "moonbitlang/async/io",
+  "moonbitlang/async/fs",
+  "moonbitlang/core/buffer",
+  "moonbitlang/core/encoding/utf8",
+  "moonbitlang/core/json",
+}

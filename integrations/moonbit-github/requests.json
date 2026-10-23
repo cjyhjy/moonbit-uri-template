@@ -1,0 +1,7 @@
+{
+  "requests": [
+    {"operationId": "repos/get", "variables": {"owner": "cjyhjy", "repo": "moonbit-uri-template"}},
+    {"operationId": "repos/list-commits", "variables": {"owner": "cjyhjy", "repo": "moonbit-uri-template", "per_page": 2}},
+    {"operationId": "repos/list-releases", "variables": {"owner": "cjyhjy", "repo": "moonbit-uri-template", "per_page": 2}}
+  ]
+}

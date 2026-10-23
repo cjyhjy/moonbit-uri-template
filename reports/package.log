@@ -151,6 +151,7 @@ tools/source_digest.py
 tools/suggestions.mjs
 tools/test_fixture_literals.py
 tools/verify.py
+tools/verify_native_client.py
 tools/verify_openapi_parity.mjs
 tools/verify_portable_live.py
 tools/verify_sdk_package.mjs

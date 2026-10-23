@@ -1,0 +1,61 @@
+{
+  "status": "passed",
+  "evidence": "offline-registry-consumer",
+  "started_at_utc": "2026-10-23T12:43:29.550239+00:00",
+  "source_sha256": "b27a2b861b4a790a52c3ad73e426b1e3df2b0b16a036293c8595fe34c094a1d1",
+  "verifier_sha256": "cd7981f8b7a71c0a43319bdd8525b40a7d27911f370099961a6db33d92846d5e",
+  "backend": "native",
+  "externalUserFeedback": false,
+  "dependencies": {
+    "cjyhjy/uri_template": "0.4.0",
+    "moonbitlang/async": "0.22.5"
+  },
+  "toolchain": {
+    "version": "0.10.15+943464bfa",
+    "moon": "0.1.20261012",
+    "archives": {
+      "darwin-aarch64": {
+        "sha256": "563109ff02c6dc77fdc74acd0be423964ef678dfea4d9b948c19d245dc8b0e83"
+      },
+      "linux-x86_64": {
+        "sha256": "24b93a5409d2a4fb8e3d1b84b473f27b63476cef4418094764df96cb26b03c09"
+      }
+    },
+    "core_sha256": "96d30f4dbcc6a9e1736ef26fbdd0e8fb0e97cb01d50e55d2a0072208b8061ae5"
+  },
+  "checks": [
+    "default CLI plans three URLs without sending requests",
+    "invalid second request blocks live batch with MissingBinding and exit 2",
+    "endpoint and repository response validation",
+    "streaming body cap",
+    "deadline cancellation",
+    "redirect and HTTP-error rejection"
+  ],
+  "dependency_tree": "cjyhjy/uri_template_github_client@0.1.0 (local <fresh-project>/app):\n\u251c\u2500 cjyhjy/uri_template -> cjyhjy/uri_template@0.4.0\n\u2514\u2500 moonbitlang/async -> moonbitlang/async@0.22.5\n",
+  "fresh_project_registry_dependencies": true,
+  "tests": 12,
+  "plan": {
+    "ok": true,
+    "mode": "plan",
+    "documentErrors": 0,
+    "documentWarnings": 0,
+    "requests": [
+      {
+        "operation_id": "repos/get",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template",
+        "repository": "cjyhjy/moonbit-uri-template"
+      },
+      {
+        "operation_id": "repos/list-commits",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=2",
+        "repository": "cjyhjy/moonbit-uri-template"
+      },
+      {
+        "operation_id": "repos/list-releases",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=2",
+        "repository": "cjyhjy/moonbit-uri-template"
+      }
+    ]
+  },
+  "finished_at_utc": "2026-10-23T12:43:34.240143+00:00"
+}
