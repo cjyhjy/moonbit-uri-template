@@ -36,8 +36,10 @@ flowchart TD
 | `sdk/` | Node SDK 与 TypeScript 声明 |
 | `openapi/` | OpenAPI 分析：按附录 C 把接口参数合成模板、检查描述、按接口名展开 |
 | `sdk/openapi.mjs` | OpenAPI 的 JS 包装：对象快照、冻结和错误封装 |
-| `tools/project.mjs` / `tools/openapi.mjs` | 请求配置检查、OpenAPI 命令行（带源位置的 JSON 解析） |
-| `integrations/` | GitHub 巡检客户端，npm、Open Library 只读客户端 |
+| `tools/project.mjs` / `tools/openapi.mjs` / `tools/yaml-source.mjs` | 请求配置检查、OpenAPI 命令行（带源位置的 JSON / YAML 读取） |
+| `tools/openapi_corpus.mjs` | 200 份公开描述的回归检查 |
+| `integrations/moonbit-github/` | 独立 MoonBit 模块：原生 GitHub 客户端，依赖从 Mooncakes 安装 |
+| `integrations/github-audit/`、`integrations/public-clients/` | Node 下游客户端 |
 
 ## 设计要点
 

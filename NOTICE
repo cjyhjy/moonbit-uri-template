@@ -12,6 +12,22 @@ Third-party test data:
   Original files and license: testdata/upstream/
   Generated conformance_test.mbt derives test cases from that corpus.
 
+Bundled third-party code (npm package and portable archive only):
+  yaml 2.9.1, https://github.com/eemeli/yaml
+  Copyright Eemeli Aro; ISC License
+  Copied into dist/vendor/yaml/ at build time; license at dist/licenses/yaml-LICENSE.
+  Used only by the Node CLI to read YAML input. Not part of the Mooncakes package.
+
+Dependencies of the separate example client integrations/moonbit-github/
+(fetched from Mooncakes, not redistributed):
+  moonbitlang/async 0.22.5, Apache License 2.0
+
+Public OpenAPI descriptions:
+  testdata/openapi-corpus/ lists URLs and SHA-256 hashes of descriptions from the
+  APIs.guru OpenAPI Directory (https://github.com/APIs-guru/openapi-directory) and
+  official provider sites. The descriptions are downloaded at check time and not
+  redistributed. regressions.json holds minimal reductions of individual findings.
+
 Specification reference:
   RFC 6570, https://www.rfc-editor.org/rfc/rfc6570
   Copyright 2012 IETF Trust and the persons identified as the document authors.

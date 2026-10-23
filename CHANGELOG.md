@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- The CLI reads YAML OpenAPI descriptions (`.yaml`/`.yml`, or `--format yaml`): YAML 1.2 equivalent to JSON only, with duplicate keys, custom tags, multiple documents and merge keys rejected and aliases bounded. Diagnostics keep YAML line/column. The `yaml` 2.9.1 parser (ISC) is bundled in the npm package and portable archive; analysis stays in MoonBit.
+- Public regression set: 200 OpenAPI 3.0/3.1 descriptions from 200 providers (12,963 operations), pinned by URL and SHA-256, with a behaviour baseline and 60 JSON/YAML pairs. Minimal reductions of representative findings run as tests.
+- `integrations/moonbit-github`: a native MoonBit client that installs `cjyhjy/uri_template@0.4.0` from Mooncakes, reads GitHub's OpenAPI description and sends read-only HTTPS requests with `moonbitlang/async`. Verified on macOS and Linux.
+- `examples/ci/openapi-check.yml` for downstream repositories, and an issue template for integration feedback.
+
 ## 0.4.0 — 2026-10-23 (npm and Mooncakes)
 
 ### Added

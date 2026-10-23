@@ -1,6 +1,6 @@
 # MoonBit URI Template
 
-RFC 6570 Level 4 URI 模板库。核心用 MoonBit 编写，无第三方运行时依赖，可运行于 JS、wasm、wasm-gc 和 Native；同一份核心还提供 Node/TypeScript SDK、命令行和浏览器工作台。
+RFC 6570 Level 4 URI 模板库。核心用 MoonBit 编写，不依赖任何第三方库，可运行于 JS、wasm、wasm-gc 和 Native；同一份核心还提供 Node/TypeScript SDK、命令行和浏览器工作台。
 
 ```text
 /users/{id}{?page,tags*}  +  id=42, page=2, tags=[sdk, api]
@@ -14,7 +14,8 @@ RFC 6570 Level 4 URI 模板库。核心用 MoonBit 编写，无第三方运行�
 - **展开结果和主流实现一致。** 除 270 条上游标准用例外，另有 644 条用例与 Python `uritemplate`、`std-uritemplate` 逐字节比对，其中 583 条三方完全一致，其余分歧逐条说明理由（见 [一致性](docs/CONFORMANCE.md)）。前缀截断按原始码点计数，与两个参考实现一致；另外两个 MoonBit 同类库在这里都与参考实现不同。
 - **发请求前发现配置错误。** 可选择性声明必填变量和值类型（标量/列表/关联），并检查无用绑定和输入/输出预算；出错时给出模板位置、JSON 文件行列和拼写修复建议。
 - **按 JS 开发者习惯工作。** 数字和布尔值会自动转成字符串，`undefined` 视为未绑定，对象成员保持插入顺序；TypeScript 能从字面量模板推导变量名并检查必填项。
-- **直接使用 OpenAPI 描述。** OpenAPI 用 RFC 6570 定义参数怎样进入 URL。本项目把每个接口的路径和 query 参数转换成一个 URI 模板，按接口名生成请求地址；分析在 MoonBit 中实现，Mooncakes 和 npm 用户用的是同一份代码；GitHub 官方描述的 1242 个接口全部转换并检查用时 0.6 秒，查出 2 处违反规范的路径和 2 处与声明不符的示例（[OpenAPI](docs/OPENAPI.md)）。
+- **直接使用 OpenAPI 描述。** OpenAPI 用 RFC 6570 定义参数怎样进入 URL。本项目把每个接口的路径和 query 参数转换成一个 URI 模板，按接口名生成请求地址；分析在 MoonBit 中实现，Mooncakes 和 npm 用户用的是同一份代码；GitHub 官方描述的 1242 个接口全部转换并检查用时 0.6 秒，查出 2 处违反规范的路径和 2 处与声明不符的示例。另有 200 份公开描述（12,963 个接口）组成的回归集（[OpenAPI](docs/OPENAPI.md)）。
+- **MoonBit 程序可以直接用。** [原生 GitHub 客户端](integrations/moonbit-github/README.md) 从 Mooncakes 安装本库，读入 GitHub 官方描述，按 operationId 生成地址，用 `moonbitlang/async` 发出真实请求。
 - **快。** 固定负载下，与两个同类库同机对比，全部场景的耗时中位数最低（[性能](docs/PERFORMANCE.md)）。
 
 ## Node / TypeScript
@@ -99,13 +100,14 @@ npm run playground           # 浏览器工作台 http://127.0.0.1:4173
 | [性能](docs/PERFORMANCE.md) | 基准方法与结果 |
 | [架构](docs/ARCHITECTURE.md) | 模块划分与测试策略 |
 | [发布](docs/RELEASE.md) | 打包、发布与工具链维护 |
-| [GitHub 接入案例](integrations/github-audit/README.md) | 真实下游客户端 |
+| [MoonBit 原生客户端](integrations/moonbit-github/README.md) | 从 Mooncakes 安装、按 OpenAPI 发真实请求的 MoonBit 程序 |
+| [GitHub 接入案例](integrations/github-audit/README.md) | Node 下游客户端：请求配置检查、升级审查 |
 | [公共 API 客户端](integrations/public-clients/README.md) | npm、Open Library 只读客户端 |
 | [AI 辅助说明](docs/AI_USAGE.md) | 开发方式 |
 
 ## 范围
 
-只生成 URI 引用：不发 HTTP 请求，不做 URL 规范化、反向路由匹配或 Unicode 归一化。模板字面量默认接受 ASCII 单引号以兼容上游用例，`parse_strict` / `strict: true` 按 RFC 语法拒绝。
+库本身只生成 URI 引用：不发 HTTP 请求（`integrations/` 中的客户端负责发请求），不做 URL 规范化、反向路由匹配或 Unicode 归一化。模板字面量默认接受 ASCII 单引号以兼容上游用例，`parse_strict` / `strict: true` 按 RFC 语法拒绝。
 
 ## 来源与许可证
 

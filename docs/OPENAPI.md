@@ -7,7 +7,7 @@ GET /repos/{owner}/{repo}/commits
 → /repos/{owner}/{repo}/commits{?sha,path,author,committer,since,until,per_page,page}
 ```
 
-支持 OpenAPI 3.0.x、3.1.x 的 JSON 文档。分析在 MoonBit 包 `cjyhjy/uri_template/openapi` 中实现，Node SDK 和命令行调用的是同一份编译结果。
+支持 OpenAPI 3.0.x、3.1.x；MoonBit 和 SDK 接受 JSON，命令行另外接受 YAML。分析在 MoonBit 包 `cjyhjy/uri_template/openapi` 中实现，Node SDK 和命令行调用的是同一份编译结果。
 
 ## MoonBit
 
@@ -26,6 +26,8 @@ println(api.expand("repos/list-commits", vars).unwrap())
 ```
 
 `Analysis` 提供 `operations()`、`diagnostics()`、`ok()`、`complete()`；`Operation`、`Parameter`、`Diagnostic` 是只读结构体。完整示例：`moon run examples/openapi_moonbit`。
+
+[MoonBit 原生 GitHub 客户端](../integrations/moonbit-github/README.md) 是一个完整的下游程序：从 Mooncakes 安装本库，读入 GitHub 官方描述，按 operationId 生成地址并用 `moonbitlang/async` 发出真实请求。
 
 ## Node / TypeScript
 
@@ -53,11 +55,16 @@ github.expand('repos/list-commits', { owner: 'a', repo: 'b', perpage: 5 });
 node tools/cli.mjs openapi spec.json              # 诊断和汇总
 node tools/cli.mjs openapi spec.json --templates  # 每个接口的模板
 node tools/cli.mjs openapi spec.json --json       # 结构化报告，含每个接口的模板和示例 URL
+node tools/cli.mjs openapi spec.yaml              # .yaml/.yml 自动识别，也可用 --format json|yaml
 node tools/cli.mjs openapi spec.json --max-bytes 67108864   # 默认上限 32 MiB
 npm run openapi:public                            # 检查 GitHub、Stripe、Cloudflare 的官方描述
 ```
 
 退出码：0 无错误（可以有警告），1 有错误，2 输入无效或检查不完整（外部引用、OpenAPI 3.2、超过上限等）。
+
+YAML 只接受与 JSON 等价的 YAML 1.2：拒绝重复键、自定义标签、多文档、merge key 和非有限数；别名最多展开 100 次，嵌套 128 层，展开后的大小计入同一上限。诊断给出 YAML 原文的行列。YAML 读取用随包附带的 `yaml` 库（ISC），分析仍在 MoonBit 中完成。已发布的 0.4.0 只读 JSON；YAML 输入在下一个版本发布。
+
+下游仓库可以直接复制 [examples/ci/openapi-check.yml](../examples/ci/openapi-check.yml)，在 CI 中用已发布的 npm 包检查自己的描述。
 
 ## 公开文档的检查结果
 
@@ -83,6 +90,35 @@ OpenAPI 规定“层级相同、只是变量名不同的路径 MUST NOT 同时�
 **GitHub 的 2 个警告**：`GET /orgs/{org}/personal-access-tokens` 的 `owner`、`token_id` 声明为数组，示例却是序列化后的字符串 `"owner[]=octocat1,owner[]=octocat2"`。按声明，模板是 `{?owner*}`，展开为 `owner=octocat1&owner=octocat2`；示例暗示服务端期望的参数名是 `owner[]`。
 
 **Cloudflare 的 1783 个警告**都是 `ExampleShapeMismatch`：schema 为数组，示例却是单个值（如 `action_result` 的 `"success"`）或拼好的字符串（如 `fields` 的 `"uuid,name,version"`）。OpenAPI 规定参数示例 SHOULD 符合其 schema。
+
+## 200 份公开描述的回归集
+
+从 APIs.guru OpenAPI 目录选出 200 个不同服务商的 OpenAPI 3.0/3.1 描述，固定 URL 和 SHA-256（`testdata/openapi-corpus/manifest.json`），把每份的分析结果存为基线（`baseline.json`）。每份描述在独立进程中检查，限制内存和时间。
+
+```sh
+node tools/openapi_corpus.mjs check --download --baseline testdata/openapi-corpus/baseline.json
+node tools/verify_yaml_corpus.mjs --download   # 其中 60 份的原始格式是 YAML：JSON 与 YAML 分析结果逐字段对照
+```
+
+| 结果 | 数量 |
+| --- | --- |
+| 描述 / 接口 | 200 / 12,963 |
+| 无错误 | 189 份 |
+| 有错误级诊断 | 11 份，共 63 个错误 |
+| 警告 | 40 个 |
+| 检查不完整、超时或崩溃 | 0 |
+| JSON 与 YAML 对照 | 60 组完全一致 |
+
+| 诊断 | 数量 | 涉及 |
+| --- | --- | --- |
+| `InvalidPath` | 53 | Flickr 22、Box 19、openSUSE OBS 6、Icons8 6：路径里带 `?method=…` 或 `#片段` |
+| `EquivalentPaths` | 10 | Vercel、Jira、LGTM、Trakt、Superset 等 7 份 |
+| `ExampleShapeMismatch` | 38 | IX-API 19、Telnyx 8 等 9 份 |
+| `ExampleNotSerializable` | 2 | Box、OPA |
+
+Vercel 官方地址 `https://openapi.vercel.sh` 的当前描述同样有这个问题：`GET /v13/deployments/{idOrUrl}` 与 `DELETE /v13/deployments/{id}` 层级相同。代表性发现的最小复现保存在 `testdata/openapi-corpus/regressions.json`，并作为测试运行。
+
+目录中的描述可能经过 APIs.guru 转换，引用某个服务商的问题前应以其官方来源为准。手动触发的 CI 工作流 `.github/workflows/openapi-corpus.yml` 会重新下载并对照基线。
 
 ## 检查项
 
@@ -126,4 +162,4 @@ OpenAPI 规定“层级相同、只是变量名不同的路径 MUST NOT 同时�
 - 诊断给出 JSON Pointer 和文件行列。
 - 字符串或对象键里有孤立的 UTF-16 代理字符（如 `"\ud800"`）时不做分析：报 `InvalidInput`（`string contains an unpaired UTF-16 surrogate`），指向该字段，退出码 2。与 SDK 对变量的处理一致。
 
-不检查 schema 本身、响应、security 和 server URL；YAML 文档需要先转换成 JSON。
+不检查 schema 本身、响应、security 和 server URL；不读取外部 `$ref`。
