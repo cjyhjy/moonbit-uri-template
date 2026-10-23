@@ -1,0 +1,90 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-10-23T13:26:57.610414+00:00",
+  "implementationCommit": "b6de750ce2b418d093e51b6d7e5eddc43965527f",
+  "checks": [
+    {
+      "workflow": "Verify RFC 6570",
+      "runId": 39960560141,
+      "url": "https://github.com/cjyhjy/moonbit-uri-template/actions/runs/39960560141",
+      "conclusion": "success",
+      "results": {
+        "backends": {
+          "js": 362,
+          "wasm": 362,
+          "wasm-gc": 362,
+          "native": 362
+        },
+        "cli": 50,
+        "portableExtractedTests": 155
+      }
+    },
+    {
+      "workflow": "Verify native MoonBit client",
+      "event": "push",
+      "runId": 39960560158,
+      "url": "https://github.com/cjyhjy/moonbit-uri-template/actions/runs/39960560158",
+      "conclusion": "success"
+    },
+    {
+      "workflow": "Verify native MoonBit client",
+      "event": "workflow_dispatch",
+      "live": true,
+      "runId": 39960598235,
+      "url": "https://github.com/cjyhjy/moonbit-uri-template/actions/runs/39960598235",
+      "conclusion": "success",
+      "system": "Linux x86_64",
+      "nativeTests": 16,
+      "httpStatuses": [
+        200,
+        200,
+        200
+      ],
+      "evidence": "reports/native-client-linux-live.json",
+      "evidenceSha256": "b35b195375c377f8a640da33b5064c67b3b9e5599cc987e3613e32f9d45bf9bf"
+    },
+    {
+      "workflow": "Verify public OpenAPI corpus",
+      "runId": 39960604021,
+      "url": "https://github.com/cjyhjy/moonbit-uri-template/actions/runs/39960604021",
+      "conclusion": "success",
+      "node": "v22.23.3",
+      "jsonSummary": {
+        "documents": 200,
+        "providers": 200,
+        "versions": {
+          "3.1.0": 6,
+          "3.0.0": 128,
+          "3.0.1": 34,
+          "3.0.3": 18,
+          "3.0.2": 14
+        },
+        "outcomes": {
+          "complete-clean": 189,
+          "complete-with-diagnostics": 11
+        },
+        "operations": 12963,
+        "codes": {
+          "EquivalentPaths": 10,
+          "ExampleShapeMismatch": 38,
+          "InvalidPath": 53,
+          "ExampleNotSerializable": 2
+        },
+        "documentsWithExternalReferences": 0
+      },
+      "baselineRegressions": [],
+      "yamlSummary": {
+        "documents": 60,
+        "equal": 60
+      },
+      "artifact": "public-openapi-corpus",
+      "artifactFiles": {
+        "openapi-corpus.json": "7c275c9e3a910900a55f4e4493d45134c60dc6c8fcd42c802d6c526be117fc04",
+        "openapi-yaml-parity.json": "43e767b22b8f45cba25d1567c4b0d6b15bbdc5d77d0fd03f75a88c5898559a38"
+      }
+    }
+  ],
+  "externalUserFeedback": false,
+  "externalFeedbackStatus": "Deferred by user: no volunteer currently available. Feedback form and runnable trial entry point are ready.",
+  "publishedNewVersion": false
+}

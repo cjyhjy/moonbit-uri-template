@@ -1,0 +1,114 @@
+{
+  "status": "passed",
+  "evidence": "live-public-api",
+  "started_at_utc": "2026-10-23T13:22:17.420459+00:00",
+  "source_sha256": "bc94852a4ecdfb9615fa3a0d874a3d0ca2839fc64bf4809e82887c7969314ecb",
+  "verifier_sha256": "41d9e53674b5be9553c70068bfffeb3a9763c53620a1ae394a398dc82a8831bc",
+  "backend": "native",
+  "externalUserFeedback": false,
+  "system": "Linux",
+  "machine": "x86_64",
+  "dependencies": {
+    "cjyhjy/uri_template": "0.4.0",
+    "moonbitlang/async": "0.22.5"
+  },
+  "toolchain": {
+    "version": "0.10.15+943464bfa",
+    "moon": "0.1.20261012",
+    "archives": {
+      "darwin-aarch64": {
+        "sha256": "563109ff02c6dc77fdc74acd0be423964ef678dfea4d9b948c19d245dc8b0e83"
+      },
+      "linux-x86_64": {
+        "sha256": "24b93a5409d2a4fb8e3d1b84b473f27b63476cef4418094764df96cb26b03c09"
+      }
+    },
+    "core_sha256": "96d30f4dbcc6a9e1736ef26fbdd0e8fb0e97cb01d50e55d2a0072208b8061ae5"
+  },
+  "checks": [
+    "default CLI plans three URLs without sending requests",
+    "invalid second request blocks live batch with MissingBinding and exit 2",
+    "malformed JSON, invalid UTF-8, oversized and missing input all exit 2",
+    "loopback HTTP transport: GET path and headers, redirects, body cap and timeout",
+    "endpoint and repository response validation",
+    "streaming body cap",
+    "deadline cancellation",
+    "redirect and HTTP-error rejection",
+    "three native HTTPS GETs from official OpenAPI operation IDs; response bodies validated"
+  ],
+  "dependency_tree": "cjyhjy/uri_template_github_client@0.1.0 (local <fresh-project>/app):\n\u251c\u2500 cjyhjy/uri_template -> cjyhjy/uri_template@0.4.0\n\u2514\u2500 moonbitlang/async -> moonbitlang/async@0.22.5\n",
+  "fresh_project_registry_dependencies": true,
+  "tests": 16,
+  "plan": {
+    "ok": true,
+    "mode": "plan",
+    "documentErrors": 0,
+    "documentWarnings": 0,
+    "requests": [
+      {
+        "operation_id": "repos/get",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template",
+        "repository": "cjyhjy/moonbit-uri-template"
+      },
+      {
+        "operation_id": "repos/list-commits",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=2",
+        "repository": "cjyhjy/moonbit-uri-template"
+      },
+      {
+        "operation_id": "repos/list-releases",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=2",
+        "repository": "cjyhjy/moonbit-uri-template"
+      }
+    ]
+  },
+  "description": {
+    "url": "https://raw.githubusercontent.com/github/rest-api-description/755ee33b4a81d51f6f07a902cce26cbec3b822f2/descriptions/api.github.com/api.github.com.json",
+    "bytes": 13502446,
+    "sha256": "3177ad6a86ca04c57a9bef3fc24e28a339efb8eb040c6f950af3d3ed2fee7fa3",
+    "origin": "pinned official GitHub OpenAPI description"
+  },
+  "result": {
+    "ok": true,
+    "mode": "live",
+    "documentErrors": 2,
+    "documentWarnings": 2,
+    "results": [
+      {
+        "operationId": "repos/get",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template",
+        "status": 200,
+        "bytes": 5658,
+        "requestId": "F400:78476:3C4C61:C44EB6:6ADB5F96",
+        "summary": {
+          "full_name": "cjyhjy/moonbit-uri-template",
+          "id": 1418473171
+        }
+      },
+      {
+        "operationId": "repos/list-commits",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=2",
+        "status": 200,
+        "bytes": 3000,
+        "requestId": "F401:3A2A6D:3D5AC6:C845B4:6ADB5F96",
+        "summary": {
+          "count": 2,
+          "first": "b6de750ce2b418d093e51b6d7e5eddc43965527f"
+        }
+      },
+      {
+        "operationId": "repos/list-releases",
+        "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=2",
+        "status": 200,
+        "bytes": 18450,
+        "requestId": "F402:1FA680:3D8510:C96748:6ADB5F96",
+        "summary": {
+          "count": 2,
+          "first": "v0.4.0"
+        }
+      }
+    ]
+  },
+  "elapsed_ms": 1144,
+  "finished_at_utc": "2026-10-23T13:22:31.339084+00:00"
+}
