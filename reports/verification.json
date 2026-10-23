@@ -1,13 +1,13 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-23T08:54:10.100644+00:00",
-  "git_head": "eff2a1c2a4017e831bca5f6a3984b8a26c6f3a15",
+  "verification_started_at_utc": "2026-10-23T09:33:27.080221+00:00",
+  "git_head": "eeec975312cecdcb24b095ea78724cd01dd75229",
   "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-23T08:54:10.577342+00:00",
+  "verified_at_utc": "2026-10-23T09:33:27.658469+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "783b1488052bb05407231d98622258810e4ad468075c568a2afcf2c61fba3c0e",
+  "source_sha256": "bc3edacb12e8f65dd382fd047cba1e8e19934dfd7fbcb412f90c3c7882f24a9c",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
@@ -1282,8 +1282,8 @@
     "package": {
       "status": "passed",
       "artifact": "_build/releases/moonbit-uri-template-0.3.0.tgz",
-      "sha256": "4efeef4fa3114d9111d1e00e96c42a0b27e08ee4327e6a310f302b2cd1061b1c",
-      "sourceSha256": "783b1488052bb05407231d98622258810e4ad468075c568a2afcf2c61fba3c0e",
+      "sha256": "0759febc5c9f27e5782793b56ea6c19a2f71569748a73817e32cabb9e78e4557",
+      "sourceSha256": "bc3edacb12e8f65dd382fd047cba1e8e19934dfd7fbcb412f90c3c7882f24a9c",
       "node": "v26.7.0",
       "typescript": "Version 7.0.2",
       "cleanLocalInstall": true,
@@ -1383,7 +1383,6 @@
       "tools/moonbit_literal.py",
       "tools/compare_peers.py",
       "tools/package_release.py",
-      "tools/prepare_submission.py",
       "tools/demo.mjs",
       "tools/source_digest.py",
       "tools/cli.mjs",
@@ -1424,10 +1423,10 @@
       "docs/API.md",
       "docs/COMPARISON.md",
       "docs/CLAUDE_HANDOFF_OPENAPI.md",
-      "docs/RESUBMISSION.md",
       "docs/PERFORMANCE.md",
       "docs/SDK.md",
       "docs/RELEASE.md",
+      "docs/REVIEW.md",
       "docs/OPENAPI.md",
       "docs/AI_USAGE.md",
       "bindings_test.mbt",
@@ -1481,7 +1480,7 @@
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "51b9268e24d7ad92e989af1a8d7fb00b8e98c93b57545739b05002843b250460",
+    "sha256": "5ed5b1e5c364cf8505207936d66088e95ce3653c6f559fd8999fdadbc37ade4d",
     "clean_downstream_backends": [
       "js",
       "wasm",

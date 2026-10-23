@@ -41,7 +41,7 @@ docs/CONFORMANCE.md
 docs/OPENAPI.md
 docs/PERFORMANCE.md
 docs/RELEASE.md
-docs/RESUBMISSION.md
+docs/REVIEW.md
 docs/SDK.md
 docs/collaboration/CLAUDE.md
 docs/collaboration/CODEX.md
@@ -135,7 +135,6 @@ tools/openapi_public.mjs
 tools/package_release.py
 tools/playground-browser-qa.js.txt
 tools/playground.test.mjs
-tools/prepare_submission.py
 tools/project.mjs
 tools/project.test.mjs
 tools/serve-playground.mjs
