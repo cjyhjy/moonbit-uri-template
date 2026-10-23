@@ -1,0 +1,45 @@
+{
+  "samples": [
+    {
+      "parseMs": 131.77083399999998,
+      "paths": 2353,
+      "bytes": 27495506,
+      "maxRSSKiB": 334432,
+      "node": "v26.7.0"
+    },
+    {
+      "parseMs": 114.527375,
+      "paths": 2353,
+      "bytes": 27495506,
+      "maxRSSKiB": 332864,
+      "node": "v26.7.0"
+    },
+    {
+      "parseMs": 115.45400000000001,
+      "paths": 2353,
+      "bytes": 27495506,
+      "maxRSSKiB": 333744,
+      "node": "v26.7.0"
+    },
+    {
+      "parseMs": 115.16737499999999,
+      "paths": 2353,
+      "bytes": 27495506,
+      "maxRSSKiB": 333552,
+      "node": "v26.7.0"
+    },
+    {
+      "parseMs": 118.58629200000001,
+      "paths": 2353,
+      "bytes": 27495506,
+      "maxRSSKiB": 337648,
+      "node": "v26.7.0"
+    }
+  ],
+  "median_parse_ms": 115.45400000000001,
+  "max_peak_rss_mib": 329.734375,
+  "source_sha256": "4ba217d8b7316bbc84a94370a216e6fb4ab77180cac82464f91e8969e19a48fd",
+  "scope": "MoonBit core/json parse only; independent Node processes, source read outside timer; RSS includes Node/source/parsed document",
+  "stage": "Before OpenAPI implementation, after b13b15d",
+  "reproduce": "node tools/benchmark_openapi.mjs GITHUB.json CLOUDFLARE.json (parse section uses the same standalone MoonBit probe)"
+}

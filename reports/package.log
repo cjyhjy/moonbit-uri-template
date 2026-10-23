@@ -1,5 +1,5 @@
 Running moon check ...
-Finished. moon: ran 7 tasks, now up to date
+Finished. moon: ran 10 tasks, now up to date
 Check passed
 AGENTS.md
 CHANGELOG.md
@@ -12,6 +12,7 @@ adapter/json/adapter_test.mbt
 adapter/json/analysis.mbt
 adapter/json/audit.mbt
 adapter/json/moon.pkg
+adapter/json/openapi.mbt
 adapter/json/pkg.generated.mbti
 adapter/json/request.mbt
 advanced.mbt
@@ -30,6 +31,7 @@ catalog_batch_test.mbt
 cmd/uri_template/bridge.mbt
 cmd/uri_template/entry.mbt
 cmd/uri_template/moon.pkg
+cmd/uri_template/openapi.mbt
 conformance_test.mbt
 docs/AI_USAGE.md
 docs/API.md
@@ -74,6 +76,13 @@ link_session.mbt
 link_session_test.mbt
 moon.mod
 moon.pkg
+openapi/analysis.mbt
+openapi/helpers.mbt
+openapi/moon.pkg
+openapi/parity_wbtest.mbt
+openapi/pkg.generated.mbti
+openapi/templates.mbt
+openapi/templates_wbtest.mbt
 operator.mbt
 package-lock.json
 package.json
@@ -110,6 +119,7 @@ testdata/upstream/spec-examples-by-section.json
 testdata/upstream/spec-examples.json
 toolchain.lock.json
 tools/benchmark.mjs
+tools/benchmark_openapi.mjs
 tools/benchmark_peers.mjs
 tools/benchmark_resources.py
 tools/bootstrap.py
@@ -142,6 +152,7 @@ tools/source_digest.py
 tools/suggestions.mjs
 tools/test_fixture_literals.py
 tools/verify.py
+tools/verify_openapi_parity.mjs
 tools/verify_portable_live.py
 tools/verify_sdk_package.mjs
 types.mbt

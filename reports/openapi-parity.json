@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "baseline": "eeec975",
+  "measuredAt": "2026-10-23T09:57:10.237Z",
+  "publicReport": "Exact deep equality except node, startedAt, finishedAt and results[].elapsedMs",
+  "documents": [
+    {
+      "name": "github",
+      "operations": 1242,
+      "templates": 1242,
+      "examples": 101,
+      "diagnostics": 4
+    },
+    {
+      "name": "stripe",
+      "operations": 612,
+      "templates": 612,
+      "examples": 209,
+      "diagnostics": 0
+    },
+    {
+      "name": "cloudflare",
+      "operations": 3767,
+      "templates": 3767,
+      "examples": 2513,
+      "diagnostics": 256
+    }
+  ],
+  "runtimeCases": 45,
+  "runtimeComparison": "Complete returned values or own error properties (excluding Error stack)"
+}

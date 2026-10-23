@@ -3,7 +3,7 @@
   "evidence": "pinned-public-openapi",
   "status": "completed",
   "node": "v26.7.0",
-  "startedAt": "2026-10-23T08:54:01.902Z",
+  "startedAt": "2026-10-23T09:56:36.716Z",
   "results": [
     {
       "name": "github",
@@ -13,7 +13,7 @@
       "bytes": 13502446,
       "sha256": "3177ad6a86ca04c57a9bef3fc24e28a339efb8eb040c6f950af3d3ed2fee7fa3",
       "openapi": "3.0.3",
-      "elapsedMs": 404,
+      "elapsedMs": 508,
       "ok": false,
       "complete": true,
       "operations": 1242,
@@ -77,7 +77,7 @@
       "bytes": 8317513,
       "sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
       "openapi": "3.0.0",
-      "elapsedMs": 254,
+      "elapsedMs": 300,
       "ok": true,
       "complete": true,
       "operations": 612,
@@ -102,7 +102,7 @@
       "bytes": 27495506,
       "sha256": "4ba217d8b7316bbc84a94370a216e6fb4ab77180cac82464f91e8969e19a48fd",
       "openapi": "3.0.3",
-      "elapsedMs": 931,
+      "elapsedMs": 1090,
       "ok": true,
       "complete": true,
       "operations": 3767,
@@ -2425,5 +2425,5 @@
       ]
     }
   ],
-  "finishedAt": "2026-10-23T08:54:09.979Z"
+  "finishedAt": "2026-10-23T09:56:46.889Z"
 }

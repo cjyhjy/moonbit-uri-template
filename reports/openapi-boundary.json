@@ -1,0 +1,25 @@
+{
+  "status": "compatibility-gap",
+  "baseline": "eeec975",
+  "scope": "Additional boundary case beyond the prescribed fixtures and pinned public descriptions",
+  "input": {
+    "openapi": "3.1.0",
+    "paths": {
+      "/q": {
+        "get": {}
+      }
+    },
+    "description": "\ud800"
+  },
+  "baselineResult": {
+    "complete": true,
+    "operations": 1,
+    "diagnostics": []
+  },
+  "migratedResult": {
+    "code": "InvalidJson",
+    "message": "OpenAPI document is not valid JSON"
+  },
+  "cause": "JS JSON.stringify escapes the isolated UTF-16 surrogate; MoonBit core/json rejects the escaped unpaired surrogate. The original analyzer ignores this description field.",
+  "decisionRequired": "Preserve the original acceptance of non-well-formed Unicode via an explicitly reviewed transport strategy, or authorize and document a narrowed input contract. No semantic change has been approved."
+}

@@ -1,18 +1,18 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-23T09:33:27.080221+00:00",
-  "git_head": "eeec975312cecdcb24b095ea78724cd01dd75229",
+  "verification_started_at_utc": "2026-10-23T09:56:19.792073+00:00",
+  "git_head": "54d006f3507dfefa0439ebec1323596058644a54",
   "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-23T09:33:27.658469+00:00",
+  "verified_at_utc": "2026-10-23T09:56:20.257718+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "bc3edacb12e8f65dd382fd047cba1e8e19934dfd7fbcb412f90c3c7882f24a9c",
+  "source_sha256": "caeeda9a62e46177d543997fbf11920253c5ef8c159a65e84e335a16d2c2e5a8",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
-      "total": 336,
-      "passed": 336,
+      "total": 362,
+      "passed": 362,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -324,8 +324,8 @@
       ]
     },
     "wasm": {
-      "total": 336,
-      "passed": 336,
+      "total": 362,
+      "passed": 362,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -637,8 +637,8 @@
       ]
     },
     "wasm-gc": {
-      "total": 336,
-      "passed": 336,
+      "total": 362,
+      "passed": 362,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -950,8 +950,8 @@
       ]
     },
     "native": {
-      "total": 336,
-      "passed": 336,
+      "total": 362,
+      "passed": 362,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -1282,8 +1282,8 @@
     "package": {
       "status": "passed",
       "artifact": "_build/releases/moonbit-uri-template-0.3.0.tgz",
-      "sha256": "0759febc5c9f27e5782793b56ea6c19a2f71569748a73817e32cabb9e78e4557",
-      "sourceSha256": "bc3edacb12e8f65dd382fd047cba1e8e19934dfd7fbcb412f90c3c7882f24a9c",
+      "sha256": "4b9eedd6dbf50808ad0e3e6d38e823cf44f6f998590962d1553ac35407e5a914",
+      "sourceSha256": "caeeda9a62e46177d543997fbf11920253c5ef8c159a65e84e335a16d2c2e5a8",
       "node": "v26.7.0",
       "typescript": "Version 7.0.2",
       "cleanLocalInstall": true,
@@ -1337,6 +1337,7 @@
       "moon.mod",
       "cmd/uri_template/moon.pkg",
       "cmd/uri_template/bridge.mbt",
+      "cmd/uri_template/openapi.mbt",
       "cmd/uri_template/entry.mbt",
       "testdata/differential/results.json",
       "testdata/manifest.json",
@@ -1366,7 +1367,9 @@
       "tools/moon",
       "tools/cli.test.mjs",
       "tools/openapi_public.mjs",
+      "tools/verify_openapi_parity.mjs",
       "tools/coverage.py",
+      "tools/benchmark_openapi.mjs",
       "tools/integration_evidence.mjs",
       "tools/playground.test.mjs",
       "tools/verify_portable_live.py",
@@ -1411,6 +1414,7 @@
       "adapter/json/adapter_test.mbt",
       "adapter/json/audit.mbt",
       "adapter/json/pkg.generated.mbti",
+      "adapter/json/openapi.mbt",
       "adapter/json/analysis.mbt",
       "adapter/json/adapter.mbt",
       "adapter/json/request.mbt",
@@ -1429,6 +1433,13 @@
       "docs/REVIEW.md",
       "docs/OPENAPI.md",
       "docs/AI_USAGE.md",
+      "openapi/moon.pkg",
+      "openapi/templates_wbtest.mbt",
+      "openapi/pkg.generated.mbti",
+      "openapi/templates.mbt",
+      "openapi/helpers.mbt",
+      "openapi/analysis.mbt",
+      "openapi/parity_wbtest.mbt",
       "bindings_test.mbt",
       "link_session.mbt",
       "NOTICE",
@@ -1480,7 +1491,7 @@
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "5ed5b1e5c364cf8505207936d66088e95ce3653c6f559fd8999fdadbc37ade4d",
+    "sha256": "fc76a7b4192c2ceac523ba0cc4222bb00c7a8e0870f3d338c6b1a4514bc3afc7",
     "clean_downstream_backends": [
       "js",
       "wasm",

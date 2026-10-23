@@ -1,4 +1,5 @@
-/opt/homebrew/bin/node --enable-source-maps ./_build/js/debug/test/adapter/json/json.blackbox_test.js '{"package":"cjyhjy/uri_template/adapter/json","file_and_index":[["request.mbt",[]],["audit.mbt",[]],["analysis.mbt",[]],["adapter_test.mbt",[{"start":0,"end":9}]],["adapter.mbt",[]],["request.mbt",[]],["audit.mbt",[]],["analysis.mbt",[]],["adapter_test.mbt",[]],["adapter.mbt",[]],["request.mbt",[]],["audit.mbt",[]],["analysis.mbt",[]],["adapter_test.mbt",[]],["adapter.mbt",[]],["request.mbt",[]],["audit.mbt",[]],["analysis.mbt",[]],["adapter_test.mbt",[]],["adapter.mbt",[]]]}'
+/opt/homebrew/bin/node --enable-source-maps ./_build/js/debug/test/adapter/json/json.blackbox_test.js '{"package":"cjyhjy/uri_template/adapter/json","file_and_index":[["request.mbt",[]],["openapi.mbt",[]],["audit.mbt",[]],["analysis.mbt",[]],["adapter_test.mbt",[{"start":0,"end":9}]],["adapter.mbt",[]],["request.mbt",[]],["openapi.mbt",[]],["audit.mbt",[]],["analysis.mbt",[]],["adapter_test.mbt",[]],["adapter.mbt",[]],["request.mbt",[]],["openapi.mbt",[]],["audit.mbt",[]],["analysis.mbt",[]],["adapter_test.mbt",[]],["adapter.mbt",[]],["request.mbt",[]],["openapi.mbt",[]],["audit.mbt",[]],["analysis.mbt",[]],["adapter_test.mbt",[]],["adapter.mbt",[]]]}'
+/opt/homebrew/bin/node --enable-source-maps ./_build/js/debug/test/openapi/openapi.whitebox_test.js '{"package":"cjyhjy/uri_template/openapi","file_and_index":[["templates_wbtest.mbt",[{"start":0,"end":6}]],["parity_wbtest.mbt",[{"start":0,"end":20}]],["templates_wbtest.mbt",[]],["parity_wbtest.mbt",[]],["templates_wbtest.mbt",[]],["parity_wbtest.mbt",[]],["templates_wbtest.mbt",[]],["parity_wbtest.mbt",[]]]}'
 /opt/homebrew/bin/node --enable-source-maps ./_build/js/debug/test/uri_template.blackbox_test.js '{"package":"cjyhjy/uri_template","file_and_index":[["types.mbt",[]],["snapshot_regression_test.mbt",[{"start":0,"end":3}]],["session_bindings.mbt",[]],["runtime_contract_test.mbt",[{"start":0,"end":5}]],["runtime_contract.mbt",[]],["policy.mbt",[]],["parser.mbt",[]],["operator.mbt",[]],["link_session_test.mbt",[{"start":0,"end":8}]],["link_session.mbt",[]],["limits_test.mbt",[{"start":0,"end":5}]],["limits.mbt",[]],["expander.mbt",[]],["encoder.mbt",[]],["conformance_test.mbt",[{"start":0,"end":270}]],["catalog_batch_test.mbt",[{"start":0,"end":2}]],["catalog_batch.mbt",[]],["catalog_audit.mbt",[]],["catalog.mbt",[]],["bindings_test.mbt",[{"start":0,"end":3}]],["bindings.mbt",[]],["api_test.mbt",[{"start":0,"end":11}]],["analysis_test.mbt",[{"start":0,"end":8}]],["analysis.mbt",[]],["advanced_test.mbt",[{"start":0,"end":8}]],["advanced.mbt",[]],["types.mbt",[]],["snapshot_regression_test.mbt",[]],["session_bindings.mbt",[]],["runtime_contract_test.mbt",[]],["runtime_contract.mbt",[]],["policy.mbt",[]],["parser.mbt",[]],["operator.mbt",[]],["link_session_test.mbt",[]],["link_session.mbt",[]],["limits_test.mbt",[]],["limits.mbt",[]],["expander.mbt",[]],["encoder.mbt",[]],["conformance_test.mbt",[]],["catalog_batch_test.mbt",[]],["catalog_batch.mbt",[]],["catalog_audit.mbt",[]],["catalog.mbt",[]],["bindings_test.mbt",[]],["bindings.mbt",[]],["api_test.mbt",[]],["analysis_test.mbt",[]],["analysis.mbt",[]],["advanced_test.mbt",[]],["advanced.mbt",[]],["types.mbt",[]],["snapshot_regression_test.mbt",[]],["session_bindings.mbt",[]],["runtime_contract_test.mbt",[]],["runtime_contract.mbt",[]],["policy.mbt",[]],["parser.mbt",[]],["operator.mbt",[]],["link_session_test.mbt",[]],["link_session.mbt",[]],["limits_test.mbt",[]],["limits.mbt",[]],["expander.mbt",[]],["encoder.mbt",[]],["conformance_test.mbt",[]],["catalog_batch_test.mbt",[]],["catalog_batch.mbt",[]],["catalog_audit.mbt",[]],["catalog.mbt",[]],["bindings_test.mbt",[]],["bindings.mbt",[]],["api_test.mbt",[]],["analysis_test.mbt",[]],["analysis.mbt",[]],["advanced_test.mbt",[]],["advanced.mbt",[]],["types.mbt",[]],["snapshot_regression_test.mbt",[]],["session_bindings.mbt",[]],["runtime_contract_test.mbt",[]],["runtime_contract.mbt",[]],["policy.mbt",[]],["parser.mbt",[]],["operator.mbt",[]],["link_session_test.mbt",[]],["link_session.mbt",[]],["limits_test.mbt",[]],["limits.mbt",[]],["expander.mbt",[]],["encoder.mbt",[]],["conformance_test.mbt",[]],["catalog_batch_test.mbt",[]],["catalog_batch.mbt",[]],["catalog_audit.mbt",[]],["catalog.mbt",[]],["bindings_test.mbt",[]],["bindings.mbt",[]],["api_test.mbt",[]],["analysis_test.mbt",[]],["analysis.mbt",[]],["advanced_test.mbt",[]],["advanced.mbt",[]]]}'
 /opt/homebrew/bin/node --enable-source-maps ./_build/js/debug/test/uri_template.whitebox_test.js '{"package":"cjyhjy/uri_template","file_and_index":[["limits_wbtest.mbt",[{"start":0,"end":2}]],["encoder_wbtest.mbt",[{"start":0,"end":2}]],["limits_wbtest.mbt",[]],["encoder_wbtest.mbt",[]],["limits_wbtest.mbt",[]],["encoder_wbtest.mbt",[]],["limits_wbtest.mbt",[]],["encoder_wbtest.mbt",[]]]}'
 [cjyhjy/uri_template] test adapter/json/adapter_test.mbt:2 ("runtime shape bridge rejects empty wrong kinds and reports type-only changes") ok
@@ -10,6 +11,32 @@
 [cjyhjy/uri_template] test adapter/json/adapter_test.mbt:142 ("bounded bridge rejects budgets and deeply nested JSON before parsing") ok
 [cjyhjy/uri_template] test adapter/json/adapter_test.mbt:167 ("bounded bridge preflight reports names and never values") ok
 [cjyhjy/uri_template] test adapter/json/adapter_test.mbt:180 ("adapter converts numbers and booleans to their JSON text") ok
+[cjyhjy/uri_template] test openapi/templates_wbtest.mbt:2 ("Appendix C.4.1 native compiled expansion and lookup") ok
+[cjyhjy/uri_template] test openapi/templates_wbtest.mbt:41 ("native names, path styles and percent-encoded query names") ok
+[cjyhjy/uri_template] test openapi/templates_wbtest.mbt:88 ("native unsupported parameters and strict compilation") ok
+[cjyhjy/uri_template] test openapi/templates_wbtest.mbt:126 ("same source with different operation contracts does not share cached contract") ok
+[cjyhjy/uri_template] test openapi/templates_wbtest.mbt:157 ("host binding selection preserves undefined names and skips request headers") ok
+[cjyhjy/uri_template] test openapi/templates_wbtest.mbt:189 ("public analysis and operation snapshots cannot mutate compiled state") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:4 ("JS analysis parity fixture 0") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:15 ("JS analysis parity fixture 1") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:26 ("JS analysis parity fixture 2") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:37 ("JS analysis parity fixture 3") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:48 ("JS analysis parity fixture 4") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:59 ("JS analysis parity fixture 5") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:70 ("JS analysis parity fixture 6") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:81 ("JS analysis parity fixture 7") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:92 ("JS analysis parity fixture 8") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:103 ("JS analysis parity fixture 9") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:114 ("JS analysis parity fixture 10") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:125 ("JS analysis parity fixture 11") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:136 ("JS analysis parity fixture 12") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:212 ("JS analysis parity fixture 13") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:223 ("JS analysis parity fixture 14") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:234 ("JS analysis parity fixture 15") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:245 ("JS analysis parity fixture 16") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:256 ("JS analysis parity fixture 17") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:267 ("JS analysis parity fixture 18") ok
+[cjyhjy/uri_template] test openapi/parity_wbtest.mbt:278 ("JS analysis parity fixture 19") ok
 [cjyhjy/uri_template] test snapshot_regression_test.mbt:2 ("retained snapshots survive removals reinsertion and caller mutation") ok
 [cjyhjy/uri_template] test snapshot_regression_test.mbt:72 ("catalog audit metadata matches inspection and names remain detached") ok
 [cjyhjy/uri_template] test snapshot_regression_test.mbt:131 ("batch input accounting keeps Unicode names keys unused values and priority") ok
@@ -337,4 +364,4 @@
 [cjyhjy/uri_template] test limits_wbtest.mbt:31 ("input text accounting agrees with character iterator at every boundary") ok
 [cjyhjy/uri_template] test encoder_wbtest.mbt:2 ("prefix counts raw code points before encoding") ok
 [cjyhjy/uri_template] test encoder_wbtest.mbt:18 ("IRI literal range boundaries exclude controls surrogates and noncharacters") ok
-Total tests: 336, passed: 336, failed: 0.
+Total tests: 362, passed: 362, failed: 0.

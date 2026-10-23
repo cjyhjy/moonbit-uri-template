@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "node": "v26.7.0",
+  "platform": "darwin",
+  "arch": "arm64",
+  "measuredAt": "2026-10-23T09:56:50.622Z",
+  "documents": [
+    {
+      "name": "github",
+      "bytes": 13502446,
+      "sha256": "3177ad6a86ca04c57a9bef3fc24e28a339efb8eb040c6f950af3d3ed2fee7fa3"
+    },
+    {
+      "name": "cloudflare",
+      "bytes": 27495506,
+      "sha256": "4ba217d8b7316bbc84a94370a216e6fb4ab77180cac82464f91e8969e19a48fd"
+    }
+  ],
+  "methodology": "Five independent Node processes per sample. Parse and SDK compile exclude file reads; CLI includes process startup and file reads. Expand is the mean of 20000 calls after 2000 warmups. RSS includes the process, source string and parsed document.",
+  "budgets": {
+    "githubCliMs": 1000,
+    "cloudflareCliMs": 2500,
+    "githubCompileMs": 300,
+    "expandUs": 20
+  },
+  "parse": [
+    {
+      "parseMs": 125.374042,
+      "paths": 2353,
+      "maxRSSKiB": 332656
+    },
+    {
+      "parseMs": 122.103125,
+      "paths": 2353,
+      "maxRSSKiB": 333808
+    },
+    {
+      "parseMs": 116.188916,
+      "paths": 2353,
+      "maxRSSKiB": 333632
+    },
+    {
+      "parseMs": 117.709292,
+      "paths": 2353,
+      "maxRSSKiB": 333760
+    },
+    {
+      "parseMs": 116.82679200000001,
+      "paths": 2353,
+      "maxRSSKiB": 333840
+    }
+  ],
+  "sdk": [
+    {
+      "compileMs": 174.956333,
+      "expandUs": 6.998652099999999,
+      "operations": 1242,
+      "maxRSSKiB": 316848
+    },
+    {
+      "compileMs": 158.322959,
+      "expandUs": 6.923987499999998,
+      "operations": 1242,
+      "maxRSSKiB": 316000
+    },
+    {
+      "compileMs": 162.665625,
+      "expandUs": 6.97047295,
+      "operations": 1242,
+      "maxRSSKiB": 315984
+    },
+    {
+      "compileMs": 160.898209,
+      "expandUs": 6.930266649999998,
+      "operations": 1242,
+      "maxRSSKiB": 317392
+    },
+    {
+      "compileMs": 159.36833399999998,
+      "expandUs": 6.924268749999999,
+      "operations": 1242,
+      "maxRSSKiB": 315808
+    }
+  ],
+  "cli": [
+    {
+      "name": "github",
+      "samplesMs": [
+        532.8649169999999,
+        525.7247079999997,
+        542.0995419999999,
+        532.5186249999997,
+        518.0074589999995
+      ]
+    },
+    {
+      "name": "cloudflare",
+      "samplesMs": [
+        1211.233792,
+        1177.8180409999995,
+        1167.5546669999994,
+        1174.872958,
+        1158.6403329999994
+      ]
+    }
+  ],
+  "sourceSha256": "caeeda9a62e46177d543997fbf11920253c5ef8c159a65e84e335a16d2c2e5a8"
+}
