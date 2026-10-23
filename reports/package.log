@@ -90,6 +90,9 @@ runtime_contract.mbt
 runtime_contract_test.mbt
 sdk/index.d.mts
 sdk/index.mjs
+sdk/openapi.d.mts
+sdk/openapi.mjs
+sdk/openapi.test.mjs
 sdk/sdk.test.mjs
 sdk/typecheck.mts
 session_bindings.mbt

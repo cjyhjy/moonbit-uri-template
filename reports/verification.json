@@ -1,13 +1,13 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-22T12:05:13.600662+00:00",
-  "git_head": "7852283559809d49cd58239f1a58f9e58e67b3ef",
+  "verification_started_at_utc": "2026-10-23T08:54:10.100644+00:00",
+  "git_head": "eff2a1c2a4017e831bca5f6a3984b8a26c6f3a15",
   "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-22T12:05:14.185455+00:00",
+  "verified_at_utc": "2026-10-23T08:54:10.577342+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "aefc0fb1f8803df7849692b9755ace25d955a04aa0b8f3fef5666c2d947fa5a0",
+  "source_sha256": "783b1488052bb05407231d98622258810e4ad468075c568a2afcf2c61fba3c0e",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
@@ -1276,14 +1276,14 @@
     "network": "offline only; live evidence is separate"
   },
   "sdk": {
-    "total": 24,
-    "passed": 24,
+    "total": 38,
+    "passed": 38,
     "failed": 0,
     "package": {
       "status": "passed",
       "artifact": "_build/releases/moonbit-uri-template-0.3.0.tgz",
-      "sha256": "acc617f021a348e0d96cbbcd5cf2d018a1376b62e223002acf82c75fbb1fca25",
-      "sourceSha256": "aefc0fb1f8803df7849692b9755ace25d955a04aa0b8f3fef5666c2d947fa5a0",
+      "sha256": "4efeef4fa3114d9111d1e00e96c42a0b27e08ee4327e6a310f302b2cd1061b1c",
+      "sourceSha256": "783b1488052bb05407231d98622258810e4ad468075c568a2afcf2c61fba3c0e",
       "node": "v26.7.0",
       "typescript": "Version 7.0.2",
       "cleanLocalInstall": true,
@@ -1299,7 +1299,7 @@
         "analysis and comparison",
         "typed catalog batch inspection audit and comparison",
         "installed CLI comparison",
-        "installed OpenAPI CLI",
+        "installed OpenAPI CLI and openapi subpath",
         "TypeScript positive and expected-error cases"
       ],
       "files": [
@@ -1314,6 +1314,8 @@
         "package.json",
         "sdk/index.d.mts",
         "sdk/index.mjs",
+        "sdk/openapi.d.mts",
+        "sdk/openapi.mjs",
         "tools/cli.mjs",
         "tools/diagnostics.mjs",
         "tools/json-source.mjs",
@@ -1448,9 +1450,12 @@
       "integrations/public-clients/README.md",
       "package-lock.json",
       "package.json",
+      "sdk/openapi.d.mts",
       "sdk/index.d.mts",
+      "sdk/openapi.mjs",
       "sdk/typecheck.mts",
       "sdk/index.mjs",
+      "sdk/openapi.test.mjs",
       "sdk/sdk.test.mjs",
       "examples/moon.pkg",
       "examples/search.json",
@@ -1476,7 +1481,7 @@
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "2bd29c85a727029cc10af831eca7e9c29779c1be3a8a0aec57fc86a92d02bcc3",
+    "sha256": "51b9268e24d7ad92e989af1a8d7fb00b8e98c93b57545739b05002843b250460",
     "clean_downstream_backends": [
       "js",
       "wasm",

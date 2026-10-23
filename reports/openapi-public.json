@@ -3,7 +3,7 @@
   "evidence": "pinned-public-openapi",
   "status": "completed",
   "node": "v26.7.0",
-  "startedAt": "2026-10-22T12:03:48.322Z",
+  "startedAt": "2026-10-23T08:54:01.902Z",
   "results": [
     {
       "name": "github",
@@ -13,24 +13,57 @@
       "bytes": 13502446,
       "sha256": "3177ad6a86ca04c57a9bef3fc24e28a339efb8eb040c6f950af3d3ed2fee7fa3",
       "openapi": "3.0.3",
-      "elapsedMs": 425,
+      "elapsedMs": 404,
       "ok": false,
       "complete": true,
       "operations": 1242,
+      "templates": 1242,
+      "examples": 101,
+      "unsupported": {},
+      "errors": {
+        "EquivalentPaths": 2
+      },
+      "warnings": {
+        "ExampleShapeMismatch": 2
+      },
+      "truncated": {
+        "errors": 0,
+        "warnings": 0
+      },
       "diagnostics": [
         {
           "code": "EquivalentPaths",
+          "severity": "error",
           "message": "same path hierarchy as /orgs/{org}/attestations/{attestation_id}",
-          "file": "descriptions/api.github.com/api.github.com.json",
           "path": "/paths/~1orgs~1{org}~1attestations~1{subject_digest}",
+          "file": "descriptions/api.github.com/api.github.com.json",
           "line": 29475,
           "column": 50
         },
         {
-          "code": "EquivalentPaths",
-          "message": "same path hierarchy as /users/{username}/attestations/{attestation_id}",
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter owner is a scalar but its schema is a list",
+          "path": "/components/parameters/personal-access-token-owner/schema/example",
           "file": "descriptions/api.github.com/api.github.com.json",
+          "line": 355196,
+          "column": 22
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter token_id is a scalar but its schema is a list",
+          "path": "/components/parameters/personal-access-token-token-id/schema/example",
+          "file": "descriptions/api.github.com/api.github.com.json",
+          "line": 355250,
+          "column": 22
+        },
+        {
+          "code": "EquivalentPaths",
+          "severity": "error",
+          "message": "same path hierarchy as /users/{username}/attestations/{attestation_id}",
           "path": "/paths/~1users~1{username}~1attestations~1{subject_digest}",
+          "file": "descriptions/api.github.com/api.github.com.json",
           "line": 98404,
           "column": 56
         }
@@ -44,10 +77,21 @@
       "bytes": 8317513,
       "sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
       "openapi": "3.0.0",
-      "elapsedMs": 240,
+      "elapsedMs": 254,
       "ok": true,
       "complete": true,
       "operations": 612,
+      "templates": 612,
+      "examples": 209,
+      "unsupported": {
+        "style deepObject has no RFC 6570 equivalent": 366
+      },
+      "errors": {},
+      "warnings": {},
+      "truncated": {
+        "errors": 0,
+        "warnings": 0
+      },
       "diagnostics": []
     },
     {
@@ -58,12 +102,2328 @@
       "bytes": 27495506,
       "sha256": "4ba217d8b7316bbc84a94370a216e6fb4ab77180cac82464f91e8969e19a48fd",
       "openapi": "3.0.3",
-      "elapsedMs": 823,
+      "elapsedMs": 931,
       "ok": true,
       "complete": true,
       "operations": 3767,
-      "diagnostics": []
+      "templates": 3767,
+      "examples": 2513,
+      "unsupported": {},
+      "errors": {},
+      "warnings": {
+        "ExampleShapeMismatch": 256
+      },
+      "truncated": {
+        "errors": 0,
+        "warnings": 1527
+      },
+      "diagnostics": [
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter fields is a scalar but its schema is a list",
+          "path": "/paths/~1accounts~1{account_id}~1d1~1database~1{database_id}/get/parameters/2/example",
+          "file": "openapi.json",
+          "line": 186121,
+          "column": 24
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter action_result is a scalar but its schema is a list",
+          "path": "/paths/~1accounts~1{account_id}~1logs~1audit/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 247185,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter action_result.not is a scalar but its schema is a list",
+          "path": "/paths/~1accounts~1{account_id}~1logs~1audit/get/parameters/25/schema/example",
+          "file": "openapi.json",
+          "line": 247490,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter tun_types is a scalar but its schema is a list",
+          "path": "/components/schemas/tunnel_tunnel_types/example",
+          "file": "openapi.json",
+          "line": 736392,
+          "column": 20
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter action_result is a scalar but its schema is a list",
+          "path": "/paths/~1organizations~1{organization_id}~1logs~1audit/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 380240,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter action_result.not is a scalar but its schema is a list",
+          "path": "/paths/~1organizations~1{organization_id}~1logs~1audit/get/parameters/19/schema/example",
+          "file": "openapi.json",
+          "line": 380481,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1summary~1user_agent/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 382213,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1summary~1user_agent/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 382227,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1summary~1user_agent/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 382241,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter asn is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1summary~1user_agent/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 382254,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1summary~1user_agent/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 382267,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1summary~1user_agent/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 382280,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1summary~1{dimension}/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 382646,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1summary~1{dimension}/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 382660,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1summary~1{dimension}/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 382674,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter asn is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1summary~1{dimension}/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 382687,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1summary~1{dimension}/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 382700,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1summary~1{dimension}/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 382713,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 383187,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 383201,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 383215,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter asn is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 383228,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 383241,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 383254,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries_groups~1user_agent/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 383750,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries_groups~1user_agent/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 383764,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries_groups~1user_agent/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 383778,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter asn is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries_groups~1user_agent/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 383791,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries_groups~1user_agent/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 383804,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries_groups~1user_agent/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 383817,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries_groups~1{dimension}/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 384229,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries_groups~1{dimension}/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 384243,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries_groups~1{dimension}/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 384257,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter asn is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries_groups~1{dimension}/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 384270,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries_groups~1{dimension}/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 384283,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1bots~1timeseries_groups~1{dimension}/get/parameters/8/schema/example",
+          "file": "openapi.json",
+          "line": 384296,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1summary~1model/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 384800,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1summary~1model/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 384814,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1summary~1model/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 384828,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1summary~1task/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 385175,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1summary~1task/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 385189,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1summary~1task/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 385203,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1summary~1{dimension}/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 385563,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1summary~1{dimension}/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 385577,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1summary~1{dimension}/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 385591,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter asn is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1summary~1{dimension}/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 385604,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1summary~1{dimension}/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 385617,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1summary~1{dimension}/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 385630,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1timeseries_groups~1model/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 385990,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1timeseries_groups~1model/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 386004,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1timeseries_groups~1model/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 386018,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1timeseries_groups~1task/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 386411,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1timeseries_groups~1task/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 386425,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1timeseries_groups~1task/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 386439,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1timeseries_groups~1{dimension}/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 386846,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1timeseries_groups~1{dimension}/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 386860,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1timeseries_groups~1{dimension}/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 386874,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter asn is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1timeseries_groups~1{dimension}/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 386887,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1timeseries_groups~1{dimension}/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 386900,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1inference~1timeseries_groups~1{dimension}/get/parameters/8/schema/example",
+          "file": "openapi.json",
+          "line": 386913,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1markdown_for_agents~1summary/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 387305,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1markdown_for_agents~1summary/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 387319,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1markdown_for_agents~1summary/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 387333,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1markdown_for_agents~1timeseries/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 387686,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1markdown_for_agents~1timeseries/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 387700,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1ai~1markdown_for_agents~1timeseries/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 387714,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1dnssec/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 389970,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1dnssec/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 389984,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1dnssec/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 389998,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1dnssec/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 390011,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1dnssec/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 390024,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1edns/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 390522,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1edns/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 390536,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1edns/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 390550,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1edns/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 390563,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1edns/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 390576,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1ip_version/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 391074,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1ip_version/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 391088,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1ip_version/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 391102,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1ip_version/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 391115,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1ip_version/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 391128,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1protocol/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 391626,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1protocol/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 391640,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1protocol/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 391654,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1protocol/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 391667,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1protocol/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 391680,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1query_type/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 392174,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1query_type/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 392188,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1query_type/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 392202,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1query_type/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 392215,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1query_type/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 392228,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1response_codes/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 392628,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1response_codes/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 392642,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1response_codes/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 392656,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1response_codes/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 392669,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1response_codes/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 392682,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1{dimension}/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 393170,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1{dimension}/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 393184,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1{dimension}/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 393198,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1{dimension}/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 393211,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1summary~1{dimension}/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 393224,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 393734,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 393748,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 393762,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 393775,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 393788,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1dnssec/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 394314,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1dnssec/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 394328,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1dnssec/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 394342,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1dnssec/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 394355,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1dnssec/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 394368,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1edns/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 394900,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1edns/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 394914,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1edns/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 394928,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1edns/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 394941,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1edns/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 394954,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1ip_version/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 395486,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1ip_version/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 395500,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1ip_version/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 395514,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1ip_version/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 395527,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1ip_version/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 395540,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1protocol/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 396072,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1protocol/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 396086,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1protocol/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 396100,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1protocol/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 396113,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1protocol/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 396126,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1query_type/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 396660,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1query_type/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 396674,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1query_type/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 396688,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1query_type/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 396701,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1query_type/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 396714,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1response_codes/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 397170,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1response_codes/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 397184,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1response_codes/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 397198,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1response_codes/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 397211,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1response_codes/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 397224,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1{dimension}/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 397768,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1{dimension}/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 397782,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1{dimension}/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 397796,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1{dimension}/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 397809,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1timeseries_groups~1{dimension}/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 397822,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 398363,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 398377,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 398391,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 398404,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 398417,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1dnssec~1{dnssec}/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 398774,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1dnssec~1{dnssec}/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 398788,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1dnssec~1{dnssec}/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 398802,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1dnssec~1{dnssec}/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 398815,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1dnssec~1{dnssec}/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 398828,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1edns~1{edns}/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 399185,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1edns~1{edns}/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 399199,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1edns~1{edns}/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 399213,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1edns~1{edns}/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 399226,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1edns~1{edns}/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 399239,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1ip_version~1{ip_version}/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 399595,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1ip_version~1{ip_version}/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 399609,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1ip_version~1{ip_version}/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 399623,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1ip_version~1{ip_version}/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 399636,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1as112~1top~1locations~1ip_version~1{ip_version}/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 399649,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1bitrate/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 399978,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1bitrate/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 399992,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1bitrate/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 400006,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1bitrate/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 400019,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1bitrate/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 400032,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1bitrate/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 400049,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1duration/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 400446,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1duration/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 400460,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1duration/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 400474,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1duration/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 400487,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1duration/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 400500,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1duration/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 400517,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1industry/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 400921,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1industry/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 400935,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1industry/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 400949,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1industry/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 400962,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1industry/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 400975,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1industry/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 400992,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1ip_version/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 401369,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1ip_version/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 401383,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1ip_version/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 401397,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1ip_version/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 401410,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1ip_version/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 401423,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1protocol/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 401799,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1protocol/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 401813,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1protocol/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 401827,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1protocol/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 401840,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1protocol/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 401853,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1protocol/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 401870,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1vector/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 402242,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1vector/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 402256,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1vector/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 402270,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1vector/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 402283,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1vector/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 402296,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1vector/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 402313,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1vertical/get/parameters/1/schema/example",
+          "file": "openapi.json",
+          "line": 402691,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1vertical/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 402705,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1vertical/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 402719,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1vertical/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 402732,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1vertical/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 402745,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1vertical/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 402762,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1{dimension}/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 403158,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1{dimension}/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 403172,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1{dimension}/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 403186,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1{dimension}/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 403199,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1{dimension}/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 403212,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1summary~1{dimension}/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 403229,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 403617,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 403631,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 403645,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter asn is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 403658,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 403671,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 403684,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries/get/parameters/8/schema/example",
+          "file": "openapi.json",
+          "line": 403701,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1bitrate/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 404133,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1bitrate/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 404147,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1bitrate/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 404161,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1bitrate/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 404174,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1bitrate/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 404187,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1bitrate/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 404204,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1duration/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 404667,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1duration/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 404681,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1duration/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 404695,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1duration/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 404708,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1duration/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 404721,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1duration/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 404738,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1industry/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 405211,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1industry/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 405225,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1industry/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 405239,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1industry/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 405252,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1industry/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 405265,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1industry/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 405282,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1ip_version/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 405722,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1ip_version/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 405736,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1ip_version/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 405750,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1ip_version/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 405763,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1ip_version/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 405776,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1protocol/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 406209,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1protocol/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 406223,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1protocol/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 406237,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1protocol/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 406250,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1protocol/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 406263,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1protocol/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 406280,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1vector/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 406715,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1vector/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 406729,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1vector/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 406743,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1vector/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 406756,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1vector/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 406769,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1vector/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 406786,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateRange is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1vertical/get/parameters/2/schema/example",
+          "file": "openapi.json",
+          "line": 407226,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateStart is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1vertical/get/parameters/3/schema/example",
+          "file": "openapi.json",
+          "line": 407240,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter dateEnd is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1vertical/get/parameters/4/schema/example",
+          "file": "openapi.json",
+          "line": 407254,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter location is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1vertical/get/parameters/5/schema/example",
+          "file": "openapi.json",
+          "line": 407267,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter continent is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1vertical/get/parameters/6/schema/example",
+          "file": "openapi.json",
+          "line": 407280,
+          "column": 26
+        },
+        {
+          "code": "ExampleShapeMismatch",
+          "severity": "warning",
+          "message": "example for query parameter ipVersion is a scalar but its schema is a list",
+          "path": "/paths/~1radar~1attacks~1layer3~1timeseries_groups~1vertical/get/parameters/7/schema/example",
+          "file": "openapi.json",
+          "line": 407297,
+          "column": 26
+        }
+      ]
     }
   ],
-  "finishedAt": "2026-10-22T12:03:57.490Z"
+  "finishedAt": "2026-10-23T08:54:09.979Z"
 }
