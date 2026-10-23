@@ -12,7 +12,7 @@
 | JS 项目直接接入 | TypeScript 推导变量名和必填项；数字、`undefined` 和对象顺序按 JS 习惯处理；独立安装验证 | [SDK.md](SDK.md)、`reports/sdk-package.json` |
 | 升级模板时不破坏旧调用 | 比较结构、必填、类型和预算；用新定义复验旧请求 | `integrations/github-audit/upgrade.mjs`、`reports/integration-upgrades.json` |
 | 参数变化时只刷新相关链接 | 不可变增量会话；更新开销取决于补丁大小，与会话规模无关 | `link_session.mbt`、`sdk/index.mjs`、[PERFORMANCE.md](PERFORMANCE.md) |
-| 检查真实 API 描述 | OpenAPI 路径检查：0.4 秒检查 GitHub 官方描述的 1242 个接口，发现 2 处违反 OpenAPI 规范的等价路径；Stripe 612 个、Cloudflare 3767 个接口通过 | [OPENAPI.md](OPENAPI.md)、`reports/openapi-public.json` |
+| 直接使用真实 API 描述 | 按 OpenAPI 附录 C 把每个接口的路径和 query 参数转换成 RFC 6570 模板，SDK 按接口名生成地址。GitHub（1242 个接口）、Stripe（612）、Cloudflare（3767）全部转换，各在 1 秒内完成；发现 GitHub 2 处违反规范的等价路径（已提交 issue #7367）、2 处与声明不符的示例，以及 Cloudflare 1783 处与 schema 不符的示例 | [OPENAPI.md](OPENAPI.md)、`reports/openapi-public.json` |
 | 真实下游 | GitHub 仓库巡检客户端，从便携包运行，发出 9 个真实请求；npm、Open Library 两个只读客户端 | `reports/github-integration-portable-live.json`、`reports/public-clients-live.json` |
 
 与同类库的逐项对比见 [COMPARISON.md](COMPARISON.md)。

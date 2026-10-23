@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- `moonbit-uri-template/openapi`: `compileOpenApi(spec)` turns every OpenAPI 3.0/3.1 operation into one RFC 6570 template following OAS 3.1.1 Appendix C (path styles `simple`/`label`/`matrix`, all `form` query parameters in one `{?...}`, percent-encoded names) and expands by `operationId` with required, shape and unknown-name checks. `analyzeOpenApi` returns the templates and diagnostics.
+- The OpenAPI check reports `DuplicateOperationId`, and warnings `ExampleShapeMismatch` and `ExampleNotSerializable`; warnings do not change the exit code. `--templates` lists each operation's template.
+- `openapi:public` records templates, unsupported parameters and warnings: GitHub 1242/1242 templates and 2 example warnings, Stripe 612/612 with 366 `deepObject` parameters listed, Cloudflare 3767/3767 with 1783 example warnings.
+
+### Fixes
+
+- Diagnostic line/column lookup indexes line starts once; Cloudflare's 27.5 MB description took 4.4 s with 256 diagnostics and now takes 0.9 s.
+
 ## 0.3.0 — 2026-10-23 (npm and Mooncakes)
 
 ### Added

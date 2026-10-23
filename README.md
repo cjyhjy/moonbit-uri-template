@@ -14,7 +14,7 @@ RFC 6570 Level 4 URI 模板库。核心用 MoonBit 编写，无第三方运行�
 - **展开结果和主流实现一致。** 除 270 条上游标准用例外，另有 644 条用例与 Python `uritemplate`、`std-uritemplate` 逐字节比对，其中 583 条三方完全一致，其余分歧逐条说明理由（见 [一致性](docs/CONFORMANCE.md)）。前缀截断按原始码点计数，与两个参考实现一致；另外两个 MoonBit 同类库在这里都与参考实现不同。
 - **发请求前发现配置错误。** 可选择性声明必填变量和值类型（标量/列表/关联），并检查无用绑定和输入/输出预算；出错时给出模板位置、JSON 文件行列和拼写修复建议。
 - **按 JS 开发者习惯工作。** 数字和布尔值会自动转成字符串，`undefined` 视为未绑定，对象成员保持插入顺序；TypeScript 能从字面量模板推导变量名并检查必填项。
-- **检查 OpenAPI 描述。** 0.4 秒检查完 GitHub 官方 OpenAPI 描述的 1242 个接口，发现 2 处违反规范的等价路径（[OpenAPI](docs/OPENAPI.md)）。
+- **直接使用 OpenAPI 描述。** OpenAPI 用 RFC 6570 定义参数怎样进入 URL。本项目把每个接口的路径和 query 参数转换成一个 URI 模板，按接口名生成请求地址；GitHub 官方描述的 1242 个接口全部转换并检查只需 0.4 秒，查出 2 处违反规范的路径和 2 处与声明不符的示例（[OpenAPI](docs/OPENAPI.md)）。
 - **快。** 固定负载下，与两个同类库同机对比，全部场景的耗时中位数最低（[性能](docs/PERFORMANCE.md)）。
 
 ## Node / TypeScript
@@ -94,7 +94,7 @@ npm run playground           # 浏览器工作台 http://127.0.0.1:4173
 | [API](docs/API.md) | MoonBit 公共接口 |
 | [一致性](docs/CONFORMANCE.md) | RFC 语义选择、上游用例与差分结果 |
 | [同类对比](docs/COMPARISON.md) | 与 Magic486、JSJ222 的功能和行为对比 |
-| [OpenAPI](docs/OPENAPI.md) | OpenAPI 路径检查与公开文档实测 |
+| [OpenAPI](docs/OPENAPI.md) | 从 OpenAPI 描述生成模板、检查与公开文档实测 |
 | [性能](docs/PERFORMANCE.md) | 基准方法与结果 |
 | [架构](docs/ARCHITECTURE.md) | 模块划分与测试策略 |
 | [发布](docs/RELEASE.md) | 打包、发布与工具链维护 |

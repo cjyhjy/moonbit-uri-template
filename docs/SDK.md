@@ -145,6 +145,20 @@ before.get('search');     // /users/42/search?q=old
 
 会话默认预算：4096 个绑定、65536 个集合成员、单值 1,048,576 码点、整体输入 4,194,304 码点（名字、键、值合计）、整体输出 4,194,304 字节、每个补丁 4096 项。
 
+## OpenAPI
+
+```js
+import { compileOpenApi } from 'moonbit-uri-template/openapi';
+
+const github = compileOpenApi(spec, { baseUrl: 'https://api.github.com' });
+github.get('repos/list-commits').template;
+// /repos/{owner}/{repo}/commits{?sha,path,author,committer,since,until,per_page,page}
+github.expand('repos/list-commits', { owner: 'cjyhjy', repo: 'moonbit-uri-template', per_page: 5 });
+// https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=5
+```
+
+每个接口的路径参数和 query 参数按 OpenAPI 附录 C 合成一个模板；必填项、值的形状和未知参数名都会检查。`analyzeOpenApi(document)` 只返回模板和诊断。详见 [OpenAPI](OPENAPI.md)。
+
 ## 工作台
 
 `npm run playground`（便携包里用 `node tools/serve-playground.mjs`）启动本地页面。页面在 worker 中调用同一份核心，可以编辑模板和变量、查看变量画像、点击错误跳转到源码位置，并对比当前模板和候选模板。计算超过 2 秒会被取消。
