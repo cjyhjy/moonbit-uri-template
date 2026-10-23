@@ -138,3 +138,27 @@ test('strict mode rejects errors; incomplete documents always throw', () => {
   assert.throws(() => compileOpenApi({ openapi: '2.0' }), { code: 'OpenApiInvalid' });
   assert.throws(() => compileOpenApi('{'), { code: 'InvalidJson' });
 });
+
+test('unpaired UTF-16 surrogates return one incomplete diagnostic', () => {
+  const cases = [
+    [{ ...doc('/q', []), description: '\ud800' }, '/description'],
+    [{ ...doc('/q', []), description: '\udfff' }, '/description'],
+    [{ ...doc('/q', []), '\ud800': true }, '/\ud800'],
+    [doc('/\ud800', []), '/paths/~1\ud800'],
+    [doc('/q', [{ name: '\ud800', in: 'query' }]), '/paths/~1q/get/parameters/0/name'],
+    [doc('/q', [{ name: 'q', in: 'query', example: '\udfff' }]), '/paths/~1q/get/parameters/0/example'],
+  ];
+  for (const [input, path] of cases) {
+    const report = analyzeOpenApi(input);
+    assert.deepEqual(report, {
+      schemaVersion: 2, ok: false, complete: false, operations: [],
+      diagnostics: [{ code: 'InvalidInput', severity: 'error', message: 'string contains an unpaired UTF-16 surrogate', path }],
+      truncated: { errors: 0, warnings: 0 },
+    });
+    assert.throws(() => compileOpenApi(JSON.stringify(input)), error =>
+      error.code === 'OpenApiInvalid' && error.path === path && error.diagnostics.length === 1);
+  }
+  for (const description of ['\ud83d\ude00', '中文', '\\ud800']) {
+    assert.equal(analyzeOpenApi({ ...doc('/q', []), description }).ok, true);
+  }
+});

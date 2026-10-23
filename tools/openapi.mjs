@@ -20,7 +20,9 @@ export function checkOpenAPI(text, file = 'openapi.json', {maxBytes = DEFAULT_MA
   const starts = [0];
   for (let i = text.indexOf('\n'); i !== -1; i = text.indexOf('\n', i + 1)) starts.push(i + 1);
   const at = path => {
-    const offset = (parsed.nodes.get(path) ?? parsed.nodes.get(''))?.start ?? 0;
+    const key = report.diagnostics.some(d => d.code === 'InvalidInput' && d.path === path) &&
+      [...path].some(c => { const n = c.charCodeAt(0); return n >= 0xd800 && n <= 0xdfff; });
+    const offset = ((key ? parsed.keys.get(path) : null) ?? parsed.nodes.get(path) ?? parsed.nodes.get(''))?.start ?? 0;
     let lo = 0, hi = starts.length - 1;
     while (lo < hi) { const mid = (lo + hi + 1) >> 1; if (starts[mid] <= offset) lo = mid; else hi = mid - 1; }
     return { line: lo + 1, column: offset - starts[lo] + 1 };

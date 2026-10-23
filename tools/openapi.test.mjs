@@ -86,3 +86,19 @@ test('CLI exit codes and JSON streams for clean, findings and unsupported input'
   for(const bad of [['--max-bytes','0'],['--max-bytes'],['--json','--json'],['--other'],['--json','--templates']]) assert.equal(spawnSync(process.execPath,['tools/cli.mjs','openapi',file,...bad],{encoding:'utf8'}).status,2,bad.join(' '));
  }finally{rmSync(dir,{recursive:true,force:true});}
 });
+test('CLI reports unpaired surrogates at values and object keys with exit 2',()=>{
+ const value='{"openapi":"3.1.0",\n"description":"\\ud800","paths":{}}';
+ const vr=checkOpenAPI(value,'value.json');
+ assert.equal(vr.complete,false);assert.equal(vr.diagnostics[0].code,'InvalidInput');
+ assert.equal(vr.diagnostics[0].path,'/description');assert.deepEqual([vr.diagnostics[0].line,vr.diagnostics[0].column],[2,15]);
+ const key='{"openapi":"3.1.0",\n"\\udfff":true,"paths":{}}';
+ const kr=checkOpenAPI(key,'key.json');
+ assert.equal(kr.diagnostics[0].path,'/\udfff');assert.deepEqual([kr.diagnostics[0].line,kr.diagnostics[0].column],[2,1]);
+ const dir=mkdtempSync(join(tmpdir(),'openapi-surrogate-'));
+ try {
+  const file=join(dir,'spec.json');writeFileSync(file,value);
+  const run=spawnSync(process.execPath,['tools/cli.mjs','openapi',file,'--json'],{encoding:'utf8'});
+  assert.equal(run.status,2);const report=JSON.parse(run.stderr);assert.equal(report.exitCode,2);assert.equal(report.diagnostics[0].code,'InvalidInput');
+ } finally {rmSync(dir,{recursive:true,force:true});}
+ for(const text of ['{"openapi":"3.1.0","description":"\\ud83d\\ude00","paths":{}}','{"openapi":"3.1.0","description":"中文","paths":{}}','{"openapi":"3.1.0","description":"\\\\ud800","paths":{}}']) assert.equal(checkOpenAPI(text).ok,true);
+});

@@ -13,7 +13,7 @@ export function parseSource(text, maxDepth = 32) {
   }
   // Validate grammar before traversing tokens; never expose input values in errors.
   try { JSON.parse(text); } catch { throw Object.assign(new Error('invalid JSON document'), { code: 'InvalidJson' }); }
-  const nodes = new Map();
+  const nodes = new Map(), keys = new Map();
   let i = 0;
   const ws = () => { while (/\s/.test(text[i] ?? '') && i < text.length) i++; };
   function string() {
@@ -44,9 +44,11 @@ export function parseSource(text, maxDepth = 32) {
       const seen = new Set();
       while (text[i] !== '}') {
         const key = string(); ws(); i++;
-        if (seen.has(key.value)) throw Object.assign(new Error('duplicate JSON key'), { code: 'DuplicateJsonKey', path: path + '/' + pointer(key.value), start: key.start, end: key.end });
+        const child = path + '/' + pointer(key.value);
+        if (seen.has(key.value)) throw Object.assign(new Error('duplicate JSON key'), { code: 'DuplicateJsonKey', path: child, start: key.start, end: key.end });
         seen.add(key.value);
-        result[key.value] = value(path + '/' + pointer(key.value)); ws();
+        keys.set(child, key);
+        result[key.value] = value(child); ws();
         if (text[i] !== ',') break;
         i++; ws();
       }
@@ -66,7 +68,7 @@ export function parseSource(text, maxDepth = 32) {
     nodes.set(path, { start, end: i });
     return result;
   }
-  return { value: value(''), nodes };
+  return { value: value(''), nodes, keys };
 }
 
 export function filePosition(text, offset) {

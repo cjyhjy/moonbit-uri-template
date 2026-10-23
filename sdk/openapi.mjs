@@ -7,9 +7,55 @@ function unwrap(source) {
   if (result.error) throw new UriTemplateError(result.error);
   return result.output;
 }
+const pointer = key => key.replaceAll('~', '~0').replaceAll('/', '~1');
+function hasUnpairedSurrogate(value) {
+  for (let i = 0; i < value.length; i++) {
+    const unit = value.charCodeAt(i);
+    if (unit >= 0xd800 && unit <= 0xdbff) {
+      const next = value.charCodeAt(i + 1);
+      if (!(next >= 0xdc00 && next <= 0xdfff)) return true;
+      i++;
+    } else if (unit >= 0xdc00 && unit <= 0xdfff) return true;
+  }
+  return false;
+}
+function unpairedSurrogatePath(value, path = '') {
+  if (typeof value === 'string') return hasUnpairedSurrogate(value) ? path : null;
+  if (value === null || typeof value !== 'object') return null;
+  for (const key of Object.keys(value)) {
+    const child = path + '/' + pointer(key);
+    if (hasUnpairedSurrogate(key)) return child;
+    const found = unpairedSurrogatePath(value[key], child);
+    if (found !== null) return found;
+  }
+  return null;
+}
+function unicodeFailure(source) {
+  let value;
+  try { value = JSON.parse(source); } catch { return null; }
+  const path = unpairedSurrogatePath(value);
+  if (path === null) return null;
+  return {
+    schemaVersion: 2,
+    ok: false,
+    complete: false,
+    operations: [],
+    diagnostics: [{ code: 'InvalidInput', severity: 'error', message: 'string contains an unpaired UTF-16 surrogate', path }],
+    truncated: { errors: 0, warnings: 0 },
+  };
+}
+function analyzeSource(source) {
+  const result = JSON.parse(openapi_analyze(source));
+  if (!result.error) return result.output;
+  if (result.error.code === 'InvalidJson') {
+    const report = unicodeFailure(source);
+    if (report !== null) return report;
+  }
+  throw new UriTemplateError(result.error);
+}
 export function templateName(name) { return openapi_name(name); }
 export function analyzeOpenApi(doc) {
-  const result = unwrap(openapi_analyze(JSON.stringify(doc) ?? 'null'));
+  const result = analyzeSource(JSON.stringify(doc) ?? 'null');
   for (const op of result.operations) {
     op.parameters.forEach(Object.freeze);
     op.unsupported.forEach(Object.freeze);
@@ -67,8 +113,20 @@ export function compileOpenApi(spec, { baseUrl = '', strict = false } = {}) {
     try { doc = JSON.parse(spec); } catch { throw new UriTemplateError({ code: 'InvalidJson', message: 'OpenAPI document is not valid JSON' }); }
   }
   if (typeof baseUrl !== 'string') throw new UriTemplateError({ code: 'InvalidInput', message: 'baseUrl must be a string' });
-  const prepared = openapi_prepare(JSON.stringify(doc) ?? 'null', baseUrl, !!strict);
-  const analysis = unwrap(openapi_report(prepared));
+  const source = JSON.stringify(doc) ?? 'null';
+  const prepared = openapi_prepare(source, baseUrl, !!strict);
+  let analysis;
+  const response = JSON.parse(openapi_report(prepared));
+  if (response.error?.code === 'InvalidJson') {
+    const report = unicodeFailure(source);
+    if (report !== null) {
+      const error = new UriTemplateError({ code: 'OpenApiInvalid', message: report.diagnostics[0].message, path: report.diagnostics[0].path });
+      error.diagnostics = report.diagnostics;
+      throw error;
+    }
+  }
+  if (response.error) throw new UriTemplateError(response.error);
+  analysis = response.output;
   for (const op of analysis.operations) {
     op.parameters.forEach(Object.freeze);
     op.unsupported.forEach(Object.freeze);
