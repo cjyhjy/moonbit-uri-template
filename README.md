@@ -90,6 +90,7 @@ npm run playground           # 浏览器工作台 http://127.0.0.1:4173
 
 | 文档 | 内容 |
 | --- | --- |
+| [评审指南](docs/REVIEW.md) | 与同类库的差异、证据和复现命令 |
 | [SDK](docs/SDK.md) | Node/TypeScript 接入 |
 | [API](docs/API.md) | MoonBit 公共接口 |
 | [一致性](docs/CONFORMANCE.md) | RFC 语义选择、上游用例与差分结果 |

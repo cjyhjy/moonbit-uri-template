@@ -5,6 +5,7 @@
 ```mermaid
 flowchart TD
   MB[MoonBit 下游] --> Core
+  OAS[OpenAPI sdk/openapi.mjs] --> SDK
   SDK[Node SDK sdk/index.mjs] --> Adapter
   CLI[Node CLI tools/cli.mjs] --> Adapter
   Web[浏览器工作台 / Worker] --> Adapter
@@ -31,8 +32,9 @@ flowchart TD
 | `link_session.mbt` / `session_bindings.mbt` | 增量链接会话与分块持久存储 |
 | `adapter/json/` | JSON 变量转换与请求信封 |
 | `sdk/` | Node SDK 与 TypeScript 声明 |
-| `tools/project.mjs` | 项目请求配置检查（带源位置的 JSON 解析） |
-| `integrations/github-audit/` | 真实下游客户端 |
+| `sdk/openapi.mjs` | 按 OpenAPI 附录 C 把接口参数合成模板、检查描述；展开走 SDK |
+| `tools/project.mjs` / `tools/openapi.mjs` | 请求配置检查、OpenAPI 命令行（带源位置的 JSON 解析） |
+| `integrations/` | GitHub 巡检客户端，npm、Open Library 只读客户端 |
 
 ## 设计要点
 
@@ -50,7 +52,7 @@ flowchart TD
 
 1. 格式、接口快照和夹具生成无漂移检查。
 2. 四个后端（JS、wasm、wasm-gc、Native）的 MoonBit 测试：270 条上游用例、公共 API、预算、契约、会话、JSON 适配，以及确定性组合测试。
-3. Node 测试：SDK、差分回放、CLI、项目检查、GitHub 客户端（离线）、工作台计算逻辑。
+3. Node 测试：SDK、OpenAPI、差分回放、CLI、项目检查、下游客户端（离线）、工作台计算逻辑。
 4. TypeScript 声明的正例和预期错误。
 5. 打包 npm tarball，在临时空项目中离线安装并运行；用 Mooncakes 源码包建立独立 MoonBit 消费工程，在四个后端运行。
 
