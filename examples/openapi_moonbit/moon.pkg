@@ -1,0 +1,6 @@
+import {
+  "cjyhjy/uri_template/openapi",
+  "cjyhjy/uri_template" @uri,
+}
+
+pkgtype(kind: "executable")

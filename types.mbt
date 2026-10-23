@@ -118,6 +118,18 @@ pub fn Variables::set(self : Variables, name : String, value : Value) -> Unit {
 }
 
 ///|
+/// Return a captured value so callers cannot mutate stored collections.
+pub fn Variables::get(self : Variables, name : String) -> Value? {
+  self.values.get(name).map(fn(value) { value.captured() })
+}
+
+///|
+/// Binding names in insertion order.
+pub fn Variables::names(self : Variables) -> Array[String] {
+  self.values.keys().to_array()
+}
+
+///|
 fn Value::captured(self : Value) -> Value {
   match self {
     Scalar(_) => self

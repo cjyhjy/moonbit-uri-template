@@ -14,6 +14,99 @@ fn openapi_error(e : @openapi.OpenApiError) -> Json {
 }
 
 ///|
+fn selected_bindings(
+  templates : @openapi.Templates,
+  key : String,
+  names : Array[(String, Bool)],
+) -> Result[Array[(String, String)], @openapi.OpenApiError] {
+  let operation = match templates.get(key) {
+    Ok(value) => value
+    Err(error) => return Err(error)
+  }
+  guard operation.template is Some(_) else {
+    let reasons = operation.unsupported
+      .map(fn(item) { item.name + " (" + item.reason + ")" })
+      .join("; ")
+    return Err({
+      code: "UnsupportedOperation",
+      message: key +
+      " has no RFC 6570 template: " +
+      (if reasons == "" {
+        "its path parameters are not declared"
+      } else {
+        reasons
+      }),
+      path: "",
+    })
+  }
+  let selected : Array[(String, String)] = []
+  for (name, defined) in names {
+    match
+      operation.unsupported.iter().find_first(fn(item) { item.name == name }) {
+      Some(item) =>
+        if defined {
+          return Err({
+            code: "UnsupportedParameter",
+            message: name + ": " + item.reason,
+            path: "/" +
+            name.replace_all(old="~", new="~0").replace_all(old="/", new="~1"),
+          })
+        }
+      None => ()
+    }
+    guard operation.parameters
+      .iter()
+      .find_first(fn(parameter) { parameter.name == name })
+      is Some(parameter) else {
+      return Err({
+        code: "UnknownParameter",
+        message: key + " has no parameter " + name,
+        path: "/" +
+        name.replace_all(old="~", new="~0").replace_all(old="/", new="~1"),
+      })
+    }
+    if parameter.variable is Some(variable) {
+      selected.push((name, variable))
+    }
+  }
+  Ok(selected)
+}
+
+///|
+fn contract_options(
+  templates : @openapi.Templates,
+  key : String,
+) -> Result[Json, @openapi.OpenApiError] {
+  let operation = match templates.get(key) {
+    Ok(value) => value
+    Err(error) => return Err(error)
+  }
+  match selected_bindings(templates, key, []) {
+    Err(error) => return Err(error)
+    Ok(_) => ()
+  }
+  let required : Array[Json] = []
+  let types : Map[String, Json] = Map([])
+  for parameter in operation.parameters {
+    if parameter.variable is Some(variable) {
+      if parameter.required && !required.contains(Json::string(variable)) {
+        required.push(Json::string(variable))
+      }
+      if parameter.shape is Some(shape) {
+        types[variable] = Json::string(
+          match shape {
+            @openapi.ScalarShape => "scalar"
+            @openapi.ListShape => "list"
+            @openapi.AssocShape => "assoc"
+          },
+        )
+      }
+    }
+  }
+  Ok({ "required": Json::array(required), "types": Json::object(types) })
+}
+
+///|
 pub fn openapi_analyze(source : String) -> String {
   match @openapi.analyze_text(source) {
     Ok(a) => Json::object(Map([("output", a.to_json())])).stringify()
@@ -34,7 +127,7 @@ pub fn openapi_prepare(
 ) -> PreparedOpenApi {
   let analysis = @openapi.analyze_text(source)
   let compiled = match analysis {
-    Ok(a) => @openapi.compile_analysis(a, base_url, strict)
+    Ok(a) => @openapi.compile_analysis(a, base_url~, strict~)
     Err(e) => Err(e)
   }
   { analysis, compiled, }
@@ -50,7 +143,11 @@ pub fn PreparedOpenApi::report(self : PreparedOpenApi) -> String {
         _ => Map([])
       }
       if self.analysis is Ok(a) {
-        err["diagnostics"] = Json::array(a.diagnostics())
+        if a.to_json() is Object(fields) {
+          err["diagnostics"] = fields
+            .get("diagnostics")
+            .unwrap_or(Json::array([]))
+        }
       }
       Json::object(Map([("error", Json::object(err))])).stringify()
     }
@@ -69,8 +166,9 @@ pub fn PreparedOpenApi::expand(
     Err(e) =>
       return Json::object(Map([("error", openapi_error(e))])).stringify()
   }
-  let vars = @jsonlib.parse(source) catch {
-    _ => return input_failure("InvalidJson", "invalid JSON input", "")
+  let vars = match parse_variables(source) {
+    Ok(value) => value
+    Err(error) => return input_failure(error.code, error.message, error.path)
   }
   let names_json = @jsonlib.parse(names_source) catch {
     _ => return input_failure("InvalidJson", "invalid names JSON", "")
@@ -83,7 +181,12 @@ pub fn PreparedOpenApi::expand(
       }
     }
   }
-  match t.expand_with_names(key, vars, names) {
+  match selected_bindings(t, key, names.map(fn(name) { (name, true) })) {
+    Err(error) =>
+      return Json::object(Map([("error", openapi_error(error))])).stringify()
+    Ok(_) => ()
+  }
+  match t.expand(key, vars) {
     Ok(s) => Json::object(Map([("output", Json::string(s))])).stringify()
     Err(e) => Json::object(Map([("error", openapi_error(e))])).stringify()
   }
@@ -111,7 +214,7 @@ pub fn PreparedOpenApi::bindings(
       }
     }
   }
-  match t.binding_names(key, names) {
+  match selected_bindings(t, key, names) {
     Ok(pairs) =>
       Json::object(
         Map([
@@ -139,7 +242,7 @@ pub fn PreparedOpenApi::contract(
     Err(e) =>
       return Json::object(Map([("error", openapi_error(e))])).stringify()
   }
-  match t.contract_options(key) {
+  match contract_options(t, key) {
     Ok(options) => Json::object(Map([("output", options)])).stringify()
     Err(e) => Json::object(Map([("error", openapi_error(e))])).stringify()
   }

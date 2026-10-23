@@ -1,6 +1,11 @@
 ///|
 struct Analysis {
   data : Json
+  operation_data : Array[Operation]
+  diagnostic_data : Array[Diagnostic]
+  ok_data : Bool
+  complete_data : Bool
+  truncated_data : Truncation
 }
 
 ///|
@@ -9,13 +14,28 @@ pub fn Analysis::to_json(self : Analysis) -> Json {
 }
 
 ///|
-pub fn Analysis::operations(self : Analysis) -> Array[Json] {
-  array(get(self.data, "operations")).map(copy_json)
+pub fn Analysis::operations(self : Analysis) -> Array[Operation] {
+  self.operation_data.map(fn(operation) { operation.captured() })
 }
 
 ///|
-pub fn Analysis::diagnostics(self : Analysis) -> Array[Json] {
-  array(get(self.data, "diagnostics")).map(copy_json)
+pub fn Analysis::diagnostics(self : Analysis) -> Array[Diagnostic] {
+  self.diagnostic_data.copy()
+}
+
+///|
+pub fn Analysis::ok(self : Analysis) -> Bool {
+  self.ok_data
+}
+
+///|
+pub fn Analysis::complete(self : Analysis) -> Bool {
+  self.complete_data
+}
+
+///|
+pub fn Analysis::truncated(self : Analysis) -> Truncation {
+  self.truncated_data
 }
 
 ///|
@@ -78,16 +98,31 @@ fn Context::add(
 
 ///|
 fn Context::finish(self : Context) -> Analysis {
+  let data : Json = {
+    "schemaVersion": 2,
+    "ok": self.errors == 0,
+    "complete": self.complete,
+    "operations": self.operations,
+    "diagnostics": self.diagnostics,
+    "truncated": {
+      "errors": Int32::max(0, self.errors - 256),
+      "warnings": Int32::max(0, self.warnings - 256),
+    },
+  }
   {
-    data: {
-      "schemaVersion": 2,
-      "ok": self.errors == 0,
-      "complete": self.complete,
-      "operations": self.operations,
-      "diagnostics": self.diagnostics,
-      "truncated": {
-        "errors": Int32::max(0, self.errors - 256),
-        "warnings": Int32::max(0, self.warnings - 256),
+    data,
+    operation_data: array(get(data, "operations")).map(operation_from_json),
+    diagnostic_data: array(get(data, "diagnostics")).map(diagnostic_from_json),
+    ok_data: get(data, "ok") == Json::boolean(true),
+    complete_data: get(data, "complete") == Json::boolean(true),
+    truncated_data: {
+      errors: match get(get(data, "truncated"), "errors") {
+        Number(n, ..) => n.to_int()
+        _ => 0
+      },
+      warnings: match get(get(data, "truncated"), "warnings") {
+        Number(n, ..) => n.to_int()
+        _ => 0
       },
     },
   }

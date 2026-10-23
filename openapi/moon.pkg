@@ -3,3 +3,8 @@ import {
   "moonbitlang/core/json",
   "moonbitlang/core/encoding/utf8",
 }
+
+import {
+  "cjyhjy/uri_template/openapi",
+  "cjyhjy/uri_template" @uri,
+} for "test"

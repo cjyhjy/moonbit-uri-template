@@ -344,6 +344,8 @@ pub fn VariableUse::to_repr(Self) -> @debug.Repr
 
 type Variables derive(@debug.Debug)
 pub fn Variables::from_entries(Array[(String, Value)]) -> Result[Self, TemplateError]
+pub fn Variables::get(Self, String) -> Value?
+pub fn Variables::names(Self) -> Array[String]
 pub fn Variables::new() -> Self
 pub fn Variables::remove(Self, String) -> Unit
 pub fn Variables::set(Self, String, Value) -> Unit

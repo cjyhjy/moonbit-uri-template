@@ -21,19 +21,27 @@ test "Appendix C.4.1 native compiled expansion and lookup" {
   }
   let api = compile(doc).unwrap()
   assert_eq(
-    api.expand("math", { "formulas": { "a": "x+y", "b": "x/y", "c": "x^y" } }),
+    api.expand(
+      "math",
+      bindings({ "formulas": { "a": "x+y", "b": "x/y", "c": "x^y" } }).unwrap(),
+    ),
     Ok("/math?a=x%2By&b=x%2Fy&c=x%5Ey"),
   )
   assert_eq(
-    api.expand("GET /math", { "words": ["math", "is", "fun"] }),
+    api.expand(
+      "GET /math",
+      bindings({ "words": ["math", "is", "fun"] }).unwrap(),
+    ),
     Ok("/math?words=math&words=is&words=fun"),
   )
   assert_true(api.get("unknown") is Err({ code: "UnknownOperation", .. }))
   assert_true(
-    api.expand("math", { "other": 1 }) is Err({ code: "UnknownParameter", .. }),
+    api.expand("math", bindings({ "other": 1 }).unwrap())
+    is Err({ code: "UnknownParameter", .. }),
   )
   assert_true(
-    api.expand("math", { "words": "wrong" }) is Err({ code: "BindingType", .. }),
+    api.expand("math", bindings({ "words": "wrong" }).unwrap())
+    is Err({ code: "BindingType", .. }),
   )
 }
 
@@ -73,14 +81,19 @@ test "native names, path styles and percent-encoded query names" {
   }
   let api = compile(doc, base_url="https://example.com///").unwrap()
   assert_eq(
-    api.expand("op", { "id": "a b", "q[x]": "c/d", "Accept": "ok" }),
+    api.expand(
+      "op",
+      bindings({ "id": "a b", "q[x]": "c/d", "Accept": "ok" }).unwrap(),
+    ),
     Ok("https://example.com/a/;id=a%20b?q%5Bx%5D=c%2Fd"),
   )
   assert_true(
-    api.expand("op", { "q[x]": "c" }) is Err({ code: "MissingBinding", .. }),
+    api.expand("op", bindings({ "q[x]": "c" }).unwrap())
+    is Err({ code: "MissingBinding", .. }),
   )
   assert_true(
-    api.expand("op", { "id": ["x"] }) is Err({ code: "BindingType", .. }),
+    api.expand("op", bindings({ "id": ["x"] }).unwrap())
+    is Err({ code: "BindingType", .. }),
   )
 }
 
@@ -100,9 +113,9 @@ test "native unsupported parameters and strict compilation" {
     },
   }
   let api = compile(doc).unwrap()
-  assert_eq(api.expand("op", {}), Ok("/q"))
+  assert_eq(api.expand("op", @core.Variables::new()), Ok("/q"))
   assert_true(
-    api.expand("op", { "deep": { "a": "b" } })
+    api.expand("op", bindings({ "deep": { "a": "b" } }).unwrap())
     is Err({ code: "UnsupportedParameter", .. }),
   )
   let missing : Json = {
@@ -113,7 +126,7 @@ test "native unsupported parameters and strict compilation" {
     compile(missing, strict=true) is Err({ code: "OpenApiInvalid", .. }),
   )
   assert_true(
-    compile(missing).unwrap().expand("op", {})
+    compile(missing).unwrap().expand("op", @core.Variables::new())
     is Err({ code: "UnsupportedOperation", .. }),
   )
   assert_true(
@@ -149,39 +162,10 @@ test "same source with different operation contracts does not share cached contr
     },
   }
   let api = compile(doc).unwrap()
-  assert_eq(api.expand("optional", {}), Ok("/q"))
-  assert_true(api.expand("required", {}) is Err({ code: "MissingBinding", .. }))
-}
-
-///|
-test "host binding selection preserves undefined names and skips request headers" {
-  let doc : Json = {
-    "openapi": "3.1.0",
-    "paths": {
-      "/q": {
-        "get": {
-          "parameters": [
-            { "name": "q[x]", "in": "query" },
-            { "name": "Accept", "in": "header" },
-            { "name": "deep", "in": "query", "style": "deepObject" },
-          ],
-        },
-      },
-    },
-  }
-  let api = compile(doc).unwrap()
-  assert_eq(
-    api.binding_names("GET /q", [("q[x]", false), ("Accept", true)]),
-    Ok([("q[x]", "q%5Bx%5D")]),
-  )
-  assert_eq(api.binding_names("GET /q", [("deep", false)]), Ok([]))
+  assert_eq(api.expand("optional", @core.Variables::new()), Ok("/q"))
   assert_true(
-    api.binding_names("GET /q", [("deep", true)])
-    is Err({ code: "UnsupportedParameter", .. }),
-  )
-  assert_true(
-    api.binding_names("GET /q", [("unknown", false)])
-    is Err({ code: "UnknownParameter", .. }),
+    api.expand("required", @core.Variables::new())
+    is Err({ code: "MissingBinding", .. }),
   )
 }
 
@@ -195,12 +179,20 @@ test "public analysis and operation snapshots cannot mutate compiled state" {
   }
   let api = compile(doc).unwrap()
   let snapshot = api.get("GET /q").unwrap()
-  if snapshot is Object(m) {
-    m["template"] = Json::string("/changed")
+  snapshot.parameters[0] = {
+    name: "broken",
+    location: Query,
+    required: false,
+    shape: None,
+    variable: None,
   }
   let ops = api.analysis().operations()
-  if ops[0] is Object(m) {
-    m["template"] = Json::string("/changed")
+  ops[0].parameters[0] = {
+    name: "broken",
+    location: Query,
+    required: false,
+    shape: None,
+    variable: None,
   }
-  assert_eq(api.expand("GET /q", { "q": "a" }), Ok("/q?q=a"))
+  assert_eq(api.expand("GET /q", bindings({ "q": "a" }).unwrap()), Ok("/q?q=a"))
 }

@@ -2,6 +2,7 @@
 package "cjyhjy/uri_template/openapi"
 
 import {
+  "cjyhjy/uri_template",
   "moonbitlang/core/debug",
 }
 
@@ -12,7 +13,7 @@ pub fn analyze_text(String) -> Result[Analysis, OpenApiError]
 
 pub fn compile(Json, base_url? : String, strict? : Bool) -> Result[Templates, OpenApiError]
 
-pub fn compile_analysis(Analysis, String, Bool) -> Result[Templates, OpenApiError]
+pub fn compile_analysis(Analysis, base_url? : String, strict? : Bool) -> Result[Templates, OpenApiError]
 
 pub fn template_name(String) -> String
 
@@ -20,9 +21,22 @@ pub fn template_name(String) -> String
 
 // Types and methods
 type Analysis
-pub fn Analysis::diagnostics(Self) -> Array[Json]
-pub fn Analysis::operations(Self) -> Array[Json]
+pub fn Analysis::complete(Self) -> Bool
+pub fn Analysis::diagnostics(Self) -> Array[Diagnostic]
+pub fn Analysis::ok(Self) -> Bool
+pub fn Analysis::operations(Self) -> Array[Operation]
 pub fn Analysis::to_json(Self) -> Json
+pub fn Analysis::truncated(Self) -> Truncation
+
+pub struct Diagnostic {
+  code : String
+  severity : Severity
+  message : String
+  path : String
+} derive(Eq, @debug.Debug)
+pub fn Diagnostic::equal(Self, Self) -> Bool
+pub fn Diagnostic::not_equal(Self, Self) -> Bool
+pub fn Diagnostic::to_repr(Self) -> @debug.Repr
 
 pub(all) struct OpenApiError {
   code : String
@@ -33,13 +47,78 @@ pub fn OpenApiError::equal(Self, Self) -> Bool
 pub fn OpenApiError::not_equal(Self, Self) -> Bool
 pub fn OpenApiError::to_repr(Self) -> @debug.Repr
 
+pub struct Operation {
+  id : String?
+  http_method : String
+  path : String
+  template : String?
+  parameters : Array[Parameter]
+  unsupported : Array[Unsupported]
+  example : String?
+} derive(Eq, @debug.Debug)
+pub fn Operation::equal(Self, Self) -> Bool
+pub fn Operation::not_equal(Self, Self) -> Bool
+pub fn Operation::to_repr(Self) -> @debug.Repr
+
+pub struct Parameter {
+  name : String
+  location : ParameterLocation
+  required : Bool
+  shape : Shape?
+  variable : String?
+} derive(Eq, @debug.Debug)
+pub fn Parameter::equal(Self, Self) -> Bool
+pub fn Parameter::not_equal(Self, Self) -> Bool
+pub fn Parameter::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ParameterLocation {
+  Path
+  Query
+  Header
+  Cookie
+} derive(Eq, @debug.Debug)
+pub fn ParameterLocation::equal(Self, Self) -> Bool
+pub fn ParameterLocation::not_equal(Self, Self) -> Bool
+pub fn ParameterLocation::to_repr(Self) -> @debug.Repr
+
+pub(all) enum Severity {
+  Error
+  Warning
+} derive(Eq, @debug.Debug)
+pub fn Severity::equal(Self, Self) -> Bool
+pub fn Severity::not_equal(Self, Self) -> Bool
+pub fn Severity::to_repr(Self) -> @debug.Repr
+
+pub(all) enum Shape {
+  ScalarShape
+  ListShape
+  AssocShape
+} derive(Eq, @debug.Debug)
+pub fn Shape::equal(Self, Self) -> Bool
+pub fn Shape::not_equal(Self, Self) -> Bool
+pub fn Shape::to_repr(Self) -> @debug.Repr
+
 type Templates
 pub fn Templates::analysis(Self) -> Analysis
-pub fn Templates::binding_names(Self, String, Array[(String, Bool)]) -> Result[Array[(String, String)], OpenApiError]
-pub fn Templates::contract_options(Self, String) -> Result[Json, OpenApiError]
-pub fn Templates::expand(Self, String, Json) -> Result[String, OpenApiError]
-pub fn Templates::expand_with_names(Self, String, Json, Array[String]) -> Result[String, OpenApiError]
-pub fn Templates::get(Self, String) -> Result[Json, OpenApiError]
+pub fn Templates::expand(Self, String, @uri_template.Variables) -> Result[String, OpenApiError]
+pub fn Templates::get(Self, String) -> Result[Operation, OpenApiError]
+
+pub struct Truncation {
+  errors : Int
+  warnings : Int
+} derive(Eq, @debug.Debug)
+pub fn Truncation::equal(Self, Self) -> Bool
+pub fn Truncation::not_equal(Self, Self) -> Bool
+pub fn Truncation::to_repr(Self) -> @debug.Repr
+
+pub struct Unsupported {
+  name : String
+  location : ParameterLocation
+  reason : String
+} derive(Eq, @debug.Debug)
+pub fn Unsupported::equal(Self, Self) -> Bool
+pub fn Unsupported::not_equal(Self, Self) -> Bool
+pub fn Unsupported::to_repr(Self) -> @debug.Repr
 
 // Type aliases
 

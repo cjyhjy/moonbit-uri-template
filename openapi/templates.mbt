@@ -14,7 +14,7 @@ pub extend OpenApiError with Eq::{equal, not_equal}
 ///|
 struct Templates {
   analysis : Analysis
-  by_key : Map[String, Json]
+  by_key : Map[String, Operation]
   compiled : Map[String, @core.ContractTemplate]
   base_url : String
 }
@@ -30,47 +30,44 @@ pub fn compile(
   base_url~ : String = "",
   strict~ : Bool = false,
 ) -> Result[Templates, OpenApiError] {
-  let analysis = analyze(doc)
-  match compile_analysis(analysis, base_url, strict) {
-    Ok(v) => Ok(v)
-    Err(e) => Err(e)
-  }
+  compile_analysis(analyze(doc), base_url~, strict~)
 }
 
 ///|
 pub fn compile_analysis(
   analysis : Analysis,
-  base_url : String,
-  strict : Bool,
+  base_url~ : String = "",
+  strict~ : Bool = false,
 ) -> Result[Templates, OpenApiError] {
-  let ds = analysis.diagnostics()
-  let errors = ds.filter(fn(d) { get(d, "severity") == Json::string("error") })
-  if get(analysis.data, "complete") != Json::boolean(true) ||
-    (strict && errors.length() > 0) {
+  let diagnostics = analysis.diagnostics()
+  let errors = diagnostics.filter(fn(diagnostic) {
+    diagnostic.severity == Error
+  })
+  if !analysis.complete() || (strict && errors.length() > 0) {
     let first = if errors.length() > 0 {
       Some(errors[0])
-    } else if ds.length() > 0 {
-      Some(ds[0])
+    } else if diagnostics.length() > 0 {
+      Some(diagnostics[0])
     } else {
       None
     }
     return Err({
       code: "OpenApiInvalid",
       message: match first {
-        Some(d) => str(get(d, "message"))
+        Some(diagnostic) => diagnostic.message
         None => "OpenAPI document is incomplete"
       },
       path: match first {
-        Some(d) => str(get(d, "path"))
+        Some(diagnostic) => diagnostic.path
         None => ""
       },
     })
   }
-  let by_key : Map[String, Json] = Map([])
-  for op in analysis.operations() {
-    by_key[str(get(op, "method")) + " " + str(get(op, "path"))] = op
-    if get(op, "id") is String(id) && !by_key.contains(id) {
-      by_key[id] = op
+  let by_key : Map[String, Operation] = Map([])
+  for operation in analysis.operations() {
+    by_key[operation.http_method + " " + operation.path] = operation
+    if operation.id is Some(id) && !by_key.contains(id) {
+      by_key[id] = operation
     }
   }
   let mut base = base_url
@@ -81,12 +78,12 @@ pub fn compile_analysis(
 }
 
 ///|
-pub fn Templates::get(
+fn Templates::operation(
   self : Templates,
   key : String,
-) -> Result[Json, OpenApiError] {
+) -> Result[Operation, OpenApiError] {
   match self.by_key.get(key) {
-    Some(op) => Ok(copy_json(op))
+    Some(operation) => Ok(operation)
     None =>
       Err({
         code: "UnknownOperation",
@@ -97,105 +94,128 @@ pub fn Templates::get(
 }
 
 ///|
-pub fn Templates::expand(
+pub fn Templates::get(
   self : Templates,
   key : String,
-  variables : Json,
-) -> Result[String, OpenApiError] {
-  self.expand_with_names(key, variables, entries(variables).map(fn(x) { x.0 }))
+) -> Result[Operation, OpenApiError] {
+  self.operation(key).map(fn(operation) { operation.captured() })
 }
 
 ///|
-/// Explicit names preserve JavaScript's distinction between omitted and undefined fields.
-pub fn Templates::expand_with_names(
+fn unsupported_operation(key : String, operation : Operation) -> OpenApiError {
+  let reasons = operation.unsupported
+    .map(fn(item) { item.name + " (" + item.reason + ")" })
+    .join("; ")
+  {
+    code: "UnsupportedOperation",
+    message: key +
+    " has no RFC 6570 template: " +
+    (if reasons == "" {
+      "its path parameters are not declared"
+    } else {
+      reasons
+    }),
+    path: "",
+  }
+}
+
+///|
+fn Templates::compiled_operation(
   self : Templates,
   key : String,
-  variables : Json,
-  names : Array[String],
-) -> Result[String, OpenApiError] {
-  let op = match self.get(key) {
-    Ok(v) => v
-    Err(e) => return Err(e)
-  }
-  let unsupported = array(get(op, "unsupported"))
-  guard get(op, "template") is String(source) else {
-    let reasons = unsupported
-      .map(fn(u) { str(get(u, "name")) + " (" + str(get(u, "reason")) + ")" })
-      .join("; ")
-    return Err({
-      code: "UnsupportedOperation",
-      message: key +
-      " has no RFC 6570 template: " +
-      (if reasons == "" {
-        "its path parameters are not declared"
-      } else {
-        reasons
-      }),
-      path: "",
-    })
-  }
-  if !obj(variables) {
-    return Err({
-      code: "InvalidInput",
-      message: "variables must be an object",
-      path: "",
-    })
-  }
-  let selected = match
-    self.binding_names(
-      key,
-      names.map(fn(name) { (name, has(variables, name)) }),
-    ) {
-    Ok(v) => v
-    Err(e) => return Err(e)
-  }
-  let mapped : Map[String, Json] = Map([])
-  for (name, variable) in selected {
-    if has(variables, name) {
-      mapped[variable] = get(variables, name)
-    }
-  }
-  let cache_key = str(get(op, "method")) + " " + str(get(op, "path"))
-  let compiled = match self.compiled.get(cache_key) {
-    Some(t) => t
+  operation : Operation,
+) -> Result[@core.ContractTemplate, OpenApiError] {
+  let cache_key = operation.http_method + " " + operation.path
+  match self.compiled.get(cache_key) {
+    Some(template) => Ok(template)
     None => {
-      let t = match core_parse(source) {
-        Ok(t) => t
-        Err(e) => return Err({ code: e.code, message: e.message, path: "", })
+      guard operation.template is Some(source) else {
+        return Err(unsupported_operation(key, operation))
       }
-      let options = match self.contract_options(key) {
-        Ok(v) => v
-        Err(e) => return Err(e)
+      let template = match core_parse(source) {
+        Ok(value) => value
+        Err(error) =>
+          return Err({ code: error.code, message: error.message, path: "", })
       }
-      let required = array(get(options, "required")).map(str)
-      let rules = entries(get(options, "types")).map(fn(pair) {
-        @core.BindingRule::{
-          name: pair.0,
-          kind: match str(pair.1) {
-            "list" => @core.ListKind
-            "assoc" => @core.AssocKind
-            _ => @core.ScalarKind
-          },
+      let required : Array[String] = []
+      let rules : Array[@core.BindingRule] = []
+      for parameter in operation.parameters {
+        if parameter.variable is Some(variable) {
+          if parameter.required && !required.contains(variable) {
+            required.push(variable)
+          }
+          if parameter.shape is Some(shape) {
+            rules.push({
+              name: variable,
+              kind: match shape {
+                ScalarShape => @core.ScalarKind
+                ListShape => @core.ListKind
+                AssocShape => @core.AssocKind
+              },
+            })
+          }
         }
-      })
-      let ct = match t.with_contract(rules, required~) {
-        Ok(v) => v
-        Err(e) => return Err({ code: e.code, message: e.message, path: "", })
       }
-      self.compiled[cache_key] = ct
-      ct
+      let contract = match template.with_contract(rules, required~) {
+        Ok(value) => value
+        Err(error) =>
+          return Err({ code: error.code, message: error.message, path: "", })
+      }
+      self.compiled[cache_key] = contract
+      Ok(contract)
     }
   }
-  guard bindings(Json::object(mapped)) is Some(vars) else {
-    return Err({
-      code: "InvalidInput",
-      message: "expected a string, number, boolean, list of those, object of those, or null",
-      path: "",
-    })
+}
+
+///|
+/// Variables use OpenAPI parameter names. Header and cookie bindings are
+/// accepted but do not appear in the expanded URI.
+pub fn Templates::expand(
+  self : Templates,
+  key : String,
+  variables : @core.Variables,
+) -> Result[String, OpenApiError] {
+  let operation = match self.operation(key) {
+    Ok(value) => value
+    Err(error) => return Err(error)
+  }
+  guard operation.template is Some(_) else {
+    return Err(unsupported_operation(key, operation))
+  }
+  let mapped = @core.Variables::new()
+  for name in variables.names() {
+    match
+      operation.unsupported.iter().find_first(fn(item) { item.name == name }) {
+      Some(item) =>
+        return Err({
+          code: "UnsupportedParameter",
+          message: name + ": " + item.reason,
+          path: "/" + ptr(name),
+        })
+      None => ()
+    }
+    guard operation.parameters
+      .iter()
+      .find_first(fn(parameter) { parameter.name == name })
+      is Some(parameter) else {
+      return Err({
+        code: "UnknownParameter",
+        message: key + " has no parameter " + name,
+        path: "/" + ptr(name),
+      })
+    }
+    if parameter.variable is Some(variable) &&
+      variables.get(name) is Some(value) {
+      mapped.set(variable, value)
+    }
+  }
+  let compiled = match self.compiled_operation(key, operation) {
+    Ok(value) => value
+    Err(error) => return Err(error)
   }
   match
     compiled.expand(
-      vars,
+      mapped,
       limits=@core.ExpansionLimits::new(
         max_bindings=4096,
         max_members=65536,
@@ -205,94 +225,6 @@ pub fn Templates::expand_with_names(
       ),
     ) {
     Ok(uri) => Ok(self.base_url + uri)
-    Err(e) => Err({ code: e.code, message: e.message, path: "", })
+    Err(error) => Err({ code: error.code, message: error.message, path: "", })
   }
-}
-
-///|
-/// Validate supplied parameter names before the host snapshots URI values.
-pub fn Templates::binding_names(
-  self : Templates,
-  key : String,
-  names : Array[(String, Bool)],
-) -> Result[Array[(String, String)], OpenApiError] {
-  let op = match self.get(key) {
-    Ok(v) => v
-    Err(e) => return Err(e)
-  }
-  let unsupported = array(get(op, "unsupported"))
-  let params = array(get(op, "parameters"))
-  guard get(op, "template") is String(_) else {
-    let reasons = unsupported
-      .map(fn(u) { str(get(u, "name")) + " (" + str(get(u, "reason")) + ")" })
-      .join("; ")
-    return Err({
-      code: "UnsupportedOperation",
-      message: key +
-      " has no RFC 6570 template: " +
-      (if reasons == "" {
-        "its path parameters are not declared"
-      } else {
-        reasons
-      }),
-      path: "",
-    })
-  }
-  let mapped : Array[(String, String)] = []
-  for (name, defined) in names {
-    let blocked = unsupported
-      .iter()
-      .find_first(fn(p) { get(p, "name") == Json::string(name) })
-    if blocked is Some(u) && defined {
-      return Err({
-        code: "UnsupportedParameter",
-        message: name + ": " + str(get(u, "reason")),
-        path: "/" + ptr(name),
-      })
-    }
-    guard params
-      .iter()
-      .find_first(fn(p) { get(p, "name") == Json::string(name) })
-      is Some(param) else {
-      return Err({
-        code: "UnknownParameter",
-        message: key + " has no parameter " + name,
-        path: "/" + ptr(name),
-      })
-    }
-    if get(param, "variable") is String(v) {
-      mapped.push((name, v))
-    }
-  }
-  Ok(mapped)
-}
-
-///|
-/// SDK contract options, derived from the same analyzed parameters as native expansion.
-pub fn Templates::contract_options(
-  self : Templates,
-  key : String,
-) -> Result[Json, OpenApiError] {
-  let op = match self.get(key) {
-    Ok(v) => v
-    Err(e) => return Err(e)
-  }
-  match self.binding_names(key, []) {
-    Err(e) => return Err(e)
-    Ok(_) => ()
-  }
-  let required : Array[Json] = []
-  let types : Map[String, Json] = Map([])
-  for p in array(get(op, "parameters")) {
-    if get(p, "variable") is String(v) {
-      if get(p, "required") == Json::boolean(true) &&
-        !required.contains(Json::string(v)) {
-        required.push(Json::string(v))
-      }
-      if get(p, "shape") is String(s) {
-        types[v] = Json::string(s)
-      }
-    }
-  }
-  Ok({ "required": Json::array(required), "types": Json::object(types) })
 }
