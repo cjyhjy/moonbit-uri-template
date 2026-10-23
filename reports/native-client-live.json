@@ -1,9 +1,9 @@
 {
   "status": "passed",
   "evidence": "live-public-api",
-  "started_at_utc": "2026-10-23T12:43:34.278628+00:00",
-  "source_sha256": "b27a2b861b4a790a52c3ad73e426b1e3df2b0b16a036293c8595fe34c094a1d1",
-  "verifier_sha256": "cd7981f8b7a71c0a43319bdd8525b40a7d27911f370099961a6db33d92846d5e",
+  "started_at_utc": "2026-10-23T12:53:31.270477+00:00",
+  "source_sha256": "d3a01a3c722b5db6f42e53e825769bdc2745c3a2008e512133b96ad4285969e1",
+  "verifier_sha256": "20f6ac927898d463b059f117a723300154c6fbaf87f6f1cdabd8193e4e0c4e84",
   "backend": "native",
   "externalUserFeedback": false,
   "dependencies": {
@@ -26,6 +26,8 @@
   "checks": [
     "default CLI plans three URLs without sending requests",
     "invalid second request blocks live batch with MissingBinding and exit 2",
+    "malformed JSON, invalid UTF-8, oversized and missing input all exit 2",
+    "loopback HTTP transport: GET path and headers, redirects, body cap and timeout",
     "endpoint and repository response validation",
     "streaming body cap",
     "deadline cancellation",
@@ -34,7 +36,7 @@
   ],
   "dependency_tree": "cjyhjy/uri_template_github_client@0.1.0 (local <fresh-project>/app):\n\u251c\u2500 cjyhjy/uri_template -> cjyhjy/uri_template@0.4.0\n\u2514\u2500 moonbitlang/async -> moonbitlang/async@0.22.5\n",
   "fresh_project_registry_dependencies": true,
-  "tests": 12,
+  "tests": 16,
   "plan": {
     "ok": true,
     "mode": "plan",
@@ -75,7 +77,7 @@
         "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template",
         "status": 200,
         "bytes": 5658,
-        "requestId": "3384:3F8DA2:1846674:4FB49A4:6ADB567E",
+        "requestId": "1D24:1D1A6A:8152E:1A9F3F:6ADB58D3",
         "summary": {
           "full_name": "cjyhjy/moonbit-uri-template",
           "id": 1418473171
@@ -86,7 +88,7 @@
         "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=2",
         "status": 200,
         "bytes": 3007,
-        "requestId": "338A:2DC55F:196468F:5329727:6ADB567F",
+        "requestId": "1D2C:C2939:7E19C:19E6EB:6ADB58D4",
         "summary": {
           "count": 2,
           "first": "6cb59c27684d81e79887fe05e0cc2b876872a9c5"
@@ -97,7 +99,7 @@
         "url": "https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=2",
         "status": 200,
         "bytes": 18450,
-        "requestId": "3122:3F8DA2:1847386:4FB7550:6ADB5680",
+        "requestId": "EF20:2C6A7B:70C86:173F45:6ADB58D5",
         "summary": {
           "count": 2,
           "first": "v0.4.0"
@@ -105,6 +107,6 @@
       }
     ]
   },
-  "elapsed_ms": 3484,
-  "finished_at_utc": "2026-10-23T12:43:44.657637+00:00"
+  "elapsed_ms": 3354,
+  "finished_at_utc": "2026-10-23T12:53:41.770019+00:00"
 }

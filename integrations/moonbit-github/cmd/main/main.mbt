@@ -11,11 +11,7 @@ async fn main {
       )
     }
     let source = @client.read_input(args[1], 33554432)
-    let max_nesting_depth = 32
-    let config = @json.parse(
-      @client.read_input(args[2], 65536),
-      max_nesting_depth~,
-    )
+    let config = @client.parse_config(@client.read_input(args[2], 65536))
     println(@client.run(source, config, live=args.length() == 4).stringify())
   } catch {
     @client.ClientError(code, message) => {

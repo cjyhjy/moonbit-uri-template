@@ -170,9 +170,24 @@ fn plan(source : String, config : Json) -> Plan raise {
 
 ///|
 pub async fn read_input(path : String, limit : Int32) -> String {
-  let file = @fs.open(path, mode=ReadOnly)
-  defer file.close()
-  @utf8.decode(read_bounded(file, limit)[:])
+  try {
+    let file = @fs.open(path, mode=ReadOnly)
+    defer file.close()
+    @utf8.decode(read_bounded(file, limit)[:])
+  } catch {
+    ClientError("SizeLimit", _) =>
+      raise ClientError("InputTooLarge", "input exceeds its byte limit")
+    error => raise ClientError("InputError", error.to_string())
+  }
+}
+
+///|
+// The pinned parser exposes its depth budget under a deprecated argument label.
+#warnings("-deprecated")
+pub fn parse_config(source : String) -> Json raise ClientError {
+  @json.parse(source, max_nesting_depth=32) catch {
+    error => raise ClientError("InvalidJson", error.to_string())
+  }
 }
 
 ///|
@@ -192,7 +207,7 @@ fn response_summary(request : Request, body : Json) -> Json raise ClientError {
   match request.operation_id {
     "repos/get" => {
       guard body is { "full_name": String(name), "id": Number(id, ..), .. } &&
-        name == request.repository &&
+        name.to_lower() == request.repository.to_lower() &&
         id > 0 else {
         raise ClientError(
           "ResponseMismatch", "repository response does not match the request",
@@ -255,8 +270,20 @@ fn checked_status(code : Int32) -> Unit raise ClientError {
 
 ///|
 async fn fetch_live(request : Request) -> Json {
-  @async.with_timeout(15000, () => {
-    let client = @http.Client("https://api.github.com", headers={
+  fetch_from(request, "https://api.github.com")
+}
+
+///|
+// Alternate origins and small budgets are private transport-test seams, not CLI options.
+#warnings("-deprecated")
+async fn fetch_from(
+  request : Request,
+  origin : String,
+  timeout_ms~ : Int32 = 15000,
+  response_limit~ : Int32 = 1048576,
+) -> Json {
+  @async.with_timeout(timeout_ms, () => {
+    let client = @http.Client(origin, headers={
       "User-Agent": "moonbit-uri-template-native-client/0.1.0",
       "Accept": "application/vnd.github+json",
       "X-GitHub-Api-Version": "2022-11-28",
@@ -266,7 +293,7 @@ async fn fetch_live(request : Request) -> Json {
       request.url["https://api.github.com".length():].to_owned(),
     )
     checked_status(response.code)
-    let bytes = read_bounded(client, 1048576)
+    let bytes = read_bounded(client, response_limit)
     let max_nesting_depth = 64
     let body = @json.parse(@utf8.decode(bytes[:]), max_nesting_depth~)
     let summary = response_summary(request, body)

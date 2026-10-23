@@ -1,21 +1,7 @@
 $ <repository>/tools/moon check --target native
-Using cached moonbitlang/async@0.22.5
 Using cached cjyhjy/uri_template@0.4.0
-Warning: [0020]
-     ╭─[ <fresh-project>/app/client.mbt:271:52 ]
-     │
- 271 │     let body = @json.parse(@utf8.decode(bytes[:]), max_nesting_depth~)
-     │                                                    ─────────┬────────
-     │                                                             ╰────────── Warning (deprecated):
-─────╯
-Warning: [0020]
-    ╭─[ <fresh-project>/app/cmd/main/main.mbt:17:7 ]
-    │
- 17 │       max_nesting_depth~,
-    │       ─────────┬────────
-    │                ╰────────── Warning (deprecated):
-────╯
-Finished. moon: ran 30 tasks, now up to date (2 warnings, 0 errors)
+Using cached moonbitlang/async@0.22.5
+Finished. moon: ran 30 tasks, now up to date
 
 $ <repository>/tools/moon tree
 cjyhjy/uri_template_github_client@0.1.0 (local <fresh-project>/app):
@@ -23,27 +9,13 @@ cjyhjy/uri_template_github_client@0.1.0 (local <fresh-project>/app):
 └─ moonbitlang/async -> moonbitlang/async@0.22.5
 
 $ <repository>/tools/moon test --target native --frozen
-Total tests: 12, passed: 12, failed: 0.
+Total tests: 16, passed: 16, failed: 0.
 libtool: warning: 'watch_windows.o' has no symbols
 libtool: warning: 'stub.o' has no symbols
 libtool: warning: 'epoll.o' has no symbols
 libtool: warning: 'iocp.o' has no symbols
 libtool: warning: 'io_windows.o' has no symbols
 libtool: warning: 'schannel.o' has no symbols
-Warning: [0020]
-     ╭─[ <fresh-project>/app/client.mbt:271:52 ]
-     │
- 271 │     let body = @json.parse(@utf8.decode(bytes[:]), max_nesting_depth~)
-     │                                                    ─────────┬────────
-     │                                                             ╰────────── Warning (deprecated):
-─────╯
-Warning: [0020]
-    ╭─[ <fresh-project>/app/cmd/main/main.mbt:17:7 ]
-    │
- 17 │       max_nesting_depth~,
-    │       ─────────┬────────
-    │                ╰────────── Warning (deprecated):
-────╯
 
 $ <repository>/tools/moon build --target native --frozen
 libtool: warning: 'watch_windows.o' has no symbols
@@ -52,21 +24,7 @@ libtool: warning: 'epoll.o' has no symbols
 libtool: warning: 'iocp.o' has no symbols
 libtool: warning: 'io_windows.o' has no symbols
 libtool: warning: 'schannel.o' has no symbols
-Warning: [0020]
-     ╭─[ <fresh-project>/app/client.mbt:271:52 ]
-     │
- 271 │     let body = @json.parse(@utf8.decode(bytes[:]), max_nesting_depth~)
-     │                                                    ─────────┬────────
-     │                                                             ╰────────── Warning (deprecated):
-─────╯
-Warning: [0020]
-    ╭─[ <fresh-project>/app/cmd/main/main.mbt:17:7 ]
-    │
- 17 │       max_nesting_depth~,
-    │       ─────────┬────────
-    │                ╰────────── Warning (deprecated):
-────╯
-Finished. moon: ran 71 tasks, now up to date (2 warnings, 0 errors)
+Finished. moon: ran 71 tasks, now up to date
 
 $ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project>/app/offline.json <fresh-project>/app/requests.json
 {"ok":true,"mode":"plan","documentErrors":0,"documentWarnings":0,"requests":[{"operation_id":"repos/get","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template","repository":"cjyhjy/moonbit-uri-template"},{"operation_id":"repos/list-commits","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=2","repository":"cjyhjy/moonbit-uri-template"},{"operation_id":"repos/list-releases","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=2","repository":"cjyhjy/moonbit-uri-template"}]}
@@ -74,8 +32,20 @@ $ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project
 $ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project>/app/offline.json <fresh-project>/app/invalid.json --live
 {"ok":false,"code":"MissingBinding","message":"required variable is not bound"}
 
+$ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project>/app/offline.json <fresh-project>/app/invalid.json
+{"ok":false,"code":"InvalidJson","message":"Unexpected end of file"}
+
+$ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project>/app/offline.json <fresh-project>/app/invalid.json
+{"ok":false,"code":"InputError","message":"moonbitlang/core/encoding/utf8.Malformed.Malformed"}
+
+$ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project>/app/offline.json <fresh-project>/app/invalid.json
+{"ok":false,"code":"InputTooLarge","message":"input exceeds its byte limit"}
+
+$ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project>/app/offline.json <fresh-project>/app/missing.json
+{"ok":false,"code":"InputError","message":"OSError(\"@fs.open(): \\\"<fresh-project>/app/missing.json\\\": No such file or directory\")"}
+
 $ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project>/app/github.json <fresh-project>/app/requests.json
 {"ok":true,"mode":"plan","documentErrors":2,"documentWarnings":2,"requests":[{"operation_id":"repos/get","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template","repository":"cjyhjy/moonbit-uri-template"},{"operation_id":"repos/list-commits","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=2","repository":"cjyhjy/moonbit-uri-template"},{"operation_id":"repos/list-releases","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=2","repository":"cjyhjy/moonbit-uri-template"}]}
 
 $ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project>/app/github.json <fresh-project>/app/requests.json --live
-{"ok":true,"mode":"live","documentErrors":2,"documentWarnings":2,"results":[{"operationId":"repos/get","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template","status":200,"bytes":5658,"requestId":"3384:3F8DA2:1846674:4FB49A4:6ADB567E","summary":{"full_name":"cjyhjy/moonbit-uri-template","id":1418473171}},{"operationId":"repos/list-commits","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=2","status":200,"bytes":3007,"requestId":"338A:2DC55F:196468F:5329727:6ADB567F","summary":{"count":2,"first":"6cb59c27684d81e79887fe05e0cc2b876872a9c5"}},{"operationId":"repos/list-releases","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=2","status":200,"bytes":18450,"requestId":"3122:3F8DA2:1847386:4FB7550:6ADB5680","summary":{"count":2,"first":"v0.4.0"}}]}
+{"ok":true,"mode":"live","documentErrors":2,"documentWarnings":2,"results":[{"operationId":"repos/get","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template","status":200,"bytes":5658,"requestId":"1D24:1D1A6A:8152E:1A9F3F:6ADB58D3","summary":{"full_name":"cjyhjy/moonbit-uri-template","id":1418473171}},{"operationId":"repos/list-commits","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=2","status":200,"bytes":3007,"requestId":"1D2C:C2939:7E19C:19E6EB:6ADB58D4","summary":{"count":2,"first":"6cb59c27684d81e79887fe05e0cc2b876872a9c5"}},{"operationId":"repos/list-releases","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=2","status":200,"bytes":18450,"requestId":"EF20:2C6A7B:70C86:173F45:6ADB58D5","summary":{"count":2,"first":"v0.4.0"}}]}

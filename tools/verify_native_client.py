@@ -66,7 +66,8 @@ def main():
                 result = subprocess.run(command, cwd=app, text=True, capture_output=True, timeout=timeout)
                 output = result.stdout + result.stderr
                 logs.append('$ ' + ' '.join(command) + '\n' + output)
-                log_path.write_text('\n'.join(logs).replace(str(work.resolve()), '<fresh-project>').replace(str(work), '<fresh-project>').replace(str(ROOT), '<repository>'))
+                sanitized = '\n'.join(logs).replace(str(work.resolve()), '<fresh-project>').replace(str(work), '<fresh-project>').replace(str(ROOT), '<repository>')
+                log_path.write_text('\n'.join(line.rstrip() for line in sanitized.splitlines()) + '\n')
                 if result.returncode != expected:
                     raise RuntimeError(f'command exited {result.returncode}, expected {expected}: {output[-4000:]}')
                 return result.stdout
@@ -106,6 +107,16 @@ def main():
             if failure.get('code') != 'MissingBinding':
                 raise RuntimeError('CLI did not preserve the core missing-binding error')
             report['checks'].append('invalid second request blocks live batch with MissingBinding and exit 2')
+            for contents, code in [(b'{', 'InvalidJson'), (b'\xff', 'InputError'), (b' ' * 65537, 'InputTooLarge')]:
+                invalid.write_bytes(contents)
+                failure = json.loads(run([str(executable), str(spec), str(invalid)], expected=2))
+                if failure.get('code') != code:
+                    raise RuntimeError('incorrect input error classification: ' + str(failure))
+            failure = json.loads(run([str(executable), str(spec), str(app / 'missing.json')], expected=2))
+            if failure.get('code') != 'InputError':
+                raise RuntimeError('missing file must be an input error')
+            report['checks'].append('malformed JSON, invalid UTF-8, oversized and missing input all exit 2')
+            report['checks'].append('loopback HTTP transport: GET path and headers, redirects, body cap and timeout')
             report['checks'].extend(['endpoint and repository response validation', 'streaming body cap', 'deadline cancellation', 'redirect and HTTP-error rejection'])
             report['plan'] = planned
             if args.live:

@@ -9,3 +9,7 @@ import {
   "moonbitlang/core/encoding/utf8",
   "moonbitlang/core/json",
 }
+
+import {
+  "moonbitlang/async/socket",
+} for "wbtest"

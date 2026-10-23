@@ -6,6 +6,8 @@ import {
 }
 
 // Values
+pub fn parse_config(String) -> Json raise ClientError
+
 pub async fn read_input(String, Int) -> String
 
 pub async fn run(String, Json, live? : Bool) -> Json
