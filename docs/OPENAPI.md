@@ -42,9 +42,10 @@ github.expand('repos/list-commits', { owner: 'a', repo: 'b', perpage: 5 });
 // UnknownParameter: repos/list-commits has no parameter perpage
 ```
 
-- 接口按 `operationId` 或 `"GET /path"` 查找。
+- 接口按 `operationId` 或 `"GET /path"` 查找。同一个名字指向不同接口时（例如重复的 operationId，或某个 operationId 恰好写成另一个接口的 `"GET /path"`），报 `AmbiguousOperation`，不随意挑一个。
 - 路径参数和 `required: true` 的 query 参数必须提供；schema 类型明确时检查值的形状（标量、列表、对象）。
-- header、cookie 参数可以一起传入，不进入 URL。
+- header、cookie 参数可以一起传入，不进入 URL；与路径或 query 参数同名时，值归 URL 参数。
+- 没有 RFC 6570 对应写法的参数（如 `deepObject`）不能展开：可选的会被省略，`required: true` 的报 `UnsupportedParameter`，不会生成缺少必填参数的地址。
 - 参数名不符合 RFC 6570 变量名语法时按附录 C.3 百分号编码，例如 `filter[since]` 在模板中是 `filter%5Bsince%5D`。
 - GitHub 的完整描述（13.5 MB、1242 个接口）编译约 180 ms；之后每次展开约 5 µs。
 - `strict: true` 时，文档有任何错误级诊断都会抛出 `OpenApiInvalid`。

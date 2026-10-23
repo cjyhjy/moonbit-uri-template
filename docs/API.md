@@ -125,7 +125,7 @@ before.get("search")         // /search?q=old，旧快照不变
 | --- | --- |
 | `analyze(Json)` / `analyze_text(String)` | 分析描述，返回 `Analysis`：`operations()`、`diagnostics()`、`ok()`、`complete()`、`truncated()`、`to_json()` |
 | `compile(Json, base_url?, strict?)` / `compile_analysis(Analysis, base_url?, strict?)` | 得到 `Templates`；`strict` 时有错误级诊断即失败 |
-| `Templates::get(operation)` | 按 `operationId` 或 `"GET /path"` 取 `Operation` |
+| `Templates::get(operation)` | 按 `operationId` 或 `"GET /path"` 取 `Operation`；名字对应多个接口时返回 `AmbiguousOperation` |
 | `Templates::expand(operation, Variables)` | 变量按 OpenAPI 参数名绑定；header、cookie 参数不进入 URL |
 | `template_name(name)` | OpenAPI 参数名对应的 RFC 6570 变量名（附录 C.3 百分号编码） |
 

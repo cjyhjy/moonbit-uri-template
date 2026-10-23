@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Fixes
+
+- OpenAPI: a required query parameter without an RFC 6570 serialization (e.g. `deepObject`) now fails expansion with `UnsupportedParameter` instead of being omitted. Optional ones are still omitted.
+- OpenAPI: a header or cookie parameter with the same name as a path or query parameter no longer takes the value; URL parameters win regardless of declaration order.
+- OpenAPI: a lookup name that refers to more than one operation (duplicate `operationId`, or an `operationId` equal to another operation's `"GET /path"`) fails with `AmbiguousOperation` instead of picking one.
+
 ## 0.5.0 — 2026-10-23 (npm and Mooncakes)
 
 ### Added
