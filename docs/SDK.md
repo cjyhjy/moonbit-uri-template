@@ -5,8 +5,7 @@ SDK 直接调用编译后的 MoonBit 核心，RFC 语义不在 JS 里重写。�
 ## 安装
 
 ```sh
-npm install moonbit-uri-template   # 0.3.0 起发布到 npm
-npm install ./moonbit-uri-template-0.3.0.tgz   # 或使用便携分发包中的 tarball
+npm install moonbit-uri-template
 ```
 
 在源码仓库中执行 `npm run build` 后，也可以直接 `import ... from './sdk/index.mjs'`。
