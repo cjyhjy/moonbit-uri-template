@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.5.1 — 2026-10-25 (npm and Mooncakes)
 
 ### Fixes
 
@@ -10,7 +10,7 @@
 
 ### Performance
 
-- OpenAPI CLI: JSON input no longer keeps per-character string offsets, which OpenAPI diagnostics don't use. Peak memory on the official GitHub description drops from 502 to 391 MiB and on Cloudflare from 924 to 707 MiB, with byte-identical output (`reports/openapi-memory.json`). Project checks and the playground keep exact offsets.
+- OpenAPI CLI: JSON input no longer keeps per-character string offsets, which OpenAPI diagnostics don't use. Peak memory on the official GitHub description drops from 503 to 391 MiB and on Cloudflare from 918 to 707 MiB, with byte-identical output (`reports/openapi-memory.json`). Project checks and the playground keep exact offsets.
 
 ## 0.5.0 — 2026-10-23 (npm and Mooncakes)
 

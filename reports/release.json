@@ -1,7 +1,7 @@
 {
-  "version": "0.5.0",
-  "archive": "_build/releases/moonbit-uri-template-0.5.0.zip",
-  "sha256": "cdf3a781f038b38497f2c31467d754f1eef206167c4be9f5576491a11fc89259",
+  "version": "0.5.1",
+  "archive": "_build/releases/moonbit-uri-template-0.5.1.zip",
+  "sha256": "5597dfa6f0c29b33852f1481c5df1901283ec3eaf2a8ad58ed021b77dc815eff",
   "tested_from_extracted_archive": true,
   "test_scope": "CLI, SDK, project workflow and offline consumer",
   "cli_tests": 193,
@@ -10,7 +10,7 @@
     "LICENSE",
     "NOTICE",
     "README.md",
-    "cjyhjy-uri_template-0.5.0.zip",
+    "cjyhjy-uri_template-0.5.1.zip",
     "dist/engine.mjs",
     "dist/licenses/moonbit-core-LICENSE",
     "dist/licenses/yaml-LICENSE",
@@ -197,7 +197,7 @@
     "integrations/public-clients/clients.test.mjs",
     "integrations/public-clients/live.mjs",
     "licenses/moonbit-core-LICENSE",
-    "moonbit-uri-template-0.5.0.tgz",
+    "moonbit-uri-template-0.5.1.tgz",
     "package.json",
     "reports/sdk-package.json",
     "reports/verification.json",
@@ -224,6 +224,6 @@
     "tools/yaml-source.test.mjs"
   ],
   "required_node": ">=22",
-  "source_sha256": "b318645eacf01df96f389bfa24d7e9ef89e8401f7fdce4d469a33de06d4a9092",
+  "source_sha256": "47a9429a92b55a19592a6e6b5aeb464176546e125eedcc5f2cfed54b3636834f",
   "published": false
 }
