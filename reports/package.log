@@ -124,6 +124,7 @@ testdata/upstream/spec-examples.json
 toolchain.lock.json
 tools/benchmark.mjs
 tools/benchmark_openapi.mjs
+tools/benchmark_openapi_memory.mjs
 tools/benchmark_peers.mjs
 tools/benchmark_resources.py
 tools/bootstrap.py

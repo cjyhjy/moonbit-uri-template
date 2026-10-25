@@ -28,7 +28,7 @@ export function checkOpenAPI(text, file = 'openapi.json', {maxBytes = DEFAULT_MA
   if (Buffer.byteLength(text) > maxBytes) return failed('OpenAPIInputLimit',`document exceeds ${maxBytes} bytes`);
   if (!['auto','json','yaml'].includes(format)) return failed('InvalidArguments', 'format must be auto, json or yaml');
   let parsed;
-  try { parsed = yaml ? parseYamlSource(text, MAX_DEPTH, maxBytes) : parseSource(text, MAX_DEPTH); }
+  try { parsed = yaml ? parseYamlSource(text, MAX_DEPTH, maxBytes) : parseSource(text, MAX_DEPTH, { stringOffsets: false }); }
   catch(e) { return failed(e.code ?? (yaml ? 'InvalidYaml' : 'InvalidJson'),e.message,e.path ?? '',e.start ?? 0); }
   const report = analyzeOpenApi(parsed.value);
   // Diagnostics point at the JSON value their pointer names, or at the document root.

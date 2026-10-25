@@ -1,11 +1,11 @@
 {
   "version": "0.5.0",
   "archive": "_build/releases/moonbit-uri-template-0.5.0.zip",
-  "sha256": "7dc0be9d444bb3fe2e42a688993ab94c0ef824beaeedeaf0cb4fdab8950367be",
+  "sha256": "349d161b8422931caa3bebb5952f441921f46636380537da1d70d5700d3ede3e",
   "tested_from_extracted_archive": true,
   "test_scope": "CLI, SDK, project workflow and offline consumer",
-  "cli_tests": 191,
-  "cli_passed": 191,
+  "cli_tests": 193,
+  "cli_passed": 193,
   "files": [
     "LICENSE",
     "NOTICE",
@@ -224,6 +224,6 @@
     "tools/yaml-source.test.mjs"
   ],
   "required_node": ">=22",
-  "source_sha256": "03c95d9a88a0dcd80f2421273ae7b930c13ac324e431075b851e03c1b694c6bb",
+  "source_sha256": "beabee8d942c7ace3acf1ab7a0ddf33c6758085198423168932fa1d83805d85d",
   "published": false
 }

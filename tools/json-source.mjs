@@ -1,5 +1,7 @@
 // JSON source positions, including escaped strings. URI semantics stay in MoonBit.
-export function parseSource(text, maxDepth = 32) {
+// OpenAPI needs token ranges only; project diagnostics also need offsets into
+// decoded strings. Keep those by default for existing project/editor callers.
+export function parseSource(text, maxDepth = 32, { stringOffsets = true } = {}) {
   let quoted = false, escaped = false, depth = 0;
   for (const c of text) {
     if (quoted) {
@@ -17,17 +19,18 @@ export function parseSource(text, maxDepth = 32) {
   let i = 0;
   const ws = () => { while (/\s/.test(text[i] ?? '') && i < text.length) i++; };
   function string() {
-    const start = i++, offsets = [];
+    const start = i++, offsets = stringOffsets ? [] : null;
     while (text[i] !== '"') {
       const begin = i;
       if (text[i] === '\\') {
         i += text[i + 1] === 'u' ? 6 : 2;
       } else i++;
-      offsets.push(begin);
+      if (offsets) offsets.push(begin);
     }
     const end = ++i;
-    offsets.push(end - 1);
-    return { value: JSON.parse(text.slice(start, end)), start, end, offsets };
+    const token = { value: JSON.parse(text.slice(start, end)), start, end };
+    if (offsets) { offsets.push(end - 1); token.offsets = offsets; }
+    return token;
   }
   const pointer = key => key.replaceAll('~', '~0').replaceAll('/', '~1');
   function value(path) {

@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "baseline": "2e189a28650d3bc4acb421682949215b2d1cf5d8",
+  "beforeOnly": false,
+  "measuredAt": "2026-10-25T08:50:55.130Z",
+  "node": "v26.7.0",
+  "platform": "darwin",
+  "arch": "arm64",
+  "cpu": "Apple M5 Pro",
+  "methodology": "Five independent fresh Node processes per variant and document. Alternate before/after order each round; sequential execution. Same compiled MoonBit engine and SDK. Time includes file read, check, source locations and JSON output serialization, excludes module import/startup. Peak RSS is whole-process high water mark including startup and input; no forced GC. Input files are cached official descriptions with verified SHA-256. Full serialized reports must match byte-for-byte. These fixed-machine samples are not universal guarantees.",
+  "engineSha256": "01be62e2a2d69b6095ebbd5001d679264623512b8ab95de51f793731b2d36725",
+  "sources": {
+    "tools/json-source.mjs": {
+      "before": "9fe37a1a1913a1134880196ebeb08d158f3ae354de1b782b5822f2d3b4192c2b",
+      "after": "86d8ca379c54b035cffd159d7c9b05edec87411ea843b0e6e32bad0665fc8e84"
+    },
+    "tools/openapi.mjs": {
+      "before": "e0b6c586536240e3d25d7a7d35b810ed745c60c86762f74a058311825d7892d3",
+      "after": "fd4fc64f573ab07c632973d4a36b8c376122ca86e635ddc954d366d2e92361ff"
+    }
+  },
+  "documents": [
+    {
+      "name": "github",
+      "bytes": 13502446,
+      "sha256": "3177ad6a86ca04c57a9bef3fc24e28a339efb8eb040c6f950af3d3ed2fee7fa3",
+      "before": [
+        {
+          "elapsedMs": 576.500584,
+          "maxRSSMiB": 503.6875,
+          "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
+          "operations": 1242,
+          "diagnostics": 4
+        },
+        {
+          "elapsedMs": 614.45925,
+          "maxRSSMiB": 502.453125,
+          "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
+          "operations": 1242,
+          "diagnostics": 4
+        },
+        {
+          "elapsedMs": 611.0727499999999,
+          "maxRSSMiB": 502.609375,
+          "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
+          "operations": 1242,
+          "diagnostics": 4
+        },
+        {
+          "elapsedMs": 617.1252079999999,
+          "maxRSSMiB": 502.59375,
+          "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
+          "operations": 1242,
+          "diagnostics": 4
+        },
+        {
+          "elapsedMs": 625.4154159999999,
+          "maxRSSMiB": 502.859375,
+          "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
+          "operations": 1242,
+          "diagnostics": 4
+        }
+      ],
+      "after": [
+        {
+          "elapsedMs": 548.174583,
+          "maxRSSMiB": 391.078125,
+          "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
+          "operations": 1242,
+          "diagnostics": 4
+        },
+        {
+          "elapsedMs": 567.534458,
+          "maxRSSMiB": 391.359375,
+          "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
+          "operations": 1242,
+          "diagnostics": 4
+        },
+        {
+          "elapsedMs": 532.983459,
+          "maxRSSMiB": 391.25,
+          "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
+          "operations": 1242,
+          "diagnostics": 4
+        },
+        {
+          "elapsedMs": 562.893292,
+          "maxRSSMiB": 390.90625,
+          "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
+          "operations": 1242,
+          "diagnostics": 4
+        },
+        {
+          "elapsedMs": 538.9495830000001,
+          "maxRSSMiB": 392.171875,
+          "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
+          "operations": 1242,
+          "diagnostics": 4
+        }
+      ],
+      "medians": {
+        "before": {
+          "elapsedMs": 614.45925,
+          "maxRSSMiB": 502.609375
+        },
+        "after": {
+          "elapsedMs": 548.174583,
+          "maxRSSMiB": 391.25
+        }
+      },
+      "reductionPercent": {
+        "elapsedMs": 10.787479723024763,
+        "maxRSSMiB": 22.15624708552243
+      }
+    },
+    {
+      "name": "cloudflare",
+      "bytes": 27495506,
+      "sha256": "4ba217d8b7316bbc84a94370a216e6fb4ab77180cac82464f91e8969e19a48fd",
+      "before": [
+        {
+          "elapsedMs": 1330.226709,
+          "maxRSSMiB": 922.734375,
+          "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
+          "operations": 3767,
+          "diagnostics": 256
+        },
+        {
+          "elapsedMs": 1320.112458,
+          "maxRSSMiB": 922.609375,
+          "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
+          "operations": 3767,
+          "diagnostics": 256
+        },
+        {
+          "elapsedMs": 1265.9852500000002,
+          "maxRSSMiB": 923.375,
+          "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
+          "operations": 3767,
+          "diagnostics": 256
+        },
+        {
+          "elapsedMs": 1331.585583,
+          "maxRSSMiB": 925.875,
+          "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
+          "operations": 3767,
+          "diagnostics": 256
+        },
+        {
+          "elapsedMs": 1297.991125,
+          "maxRSSMiB": 922.703125,
+          "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
+          "operations": 3767,
+          "diagnostics": 256
+        }
+      ],
+      "after": [
+        {
+          "elapsedMs": 1217.076458,
+          "maxRSSMiB": 706.578125,
+          "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
+          "operations": 3767,
+          "diagnostics": 256
+        },
+        {
+          "elapsedMs": 1185.543791,
+          "maxRSSMiB": 705.640625,
+          "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
+          "operations": 3767,
+          "diagnostics": 256
+        },
+        {
+          "elapsedMs": 1225.8884999999998,
+          "maxRSSMiB": 706.078125,
+          "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
+          "operations": 3767,
+          "diagnostics": 256
+        },
+        {
+          "elapsedMs": 1196.5058330000002,
+          "maxRSSMiB": 708.484375,
+          "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
+          "operations": 3767,
+          "diagnostics": 256
+        },
+        {
+          "elapsedMs": 1185.256417,
+          "maxRSSMiB": 705.796875,
+          "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
+          "operations": 3767,
+          "diagnostics": 256
+        }
+      ],
+      "medians": {
+        "before": {
+          "elapsedMs": 1320.112458,
+          "maxRSSMiB": 922.734375
+        },
+        "after": {
+          "elapsedMs": 1196.5058330000002,
+          "maxRSSMiB": 706.078125
+        }
+      },
+      "reductionPercent": {
+        "elapsedMs": 9.363340543522082,
+        "maxRSSMiB": 23.479806959613924
+      }
+    }
+  ],
+  "sourceSha256": "beabee8d942c7ace3acf1ab7a0ddf33c6758085198423168932fa1d83805d85d"
+}

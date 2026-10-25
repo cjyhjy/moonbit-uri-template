@@ -5,10 +5,36 @@ import {mkdtempSync,writeFileSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {checkOpenAPI} from './openapi.mjs';
+import {parseSource} from './json-source.mjs';
 const parameter = (name='id',extra={}) => ({name,in:'path',required:true,...extra});
 const doc = (item={get:{parameters:[parameter()]}},path='/pets/{id}') => ({openapi:'3.1.0',paths:{[path]:item}});
 const check = d => checkOpenAPI(JSON.stringify(d));
 const codes = d => check(d).diagnostics.map(x=>x.code);
+test('range-only JSON indexing preserves escaped values, pointer names and token ranges', () => {
+ const text = String.raw`{"a/b~c":"😀\u4e2d\"\\\n","nested":[0,true,null,{"__proto__":"x"}]}`;
+ const full = parseSource(text), compact = parseSource(text, 32, {stringOffsets:false});
+ assert.deepEqual(compact.value, full.value);
+ assert.equal(compact.value['a/b~c'], '😀中"\\\n');
+ assert.equal(compact.value.nested[3].__proto__, 'x');
+ for (const name of ['nodes','keys']) {
+  assert.deepEqual([...compact[name].keys()], [...full[name].keys()]);
+  for (const [path, token] of compact[name]) {
+   assert.equal(Object.hasOwn(token, 'offsets'), false);
+   assert.equal(token.start, full[name].get(path).start);
+   assert.equal(token.end, full[name].get(path).end);
+  }
+ }
+ const token = full.nodes.get('/a~1b~0c');
+ assert.equal(text.slice(token.offsets[2], token.offsets[3]), String.raw`\u4e2d`);
+ assert.equal(text.slice(token.offsets[3], token.offsets[4]), String.raw`\"`);
+ assert.equal(text.slice(compact.keys.get('/a~1b~0c').start, compact.keys.get('/a~1b~0c').end), '"a/b~c"');
+});
+test('range-only JSON indexing retains malformed, duplicate-key and depth rejection', () => {
+ for (const [text, depth, code] of [['{"x":',32,'InvalidJson'],[String.raw`{"id":1,"i\u0064":2}`,32,'DuplicateJsonKey'],['[[[]]]',2,'JsonDepthLimit']]) {
+  const capture = options => { try { parseSource(text,depth,options); assert.fail('input accepted'); } catch(e) { assert.equal(e.code,code); return {code:e.code,path:e.path,start:e.start,end:e.end}; } };
+  assert.deepEqual(capture({stringOffsets:false}), capture({stringOffsets:true}));
+ }
+});
 test('same core validates inherited and overridden parameters per operation',()=>{
  const d=doc({parameters:[parameter()],get:{parameters:[parameter('id',{description:'override'})]},post:{}});
  const r=check(d); assert.equal(r.ok,true); assert.equal(r.operations.length,2); assert.equal(r.operations[0].template,'/pets/{id}');

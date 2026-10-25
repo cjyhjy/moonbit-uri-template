@@ -8,6 +8,10 @@
 - OpenAPI: a header or cookie parameter with the same name as a path or query parameter no longer takes the value; URL parameters win regardless of declaration order.
 - OpenAPI: a lookup name that refers to more than one operation (duplicate `operationId`, or an `operationId` equal to another operation's `"GET /path"`) fails with `AmbiguousOperation` instead of picking one.
 
+### Performance
+
+- OpenAPI CLI: JSON input no longer keeps per-character string offsets, which OpenAPI diagnostics don't use. Peak memory on the official GitHub description drops from 503 to 391 MiB and on Cloudflare from 923 to 706 MiB, with byte-identical output (`reports/openapi-memory.json`). Project checks and the playground keep exact offsets.
+
 ## 0.5.0 — 2026-10-23 (npm and Mooncakes)
 
 ### Added

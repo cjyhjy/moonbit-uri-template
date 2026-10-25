@@ -1,13 +1,13 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-23T14:48:48.314888+00:00",
-  "git_head": "0d726de4d7342488b80814f160e912469c4d1940",
+  "verification_started_at_utc": "2026-10-25T08:50:41.160847+00:00",
+  "git_head": "79c5943dcaf6921c0d364c4b83b96721c8a23a1e",
   "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-23T14:48:48.812513+00:00",
+  "verified_at_utc": "2026-10-25T08:50:41.904700+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
   "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "03c95d9a88a0dcd80f2421273ae7b930c13ac324e431075b851e03c1b694c6bb",
+  "source_sha256": "beabee8d942c7ace3acf1ab7a0ddf33c6758085198423168932fa1d83805d85d",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
@@ -1270,8 +1270,8 @@
     "failed": 0
   },
   "workflow": {
-    "total": 72,
-    "passed": 72,
+    "total": 74,
+    "passed": 74,
     "failed": 0,
     "network": "offline only; live evidence is separate"
   },
@@ -1282,8 +1282,8 @@
     "package": {
       "status": "passed",
       "artifact": "_build/releases/moonbit-uri-template-0.5.0.tgz",
-      "sha256": "6eb3070c8cb61bc61759032dffdaccd72b1594a62b9eb1f4ce55edba30ad4905",
-      "sourceSha256": "03c95d9a88a0dcd80f2421273ae7b930c13ac324e431075b851e03c1b694c6bb",
+      "sha256": "1073d11a812305a5db3e31b24f20c641b861111d7a264bd0f5aa35aeaace6eb2",
+      "sourceSha256": "beabee8d942c7ace3acf1ab7a0ddf33c6758085198423168932fa1d83805d85d",
       "node": "v26.7.0",
       "typescript": "Version 7.0.2",
       "cleanLocalInstall": true,
@@ -1547,6 +1547,7 @@
       "tools/test_fixture_literals.py",
       "tools/openapi.test.mjs",
       "tools/json-source.mjs",
+      "tools/benchmark_openapi_memory.mjs",
       "tools/differential.py",
       "tools/differential-requirements.txt",
       "tools/verify.py",
@@ -1657,7 +1658,7 @@
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "14d5dfbc9d4372ef88213b4d7d59c41559a52c421057a33eb8ace1415800cafb",
+    "sha256": "ac1393026305fb058467875d3e4bdc63fcffe1fd5d42c0d3a1f68c8f267f2ac2",
     "clean_downstream_backends": [
       "js",
       "wasm",
