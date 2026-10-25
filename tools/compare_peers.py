@@ -49,7 +49,7 @@ try:
     consumer = WORK/'consumer'; consumer.mkdir(exist_ok=True)
     (WORK/'moon.work').write_text('members = ["ours", "magic", "jsj", "consumer"]\n')
     version = re.search(r'^version = "([^"]+)"', (ROOT/'moon.mod').read_text(), re.M)[1]
-    (consumer/'moon.mod').write_text('name = "audit/consumer"\nimport { "cjyhjy/uri_template@'+version+'",' "Magic486/moon-uri-template@0.1.2", "JSJ222/moonuritemplate@0.2.0" }\n')
+    (consumer/'moon.mod').write_text('name = "audit/consumer"\nimport { "cjyhjy/uri_template@'+version+'", "Magic486/moon-uri-template@0.1.2", "JSJ222/moonuritemplate@0.2.0" }\n')
     (consumer/'moon.pkg').write_text('import { "cjyhjy/uri_template" @ours, "Magic486/moon-uri-template" @magic, "JSJ222/moonuritemplate" @jsj }\npkgtype(kind: "executable")\n')
     source = (ROOT/'testdata/peer-smoke/main.mbt.txt').read_text()
     additions = (ROOT/'testdata/peer-smoke/usability.mbt.txt').read_text()

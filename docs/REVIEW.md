@@ -29,6 +29,8 @@ npm test                                      # 四后端、SDK、CLI、差分�
 node tools/cli.mjs project integrations/github-audit/requests.json --github
 npm run openapi:public                        # 联网，检查 GitHub、Stripe、Cloudflare 官方 OpenAPI 描述
 node tools/openapi_corpus.mjs check --download --baseline testdata/openapi-corpus/baseline.json   # 200 份公开描述
+node tools/verify_yaml_corpus.mjs --download   # 60 份 YAML 原文与 JSON 结果对照
+tools/moon update                             # 首次运行原生客户端前同步 Mooncakes 索引
 python3 integrations/moonbit-github/run.py --live   # MoonBit 原生客户端，需要 C 编译器
 npm run compare:peers && npm run benchmark:resources   # 与同类库的行为对比和基准
 npm run playground                            # 浏览器工作台

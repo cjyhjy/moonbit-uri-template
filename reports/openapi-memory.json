@@ -3,7 +3,7 @@
   "status": "passed",
   "baseline": "2e189a28650d3bc4acb421682949215b2d1cf5d8",
   "beforeOnly": false,
-  "measuredAt": "2026-10-25T08:50:55.130Z",
+  "measuredAt": "2026-10-25T09:11:41.735Z",
   "node": "v26.7.0",
   "platform": "darwin",
   "arch": "arm64",
@@ -27,36 +27,36 @@
       "sha256": "3177ad6a86ca04c57a9bef3fc24e28a339efb8eb040c6f950af3d3ed2fee7fa3",
       "before": [
         {
-          "elapsedMs": 576.500584,
-          "maxRSSMiB": 503.6875,
+          "elapsedMs": 605.3433749999999,
+          "maxRSSMiB": 502.203125,
           "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
           "operations": 1242,
           "diagnostics": 4
         },
         {
-          "elapsedMs": 614.45925,
-          "maxRSSMiB": 502.453125,
+          "elapsedMs": 778.5934579999999,
+          "maxRSSMiB": 495.203125,
           "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
           "operations": 1242,
           "diagnostics": 4
         },
         {
-          "elapsedMs": 611.0727499999999,
-          "maxRSSMiB": 502.609375,
+          "elapsedMs": 774.420541,
+          "maxRSSMiB": 504.03125,
           "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
           "operations": 1242,
           "diagnostics": 4
         },
         {
-          "elapsedMs": 617.1252079999999,
-          "maxRSSMiB": 502.59375,
+          "elapsedMs": 581.6477500000001,
+          "maxRSSMiB": 503.828125,
           "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
           "operations": 1242,
           "diagnostics": 4
         },
         {
-          "elapsedMs": 625.4154159999999,
-          "maxRSSMiB": 502.859375,
+          "elapsedMs": 556.566083,
+          "maxRSSMiB": 501.46875,
           "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
           "operations": 1242,
           "diagnostics": 4
@@ -64,36 +64,36 @@
       ],
       "after": [
         {
-          "elapsedMs": 548.174583,
-          "maxRSSMiB": 391.078125,
+          "elapsedMs": 524.751125,
+          "maxRSSMiB": 390.546875,
           "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
           "operations": 1242,
           "diagnostics": 4
         },
         {
-          "elapsedMs": 567.534458,
-          "maxRSSMiB": 391.359375,
+          "elapsedMs": 509.82262499999996,
+          "maxRSSMiB": 390.984375,
           "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
           "operations": 1242,
           "diagnostics": 4
         },
         {
-          "elapsedMs": 532.983459,
-          "maxRSSMiB": 391.25,
+          "elapsedMs": 670.326833,
+          "maxRSSMiB": 391.484375,
           "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
           "operations": 1242,
           "diagnostics": 4
         },
         {
-          "elapsedMs": 562.893292,
-          "maxRSSMiB": 390.90625,
+          "elapsedMs": 645.937667,
+          "maxRSSMiB": 393.390625,
           "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
           "operations": 1242,
           "diagnostics": 4
         },
         {
-          "elapsedMs": 538.9495830000001,
-          "maxRSSMiB": 392.171875,
+          "elapsedMs": 623.641917,
+          "maxRSSMiB": 394.671875,
           "outputSha256": "4edae770d2f09cd75ec837f8b297ecb3d9e47fccf6d84b40acdc30405ce2bc6f",
           "operations": 1242,
           "diagnostics": 4
@@ -101,17 +101,17 @@
       ],
       "medians": {
         "before": {
-          "elapsedMs": 614.45925,
-          "maxRSSMiB": 502.609375
+          "elapsedMs": 605.3433749999999,
+          "maxRSSMiB": 502.203125
         },
         "after": {
-          "elapsedMs": 548.174583,
-          "maxRSSMiB": 391.25
+          "elapsedMs": 623.641917,
+          "maxRSSMiB": 391.484375
         }
       },
       "reductionPercent": {
-        "elapsedMs": 10.787479723024763,
-        "maxRSSMiB": 22.15624708552243
+        "elapsedMs": -3.02283674947299,
+        "maxRSSMiB": 22.046607137301265
       }
     },
     {
@@ -120,36 +120,36 @@
       "sha256": "4ba217d8b7316bbc84a94370a216e6fb4ab77180cac82464f91e8969e19a48fd",
       "before": [
         {
-          "elapsedMs": 1330.226709,
-          "maxRSSMiB": 922.734375,
+          "elapsedMs": 1293.339209,
+          "maxRSSMiB": 922.296875,
           "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
           "operations": 3767,
           "diagnostics": 256
         },
         {
-          "elapsedMs": 1320.112458,
-          "maxRSSMiB": 922.609375,
+          "elapsedMs": 1250.9525,
+          "maxRSSMiB": 923.734375,
           "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
           "operations": 3767,
           "diagnostics": 256
         },
         {
-          "elapsedMs": 1265.9852500000002,
-          "maxRSSMiB": 923.375,
+          "elapsedMs": 1186.0402499999998,
+          "maxRSSMiB": 921.828125,
           "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
           "operations": 3767,
           "diagnostics": 256
         },
         {
-          "elapsedMs": 1331.585583,
-          "maxRSSMiB": 925.875,
+          "elapsedMs": 1416.315709,
+          "maxRSSMiB": 923.6875,
           "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
           "operations": 3767,
           "diagnostics": 256
         },
         {
-          "elapsedMs": 1297.991125,
-          "maxRSSMiB": 922.703125,
+          "elapsedMs": 1302.574042,
+          "maxRSSMiB": 925.03125,
           "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
           "operations": 3767,
           "diagnostics": 256
@@ -157,36 +157,36 @@
       ],
       "after": [
         {
-          "elapsedMs": 1217.076458,
-          "maxRSSMiB": 706.578125,
+          "elapsedMs": 1134.653458,
+          "maxRSSMiB": 706.1875,
           "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
           "operations": 3767,
           "diagnostics": 256
         },
         {
-          "elapsedMs": 1185.543791,
-          "maxRSSMiB": 705.640625,
+          "elapsedMs": 1178.2255839999998,
+          "maxRSSMiB": 705.78125,
           "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
           "operations": 3767,
           "diagnostics": 256
         },
         {
-          "elapsedMs": 1225.8884999999998,
-          "maxRSSMiB": 706.078125,
+          "elapsedMs": 1195.391875,
+          "maxRSSMiB": 706.6875,
           "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
           "operations": 3767,
           "diagnostics": 256
         },
         {
-          "elapsedMs": 1196.5058330000002,
-          "maxRSSMiB": 708.484375,
+          "elapsedMs": 1191.647292,
+          "maxRSSMiB": 720.0625,
           "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
           "operations": 3767,
           "diagnostics": 256
         },
         {
-          "elapsedMs": 1185.256417,
-          "maxRSSMiB": 705.796875,
+          "elapsedMs": 1251.1631249999998,
+          "maxRSSMiB": 707.171875,
           "outputSha256": "3c981e063b1a3c0571b669f282d62f6b4e7475a1bdeb2440649cac90073c7e5b",
           "operations": 3767,
           "diagnostics": 256
@@ -194,19 +194,19 @@
       ],
       "medians": {
         "before": {
-          "elapsedMs": 1320.112458,
-          "maxRSSMiB": 922.734375
+          "elapsedMs": 1293.339209,
+          "maxRSSMiB": 923.6875
         },
         "after": {
-          "elapsedMs": 1196.5058330000002,
-          "maxRSSMiB": 706.078125
+          "elapsedMs": 1191.647292,
+          "maxRSSMiB": 706.6875
         }
       },
       "reductionPercent": {
-        "elapsedMs": 9.363340543522082,
-        "maxRSSMiB": 23.479806959613924
+        "elapsedMs": 7.862741366870585,
+        "maxRSSMiB": 23.492793829081805
       }
     }
   ],
-  "sourceSha256": "beabee8d942c7ace3acf1ab7a0ddf33c6758085198423168932fa1d83805d85d"
+  "sourceSha256": "b318645eacf01df96f389bfa24d7e9ef89e8401f7fdce4d469a33de06d4a9092"
 }

@@ -12,6 +12,7 @@ moon.mod: import { "cjyhjy/uri_template@0.4.0", "moonbitlang/async@0.22.5" }
 
 ```sh
 python3 tools/bootstrap.py                       # 固定版本的 MoonBit 工具链
+tools/moon update                                # 同步 Mooncakes 索引
 python3 integrations/moonbit-github/run.py         # 只打印请求计划
 python3 integrations/moonbit-github/run.py --live  # 发出 3 个只读 GET
 ```
