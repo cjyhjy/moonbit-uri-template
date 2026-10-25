@@ -3,8 +3,8 @@
 ## 名称
 
 - GitHub：`cjyhjy/moonbit-uri-template`
-- Mooncakes：`cjyhjy/uri_template`，已发布 0.5.0（2026-10-23）
-- npm：已发布 0.5.0（`moonbit-uri-template`，2026-10-23），通过 GitHub Trusted Publishing 发布，签名和全新工程安装验证通过。
+- Mooncakes：`cjyhjy/uri_template`，已发布 0.5.1（2026-10-25）
+- npm：已发布 0.5.1（`moonbit-uri-template`，2026-10-25），通过 GitHub Trusted Publishing 发布，签名和全新工程安装验证通过。
 
 ## 便携分发包
 
@@ -20,6 +20,8 @@ npm run release:package
 2. `./tools/moon login`，凭据不进仓库。
 3. 确认 `moon.mod` 的版本号后执行 `./tools/moon publish`。
 4. 在全新工程中执行 `moon add cjyhjy/uri_template@<版本>` 并运行示例，确认注册表安装可用。
+
+0.5.1 的发布日志见 `reports/publish-0.5.1.log`；全新工程、独立 MOON_HOME 从 Mooncakes 安装，OpenAPI 示例四后端运行通过，下载的源码包含 `AmbiguousOperation` 修复，见 `reports/registry-0.5.1.json`。
 
 0.5.0 的发布日志见 `reports/publish-0.5.0.log`；全新工程、独立 MOON_HOME 从 Mooncakes 安装，OpenAPI 示例四后端运行通过，见 `reports/registry-0.5.0.json`。
 
@@ -61,6 +63,8 @@ npm 同名同版本不能重复发布；认证配置应在推送标签前完成�
 
 ## GitHub Release
 
+[v0.5.1](https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.5.1) 对应提交 `2e90baf`，附带便携包（解压后 193 项测试通过）、CI 发布的 npm tarball、Mooncakes 源码包和 `SHA256SUMS.txt`。下载回的附件与校验文件一致，npm 注册表 tarball 与 CI 原件相同；见 `reports/npm-release-0.5.1.json`、`reports/github-release-0.5.1.json`。
+
 [v0.5.0](https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.5.0) 对应提交 `2ee68d8`，附件同上。npm 注册表中的 tarball 与 CI 原件、Release 附件逐字节相同；见 `reports/npm-release-0.5.0.json`、`reports/github-release-0.5.0.json`。
 
 [v0.4.0](https://github.com/cjyhjy/moonbit-uri-template/releases/tag/v0.4.0) 对应提交 `e76a153`，附带便携包、npm 原始 tarball、Mooncakes 源码包和 SHA-256 校验文件。便携包解压后 148 项测试通过；附件回验与 SHA-256 见 `reports/github-release-0.4.0.json`。
@@ -90,3 +94,9 @@ npm 同名同版本不能重复发布；认证配置应在推送标签前完成�
 2026-10-23，标签 `v0.4.0`（提交 `e76a153`）通过 [GitHub Actions](https://github.com/cjyhjy/moonbit-uri-template/actions/runs/39941357185) 使用 Trusted Publishing 正式发布。`latest` 指向 `0.4.0`。
 
 全新目录、全新 npm 缓存从官方注册表安装，SDK/OpenAPI 37 项测试、TypeScript 严格检查及 CLI 正反例和孤立代理字符退出码验证通过。`npm audit signatures` 验证签名及 provenance；仓库、工作流、标签、提交均匹配，CI 原始 tarball 与注册表 tarball 及安装完整性一致。见 `reports/npm-release-0.4.0.json`。此次未操作初始化暂存记录。
+
+## npm 0.5.1 发布完成
+
+2026-10-25，标签 `v0.5.1`（提交 `2e90baf`）通过 [GitHub Actions](https://github.com/cjyhjy/moonbit-uri-template/actions/runs/40182543681) 使用 Trusted Publishing 正式发布。`latest` 指向 `0.5.1`。
+
+全新目录、全新 npm 缓存从官方注册表安装：CLI `--version`、YAML 输入的行列诊断，以及三项 OpenAPI 修复（`AmbiguousOperation`、必填 `deepObject` 报 `UnsupportedParameter`、同名 header 不遮蔽 path）均符合预期。`npm audit signatures` 验证签名及 provenance；注册表 tarball 与 CI 原件 SHA-256 相同。见 `reports/npm-release-0.5.1.json`。

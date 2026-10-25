@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "published": true,
+  "package": "moonbit-uri-template",
+  "version": "0.5.1",
+  "verified_at_utc": "2026-10-25T09:57:34+00:00",
+  "git_commit": "2e90baffd6ae02a35fb6dfa6ac27b2a063a246f7",
+  "workflow": "https://github.com/cjyhjy/moonbit-uri-template/actions/runs/40182543681",
+  "registry": "https://registry.npmjs.org/",
+  "dist_tags": {
+    "latest": "0.5.1"
+  },
+  "trusted_publishing": true,
+  "provenance_transparency_log": "https://search.sigstore.dev/?logIndex=3457458208",
+  "registry_signature_verified": true,
+  "ci_tarball_sha256": "9de9c241e571b95fcf9dd2a59acef02bfa1fbc91ad6ee9520ca29afbbe8aa546",
+  "registry_tarball_matches_ci": true,
+  "fresh_project_install": true,
+  "fresh_npm_cache": true,
+  "checks": [
+    "uri-template --version prints 0.5.1",
+    "YAML OpenAPI input: MissingPathParameter at YAML line 11, column 7; exit 1",
+    "moonbit-uri-template/openapi: operationId equal to another operation's \"GET /b\" throws AmbiguousOperation",
+    "required deepObject query parameter throws UnsupportedParameter",
+    "same-name header declared before path does not shadow it: /users/42",
+    "dist/licenses contains moonbit-core-LICENSE and yaml-LICENSE"
+  ]
+}

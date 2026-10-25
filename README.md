@@ -7,7 +7,7 @@ RFC 6570 Level 4 URI 模板库。核心用 MoonBit 编写，不依赖任何第�
 → /users/42?page=2&tags=sdk&tags=api
 ```
 
-版本：0.5.0，已发布到 Mooncakes（`cjyhjy/uri_template`）和 npm（`moonbit-uri-template`，带来源证明）。
+版本：0.5.1，已发布到 Mooncakes（`cjyhjy/uri_template`）和 npm（`moonbit-uri-template`，带来源证明）。
 
 ## 为什么用它
 
@@ -50,7 +50,7 @@ println(template.expand(vars).unwrap()) // /users/42?page=2
 template.expand(vars, required=["id"], limits=@uri.ExpansionLimits::new())
 ```
 
-安装：`moon add cjyhjy/uri_template@0.5.0`。全部接口见 [API](docs/API.md) 与 [接口快照](pkg.generated.mbti)。从 OpenAPI 描述生成模板用 `cjyhjy/uri_template/openapi` 包，见 [OpenAPI](docs/OPENAPI.md)。
+安装：`moon add cjyhjy/uri_template@0.5.1`。全部接口见 [API](docs/API.md) 与 [接口快照](pkg.generated.mbti)。从 OpenAPI 描述生成模板用 `cjyhjy/uri_template/openapi` 包，见 [OpenAPI](docs/OPENAPI.md)。
 
 ## 命令行
 

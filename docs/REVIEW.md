@@ -14,7 +14,7 @@ Mooncakes 上已有 Magic486、JSJ222 两个 RFC 6570 库。下表列出本项�
 | 参数变化时只刷新相关链接 | 不可变增量会话；更新开销取决于补丁大小，与会话规模无关 | `link_session.mbt`、`sdk/index.mjs`、[PERFORMANCE.md](PERFORMANCE.md) |
 | 直接使用真实 API 描述 | 按 OpenAPI 附录 C 把每个接口的路径和 query 参数转换成 RFC 6570 模板，SDK 按接口名生成地址。分析在 MoonBit 包 `openapi` 中实现，Mooncakes 与 npm 共用。GitHub（1242 个接口，0.6 s）、Stripe（612，0.3 s）、Cloudflare（3767，1.3 s）全部转换；发现 GitHub 2 处违反规范的等价路径（已提交 issue #7367）、2 处与声明不符的示例，以及 Cloudflare 1783 处与 schema 不符的示例 | [OPENAPI.md](OPENAPI.md)、`reports/openapi-public.json` |
 | 大规模公开描述回归 | 200 个服务商的 OpenAPI 描述（12,963 个接口）固定哈希、保存行为基线；189 份无错误，11 份共 63 个错误，0 份检查不完整；60 份 YAML 原文与 JSON 结果逐字段一致 | [OPENAPI.md](OPENAPI.md)、`testdata/openapi-corpus/`、`reports/openapi-corpus.json` |
-| 已发布、可安装 | Mooncakes `cjyhjy/uri_template` 和 npm `moonbit-uri-template`（带来源证明）；全新工程从注册表安装后四后端运行通过 | [RELEASE.md](RELEASE.md)、`reports/registry-0.5.0.json`、`reports/npm-release-0.5.0.json` |
+| 已发布、可安装 | Mooncakes `cjyhjy/uri_template` 和 npm `moonbit-uri-template`（带来源证明）；全新工程从注册表安装后四后端运行通过 | [RELEASE.md](RELEASE.md)、`reports/registry-0.5.1.json`、`reports/npm-release-0.5.1.json` |
 | 真实下游 | MoonBit 原生客户端：从 Mooncakes 安装本库，按 GitHub 官方描述生成地址，用 `moonbitlang/async` 发出 3 个真实 HTTPS 请求（macOS、Linux）；Node 侧的 GitHub 巡检客户端（9 个真实请求）和 npm、Open Library 客户端 | [moonbit-github](../integrations/moonbit-github/README.md)、`reports/native-client-live.json`、`reports/native-client-linux-live.json`、`reports/github-integration-portable-live.json` |
 
 与同类库的逐项对比见 [COMPARISON.md](COMPARISON.md)。
