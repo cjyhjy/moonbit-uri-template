@@ -56,6 +56,7 @@ pub struct Operation {
   unsupported : Array[Unsupported]
   example : String?
 } derive(Eq, @debug.Debug)
+pub fn Operation::check_required_support(Self) -> Result[Unit, OpenApiError]
 pub fn Operation::equal(Self, Self) -> Bool
 pub fn Operation::not_equal(Self, Self) -> Bool
 pub fn Operation::to_repr(Self) -> @debug.Repr

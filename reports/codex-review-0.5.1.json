@@ -1,0 +1,145 @@
+{
+  "status": "passed",
+  "version": "0.5.1",
+  "base_commit": "421716c3ae627da8ffd03aca62e6b7594a137213",
+  "checked_at_utc": "2026-10-25T15:51:03.137710+00:00",
+  "platforms": {
+    "npm": {
+      "sdk_and_openapi_tests": 73,
+      "typescript": "passed",
+      "cli_version": "0.5.1",
+      "yaml": "passed",
+      "licenses": "passed",
+      "fresh_project": true,
+      "fresh_cache": true,
+      "integrity": "sha512-phwV5f6b+CcqR+6plZ+2XwAcgo4gLkc2axFwBFdooYYU/BOigFDzpx6PJ9Eqbxpa0MnfTthnUwE0YX1wQbe5qw=="
+    },
+    "github": {
+      "downloaded_hashes": {
+        "moonbit-uri-template-0.5.1.zip": "5597dfa6f0c29b33852f1481c5df1901283ec3eaf2a8ad58ed021b77dc815eff",
+        "moonbit-uri-template-0.5.1.tgz": "9de9c241e571b95fcf9dd2a59acef02bfa1fbc91ad6ee9520ca29afbbe8aa546",
+        "cjyhjy-uri_template-0.5.1.zip": "ed80cc8f2148d1b4296f123ca893bf1595fe91ce1b7e3a31945a810d93eb6eeb"
+      },
+      "sha256sums": "passed",
+      "portable_internal_checksums": "passed",
+      "portable_tests": 193,
+      "tarball_install": {
+        "sdk_and_openapi_tests": 73,
+        "typescript": "passed",
+        "cli_version": "0.5.1",
+        "yaml": "passed",
+        "licenses": "passed"
+      }
+    },
+    "mooncakes": {
+      "fresh_project": true,
+      "fresh_MOON_HOME": true,
+      "version": "0.5.1",
+      "backends": {
+        "js": "Total tests: 2, passed: 2, failed: 0.",
+        "wasm": "Total tests: 2, passed: 2, failed: 0.",
+        "wasm-gc": "Total tests: 2, passed: 2, failed: 0.",
+        "native": "Total tests: 2, passed: 2, failed: 0."
+      },
+      "registry_files_equal_github_asset": 166,
+      "private_files_absent": true
+    }
+  },
+  "completed_at_utc": "2026-10-25T15:54:35.318709+00:00",
+  "scope": "Independent published 0.5.1 acceptance and separate unpublished local deduplication validation",
+  "release_source_evidence": {
+    "release_commit": "2e90baffd6ae02a35fb6dfa6ac27b2a063a246f7",
+    "release_source_sha256": "47a9429a92b55a19592a6e6b5aeb464176546e125eedcc5f2cfed54b3636834f",
+    "report_source_sha256": {
+      "verification": "47a9429a92b55a19592a6e6b5aeb464176546e125eedcc5f2cfed54b3636834f",
+      "sdk-package": "47a9429a92b55a19592a6e6b5aeb464176546e125eedcc5f2cfed54b3636834f",
+      "release": "47a9429a92b55a19592a6e6b5aeb464176546e125eedcc5f2cfed54b3636834f",
+      "openapi-memory": "47a9429a92b55a19592a6e6b5aeb464176546e125eedcc5f2cfed54b3636834f"
+    },
+    "documentation_commit": "421716c3ae627da8ffd03aca62e6b7594a137213",
+    "documentation_source_sha256": "7ad327b46e850c3bb4749b59eaebe50928b345629909a45c5c251f249ce4bd95",
+    "only_digest_input_changed": "examples/ci/openapi-check.yml",
+    "difference_fully_reproduced": true
+  },
+  "local_refactor": {
+    "published": false,
+    "committed": false,
+    "source_sha256": "f4b39930e5b71d208eb8cf7c71c203b9abb9fe4ed4123152eed7556268e329d2",
+    "shared_check": "Operation::check_required_support",
+    "additive_public_api": true,
+    "behavior": "required unsupported query validation shared by native expansion and JSON adapter; existing ordering retained",
+    "backends": {
+      "js": {
+        "total": 370,
+        "passed": 370,
+        "failed": 0
+      },
+      "wasm": {
+        "total": 370,
+        "passed": 370,
+        "failed": 0
+      },
+      "wasm-gc": {
+        "total": 370,
+        "passed": 370,
+        "failed": 0
+      },
+      "native": {
+        "total": 370,
+        "passed": 370,
+        "failed": 0
+      }
+    },
+    "cli": {
+      "total": 50,
+      "passed": 50,
+      "failed": 0
+    },
+    "workflow": {
+      "total": 74,
+      "passed": 74,
+      "failed": 0,
+      "network": "offline only; live evidence is separate"
+    },
+    "sdk": {
+      "total": 77,
+      "passed": 77,
+      "failed": 0
+    },
+    "playground": {
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "scope": "real core analysis and comparison plus deterministic worker lifecycle; browser evidence is separate"
+    },
+    "portable_tests": 195,
+    "commands": [
+      "npm test",
+      "npm run release:package"
+    ],
+    "isolated_snapshot": "_build/codex-051-acceptance/refactor-snapshot",
+    "source_matches_working_tree": true
+  },
+  "local_log_sha256": {
+    "_build/codex-051-acceptance/github-portable-tests.log": "28b654a72e16f5d92a1522f793c1f1b93b1e2c49c65bc49401267e4a051a97d0",
+    "_build/codex-051-acceptance/github-sdk.log": "8f57d9d9ed9873fd8df7b5a2cfe4d81fc54169e16495f97a77f31a6676b580b8",
+    "_build/codex-051-acceptance/github-tarball-install.log": "783dacd876ebe83387f5489be1df3ec22b30796fa82cc6bf4c61640649d043a8",
+    "_build/codex-051-acceptance/github-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "_build/codex-051-acceptance/github-version.log": "aba951626c8690ce493cbc8f018205bb468003f61fbf00fd3d3c71cebabc0177",
+    "_build/codex-051-acceptance/github-yaml.log": "caa38515b8a2b541fe15cffb9e03abebe5ce25a067aee0d040601a9231f88a9b",
+    "_build/codex-051-acceptance/mooncakes-install.log": "fe4dea49cc1bbd3213bd54f56036fd523ee8cb33c32f63b8c319a0f79140710d",
+    "_build/codex-051-acceptance/mooncakes-js.log": "ddd0722f90fd133207ca9e423fc1faa05c3608f3be5c5eb4fdbea4259682b120",
+    "_build/codex-051-acceptance/mooncakes-native.log": "ddd0722f90fd133207ca9e423fc1faa05c3608f3be5c5eb4fdbea4259682b120",
+    "_build/codex-051-acceptance/mooncakes-update.log": "b4e20e791dc615b9e94069248d03dcc115a854d84273efdd30c65f1db6c44a4d",
+    "_build/codex-051-acceptance/mooncakes-wasm-gc.log": "ddd0722f90fd133207ca9e423fc1faa05c3608f3be5c5eb4fdbea4259682b120",
+    "_build/codex-051-acceptance/mooncakes-wasm.log": "ddd0722f90fd133207ca9e423fc1faa05c3608f3be5c5eb4fdbea4259682b120",
+    "_build/codex-051-acceptance/npm-registry-install.log": "c838f45b60075940d29a7a087a993d53b55e6c44f89d91e68720ff11a2078b8b",
+    "_build/codex-051-acceptance/npm-sdk.log": "34b2a6690f6f976f3f40d278ad02b25c571bd0296432d0d275d1105d1e79116d",
+    "_build/codex-051-acceptance/npm-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "_build/codex-051-acceptance/npm-version.log": "aba951626c8690ce493cbc8f018205bb468003f61fbf00fd3d3c71cebabc0177",
+    "_build/codex-051-acceptance/npm-yaml.log": "caa38515b8a2b541fe15cffb9e03abebe5ce25a067aee0d040601a9231f88a9b",
+    "_build/codex-051-acceptance/refactor-package-list.log": "a7e698000f40e54555bdddd9477903294c0f3cc669ce328c96a8b8a144df70ac",
+    "_build/codex-051-acceptance/refactor-package.log": "2b3906d007f9418ea7c58366e4a286d2f99ad50d392668520060102c3d55bcae",
+    "_build/codex-051-acceptance/refactor-verification.log": "b60191b4de975f0df0fb12befecacbb80672156c4c5f6e0e8380f2ebd7f79a1a"
+  }
+}

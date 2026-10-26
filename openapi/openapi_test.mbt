@@ -1,4 +1,49 @@
 ///|
+test "required serialization support uses parameter identity and escaped errors" {
+  for required in [false, true] {
+    for location in ["header", "cookie"] {
+      let doc : Json = {
+        "openapi": "3.1.0",
+        "paths": {
+          "/search": {
+            "get": {
+              "parameters": [
+                { "name": "a~/b", "in": location, "required": true },
+                {
+                  "name": "a~/b",
+                  "in": "query",
+                  "required": required,
+                  "style": "deepObject",
+                  "schema": { "type": "object" },
+                },
+              ],
+            },
+          },
+        },
+      }
+      let api = @openapi.compile(doc).unwrap()
+      let operation = api.get("GET /search").unwrap()
+      if required {
+        let result = operation.check_required_support()
+        assert_true(
+          result is Err({ code: "UnsupportedParameter", path: "/a~0~1b", .. }),
+        )
+        assert_eq(
+          api.expand("GET /search", @uri.Variables::new()),
+          result.map(fn(_) { "" }),
+        )
+      } else {
+        assert_eq(operation.check_required_support(), Ok(()))
+        assert_eq(
+          api.expand("GET /search", @uri.Variables::new()),
+          Ok("/search"),
+        )
+      }
+    }
+  }
+}
+
+///|
 test "Mooncakes consumer analyzes compiles expands and reads diagnostics" {
   let source =
     #|{"openapi":"3.1.0","paths":{"/pets/{id}":{"get":{"operationId":"pets/get","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"string"}},{"name":"tags","in":"query","schema":{"type":"array"}}]}}}}

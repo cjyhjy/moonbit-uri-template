@@ -39,22 +39,9 @@ fn selected_bindings(
       path: "",
     })
   }
-  // Match by location as well as name: ignored header/cookie parameters may
-  // legally have the same name as a required unsupported URL parameter.
-  for item in operation.unsupported {
-    if item.location == @openapi.Query &&
-      operation.parameters.any(fn(parameter) {
-        parameter.name == item.name &&
-        parameter.location == item.location &&
-        parameter.required
-      }) {
-      return Err({
-        code: "UnsupportedParameter",
-        message: item.name + ": " + item.reason,
-        path: "/" +
-        item.name.replace_all(old="~", new="~0").replace_all(old="/", new="~1"),
-      })
-    }
+  match operation.check_required_support() {
+    Err(error) => return Err(error)
+    Ok(_) => ()
   }
   let selected : Array[(String, String)] = []
   for (name, defined) in names {

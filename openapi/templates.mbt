@@ -148,15 +148,16 @@ fn unsupported_operation(key : String, operation : Operation) -> OpenApiError {
 }
 
 ///|
-fn Templates::compiled_operation(
-  self : Templates,
-  key : String,
-  operation : Operation,
-) -> Result[@core.ContractTemplate, OpenApiError] {
+/// Reject required query parameters whose serialization cannot be represented.
+pub fn Operation::check_required_support(
+  self : Operation,
+) -> Result[Unit, OpenApiError] {
   // Unsupported optional query parameters may be omitted, required ones cannot.
-  for item in operation.unsupported {
+  // Match both name and location so ignored header/cookie declarations cannot
+  // make a same-name optional query parameter required.
+  for item in self.unsupported {
     if item.location == Query &&
-      operation.parameters.any(fn(parameter) {
+      self.parameters.any(fn(parameter) {
         parameter.name == item.name &&
         parameter.location == item.location &&
         parameter.required
@@ -167,6 +168,19 @@ fn Templates::compiled_operation(
         path: "/" + ptr(item.name),
       })
     }
+  }
+  Ok(())
+}
+
+///|
+fn Templates::compiled_operation(
+  self : Templates,
+  key : String,
+  operation : Operation,
+) -> Result[@core.ContractTemplate, OpenApiError] {
+  match operation.check_required_support() {
+    Err(error) => return Err(error)
+    Ok(_) => ()
   }
   let cache_key = operation.http_method + " " + operation.path
   match self.compiled.get(cache_key) {

@@ -132,6 +132,18 @@ test('unsupported parameters and operations fail with the reason', () => {
 });
 
 for (const strict of [false, true]) {
+  test(`required unsupported parameter errors escape JSON Pointer names (strict=${strict})`, () => {
+    for (const location of ['header', 'cookie']) {
+      const api = compileOpenApi(doc('/search', [
+        p('a~/b', location, { required: true }),
+        p('a~/b', 'query', { required: true, style: 'deepObject', schema: { type: 'object' } }),
+      ]), { strict });
+      for (const variables of [{}, { 'a~/b': undefined }]) {
+        assert.throws(() => api.expand('op', variables), { code: 'UnsupportedParameter', path: '/a~0~1b' });
+      }
+    }
+  });
+
   test(`required unsupported query parameters fail even when omitted (strict=${strict})`, () => {
     const api = compileOpenApi(doc('/search', [
       p('filter', 'query', { required: true, style: 'deepObject', schema: { type: 'object' } }),
