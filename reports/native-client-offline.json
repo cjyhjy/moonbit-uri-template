@@ -1,27 +1,29 @@
 {
   "status": "passed",
   "evidence": "offline-registry-consumer",
-  "started_at_utc": "2026-10-23T12:53:01.173759+00:00",
-  "source_sha256": "d3a01a3c722b5db6f42e53e825769bdc2745c3a2008e512133b96ad4285969e1",
-  "verifier_sha256": "20f6ac927898d463b059f117a723300154c6fbaf87f6f1cdabd8193e4e0c4e84",
+  "started_at_utc": "2026-10-29T18:34:40.768479+00:00",
+  "source_sha256": "ab5c7bc814108961f1ee9a0b2091dd5efd6c4deb2c667fabbd7ccb86d1f410f1",
+  "verifier_sha256": "41d9e53674b5be9553c70068bfffeb3a9763c53620a1ae394a398dc82a8831bc",
   "backend": "native",
   "externalUserFeedback": false,
+  "system": "Darwin",
+  "machine": "arm64",
   "dependencies": {
     "cjyhjy/uri_template": "0.4.0",
     "moonbitlang/async": "0.22.5"
   },
   "toolchain": {
-    "version": "0.10.15+943464bfa",
-    "moon": "0.1.20261012",
+    "version": "0.10.18+6c83a7f62",
+    "moon": "0.1.20261028",
     "archives": {
       "darwin-aarch64": {
-        "sha256": "563109ff02c6dc77fdc74acd0be423964ef678dfea4d9b948c19d245dc8b0e83"
+        "sha256": "fcd60842ff7b3dd28b2ec246f2264192effb5012009ff137e1722d41a45cf184"
       },
       "linux-x86_64": {
-        "sha256": "24b93a5409d2a4fb8e3d1b84b473f27b63476cef4418094764df96cb26b03c09"
+        "sha256": "0e4cde1ace98e8ef00552a937738b59c6901c4b8a004ebad71ea0e63688f63f1"
       }
     },
-    "core_sha256": "96d30f4dbcc6a9e1736ef26fbdd0e8fb0e97cb01d50e55d2a0072208b8061ae5"
+    "core_sha256": "30a8ae1c1e1e8fde478ea742cbc928c8f4ae1f5c00090afe3f10c97be9e5da64"
   },
   "checks": [
     "default CLI plans three URLs without sending requests",
@@ -59,5 +61,5 @@
       }
     ]
   },
-  "finished_at_utc": "2026-10-23T12:53:05.861746+00:00"
+  "finished_at_utc": "2026-10-29T18:34:45.021104+00:00"
 }

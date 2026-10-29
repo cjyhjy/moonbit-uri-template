@@ -105,8 +105,8 @@ pub fn Templates::expand(Self, String, @uri_template.Variables) -> Result[String
 pub fn Templates::get(Self, String) -> Result[Operation, OpenApiError]
 
 pub struct Truncation {
-  errors : Int
-  warnings : Int
+  errors : Int32
+  warnings : Int32
 } derive(Eq, @debug.Debug)
 pub fn Truncation::equal(Self, Self) -> Bool
 pub fn Truncation::not_equal(Self, Self) -> Bool

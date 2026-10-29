@@ -38,10 +38,10 @@ pub fn PreparedOpenApi::expand(Self, String, String, String) -> String
 pub fn PreparedOpenApi::report(Self) -> String
 
 type PreparedRequest
-pub fn PreparedRequest::audit(Self, String, Int) -> String
+pub fn PreparedRequest::audit(Self, String, Int32) -> String
 pub fn PreparedRequest::call(Self, String, String) -> String
 pub fn PreparedRequest::compare(Self, Self) -> String
-pub fn PreparedRequest::inspect(Self, String, Int) -> String
+pub fn PreparedRequest::inspect(Self, String, Int32) -> String
 
 // Type aliases
 

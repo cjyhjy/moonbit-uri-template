@@ -1,6 +1,10 @@
 {
-  "covered_instrumentation_points": 2436,
-  "total_instrumentation_points": 3020,
+  "covered_instrumentation_points": 2441,
+  "total_instrumentation_points": 3023,
+  "backend": "wasm-gc",
+  "isolated_fresh_build": true,
+  "trace_source_files": 12,
+  "runtime_logs": 5,
   "scope": "MoonBit instrumented packages; examples are separately executed by verify.py without instrumentation.",
   "purpose": "Diagnostic only; no arbitrary percentage gate. Standard conformance remains the release gate."
 }

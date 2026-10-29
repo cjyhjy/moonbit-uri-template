@@ -1,7 +1,7 @@
 $ <repository>/tools/moon check --target native
 Using cached cjyhjy/uri_template@0.4.0
 Using cached moonbitlang/async@0.22.5
-Finished. moon: ran 30 tasks, now up to date
+Finished. moon: ran 32 tasks, now up to date
 
 $ <repository>/tools/moon tree
 cjyhjy/uri_template_github_client@0.1.0 (local <fresh-project>/app):
@@ -10,21 +10,11 @@ cjyhjy/uri_template_github_client@0.1.0 (local <fresh-project>/app):
 
 $ <repository>/tools/moon test --target native --frozen
 Total tests: 16, passed: 16, failed: 0.
-libtool: warning: 'watch_windows.o' has no symbols
-libtool: warning: 'stub.o' has no symbols
-libtool: warning: 'epoll.o' has no symbols
-libtool: warning: 'iocp.o' has no symbols
-libtool: warning: 'io_windows.o' has no symbols
-libtool: warning: 'schannel.o' has no symbols
 
 $ <repository>/tools/moon build --target native --frozen
-libtool: warning: 'watch_windows.o' has no symbols
-libtool: warning: 'stub.o' has no symbols
-libtool: warning: 'epoll.o' has no symbols
-libtool: warning: 'iocp.o' has no symbols
-libtool: warning: 'io_windows.o' has no symbols
-libtool: warning: 'schannel.o' has no symbols
-Finished. moon: ran 71 tasks, now up to date
+Artifacts:
+  cjyhjy/uri_template_github_client/cmd/main  native  <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe
+Finished. moon: ran 91 tasks, now up to date
 
 $ <fresh-project>/app/_build/native/debug/build/cmd/main/main.exe <fresh-project>/app/offline.json <fresh-project>/app/requests.json
 {"ok":true,"mode":"plan","documentErrors":0,"documentWarnings":0,"requests":[{"operation_id":"repos/get","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template","repository":"cjyhjy/moonbit-uri-template"},{"operation_id":"repos/list-commits","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/commits?per_page=2","repository":"cjyhjy/moonbit-uri-template"},{"operation_id":"repos/list-releases","url":"https://api.github.com/repos/cjyhjy/moonbit-uri-template/releases?per_page=2","repository":"cjyhjy/moonbit-uri-template"}]}

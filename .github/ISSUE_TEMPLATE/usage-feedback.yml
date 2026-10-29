@@ -9,7 +9,7 @@ body:
     id: environment
     attributes:
       label: Environment and package version
-      placeholder: 'Linux x86_64, MoonBit 0.10.15, uri_template 0.5.1; or Node 22, npm package 0.5.1'
+      placeholder: 'Linux x86_64, MoonBit 0.10.18, uri_template 0.5.1; or Node 22, npm package 0.5.1'
     validations:
       required: true
   - type: textarea

@@ -1,0 +1,240 @@
+{
+  "status": "passed",
+  "performed_at_utc": "2026-10-29T18:29:16.179308+00:00",
+  "kind": "self-performed third-party integration",
+  "externalUserFeedback": false,
+  "upstream": {
+    "repository": "https://github.com/octokit/endpoint.js",
+    "commit": "0ebc453356fe7f26e47136452b45de991c5f0531",
+    "source_url": "https://codeload.github.com/octokit/endpoint.js/tar.gz/0ebc453356fe7f26e47136452b45de991c5f0531",
+    "source_sha256": "96be3f384a1e8a3cc1f466ae25368b8045c083005fd37daea75c5207b139905a",
+    "sdk": "moonbit-uri-template@0.5.1",
+    "sdk_integrity": "sha512-phwV5f6b+CcqR+6plZ+2XwAcgo4gLkc2axFwBFdooYYU/BOigFDzpx6PJ9Eqbxpa0MnfTthnUwE0YX1wQbe5qw==",
+    "upstream_license": "MIT; original URL-template helper also contains its BSD notice",
+    "scope": "Local integration experiment using unchanged upstream tests; no upstream adoption or independent user feedback"
+  },
+  "work": "_build/octokit-endpoint/run-eszknj27",
+  "logs": {
+    "install-upstream": {
+      "path": "_build/octokit-endpoint/run-eszknj27/install-upstream.log",
+      "sha256": "e5529d5b2aabcfc02ec036eb813e7ffd8f7409a49df58f1bc28951899f7511cc",
+      "exit_code": 0
+    },
+    "baseline-tests": {
+      "path": "_build/octokit-endpoint/run-eszknj27/baseline-tests.log",
+      "sha256": "26142c3da793f5aba3f66e203349e57d05488be325e26076d091c99713203414",
+      "exit_code": 0
+    },
+    "baseline-build": {
+      "path": "_build/octokit-endpoint/run-eszknj27/baseline-build.log",
+      "sha256": "5012a43fbcce145696d003bfd8f510804ab47de8e01cada5434aa7cacb974327",
+      "exit_code": 0
+    },
+    "baseline-consumer": {
+      "path": "_build/octokit-endpoint/run-eszknj27/baseline-consumer.log",
+      "sha256": "08381303069ed49bebc536286be069d4ef326a1d35696a52b8f65317b4f2057f",
+      "exit_code": 0
+    },
+    "install-sdk": {
+      "path": "_build/octokit-endpoint/run-eszknj27/install-sdk.log",
+      "sha256": "c3b7ffcc0118264b5983c8dd2482f1eb9c69fecaed221092b8830871f2713716",
+      "exit_code": 0
+    },
+    "direct-tests": {
+      "path": "_build/octokit-endpoint/run-eszknj27/direct-tests.log",
+      "sha256": "69a27ed0ef7c7f2d28f448e589366604b13856f8b6784249e79e20d310dde7fa",
+      "exit_code": 1
+    },
+    "adapted-tests": {
+      "path": "_build/octokit-endpoint/run-eszknj27/adapted-tests.log",
+      "sha256": "ae7671e779918bd88e0a6023db2cad489d532b518a5a9620655a3fed52999286",
+      "exit_code": 0
+    },
+    "adapted-build": {
+      "path": "_build/octokit-endpoint/run-eszknj27/adapted-build.log",
+      "sha256": "5012a43fbcce145696d003bfd8f510804ab47de8e01cada5434aa7cacb974327",
+      "exit_code": 0
+    },
+    "adapted-consumer": {
+      "path": "_build/octokit-endpoint/run-eszknj27/adapted-consumer.log",
+      "sha256": "dde80aee9011f2861ecc337a407d6143e4b3092db34c6cc0ee81f0ba91194e10",
+      "exit_code": 0
+    }
+  },
+  "project_commit": "d1fd9456e9b52aeebedb186100ca099904a35ed8",
+  "baseline": {
+    "tests": {
+      "numTotalTests": 59,
+      "numPassedTests": 59,
+      "numFailedTests": 0,
+      "failed_tests": [],
+      "exit_code": 0,
+      "coverage_gate": "upstream unchanged 100% thresholds"
+    },
+    "build": "passed",
+    "consumer": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "repository request",
+          "status": "passed"
+        },
+        {
+          "name": "branch ID encodes slash and space",
+          "status": "passed"
+        },
+        {
+          "name": "bigint preserves precision above Number.MAX_SAFE_INTEGER",
+          "status": "passed"
+        },
+        {
+          "name": "omitted path variable keeps Octokit trailing-slash convention",
+          "status": "passed"
+        },
+        {
+          "name": "root slash is preserved",
+          "status": "passed"
+        },
+        {
+          "name": "Uint8Array request body is not serialized by the URI SDK",
+          "status": "passed"
+        },
+        {
+          "name": "Blob request body is not serialized by the URI SDK",
+          "status": "passed"
+        },
+        {
+          "name": "unused bigint JSON-body field is left to Octokit",
+          "status": "passed"
+        }
+      ],
+      "compatibility_probes": [
+        {
+          "name": "exploded query list",
+          "url": "https://api.github.com/search?tags=moon%20bit,tags=uri",
+          "baseline_expected_to_differ": true,
+          "rfc6570_separator": "&"
+        }
+      ],
+      "live": {
+        "performed": false
+      }
+    }
+  },
+  "direct_replacement": {
+    "numTotalTests": 59,
+    "numPassedTests": 56,
+    "numFailedTests": 3,
+    "failed_tests": [
+      "endpoint() Just URL",
+      "endpoint() Undefined placeholder value with no trailing slash in URL",
+      "endpoint() bigint placeholder value"
+    ],
+    "exit_code": 1,
+    "coverage_gate": "not run"
+  },
+  "adapted": {
+    "tests": {
+      "numTotalTests": 59,
+      "numPassedTests": 59,
+      "numFailedTests": 0,
+      "failed_tests": [],
+      "exit_code": 0,
+      "coverage_gate": "upstream unchanged 100% thresholds"
+    },
+    "build": "passed",
+    "consumer": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "repository request",
+          "status": "passed"
+        },
+        {
+          "name": "branch ID encodes slash and space",
+          "status": "passed"
+        },
+        {
+          "name": "bigint preserves precision above Number.MAX_SAFE_INTEGER",
+          "status": "passed"
+        },
+        {
+          "name": "omitted path variable keeps Octokit trailing-slash convention",
+          "status": "passed"
+        },
+        {
+          "name": "root slash is preserved",
+          "status": "passed"
+        },
+        {
+          "name": "Uint8Array request body is not serialized by the URI SDK",
+          "status": "passed"
+        },
+        {
+          "name": "Blob request body is not serialized by the URI SDK",
+          "status": "passed"
+        },
+        {
+          "name": "unused bigint JSON-body field is left to Octokit",
+          "status": "passed"
+        }
+      ],
+      "compatibility_probes": [
+        {
+          "name": "exploded query list",
+          "url": "https://api.github.com/search?tags=moon%20bit&tags=uri",
+          "baseline_expected_to_differ": true,
+          "rfc6570_separator": "&"
+        }
+      ],
+      "live": {
+        "performed": true,
+        "method": "GET",
+        "url": "https://api.github.com/repos/octokit/endpoint.js",
+        "status": 200,
+        "bytes": 6284,
+        "sha256": "1ae07369d2e5e7ca79db5c8ee1500774b3e38a884aa76d1855abae0b7ad9bcec",
+        "full_name": "octokit/endpoint.js"
+      }
+    },
+    "installed_sdk_integrity": "sha512-phwV5f6b+CcqR+6plZ+2XwAcgo4gLkc2axFwBFdooYYU/BOigFDzpx6PJ9Eqbxpa0MnfTthnUwE0YX1wQbe5qw=="
+  },
+  "unchanged_upstream_test_sha256": {
+    "test/merge.test.ts": "aa31804405a3280fabdfad06aeaac2af1b095940b6bede7bacd1375d29433e91",
+    "test/defaults.test.ts": "e70ebd99fcc2418c4a7faa3590e24a0d876e582644a52046fe1521ec4ec8e075",
+    "test/parse.test.ts": "1c015891977340c91d70e86d61e9ddb73ab37b1d8a6d7984d4a19db4214210cd",
+    "test/is-plaint-object.test.ts": "72fc55b5cc45ecfb3048be04cd8725a9425692824bc7f337cbf9f18a685f458f",
+    "test/endpoint.test.ts": "aada1c9c1a5ae219f4f562f47fc53e927f22868f85d0d0fc62034f1f05d6d468"
+  },
+  "changed_upstream_files": [
+    "package-lock.json",
+    "package.json",
+    "src/util/url-template.ts"
+  ],
+  "adapter_sha256": "aeaf902ca6df12792214681059171a9dbd84ff2444024509a5413d5db92225a3",
+  "integration_source_sha256": {
+    "adapter.ts": "aeaf902ca6df12792214681059171a9dbd84ff2444024509a5413d5db92225a3",
+    "consumer.mjs": "df307141663e5075aef6f57f890119c35ff31b81f3b3b4a815615dea7bbd079c",
+    "manifest.json": "8e5ddfccb896fc0c98ba5f5512b232253ea0e5179456b1c2a47efcad53c2cfc1",
+    "run.py": "1a8b53cb0422b0cfe371528ff08134ab7ed363f1e71704f925785fc0bd542924"
+  },
+  "runtime": {
+    "tested_node": "v26.7.0",
+    "upstream_node": ">= 20",
+    "sdk_node": ">=22"
+  },
+  "adaptations": [
+    "Preserve Octokit trailing-slash handling",
+    "Convert bigint URL IDs to decimal strings",
+    "Pass only referenced URL variables; leave body/query objects to Octokit"
+  ],
+  "limitations": [
+    "Local experiment, not an upstream PR or adoption",
+    "59 upstream tests, 8 consumer checks and one compatibility probe do not prove universal drop-in compatibility",
+    "Exploded query lists differ: legacy helper joins items with a comma; SDK uses the RFC 6570 ampersand separator",
+    "Uses published npm SDK; not a MoonBit-native downstream project",
+    "SDK requires Node >=22 whereas pinned upstream declares >=20; this run tests Node 26 only",
+    "SDK input validation remains stricter than the legacy helper for malformed or non-JSON values"
+  ],
+  "license_handling": "Upstream source and notices stay in ignored local cache; tracked adapter and runner are independently written"
+}

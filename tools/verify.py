@@ -18,6 +18,7 @@ from source_digest import source_digest
 
 ROOT = Path(__file__).resolve().parent.parent
 MOON = str(ROOT/'tools/moon')
+lock = json.loads((ROOT/'toolchain.lock.json').read_text())
 REPORTS = ROOT/'reports'
 REPORTS.mkdir(exist_ok=True)
 report = {'status': 'running',
@@ -39,6 +40,10 @@ def finalize_report():
 # Replace the checked-in historical report immediately, including early failures.
 save_report()
 atexit.register(finalize_report)
+
+# Keep the acceptance compiler floor even if a future lock update regresses it.
+if tuple(map(int, lock['version'].split('+', 1)[0].split('.'))) < (0, 10, 16):
+    raise SystemExit('Pinned MoonBit compiler must be >= 0.10.16 for acceptance')
 
 def run(args, cwd=ROOT, log=None):
     report['current_gate'] = args
@@ -65,14 +70,15 @@ for name, data in original.items():
         (REPORTS/('fixture-drift-'+Path(name).name)).write_bytes(actual)
         print(diff[:12000])
         raise SystemExit('Generated fixture drift: '+name+'; see reports/fixture-drift.diff')
-interfaces = {p: p.read_bytes() for p in ROOT.rglob('pkg.generated.mbti') if '.toolchain' not in p.parts and '_build' not in p.parts}
+interfaces = {p: p.read_bytes() for p in ROOT.rglob('pkg.generated.mbti')
+              if not {'.toolchain', '_build', 'node_modules', '.mooncakes'}.intersection(p.relative_to(ROOT).parts)}
+report['public_interface_snapshots'] = len(interfaces)
 run([MOON, 'info'])
 if any(p.read_bytes() != data for p, data in interfaces.items()): raise SystemExit('Public API snapshot drift; review and commit moon info output.')
 manifest = json.loads((ROOT/'testdata/manifest.json').read_text())
 for filename, meta in manifest['files'].items():
     path = ROOT/'testdata/upstream'/filename
     if hashlib.sha256(path.read_bytes()).hexdigest() != meta['sha256']: raise SystemExit('Fixture checksum mismatch: '+filename)
-lock = json.loads((ROOT/'toolchain.lock.json').read_text())
 versions = run([MOON, 'version', '--all'])
 if 'v'+lock['version']+' ' not in versions: raise SystemExit('Unexpected compiler version; run tools/bootstrap.py')
 report.update({'verified_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),

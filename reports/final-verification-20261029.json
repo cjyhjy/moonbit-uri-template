@@ -1,0 +1,233 @@
+{
+  "status": "passed",
+  "verified_at_utc": "2026-10-29T18:35:48.134381+00:00",
+  "base_commit": "d1fd9456e9b52aeebedb186100ca099904a35ed8",
+  "scope": "All pending project changes combined, including the d1fd945 refactor, Octokit integration and compiler/verification fixes. Local checks before commit; remote CI to be verified after push. No package publication.",
+  "source_sha256": "d29d9e9027c36104943dd187d9dd92af968747e15ddbd2a26fecb0cb0131b7d6",
+  "source_files": [
+    {
+      "path": ".github/ISSUE_TEMPLATE/usage-feedback.yml",
+      "sha256": "b889442a493caca6ff36c53b1b0ca2e2d43901e9859471fab3d9370fbe80bf23"
+    },
+    {
+      "path": ".github/workflows/octokit-endpoint.yml",
+      "sha256": "d4edce8b7e0cb2eb4039ff880866a820110bc6397dd0164b71d00358e82d7e18"
+    },
+    {
+      "path": "adapter/json/pkg.generated.mbti",
+      "sha256": "a46208f7bcb17509e45fcc0a07b0f806d06709a9fd43703f001c2daf606f4c4b"
+    },
+    {
+      "path": "integrations/octokit-endpoint/README.md",
+      "sha256": "7334fdc4517709038dafe161f3a427603cddacaff898db7aaa1e7ca4c32c5895"
+    },
+    {
+      "path": "integrations/octokit-endpoint/adapter.ts",
+      "sha256": "aeaf902ca6df12792214681059171a9dbd84ff2444024509a5413d5db92225a3"
+    },
+    {
+      "path": "integrations/octokit-endpoint/consumer.mjs",
+      "sha256": "df307141663e5075aef6f57f890119c35ff31b81f3b3b4a815615dea7bbd079c"
+    },
+    {
+      "path": "integrations/octokit-endpoint/manifest.json",
+      "sha256": "8e5ddfccb896fc0c98ba5f5512b232253ea0e5179456b1c2a47efcad53c2cfc1"
+    },
+    {
+      "path": "integrations/octokit-endpoint/run.py",
+      "sha256": "1a8b53cb0422b0cfe371528ff08134ab7ed363f1e71704f925785fc0bd542924"
+    },
+    {
+      "path": "openapi/pkg.generated.mbti",
+      "sha256": "32eb24751a0df32b2ff4e8c6778e47e80f9daeaa887b770695b9b440da645d7c"
+    },
+    {
+      "path": "pkg.generated.mbti",
+      "sha256": "d416a186fd0a387e00b91551fb5337328ccccb1a7f921b187bfb279f08220346"
+    },
+    {
+      "path": "toolchain.lock.json",
+      "sha256": "6a6cd4ff34456610e202f9053030ca872d7a6b1e97715ef1210c238b7bc5707f"
+    },
+    {
+      "path": "tools/coverage.py",
+      "sha256": "016f1d9b6abb8bab8edeaaff989cd97bac71ebc2c1b9380c4c27633ec142662b"
+    },
+    {
+      "path": "tools/test_fixture_literals.py",
+      "sha256": "1214df7ab2bf6c1f96c28d3b4065c253c5dd2904a878e078a69043b5f44d4136"
+    },
+    {
+      "path": "tools/verify.py",
+      "sha256": "01c1f6df3323f26c4b3db93a30af59461c5410f4ee47817fbc4eef49d823ea65"
+    }
+  ],
+  "compiler": {
+    "version": "0.10.18+6c83a7f62",
+    "moon": "0.1.20261028",
+    "archives": {
+      "darwin-aarch64": {
+        "sha256": "fcd60842ff7b3dd28b2ec246f2264192effb5012009ff137e1722d41a45cf184"
+      },
+      "linux-x86_64": {
+        "sha256": "0e4cde1ace98e8ef00552a937738b59c6901c4b8a004ebad71ea0e63688f63f1"
+      }
+    },
+    "core_sha256": "30a8ae1c1e1e8fde478ea742cbc928c8f4ae1f5c00090afe3f10c97be9e5da64"
+  },
+  "checks": {
+    "backends": {
+      "js": {
+        "total": 370,
+        "passed": 370,
+        "failed": 0
+      },
+      "wasm": {
+        "total": 370,
+        "passed": 370,
+        "failed": 0
+      },
+      "wasm-gc": {
+        "total": 370,
+        "passed": 370,
+        "failed": 0
+      },
+      "native": {
+        "total": 370,
+        "passed": 370,
+        "failed": 0
+      }
+    },
+    "cli": {
+      "total": 50,
+      "passed": 50,
+      "failed": 0
+    },
+    "workflow": {
+      "total": 74,
+      "passed": 74,
+      "failed": 0,
+      "network": "offline only; live evidence is separate"
+    },
+    "sdk": {
+      "total": 77,
+      "passed": 77,
+      "failed": 0
+    },
+    "playground": {
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "scope": "real core analysis and comparison plus deterministic worker lifecycle; browser evidence is separate"
+    },
+    "fixture_literal_roundtrips": 10,
+    "public_interface_snapshots": 7,
+    "clean_package_backends": [
+      "js",
+      "wasm",
+      "wasm-gc",
+      "native"
+    ],
+    "openapi_example": {
+      "status": "passed",
+      "backends": [
+        "js",
+        "wasm",
+        "wasm-gc",
+        "native"
+      ],
+      "package": "examples/openapi_moonbit"
+    },
+    "release_tests": {
+      "total": 195,
+      "passed": 195
+    },
+    "native_client": {
+      "status": "passed",
+      "tests": 16,
+      "dependencies": {
+        "cjyhjy/uri_template": "0.4.0",
+        "moonbitlang/async": "0.22.5"
+      }
+    },
+    "coverage": {
+      "covered_instrumentation_points": 2441,
+      "total_instrumentation_points": 3023,
+      "backend": "wasm-gc",
+      "isolated_fresh_build": true,
+      "trace_source_files": 12,
+      "runtime_logs": 5,
+      "scope": "MoonBit instrumented packages; examples are separately executed by verify.py without instrumentation.",
+      "purpose": "Diagnostic only; no arbitrary percentage gate. Standard conformance remains the release gate."
+    },
+    "openapi_corpus": {
+      "documents": 200,
+      "operations": 12963,
+      "regressions": 0,
+      "analyzerSha256": "503948a243a33cad8a0ec35cd511e8ef05c6ffc6a1c24a0e0dc6d25aa91c0ddb"
+    },
+    "yaml_parity": {
+      "documents": 60,
+      "equal": 60
+    },
+    "octokit": {
+      "upstream_commit": "0ebc453356fe7f26e47136452b45de991c5f0531",
+      "sdk": "moonbit-uri-template@0.5.1",
+      "baseline_tests": {
+        "numTotalTests": 59,
+        "numPassedTests": 59,
+        "numFailedTests": 0,
+        "failed_tests": [],
+        "exit_code": 0,
+        "coverage_gate": "upstream unchanged 100% thresholds"
+      },
+      "adapted_tests": {
+        "numTotalTests": 59,
+        "numPassedTests": 59,
+        "numFailedTests": 0,
+        "failed_tests": [],
+        "exit_code": 0,
+        "coverage_gate": "upstream unchanged 100% thresholds"
+      },
+      "consumer_checks": 8,
+      "live": {
+        "performed": true,
+        "method": "GET",
+        "url": "https://api.github.com/repos/octokit/endpoint.js",
+        "status": 200,
+        "bytes": 6284,
+        "sha256": "1ae07369d2e5e7ca79db5c8ee1500774b3e38a884aa76d1855abae0b7ad9bcec",
+        "full_name": "octokit/endpoint.js"
+      },
+      "expected_direct_replacement_failures": 3,
+      "compatibility_probes": [
+        {
+          "name": "exploded query list",
+          "url": "https://api.github.com/search?tags=moon%20bit&tags=uri",
+          "baseline_expected_to_differ": true,
+          "rfc6570_separator": "&"
+        }
+      ]
+    }
+  },
+  "additional_fix": "Coverage runs instrumented tests in a fresh temporary build and supplies explicit trace source files and merged runtime logs. This fixes recursive collection of incompatible cached trace metadata after a compiler upgrade or from nested checkouts.",
+  "environment_retry": "Native transport tests need loopback TCP listening; sandbox denied four socket tests, then all 16 passed with that permission.",
+  "historical_report": "reports/toolchain-upgrade-20261029.json records the earlier isolated upgrade test; this combined report supersedes its source scope.",
+  "commands": [
+    "npm_config_cache=/tmp/uri-acceptance-20261029-npm npm test",
+    "python3 tools/coverage.py",
+    "npm_config_cache=/tmp/uri-acceptance-20261029-npm npm run release:package",
+    "python3 tools/verify_native_client.py",
+    "node tools/openapi_corpus.mjs check --baseline testdata/openapi-corpus/baseline.json",
+    "node tools/verify_yaml_corpus.mjs",
+    "python3 integrations/octokit-endpoint/run.py --live"
+  ],
+  "log_sha256": {
+    "_build/toolchain-upgrade-20261029/final-combined-verify.log": "b60191b4de975f0df0fb12befecacbb80672156c4c5f6e0e8380f2ebd7f79a1a",
+    "_build/toolchain-upgrade-20261029/final-combined-coverage.log": "bc433698c2e26f7d571eb20c52901977a41955946cc536ecfcf425d9678d524b",
+    "_build/toolchain-upgrade-20261029/final-combined-release.log": "acad203b72cf53a6e371b9e05aa48ad407ac6fb9359f5d3d85b52480871919b5",
+    "_build/toolchain-upgrade-20261029/final-native-client.log": "ad78aa5b889efbdc3a70099aa18677a7834bb21f24128c695c9432db07a06b1e",
+    "_build/toolchain-upgrade-20261029/final-openapi-corpus.log": "8b7765f58aa257b91187512dd24b87f8f7a5b26c2865581c17913626637901e3",
+    "_build/toolchain-upgrade-20261029/final-openapi-yaml.log": "63328dcc47532056854421258d7c8c4ad0e8b33db94776f8a0c09d888942a6d9"
+  }
+}

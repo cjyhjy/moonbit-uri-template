@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/octokit/endpoint.js",
+  "commit": "0ebc453356fe7f26e47136452b45de991c5f0531",
+  "source_url": "https://codeload.github.com/octokit/endpoint.js/tar.gz/0ebc453356fe7f26e47136452b45de991c5f0531",
+  "source_sha256": "96be3f384a1e8a3cc1f466ae25368b8045c083005fd37daea75c5207b139905a",
+  "sdk": "moonbit-uri-template@0.5.1",
+  "sdk_integrity": "sha512-phwV5f6b+CcqR+6plZ+2XwAcgo4gLkc2axFwBFdooYYU/BOigFDzpx6PJ9Eqbxpa0MnfTthnUwE0YX1wQbe5qw==",
+  "upstream_license": "MIT; original URL-template helper also contains its BSD notice",
+  "scope": "Local integration experiment using unchanged upstream tests; no upstream adoption or independent user feedback"
+}

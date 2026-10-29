@@ -1,18 +1,19 @@
 {
   "status": "passed",
-  "verification_started_at_utc": "2026-10-25T09:52:47.675150+00:00",
-  "git_head": "913680f48760d0840035fbcc9a51fe4b1ca369ae",
+  "verification_started_at_utc": "2026-10-29T18:33:56.693551+00:00",
+  "git_head": "d1fd9456e9b52aeebedb186100ca099904a35ed8",
   "working_tree_dirty": true,
-  "verified_at_utc": "2026-10-25T09:52:48.378741+00:00",
+  "public_interface_snapshots": 7,
+  "verified_at_utc": "2026-10-29T18:33:57.641920+00:00",
   "os": "macOS-26.5.1-arm64-arm-64bit",
-  "toolchain": "moon 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.15+943464bfa (2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261012 (748b63c 2026-10-12) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
+  "toolchain": "moon 0.1.20261028 (e1e1f15 2026-10-28) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moon\nmoonc v0.10.18+6c83a7f62 (2026-10-28) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonc\nmoonrun 0.1.20261028 (e1e1f15 2026-10-28) ~/Documents/ChatGPT/黑客松比赛项目/.toolchain/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg",
   "node": "v26.7.0",
-  "source_sha256": "47a9429a92b55a19592a6e6b5aeb464176546e125eedcc5f2cfed54b3636834f",
+  "source_sha256": "d29d9e9027c36104943dd187d9dd92af968747e15ddbd2a26fecb0cb0131b7d6",
   "upstream_commit": "4171dac22aa67fc710b3f6df308a50bd08552986",
   "backends": {
     "js": {
-      "total": 369,
-      "passed": 369,
+      "total": 370,
+      "passed": 370,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -324,8 +325,8 @@
       ]
     },
     "wasm": {
-      "total": 369,
-      "passed": 369,
+      "total": 370,
+      "passed": 370,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -637,8 +638,8 @@
       ]
     },
     "wasm-gc": {
-      "total": 369,
-      "passed": 369,
+      "total": 370,
+      "passed": 370,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -950,8 +951,8 @@
       ]
     },
     "native": {
-      "total": 369,
-      "passed": 369,
+      "total": 370,
+      "passed": 370,
       "failed": 0,
       "upstream_files": {
         "spec-examples.json": {
@@ -1276,14 +1277,14 @@
     "network": "offline only; live evidence is separate"
   },
   "sdk": {
-    "total": 75,
-    "passed": 75,
+    "total": 77,
+    "passed": 77,
     "failed": 0,
     "package": {
       "status": "passed",
       "artifact": "_build/releases/moonbit-uri-template-0.5.1.tgz",
-      "sha256": "844929425f22a52e24e1392efbc740ae92695b4a0fcc7d75f528f7d9f26d967b",
-      "sourceSha256": "47a9429a92b55a19592a6e6b5aeb464176546e125eedcc5f2cfed54b3636834f",
+      "sha256": "b67d7d36a5e9f5ae1d12ddf448dcecc1ba5a927d5a6540e383bc242df3484667",
+      "sourceSha256": "d29d9e9027c36104943dd187d9dd92af968747e15ddbd2a26fecb0cb0131b7d6",
       "node": "v26.7.0",
       "typescript": "Version 7.0.2",
       "cleanLocalInstall": true,
@@ -1611,6 +1612,11 @@
       "README.md",
       "expander.mbt",
       "api_test.mbt",
+      "integrations/octokit-endpoint/run.py",
+      "integrations/octokit-endpoint/README.md",
+      "integrations/octokit-endpoint/consumer.mjs",
+      "integrations/octokit-endpoint/manifest.json",
+      "integrations/octokit-endpoint/adapter.ts",
       "integrations/github-audit/upgrade.mjs",
       "integrations/github-audit/contracts.mjs",
       "integrations/github-audit/README.md",
@@ -1658,7 +1664,7 @@
       "advanced_test.mbt",
       "operator.mbt"
     ],
-    "sha256": "f64668267cdce32ff273b59adf56e6fa6b15c5506665ecd6bf58a8657928a4d0",
+    "sha256": "a6fe61771041be98978f360beb4d3e87e077c597d9c68f3f6677ee142e011141",
     "clean_downstream_backends": [
       "js",
       "wasm",

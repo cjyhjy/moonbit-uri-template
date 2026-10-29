@@ -1,5 +1,5 @@
 ./_build/native/debug/test/adapter/json/json.blackbox_test.exe adapter_test.mbt:0-9
-./_build/native/debug/test/openapi/openapi.blackbox_test.exe openapi_test.mbt:0-1
+./_build/native/debug/test/openapi/openapi.blackbox_test.exe openapi_test.mbt:0-2
 ./_build/native/debug/test/openapi/openapi.whitebox_test.exe templates_wbtest.mbt:0-12/parity_wbtest.mbt:0-20
 ./_build/native/debug/test/uri_template.blackbox_test.exe snapshot_regression_test.mbt:0-3/runtime_contract_test.mbt:0-5/link_session_test.mbt:0-8/limits_test.mbt:0-5/conformance_test.mbt:0-270/catalog_batch_test.mbt:0-2/bindings_test.mbt:0-3/api_test.mbt:0-11/analysis_test.mbt:0-8/advanced_test.mbt:0-8
 ./_build/native/debug/test/uri_template.whitebox_test.exe limits_wbtest.mbt:0-2/encoder_wbtest.mbt:0-2
@@ -12,7 +12,8 @@
 [cjyhjy/uri_template] test adapter/json/adapter_test.mbt:142 ("bounded bridge rejects budgets and deeply nested JSON before parsing") ok
 [cjyhjy/uri_template] test adapter/json/adapter_test.mbt:167 ("bounded bridge preflight reports names and never values") ok
 [cjyhjy/uri_template] test adapter/json/adapter_test.mbt:180 ("adapter converts numbers and booleans to their JSON text") ok
-[cjyhjy/uri_template] test openapi/openapi_test.mbt:2 ("Mooncakes consumer analyzes compiles expands and reads diagnostics") ok
+[cjyhjy/uri_template] test openapi/openapi_test.mbt:2 ("required serialization support uses parameter identity and escaped errors") ok
+[cjyhjy/uri_template] test openapi/openapi_test.mbt:47 ("Mooncakes consumer analyzes compiles expands and reads diagnostics") ok
 [cjyhjy/uri_template] test openapi/templates_wbtest.mbt:2 ("Appendix C.4.1 native compiled expansion and lookup") ok
 [cjyhjy/uri_template] test openapi/templates_wbtest.mbt:49 ("native names, path styles and percent-encoded query names") ok
 [cjyhjy/uri_template] test openapi/templates_wbtest.mbt:101 ("native unsupported parameters and strict compilation") ok
@@ -372,4 +373,4 @@
 [cjyhjy/uri_template] test limits_wbtest.mbt:31 ("input text accounting agrees with character iterator at every boundary") ok
 [cjyhjy/uri_template] test encoder_wbtest.mbt:2 ("prefix counts raw code points before encoding") ok
 [cjyhjy/uri_template] test encoder_wbtest.mbt:18 ("IRI literal range boundaries exclude controls surrogates and noncharacters") ok
-Total tests: 369, passed: 369, failed: 0.
+Total tests: 370, passed: 370, failed: 0.

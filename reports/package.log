@@ -63,6 +63,11 @@ integrations/github-audit/main.mjs
 integrations/github-audit/package.json
 integrations/github-audit/requests.json
 integrations/github-audit/upgrade.mjs
+integrations/octokit-endpoint/README.md
+integrations/octokit-endpoint/adapter.ts
+integrations/octokit-endpoint/consumer.mjs
+integrations/octokit-endpoint/manifest.json
+integrations/octokit-endpoint/run.py
 integrations/public-clients/README.md
 integrations/public-clients/clients.mjs
 integrations/public-clients/clients.test.mjs

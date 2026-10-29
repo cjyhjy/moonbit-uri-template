@@ -1,13 +1,13 @@
 {
-  "version": "0.10.15+943464bfa",
-  "moon": "0.1.20261012",
+  "version": "0.10.18+6c83a7f62",
+  "moon": "0.1.20261028",
   "archives": {
     "darwin-aarch64": {
-      "sha256": "563109ff02c6dc77fdc74acd0be423964ef678dfea4d9b948c19d245dc8b0e83"
+      "sha256": "fcd60842ff7b3dd28b2ec246f2264192effb5012009ff137e1722d41a45cf184"
     },
     "linux-x86_64": {
-      "sha256": "24b93a5409d2a4fb8e3d1b84b473f27b63476cef4418094764df96cb26b03c09"
+      "sha256": "0e4cde1ace98e8ef00552a937738b59c6901c4b8a004ebad71ea0e63688f63f1"
     }
   },
-  "core_sha256": "96d30f4dbcc6a9e1736ef26fbdd0e8fb0e97cb01d50e55d2a0072208b8061ae5"
+  "core_sha256": "30a8ae1c1e1e8fde478ea742cbc928c8f4ae1f5c00090afe3f10c97be9e5da64"
 }
